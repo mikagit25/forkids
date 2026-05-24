@@ -50,25 +50,90 @@ DURATIONS = {
     "short_dance":  1,
 }
 
-TITLES = {
-    ("dance",        "animals"): "Animals Dance Party 🐻 Happy Music for Kids",
-    ("dance",        "fruits"):  "Fruits Dance Party 🍎 Fun Music for Children",
-    ("abc",          "animals"): "ABC Song A to Z 🔤 Learn the Alphabet with Animals",
-    ("abc",          "fruits"):  "ABC Song 🍎 Learn the Alphabet with Fruits",
-    ("numbers",      "animals"): "Numbers 1 to 10 🔢 Count with Cute Animals for Kids",
-    ("numbers",      "fruits"):  "Count 1 to 10 🔢 Learning Numbers with Fruits",
-    ("colors",       "animals"): "Learn Colors 🎨 Red Blue Green Yellow for Kids",
-    ("colors",       "fruits"):  "Colors for Kids 🎨 Learn with Cute Fruits",
-    ("short_letter", "animals"): "Learn ABC Letters 🔤 Alphabet for Babies #shorts",
-    ("short_letter", "fruits"):  "Learn Letters 🍎 ABC with Fruits #shorts",
-    ("short_number", "animals"): "Count 1 to 5 🔢 Numbers for Babies #shorts",
-    ("short_number", "fruits"):  "Count with Fruits 🍎 1 2 3 4 5 #shorts",
-    ("short_color",  "animals"): "Learn Colors 🎨 Red Blue Yellow Green #shorts",
-    ("short_color",  "fruits"):  "Colors with Fruits 🌈 Red Yellow Green #shorts",
-    ("short_shape",  "shapes"):  "Shapes for Kids ⭐ Circle Square Triangle #shorts",
-    ("short_dance",  "animals"): "Dance with Animals 🐯 Fun Short for Kids #shorts",
-    ("short_dance",  "fruits"):  "Dance with Fruits 🍌 Fun Short for Kids #shorts",
+# Multiple title variants per type+theme — indexed by day number to avoid repeats
+TITLES_VARIANTS = {
+    ("dance", "animals"): [
+        "Animals Dance Party 🐻 Happy Music for Kids",
+        "Dancing Animals 🦁 Fun Cartoon Video for Toddlers",
+        "Cute Animals Dancing 🐼 Happy Kids Music",
+    ],
+    ("dance", "fruits"): [
+        "Fruits Dance Party 🍎 Fun Music for Children",
+        "Dancing Fruits 🍌 Happy Music for Babies",
+        "Cartoon Fruits Dancing 🍓 Kids Music Video",
+    ],
+    ("abc", "animals"): [
+        "ABC Song A to Z 🔤 Learn the Alphabet with Animals",
+        "Learn ABC with Cute Animals 🐻 Alphabet Song for Kids",
+    ],
+    ("abc", "fruits"): [
+        "ABC Song 🍎 Learn the Alphabet with Fruits",
+        "Learn Letters with Fruits 🍌 ABC for Toddlers",
+    ],
+    ("numbers", "animals"): [
+        "Numbers 1 to 10 🔢 Count with Cute Animals for Kids",
+        "Learn to Count 1-10 🐻 Numbers for Toddlers",
+    ],
+    ("numbers", "fruits"): [
+        "Count 1 to 10 🔢 Learning Numbers with Fruits",
+        "Numbers 1 to 10 🍎 Count with Fruits for Kids",
+    ],
+    ("colors", "animals"): [
+        "Learn Colors 🎨 Red Blue Green Yellow for Kids",
+        "Colors for Toddlers 🐻 Red Yellow Blue Green",
+    ],
+    ("colors", "fruits"): [
+        "Colors for Kids 🎨 Learn with Cute Fruits",
+        "Learn Colors with Fruits 🍎 Rainbow for Babies",
+    ],
+    ("short_letter", "animals"): [
+        "Learn ABC Letters A B C D E 🔤 Alphabet for Babies #shorts",
+        "Alphabet Song F G H I J 🔤 ABC for Toddlers #shorts",
+        "Learn Letters K L M N O 🔤 Kids ABC #shorts",
+        "ABC P Q R S T 🔤 Learn the Alphabet #shorts",
+        "Letters U V W X Y Z 🔤 ABC Song #shorts",
+        "A is for Apple 🍎 Learn ABC #shorts",
+    ],
+    ("short_number", "animals"): [
+        "Count 1 to 5 🔢 Numbers for Babies #shorts",
+        "Learn Numbers 1 2 3 4 5 🔢 Count with Animals #shorts",
+        "1 2 3 Let's Count! 🔢 Numbers for Toddlers #shorts",
+    ],
+    ("short_number", "fruits"): [
+        "Count with Fruits 🍎 1 2 3 4 5 #shorts",
+        "Numbers 1 to 5 🍌 Count with Fruits #shorts",
+    ],
+    ("short_color", "animals"): [
+        "Learn Colors 🎨 Red Blue Yellow Green #shorts",
+        "Red Yellow Blue Green 🎨 Colors for Babies #shorts",
+        "What Color Is It? 🌈 Colors for Kids #shorts",
+    ],
+    ("short_color", "fruits"): [
+        "Colors with Fruits 🌈 Red Yellow Green #shorts",
+        "Learn Colors 🍎 Orange Yellow Red Green #shorts",
+    ],
+    ("short_shape", "shapes"): [
+        "Shapes for Kids ⭐ Circle Square Triangle #shorts",
+        "Learn Shapes 🔷 Circle Square Star Heart #shorts",
+        "Circle Square Triangle ⭐ Shapes for Babies #shorts",
+    ],
+    ("short_dance", "animals"): [
+        "Dance with Animals 🐯 Fun Short for Kids #shorts",
+        "Cute Animals Dancing 🐻 Happy Music #shorts",
+        "Animal Dance Party 🦁 60 Seconds of Fun #shorts",
+    ],
+    ("short_dance", "fruits"): [
+        "Dance with Fruits 🍌 Fun Short for Kids #shorts",
+        "Fruits Dancing 🍎 Happy Music for Babies #shorts",
+    ],
 }
+
+
+def get_title(video_type: str, theme: str, variant_idx: int) -> str:
+    variants = TITLES_VARIANTS.get((video_type, theme))
+    if variants:
+        return variants[variant_idx % len(variants)]
+    return f"Happy Bear Kids — {theme.capitalize()} {video_type.replace('_', ' ').capitalize()}"
 
 TAGS_BASE = {
     "dance":        ["dance", "kids music", "happy kids", "toddlers", "children"],
@@ -138,12 +203,10 @@ def pick_shorts_set(history: list) -> list:
     return sorted_types[:4]
 
 
-def make_entry(video_type: str, theme: str, day: str, time: str, is_shorts: bool = False) -> dict:
-    title = TITLES.get(
-        (video_type, theme),
-        f"Happy Bear Kids — {theme.capitalize()} {video_type.replace('_', ' ').capitalize()}"
-    )
-    tags = TAGS_BASE.get(video_type, []) + [theme, "kids", "children"]
+def make_entry(video_type: str, theme: str, day: str, time: str,
+               variant_idx: int = 0, is_shorts: bool = False) -> dict:
+    title = get_title(video_type, theme, variant_idx)
+    tags  = TAGS_BASE.get(video_type, []) + [theme, "kids", "children"]
     entry = {
         "title":            title,
         "video_type":       video_type,
@@ -163,19 +226,33 @@ def build_plan(history: list) -> list:
     last_dance_theme = next(
         (h["theme"] for h in history if h["type"] == "dance"), "fruits"
     )
-    dance_themes = ["animals", "fruits", "animals"] if last_dance_theme == "fruits" \
-                   else ["fruits", "animals", "fruits"]
+    # 6 dance slots alternating themes
+    dance_themes = []
+    t = "animals" if last_dance_theme == "fruits" else "fruits"
+    for _ in range(6):
+        dance_themes.append(t)
+        t = "fruits" if t == "animals" else "animals"
 
-    edu_type = pick_edu_type(history)
-    second_edu = "numbers" if edu_type == "colors" else \
-                 "colors"  if edu_type == "numbers" else "numbers"
+    edu_type   = pick_edu_type(history)
+    # 6 edu slots — 2× each of the three types, with varying themes
+    third_edu  = next(e for e in LONG_EDU_TYPES
+                      if e != edu_type and e != (
+                          "numbers" if edu_type == "colors" else
+                          "colors"  if edu_type == "numbers" else "numbers"))
+    second_edu = next(e for e in LONG_EDU_TYPES if e != edu_type and e != third_edu)
 
-    shorts_set = pick_shorts_set(history)
-    # Pad to 4 if needed
-    while len(shorts_set) < 4:
-        shorts_set.append("short_dance")
+    # Edu plan for 6 days: each type appears exactly twice, themes alternate
+    edu_plan = [
+        (edu_type,   "animals"),
+        (second_edu, "animals"),
+        (third_edu,  "animals"),
+        (edu_type,   "fruits"),
+        (second_edu, "fruits"),
+        (third_edu,  "fruits"),
+    ]
 
-    # Alternate short themes
+    # Shorts: 5 types cycling across 6 days, 4 per day
+    # Day 0: types 0,1,2,3 | Day 1: 1,2,3,4 | Day 2: 2,3,4,0 | etc.
     shorts_themes = {
         "short_letter": "animals",
         "short_number": "animals",
@@ -184,30 +261,32 @@ def build_plan(history: list) -> list:
         "short_dance":  "animals" if last_dance_theme == "fruits" else "fruits",
     }
 
+    # Variant counters per type to pick different titles each day
+    variant_count = {}
+
     videos = []
-    # 3 days of content (Mon/Tue/Wed), each day: 2 long + 4 shorts
-    day_plans = [
-        # (long_type1, long_theme1, long_type2, long_theme2)
-        ("dance",   dance_themes[0], edu_type,   "animals"),
-        ("dance",   dance_themes[1], second_edu, "animals"),
-        ("dance",   dance_themes[2], "abc",      "animals"),
-    ]
+    for i, day in enumerate(UPLOAD_DAYS):   # all 6 days Mon-Sat
+        # Long video 1: dance
+        d_theme = dance_themes[i]
+        vc = variant_count.get(("dance", d_theme), 0)
+        videos.append(make_entry("dance", d_theme, day, UPLOAD_TIMES_LONG[0], vc))
+        variant_count[("dance", d_theme)] = vc + 1
 
-    days = UPLOAD_DAYS[:3]  # monday, tuesday, wednesday
-    for i, day in enumerate(days):
-        long1_type, long1_theme, long2_type, long2_theme = day_plans[i]
+        # Long video 2: educational (cycles through 6-slot plan)
+        edu_t, edu_theme = edu_plan[i]
+        vc2 = variant_count.get((edu_t, edu_theme), 0)
+        videos.append(make_entry(edu_t, edu_theme, day, UPLOAD_TIMES_LONG[1], vc2))
+        variant_count[(edu_t, edu_theme)] = vc2 + 1
 
-        # 2 long videos
-        videos.append(make_entry(long1_type, long1_theme, day, UPLOAD_TIMES_LONG[0]))
-        videos.append(make_entry(long2_type, long2_theme, day, UPLOAD_TIMES_LONG[1]))
-
-        # 4 shorts (rotate the set each day)
-        day_shorts = shorts_set[i % len(shorts_set):] + shorts_set[:i % len(shorts_set)]
-        day_shorts = day_shorts[:4]
+        # 4 shorts — rotate through all 5 types across days
+        day_shorts = [SHORTS_ROTATION[(i + j) % len(SHORTS_ROTATION)]
+                      for j in range(4)]
         for j, short_type in enumerate(day_shorts):
-            theme = shorts_themes.get(short_type, "animals")
-            videos.append(make_entry(short_type, theme, day,
-                                     UPLOAD_TIMES_SHORTS[j], is_shorts=True))
+            s_theme = shorts_themes.get(short_type, "animals")
+            vc3 = variant_count.get((short_type, s_theme), 0)
+            videos.append(make_entry(short_type, s_theme, day,
+                                     UPLOAD_TIMES_SHORTS[j], vc3, is_shorts=True))
+            variant_count[(short_type, s_theme)] = vc3 + 1
 
     return videos
 
