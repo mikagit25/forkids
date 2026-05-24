@@ -13,6 +13,7 @@ import argparse
 import logging
 import pickle
 from pathlib import Path
+from typing import Optional
 
 import yaml
 from google.oauth2.credentials import Credentials
