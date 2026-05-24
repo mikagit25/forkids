@@ -1,76 +1,71 @@
-themes:
-  fruits:
-    display: "Fruits"
+# Happy Bear Kids — YouTube Playlists
+# id: set automatically by manage_playlists.py --create-all
+# video_types: which video types go into this playlist
+
+playlists:
+
+  - key: dance
+    name: "🎵 Dance & Music for Kids"
     description: |
-      🍎🍌🍇 Watch colorful fruits dance and bounce to happy music!
-      Perfect for babies and toddlers learning about food and colors.
+      Fun dance videos for babies and toddlers! Animals and fruits dance to happy music.
+      Great for sensory play, movement, and making kids smile.
 
-      ✅ Sensory play  ✅ Color learning  ✅ Baby-safe content
+      Subscribe for new dance videos every week! 🐻
 
-      #dancingfruits #babysongs #kidsmusic #sensory #toddler
-    tags:
-      - dancing fruits
-      - fruits for kids
-      - baby sensory
-      - kids music
-      - colorful fruits
-      - toddler videos
-      - nursery rhymes
-      - happy music
-      - babies
-      - sensory play
+      #kidsmusic #danceforkids #toddlersongs #happybear #babydance
+    video_types: [dance, short_dance]
+    id: null
 
-  vegetables:
-    display: "Vegetables"
+  - key: abc
+    name: "🔤 Learn ABC — Alphabet for Kids"
     description: |
-      🥕🥦🍅 Funny dancing vegetables for babies and toddlers!
-      Watch colorful veggies bounce to happy music and learn their names.
+      Learn the alphabet with Happy Bear Kids! ABC songs, letter videos, and phonics
+      for babies and toddlers. A is for Apple, B is for Bear! 🔤
 
-      ✅ Educational  ✅ Sensory  ✅ Baby-safe
+      Perfect for preschool and early learning.
 
-      #vegetables #babysongs #kidsmusic #sensory
-    tags:
-      - dancing vegetables
-      - veggies for kids
-      - baby sensory
-      - kids music
-      - toddler learning
-      - educational kids
-      - nursery rhymes
-      - happy music
+      #abcsong #alphabet #phonics #kidslearning #toddlereducation
+    video_types: [abc, short_letter]
+    id: null
 
-  animals:
-    display: "Animals"
+  - key: numbers
+    name: "🔢 Numbers & Counting for Kids"
     description: |
-      🐱🐶🐰 Cute dancing animals for babies and kids!
-      Watch adorable animals bounce and sway to cheerful music.
+      Count 1 to 10 with cute animals! Fun number videos and counting songs
+      for babies and toddlers. Learn math the fun way! 🔢
 
-      ✅ Animal sounds  ✅ Sensory  ✅ Baby-safe
+      #numbersforkids #counting #mathforkids #toddlerlearning #123
+    video_types: [numbers, short_number]
+    id: null
 
-      #animals #babysongs #kidsmusic #sensory
-    tags:
-      - dancing animals
-      - animals for kids
-      - baby sensory
-      - cute animals
-      - toddler videos
-      - animal songs
-      - kids music
-
-  shapes:
-    display: "Shapes"
+  - key: colors
+    name: "🎨 Learn Colors for Kids"
     description: |
-      ⭐❤️🔵 Learn shapes with dancing colorful friends!
-      Stars, hearts, circles and more bounce to happy music.
+      Red, yellow, blue and green! Learn colors with Happy Bear Kids.
+      Colorful videos with cute characters for babies and toddlers. 🌈
 
-      ✅ Shape learning  ✅ Colors  ✅ Baby-safe
+      #colorsforkids #learncolors #rainbow #toddlereducation #babysensory
+    video_types: [colors, short_color]
+    id: null
 
-      #shapes #babysongs #kidsmusic #learning
-    tags:
-      - dancing shapes
-      - shapes for kids
-      - baby sensory
-      - learn shapes
-      - toddler learning
-      - colors and shapes
-      - kids music
+  - key: shapes
+    name: "⭐ Shapes for Kids"
+    description: |
+      Circle, square, triangle and star! Learn shapes with Happy Bear Kids.
+      Fun shape videos for babies and toddlers. ⭐
+
+      #shapesforkids #learnshapes #geometry #toddlereducation #preschool
+    video_types: [short_shape]
+    id: null
+
+  - key: shorts
+    name: "🐻 Happy Bear Shorts — 60 Second Fun"
+    description: |
+      Quick 60-second educational videos for babies and toddlers!
+      Learn ABC, numbers, colors, and shapes with Happy Bear Kids. 🐻
+
+      New Shorts every day! #shorts
+
+      #happybearshorts #kidsshorts #babyshorts #shorts #toddlershorts
+    video_types: [short_letter, short_number, short_color, short_shape, short_dance]
+    id: null

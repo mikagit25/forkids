@@ -107,6 +107,7 @@ def upload_video(
     tags: list,
     status: str = "public",
     thumbnail_path: Optional[str] = None,
+    video_type: str = "dance",
     config: dict = None,
 ) -> str:
     if config is None:
@@ -163,6 +164,16 @@ def upload_video(
         ).execute()
         log.info("Thumbnail set.")
 
+    # Add to playlists
+    try:
+        sys.path.insert(0, str(Path(__file__).parent))
+        from manage_playlists import add_to_playlists
+        n = add_to_playlists(youtube, video_id, video_type)
+        if n:
+            log.info(f"Added to {n} playlist(s).")
+    except Exception as exc:
+        log.warning(f"Playlist add skipped: {exc}")
+
     return video_id
 
 
@@ -202,6 +213,7 @@ def main():
         tags=tags,
         status=args.status,
         thumbnail_path=args.thumbnail,
+        video_type=args.video_type,
         config=config,
     )
 

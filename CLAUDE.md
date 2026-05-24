@@ -35,15 +35,24 @@ python3 scripts/upload_youtube.py \
   --file output/test.mp4 --video-type short_letter \
   --theme animals --title "..." --status public
 
+# Thumbnails (авто при batch_generate, но можно вручную)
+python3 scripts/generate_thumbnail.py --all-previews
+python3 scripts/generate_thumbnail.py --type abc --letter A --word Apple --theme animals
+
+# Плейлисты
+python3 scripts/manage_playlists.py --create-all   # создать плейлисты на YouTube (1 раз)
+python3 scripts/manage_playlists.py --list          # показать плейлисты и их ID
+python3 scripts/manage_playlists.py --add VIDEO_ID --video-type dance
+
 # Оформление канала
 python3 scripts/generate_channel_art.py    # перегенерить баннер/иконку
 python3 scripts/setup_channel.py --all     # применить через API
 
-# Batch генерация (все видео по плану)
+# Batch генерация (все видео по плану, авто-thumbnail)
 python3 scripts/batch_generate.py --dry-run
 python3 scripts/batch_generate.py
 
-# Публикация из очереди
+# Публикация из очереди (авто-thumbnail + плейлисты)
 python3 scripts/publish_queue.py --dry-run
 python3 scripts/publish_queue.py --limit 1
 ```
@@ -77,11 +86,10 @@ python3 scripts/publish_queue.py --limit 1
 
 ## Следующие задачи (по приоритету)
 
-1. **plan_week.py** → расширить на 6 дней (сейчас только Mon-Wed)
-2. **generate_thumbnail.py** → авто-thumbnail для каждого видео
-3. **manage_playlists.py** → плейлисты на канале
-4. **Telegram уведомления** → алерты об успехе/ошибке загрузки
-5. **Новые типы:** vocabulary, counting_objects (voiceover уже готов)
-6. **Vegetables** тема спрайтов
+1. ✅ **plan_week.py** → 6 дней (36 видео/неделю)
+2. ✅ **generate_thumbnail.py** → авто-thumbnail для каждого видео
+3. ✅ **manage_playlists.py** → плейлисты (создать через --create-all после сброса квоты)
+4. **Новые типы:** vocabulary, counting_objects (voiceover уже готов)
+5. **Vegetables** тема спрайтов
 
 Полный роадмап: `ROADMAP.md`
