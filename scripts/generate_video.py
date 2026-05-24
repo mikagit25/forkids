@@ -23,7 +23,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 import librosa
 import yaml
-from moviepy.editor import VideoClip, AudioFileClip, concatenate_audioclips
+from moviepy.editor import VideoClip, AudioFileClip, concatenate_audioclips, CompositeAudioClip
 from moviepy.audio.fx.audio_loop import audio_loop
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -85,56 +85,35 @@ def _make_bounce_frames(img: Image.Image, n_frames: int = 30) -> List[Image.Imag
 def load_animated_sprites(theme: str) -> List[Tuple[str, List[Image.Image]]]:
     """
     Returns list of (name, frames) tuples.
-    Priority: ai_generated/ > blender3d/ > animated/ > static theme folder.
+    Priority: theme folder > animals > fruits > ai_generated (legacy).
     """
-    ai_dir      = ROOT / "assets" / "sprites" / "ai_generated"
-    blender_dir = ROOT / "assets" / "sprites" / "blender3d"
-    anim_dir    = ROOT / "assets" / "sprites" / "animated"
-    static_dir  = ROOT / "assets" / "sprites" / theme
+    sprites_root = ROOT / "assets" / "sprites"
+
+    # Build candidate dirs in priority order
+    candidate_dirs = []
+    theme_dir = sprites_root / theme
+    if theme_dir.exists():
+        candidate_dirs.append(theme_dir)
+
+    # If theme not found or not enough sprites, try other quality dirs
+    for fallback in ("animals", "fruits", "ai_generated"):
+        d = sprites_root / fallback
+        if d.exists() and d not in candidate_dirs:
+            candidate_dirs.append(d)
 
     sprites = []
-
-    # 0. Best quality: AI-generated Pixar-style characters (Pollinations.ai + rembg)
-    if ai_dir.exists():
-        for p in sorted(ai_dir.glob("*.png")):
+    for d in candidate_dirs:
+        for p in sorted(d.glob("*.png")):
             img = Image.open(p).convert("RGBA")
             frames = _make_bounce_frames(img, n_frames=30)
             sprites.append((p.stem, frames))
         if sprites:
-            log.info(f"Using {len(sprites)} AI-generated characters (Pollinations.ai)")
-
-    # 1. Prefer Blender 3D rendered sprites (good quality)
-    if not sprites and blender_dir.exists():
-        for char_dir in sorted(blender_dir.iterdir()):
-            if not char_dir.is_dir() or char_dir.name.startswith('test_'):
-                continue
-            frames = []
-            for f in sorted(char_dir.glob("frame_*.png")):
-                frames.append(Image.open(f).convert("RGBA"))
-            if len(frames) >= 10:  # must have at least 10 frames to count
-                sprites.append((char_dir.name, frames))
-        if sprites:
-            log.info(f"Using {len(sprites)} Blender 3D characters")
-
-    # 2. Fall back to Pillow animated sprites
-    if not sprites and anim_dir.exists():
-        for char_dir in sorted(anim_dir.iterdir()):
-            if not char_dir.is_dir():
-                continue
-            frames = []
-            for f in sorted(char_dir.glob("frame_*.png")):
-                frames.append(Image.open(f).convert("RGBA"))
-            if frames:
-                sprites.append((char_dir.name, frames))
-
-    if not sprites and static_dir.exists():
-        for p in sorted(static_dir.glob("*.png")):
-            img = Image.open(p).convert("RGBA")
-            sprites.append((p.stem, [img]))
+            log.info(f"Using {len(sprites)} sprites from {d.name}/")
+            break
 
     if not sprites:
         raise FileNotFoundError(
-            f"No sprites found. Run: python scripts/generate_animated_sprites.py"
+            f"No sprites found for theme '{theme}'. Run: python scripts/download_sprites.py"
         )
 
     log.info(f"Loaded {len(sprites)} characters (theme='{theme}')")
@@ -356,44 +335,46 @@ class SpriteActor:
 
         # ── Carousel: rotate around center ellipse ─────────────────────────
         elif self.choreo == "carousel":
-            cx, cy = W * 0.50, H * 0.50
-            rx = W * 0.31
-            ry = H * 0.20
+            cx, cy = W * 0.50, H * 0.48
+            rx = W * 0.34
+            ry = H * 0.28          # taller ellipse — more visible orbit
             base_a = self.slot * (math.tau / self.n_slots)
-            theta = base_a + rel * 0.38   # rotation speed
+            theta = base_a + rel * 0.50   # slightly faster rotation
             x = cx + math.cos(theta) * rx
             y = cy + math.sin(theta) * ry
             # Perspective: larger at bottom, smaller at top
-            persp = 0.70 + 0.40 * (math.sin(theta) + 1) / 2
-            scale = persp * (1.0 + 0.06 * bp)
-            angle = math.sin(theta) * 8   # slight tilt as they orbit
+            persp = 0.65 + 0.45 * (math.sin(theta) + 1) / 2
+            scale = persp * (1.0 + 0.07 * bp)
+            angle = math.sin(theta) * 12   # more tilt as they orbit
 
         # ── Parade: march left → right, looping ────────────────────────────
         elif self.choreo == "parade":
-            spacing = W * 0.30
-            speed = W * 0.10   # pixels / second
-            base_x = -W * 0.15 + self.slot * spacing
-            x = (base_x + rel * speed) % (W * 1.3) - W * 0.15
-            y = H * 0.57 - bp * 38
-            angle = math.sin(math.pi * beat) * self.sway_dir * 9
+            spacing = W * 0.28
+            speed = W * 0.18   # faster march: ~230 px/s on 1280px screen
+            base_x = -W * 0.20 + self.slot * spacing
+            x = (base_x + rel * speed) % (W * 1.4) - W * 0.20
+            y = H * 0.55 - bp * 50
+            scale = 1.0 + 0.06 * bp
+            angle = math.sin(math.pi * beat) * self.sway_dir * 14  # lean while marching
 
         # ── Horizontal line: wave bounce across the row ─────────────────────
         elif self.choreo == "line_h":
-            margin = W * 0.12
+            margin = W * 0.10
             span = W - 2 * margin
             x = margin + (self.slot / max(self.n_slots - 1, 1)) * span \
                 if self.n_slots > 1 else W * 0.5
-            y = H * 0.54 - bp * 72
-            scale = 1.0 + 0.08 * bp
+            y = H * 0.54 - bp * 90   # bigger bounce height
+            scale = 1.0 + 0.10 * bp
+            angle = math.sin(math.pi * beat * 2) * self.sway_dir * 8
 
         # ── Diagonal entry: slide in from corners then bounce ───────────────
         elif self.choreo == "diagonal_in":
             corners = [
-                (W * 0.02, H * 0.10), (W * 0.98, H * 0.10),
-                (W * 0.02, H * 0.90), (W * 0.98, H * 0.90),
+                (W * 0.02, H * 0.08), (W * 0.98, H * 0.08),
+                (W * 0.02, H * 0.92), (W * 0.98, H * 0.92),
             ]
             cx_px, cy_px = corners[self.slot % len(corners)]
-            arrive = 1.4   # seconds to slide to position
+            arrive = 1.2   # seconds to slide to position
             frac = min(1.0, rel / arrive)
             ease = 1.0 - (1.0 - frac) ** 3   # cubic ease-out
             x = cx_px + (self.grid_x - cx_px) * ease
@@ -401,21 +382,24 @@ class SpriteActor:
             if frac >= 1.0:
                 extra_beat = max(0.0, rel - arrive - self.wave_delay) * self.beat_freq
                 bp2 = abs(math.sin(math.pi * extra_beat))
-                y -= bp2 * 58
-                scale = 1.0 + 0.07 * bp2
+                y -= bp2 * 65
+                scale = 1.0 + 0.08 * bp2
 
-        # ── Zigzag: each char weaves along its own sine path ────────────────
+        # ── Zigzag: each char weaves across the whole screen ────────────────
         elif self.choreo == "zigzag":
-            margin = W * 0.12
-            span = W - 2 * margin
-            base_x = margin + (self.slot / max(self.n_slots - 1, 1)) * span \
-                     if self.n_slots > 1 else W * 0.5
-            freq = self.beat_freq * 0.5
-            phase = self.slot * math.pi * 0.7
-            x = base_x + math.sin(rel * freq * math.pi + phase) * 80
-            y = H * 0.52 + math.cos(rel * freq * math.pi * 0.8 + phase) * 90
-            scale = 1.0 + 0.05 * bp
-            angle = math.sin(rel * freq * math.pi + phase) * 12
+            # Characters distributed vertically, each sweeps full screen width
+            margin_y = H * 0.18
+            span_y = H - 2 * margin_y
+            base_y = margin_y + (self.slot / max(self.n_slots - 1, 1)) * span_y \
+                     if self.n_slots > 1 else H * 0.5
+            freq = self.beat_freq * 0.45
+            phase = self.slot * math.pi * 0.75
+            # Horizontal sweep: full screen width
+            x = W * 0.5 + math.sin(rel * freq * math.pi + phase) * (W * 0.42)
+            # Vertical oscillation around base_y
+            y = base_y + math.cos(rel * freq * math.pi * 0.6 + phase) * (H * 0.12)
+            scale = 1.0 + 0.08 * bp
+            angle = math.sin(rel * freq * math.pi + phase) * 18  # tilt with direction
 
         return x, y, scale, angle
 
@@ -477,6 +461,88 @@ class SpriteActor:
         canvas.paste(badge, (bx, by), badge)
 
 
+# ── Text overlay ──────────────────────────────────────────────────────────────
+
+class TextOverlay:
+    """Renders animated text (letter, word) over a scene."""
+
+    def __init__(
+        self,
+        text: str,
+        start_sec: float,
+        end_sec: float,
+        W: int,
+        H: int,
+        font_size: int = 160,
+        sub_text: str = "",
+        sub_font_size: int = 72,
+        color: Tuple[int, int, int] = (255, 255, 255),
+    ):
+        self.text      = text
+        self.sub_text  = sub_text
+        self.start_sec = start_sec
+        self.end_sec   = end_sec
+        self.W, self.H = W, H
+        self.color     = color
+        self.font      = self._load_font(font_size)
+        self.sub_font  = self._load_font(sub_font_size)
+
+    def _load_font(self, size: int):
+        for path in [
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+            "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
+            "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf",
+        ]:
+            if Path(path).exists():
+                try:
+                    return ImageFont.truetype(path, size)
+                except Exception:
+                    pass
+        return ImageFont.load_default()
+
+    def render(self, canvas: Image.Image, t: float) -> None:
+        rel = t - self.start_sec
+        remaining = self.end_sec - t
+        if rel < 0 or remaining < 0:
+            return
+
+        # Fade in (0.4s) and fade out (0.5s)
+        alpha = min(1.0, rel / 0.4, remaining / 0.5)
+        if alpha <= 0:
+            return
+
+        draw = ImageDraw.Draw(canvas)
+
+        # Bounce-in scale
+        bounce = 1.0 + max(0.0, 0.3 - rel) * 0.8  # starts big, settles to 1.0
+
+        def draw_text_centered(draw, text, font, y, color, alpha, scale=1.0):
+            try:
+                bbox = draw.textbbox((0, 0), text, font=font)
+            except Exception:
+                bbox = (0, 0, len(text) * 20, 40)
+            tw = int((bbox[2] - bbox[0]) * scale)
+            th = int((bbox[3] - bbox[1]) * scale)
+            x = (self.W - tw) // 2
+            # Draw shadow
+            shadow_a = int(160 * alpha)
+            draw.text((x + 4, y + 4), text, font=font,
+                      fill=(0, 0, 0, shadow_a))
+            # Draw main text
+            r, g, b = color
+            draw.text((x, y), text, font=font,
+                      fill=(r, g, b, int(255 * alpha)))
+
+        # Main letter/text - positioned in upper third
+        draw_text_centered(draw, self.text, self.font,
+                           int(self.H * 0.08), self.color, alpha, bounce)
+
+        # Sub text (word) - below center
+        if self.sub_text:
+            draw_text_centered(draw, self.sub_text, self.sub_font,
+                               int(self.H * 0.78), (255, 255, 200), alpha)
+
+
 # ── Video generator ────────────────────────────────────────────────────────────
 
 class VideoGenerator:
@@ -499,6 +565,11 @@ class VideoGenerator:
         self.font = self._load_font(32)
         self._bg_seq = self._build_bg_sequence()
         self.actors = self._build_schedule(script_scenes)
+        self.overlays = self._build_overlays(script_scenes)
+        self._vo_clips = self._build_voiceover(script_scenes)
+        if self._vo_clips:
+            from moviepy.editor import CompositeAudioClip
+            self.audio = CompositeAudioClip([self.audio] + self._vo_clips)
         log.info(f"Actors scheduled: {len(self.actors)}")
 
     def _load_font(self, size: int):
@@ -611,6 +682,56 @@ class VideoGenerator:
 
         return actors
 
+    def _build_overlays(self, script_scenes: Optional[list]) -> List[TextOverlay]:
+        """Build text overlays from scene text/label fields."""
+        if not script_scenes:
+            return []
+        overlays = []
+        for scene in script_scenes:
+            text = scene.get("text", "")
+            sub  = scene.get("sub_text", "")
+            if not text:
+                continue
+            t     = float(scene["start_sec"])
+            dur   = float(scene["duration"])
+            overlays.append(TextOverlay(
+                text=text, sub_text=sub,
+                start_sec=t, end_sec=t + dur,
+                W=self.W, H=self.H,
+            ))
+        return overlays
+
+    def _build_voiceover(self, script_scenes: Optional[list]) -> list:
+        """Build voiceover AudioFileClips from scene voiceover_key fields."""
+        if not script_scenes:
+            return []
+        import sys as _sys
+        _sys.path.insert(0, str(ROOT / "scripts"))
+        from generate_voiceover import slugify, WORD_PHRASES, PACKS
+        from moviepy.editor import AudioFileClip as AFC
+        clips = []
+        for scene in script_scenes:
+            vo_key = scene.get("voiceover_key", "")
+            if not vo_key:
+                continue
+            lang   = scene.get("voiceover_lang", "en")
+            t      = float(scene["start_sec"])
+            vo_dir = ROOT / "assets" / "audio" / "voiceover" / lang
+            text   = WORD_PHRASES.get(vo_key) or PACKS.get("abc", {}).get(vo_key) or vo_key
+            slug   = slugify(text)
+            mp3_path = vo_dir / f"{slug}.mp3"
+            if not mp3_path.exists():
+                mp3_path = vo_dir / f"{slugify(vo_key)}.mp3"
+            if mp3_path.exists():
+                try:
+                    clip = AFC(str(mp3_path)).set_start(t + 0.5)
+                    clips.append(clip)
+                except Exception as e:
+                    log.warning(f"Voiceover {mp3_path}: {e}")
+            else:
+                log.warning(f"Voiceover not found: {mp3_path}")
+        return clips
+
     def make_frame(self, t: float) -> np.ndarray:
         bg_color = self._get_bg_color(t)
         canvas = draw_background(self.W, self.H, bg_color, t).convert("RGBA")
@@ -628,6 +749,9 @@ class VideoGenerator:
         for actor in self.actors:
             if actor.appear_at - 0.5 <= t <= actor.disappear_at + 0.5:
                 actor.render(canvas, t, self.W, self.H, name_font=self.font)
+
+        for overlay in self.overlays:
+            overlay.render(canvas, t)
 
         return np.array(canvas.convert("RGB"))
 

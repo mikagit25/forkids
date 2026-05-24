@@ -37,18 +37,14 @@ def load_template(path: Path) -> list:
 
 def load_chars(theme: str) -> list:
     """Return all available character names for the given theme."""
-    ai_dir   = ROOT / "assets" / "sprites" / "ai_generated"
-    theme_dir = ROOT / "assets" / "sprites" / theme
-
-    chars = []
-    if ai_dir.exists():
-        chars = [p.stem for p in sorted(ai_dir.glob("*.png"))]
-    elif theme_dir.exists():
-        chars = [p.stem for p in sorted(theme_dir.glob("*.png"))]
-
-    if not chars:
-        raise FileNotFoundError(f"No characters found for theme '{theme}'")
-    return chars
+    sprites_root = ROOT / "assets" / "sprites"
+    for candidate in (theme, "animals", "fruits", "ai_generated"):
+        d = sprites_root / candidate
+        if d.exists():
+            chars = [p.stem for p in sorted(d.glob("*.png"))]
+            if chars:
+                return chars
+    raise FileNotFoundError(f"No characters found for theme '{theme}'")
 
 
 def assign_chars(scenes: list, all_chars: list) -> list:
@@ -63,7 +59,7 @@ def assign_chars(scenes: list, all_chars: list) -> list:
 
     for scene in scenes:
         n = scene.get("n", 4)
-        # Use explicitly named chars if provided
+        # Use explicitly named chars if provided (empty list [] = auto-assign)
         if "chars" in scene and scene["chars"]:
             result.append({**scene})
             continue
@@ -73,7 +69,6 @@ def assign_chars(scenes: list, all_chars: list) -> list:
             if pos >= len(pool):
                 random.shuffle(pool)
                 pos = 0
-            # Avoid picking same as last scene's last char
             chosen.append(pool[pos])
             pos += 1
         result.append({**scene, "chars": chosen})
@@ -195,8 +190,11 @@ def main():
         print()
         return
 
-    template_path = Path(args.template) if args.template else \
-                    ROOT / "config" / "scene_templates" / "default.yaml"
+    if args.template:
+        p = Path(args.template)
+        template_path = p if p.is_absolute() else ROOT / p
+    else:
+        template_path = ROOT / "config" / "scene_templates" / "default.yaml"
     output_dir = Path(args.output_dir) if args.output_dir else \
                  ROOT / "config" / "scripts"
 

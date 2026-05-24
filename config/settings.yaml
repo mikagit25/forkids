@@ -20,7 +20,7 @@ video:
     - "#55EFC4"
 
 animation:
-  sprite_size: 280
+  sprite_size: 230
   bounce_height: 45
   sway_angle: 15
   pulse_scale: 0.18

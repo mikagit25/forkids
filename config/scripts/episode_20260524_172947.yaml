@@ -1,0 +1,95 @@
+title: Happy Bear Kids — Animals Dance
+theme: animals
+duration_minutes: 3.0
+total_scenes: 8
+generated_at: 2026-05-24 17:29
+template: config/scene_templates/default.yaml
+scenes:
+- label: Entrance — Diagonal
+  choreo: diagonal_in
+  duration: 24
+  n: 4
+  entry: left_to_right
+  chars:
+  - elephant
+  - parrot
+  - duck
+  - owl
+  id: 1
+  start_sec: 0.0
+- label: Carousel — Round 4
+  choreo: carousel
+  duration: 28
+  n: 4
+  chars:
+  - penguin
+  - frog
+  - dog
+  - pig
+  id: 2
+  start_sec: 24.0
+- label: Parade — March 3
+  choreo: parade
+  duration: 26
+  n: 3
+  chars:
+  - monkey
+  - bunny
+  - giraffe
+  id: 3
+  start_sec: 52.0
+- label: Line Wave — 4
+  choreo: line_h
+  duration: 24
+  n: 4
+  entry: left_to_right
+  chars:
+  - panda
+  - bear
+  - parrot
+  - giraffe
+  id: 4
+  start_sec: 78.0
+- label: Grid Bounce — 4
+  choreo: grid_bounce
+  duration: 22
+  n: 4
+  chars:
+  - monkey
+  - panda
+  - owl
+  - frog
+  id: 5
+  start_sec: 102.0
+- label: Zigzag — 4
+  choreo: zigzag
+  duration: 28
+  n: 4
+  chars:
+  - pig
+  - bunny
+  - dog
+  - duck
+  id: 6
+  start_sec: 124.0
+- label: Grid Sway — 4
+  choreo: grid_sway
+  duration: 22
+  n: 4
+  chars:
+  - elephant
+  - penguin
+  - bear
+  - dog
+  id: 7
+  start_sec: 152.0
+- label: Carousel — 3 spin
+  choreo: carousel
+  duration: 6.0
+  n: 3
+  chars:
+  - bear
+  - frog
+  - parrot
+  id: 8
+  start_sec: 174.0

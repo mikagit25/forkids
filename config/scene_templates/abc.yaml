@@ -1,0 +1,33 @@
+# ─────────────────────────────────────────────────────────────
+# Scene template for ABC Song (A-Z)
+# One scene per letter, 12 seconds each
+# Voiceover: "A. Apple. A is for Apple."
+# ─────────────────────────────────────────────────────────────
+
+scenes:
+  - {label: "A", choreo: diagonal_in, duration: 12, n: 1, text: "A", sub_text: "Apple",    voiceover_key: "A", chars: []}
+  - {label: "B", choreo: grid_bounce, duration: 12, n: 1, text: "B", sub_text: "Banana",   voiceover_key: "B", chars: []}
+  - {label: "C", choreo: carousel,    duration: 12, n: 1, text: "C", sub_text: "Cat",      voiceover_key: "C", chars: []}
+  - {label: "D", choreo: grid_bounce, duration: 12, n: 1, text: "D", sub_text: "Dog",      voiceover_key: "D", chars: []}
+  - {label: "E", choreo: line_h,      duration: 12, n: 1, text: "E", sub_text: "Elephant", voiceover_key: "E", chars: []}
+  - {label: "F", choreo: zigzag,      duration: 12, n: 1, text: "F", sub_text: "Frog",     voiceover_key: "F", chars: []}
+  - {label: "G", choreo: grid_sway,   duration: 12, n: 1, text: "G", sub_text: "Giraffe",  voiceover_key: "G", chars: []}
+  - {label: "H", choreo: carousel,    duration: 12, n: 1, text: "H", sub_text: "Hippo",    voiceover_key: "H", chars: []}
+  - {label: "I", choreo: parade,      duration: 12, n: 1, text: "I", sub_text: "Igloo",    voiceover_key: "I", chars: []}
+  - {label: "J", choreo: grid_bounce, duration: 12, n: 1, text: "J", sub_text: "Jellyfish",voiceover_key: "J", chars: []}
+  - {label: "K", choreo: zigzag,      duration: 12, n: 1, text: "K", sub_text: "Koala",    voiceover_key: "K", chars: []}
+  - {label: "L", choreo: line_h,      duration: 12, n: 1, text: "L", sub_text: "Lion",     voiceover_key: "L", chars: []}
+  - {label: "M", choreo: carousel,    duration: 12, n: 1, text: "M", sub_text: "Monkey",   voiceover_key: "M", chars: []}
+  - {label: "N", choreo: grid_sway,   duration: 12, n: 1, text: "N", sub_text: "Nest",     voiceover_key: "N", chars: []}
+  - {label: "O", choreo: grid_bounce, duration: 12, n: 1, text: "O", sub_text: "Owl",      voiceover_key: "O", chars: []}
+  - {label: "P", choreo: parade,      duration: 12, n: 1, text: "P", sub_text: "Penguin",  voiceover_key: "P", chars: []}
+  - {label: "Q", choreo: zigzag,      duration: 12, n: 1, text: "Q", sub_text: "Queen",    voiceover_key: "Q", chars: []}
+  - {label: "R", choreo: carousel,    duration: 12, n: 1, text: "R", sub_text: "Rabbit",   voiceover_key: "R", chars: []}
+  - {label: "S", choreo: grid_bounce, duration: 12, n: 1, text: "S", sub_text: "Star",     voiceover_key: "S", chars: []}
+  - {label: "T", choreo: line_h,      duration: 12, n: 1, text: "T", sub_text: "Tiger",    voiceover_key: "T", chars: []}
+  - {label: "U", choreo: grid_sway,   duration: 12, n: 1, text: "U", sub_text: "Umbrella", voiceover_key: "U", chars: []}
+  - {label: "V", choreo: carousel,    duration: 12, n: 1, text: "V", sub_text: "Violin",   voiceover_key: "V", chars: []}
+  - {label: "W", choreo: zigzag,      duration: 12, n: 1, text: "W", sub_text: "Watermelon",voiceover_key: "W", chars: []}
+  - {label: "X", choreo: parade,      duration: 12, n: 1, text: "X", sub_text: "Xylophone",voiceover_key: "X", chars: []}
+  - {label: "Y", choreo: grid_bounce, duration: 12, n: 1, text: "Y", sub_text: "Yak",      voiceover_key: "Y", chars: []}
+  - {label: "Z", choreo: grid_sway,   duration: 12, n: 1, text: "Z", sub_text: "Zebra",    voiceover_key: "Z", chars: []}

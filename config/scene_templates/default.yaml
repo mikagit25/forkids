@@ -22,99 +22,100 @@
 #   chars       – optional: specific character names, or omit for auto
 
 scenes:
-  # ── ACT 1: WELCOME ─────────────────────────────────────────
+  # ── BLOCK 1: Открытие ───────────────────────────────────────
   - label: "Entrance — Diagonal"
     choreo: diagonal_in
-    duration: 38
+    duration: 24
     n: 4
     entry: left_to_right
 
-  - label: "Grid Dance — Bounce"
-    choreo: grid_bounce
-    duration: 42
-    n: 4
-
-  - label: "Grid Dance — Sway"
-    choreo: grid_sway
-    duration: 38
-    n: 4
-
-  # ── ACT 2: MOVEMENT ─────────────────────────────────────────
-  - label: "Carousel — 4 chars"
+  - label: "Carousel — Round 4"
     choreo: carousel
-    duration: 52
+    duration: 28
     n: 4
 
-  - label: "Parade — 3 march"
+  - label: "Parade — March 3"
     choreo: parade
-    duration: 45
+    duration: 26
     n: 3
 
-  - label: "Horizontal Wave — 5 chars"
+  # ── BLOCK 2: Волна ──────────────────────────────────────────
+  - label: "Line Wave — 4"
     choreo: line_h
-    duration: 40
-    n: 5
+    duration: 24
+    n: 4
     entry: left_to_right
 
-  # ── ACT 3: VARIETY ──────────────────────────────────────────
-  - label: "Zigzag — 4 chars"
-    choreo: zigzag
-    duration: 42
+  - label: "Grid Bounce — 4"
+    choreo: grid_bounce
+    duration: 22
     n: 4
 
-  - label: "Grid — Bounce 3"
-    choreo: grid_bounce
-    duration: 35
-    n: 3
+  - label: "Zigzag — 4"
+    choreo: zigzag
+    duration: 28
+    n: 4
+
+  # ── BLOCK 3: Смена ──────────────────────────────────────────
+  - label: "Grid Sway — 4"
+    choreo: grid_sway
+    duration: 22
+    n: 4
 
   - label: "Carousel — 3 spin"
     choreo: carousel
-    duration: 50
+    duration: 26
     n: 3
 
   - label: "Parade — 4 march"
     choreo: parade
-    duration: 48
+    duration: 28
     n: 4
 
-  # ── ACT 4: BIG WAVE ─────────────────────────────────────────
-  - label: "Line Wave — 4"
+  # ── BLOCK 4: Разнообразие ────────────────────────────────────
+  - label: "Line Wave — 5"
     choreo: line_h
-    duration: 38
-    n: 4
+    duration: 24
+    n: 5
+    entry: left_to_right
 
   - label: "Diagonal In — 4"
     choreo: diagonal_in
-    duration: 40
+    duration: 24
     n: 4
 
-  - label: "Grid Sway — 4"
-    choreo: grid_sway
-    duration: 40
-    n: 4
-
-  - label: "Carousel — 5 spin"
-    choreo: carousel
-    duration: 55
-    n: 5
-
-  # ── ACT 5: FINALE LOOP ──────────────────────────────────────
   - label: "Zigzag — 3"
     choreo: zigzag
-    duration: 38
+    duration: 26
     n: 3
+
+  # ── BLOCK 5: Финал-петля ─────────────────────────────────────
+  - label: "Grid Bounce — 3"
+    choreo: grid_bounce
+    duration: 22
+    n: 3
+
+  - label: "Carousel — 5 grand"
+    choreo: carousel
+    duration: 30
+    n: 5
 
   - label: "Parade — Big 4"
     choreo: parade
-    duration: 50
+    duration: 26
     n: 4
 
-  - label: "Grid Bounce — 5"
-    choreo: grid_bounce
-    duration: 38
+  - label: "Grid Sway — 3"
+    choreo: grid_sway
+    duration: 22
+    n: 3
+
+  - label: "Line Wave — 3"
+    choreo: line_h
+    duration: 24
+    n: 3
+
+  - label: "Zigzag — 5"
+    choreo: zigzag
+    duration: 28
     n: 5
-
-  - label: "Carousel — Grand"
-    choreo: carousel
-    duration: 55
-    n: 4

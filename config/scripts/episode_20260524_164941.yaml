@@ -1,0 +1,52 @@
+title: Happy Bear Kids — Fruits Dance
+theme: fruits
+duration_minutes: 2.0
+total_scenes: 4
+generated_at: 2026-05-24 16:49
+template: config/scene_templates/default.yaml
+scenes:
+- label: Entrance — Diagonal
+  choreo: diagonal_in
+  duration: 38
+  n: 4
+  entry: left_to_right
+  chars:
+  - pineapple
+  - penguin
+  - cherry
+  - strawberry
+  id: 1
+  start_sec: 0.0
+- label: Grid Dance — Bounce
+  choreo: grid_bounce
+  duration: 42
+  n: 4
+  chars:
+  - bear
+  - carrot
+  - watermelon
+  - avocado
+  id: 2
+  start_sec: 38.0
+- label: Grid Dance — Sway
+  choreo: grid_sway
+  duration: 38
+  n: 4
+  chars:
+  - apple
+  - corn
+  - lemon
+  - cat
+  id: 3
+  start_sec: 80.0
+- label: Carousel — 4 chars
+  choreo: carousel
+  duration: 2.0
+  n: 4
+  chars:
+  - banana
+  - bunny
+  - orange
+  - grapes
+  id: 4
+  start_sec: 118.0
