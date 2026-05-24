@@ -1,4 +1,4 @@
-# Generated: 2026-05-24 19:50
+# Generated: 2026-05-24 19:58
 # 2 long videos + 4 shorts per day = 6 videos/day
 
 videos:
@@ -285,19 +285,19 @@ videos:
   - kids
   - children
   is_shorts: true
-- title: 'Alphabet Song F G H I J 🔤 ABC for Toddlers #shorts'
-  video_type: short_letter
+- title: 'This is a Bear! 🐻 Learn Animals #shorts'
+  video_type: short_vocabulary
   theme: animals
   duration_minutes: 1
   upload_day: wednesday
   upload_time: '19:00'
   status: public
   tags:
-  - abc
+  - vocabulary
+  - animals
   - shorts
-  - alphabet
   - kids
-  - toddlers
+  - learning
   - animals
   - kids
   - children
@@ -368,36 +368,36 @@ videos:
   - kids
   - children
   is_shorts: true
-- title: 'Learn Letters K L M N O 🔤 Kids ABC #shorts'
-  video_type: short_letter
+- title: 'This is a Dog! 🐶 Animal Names for Kids #shorts'
+  video_type: short_vocabulary
   theme: animals
   duration_minutes: 1
   upload_day: thursday
   upload_time: '17:00'
   status: public
   tags:
-  - abc
+  - vocabulary
+  - animals
   - shorts
-  - alphabet
   - kids
-  - toddlers
+  - learning
   - animals
   - kids
   - children
   is_shorts: true
-- title: '1 2 3 Let''s Count! 🔢 Numbers for Toddlers #shorts'
-  video_type: short_number
+- title: 'Count 1 to 5 with Cats 🐱 Counting for Kids #shorts'
+  video_type: short_counting
   theme: animals
   duration_minutes: 1
   upload_day: thursday
   upload_time: '19:00'
   status: public
   tags:
-  - numbers
   - counting
+  - numbers
   - shorts
   - kids
-  - toddlers
+  - math
   - animals
   - kids
   - children
@@ -451,12 +451,46 @@ videos:
   - kids
   - children
   is_shorts: true
-- title: 'ABC P Q R S T 🔤 Learn the Alphabet #shorts'
-  video_type: short_letter
+- title: 'This is an Elephant! 🐘 Learn Animals #shorts'
+  video_type: short_vocabulary
   theme: animals
   duration_minutes: 1
   upload_day: friday
   upload_time: '15:00'
+  status: public
+  tags:
+  - vocabulary
+  - animals
+  - shorts
+  - kids
+  - learning
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'One Two Three! 🔢 Count with Animals #shorts'
+  video_type: short_counting
+  theme: animals
+  duration_minutes: 1
+  upload_day: friday
+  upload_time: '17:00'
+  status: public
+  tags:
+  - counting
+  - numbers
+  - shorts
+  - kids
+  - math
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Alphabet Song F G H I J 🔤 ABC for Toddlers #shorts'
+  video_type: short_letter
+  theme: animals
+  duration_minutes: 1
+  upload_day: friday
+  upload_time: '19:00'
   status: public
   tags:
   - abc
@@ -464,40 +498,6 @@ videos:
   - alphabet
   - kids
   - toddlers
-  - animals
-  - kids
-  - children
-  is_shorts: true
-- title: 'Count 1 to 5 🔢 Numbers for Babies #shorts'
-  video_type: short_number
-  theme: animals
-  duration_minutes: 1
-  upload_day: friday
-  upload_time: '17:00'
-  status: public
-  tags:
-  - numbers
-  - counting
-  - shorts
-  - kids
-  - toddlers
-  - animals
-  - kids
-  - children
-  is_shorts: true
-- title: 'Learn Colors 🎨 Red Blue Yellow Green #shorts'
-  video_type: short_color
-  theme: animals
-  duration_minutes: 1
-  upload_day: friday
-  upload_time: '19:00'
-  status: public
-  tags:
-  - colors
-  - shorts
-  - kids
-  - learning
-  - rainbow
   - animals
   - kids
   - children
@@ -534,12 +534,46 @@ videos:
   - fruits
   - kids
   - children
-- title: 'Letters U V W X Y Z 🔤 ABC Song #shorts'
-  video_type: short_letter
+- title: 'What Animal Is This? 🐸 Animal Names #shorts'
+  video_type: short_vocabulary
   theme: animals
   duration_minutes: 1
   upload_day: saturday
   upload_time: '13:00'
+  status: public
+  tags:
+  - vocabulary
+  - animals
+  - shorts
+  - kids
+  - learning
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Let''s Count! 1 2 3 4 5 🔢 Kids Counting #shorts'
+  video_type: short_counting
+  theme: animals
+  duration_minutes: 1
+  upload_day: saturday
+  upload_time: '15:00'
+  status: public
+  tags:
+  - counting
+  - numbers
+  - shorts
+  - kids
+  - math
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Learn Letters K L M N O 🔤 Kids ABC #shorts'
+  video_type: short_letter
+  theme: animals
+  duration_minutes: 1
+  upload_day: saturday
+  upload_time: '17:00'
   status: public
   tags:
   - abc
@@ -551,12 +585,12 @@ videos:
   - kids
   - children
   is_shorts: true
-- title: 'Learn Numbers 1 2 3 4 5 🔢 Count with Animals #shorts'
+- title: '1 2 3 Let''s Count! 🔢 Numbers for Toddlers #shorts'
   video_type: short_number
   theme: animals
   duration_minutes: 1
   upload_day: saturday
-  upload_time: '15:00'
+  upload_time: '19:00'
   status: public
   tags:
   - numbers
@@ -565,40 +599,6 @@ videos:
   - kids
   - toddlers
   - animals
-  - kids
-  - children
-  is_shorts: true
-- title: 'Red Yellow Blue Green 🎨 Colors for Babies #shorts'
-  video_type: short_color
-  theme: animals
-  duration_minutes: 1
-  upload_day: saturday
-  upload_time: '17:00'
-  status: public
-  tags:
-  - colors
-  - shorts
-  - kids
-  - learning
-  - rainbow
-  - animals
-  - kids
-  - children
-  is_shorts: true
-- title: 'Learn Shapes 🔷 Circle Square Star Heart #shorts'
-  video_type: short_shape
-  theme: shapes
-  duration_minutes: 1
-  upload_day: saturday
-  upload_time: '19:00'
-  status: public
-  tags:
-  - shapes
-  - shorts
-  - kids
-  - learning
-  - geometry
-  - shapes
   - kids
   - children
   is_shorts: true

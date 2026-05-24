@@ -45,15 +45,20 @@ TEMPLATE_MAP = {
     "numbers":        ROOT / "config" / "scene_templates" / "numbers.yaml",
     "colors":         ROOT / "config" / "scene_templates" / "colors.yaml",
     # Shorts templates (60s, vertical 9:16)
-    "short_letter":   ROOT / "config" / "scene_templates" / "shorts_letter.yaml",
-    "short_number":   ROOT / "config" / "scene_templates" / "shorts_number.yaml",
-    "short_color":    ROOT / "config" / "scene_templates" / "shorts_color.yaml",
-    "short_shape":    ROOT / "config" / "scene_templates" / "shorts_shape.yaml",
-    "short_dance":    ROOT / "config" / "scene_templates" / "shorts_dance.yaml",
+    "short_letter":     ROOT / "config" / "scene_templates" / "shorts_letter.yaml",
+    "short_number":     ROOT / "config" / "scene_templates" / "shorts_number.yaml",
+    "short_color":      ROOT / "config" / "scene_templates" / "shorts_color.yaml",
+    "short_shape":      ROOT / "config" / "scene_templates" / "shorts_shape.yaml",
+    "short_dance":      ROOT / "config" / "scene_templates" / "shorts_dance.yaml",
+    "short_vocabulary": ROOT / "config" / "scene_templates" / "shorts_vocabulary.yaml",
+    "short_counting":   ROOT / "config" / "scene_templates" / "shorts_counting.yaml",
 }
 
 # Types that should always render as vertical Shorts
-SHORTS_TYPES = {"short_letter", "short_number", "short_color", "short_shape", "short_dance"}
+SHORTS_TYPES = {
+    "short_letter", "short_number", "short_color", "short_shape", "short_dance",
+    "short_vocabulary", "short_counting",
+}
 
 
 def make_thumbnail(video_cfg: dict, mp4_path: Path, variant: int = 0) -> Path | None:
@@ -67,13 +72,14 @@ def make_thumbnail(video_cfg: dict, mp4_path: Path, variant: int = 0) -> Path | 
     if video_type in ("abc", "short_letter"):
         letter = chr(ord('A') + (variant % 26))
         word   = LETTER_WORDS.get(letter, letter)
-    elif video_type in ("numbers", "short_number"):
+    elif video_type in ("numbers", "short_number", "short_counting"):
         number = str((variant % 5) + 1)
     elif video_type in ("colors", "short_color"):
         color  = COLORS_LIST[variant % len(COLORS_LIST)]
     elif video_type == "short_shape":
         shape  = SHAPES_LIST[variant % len(SHAPES_LIST)]
         theme  = "shapes"
+    # short_vocabulary uses thumb_generic (animals)
 
     thumb_path = mp4_path.parent / f"thumb_{mp4_path.stem}.png"
     try:

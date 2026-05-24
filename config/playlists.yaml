@@ -67,5 +67,5 @@ playlists:
       New Shorts every day! #shorts
 
       #happybearshorts #kidsshorts #babyshorts #shorts #toddlershorts
-    video_types: [short_letter, short_number, short_color, short_shape, short_dance]
+    video_types: [short_letter, short_number, short_color, short_shape, short_dance, short_vocabulary, short_counting]
     id: null

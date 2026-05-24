@@ -1,0 +1,13 @@
+# ─────────────────────────────────────────────────────────────
+# YouTube Short: Counting Objects 1-5 (60s)
+# 5 scenes × 12s = 60s, vertical 720×1280
+# n cats appear one by one, big number overlay + voiceover
+# voiceover_key maps to counting pack: "One cat! One!"
+# ─────────────────────────────────────────────────────────────
+
+scenes:
+  - {choreo: grid_bounce, duration: 12, n: 1, text: "1", sub_text: "One!",   voiceover_key: "1_cat",  chars: [], bg_color: [255, 210, 60]}
+  - {choreo: grid_bounce, duration: 12, n: 2, text: "2", sub_text: "Two!",   voiceover_key: "2_cats", chars: [], bg_color: [100, 210, 255]}
+  - {choreo: grid_bounce, duration: 12, n: 3, text: "3", sub_text: "Three!", voiceover_key: "3_cats", chars: [], bg_color: [150, 255, 150]}
+  - {choreo: grid_bounce, duration: 12, n: 4, text: "4", sub_text: "Four!",  voiceover_key: "4_cats", chars: [], bg_color: [255, 150, 200]}
+  - {choreo: grid_bounce, duration: 12, n: 5, text: "5", sub_text: "Five!",  voiceover_key: "5_cats", chars: [], bg_color: [200, 150, 255]}

@@ -30,9 +30,10 @@ QUEUE     = ROOT / "output" / "queue"
 LONG_DANCE_THEMES  = ["animals", "fruits"]
 LONG_EDU_TYPES     = ["abc", "numbers", "colors"]
 
-# Shorts types (60s, 4 per day, vertical)
+# Shorts types (60s, 4 per day, vertical) — 7 types cycling across 6 days
 SHORTS_ROTATION = [
-    "short_letter", "short_number", "short_color", "short_shape", "short_dance"
+    "short_letter", "short_number", "short_color", "short_shape",
+    "short_dance", "short_vocabulary", "short_counting"
 ]
 
 UPLOAD_DAYS = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday"]
@@ -43,11 +44,13 @@ DURATIONS = {
     "abc":          6,
     "numbers":      2,
     "colors":       2,
-    "short_letter": 1,
-    "short_number": 1,
-    "short_color":  1,
-    "short_shape":  1,
-    "short_dance":  1,
+    "short_letter":     1,
+    "short_number":     1,
+    "short_color":      1,
+    "short_shape":      1,
+    "short_dance":      1,
+    "short_vocabulary": 1,
+    "short_counting":   1,
 }
 
 # Multiple title variants per type+theme — indexed by day number to avoid repeats
@@ -126,6 +129,17 @@ TITLES_VARIANTS = {
         "Dance with Fruits 🍌 Fun Short for Kids #shorts",
         "Fruits Dancing 🍎 Happy Music for Babies #shorts",
     ],
+    ("short_vocabulary", "animals"): [
+        "This is a Bear! 🐻 Learn Animals #shorts",
+        "This is a Dog! 🐶 Animal Names for Kids #shorts",
+        "This is an Elephant! 🐘 Learn Animals #shorts",
+        "What Animal Is This? 🐸 Animal Names #shorts",
+    ],
+    ("short_counting", "animals"): [
+        "Count 1 to 5 with Cats 🐱 Counting for Kids #shorts",
+        "One Two Three! 🔢 Count with Animals #shorts",
+        "Let's Count! 1 2 3 4 5 🔢 Kids Counting #shorts",
+    ],
 }
 
 
@@ -144,7 +158,9 @@ TAGS_BASE = {
     "short_number": ["numbers", "counting", "shorts", "kids", "toddlers"],
     "short_color":  ["colors", "shorts", "kids", "learning", "rainbow"],
     "short_shape":  ["shapes", "shorts", "kids", "learning", "geometry"],
-    "short_dance":  ["dance", "shorts", "kids", "fun", "animals"],
+    "short_dance":       ["dance", "shorts", "kids", "fun", "animals"],
+    "short_vocabulary":  ["vocabulary", "animals", "shorts", "kids", "learning"],
+    "short_counting":    ["counting", "numbers", "shorts", "kids", "math"],
 }
 
 UPLOAD_TIMES_LONG   = ["09:00", "11:00"]
@@ -251,14 +267,16 @@ def build_plan(history: list) -> list:
         (third_edu,  "fruits"),
     ]
 
-    # Shorts: 5 types cycling across 6 days, 4 per day
-    # Day 0: types 0,1,2,3 | Day 1: 1,2,3,4 | Day 2: 2,3,4,0 | etc.
+    # Shorts: 7 types cycling across 6 days, 4 per day
+    # Day 0: types 0,1,2,3 | Day 1: 1,2,3,4 | Day 2: 2,3,4,5 | etc.
     shorts_themes = {
-        "short_letter": "animals",
-        "short_number": "animals",
-        "short_color":  "animals",
-        "short_shape":  "shapes",
-        "short_dance":  "animals" if last_dance_theme == "fruits" else "fruits",
+        "short_letter":     "animals",
+        "short_number":     "animals",
+        "short_color":      "animals",
+        "short_shape":      "shapes",
+        "short_dance":      "animals" if last_dance_theme == "fruits" else "fruits",
+        "short_vocabulary": "animals",
+        "short_counting":   "animals",
     }
 
     # Variant counters per type to pick different titles each day

@@ -35,7 +35,9 @@ SCHEMES = {
     "short_number": {"bg_top": (100, 210, 100),  "bg_bot": (30,  140, 50),   "accent": (255, 230, 40),  "text": (255,255,255)},
     "short_color":  {"bg_top": (250, 100, 180),  "bg_bot": (180, 40,  140),  "accent": (255, 240, 80),  "text": (255,255,255)},
     "short_shape":  {"bg_top": (160, 100, 255),  "bg_bot": (90,  40,  200),  "accent": (255, 220, 60),  "text": (255,255,255)},
-    "short_dance":  {"bg_top": (255, 200, 40),   "bg_bot": (255, 130, 30),   "accent": (255, 60,  60),  "text": (255,255,255)},
+    "short_dance":       {"bg_top": (255, 200, 40),   "bg_bot": (255, 130, 30),   "accent": (255, 60,  60),  "text": (255,255,255)},
+    "short_vocabulary":  {"bg_top": (255, 170, 60),   "bg_bot": (200, 100, 20),   "accent": (255, 240, 80),  "text": (255,255,255)},
+    "short_counting":    {"bg_top": (80,  200, 200),   "bg_bot": (20,  130, 160),  "accent": (255, 240, 60),  "text": (255,255,255)},
 }
 
 # Цвет фона для short_color thumbnails
@@ -369,11 +371,11 @@ def generate_thumbnail(
 ) -> Path:
     img = None
 
-    if video_type == "dance" or video_type == "short_dance":
+    if video_type in ("dance", "short_dance"):
         img = thumb_dance(theme, title, variant)
     elif video_type in ("abc", "short_letter") and letter:
         img = thumb_abc(theme, letter, word or letter)
-    elif video_type in ("numbers", "short_number") and number:
+    elif video_type in ("numbers", "short_number", "short_counting") and number:
         img = thumb_numbers(theme, number)
     elif video_type in ("colors", "short_color") and color:
         img = thumb_colors(color)

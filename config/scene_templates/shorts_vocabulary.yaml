@@ -1,0 +1,13 @@
+# ─────────────────────────────────────────────────────────────
+# YouTube Short: Vocabulary — This is a [animal]! (60s)
+# 5 animals × 12s = 60s, vertical 720×1280
+# One character center stage + name overlay + voiceover
+# voiceover_key maps to vocabulary pack: "This is a bear! Bear! Bear!"
+# ─────────────────────────────────────────────────────────────
+
+scenes:
+  - {choreo: diagonal_in, duration: 12, n: 1, text: "Bear",     sub_text: "This is a Bear!",     voiceover_key: "bear",     chars: [bear],     bg_color: [255, 200, 80]}
+  - {choreo: grid_bounce, duration: 12, n: 1, text: "Dog",      sub_text: "This is a Dog!",      voiceover_key: "dog",      chars: [dog],      bg_color: [100, 210, 255]}
+  - {choreo: carousel,    duration: 12, n: 1, text: "Elephant", sub_text: "This is an Elephant!", voiceover_key: "elephant", chars: [elephant], bg_color: [180, 130, 255]}
+  - {choreo: zigzag,      duration: 12, n: 1, text: "Frog",     sub_text: "This is a Frog!",     voiceover_key: "frog",     chars: [frog],     bg_color: [80, 210, 120]}
+  - {choreo: grid_sway,   duration: 12, n: 1, text: "Monkey",   sub_text: "This is a Monkey!",   voiceover_key: "monkey",   chars: [monkey],   bg_color: [255, 160, 60]}
