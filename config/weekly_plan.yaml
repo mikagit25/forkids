@@ -1,10 +1,10 @@
-# Generated: 2026-05-24 19:58
+# Generated: 2026-05-24 20:08
 # 2 long videos + 4 shorts per day = 6 videos/day
 
 videos:
-- title: Animals Dance Party 🐻 Happy Music for Kids
+- title: Vegetables Dance Party 🥕 Happy Music for Kids
   video_type: dance
-  theme: animals
+  theme: vegetables
   duration_minutes: 30
   upload_day: monday
   upload_time: 09:00
@@ -15,7 +15,7 @@ videos:
   - happy kids
   - toddlers
   - children
-  - animals
+  - vegetables
   - kids
   - children
 - title: ABC Song A to Z 🔤 Learn the Alphabet with Animals
@@ -102,9 +102,9 @@ videos:
   - kids
   - children
   is_shorts: true
-- title: Fruits Dance Party 🍎 Fun Music for Children
+- title: Animals Dance Party 🐻 Happy Music for Kids
   video_type: dance
-  theme: fruits
+  theme: animals
   duration_minutes: 30
   upload_day: tuesday
   upload_time: 09:00
@@ -115,7 +115,7 @@ videos:
   - happy kids
   - toddlers
   - children
-  - fruits
+  - animals
   - kids
   - children
 - title: Numbers 1 to 10 🔢 Count with Cute Animals for Kids
@@ -202,9 +202,9 @@ videos:
   - kids
   - children
   is_shorts: true
-- title: Dancing Animals 🦁 Fun Cartoon Video for Toddlers
+- title: Fruits Dance Party 🍎 Fun Music for Children
   video_type: dance
-  theme: animals
+  theme: fruits
   duration_minutes: 30
   upload_day: wednesday
   upload_time: 09:00
@@ -215,7 +215,7 @@ videos:
   - happy kids
   - toddlers
   - children
-  - animals
+  - fruits
   - kids
   - children
 - title: Learn Colors 🎨 Red Blue Green Yellow for Kids
@@ -268,9 +268,9 @@ videos:
   - kids
   - children
   is_shorts: true
-- title: 'Cute Animals Dancing 🐻 Happy Music #shorts'
+- title: 'Dance with Fruits 🍌 Fun Short for Kids #shorts'
   video_type: short_dance
-  theme: animals
+  theme: fruits
   duration_minutes: 1
   upload_day: wednesday
   upload_time: '17:00'
@@ -281,7 +281,7 @@ videos:
   - kids
   - fun
   - animals
-  - animals
+  - fruits
   - kids
   - children
   is_shorts: true
@@ -302,9 +302,9 @@ videos:
   - kids
   - children
   is_shorts: true
-- title: Dancing Fruits 🍌 Happy Music for Babies
+- title: Dancing Vegetables 🥦 Fun Cartoon Video for Toddlers
   video_type: dance
-  theme: fruits
+  theme: vegetables
   duration_minutes: 30
   upload_day: thursday
   upload_time: 09:00
@@ -315,7 +315,7 @@ videos:
   - happy kids
   - toddlers
   - children
-  - fruits
+  - vegetables
   - kids
   - children
 - title: ABC Song 🍎 Learn the Alphabet with Fruits
@@ -351,9 +351,9 @@ videos:
   - kids
   - children
   is_shorts: true
-- title: 'Animal Dance Party 🦁 60 Seconds of Fun #shorts'
+- title: 'Dance with Vegetables 🥕 Fun Short for Kids #shorts'
   video_type: short_dance
-  theme: animals
+  theme: vegetables
   duration_minutes: 1
   upload_day: thursday
   upload_time: '15:00'
@@ -364,7 +364,7 @@ videos:
   - kids
   - fun
   - animals
-  - animals
+  - vegetables
   - kids
   - children
   is_shorts: true
@@ -402,7 +402,7 @@ videos:
   - kids
   - children
   is_shorts: true
-- title: Cute Animals Dancing 🐼 Happy Kids Music
+- title: Dancing Animals 🦁 Fun Cartoon Video for Toddlers
   video_type: dance
   theme: animals
   duration_minutes: 30
@@ -434,7 +434,7 @@ videos:
   - fruits
   - kids
   - children
-- title: 'Dance with Animals 🐯 Fun Short for Kids #shorts'
+- title: 'Cute Animals Dancing 🐻 Happy Music #shorts'
   video_type: short_dance
   theme: animals
   duration_minutes: 1
@@ -502,7 +502,7 @@ videos:
   - kids
   - children
   is_shorts: true
-- title: Cartoon Fruits Dancing 🍓 Kids Music Video
+- title: Dancing Fruits 🍌 Happy Music for Babies
   video_type: dance
   theme: fruits
   duration_minutes: 30

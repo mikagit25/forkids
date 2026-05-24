@@ -27,7 +27,7 @@ QUEUE     = ROOT / "output" / "queue"
 # ── Content rotation ──────────────────────────────────────────────────────────
 
 # Long video types (full-length, 2 per day)
-LONG_DANCE_THEMES  = ["animals", "fruits"]
+LONG_DANCE_THEMES  = ["animals", "fruits", "vegetables"]
 LONG_EDU_TYPES     = ["abc", "numbers", "colors"]
 
 # Shorts types (60s, 4 per day, vertical) — 7 types cycling across 6 days
@@ -128,6 +128,16 @@ TITLES_VARIANTS = {
     ("short_dance", "fruits"): [
         "Dance with Fruits 🍌 Fun Short for Kids #shorts",
         "Fruits Dancing 🍎 Happy Music for Babies #shorts",
+    ],
+    ("dance", "vegetables"): [
+        "Vegetables Dance Party 🥕 Happy Music for Kids",
+        "Dancing Vegetables 🥦 Fun Cartoon Video for Toddlers",
+        "Cute Vegetables Dancing 🌽 Happy Kids Music",
+    ],
+    ("short_dance", "vegetables"): [
+        "Dance with Vegetables 🥕 Fun Short for Kids #shorts",
+        "Vegetables Dancing 🥦 Happy Music for Babies #shorts",
+        "Veggie Dance Party 🌽 60 Seconds of Fun #shorts",
     ],
     ("short_vocabulary", "animals"): [
         "This is a Bear! 🐻 Learn Animals #shorts",
@@ -242,12 +252,11 @@ def build_plan(history: list) -> list:
     last_dance_theme = next(
         (h["theme"] for h in history if h["type"] == "dance"), "fruits"
     )
-    # 6 dance slots alternating themes
-    dance_themes = []
-    t = "animals" if last_dance_theme == "fruits" else "fruits"
-    for _ in range(6):
-        dance_themes.append(t)
-        t = "fruits" if t == "animals" else "animals"
+    # 6 dance slots cycling through 3 themes: animals, fruits, vegetables
+    themes = LONG_DANCE_THEMES
+    start  = (themes.index(last_dance_theme) + 1) % len(themes) \
+             if last_dance_theme in themes else 0
+    dance_themes = [themes[(start + i) % len(themes)] for i in range(6)]
 
     edu_type   = pick_edu_type(history)
     # 6 edu slots — 2× each of the three types, with varying themes
@@ -274,7 +283,7 @@ def build_plan(history: list) -> list:
         "short_number":     "animals",
         "short_color":      "animals",
         "short_shape":      "shapes",
-        "short_dance":      "animals" if last_dance_theme == "fruits" else "fruits",
+        "short_dance":      dance_themes[0],
         "short_vocabulary": "animals",
         "short_counting":   "animals",
     }
@@ -296,11 +305,15 @@ def build_plan(history: list) -> list:
         videos.append(make_entry(edu_t, edu_theme, day, UPLOAD_TIMES_LONG[1], vc2))
         variant_count[(edu_t, edu_theme)] = vc2 + 1
 
-        # 4 shorts — rotate through all 5 types across days
+        # 4 shorts — rotate through all 7 types across days
         day_shorts = [SHORTS_ROTATION[(i + j) % len(SHORTS_ROTATION)]
                       for j in range(4)]
         for j, short_type in enumerate(day_shorts):
-            s_theme = shorts_themes.get(short_type, "animals")
+            # short_dance follows the day's dance theme
+            if short_type == "short_dance":
+                s_theme = d_theme
+            else:
+                s_theme = shorts_themes.get(short_type, "animals")
             vc3 = variant_count.get((short_type, s_theme), 0)
             videos.append(make_entry(short_type, s_theme, day,
                                      UPLOAD_TIMES_SHORTS[j], vc3, is_shorts=True))

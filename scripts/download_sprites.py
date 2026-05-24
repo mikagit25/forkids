@@ -53,12 +53,27 @@ OPENMOJI_FOOD = {
     "grapes":     "1F347",
     "cherry":     "1F352",
     "pineapple":  "1F34D",
-    "corn":       "1F33D",
-    "carrot":     "1F955",
-    "broccoli":   "1F966",
-    "avocado":    "1F951",
     "peach":      "1F351",
     "pear":       "1F350",
+    "mango":      "1F96D",
+    "melon":      "1F348",
+    "kiwi":       "1F95D",
+    "blueberries":"1FAD0",
+}
+
+OPENMOJI_VEGETABLES = {
+    "carrot":       "1F955",
+    "broccoli":     "1F966",
+    "corn":         "1F33D",
+    "tomato":       "1F345",
+    "cucumber":     "1F952",
+    "eggplant":     "1F346",
+    "mushroom":     "1F344",
+    "onion":        "1F9C5",
+    "potato":       "1F954",
+    "avocado":      "1F951",
+    "pumpkin":      "1F383",
+    "leafy_green":  "1F96C",
 }
 
 
@@ -268,6 +283,9 @@ def main():
     # OpenMoji food sprites (flat cartoon emoji style)
     if not args.category or args.category == "fruits":
         total_saved += download_openmoji("fruits", OPENMOJI_FOOD, SPRITES_DIR, dry_run=args.dry_run)
+
+    if not args.category or args.category == "vegetables":
+        total_saved += download_openmoji("vegetables", OPENMOJI_VEGETABLES, SPRITES_DIR, dry_run=args.dry_run)
 
     # Kenney animal pack (round cartoon faces)
     packs = KENNEY_PACKS
