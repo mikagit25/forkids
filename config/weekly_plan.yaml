@@ -12,6 +12,7 @@
 # theme: animals | fruits
 # duration_minutes: video length
 
+# video_type: dance | abc | numbers | colors
 videos:
   - title: "Animals Dance Party 🐻 Happy Music for Kids"
     video_type: dance
@@ -57,3 +58,21 @@ videos:
     upload_time: "09:00"
     status: public
     tags: [abc, alphabet, toddlers, learning, educational]
+
+  - title: "Numbers 1 to 10 🔢 Count with Cute Animals for Kids"
+    video_type: numbers
+    theme: animals
+    duration_minutes: 2
+    upload_day: thursday
+    upload_time: "09:00"
+    status: public
+    tags: [numbers, counting, kids, learning, educational]
+
+  - title: "Learn Colors 🎨 Red Blue Green Yellow for Children"
+    video_type: colors
+    theme: animals
+    duration_minutes: 2
+    upload_day: sunday
+    upload_time: "09:00"
+    status: public
+    tags: [colors, learning, kids, educational, toddlers]

@@ -24,8 +24,10 @@ QUEUE_DIR = ROOT / "output" / "queue"
 SCRIPTS_DIR = ROOT / "config" / "scripts"
 
 TEMPLATE_MAP = {
-    "dance": ROOT / "config" / "scene_templates" / "default.yaml",
-    "abc":   ROOT / "config" / "scene_templates" / "abc.yaml",
+    "dance":   ROOT / "config" / "scene_templates" / "default.yaml",
+    "abc":     ROOT / "config" / "scene_templates" / "abc.yaml",
+    "numbers": ROOT / "config" / "scene_templates" / "numbers.yaml",
+    "colors":  ROOT / "config" / "scene_templates" / "colors.yaml",
 }
 
 

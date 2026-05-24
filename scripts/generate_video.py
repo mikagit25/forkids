@@ -564,6 +564,7 @@ class VideoGenerator:
 
         self.font = self._load_font(32)
         self._bg_seq = self._build_bg_sequence()
+        self._scene_colors = self._build_scene_colors(script_scenes)
         self.actors = self._build_schedule(script_scenes)
         self.overlays = self._build_overlays(script_scenes)
         self._vo_clips = self._build_voiceover(script_scenes)
@@ -595,7 +596,26 @@ class VideoGenerator:
             t += dur
         return seq
 
+    def _build_scene_colors(self, script_scenes: Optional[list]) -> List[Tuple[float, float, Tuple[int,int,int]]]:
+        """Build list of (start, end, rgb) from scenes that have bg_color."""
+        if not script_scenes:
+            return []
+        result = []
+        for scene in script_scenes:
+            if "bg_color" not in scene:
+                continue
+            start = float(scene["start_sec"])
+            end   = start + float(scene["duration"])
+            rgb   = hex_to_rgb(scene["bg_color"])
+            result.append((start, end, rgb))
+        return result
+
     def _get_bg_color(self, t: float) -> Tuple[int, int, int]:
+        # Per-scene color takes priority over random sequence
+        for start, end, rgb in self._scene_colors:
+            if start <= t < end:
+                return rgb
+        # Fall back to random sequence
         color = self._bg_seq[0][0]
         for c, start in self._bg_seq:
             if start <= t:

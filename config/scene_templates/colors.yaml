@@ -1,0 +1,85 @@
+# ─────────────────────────────────────────────────────────────
+# Scene template — Colors
+# Each scene: colored background + characters + color name + voiceover
+# ─────────────────────────────────────────────────────────────
+
+scenes:
+  - label: "Red"
+    choreo: grid_bounce
+    duration: 12
+    n: 3
+    text: "Red"
+    sub_text: "Red!"
+    voiceover_key: "red"
+    bg_color: "#FF4444"
+    chars: []
+
+  - label: "Orange"
+    choreo: carousel
+    duration: 12
+    n: 3
+    text: "Orange"
+    sub_text: "Orange!"
+    voiceover_key: "orange"
+    bg_color: "#FF922B"
+    chars: []
+
+  - label: "Yellow"
+    choreo: line_h
+    duration: 12
+    n: 4
+    text: "Yellow"
+    sub_text: "Yellow!"
+    voiceover_key: "yellow"
+    bg_color: "#F9CA24"
+    chars: []
+
+  - label: "Green"
+    choreo: zigzag
+    duration: 12
+    n: 3
+    text: "Green"
+    sub_text: "Green!"
+    voiceover_key: "green"
+    bg_color: "#27AE60"
+    chars: []
+
+  - label: "Blue"
+    choreo: parade
+    duration: 12
+    n: 3
+    text: "Blue"
+    sub_text: "Blue!"
+    voiceover_key: "blue"
+    bg_color: "#2980B9"
+    chars: []
+
+  - label: "Purple"
+    choreo: grid_sway
+    duration: 12
+    n: 4
+    text: "Purple"
+    sub_text: "Purple!"
+    voiceover_key: "purple"
+    bg_color: "#8E44AD"
+    chars: []
+
+  - label: "Pink"
+    choreo: diagonal_in
+    duration: 12
+    n: 3
+    text: "Pink"
+    sub_text: "Pink!"
+    voiceover_key: "pink"
+    bg_color: "#FD79A8"
+    chars: []
+
+  - label: "Brown"
+    choreo: carousel
+    duration: 12
+    n: 3
+    text: "Brown"
+    sub_text: "Brown!"
+    voiceover_key: "brown"
+    bg_color: "#A0522D"
+    chars: []

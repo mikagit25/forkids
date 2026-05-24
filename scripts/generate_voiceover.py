@@ -37,24 +37,45 @@ ABC_WORDS = {
     "Y": "Yak",      "Z": "Zebra",
 }
 
-NUMBERS = {str(i): str(i) for i in range(1, 21)}
+NUMBER_WORDS = {
+    "1": "One",      "2": "Two",       "3": "Three",
+    "4": "Four",     "5": "Five",      "6": "Six",
+    "7": "Seven",    "8": "Eight",     "9": "Nine",
+    "10": "Ten",     "11": "Eleven",   "12": "Twelve",
+    "13": "Thirteen","14": "Fourteen", "15": "Fifteen",
+    "16": "Sixteen", "17": "Seventeen","18": "Eighteen",
+    "19": "Nineteen","20": "Twenty",
+}
 
 COLORS = {
-    "red": "Red",       "blue": "Blue",     "green": "Green",
-    "yellow": "Yellow", "orange": "Orange", "purple": "Purple",
-    "pink": "Pink",     "white": "White",   "black": "Black",
-    "brown": "Brown",
+    "red":    ("Red",    "#FF4444"),
+    "orange": ("Orange", "#FF922B"),
+    "yellow": ("Yellow", "#FFD93D"),
+    "green":  ("Green",  "#6BCB77"),
+    "blue":   ("Blue",   "#4D96FF"),
+    "purple": ("Purple", "#A29BFE"),
+    "pink":   ("Pink",   "#FD79A8"),
+    "brown":  ("Brown",  "#A0522D"),
 }
 
 PACKS = {
-    "abc":     {letter: f"{letter}. {word}. {letter} is for {word}."
-                for letter, word in ABC_WORDS.items()},
-    "numbers": {k: f"{v}! {v}!" for k, v in NUMBERS.items()},
-    "colors":  {k: f"{v}! Can you see {v.lower()}?" for k, v in COLORS.items()},
+    "abc": {letter: f"{letter}. {word}. {letter} is for {word}."
+            for letter, word in ABC_WORDS.items()},
+    "numbers": {k: f"{word}! {word}! Let's count! {word}!"
+                for k, word in NUMBER_WORDS.items()},
+    "colors":  {k: f"{name}! {name}! Can you find something {name.lower()}?"
+                for k, (name, _) in COLORS.items()},
 }
 
-# Individual words (for sprites)
-WORD_PHRASES = {**ABC_WORDS, **NUMBERS, **COLORS}
+# Flat lookup: key → display text (for get_phrase_path)
+NUMBERS = {k: v for k, v in NUMBER_WORDS.items()}  # "1" → "One"
+
+# Individual words (for sprites / scene lookup)
+WORD_PHRASES = {
+    **ABC_WORDS,
+    **NUMBER_WORDS,
+    **{k: v[0] for k, v in COLORS.items()},
+}
 
 
 def slugify(text: str) -> str:
