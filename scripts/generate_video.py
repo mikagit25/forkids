@@ -82,8 +82,9 @@ def analyze_beats(music_path: Path) -> Tuple[float, np.ndarray]:
     y, sr = librosa.load(str(music_path), sr=None, duration=60)
     tempo, beat_frames = librosa.beat.beat_track(y=y, sr=sr)
     beat_times = librosa.frames_to_time(beat_frames, sr=sr)
-    log.info(f"BPM: {float(tempo):.1f}, beats in sample: {len(beat_times)}")
-    return float(tempo), beat_times
+    bpm = float(np.atleast_1d(tempo)[0])
+    log.info(f"BPM: {bpm:.1f}, beats in sample: {len(beat_times)}")
+    return bpm, beat_times
 
 
 def load_watermark(config: dict) -> Optional[Image.Image]:
