@@ -24,11 +24,20 @@ QUEUE_DIR = ROOT / "output" / "queue"
 SCRIPTS_DIR = ROOT / "config" / "scripts"
 
 TEMPLATE_MAP = {
-    "dance":   ROOT / "config" / "scene_templates" / "default.yaml",
-    "abc":     ROOT / "config" / "scene_templates" / "abc.yaml",
-    "numbers": ROOT / "config" / "scene_templates" / "numbers.yaml",
-    "colors":  ROOT / "config" / "scene_templates" / "colors.yaml",
+    "dance":          ROOT / "config" / "scene_templates" / "default.yaml",
+    "abc":            ROOT / "config" / "scene_templates" / "abc.yaml",
+    "numbers":        ROOT / "config" / "scene_templates" / "numbers.yaml",
+    "colors":         ROOT / "config" / "scene_templates" / "colors.yaml",
+    # Shorts templates (60s, vertical 9:16)
+    "short_letter":   ROOT / "config" / "scene_templates" / "shorts_letter.yaml",
+    "short_number":   ROOT / "config" / "scene_templates" / "shorts_number.yaml",
+    "short_color":    ROOT / "config" / "scene_templates" / "shorts_color.yaml",
+    "short_shape":    ROOT / "config" / "scene_templates" / "shorts_shape.yaml",
+    "short_dance":    ROOT / "config" / "scene_templates" / "shorts_dance.yaml",
 }
+
+# Types that should always render as vertical Shorts
+SHORTS_TYPES = {"short_letter", "short_number", "short_color", "short_shape", "short_dance"}
 
 
 def run_script(cmd: list, description: str) -> bool:
@@ -45,7 +54,12 @@ def generate_video(video_cfg: dict, dry_run: bool = False) -> Path | None:
     title       = video_cfg["title"]
     video_type  = video_cfg["video_type"]
     theme       = video_cfg.get("theme", "animals")
-    duration    = video_cfg.get("duration_minutes", 30)
+    duration    = video_cfg.get("duration_minutes", 1)
+    is_shorts   = video_cfg.get("is_shorts", video_type in SHORTS_TYPES)
+
+    # Shape short uses shapes sprite theme
+    if video_type == "short_shape":
+        theme = "shapes"
 
     template = TEMPLATE_MAP.get(video_type)
     if not template:
@@ -53,12 +67,12 @@ def generate_video(video_cfg: dict, dry_run: bool = False) -> Path | None:
         return None
 
     ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-    script_path = SCRIPTS_DIR / f"plan_{video_type}_{theme}_{ts}.yaml"
-    output_path = QUEUE_DIR  / f"{video_type}_{theme}_{ts}.mp4"
+    suffix = "_short" if is_shorts else ""
+    output_path = QUEUE_DIR / f"{video_type}_{theme}{suffix}_{ts}.mp4"
 
     print(f"\n{'─'*60}")
     print(f"  {title}")
-    print(f"  type={video_type}  theme={theme}  duration={duration}min")
+    print(f"  type={video_type}  theme={theme}  duration={duration}min  shorts={is_shorts}")
     print(f"{'─'*60}")
 
     if dry_run:
@@ -88,13 +102,16 @@ def generate_video(video_cfg: dict, dry_run: bool = False) -> Path | None:
     latest_script = scripts[-1]
 
     # Step 2: generate video
-    ok = run_script(
-        [sys.executable, str(ROOT / "scripts" / "generate_video.py"),
-         "--theme", theme,
-         "--script", str(latest_script),
-         "--output", str(output_path)],
-        f"Rendering video → {output_path.name}"
-    )
+    cmd = [
+        sys.executable, str(ROOT / "scripts" / "generate_video.py"),
+        "--theme", theme,
+        "--script", str(latest_script),
+        "--output", str(output_path),
+    ]
+    if is_shorts:
+        cmd.append("--shorts")
+
+    ok = run_script(cmd, f"Rendering video → {output_path.name}")
     if not ok:
         return None
 

@@ -58,6 +58,39 @@ COLORS = {
     "brown":  ("Brown",  "#A0522D"),
 }
 
+SHAPES = {
+    "circle":    "Circle",
+    "square":    "Square",
+    "triangle":  "Triangle",
+    "rectangle": "Rectangle",
+    "oval":      "Oval",
+    "star":      "Star",
+    "heart":     "Heart",
+    "diamond":   "Diamond",
+}
+
+# Vocabulary: object → display name
+VOCABULARY = {
+    "apple":      "Apple",
+    "banana":     "Banana",
+    "cat":        "Cat",
+    "dog":        "Dog",
+    "elephant":   "Elephant",
+    "frog":       "Frog",
+    "giraffe":    "Giraffe",
+    "hippo":      "Hippo",
+    "lion":       "Lion",
+    "monkey":     "Monkey",
+    "penguin":    "Penguin",
+    "rabbit":     "Rabbit",
+    "tiger":      "Tiger",
+    "zebra":      "Zebra",
+    "bird":       "Bird",
+    "fish":       "Fish",
+    "bear":       "Bear",
+    "owl":        "Owl",
+}
+
 PACKS = {
     "abc": {letter: f"{letter}. {word}. {letter} is for {word}."
             for letter, word in ABC_WORDS.items()},
@@ -65,6 +98,47 @@ PACKS = {
                 for k, word in NUMBER_WORDS.items()},
     "colors":  {k: f"{name}! {name}! Can you find something {name.lower()}?"
                 for k, (name, _) in COLORS.items()},
+    "shapes":  {k: f"{name}! This is a {name.lower()}! A {name.lower()}!"
+                for k, name in SHAPES.items()},
+    "vocabulary": {k: f"This is a {name.lower()}! {name}! {name}!"
+                   for k, name in VOCABULARY.items()},
+    "counting": {
+        "1_apple":  "One apple! One!",
+        "2_apples": "Two apples! One, two!",
+        "3_apples": "Three apples! One, two, three!",
+        "4_apples": "Four apples! One, two, three, four!",
+        "5_apples": "Five apples! One, two, three, four, five!",
+        "1_cat":    "One cat! One!",
+        "2_cats":   "Two cats! One, two!",
+        "3_cats":   "Three cats! One, two, three!",
+        "4_cats":   "Four cats! One, two, three, four!",
+        "5_cats":   "Five cats! One, two, three, four, five!",
+        "1_star":   "One star! One!",
+        "2_stars":  "Two stars! One, two!",
+        "3_stars":  "Three stars! One, two, three!",
+        "4_stars":  "Four stars! One, two, three, four!",
+        "5_stars":  "Five stars! One, two, three, four, five!",
+    },
+    "colors_objects": {
+        "red_apple":     "The apple is red! Red apple!",
+        "yellow_banana": "The banana is yellow! Yellow banana!",
+        "orange_orange": "The orange is orange! Orange orange!",
+        "green_frog":    "The frog is green! Green frog!",
+        "blue_sky":      "The sky is blue! Blue blue blue!",
+        "purple_grape":  "The grape is purple! Purple grape!",
+        "pink_pig":      "The pig is pink! Pink pig!",
+        "brown_bear":    "The bear is brown! Brown bear!",
+    },
+    "shapes_colors": {
+        "green_circle":    "A green circle! Green and round!",
+        "blue_square":     "A blue square! Blue with four sides!",
+        "red_triangle":    "A red triangle! Red with three sides!",
+        "yellow_rectangle":"A yellow rectangle! Long and yellow!",
+        "purple_oval":     "A purple oval! Round like an egg!",
+        "orange_star":     "An orange star! Shiny orange star!",
+        "pink_heart":      "A pink heart! Love, love, love!",
+        "teal_diamond":    "A teal diamond! Sparkly diamond!",
+    },
 }
 
 # Flat lookup: key → display text (for get_phrase_path)
@@ -75,6 +149,8 @@ WORD_PHRASES = {
     **ABC_WORDS,
     **NUMBER_WORDS,
     **{k: v[0] for k, v in COLORS.items()},
+    **SHAPES,
+    **VOCABULARY,
 }
 
 
@@ -134,8 +210,8 @@ def main():
     parser = argparse.ArgumentParser(description="Generate voiceover MP3s")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--text", help="Single phrase to generate")
-    group.add_argument("--pack", choices=list(PACKS.keys()),
-                       help="Generate an entire content pack")
+    group.add_argument("--pack", choices=list(PACKS.keys()) + ["all"],
+                       help="Generate an entire content pack (or 'all' for all packs)")
     parser.add_argument("--lang", default="en", help="Language code (default: en)")
     parser.add_argument("--slow", action="store_true", help="Slower speech (for learning)")
     args = parser.parse_args()
@@ -143,6 +219,9 @@ def main():
     if args.text:
         path = generate_phrase(args.text, lang=args.lang, slow=args.slow)
         print(f"Saved: {path}")
+    elif args.pack == "all":
+        for pack_name in PACKS:
+            generate_pack(pack_name, lang=args.lang)
     else:
         generate_pack(args.pack, lang=args.lang)
 

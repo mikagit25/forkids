@@ -547,13 +547,18 @@ class TextOverlay:
 
 class VideoGenerator:
     def __init__(self, config: dict, theme: str, duration_sec: float,
-                 script_scenes: Optional[list] = None):
+                 script_scenes: Optional[list] = None,
+                 shorts: bool = False):
         self.cfg = config
         self.theme = theme
         self.duration = duration_sec
-        self.W, self.H = config["video"]["resolution"]
+        self.shorts = shorts
+        if shorts:
+            self.W, self.H = 720, 1280   # 9:16 vertical for YouTube Shorts
+        else:
+            self.W, self.H = config["video"]["resolution"]
         self.fps = config["video"]["fps"]
-        self.sprite_size = config["animation"]["sprite_size"]
+        self.sprite_size = config["animation"]["sprite_size"] if not shorts else 200
         self.n_on_screen = config["animation"]["sprites_on_screen"]
         self.bg_colors = config["video"]["background_colors"]
         self.group_interval = config["animation"]["group_change_interval"]
@@ -814,6 +819,8 @@ def main():
     parser.add_argument("--output", default=None)
     parser.add_argument("--script", default=None,
                         help="Path to episode script YAML (from generate_script.py)")
+    parser.add_argument("--shorts", action="store_true",
+                        help="Generate vertical 9:16 YouTube Short (720x1280)")
     args = parser.parse_args()
 
     config = load_config()
@@ -836,9 +843,11 @@ def main():
 
     if args.output is None:
         ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-        args.output = str(ROOT / "output" / f"{theme}_{ts}.mp4")
+        suffix = "_short" if args.shorts else ""
+        args.output = str(ROOT / "output" / f"{theme}{suffix}_{ts}.mp4")
 
-    gen = VideoGenerator(config, theme, duration_sec, script_scenes=script_scenes)
+    gen = VideoGenerator(config, theme, duration_sec,
+                         script_scenes=script_scenes, shorts=args.shorts)
     gen.generate(args.output)
     print(f"\n Video saved: {args.output}")
 

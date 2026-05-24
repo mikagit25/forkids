@@ -1,0 +1,10 @@
+# ─────────────────────────────────────────────────────────────
+# YouTube Short: Learn Colors (60s)
+# 4 colors × 15s, background matches the color being taught
+# ─────────────────────────────────────────────────────────────
+
+scenes:
+  - {label: "Red",    choreo: grid_bounce, duration: 15, n: 2, text: "Red",    sub_text: "Red!",    voiceover_key: "red",    bg_color: "#FF4444", chars: []}
+  - {label: "Blue",   choreo: carousel,    duration: 15, n: 2, text: "Blue",   sub_text: "Blue!",   voiceover_key: "blue",   bg_color: "#4D96FF", chars: []}
+  - {label: "Yellow", choreo: zigzag,      duration: 15, n: 2, text: "Yellow", sub_text: "Yellow!", voiceover_key: "yellow", bg_color: "#FFD93D", chars: []}
+  - {label: "Green",  choreo: grid_sway,   duration: 15, n: 2, text: "Green",  sub_text: "Green!",  voiceover_key: "green",  bg_color: "#27AE60", chars: []}

@@ -1,0 +1,10 @@
+# ─────────────────────────────────────────────────────────────
+# YouTube Short: Dance Clip (60s)
+# 4 scenes × 15s, high-energy choreos, 3 chars each
+# ─────────────────────────────────────────────────────────────
+
+scenes:
+  - {label: "Intro",   choreo: diagonal_in, duration: 15, n: 3, chars: []}
+  - {label: "Chorus",  choreo: carousel,    duration: 15, n: 3, chars: []}
+  - {label: "Parade",  choreo: parade,      duration: 15, n: 3, chars: []}
+  - {label: "Finale",  choreo: zigzag,      duration: 15, n: 3, chars: []}

@@ -1,0 +1,10 @@
+# ─────────────────────────────────────────────────────────────
+# YouTube Short: Learn Shapes (60s)
+# 4 shapes × 15s, uses shapes sprite theme
+# ─────────────────────────────────────────────────────────────
+
+scenes:
+  - {label: "Circle",   choreo: carousel,    duration: 15, n: 1, text: "Circle",   sub_text: "Round!",    voiceover_key: "circle",   bg_color: "#FF6B6B", chars: [circle]}
+  - {label: "Square",   choreo: grid_bounce, duration: 15, n: 1, text: "Square",   sub_text: "4 sides!",  voiceover_key: "square",   bg_color: "#4D96FF", chars: [square]}
+  - {label: "Triangle", choreo: zigzag,      duration: 15, n: 1, text: "Triangle", sub_text: "3 sides!",  voiceover_key: "triangle", bg_color: "#6BCB77", chars: [triangle]}
+  - {label: "Star",     choreo: grid_sway,   duration: 15, n: 1, text: "Star",     sub_text: "Sparkle!",  voiceover_key: "star",     bg_color: "#FFD93D", chars: [star]}

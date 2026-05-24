@@ -1,0 +1,12 @@
+# ─────────────────────────────────────────────────────────────
+# YouTube Short: Single Letter Focus (60s)
+# 5 letters × 12s = 60s, vertical 720×1280
+# One character bouncing with big letter overlay + voiceover
+# ─────────────────────────────────────────────────────────────
+
+scenes:
+  - {label: "A", choreo: diagonal_in, duration: 12, n: 1, text: "A", sub_text: "Apple",    voiceover_key: "A", chars: []}
+  - {label: "B", choreo: grid_bounce, duration: 12, n: 1, text: "B", sub_text: "Banana",   voiceover_key: "B", chars: []}
+  - {label: "C", choreo: carousel,    duration: 12, n: 1, text: "C", sub_text: "Cat",      voiceover_key: "C", chars: []}
+  - {label: "D", choreo: zigzag,      duration: 12, n: 1, text: "D", sub_text: "Dog",      voiceover_key: "D", chars: []}
+  - {label: "E", choreo: grid_sway,   duration: 12, n: 1, text: "E", sub_text: "Elephant", voiceover_key: "E", chars: []}

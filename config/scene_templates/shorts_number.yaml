@@ -1,0 +1,12 @@
+# ─────────────────────────────────────────────────────────────
+# YouTube Short: Counting 1-5 (60s)
+# 5 scenes × 12s, n chars = scene number, big digit overlay
+# bg_color changes per number for visual variety
+# ─────────────────────────────────────────────────────────────
+
+scenes:
+  - {label: "1", choreo: diagonal_in, duration: 12, n: 1, text: "1", sub_text: "One",   voiceover_key: "1", bg_color: "#FF6B6B", chars: []}
+  - {label: "2", choreo: grid_bounce, duration: 12, n: 2, text: "2", sub_text: "Two",   voiceover_key: "2", bg_color: "#4D96FF", chars: []}
+  - {label: "3", choreo: carousel,    duration: 12, n: 3, text: "3", sub_text: "Three", voiceover_key: "3", bg_color: "#6BCB77", chars: []}
+  - {label: "4", choreo: line_h,      duration: 12, n: 4, text: "4", sub_text: "Four",  voiceover_key: "4", bg_color: "#FFD93D", chars: []}
+  - {label: "5", choreo: grid_sway,   duration: 12, n: 5, text: "5", sub_text: "Five",  voiceover_key: "5", bg_color: "#A29BFE", chars: []}
