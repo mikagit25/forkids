@@ -1,0 +1,59 @@
+# ─────────────────────────────────────────────────────────────
+# Weekly content plan for Happy Bear Kids
+# Run: python3 scripts/batch_generate.py --plan config/weekly_plan.yaml
+# ─────────────────────────────────────────────────────────────
+#
+# video_type:
+#   dance    - animated characters with music, multiple choreographies
+#   abc      - A-Z educational video with voiceover
+#   numbers  - 1-20 counting video (TODO: Phase 4)
+#   colors   - colors learning video (TODO: Phase 4)
+#
+# theme: animals | fruits
+# duration_minutes: video length
+
+videos:
+  - title: "Animals Dance Party 🐻 Happy Music for Kids"
+    video_type: dance
+    theme: animals
+    duration_minutes: 30
+    upload_day: monday
+    upload_time: "09:00"
+    status: public
+    tags: [kids, animals, dance, music, educational]
+
+  - title: "ABC Song A to Z 🔤 Learn the Alphabet with Animals"
+    video_type: abc
+    theme: animals
+    duration_minutes: 6
+    upload_day: tuesday
+    upload_time: "09:00"
+    status: public
+    tags: [abc, alphabet, kids, learning, educational]
+
+  - title: "Fruits Dance Party 🍎 Fun Music for Children"
+    video_type: dance
+    theme: fruits
+    duration_minutes: 30
+    upload_day: wednesday
+    upload_time: "09:00"
+    status: public
+    tags: [kids, fruits, dance, music, educational]
+
+  - title: "Animals Dance Party 🦒 Cartoon Characters for Kids"
+    video_type: dance
+    theme: animals
+    duration_minutes: 30
+    upload_day: friday
+    upload_time: "09:00"
+    status: public
+    tags: [kids, animals, dance, music, toddlers]
+
+  - title: "ABC Song for Toddlers 🔤 Alphabet Learning Video"
+    video_type: abc
+    theme: animals
+    duration_minutes: 6
+    upload_day: saturday
+    upload_time: "09:00"
+    status: public
+    tags: [abc, alphabet, toddlers, learning, educational]
