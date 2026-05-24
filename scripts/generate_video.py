@@ -242,12 +242,26 @@ def draw_background(W: int, H: int, color: Tuple[int, int, int], t: float) -> Im
     return img
 
 
+# ── Choreography layouts ───────────────────────────────────────────────────────
+# Normalized (x, y) positions for n characters. x/y in [0..1] of screen.
+# y=0 is top, y=1 is bottom. Characters occupy center 80% of height.
+
+LAYOUTS: Dict[int, List[Tuple[float, float]]] = {
+    1: [(0.50, 0.52)],
+    2: [(0.28, 0.52), (0.72, 0.52)],
+    3: [(0.22, 0.62), (0.50, 0.36), (0.78, 0.62)],
+    4: [(0.25, 0.34), (0.75, 0.34), (0.25, 0.66), (0.75, 0.66)],
+    5: [(0.50, 0.30), (0.20, 0.56), (0.80, 0.56), (0.32, 0.76), (0.68, 0.76)],
+}
+
+# Rotation direction per slot so adjacent chars mirror each other in sway
+SWAY_DIR = [1, -1, 1, -1, 1]
+
+
 # ── Sprite actor ───────────────────────────────────────────────────────────────
 
 class SpriteActor:
-    """Animated character on screen — multi-frame with motion."""
-
-    ANIMATIONS = ["bounce", "sway", "pulse", "float"]
+    """Animated character on screen with choreographed motion."""
 
     def __init__(
         self,
@@ -256,7 +270,9 @@ class SpriteActor:
         x: float,
         y: float,
         size: int,
-        animation: Optional[str],
+        animation: str,       # group-shared animation type
+        slot: int,            # position index in current group (0-based)
+        n_slots: int,         # total chars in group
         appear_at: float,
         disappear_at: float,
         bpm: float,
@@ -266,17 +282,18 @@ class SpriteActor:
         self.x = x
         self.y = y
         self.size = size
-        self.animation = animation or random.choice(self.ANIMATIONS)
+        self.animation = animation
+        self.slot = slot
+        self.n_slots = n_slots
         self.appear_at = appear_at
         self.disappear_at = disappear_at
         self.beat_freq = bpm / 60.0
-        self.phase = random.uniform(0, math.tau)
-        self.float_vx = random.choice([-1, 1]) * random.uniform(50, 110)
-        # Cache resized frames
+        # Wave offset: each slot delayed by a fraction of one beat → 0.10s apart
+        self.wave_delay = slot * 0.10
+        self.sway_dir = SWAY_DIR[slot % len(SWAY_DIR)]
         self._cache: Dict[int, Image.Image] = {}
 
     def _get_frame(self, global_t: float) -> Image.Image:
-        """Pick and cache-resize the right animation frame."""
         n = len(self.frames)
         frame_idx = int((global_t - self.appear_at) * ANIM_FPS) % n
         if frame_idx not in self._cache:
@@ -295,58 +312,56 @@ class SpriteActor:
         if alpha <= 0:
             return
 
-        beat = rel * self.beat_freq + self.phase
+        # Beat phase: global time adjusted for wave delay so chars move in sequence
+        beat = max(0.0, rel - self.wave_delay) * self.beat_freq
         x, y = self.x, self.y
         scale = 1.0
         angle = 0.0
 
         if self.animation == "bounce":
             bp = abs(math.sin(math.pi * beat))
-            y -= bp * 55
-            scale = 1.0 - 0.07 * bp
+            y -= bp * 60
+            scale = 1.0 + 0.08 * bp   # slightly bigger at peak (stretch)
+            # squish on landing
+            if bp < 0.15:
+                scale = 1.0 - 0.06 * (1.0 - bp / 0.15)
 
         elif self.animation == "sway":
-            sway = math.sin(math.pi * beat)
-            x += sway * 42
-            angle = sway * 14
+            s = math.sin(math.pi * beat)
+            x += s * self.sway_dir * 40
+            angle = s * self.sway_dir * 16
 
-        elif self.animation == "pulse":
-            scale = 1.0 + 0.22 * abs(math.sin(math.pi * beat))
-
-        elif self.animation == "float":
-            x = (self.x + self.float_vx * rel) % (W + self.size * 2) - self.size
-            y = self.y + math.sin(rel * 0.85 + self.phase) * 55
+        elif self.animation == "bounce_sway":
+            # Bounce up + slight tilt, alternating direction per slot
+            bp = abs(math.sin(math.pi * beat))
+            y -= bp * 50
+            angle = math.sin(math.pi * beat * 2) * self.sway_dir * 10
+            scale = 1.0 + 0.06 * bp
 
         img = self._get_frame(t)
 
-        # Scale
         final_size = max(4, int(self.size * scale))
         if final_size != self.size:
             img = img.resize((final_size, final_size), Image.BILINEAR)
 
-        # Rotate
-        if abs(angle) > 1.0:
-            img = img.rotate(-angle % 360, expand=True, resample=Image.BILINEAR)
+        if abs(angle) > 0.5:
+            img = img.rotate(-angle, expand=True, resample=Image.BILINEAR)
 
-        # Alpha fade
         if alpha < 0.98:
             r, g, b, a = img.split()
             a = a.point(lambda p: int(p * alpha))
             img = Image.merge("RGBA", (r, g, b, a))
 
-        # Paste
         px = int(x - img.width / 2)
         py = int(y - img.height / 2)
         canvas.paste(img, (px, py), img)
 
-        # Name badge (only first 3 seconds of appearance)
         if name_font and rel < 3.0 and alpha > 0.3:
             badge_alpha = min(1.0, alpha) * min(1.0, (3.0 - rel) / 0.8)
             self._draw_badge(canvas, x, py - 10, badge_alpha, name_font)
 
     def _draw_badge(self, canvas, cx, top_y, alpha, font):
         label = self.name.capitalize()
-        # Estimate text size
         dummy = ImageDraw.Draw(canvas)
         try:
             bbox = dummy.textbbox((0, 0), label, font=font)
@@ -385,7 +400,7 @@ class VideoGenerator:
 
         self.char_sprites = load_animated_sprites(theme)
         self.audio = build_audio(duration_sec)
-        self.bpm, _ = analyze_beats(self.audio)
+        self.bpm, self._beat_times = analyze_beats(self.audio)
 
         # Try to load a font for name badges
         self.font = self._load_font(32)
@@ -426,48 +441,80 @@ class VideoGenerator:
                 break
         return color
 
-    def _get_positions(self, n: int):
-        margin = self.sprite_size * 0.7
+    # Cycle through animation styles per group for variety
+    _ANIM_CYCLE = ["bounce", "sway", "bounce_sway", "bounce", "sway"]
+
+    def _get_positions(self, n: int) -> List[Tuple[float, float]]:
+        """Return pixel positions from choreography layout."""
+        layout = LAYOUTS.get(n, LAYOUTS[4])
         positions = []
-        cols = math.ceil(math.sqrt(n))
-        rows = math.ceil(n / cols)
-        for i in range(n):
-            col = i % cols
-            row = i // cols
-            x = margin + (col + 0.5) * (self.W - 2 * margin) / cols
-            y = self.H * 0.18 + (row + 0.5) * (self.H * 0.62) / rows
-            x += random.uniform(-60, 60)
-            y += random.uniform(-30, 30)
-            positions.append((x, y))
+        for nx, ny in layout[:n]:
+            # Map normalized coords to pixel, with very small jitter for life
+            px = nx * self.W + random.uniform(-20, 20)
+            py = ny * self.H + random.uniform(-15, 15)
+            positions.append((px, py))
         return positions
 
     def _build_schedule(self) -> List[SpriteActor]:
         actors = []
         t = 0.0
+        group_idx = 0
+        # Pick characters without replacement within each group to avoid duplicates
+        char_pool = list(range(len(self.char_sprites)))
+        random.shuffle(char_pool)
+        pool_pos = 0
+
         while t < self.duration:
             dur = random.uniform(self.group_interval[0], self.group_interval[1])
             group_end = min(t + dur, self.duration)
             n = self.n_on_screen
-            chosen = random.choices(self.char_sprites, k=n)
+
+            # Pick n unique chars from shuffled pool (refill when exhausted)
+            chosen_idx = []
+            for _ in range(n):
+                if pool_pos >= len(char_pool):
+                    random.shuffle(char_pool)
+                    pool_pos = 0
+                chosen_idx.append(char_pool[pool_pos])
+                pool_pos += 1
+
             positions = self._get_positions(n)
-            for (name, frames), pos in zip(chosen, positions):
-                appear = t + random.uniform(0, 1.5)
+            # All chars in a group share the same animation for choreography
+            anim = self._ANIM_CYCLE[group_idx % len(self._ANIM_CYCLE)]
+
+            for slot, (char_i, pos) in enumerate(zip(chosen_idx, positions)):
+                name, frames = self.char_sprites[char_i]
+                # Stagger entry: each char appears 0.3s after the previous
+                appear = t + slot * 0.30
                 actors.append(SpriteActor(
                     name=name,
                     frames=frames,
                     x=pos[0], y=pos[1],
                     size=self.sprite_size,
-                    animation=None,
+                    animation=anim,
+                    slot=slot,
+                    n_slots=n,
                     appear_at=appear,
                     disappear_at=group_end,
                     bpm=self.bpm,
                 ))
             t = group_end
+            group_idx += 1
         return actors
 
     def make_frame(self, t: float) -> np.ndarray:
         bg_color = self._get_bg_color(t)
         canvas = draw_background(self.W, self.H, bg_color, t).convert("RGBA")
+
+        # Beat flash: brief white overlay on beat hits for energy
+        if self._beat_times is not None and len(self._beat_times) > 0:
+            dists = np.abs(self._beat_times - t)
+            nearest = float(dists.min())
+            if nearest < 0.06:
+                flash_alpha = int(30 * (1.0 - nearest / 0.06))
+                overlay = Image.new("RGBA", (self.W, self.H),
+                                    (255, 255, 255, flash_alpha))
+                canvas = Image.alpha_composite(canvas, overlay)
 
         for actor in self.actors:
             if actor.appear_at - 0.5 <= t <= actor.disappear_at + 0.5:
