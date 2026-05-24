@@ -242,55 +242,82 @@ def draw_background(W: int, H: int, color: Tuple[int, int, int], t: float) -> Im
     return img
 
 
-# ── Choreography layouts ───────────────────────────────────────────────────────
-# Normalized (x, y) positions for n characters. x/y in [0..1] of screen.
-# y=0 is top, y=1 is bottom. Characters occupy center 80% of height.
+# ── Choreography system ────────────────────────────────────────────────────────
 
-LAYOUTS: Dict[int, List[Tuple[float, float]]] = {
+# Grid positions (normalized 0..1) for static-base choreographies
+GRID_LAYOUTS: Dict[int, List[Tuple[float, float]]] = {
     1: [(0.50, 0.52)],
-    2: [(0.28, 0.52), (0.72, 0.52)],
-    3: [(0.22, 0.62), (0.50, 0.36), (0.78, 0.62)],
+    2: [(0.27, 0.52), (0.73, 0.52)],
+    3: [(0.20, 0.62), (0.50, 0.36), (0.80, 0.62)],
     4: [(0.25, 0.34), (0.75, 0.34), (0.25, 0.66), (0.75, 0.66)],
-    5: [(0.50, 0.30), (0.20, 0.56), (0.80, 0.56), (0.32, 0.76), (0.68, 0.76)],
+    5: [(0.50, 0.28), (0.18, 0.54), (0.82, 0.54), (0.30, 0.76), (0.70, 0.76)],
 }
 
-# Rotation direction per slot so adjacent chars mirror each other in sway
-SWAY_DIR = [1, -1, 1, -1, 1]
+SWAY_DIR = [1, -1, 1, -1, 1]  # adjacent chars mirror each other
+
+# Each entry: (choreo_name, n_chars)
+# Varied number of chars per scene keeps it visually fresh
+CHOREO_SEQUENCE = [
+    ("grid_bounce",   4),
+    ("line_h",        4),
+    ("carousel",      4),
+    ("grid_sway",     4),
+    ("parade",        3),
+    ("diagonal_in",   4),
+    ("zigzag",        4),
+    ("grid_bounce",   3),
+    ("line_h",        5),
+    ("carousel",      3),
+    ("parade",        4),
+    ("grid_sway",     4),
+    ("zigzag",        3),
+    ("diagonal_in",   4),
+    ("carousel",      5),
+    ("line_h",        3),
+]
 
 
 # ── Sprite actor ───────────────────────────────────────────────────────────────
 
 class SpriteActor:
-    """Animated character on screen with choreographed motion."""
+    """
+    Animated character with full choreography.
+    Position is computed per-frame based on choreo type — characters actually
+    move across the screen rather than bouncing in fixed spots.
+    """
 
     def __init__(
         self,
         name: str,
         frames: List[Image.Image],
-        x: float,
-        y: float,
-        size: int,
-        animation: str,       # group-shared animation type
-        slot: int,            # position index in current group (0-based)
-        n_slots: int,         # total chars in group
+        choreo: str,
+        slot: int,
+        n_slots: int,
         appear_at: float,
         disappear_at: float,
         bpm: float,
+        W: int,
+        H: int,
+        size: int,
     ):
         self.name = name
         self.frames = frames
-        self.x = x
-        self.y = y
-        self.size = size
-        self.animation = animation
+        self.choreo = choreo
         self.slot = slot
         self.n_slots = n_slots
         self.appear_at = appear_at
         self.disappear_at = disappear_at
         self.beat_freq = bpm / 60.0
-        # Wave offset: each slot delayed by a fraction of one beat → 0.10s apart
-        self.wave_delay = slot * 0.10
+        self.W = W
+        self.H = H
+        self.size = size
+        self.wave_delay = slot * 0.10   # wave effect: each char 100ms behind
         self.sway_dir = SWAY_DIR[slot % len(SWAY_DIR)]
+        # Precompute grid anchor for static choreos
+        layout = GRID_LAYOUTS.get(n_slots, GRID_LAYOUTS[4])
+        gx, gy = layout[slot % len(layout)]
+        self.grid_x = gx * W
+        self.grid_y = gy * H
         self._cache: Dict[int, Image.Image] = {}
 
     def _get_frame(self, global_t: float) -> Image.Image:
@@ -302,41 +329,107 @@ class SpriteActor:
             )
         return self._cache[frame_idx]
 
+    def _compute_transform(self, rel: float) -> Tuple[float, float, float, float]:
+        """Return (x, y, scale, angle) for this moment in the choreography."""
+        W, H = self.W, self.H
+        beat = max(0.0, rel - self.wave_delay) * self.beat_freq
+        bp = abs(math.sin(math.pi * beat))   # 0..1 peaks on each beat
+        x, y, scale, angle = self.grid_x, self.grid_y, 1.0, 0.0
+
+        # ── Static grid choreos ────────────────────────────────────────────
+        if self.choreo == "grid_bounce":
+            y = self.grid_y - bp * 62
+            scale = 1.0 + 0.09 * bp
+            if bp < 0.14:
+                scale -= 0.06 * (1.0 - bp / 0.14)   # squish on landing
+
+        elif self.choreo == "grid_sway":
+            s = math.sin(math.pi * beat)
+            x = self.grid_x + s * self.sway_dir * 44
+            angle = s * self.sway_dir * 18
+
+        elif self.choreo == "grid_combo":
+            bp2 = abs(math.sin(math.pi * beat))
+            y = self.grid_y - bp2 * 45
+            angle = math.sin(math.pi * beat * 2) * self.sway_dir * 12
+            scale = 1.0 + 0.06 * bp2
+
+        # ── Carousel: rotate around center ellipse ─────────────────────────
+        elif self.choreo == "carousel":
+            cx, cy = W * 0.50, H * 0.50
+            rx = W * 0.31
+            ry = H * 0.20
+            base_a = self.slot * (math.tau / self.n_slots)
+            theta = base_a + rel * 0.38   # rotation speed
+            x = cx + math.cos(theta) * rx
+            y = cy + math.sin(theta) * ry
+            # Perspective: larger at bottom, smaller at top
+            persp = 0.70 + 0.40 * (math.sin(theta) + 1) / 2
+            scale = persp * (1.0 + 0.06 * bp)
+            angle = math.sin(theta) * 8   # slight tilt as they orbit
+
+        # ── Parade: march left → right, looping ────────────────────────────
+        elif self.choreo == "parade":
+            spacing = W * 0.30
+            speed = W * 0.10   # pixels / second
+            base_x = -W * 0.15 + self.slot * spacing
+            x = (base_x + rel * speed) % (W * 1.3) - W * 0.15
+            y = H * 0.57 - bp * 38
+            angle = math.sin(math.pi * beat) * self.sway_dir * 9
+
+        # ── Horizontal line: wave bounce across the row ─────────────────────
+        elif self.choreo == "line_h":
+            margin = W * 0.12
+            span = W - 2 * margin
+            x = margin + (self.slot / max(self.n_slots - 1, 1)) * span \
+                if self.n_slots > 1 else W * 0.5
+            y = H * 0.54 - bp * 72
+            scale = 1.0 + 0.08 * bp
+
+        # ── Diagonal entry: slide in from corners then bounce ───────────────
+        elif self.choreo == "diagonal_in":
+            corners = [
+                (W * 0.02, H * 0.10), (W * 0.98, H * 0.10),
+                (W * 0.02, H * 0.90), (W * 0.98, H * 0.90),
+            ]
+            cx_px, cy_px = corners[self.slot % len(corners)]
+            arrive = 1.4   # seconds to slide to position
+            frac = min(1.0, rel / arrive)
+            ease = 1.0 - (1.0 - frac) ** 3   # cubic ease-out
+            x = cx_px + (self.grid_x - cx_px) * ease
+            y = cy_px + (self.grid_y - cy_px) * ease
+            if frac >= 1.0:
+                extra_beat = max(0.0, rel - arrive - self.wave_delay) * self.beat_freq
+                bp2 = abs(math.sin(math.pi * extra_beat))
+                y -= bp2 * 58
+                scale = 1.0 + 0.07 * bp2
+
+        # ── Zigzag: each char weaves along its own sine path ────────────────
+        elif self.choreo == "zigzag":
+            margin = W * 0.12
+            span = W - 2 * margin
+            base_x = margin + (self.slot / max(self.n_slots - 1, 1)) * span \
+                     if self.n_slots > 1 else W * 0.5
+            freq = self.beat_freq * 0.5
+            phase = self.slot * math.pi * 0.7
+            x = base_x + math.sin(rel * freq * math.pi + phase) * 80
+            y = H * 0.52 + math.cos(rel * freq * math.pi * 0.8 + phase) * 90
+            scale = 1.0 + 0.05 * bp
+            angle = math.sin(rel * freq * math.pi + phase) * 12
+
+        return x, y, scale, angle
+
     def render(self, canvas: Image.Image, t: float, W: int, H: int,
                name_font=None) -> None:
         rel = t - self.appear_at
         if rel < 0:
             return
         fade_out = self.disappear_at - t
-        alpha = min(1.0, rel / 0.4, fade_out / 0.4)
+        alpha = min(1.0, rel / 0.35, fade_out / 0.35)
         if alpha <= 0:
             return
 
-        # Beat phase: global time adjusted for wave delay so chars move in sequence
-        beat = max(0.0, rel - self.wave_delay) * self.beat_freq
-        x, y = self.x, self.y
-        scale = 1.0
-        angle = 0.0
-
-        if self.animation == "bounce":
-            bp = abs(math.sin(math.pi * beat))
-            y -= bp * 60
-            scale = 1.0 + 0.08 * bp   # slightly bigger at peak (stretch)
-            # squish on landing
-            if bp < 0.15:
-                scale = 1.0 - 0.06 * (1.0 - bp / 0.15)
-
-        elif self.animation == "sway":
-            s = math.sin(math.pi * beat)
-            x += s * self.sway_dir * 40
-            angle = s * self.sway_dir * 16
-
-        elif self.animation == "bounce_sway":
-            # Bounce up + slight tilt, alternating direction per slot
-            bp = abs(math.sin(math.pi * beat))
-            y -= bp * 50
-            angle = math.sin(math.pi * beat * 2) * self.sway_dir * 10
-            scale = 1.0 + 0.06 * bp
+        x, y, scale, angle = self._compute_transform(rel)
 
         img = self._get_frame(t)
 
@@ -371,14 +464,14 @@ class SpriteActor:
             tw, th = len(label) * 14, 20
 
         pad = 10
-        bw, bh = tw + pad*2, th + pad*2
-        bx = int(cx - bw/2)
+        bw, bh = tw + pad * 2, th + pad * 2
+        bx = int(cx - bw / 2)
         by = int(top_y - bh - 8)
 
         badge = Image.new("RGBA", (bw, bh), (0, 0, 0, 0))
         bd = ImageDraw.Draw(badge)
-        bd.rounded_rectangle([0, 0, bw-1, bh-1], radius=bh//2,
-                               fill=(255, 255, 255, int(200 * alpha)))
+        bd.rounded_rectangle([0, 0, bw - 1, bh - 1], radius=bh // 2,
+                              fill=(255, 255, 255, int(200 * alpha)))
         bd.text((pad, pad), label, fill=(60, 40, 100, int(240 * alpha)),
                 font=font)
         canvas.paste(badge, (bx, by), badge)
@@ -387,7 +480,8 @@ class SpriteActor:
 # ── Video generator ────────────────────────────────────────────────────────────
 
 class VideoGenerator:
-    def __init__(self, config: dict, theme: str, duration_sec: float):
+    def __init__(self, config: dict, theme: str, duration_sec: float,
+                 script_scenes: Optional[list] = None):
         self.cfg = config
         self.theme = theme
         self.duration = duration_sec
@@ -402,11 +496,9 @@ class VideoGenerator:
         self.audio = build_audio(duration_sec)
         self.bpm, self._beat_times = analyze_beats(self.audio)
 
-        # Try to load a font for name badges
         self.font = self._load_font(32)
-
         self._bg_seq = self._build_bg_sequence()
-        self.actors = self._build_schedule()
+        self.actors = self._build_schedule(script_scenes)
         log.info(f"Actors scheduled: {len(self.actors)}")
 
     def _load_font(self, size: int):
@@ -441,65 +533,82 @@ class VideoGenerator:
                 break
         return color
 
-    # Cycle through animation styles per group for variety
-    _ANIM_CYCLE = ["bounce", "sway", "bounce_sway", "bounce", "sway"]
-
-    def _get_positions(self, n: int) -> List[Tuple[float, float]]:
-        """Return pixel positions from choreography layout."""
-        layout = LAYOUTS.get(n, LAYOUTS[4])
-        positions = []
-        for nx, ny in layout[:n]:
-            # Map normalized coords to pixel, with very small jitter for life
-            px = nx * self.W + random.uniform(-20, 20)
-            py = ny * self.H + random.uniform(-15, 15)
-            positions.append((px, py))
-        return positions
-
-    def _build_schedule(self) -> List[SpriteActor]:
+    def _build_schedule(self, script_scenes: Optional[list] = None) -> List[SpriteActor]:
+        """
+        Build actor schedule either from a YAML script or from CHOREO_SEQUENCE auto-mode.
+        """
         actors = []
-        t = 0.0
-        group_idx = 0
-        # Pick characters without replacement within each group to avoid duplicates
-        char_pool = list(range(len(self.char_sprites)))
-        random.shuffle(char_pool)
-        pool_pos = 0
 
-        while t < self.duration:
-            dur = random.uniform(self.group_interval[0], self.group_interval[1])
-            group_end = min(t + dur, self.duration)
-            n = self.n_on_screen
+        if script_scenes:
+            # ── Script-driven mode ──────────────────────────────────────
+            char_map = {name: frames for name, frames in self.char_sprites}
+            for scene in script_scenes:
+                t        = float(scene["start_sec"])
+                dur      = float(scene["duration"])
+                choreo   = scene["choreo"]
+                n        = int(scene.get("n", 4))
+                entry    = scene.get("entry", "cascade")
+                names    = scene.get("chars", [])[:n]
+                group_end = t + dur
 
-            # Pick n unique chars from shuffled pool (refill when exhausted)
-            chosen_idx = []
-            for _ in range(n):
-                if pool_pos >= len(char_pool):
-                    random.shuffle(char_pool)
-                    pool_pos = 0
-                chosen_idx.append(char_pool[pool_pos])
-                pool_pos += 1
+                if not names:
+                    continue  # skip if no chars assigned
 
-            positions = self._get_positions(n)
-            # All chars in a group share the same animation for choreography
-            anim = self._ANIM_CYCLE[group_idx % len(self._ANIM_CYCLE)]
+                for slot, char_name in enumerate(names):
+                    frames = char_map.get(char_name)
+                    if frames is None:
+                        # Fallback: pick any available char
+                        frames = self.char_sprites[slot % len(self.char_sprites)][1]
 
-            for slot, (char_i, pos) in enumerate(zip(chosen_idx, positions)):
-                name, frames = self.char_sprites[char_i]
-                # Stagger entry: each char appears 0.3s after the previous
-                appear = t + slot * 0.30
-                actors.append(SpriteActor(
-                    name=name,
-                    frames=frames,
-                    x=pos[0], y=pos[1],
-                    size=self.sprite_size,
-                    animation=anim,
-                    slot=slot,
-                    n_slots=n,
-                    appear_at=appear,
-                    disappear_at=group_end,
-                    bpm=self.bpm,
-                ))
-            t = group_end
-            group_idx += 1
+                    if entry == "together":
+                        appear = t
+                    elif entry == "left_to_right":
+                        appear = t + slot * 0.20
+                    else:  # cascade (default)
+                        appear = t + slot * 0.25
+
+                    actors.append(SpriteActor(
+                        name=char_name, frames=frames,
+                        choreo=choreo, slot=slot, n_slots=n,
+                        appear_at=appear, disappear_at=group_end,
+                        bpm=self.bpm, W=self.W, H=self.H, size=self.sprite_size,
+                    ))
+        else:
+            # ── Auto mode (CHOREO_SEQUENCE) ─────────────────────────────
+            t = 0.0
+            choreo_pos = 0
+            char_pool = list(range(len(self.char_sprites)))
+            random.shuffle(char_pool)
+            pool_pos = 0
+
+            while t < self.duration:
+                choreo, n = CHOREO_SEQUENCE[choreo_pos % len(CHOREO_SEQUENCE)]
+                choreo_pos += 1
+
+                dur = random.uniform(self.group_interval[0], self.group_interval[1])
+                if choreo in ("carousel", "parade", "zigzag"):
+                    dur *= 1.5
+                group_end = min(t + dur, self.duration)
+
+                chosen_idx = []
+                for _ in range(n):
+                    if pool_pos >= len(char_pool):
+                        random.shuffle(char_pool)
+                        pool_pos = 0
+                    chosen_idx.append(char_pool[pool_pos])
+                    pool_pos += 1
+
+                for slot, char_i in enumerate(chosen_idx):
+                    name, frames = self.char_sprites[char_i]
+                    appear = t + slot * 0.25
+                    actors.append(SpriteActor(
+                        name=name, frames=frames,
+                        choreo=choreo, slot=slot, n_slots=n,
+                        appear_at=appear, disappear_at=group_end,
+                        bpm=self.bpm, W=self.W, H=self.H, size=self.sprite_size,
+                    ))
+                t = group_end
+
         return actors
 
     def make_frame(self, t: float) -> np.ndarray:
@@ -555,20 +664,39 @@ class VideoGenerator:
 
 def main():
     parser = argparse.ArgumentParser(description="Generate kids YouTube video")
-    parser.add_argument("--theme", default="animals")
+    parser.add_argument("--theme", default="fruits")
     parser.add_argument("--duration", type=float, default=30,
                         help="Duration in minutes")
     parser.add_argument("--output", default=None)
+    parser.add_argument("--script", default=None,
+                        help="Path to episode script YAML (from generate_script.py)")
     args = parser.parse_args()
 
     config = load_config()
+    script_scenes = None
+
+    if args.script:
+        script_path = Path(args.script)
+        if not script_path.is_absolute():
+            script_path = ROOT / script_path
+        with open(script_path) as f:
+            script_data = yaml.safe_load(f)
+        script_scenes = script_data["scenes"]
+        duration_sec = sum(s["duration"] for s in script_scenes)
+        theme = script_data.get("theme", args.theme)
+        log.info(f"Loaded script: {script_path.name}  "
+                 f"({len(script_scenes)} scenes, {duration_sec/60:.1f} min)")
+    else:
+        duration_sec = args.duration * 60
+        theme = args.theme
+
     if args.output is None:
         ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-        args.output = str(ROOT / "output" / f"{args.theme}_{ts}.mp4")
+        args.output = str(ROOT / "output" / f"{theme}_{ts}.mp4")
 
-    gen = VideoGenerator(config, args.theme, args.duration * 60)
+    gen = VideoGenerator(config, theme, duration_sec, script_scenes=script_scenes)
     gen.generate(args.output)
-    print(f"\n✓ Video saved: {args.output}")
+    print(f"\n Video saved: {args.output}")
 
 
 if __name__ == "__main__":
