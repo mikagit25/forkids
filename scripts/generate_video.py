@@ -56,15 +56,29 @@ def load_config() -> dict:
 def load_animated_sprites(theme: str) -> List[Tuple[str, List[Image.Image]]]:
     """
     Returns list of (name, frames) tuples.
-    Animated characters come from assets/sprites/animated/ (any theme).
-    Falls back to static sprites wrapped in single-frame lists.
+    Priority: blender3d/ > animated/ > static theme folder.
     """
-    anim_dir = ROOT / "assets" / "sprites" / "animated"
-    static_dir = ROOT / "assets" / "sprites" / theme
+    blender_dir = ROOT / "assets" / "sprites" / "blender3d"
+    anim_dir    = ROOT / "assets" / "sprites" / "animated"
+    static_dir  = ROOT / "assets" / "sprites" / theme
 
     sprites = []
 
-    if anim_dir.exists():
+    # 1. Prefer Blender 3D rendered sprites (best quality)
+    if blender_dir.exists():
+        for char_dir in sorted(blender_dir.iterdir()):
+            if not char_dir.is_dir() or char_dir.name.startswith('test_'):
+                continue
+            frames = []
+            for f in sorted(char_dir.glob("frame_*.png")):
+                frames.append(Image.open(f).convert("RGBA"))
+            if len(frames) >= 10:  # must have at least 10 frames to count
+                sprites.append((char_dir.name, frames))
+        if sprites:
+            log.info(f"Using {len(sprites)} Blender 3D characters")
+
+    # 2. Fall back to Pillow animated sprites
+    if not sprites and anim_dir.exists():
         for char_dir in sorted(anim_dir.iterdir()):
             if not char_dir.is_dir():
                 continue
