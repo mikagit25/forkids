@@ -68,13 +68,15 @@ def upload_video(mp4_path: Path, metadata: dict, dry_run: bool = False) -> bool:
         print(f"  [DRY RUN] would upload")
         return True
 
+    video_type = metadata.get("video_type", "dance")
     cmd = [
         sys.executable,
         str(ROOT / "scripts" / "upload_youtube.py"),
-        "--file",   str(mp4_path),
-        "--title",  title,
-        "--theme",  theme,
-        "--status", status,
+        "--file",       str(mp4_path),
+        "--title",      title,
+        "--video-type", video_type,
+        "--theme",      theme,
+        "--status",     status,
     ]
 
     result = subprocess.run(cmd, capture_output=False)

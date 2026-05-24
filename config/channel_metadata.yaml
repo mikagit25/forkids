@@ -1,0 +1,149 @@
+# ─────────────────────────────────────────────────────────────
+# YouTube Channel Metadata — Happy Bear Kids
+# Apply in: YouTube Studio → Customisation → Basic Info
+# ─────────────────────────────────────────────────────────────
+
+channel:
+  name: "Happy Bear Kids"
+
+  # Max 1000 characters
+  description: |
+    🐻 Welcome to Happy Bear Kids — a fun learning world for babies and toddlers!
+
+    We make bright, cheerful educational videos for children ages 0–5:
+    🔤 ABC Alphabet — learn every letter with cute animals
+    🔢 Numbers — count from 1 to 10 with colorful friends
+    🎨 Colors — red, blue, yellow, green and more!
+    ⭐ Shapes — circles, squares, triangles and stars
+    🎵 Dance & Music — happy songs with dancing cartoon characters
+
+    Every video is designed to be safe, calming, and engaging for the littlest learners. No ads interrupting, no scary content — just pure joy and learning!
+
+    🔔 Subscribe and never miss a new video!
+    New videos every Monday, Tuesday and Wednesday at 9:00 AM.
+
+    Made with love for your little ones. 🐻💛
+
+  # YouTube channel keywords (comma separated, max 500 chars)
+  keywords: >
+    kids learning, babies videos, toddler education, abc for kids,
+    alphabet song, numbers for kids, colors for toddlers, shapes for kids,
+    kids dance, nursery rhymes, educational videos, happy bear kids,
+    learning videos, babies cartoons, kids cartoons, 0+ learning,
+    kindergarten, preschool, sensory video, kids music
+
+  # Basic settings
+  country: "US"
+  language: "en"
+  made_for_kids: true
+
+  # Channel links (YouTube Studio → Customisation → Basic Info → Links)
+  links: []
+
+  # Channel trailer video ID (set after first video is published)
+  trailer_video_id: ""
+
+# ─────────────────────────────────────────────────────────────
+# VIDEO DEFAULTS (used in upload_youtube.py)
+# ─────────────────────────────────────────────────────────────
+
+video_defaults:
+  category_id: "27"          # Education
+  made_for_kids: true
+  default_language: "en"
+  license: "youtube"          # standard YouTube license
+
+  description_template: |
+    🐻 Happy Bear Kids — Learning videos for babies and toddlers!
+
+    {video_description}
+
+    ────────────────────────────────────
+    🔔 Subscribe for new videos every week!
+    👍 Like and share with a friend!
+
+    📚 MORE VIDEOS FROM HAPPY BEAR KIDS:
+    🔤 ABC Alphabet: https://www.youtube.com/@HappyBearKids
+    🔢 Numbers & Counting: https://www.youtube.com/@HappyBearKids
+    🎨 Learn Colors: https://www.youtube.com/@HappyBearKids
+    ⭐ Shapes for Kids: https://www.youtube.com/@HappyBearKids
+    🎵 Dance & Music: https://www.youtube.com/@HappyBearKids
+
+    ────────────────────────────────────
+    ✅ Safe for children — No ads, no scary content
+    ✅ Designed for ages 0–5
+    ✅ Educational & entertaining
+
+    #HappyBearKids #KidsLearning #ToddlerVideos #BabiesVideos #Educational
+
+  tags_base:
+    - happy bear kids
+    - kids learning
+    - toddler videos
+    - babies videos
+    - educational videos for kids
+    - learning for toddlers
+    - kids cartoons
+    - preschool learning
+
+# ─────────────────────────────────────────────────────────────
+# VIDEO DESCRIPTIONS per type
+# ─────────────────────────────────────────────────────────────
+
+video_descriptions:
+  dance:
+    animals: >
+      Watch cute cartoon animals dance and bounce to happy music!
+      Perfect background video for babies and toddlers.
+      Colorful characters will keep your little one entertained for hours!
+    fruits: >
+      Adorable dancing fruits bouncing to cheerful music!
+      A colorful, joyful video perfect for babies, toddlers, and young children.
+
+  abc:
+    animals: >
+      Learn the ABC alphabet with cute cartoon animals!
+      A is for Apple 🍎, B is for Bear 🐻, C is for Cat 🐱...
+      Sing along and learn every letter from A to Z with fun voiceovers!
+    fruits: >
+      Learn the alphabet with delicious fruits!
+      A is for Apple, B is for Banana, C is for Cherry...
+      A fun, colorful way to learn the ABC song from A to Z!
+
+  numbers:
+    animals: >
+      Learn to count from 1 to 10 with adorable cartoon animals!
+      One bear, two bunnies, three ducks... let's count together!
+      Perfect for babies and toddlers learning their first numbers.
+
+  colors:
+    animals: >
+      Learn colors with cute cartoon animals!
+      Red, blue, yellow, green, orange, purple, pink and more!
+      A bright and colorful video perfect for toddlers and preschoolers.
+
+  short_letter:
+    animals: >
+      A quick fun Short to learn ABC letters! Watch cute animals
+      teach the alphabet — perfect for babies and toddlers.
+      #shorts #abc #alphabet #kids #toddlers
+
+  short_number:
+    animals: >
+      Count 1 to 5 with cute animals in this fun Short!
+      Perfect for babies learning their first numbers. #shorts #numbers #kids
+
+  short_color:
+    animals: >
+      Learn colors — Red, Blue, Yellow, Green — in 60 seconds!
+      Fun and bright for babies and toddlers. #shorts #colors #kids
+
+  short_shape:
+    shapes: >
+      Circle, Square, Triangle, Star — learn shapes in 60 seconds!
+      Perfect geometry fun for toddlers. #shorts #shapes #kids
+
+  short_dance:
+    animals: >
+      60 seconds of pure fun! Watch cute animals dance to happy music.
+      Perfect for babies and toddlers. #shorts #dance #kids

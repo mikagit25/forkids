@@ -24,7 +24,8 @@ from googleapiclient.http import MediaFileUpload
 from googleapiclient.errors import HttpError
 
 ROOT = Path(__file__).resolve().parent.parent
-CONFIG_PATH = ROOT / "config" / "settings.yaml"
+CONFIG_PATH   = ROOT / "config" / "settings.yaml"
+METADATA_PATH = ROOT / "config" / "channel_metadata.yaml"
 PLAYLISTS_PATH = ROOT / "config" / "playlists.yaml"
 
 log = logging.getLogger(__name__)
@@ -37,6 +38,29 @@ SCOPES = ["https://www.googleapis.com/auth/youtube.upload",
 def load_config() -> dict:
     with open(CONFIG_PATH) as f:
         return yaml.safe_load(f)
+
+
+def load_metadata() -> dict:
+    if METADATA_PATH.exists():
+        with open(METADATA_PATH) as f:
+            return yaml.safe_load(f)
+    return {}
+
+
+def build_description(video_type: str, theme: str, meta: dict) -> str:
+    """Build full video description from channel_metadata.yaml template."""
+    descs = meta.get("video_descriptions", {})
+    video_desc = descs.get(video_type, {}).get(theme, "") or \
+                 descs.get(video_type, {}).get("animals", "") or \
+                 "Fun educational video for kids!"
+    template = meta.get("video_defaults", {}).get("description_template", "{video_description}")
+    return template.format(video_description=video_desc)
+
+
+def build_tags(video_type: str, theme: str, extra_tags: list, meta: dict) -> list:
+    """Merge base tags + type-specific tags."""
+    base = meta.get("video_defaults", {}).get("tags_base", [])
+    return base + extra_tags
 
 
 def load_playlists() -> dict:
@@ -95,7 +119,7 @@ def upload_video(
             "title": title[:100],
             "description": description[:5000],
             "tags": tags[:500],
-            "categoryId": "22",       # People & Blogs (common for kids)
+            "categoryId": "27",       # Education
             "defaultLanguage": "en",
         },
         "status": {
@@ -145,30 +169,31 @@ def upload_video(
 def main():
     parser = argparse.ArgumentParser(description="Upload video to YouTube")
     parser.add_argument("--file", required=True, help="MP4 file path")
-    parser.add_argument("--theme", default="fruits", help="Theme (for title/tags lookup)")
-    parser.add_argument("--title", default=None, help="Custom title")
-    parser.add_argument("--description", default=None, help="Custom description")
-    parser.add_argument("--tags", default=None, help="Comma-separated tags")
+    parser.add_argument("--video-type", default="dance",
+                        help="video_type (dance, abc, numbers, short_letter, etc.)")
+    parser.add_argument("--theme", default="animals", help="Theme (animals, fruits, shapes)")
+    parser.add_argument("--title", default=None, help="Custom title (overrides template)")
+    parser.add_argument("--description", default=None, help="Custom description (overrides template)")
+    parser.add_argument("--tags", default=None, help="Extra comma-separated tags")
     parser.add_argument("--status", default="public",
                         choices=["public", "unlisted", "private"])
     parser.add_argument("--thumbnail", default=None, help="Thumbnail PNG path")
     args = parser.parse_args()
 
-    config = load_config()
-    playlists = load_playlists()
-    theme_data = playlists["themes"].get(args.theme, {})
+    config   = load_config()
+    meta     = load_metadata()
 
     channel_name = config["channel"]["name"]
-    title_tpl = config["youtube"]["title_template"]
+    title_tpl    = config["youtube"]["title_template"]
     title = args.title or title_tpl.format(
         theme=args.theme.capitalize(),
         channel_name=channel_name,
     )
-    description = args.description or theme_data.get("description", f"Kids video: {args.theme}")
-    if args.tags:
-        tags = [t.strip() for t in args.tags.split(",")]
-    else:
-        tags = theme_data.get("tags", []) + ["kids", "babies", "sensory", "toddler"]
+
+    description = args.description or build_description(args.video_type, args.theme, meta)
+
+    extra_tags = [t.strip() for t in args.tags.split(",")] if args.tags else []
+    tags = build_tags(args.video_type, args.theme, extra_tags, meta)
 
     upload_video(
         file_path=args.file,
