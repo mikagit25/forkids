@@ -50,6 +50,7 @@ TEMPLATE_MAP = {
     "numbers":        ROOT / "config" / "scene_templates" / "numbers.yaml",
     "colors":         ROOT / "config" / "scene_templates" / "colors.yaml",
     # Shorts templates (60s, vertical 9:16)
+    # short_letter cycles through 5 templates — see LETTER_TEMPLATES below
     "short_letter":     ROOT / "config" / "scene_templates" / "shorts_letter.yaml",
     "short_number":     ROOT / "config" / "scene_templates" / "shorts_number.yaml",
     "short_color":      ROOT / "config" / "scene_templates" / "shorts_color.yaml",
@@ -58,6 +59,16 @@ TEMPLATE_MAP = {
     "short_vocabulary": ROOT / "config" / "scene_templates" / "shorts_vocabulary.yaml",
     "short_counting":   ROOT / "config" / "scene_templates" / "shorts_counting.yaml",
 }
+
+# Letter group templates — cycled by variant_idx % 5
+LETTER_TEMPLATES = [
+    ROOT / "config" / "scene_templates" / "shorts_letter.yaml",      # A-E
+    ROOT / "config" / "scene_templates" / "shorts_letter_fj.yaml",   # F-J
+    ROOT / "config" / "scene_templates" / "shorts_letter_ko.yaml",   # K-O
+    ROOT / "config" / "scene_templates" / "shorts_letter_pt.yaml",   # P-T
+    ROOT / "config" / "scene_templates" / "shorts_letter_uz.yaml",   # U-Z
+]
+LETTER_START = ["A", "F", "K", "P", "U"]  # first letter of each group
 
 # Types that should always render as vertical Shorts
 SHORTS_TYPES = {
@@ -74,7 +85,10 @@ def make_thumbnail(video_cfg: dict, mp4_path: Path, variant: int = 0) -> Path | 
 
     letter = word = number = color = shape = ""
 
-    if video_type in ("abc", "short_letter"):
+    if video_type == "short_letter":
+        letter = LETTER_START[variant % len(LETTER_START)]
+        word   = LETTER_WORDS.get(letter, letter)
+    elif video_type == "abc":
         letter = chr(ord('A') + (variant % 26))
         word   = LETTER_WORDS.get(letter, letter)
     elif video_type in ("numbers", "short_number", "short_counting"):
@@ -122,6 +136,8 @@ def generate_video(video_cfg: dict, dry_run: bool = False, variant_idx: int = 0)
         theme = "shapes"
 
     template = TEMPLATE_MAP.get(video_type)
+    if video_type == "short_letter":
+        template = LETTER_TEMPLATES[variant_idx % len(LETTER_TEMPLATES)]
     if not template:
         print(f"  Unknown video_type: {video_type}, skipping")
         return None
@@ -214,10 +230,15 @@ def main():
 
     generated = []
     failed = []
+    type_variants: dict[str, int] = {}  # per-type variant counter
 
     for i, video_cfg in enumerate(videos, 1):
+        vtype = video_cfg.get("video_type", "dance")
+        vi = type_variants.get(vtype, 0)
+        type_variants[vtype] = vi + 1
+
         print(f"\n[{i}/{len(videos)}]", end="")
-        result = generate_video(video_cfg, dry_run=args.dry_run, variant_idx=i - 1)
+        result = generate_video(video_cfg, dry_run=args.dry_run, variant_idx=vi)
         if result:
             generated.append(result)
         else:

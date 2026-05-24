@@ -1,0 +1,9 @@
+# YouTube Short: Letters U-Z (60s)
+# 6 letters × 10s = 60s, vertical 720×1280
+scenes:
+  - {choreo: diagonal_in, duration: 10, n: 1, text: "U", sub_text: "Umbrella",  voiceover_key: "U", chars: []}
+  - {choreo: grid_bounce, duration: 10, n: 1, text: "V", sub_text: "Violin",    voiceover_key: "V", chars: []}
+  - {choreo: carousel,    duration: 10, n: 1, text: "W", sub_text: "Watermelon",voiceover_key: "W", chars: []}
+  - {choreo: zigzag,      duration: 10, n: 1, text: "X", sub_text: "Xylophone", voiceover_key: "X", chars: []}
+  - {choreo: grid_sway,   duration: 10, n: 1, text: "Y", sub_text: "Yak",       voiceover_key: "Y", chars: []}
+  - {choreo: diagonal_in, duration: 10, n: 1, text: "Z", sub_text: "Zebra",     voiceover_key: "Z", chars: []}

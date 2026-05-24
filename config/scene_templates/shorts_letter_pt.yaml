@@ -1,0 +1,8 @@
+# YouTube Short: Letters P-T (60s)
+# 5 letters × 12s = 60s, vertical 720×1280
+scenes:
+  - {choreo: diagonal_in, duration: 12, n: 1, text: "P", sub_text: "Penguin", voiceover_key: "P", chars: [penguin]}
+  - {choreo: grid_bounce, duration: 12, n: 1, text: "Q", sub_text: "Queen",   voiceover_key: "Q", chars: []}
+  - {choreo: carousel,    duration: 12, n: 1, text: "R", sub_text: "Rabbit",  voiceover_key: "R", chars: [bunny]}
+  - {choreo: zigzag,      duration: 12, n: 1, text: "S", sub_text: "Star",    voiceover_key: "S", chars: []}
+  - {choreo: grid_sway,   duration: 12, n: 1, text: "T", sub_text: "Tiger",   voiceover_key: "T", chars: []}

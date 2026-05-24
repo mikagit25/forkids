@@ -1,0 +1,8 @@
+# YouTube Short: Letters K-O (60s)
+# 5 letters × 12s = 60s, vertical 720×1280
+scenes:
+  - {choreo: carousel,    duration: 12, n: 1, text: "K", sub_text: "Koala",   voiceover_key: "K", chars: []}
+  - {choreo: diagonal_in, duration: 12, n: 1, text: "L", sub_text: "Lion",    voiceover_key: "L", chars: []}
+  - {choreo: grid_bounce, duration: 12, n: 1, text: "M", sub_text: "Monkey",  voiceover_key: "M", chars: [monkey]}
+  - {choreo: zigzag,      duration: 12, n: 1, text: "N", sub_text: "Nest",    voiceover_key: "N", chars: []}
+  - {choreo: grid_sway,   duration: 12, n: 1, text: "O", sub_text: "Owl",     voiceover_key: "O", chars: [owl]}

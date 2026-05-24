@@ -1,0 +1,8 @@
+# YouTube Short: Letters F-J (60s)
+# 5 letters × 12s = 60s, vertical 720×1280
+scenes:
+  - {choreo: diagonal_in, duration: 12, n: 1, text: "F", sub_text: "Frog",      voiceover_key: "F", chars: [frog]}
+  - {choreo: grid_bounce, duration: 12, n: 1, text: "G", sub_text: "Giraffe",   voiceover_key: "G", chars: [giraffe]}
+  - {choreo: carousel,    duration: 12, n: 1, text: "H", sub_text: "Hippo",     voiceover_key: "H", chars: []}
+  - {choreo: zigzag,      duration: 12, n: 1, text: "I", sub_text: "Igloo",     voiceover_key: "I", chars: []}
+  - {choreo: grid_sway,   duration: 12, n: 1, text: "J", sub_text: "Jellyfish", voiceover_key: "J", chars: []}
