@@ -1,0 +1,38 @@
+channel:
+  name: "Happy Bear Kids"
+  language: "en"
+  default_duration_minutes: 30
+  videos_per_day: 2
+  upload_times: ["09:00", "18:00"]
+
+video:
+  resolution: [1920, 1080]
+  fps: 30
+  watermark: "assets/logo.png"
+  background_colors:
+    - "#FF6B6B"
+    - "#FFD93D"
+    - "#6BCB77"
+    - "#4D96FF"
+    - "#FF922B"
+    - "#A29BFE"
+    - "#FD79A8"
+    - "#55EFC4"
+
+animation:
+  sprite_size: 280
+  bounce_height: 45
+  sway_angle: 15
+  pulse_scale: 0.18
+  sprites_on_screen: 4
+  group_change_interval: [30, 55]   # seconds min/max
+
+music:
+  source: "local"
+  loop_dir: "assets/music/"
+
+youtube:
+  credentials: "credentials/youtube_client.json"
+  token: "credentials/token.pickle"
+  default_status: "public"
+  title_template: "Dancing {theme} 🎵 Happy Music for Kids | {channel_name}"

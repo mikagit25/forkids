@@ -1,0 +1,13 @@
+moviepy==1.0.3
+Pillow>=10.0
+librosa>=0.10
+numpy>=1.24
+scipy>=1.11
+google-api-python-client>=2.0
+google-auth-oauthlib>=1.0
+google-auth-httplib2>=0.1
+PyYAML>=6.0
+APScheduler>=3.10
+requests>=2.31
+soundfile>=0.12
+tqdm>=4.65
