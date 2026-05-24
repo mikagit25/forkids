@@ -145,8 +145,10 @@ def upload_video(
 def main():
     parser = argparse.ArgumentParser(description="Upload video to YouTube")
     parser.add_argument("--file", required=True, help="MP4 file path")
-    parser.add_argument("--theme", default="fruits", help="Theme (for title/tags)")
-    parser.add_argument("--title", default=None, help="Custom title (optional)")
+    parser.add_argument("--theme", default="fruits", help="Theme (for title/tags lookup)")
+    parser.add_argument("--title", default=None, help="Custom title")
+    parser.add_argument("--description", default=None, help="Custom description")
+    parser.add_argument("--tags", default=None, help="Comma-separated tags")
     parser.add_argument("--status", default="public",
                         choices=["public", "unlisted", "private"])
     parser.add_argument("--thumbnail", default=None, help="Thumbnail PNG path")
@@ -162,8 +164,11 @@ def main():
         theme=args.theme.capitalize(),
         channel_name=channel_name,
     )
-    description = theme_data.get("description", f"Kids video: {args.theme}")
-    tags = theme_data.get("tags", []) + ["kids", "babies", "sensory", "toddler"]
+    description = args.description or theme_data.get("description", f"Kids video: {args.theme}")
+    if args.tags:
+        tags = [t.strip() for t in args.tags.split(",")]
+    else:
+        tags = theme_data.get("tags", []) + ["kids", "babies", "sensory", "toddler"]
 
     upload_video(
         file_path=args.file,

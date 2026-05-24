@@ -742,10 +742,20 @@ class VideoGenerator:
             lang   = scene.get("voiceover_lang", "en")
             t      = float(scene["start_sec"])
             vo_dir = ROOT / "assets" / "audio" / "voiceover" / lang
-            text   = WORD_PHRASES.get(vo_key) or PACKS.get("abc", {}).get(vo_key) or vo_key
-            slug   = slugify(text)
+
+            # Search all packs first (gives full phrase text like "A. Apple. A is for Apple.")
+            text = None
+            for pack in PACKS.values():
+                if vo_key in pack:
+                    text = pack[vo_key]
+                    break
+            if not text:
+                text = WORD_PHRASES.get(vo_key, vo_key)
+
+            slug = slugify(text)
             mp3_path = vo_dir / f"{slug}.mp3"
             if not mp3_path.exists():
+                # fallback: just the key itself
                 mp3_path = vo_dir / f"{slugify(vo_key)}.mp3"
             if mp3_path.exists():
                 try:
