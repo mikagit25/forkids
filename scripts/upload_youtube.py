@@ -108,12 +108,24 @@ def upload_video(
     status: str = "public",
     thumbnail_path: Optional[str] = None,
     video_type: str = "dance",
+    publish_at: Optional[str] = None,
     config: dict = None,
 ) -> str:
     if config is None:
         config = load_config()
 
     youtube = get_youtube_service(config)
+
+    video_status: dict = {
+        "madeForKids": True,
+        "selfDeclaredMadeForKids": True,
+    }
+    if publish_at:
+        # Scheduled: private until publishAt
+        video_status["privacyStatus"] = "private"
+        video_status["publishAt"] = publish_at
+    else:
+        video_status["privacyStatus"] = status
 
     body = {
         "snippet": {
@@ -123,11 +135,7 @@ def upload_video(
             "categoryId": "27",       # Education
             "defaultLanguage": "en",
         },
-        "status": {
-            "privacyStatus": status,
-            "madeForKids": True,
-            "selfDeclaredMadeForKids": True,
-        },
+        "status": video_status,
     }
 
     media = MediaFileUpload(
@@ -135,7 +143,7 @@ def upload_video(
         resumable=True, mimetype="video/mp4"
     )
 
-    log.info(f"Uploading: {Path(file_path).name}  [{status}]")
+    log.info(f"Uploading: {Path(file_path).name}  [{publish_at or status}]")
     log.info(f"Title: {title}")
 
     request = youtube.videos().insert(
@@ -188,7 +196,9 @@ def main():
     parser.add_argument("--tags", default=None, help="Extra comma-separated tags")
     parser.add_argument("--status", default="public",
                         choices=["public", "unlisted", "private"])
-    parser.add_argument("--thumbnail", default=None, help="Thumbnail PNG path")
+    parser.add_argument("--thumbnail",   default=None, help="Thumbnail PNG path")
+    parser.add_argument("--publish-at",  default=None,
+                        help="ISO 8601 UTC datetime to schedule (e.g. 2026-05-26T09:00:00Z)")
     args = parser.parse_args()
 
     config   = load_config()
@@ -214,6 +224,7 @@ def main():
         status=args.status,
         thumbnail_path=args.thumbnail,
         video_type=args.video_type,
+        publish_at=args.publish_at,
         config=config,
     )
 

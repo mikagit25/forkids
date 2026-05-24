@@ -20,6 +20,11 @@ import yaml
 from datetime import datetime
 from pathlib import Path
 
+def write_meta(mp4_path: Path, video_cfg: dict):
+    meta_path = mp4_path.parent / f"meta_{mp4_path.stem}.yaml"
+    with open(meta_path, "w") as f:
+        yaml.dump(video_cfg, f, allow_unicode=True, sort_keys=False, default_flow_style=False)
+
 ROOT = Path(__file__).resolve().parent.parent
 QUEUE_DIR = ROOT / "output" / "queue"
 SCRIPTS_DIR = ROOT / "config" / "scripts"
@@ -177,6 +182,9 @@ def generate_video(video_cfg: dict, dry_run: bool = False, variant_idx: int = 0)
     thumb = make_thumbnail(video_cfg, output_path, variant=variant_idx)
     if thumb:
         print(f"  ✓ Thumbnail: {thumb.name}")
+
+    # Step 4: metadata sidecar (for scheduled publishing)
+    write_meta(output_path, video_cfg)
 
     return output_path
 

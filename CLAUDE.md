@@ -52,9 +52,10 @@ python3 scripts/setup_channel.py --all     # применить через API
 python3 scripts/batch_generate.py --dry-run
 python3 scripts/batch_generate.py
 
-# Публикация из очереди (авто-thumbnail + плейлисты)
+# Публикация из очереди (авто-thumbnail + плейлисты + scheduled publishing)
 python3 scripts/publish_queue.py --dry-run
-python3 scripts/publish_queue.py --limit 1
+python3 scripts/publish_queue.py          # scheduled: видео приватные до времени публикации
+python3 scripts/publish_queue.py --no-schedule  # сразу публичные
 ```
 
 ## Типы видео
@@ -89,7 +90,9 @@ python3 scripts/publish_queue.py --limit 1
 1. ✅ **plan_week.py** → 6 дней (36 видео/неделю)
 2. ✅ **generate_thumbnail.py** → авто-thumbnail для каждого видео
 3. ✅ **manage_playlists.py** → плейлисты (создать через --create-all после сброса квоты)
-4. **Новые типы:** vocabulary, counting_objects (voiceover уже готов)
-5. **Vegetables** тема спрайтов
+4. ✅ **Новые типы:** short_vocabulary + short_counting добавлены
+5. ✅ **Scheduled publishing** → publishAt через meta sidecar файлы
+6. **Vegetables** тема спрайтов
+7. **Расширить ABC** shorts: A-E, F-J, K-O, P-T, U-Z (5 разных шортсов)
 
 Полный роадмап: `ROADMAP.md`
