@@ -59,7 +59,16 @@ def main():
     py = sys.executable
 
     if not args.upload_only:
-        # Step 1: generate all videos from weekly plan
+        # Step 1: generate this week's plan (rotates based on history)
+        cmd = [py, str(ROOT / "scripts" / "plan_week.py")]
+        if args.dry_run:
+            cmd.append("--dry-run")
+        ok = run(cmd, "Generating weekly plan")
+        if not ok:
+            log.error("Plan generation failed — aborting")
+            sys.exit(1)
+
+        # Step 2: generate all videos from the plan
         cmd = [py, str(ROOT / "scripts" / "batch_generate.py"),
                "--plan", str(ROOT / "config" / "weekly_plan.yaml")]
         if args.dry_run:
