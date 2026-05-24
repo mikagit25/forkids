@@ -53,19 +53,58 @@ def load_config() -> dict:
 
 # ── Asset loaders ──────────────────────────────────────────────────────────────
 
+def _make_bounce_frames(img: Image.Image, n_frames: int = 30) -> List[Image.Image]:
+    """Synthesize bounce + squish animation frames from a single static sprite."""
+    frames = []
+    w, h = img.size
+    for i in range(n_frames):
+        t = i / n_frames
+        # Bounce: goes up and comes back (sine arch)
+        bounce = abs(math.sin(math.pi * t))
+        # Squish on landing, stretch at peak
+        sy = 1.0 + 0.12 * bounce          # taller at peak
+        sx = 1.0 - 0.08 * bounce          # narrower at peak
+        # Slight tilt left/right
+        tilt = math.sin(2 * math.pi * t) * 8
+
+        new_w = max(1, int(w * sx))
+        new_h = max(1, int(h * sy))
+        frame = img.resize((new_w, new_h), Image.LANCZOS)
+        if abs(tilt) > 0.5:
+            frame = frame.rotate(-tilt, expand=True, resample=Image.BILINEAR)
+
+        # Paste onto same-size canvas so all frames have identical dimensions
+        canvas = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+        ox = (w - frame.width) // 2
+        oy = (h - frame.height) // 2
+        canvas.paste(frame, (ox, oy), frame)
+        frames.append(canvas)
+    return frames
+
+
 def load_animated_sprites(theme: str) -> List[Tuple[str, List[Image.Image]]]:
     """
     Returns list of (name, frames) tuples.
-    Priority: blender3d/ > animated/ > static theme folder.
+    Priority: ai_generated/ > blender3d/ > animated/ > static theme folder.
     """
+    ai_dir      = ROOT / "assets" / "sprites" / "ai_generated"
     blender_dir = ROOT / "assets" / "sprites" / "blender3d"
     anim_dir    = ROOT / "assets" / "sprites" / "animated"
     static_dir  = ROOT / "assets" / "sprites" / theme
 
     sprites = []
 
-    # 1. Prefer Blender 3D rendered sprites (best quality)
-    if blender_dir.exists():
+    # 0. Best quality: AI-generated Pixar-style characters (Pollinations.ai + rembg)
+    if ai_dir.exists():
+        for p in sorted(ai_dir.glob("*.png")):
+            img = Image.open(p).convert("RGBA")
+            frames = _make_bounce_frames(img, n_frames=30)
+            sprites.append((p.stem, frames))
+        if sprites:
+            log.info(f"Using {len(sprites)} AI-generated characters (Pollinations.ai)")
+
+    # 1. Prefer Blender 3D rendered sprites (good quality)
+    if not sprites and blender_dir.exists():
         for char_dir in sorted(blender_dir.iterdir()):
             if not char_dir.is_dir() or char_dir.name.startswith('test_'):
                 continue
