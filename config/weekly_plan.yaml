@@ -1,197 +1,604 @@
-# ─────────────────────────────────────────────────────────────
-# Weekly content plan for Happy Bear Kids
-# Run: python3 scripts/batch_generate.py --plan config/weekly_plan.yaml
-# Max 6 uploads/day on a new channel: 2 long + 4 shorts
-# ─────────────────────────────────────────────────────────────
-#
-# video_type:
-#   dance        - animated characters with music (long, 30min)
-#   abc          - A-Z alphabet video with voiceover (long, 6min)
-#   numbers      - 1-10 counting (long, 2min)
-#   colors       - learn colors (long, 2min)
-#   short_letter - 5 letters Short (60s vertical)
-#   short_number - count 1-5 Short (60s vertical)
-#   short_color  - 4 colors Short (60s vertical)
-#   short_shape  - 4 shapes Short (60s vertical)
-#   short_dance  - dance clip Short (60s vertical)
-#
-# is_shorts: true forces vertical 720x1280 rendering
-# ─────────────────────────────────────────────────────────────
+# Generated: 2026-05-24 19:50
+# 2 long videos + 4 shorts per day = 6 videos/day
 
 videos:
-  # ── MONDAY ────────────────────────────────────────────────
-  - title: "Animals Dance Party 🐻 Happy Music for Kids"
-    video_type: dance
-    theme: animals
-    duration_minutes: 30
-    upload_day: monday
-    upload_time: "09:00"
-    status: public
-    tags: [kids, animals, dance, music, educational]
-
-  - title: "ABC Song A to Z 🔤 Learn the Alphabet with Animals"
-    video_type: abc
-    theme: animals
-    duration_minutes: 6
-    upload_day: monday
-    upload_time: "11:00"
-    status: public
-    tags: [abc, alphabet, kids, learning, educational]
-
-  - title: "A B C Letters 🔤 Learn A B C D E #shorts"
-    video_type: short_letter
-    theme: animals
-    duration_minutes: 1
-    is_shorts: true
-    upload_day: monday
-    upload_time: "13:00"
-    status: public
-    tags: [abc, shorts, alphabet, kids, toddlers]
-
-  - title: "Count 1 to 5 🔢 Numbers for Babies #shorts"
-    video_type: short_number
-    theme: animals
-    duration_minutes: 1
-    is_shorts: true
-    upload_day: monday
-    upload_time: "15:00"
-    status: public
-    tags: [numbers, counting, shorts, kids, toddlers]
-
-  - title: "Learn Colors 🎨 Red Blue Yellow Green #shorts"
-    video_type: short_color
-    theme: animals
-    duration_minutes: 1
-    is_shorts: true
-    upload_day: monday
-    upload_time: "17:00"
-    status: public
-    tags: [colors, shorts, kids, learning, toddlers]
-
-  - title: "Shapes for Kids ⭐ Circle Square Triangle #shorts"
-    video_type: short_shape
-    theme: shapes
-    duration_minutes: 1
-    is_shorts: true
-    upload_day: monday
-    upload_time: "19:00"
-    status: public
-    tags: [shapes, shorts, kids, learning, geometry]
-
-  # ── TUESDAY ───────────────────────────────────────────────
-  - title: "Fruits Dance Party 🍎 Fun Music for Children"
-    video_type: dance
-    theme: fruits
-    duration_minutes: 30
-    upload_day: tuesday
-    upload_time: "09:00"
-    status: public
-    tags: [kids, fruits, dance, music, educational]
-
-  - title: "Numbers 1 to 10 🔢 Count with Cute Animals for Kids"
-    video_type: numbers
-    theme: animals
-    duration_minutes: 2
-    upload_day: tuesday
-    upload_time: "11:00"
-    status: public
-    tags: [numbers, counting, kids, learning, educational]
-
-  - title: "Dance with Animals 🐯 Fun Short for Kids #shorts"
-    video_type: short_dance
-    theme: animals
-    duration_minutes: 1
-    is_shorts: true
-    upload_day: tuesday
-    upload_time: "13:00"
-    status: public
-    tags: [dance, shorts, kids, animals, fun]
-
-  - title: "F G H Letters 🔤 Learn the Alphabet #shorts"
-    video_type: short_letter
-    theme: animals
-    duration_minutes: 1
-    is_shorts: true
-    upload_day: tuesday
-    upload_time: "15:00"
-    status: public
-    tags: [abc, shorts, alphabet, kids, toddlers]
-
-  - title: "Orange Purple Pink Colors 🌈 Learn Colors #shorts"
-    video_type: short_color
-    theme: animals
-    duration_minutes: 1
-    is_shorts: true
-    upload_day: tuesday
-    upload_time: "17:00"
-    status: public
-    tags: [colors, shorts, kids, learning, rainbow]
-
-  - title: "Heart Star Diamond Shapes 💎 Shapes for Babies #shorts"
-    video_type: short_shape
-    theme: shapes
-    duration_minutes: 1
-    is_shorts: true
-    upload_day: tuesday
-    upload_time: "19:00"
-    status: public
-    tags: [shapes, shorts, heart, star, kids]
-
-  # ── WEDNESDAY ─────────────────────────────────────────────
-  - title: "Animals Dance Party 🦒 Cartoon Characters for Kids"
-    video_type: dance
-    theme: animals
-    duration_minutes: 30
-    upload_day: wednesday
-    upload_time: "09:00"
-    status: public
-    tags: [kids, animals, dance, music, toddlers]
-
-  - title: "Learn Colors 🎨 Red Blue Green Yellow for Children"
-    video_type: colors
-    theme: animals
-    duration_minutes: 2
-    upload_day: wednesday
-    upload_time: "11:00"
-    status: public
-    tags: [colors, learning, kids, educational, toddlers]
-
-  - title: "Count 6 7 8 9 10 🔢 Learn to Count #shorts"
-    video_type: short_number
-    theme: fruits
-    duration_minutes: 1
-    is_shorts: true
-    upload_day: wednesday
-    upload_time: "13:00"
-    status: public
-    tags: [numbers, counting, shorts, kids, learning]
-
-  - title: "I J K Letters 🔤 ABC for Toddlers #shorts"
-    video_type: short_letter
-    theme: animals
-    duration_minutes: 1
-    is_shorts: true
-    upload_day: wednesday
-    upload_time: "15:00"
-    status: public
-    tags: [abc, shorts, alphabet, toddlers, learning]
-
-  - title: "Dance with Fruits 🍌 Fun Short for Kids #shorts"
-    video_type: short_dance
-    theme: fruits
-    duration_minutes: 1
-    is_shorts: true
-    upload_day: wednesday
-    upload_time: "17:00"
-    status: public
-    tags: [dance, shorts, kids, fruits, fun]
-
-  - title: "Circle Square Triangle Star 🔷 Shapes #shorts"
-    video_type: short_shape
-    theme: shapes
-    duration_minutes: 1
-    is_shorts: true
-    upload_day: wednesday
-    upload_time: "19:00"
-    status: public
-    tags: [shapes, shorts, kids, geometry, learning]
+- title: Animals Dance Party 🐻 Happy Music for Kids
+  video_type: dance
+  theme: animals
+  duration_minutes: 30
+  upload_day: monday
+  upload_time: 09:00
+  status: public
+  tags:
+  - dance
+  - kids music
+  - happy kids
+  - toddlers
+  - children
+  - animals
+  - kids
+  - children
+- title: ABC Song A to Z 🔤 Learn the Alphabet with Animals
+  video_type: abc
+  theme: animals
+  duration_minutes: 6
+  upload_day: monday
+  upload_time: '11:00'
+  status: public
+  tags:
+  - abc song
+  - alphabet
+  - kids learning
+  - phonics
+  - educational
+  - animals
+  - kids
+  - children
+- title: 'Learn ABC Letters A B C D E 🔤 Alphabet for Babies #shorts'
+  video_type: short_letter
+  theme: animals
+  duration_minutes: 1
+  upload_day: monday
+  upload_time: '13:00'
+  status: public
+  tags:
+  - abc
+  - shorts
+  - alphabet
+  - kids
+  - toddlers
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Count 1 to 5 🔢 Numbers for Babies #shorts'
+  video_type: short_number
+  theme: animals
+  duration_minutes: 1
+  upload_day: monday
+  upload_time: '15:00'
+  status: public
+  tags:
+  - numbers
+  - counting
+  - shorts
+  - kids
+  - toddlers
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Learn Colors 🎨 Red Blue Yellow Green #shorts'
+  video_type: short_color
+  theme: animals
+  duration_minutes: 1
+  upload_day: monday
+  upload_time: '17:00'
+  status: public
+  tags:
+  - colors
+  - shorts
+  - kids
+  - learning
+  - rainbow
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Shapes for Kids ⭐ Circle Square Triangle #shorts'
+  video_type: short_shape
+  theme: shapes
+  duration_minutes: 1
+  upload_day: monday
+  upload_time: '19:00'
+  status: public
+  tags:
+  - shapes
+  - shorts
+  - kids
+  - learning
+  - geometry
+  - shapes
+  - kids
+  - children
+  is_shorts: true
+- title: Fruits Dance Party 🍎 Fun Music for Children
+  video_type: dance
+  theme: fruits
+  duration_minutes: 30
+  upload_day: tuesday
+  upload_time: 09:00
+  status: public
+  tags:
+  - dance
+  - kids music
+  - happy kids
+  - toddlers
+  - children
+  - fruits
+  - kids
+  - children
+- title: Numbers 1 to 10 🔢 Count with Cute Animals for Kids
+  video_type: numbers
+  theme: animals
+  duration_minutes: 2
+  upload_day: tuesday
+  upload_time: '11:00'
+  status: public
+  tags:
+  - counting
+  - numbers
+  - 1 to 10
+  - math for kids
+  - educational
+  - animals
+  - kids
+  - children
+- title: 'Learn Numbers 1 2 3 4 5 🔢 Count with Animals #shorts'
+  video_type: short_number
+  theme: animals
+  duration_minutes: 1
+  upload_day: tuesday
+  upload_time: '13:00'
+  status: public
+  tags:
+  - numbers
+  - counting
+  - shorts
+  - kids
+  - toddlers
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Red Yellow Blue Green 🎨 Colors for Babies #shorts'
+  video_type: short_color
+  theme: animals
+  duration_minutes: 1
+  upload_day: tuesday
+  upload_time: '15:00'
+  status: public
+  tags:
+  - colors
+  - shorts
+  - kids
+  - learning
+  - rainbow
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Learn Shapes 🔷 Circle Square Star Heart #shorts'
+  video_type: short_shape
+  theme: shapes
+  duration_minutes: 1
+  upload_day: tuesday
+  upload_time: '17:00'
+  status: public
+  tags:
+  - shapes
+  - shorts
+  - kids
+  - learning
+  - geometry
+  - shapes
+  - kids
+  - children
+  is_shorts: true
+- title: 'Dance with Animals 🐯 Fun Short for Kids #shorts'
+  video_type: short_dance
+  theme: animals
+  duration_minutes: 1
+  upload_day: tuesday
+  upload_time: '19:00'
+  status: public
+  tags:
+  - dance
+  - shorts
+  - kids
+  - fun
+  - animals
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: Dancing Animals 🦁 Fun Cartoon Video for Toddlers
+  video_type: dance
+  theme: animals
+  duration_minutes: 30
+  upload_day: wednesday
+  upload_time: 09:00
+  status: public
+  tags:
+  - dance
+  - kids music
+  - happy kids
+  - toddlers
+  - children
+  - animals
+  - kids
+  - children
+- title: Learn Colors 🎨 Red Blue Green Yellow for Kids
+  video_type: colors
+  theme: animals
+  duration_minutes: 2
+  upload_day: wednesday
+  upload_time: '11:00'
+  status: public
+  tags:
+  - colors
+  - learn colors
+  - kids learning
+  - rainbow
+  - educational
+  - animals
+  - kids
+  - children
+- title: 'What Color Is It? 🌈 Colors for Kids #shorts'
+  video_type: short_color
+  theme: animals
+  duration_minutes: 1
+  upload_day: wednesday
+  upload_time: '13:00'
+  status: public
+  tags:
+  - colors
+  - shorts
+  - kids
+  - learning
+  - rainbow
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Circle Square Triangle ⭐ Shapes for Babies #shorts'
+  video_type: short_shape
+  theme: shapes
+  duration_minutes: 1
+  upload_day: wednesday
+  upload_time: '15:00'
+  status: public
+  tags:
+  - shapes
+  - shorts
+  - kids
+  - learning
+  - geometry
+  - shapes
+  - kids
+  - children
+  is_shorts: true
+- title: 'Cute Animals Dancing 🐻 Happy Music #shorts'
+  video_type: short_dance
+  theme: animals
+  duration_minutes: 1
+  upload_day: wednesday
+  upload_time: '17:00'
+  status: public
+  tags:
+  - dance
+  - shorts
+  - kids
+  - fun
+  - animals
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Alphabet Song F G H I J 🔤 ABC for Toddlers #shorts'
+  video_type: short_letter
+  theme: animals
+  duration_minutes: 1
+  upload_day: wednesday
+  upload_time: '19:00'
+  status: public
+  tags:
+  - abc
+  - shorts
+  - alphabet
+  - kids
+  - toddlers
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: Dancing Fruits 🍌 Happy Music for Babies
+  video_type: dance
+  theme: fruits
+  duration_minutes: 30
+  upload_day: thursday
+  upload_time: 09:00
+  status: public
+  tags:
+  - dance
+  - kids music
+  - happy kids
+  - toddlers
+  - children
+  - fruits
+  - kids
+  - children
+- title: ABC Song 🍎 Learn the Alphabet with Fruits
+  video_type: abc
+  theme: fruits
+  duration_minutes: 6
+  upload_day: thursday
+  upload_time: '11:00'
+  status: public
+  tags:
+  - abc song
+  - alphabet
+  - kids learning
+  - phonics
+  - educational
+  - fruits
+  - kids
+  - children
+- title: 'Shapes for Kids ⭐ Circle Square Triangle #shorts'
+  video_type: short_shape
+  theme: shapes
+  duration_minutes: 1
+  upload_day: thursday
+  upload_time: '13:00'
+  status: public
+  tags:
+  - shapes
+  - shorts
+  - kids
+  - learning
+  - geometry
+  - shapes
+  - kids
+  - children
+  is_shorts: true
+- title: 'Animal Dance Party 🦁 60 Seconds of Fun #shorts'
+  video_type: short_dance
+  theme: animals
+  duration_minutes: 1
+  upload_day: thursday
+  upload_time: '15:00'
+  status: public
+  tags:
+  - dance
+  - shorts
+  - kids
+  - fun
+  - animals
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Learn Letters K L M N O 🔤 Kids ABC #shorts'
+  video_type: short_letter
+  theme: animals
+  duration_minutes: 1
+  upload_day: thursday
+  upload_time: '17:00'
+  status: public
+  tags:
+  - abc
+  - shorts
+  - alphabet
+  - kids
+  - toddlers
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: '1 2 3 Let''s Count! 🔢 Numbers for Toddlers #shorts'
+  video_type: short_number
+  theme: animals
+  duration_minutes: 1
+  upload_day: thursday
+  upload_time: '19:00'
+  status: public
+  tags:
+  - numbers
+  - counting
+  - shorts
+  - kids
+  - toddlers
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: Cute Animals Dancing 🐼 Happy Kids Music
+  video_type: dance
+  theme: animals
+  duration_minutes: 30
+  upload_day: friday
+  upload_time: 09:00
+  status: public
+  tags:
+  - dance
+  - kids music
+  - happy kids
+  - toddlers
+  - children
+  - animals
+  - kids
+  - children
+- title: Count 1 to 10 🔢 Learning Numbers with Fruits
+  video_type: numbers
+  theme: fruits
+  duration_minutes: 2
+  upload_day: friday
+  upload_time: '11:00'
+  status: public
+  tags:
+  - counting
+  - numbers
+  - 1 to 10
+  - math for kids
+  - educational
+  - fruits
+  - kids
+  - children
+- title: 'Dance with Animals 🐯 Fun Short for Kids #shorts'
+  video_type: short_dance
+  theme: animals
+  duration_minutes: 1
+  upload_day: friday
+  upload_time: '13:00'
+  status: public
+  tags:
+  - dance
+  - shorts
+  - kids
+  - fun
+  - animals
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'ABC P Q R S T 🔤 Learn the Alphabet #shorts'
+  video_type: short_letter
+  theme: animals
+  duration_minutes: 1
+  upload_day: friday
+  upload_time: '15:00'
+  status: public
+  tags:
+  - abc
+  - shorts
+  - alphabet
+  - kids
+  - toddlers
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Count 1 to 5 🔢 Numbers for Babies #shorts'
+  video_type: short_number
+  theme: animals
+  duration_minutes: 1
+  upload_day: friday
+  upload_time: '17:00'
+  status: public
+  tags:
+  - numbers
+  - counting
+  - shorts
+  - kids
+  - toddlers
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Learn Colors 🎨 Red Blue Yellow Green #shorts'
+  video_type: short_color
+  theme: animals
+  duration_minutes: 1
+  upload_day: friday
+  upload_time: '19:00'
+  status: public
+  tags:
+  - colors
+  - shorts
+  - kids
+  - learning
+  - rainbow
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: Cartoon Fruits Dancing 🍓 Kids Music Video
+  video_type: dance
+  theme: fruits
+  duration_minutes: 30
+  upload_day: saturday
+  upload_time: 09:00
+  status: public
+  tags:
+  - dance
+  - kids music
+  - happy kids
+  - toddlers
+  - children
+  - fruits
+  - kids
+  - children
+- title: Colors for Kids 🎨 Learn with Cute Fruits
+  video_type: colors
+  theme: fruits
+  duration_minutes: 2
+  upload_day: saturday
+  upload_time: '11:00'
+  status: public
+  tags:
+  - colors
+  - learn colors
+  - kids learning
+  - rainbow
+  - educational
+  - fruits
+  - kids
+  - children
+- title: 'Letters U V W X Y Z 🔤 ABC Song #shorts'
+  video_type: short_letter
+  theme: animals
+  duration_minutes: 1
+  upload_day: saturday
+  upload_time: '13:00'
+  status: public
+  tags:
+  - abc
+  - shorts
+  - alphabet
+  - kids
+  - toddlers
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Learn Numbers 1 2 3 4 5 🔢 Count with Animals #shorts'
+  video_type: short_number
+  theme: animals
+  duration_minutes: 1
+  upload_day: saturday
+  upload_time: '15:00'
+  status: public
+  tags:
+  - numbers
+  - counting
+  - shorts
+  - kids
+  - toddlers
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Red Yellow Blue Green 🎨 Colors for Babies #shorts'
+  video_type: short_color
+  theme: animals
+  duration_minutes: 1
+  upload_day: saturday
+  upload_time: '17:00'
+  status: public
+  tags:
+  - colors
+  - shorts
+  - kids
+  - learning
+  - rainbow
+  - animals
+  - kids
+  - children
+  is_shorts: true
+- title: 'Learn Shapes 🔷 Circle Square Star Heart #shorts'
+  video_type: short_shape
+  theme: shapes
+  duration_minutes: 1
+  upload_day: saturday
+  upload_time: '19:00'
+  status: public
+  tags:
+  - shapes
+  - shorts
+  - kids
+  - learning
+  - geometry
+  - shapes
+  - kids
+  - children
+  is_shorts: true

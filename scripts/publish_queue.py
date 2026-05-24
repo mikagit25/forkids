@@ -79,6 +79,11 @@ def upload_video(mp4_path: Path, metadata: dict, dry_run: bool = False) -> bool:
         "--status",     status,
     ]
 
+    thumb_path = mp4_path.parent / f"thumb_{mp4_path.stem}.png"
+    if thumb_path.exists():
+        cmd += ["--thumbnail", str(thumb_path)]
+        print(f"  Thumb:  {thumb_path.name}")
+
     result = subprocess.run(cmd, capture_output=False)
     return result.returncode == 0
 
@@ -115,6 +120,9 @@ def main():
             if not args.dry_run:
                 dest = UPLOADED_DIR / mp4_path.name
                 shutil.move(str(mp4_path), str(dest))
+                thumb_path = mp4_path.parent / f"thumb_{mp4_path.stem}.png"
+                if thumb_path.exists():
+                    shutil.move(str(thumb_path), str(UPLOADED_DIR / thumb_path.name))
                 print(f"  → moved to uploaded/")
             uploaded += 1
         else:

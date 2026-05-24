@@ -10,6 +10,7 @@ Usage:
     python3 batch_generate.py --only abc
 
 Output: output/queue/{video_type}_{theme}_{timestamp}.mp4
+         output/queue/thumb_{video_type}_{theme}_{timestamp}.png
 """
 
 import argparse
@@ -22,6 +23,21 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 QUEUE_DIR = ROOT / "output" / "queue"
 SCRIPTS_DIR = ROOT / "config" / "scripts"
+
+sys.path.insert(0, str(ROOT / "scripts"))
+from generate_thumbnail import generate_thumbnail  # noqa: E402
+
+COLORS_LIST = ["red", "orange", "yellow", "green", "blue", "purple", "pink", "brown"]
+SHAPES_LIST = ["circle", "square", "triangle", "rectangle", "oval", "star", "heart", "diamond"]
+LETTER_WORDS = {
+    'A': 'Apple',    'B': 'Bear',     'C': 'Cat',      'D': 'Dog',
+    'E': 'Elephant', 'F': 'Fish',     'G': 'Giraffe',  'H': 'Horse',
+    'I': 'Iguana',   'J': 'Jaguar',   'K': 'Kangaroo', 'L': 'Lion',
+    'M': 'Monkey',   'N': 'Narwhal',  'O': 'Owl',      'P': 'Panda',
+    'Q': 'Quail',    'R': 'Rabbit',   'S': 'Sheep',    'T': 'Tiger',
+    'U': 'Unicorn',  'V': 'Vulture',  'W': 'Wolf',     'X': 'X-ray',
+    'Y': 'Yak',      'Z': 'Zebra',
+}
 
 TEMPLATE_MAP = {
     "dance":          ROOT / "config" / "scene_templates" / "default.yaml",
@@ -40,6 +56,39 @@ TEMPLATE_MAP = {
 SHORTS_TYPES = {"short_letter", "short_number", "short_color", "short_shape", "short_dance"}
 
 
+def make_thumbnail(video_cfg: dict, mp4_path: Path, variant: int = 0) -> Path | None:
+    video_type = video_cfg["video_type"]
+    theme      = video_cfg.get("theme", "animals")
+    title      = video_cfg["title"]
+    is_shorts  = video_cfg.get("is_shorts", video_type in SHORTS_TYPES)
+
+    letter = word = number = color = shape = ""
+
+    if video_type in ("abc", "short_letter"):
+        letter = chr(ord('A') + (variant % 26))
+        word   = LETTER_WORDS.get(letter, letter)
+    elif video_type in ("numbers", "short_number"):
+        number = str((variant % 5) + 1)
+    elif video_type in ("colors", "short_color"):
+        color  = COLORS_LIST[variant % len(COLORS_LIST)]
+    elif video_type == "short_shape":
+        shape  = SHAPES_LIST[variant % len(SHAPES_LIST)]
+        theme  = "shapes"
+
+    thumb_path = mp4_path.parent / f"thumb_{mp4_path.stem}.png"
+    try:
+        generate_thumbnail(
+            video_type=video_type, theme=theme, title=title,
+            out_path=thumb_path, variant=variant,
+            letter=letter, word=word, number=number,
+            color=color, shape=shape, is_shorts=is_shorts,
+        )
+        return thumb_path
+    except Exception as exc:
+        print(f"  WARNING: thumbnail failed: {exc}")
+        return None
+
+
 def run_script(cmd: list, description: str) -> bool:
     print(f"\n  → {description}")
     print(f"    {' '.join(str(c) for c in cmd)}")
@@ -50,7 +99,7 @@ def run_script(cmd: list, description: str) -> bool:
     return True
 
 
-def generate_video(video_cfg: dict, dry_run: bool = False) -> Path | None:
+def generate_video(video_cfg: dict, dry_run: bool = False, variant_idx: int = 0) -> Path | None:
     title       = video_cfg["title"]
     video_type  = video_cfg["video_type"]
     theme       = video_cfg.get("theme", "animals")
@@ -117,6 +166,12 @@ def generate_video(video_cfg: dict, dry_run: bool = False) -> Path | None:
 
     size_mb = output_path.stat().st_size / 1_000_000 if output_path.exists() else 0
     print(f"\n  ✓ Done: {output_path.name} ({size_mb:.1f} MB)")
+
+    # Step 3: thumbnail
+    thumb = make_thumbnail(video_cfg, output_path, variant=variant_idx)
+    if thumb:
+        print(f"  ✓ Thumbnail: {thumb.name}")
+
     return output_path
 
 
@@ -148,7 +203,7 @@ def main():
 
     for i, video_cfg in enumerate(videos, 1):
         print(f"\n[{i}/{len(videos)}]", end="")
-        result = generate_video(video_cfg, dry_run=args.dry_run)
+        result = generate_video(video_cfg, dry_run=args.dry_run, variant_idx=i - 1)
         if result:
             generated.append(result)
         else:
