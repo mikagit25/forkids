@@ -1,0 +1,178 @@
+title: Happy Bear Kids — Animals Dance
+theme: animals
+duration_minutes: 2.0
+total_scenes: 12
+generated_at: 2026-05-24 21:27
+template: config/scene_templates/numbers.yaml
+scenes:
+- label: 1 - One
+  choreo: diagonal_in
+  duration: 10
+  n: 1
+  text: '1'
+  sub_text: One
+  voiceover_key: '1'
+  bg_color: '#FF6B6B'
+  chars:
+  - owl
+  id: 1
+  start_sec: 0.0
+- label: 2 - Two
+  choreo: line_h
+  duration: 10
+  n: 2
+  text: '2'
+  sub_text: Two
+  voiceover_key: '2'
+  bg_color: '#FF922B'
+  chars:
+  - panda
+  - bear
+  id: 2
+  start_sec: 10.0
+- label: 3 - Three
+  choreo: grid_bounce
+  duration: 10
+  n: 3
+  text: '3'
+  sub_text: Three
+  voiceover_key: '3'
+  bg_color: '#FFD93D'
+  chars:
+  - dog
+  - giraffe
+  - frog
+  id: 3
+  start_sec: 20.0
+- label: 4 - Four
+  choreo: carousel
+  duration: 10
+  n: 4
+  text: '4'
+  sub_text: Four
+  voiceover_key: '4'
+  bg_color: '#6BCB77'
+  chars:
+  - elephant
+  - monkey
+  - bunny
+  - parrot
+  id: 4
+  start_sec: 30.0
+- label: 5 - Five
+  choreo: line_h
+  duration: 10
+  n: 5
+  text: '5'
+  sub_text: Five
+  voiceover_key: '5'
+  bg_color: '#4D96FF'
+  chars:
+  - duck
+  - pig
+  - penguin
+  - duck
+  - penguin
+  id: 5
+  start_sec: 40.0
+- label: 6 - Six
+  choreo: grid_sway
+  duration: 10
+  n: 4
+  text: '6'
+  sub_text: Six
+  voiceover_key: '6'
+  bg_color: '#A29BFE'
+  chars:
+  - pig
+  - bear
+  - panda
+  - parrot
+  id: 6
+  start_sec: 50.0
+- label: 7 - Seven
+  choreo: zigzag
+  duration: 10
+  n: 4
+  text: '7'
+  sub_text: Seven
+  voiceover_key: '7'
+  bg_color: '#FD79A8'
+  chars:
+  - monkey
+  - frog
+  - giraffe
+  - dog
+  id: 7
+  start_sec: 60.0
+- label: 8 - Eight
+  choreo: parade
+  duration: 10
+  n: 4
+  text: '8'
+  sub_text: Eight
+  voiceover_key: '8'
+  bg_color: '#55EFC4'
+  chars:
+  - owl
+  - bunny
+  - elephant
+  - elephant
+  id: 8
+  start_sec: 70.0
+- label: 9 - Nine
+  choreo: carousel
+  duration: 10
+  n: 4
+  text: '9'
+  sub_text: Nine
+  voiceover_key: '9'
+  bg_color: '#FF6B6B'
+  chars:
+  - penguin
+  - pig
+  - parrot
+  - duck
+  id: 9
+  start_sec: 80.0
+- label: 10 - Ten
+  choreo: grid_bounce
+  duration: 10
+  n: 5
+  text: '10'
+  sub_text: Ten!
+  voiceover_key: '10'
+  bg_color: '#FFD93D'
+  chars:
+  - owl
+  - giraffe
+  - monkey
+  - frog
+  - dog
+  id: 10
+  start_sec: 90.0
+- label: 1 - One
+  choreo: diagonal_in
+  duration: 10
+  n: 1
+  text: '1'
+  sub_text: One
+  voiceover_key: '1'
+  bg_color: '#FF6B6B'
+  chars:
+  - bear
+  id: 11
+  start_sec: 100.0
+- label: 2 - Two
+  choreo: line_h
+  duration: 10
+  n: 2
+  text: '2'
+  sub_text: Two
+  voiceover_key: '2'
+  bg_color: '#FF922B'
+  chars:
+  - panda
+  - bunny
+  id: 12
+  start_sec: 110.0

@@ -1,0 +1,55 @@
+title: Happy Bear Kids — Shapes Dance
+theme: shapes
+duration_minutes: 1.0
+total_scenes: 4
+generated_at: 2026-05-24 22:31
+template: config/scene_templates/shorts_shape.yaml
+scenes:
+- label: Circle
+  choreo: carousel
+  duration: 15
+  n: 1
+  text: Circle
+  sub_text: Round!
+  voiceover_key: circle
+  bg_color: '#FF6B6B'
+  chars:
+  - circle
+  id: 1
+  start_sec: 0.0
+- label: Square
+  choreo: grid_bounce
+  duration: 15
+  n: 1
+  text: Square
+  sub_text: 4 sides!
+  voiceover_key: square
+  bg_color: '#4D96FF'
+  chars:
+  - square
+  id: 2
+  start_sec: 15.0
+- label: Triangle
+  choreo: zigzag
+  duration: 15
+  n: 1
+  text: Triangle
+  sub_text: 3 sides!
+  voiceover_key: triangle
+  bg_color: '#6BCB77'
+  chars:
+  - triangle
+  id: 3
+  start_sec: 30.0
+- label: Star
+  choreo: grid_sway
+  duration: 15
+  n: 1
+  text: Star
+  sub_text: Sparkle!
+  voiceover_key: star
+  bg_color: '#FFD93D'
+  chars:
+  - star
+  id: 4
+  start_sec: 45.0

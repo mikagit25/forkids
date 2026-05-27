@@ -1,0 +1,15 @@
+video_type: short_dance
+theme: animals
+duration_minutes: 1
+style: tutitu
+scenes:
+- start_sec: 0.0
+  duration: 60.0
+  choreo: solo_bounce
+  n: 1
+  chars:
+  - owl
+  entry: zoom_in
+  bg_color: '#E1F5FE'
+  text: Owl
+  sub_text: Let's dance!

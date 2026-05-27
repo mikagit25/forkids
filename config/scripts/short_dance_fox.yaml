@@ -1,0 +1,15 @@
+video_type: short_dance
+theme: animals
+duration_minutes: 1
+style: tutitu
+scenes:
+- start_sec: 0.0
+  duration: 60.0
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - fox
+  entry: zoom_in
+  bg_color: '#F9FBE7'
+  text: Fox
+  sub_text: Let's dance!

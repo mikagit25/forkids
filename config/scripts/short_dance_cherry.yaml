@@ -1,0 +1,15 @@
+video_type: short_dance
+theme: fruits
+duration_minutes: 1
+style: tutitu
+scenes:
+- start_sec: 0.0
+  duration: 60.0
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - cherry
+  entry: zoom_in
+  bg_color: '#F9FBE7'
+  text: Cherry
+  sub_text: Let's dance!

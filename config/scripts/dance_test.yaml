@@ -1,0 +1,25 @@
+video_type: dance
+theme: animals
+duration_minutes: 1.27
+style: tutitu
+scenes:
+- start_sec: 0.0
+  duration: 38
+  choreo: solo_nod
+  n: 1
+  chars:
+  - unicorn
+  entry: zoom_in
+  bg_color: '#FFF9E6'
+  text: Unicorn
+  sub_text: Let's dance!
+- start_sec: 38.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
+  - cat
+  entry: zoom_in
+  bg_color: '#E8F5E9'
+  text: Cat
+  sub_text: Let's dance!

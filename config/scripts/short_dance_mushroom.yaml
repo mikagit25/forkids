@@ -1,0 +1,15 @@
+video_type: short_dance
+theme: vegetables
+duration_minutes: 1
+style: tutitu
+scenes:
+- start_sec: 0.0
+  duration: 60.0
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - mushroom
+  entry: zoom_in
+  bg_color: '#F3E5F5'
+  text: Mushroom
+  sub_text: Let's dance!

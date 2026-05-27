@@ -6,7 +6,7 @@
 
 ---
 
-## Статус фаз на 2026-05-24
+## Статус фаз на 2026-05-27
 
 ```
 Фаза 1  Качественные спрайты     ██████████ 100%  ✅
@@ -19,6 +19,27 @@
 Фаза 8  Плейлисты                ████████░░  80%  🔄  (скрипт готов, запустить --create-all)
 Фаза 9  Мониторинг               ░░░░░░░░░░   0%  ⬜
 Фаза 10 Расширение контента      ██████████ 100%  ✅  (vocabulary+counting+vegetables+ABC expansion)
+Фаза 11 Танцевальный контент     ████████░░  85%  🔄  (42 шортса: 20 животных + 12 фруктов + 10 овощей)
+```
+
+## Контент в очереди на 2026-05-27
+
+```
+Шортсы (42 шт):
+  🐾 Животные (20): bear, tiger, frog, penguin, lion, panda, koala, fox,
+                    rabbit, cow, duck, pig, elephant, monkey, dog, cat,
+                    owl, unicorn, dino, parrot
+  🍎 Фрукты (12):   apple, banana, strawberry, grapes, watermelon, orange,
+                    pineapple, cherry, peach, lemon, pear, melon
+  🥕 Овощи (10):    carrot, broccoli, corn, eggplant, tomato, cucumber,
+                    potato, mushroom, onion, pepper
+
+Длинные видео (30 мин, рендеринг):
+  🐾 dance_animals_20260527.mp4 — в рендере (~45 мин)
+  🍎 dance_fruits_20260527.mp4  — в рендере (~45 мин)
+  🥕 dance_vegetables.yaml      — скрипт готов, запуск после рендеров
+
+Музыка: 14 треков Kevin MacLeod (DANCE_TRACKS расширен)
 ```
 
 ---

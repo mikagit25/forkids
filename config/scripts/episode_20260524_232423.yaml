@@ -1,0 +1,337 @@
+title: Happy Bear Kids — Fruits Dance
+theme: fruits
+duration_minutes: 6.0
+total_scenes: 30
+generated_at: 2026-05-24 23:24
+template: config/scene_templates/abc.yaml
+scenes:
+- label: A
+  choreo: diagonal_in
+  duration: 12
+  n: 1
+  text: A
+  sub_text: Apple
+  voiceover_key: A
+  chars:
+  - orange
+  id: 1
+  start_sec: 0.0
+- label: B
+  choreo: grid_bounce
+  duration: 12
+  n: 1
+  text: B
+  sub_text: Banana
+  voiceover_key: B
+  chars:
+  - banana
+  id: 2
+  start_sec: 12.0
+- label: C
+  choreo: carousel
+  duration: 12
+  n: 1
+  text: C
+  sub_text: Cat
+  voiceover_key: C
+  chars:
+  - avocado
+  id: 3
+  start_sec: 24.0
+- label: D
+  choreo: grid_bounce
+  duration: 12
+  n: 1
+  text: D
+  sub_text: Dog
+  voiceover_key: D
+  chars:
+  - pineapple
+  id: 4
+  start_sec: 36.0
+- label: E
+  choreo: line_h
+  duration: 12
+  n: 1
+  text: E
+  sub_text: Elephant
+  voiceover_key: E
+  chars:
+  - strawberry
+  id: 5
+  start_sec: 48.0
+- label: F
+  choreo: zigzag
+  duration: 12
+  n: 1
+  text: F
+  sub_text: Frog
+  voiceover_key: F
+  chars:
+  - peach
+  id: 6
+  start_sec: 60.0
+- label: G
+  choreo: grid_sway
+  duration: 12
+  n: 1
+  text: G
+  sub_text: Giraffe
+  voiceover_key: G
+  chars:
+  - lemon
+  id: 7
+  start_sec: 72.0
+- label: H
+  choreo: carousel
+  duration: 12
+  n: 1
+  text: H
+  sub_text: Hippo
+  voiceover_key: H
+  chars:
+  - corn
+  id: 8
+  start_sec: 84.0
+- label: I
+  choreo: parade
+  duration: 12
+  n: 1
+  text: I
+  sub_text: Igloo
+  voiceover_key: I
+  chars:
+  - grapes
+  id: 9
+  start_sec: 96.0
+- label: J
+  choreo: grid_bounce
+  duration: 12
+  n: 1
+  text: J
+  sub_text: Jellyfish
+  voiceover_key: J
+  chars:
+  - cherry
+  id: 10
+  start_sec: 108.0
+- label: K
+  choreo: zigzag
+  duration: 12
+  n: 1
+  text: K
+  sub_text: Koala
+  voiceover_key: K
+  chars:
+  - broccoli
+  id: 11
+  start_sec: 120.0
+- label: L
+  choreo: line_h
+  duration: 12
+  n: 1
+  text: L
+  sub_text: Lion
+  voiceover_key: L
+  chars:
+  - pear
+  id: 12
+  start_sec: 132.0
+- label: M
+  choreo: carousel
+  duration: 12
+  n: 1
+  text: M
+  sub_text: Monkey
+  voiceover_key: M
+  chars:
+  - watermelon
+  id: 13
+  start_sec: 144.0
+- label: N
+  choreo: grid_sway
+  duration: 12
+  n: 1
+  text: N
+  sub_text: Nest
+  voiceover_key: N
+  chars:
+  - apple
+  id: 14
+  start_sec: 156.0
+- label: O
+  choreo: grid_bounce
+  duration: 12
+  n: 1
+  text: O
+  sub_text: Owl
+  voiceover_key: O
+  chars:
+  - carrot
+  id: 15
+  start_sec: 168.0
+- label: P
+  choreo: parade
+  duration: 12
+  n: 1
+  text: P
+  sub_text: Penguin
+  voiceover_key: P
+  chars:
+  - avocado
+  id: 16
+  start_sec: 180.0
+- label: Q
+  choreo: zigzag
+  duration: 12
+  n: 1
+  text: Q
+  sub_text: Queen
+  voiceover_key: Q
+  chars:
+  - peach
+  id: 17
+  start_sec: 192.0
+- label: R
+  choreo: carousel
+  duration: 12
+  n: 1
+  text: R
+  sub_text: Rabbit
+  voiceover_key: R
+  chars:
+  - lemon
+  id: 18
+  start_sec: 204.0
+- label: S
+  choreo: grid_bounce
+  duration: 12
+  n: 1
+  text: S
+  sub_text: Star
+  voiceover_key: S
+  chars:
+  - carrot
+  id: 19
+  start_sec: 216.0
+- label: T
+  choreo: line_h
+  duration: 12
+  n: 1
+  text: T
+  sub_text: Tiger
+  voiceover_key: T
+  chars:
+  - watermelon
+  id: 20
+  start_sec: 228.0
+- label: U
+  choreo: grid_sway
+  duration: 12
+  n: 1
+  text: U
+  sub_text: Umbrella
+  voiceover_key: U
+  chars:
+  - broccoli
+  id: 21
+  start_sec: 240.0
+- label: V
+  choreo: carousel
+  duration: 12
+  n: 1
+  text: V
+  sub_text: Violin
+  voiceover_key: V
+  chars:
+  - banana
+  id: 22
+  start_sec: 252.0
+- label: W
+  choreo: zigzag
+  duration: 12
+  n: 1
+  text: W
+  sub_text: Watermelon
+  voiceover_key: W
+  chars:
+  - pear
+  id: 23
+  start_sec: 264.0
+- label: X
+  choreo: parade
+  duration: 12
+  n: 1
+  text: X
+  sub_text: Xylophone
+  voiceover_key: X
+  chars:
+  - apple
+  id: 24
+  start_sec: 276.0
+- label: Y
+  choreo: grid_bounce
+  duration: 12
+  n: 1
+  text: Y
+  sub_text: Yak
+  voiceover_key: Y
+  chars:
+  - strawberry
+  id: 25
+  start_sec: 288.0
+- label: Z
+  choreo: grid_sway
+  duration: 12
+  n: 1
+  text: Z
+  sub_text: Zebra
+  voiceover_key: Z
+  chars:
+  - cherry
+  id: 26
+  start_sec: 300.0
+- label: A
+  choreo: diagonal_in
+  duration: 12
+  n: 1
+  text: A
+  sub_text: Apple
+  voiceover_key: A
+  chars:
+  - pineapple
+  id: 27
+  start_sec: 312.0
+- label: B
+  choreo: grid_bounce
+  duration: 12
+  n: 1
+  text: B
+  sub_text: Banana
+  voiceover_key: B
+  chars:
+  - orange
+  id: 28
+  start_sec: 324.0
+- label: C
+  choreo: carousel
+  duration: 12
+  n: 1
+  text: C
+  sub_text: Cat
+  voiceover_key: C
+  chars:
+  - grapes
+  id: 29
+  start_sec: 336.0
+- label: D
+  choreo: grid_bounce
+  duration: 12
+  n: 1
+  text: D
+  sub_text: Dog
+  voiceover_key: D
+  chars:
+  - corn
+  id: 30
+  start_sec: 348.0

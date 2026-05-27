@@ -1,0 +1,77 @@
+title: Happy Bear Kids — Animals Dance
+theme: animals
+duration_minutes: 1.0
+total_scenes: 5
+generated_at: 2026-05-24 20:33
+template: config/scene_templates/shorts_number.yaml
+scenes:
+- label: '1'
+  choreo: diagonal_in
+  duration: 12
+  n: 1
+  text: '1'
+  sub_text: One
+  voiceover_key: '1'
+  bg_color: '#FF6B6B'
+  chars:
+  - elephant
+  id: 1
+  start_sec: 0.0
+- label: '2'
+  choreo: grid_bounce
+  duration: 12
+  n: 2
+  text: '2'
+  sub_text: Two
+  voiceover_key: '2'
+  bg_color: '#4D96FF'
+  chars:
+  - pig
+  - panda
+  id: 2
+  start_sec: 12.0
+- label: '3'
+  choreo: carousel
+  duration: 12
+  n: 3
+  text: '3'
+  sub_text: Three
+  voiceover_key: '3'
+  bg_color: '#6BCB77'
+  chars:
+  - dog
+  - bear
+  - monkey
+  id: 3
+  start_sec: 24.0
+- label: '4'
+  choreo: line_h
+  duration: 12
+  n: 4
+  text: '4'
+  sub_text: Four
+  voiceover_key: '4'
+  bg_color: '#FFD93D'
+  chars:
+  - penguin
+  - bunny
+  - giraffe
+  - frog
+  id: 4
+  start_sec: 36.0
+- label: '5'
+  choreo: grid_sway
+  duration: 12
+  n: 5
+  text: '5'
+  sub_text: Five
+  voiceover_key: '5'
+  bg_color: '#A29BFE'
+  chars:
+  - duck
+  - owl
+  - parrot
+  - parrot
+  - giraffe
+  id: 5
+  start_sec: 48.0

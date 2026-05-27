@@ -1,0 +1,15 @@
+video_type: short_dance
+theme: vegetables
+duration_minutes: 1
+style: tutitu
+scenes:
+- start_sec: 0.0
+  duration: 60.0
+  choreo: solo_nod
+  n: 1
+  chars:
+  - potato
+  entry: zoom_in
+  bg_color: '#FCE4EC'
+  text: Potato
+  sub_text: Let's dance!

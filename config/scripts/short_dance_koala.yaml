@@ -1,0 +1,15 @@
+video_type: short_dance
+theme: animals
+duration_minutes: 1
+style: tutitu
+scenes:
+- start_sec: 0.0
+  duration: 60.0
+  choreo: solo_nod
+  n: 1
+  chars:
+  - koala
+  entry: zoom_in
+  bg_color: '#FFFDE7'
+  text: Koala
+  sub_text: Let's dance!

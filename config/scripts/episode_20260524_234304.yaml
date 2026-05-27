@@ -1,0 +1,149 @@
+title: Happy Bear Kids — Fruits Dance
+theme: fruits
+duration_minutes: 2.0
+total_scenes: 10
+generated_at: 2026-05-24 23:43
+template: config/scene_templates/colors.yaml
+scenes:
+- label: Red
+  choreo: grid_bounce
+  duration: 12
+  n: 3
+  text: Red
+  sub_text: Red!
+  voiceover_key: red
+  bg_color: '#FF4444'
+  chars:
+  - strawberry
+  - orange
+  - corn
+  id: 1
+  start_sec: 0.0
+- label: Orange
+  choreo: carousel
+  duration: 12
+  n: 3
+  text: Orange
+  sub_text: Orange!
+  voiceover_key: orange
+  bg_color: '#FF922B'
+  chars:
+  - peach
+  - broccoli
+  - banana
+  id: 2
+  start_sec: 12.0
+- label: Yellow
+  choreo: line_h
+  duration: 12
+  n: 4
+  text: Yellow
+  sub_text: Yellow!
+  voiceover_key: yellow
+  bg_color: '#F9CA24'
+  chars:
+  - carrot
+  - pineapple
+  - pear
+  - apple
+  id: 3
+  start_sec: 24.0
+- label: Green
+  choreo: zigzag
+  duration: 12
+  n: 3
+  text: Green
+  sub_text: Green!
+  voiceover_key: green
+  bg_color: '#27AE60'
+  chars:
+  - lemon
+  - watermelon
+  - avocado
+  id: 4
+  start_sec: 36.0
+- label: Blue
+  choreo: parade
+  duration: 12
+  n: 3
+  text: Blue
+  sub_text: Blue!
+  voiceover_key: blue
+  bg_color: '#2980B9'
+  chars:
+  - grapes
+  - cherry
+  - strawberry
+  id: 5
+  start_sec: 48.0
+- label: Purple
+  choreo: grid_sway
+  duration: 12
+  n: 4
+  text: Purple
+  sub_text: Purple!
+  voiceover_key: purple
+  bg_color: '#8E44AD'
+  chars:
+  - lemon
+  - pineapple
+  - pear
+  - banana
+  id: 6
+  start_sec: 60.0
+- label: Pink
+  choreo: diagonal_in
+  duration: 12
+  n: 3
+  text: Pink
+  sub_text: Pink!
+  voiceover_key: pink
+  bg_color: '#FD79A8'
+  chars:
+  - carrot
+  - peach
+  - watermelon
+  id: 7
+  start_sec: 72.0
+- label: Brown
+  choreo: carousel
+  duration: 12
+  n: 3
+  text: Brown
+  sub_text: Brown!
+  voiceover_key: brown
+  bg_color: '#A0522D'
+  chars:
+  - avocado
+  - corn
+  - orange
+  id: 8
+  start_sec: 84.0
+- label: Red
+  choreo: grid_bounce
+  duration: 12
+  n: 3
+  text: Red
+  sub_text: Red!
+  voiceover_key: red
+  bg_color: '#FF4444'
+  chars:
+  - apple
+  - grapes
+  - broccoli
+  id: 9
+  start_sec: 96.0
+- label: Orange
+  choreo: carousel
+  duration: 12
+  n: 3
+  text: Orange
+  sub_text: Orange!
+  voiceover_key: orange
+  bg_color: '#FF922B'
+  chars:
+  - cherry
+  - lemon
+  - orange
+  id: 10
+  start_sec: 108.0

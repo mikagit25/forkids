@@ -1,0 +1,15 @@
+video_type: short_dance
+theme: vegetables
+duration_minutes: 1
+style: tutitu
+scenes:
+- start_sec: 0.0
+  duration: 60.0
+  choreo: solo_jump
+  n: 1
+  chars:
+  - tomato
+  entry: zoom_in
+  bg_color: '#FFF9E6'
+  text: Tomato
+  sub_text: Let's dance!

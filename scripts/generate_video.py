@@ -82,55 +82,86 @@ def _make_bounce_frames(img: Image.Image, n_frames: int = 30) -> List[Image.Imag
     return frames
 
 
-def load_animated_sprites(theme: str) -> List[Tuple[str, List[Image.Image]]]:
+def load_animated_sprites(theme: str, config: dict = None) -> List[Tuple[str, List[Image.Image]]]:
     """
     Returns list of (name, frames) tuples.
-    Priority: theme folder > animals > fruits > ai_generated (legacy).
+    Uses sprites_new (OpenMoji) if available, falls back to sprites.
     """
-    sprites_root = ROOT / "assets" / "sprites"
+    # Prefer configured sprites_dir
+    sprites_dir_name = (config or {}).get("animation", {}).get("sprites_dir", "assets/sprites_new")
+    sprites_new = ROOT / sprites_dir_name
+    sprites_old = ROOT / "assets" / "sprites"
 
-    # Build candidate dirs in priority order
-    candidate_dirs = []
-    theme_dir = sprites_root / theme
-    if theme_dir.exists():
-        candidate_dirs.append(theme_dir)
+    # Try new sprites first, then old
+    for sprites_root in (sprites_new, sprites_old):
+        if not sprites_root.exists():
+            continue
 
-    # If theme not found or not enough sprites, try other quality dirs
-    for fallback in ("animals", "fruits", "ai_generated"):
-        d = sprites_root / fallback
-        if d.exists() and d not in candidate_dirs:
-            candidate_dirs.append(d)
+        candidate_dirs = []
+        theme_dir = sprites_root / theme
+        if theme_dir.exists():
+            candidate_dirs.append(theme_dir)
+        for fallback in ("animals", "fruits", "vegetables", "ai_generated"):
+            d = sprites_root / fallback
+            if d.exists() and d not in candidate_dirs:
+                candidate_dirs.append(d)
 
-    sprites = []
-    for d in candidate_dirs:
-        for p in sorted(d.glob("*.png")):
-            img = Image.open(p).convert("RGBA")
-            frames = _make_bounce_frames(img, n_frames=30)
-            sprites.append((p.stem, frames))
-        if sprites:
-            log.info(f"Using {len(sprites)} sprites from {d.name}/")
-            break
+        for d in candidate_dirs:
+            pngs = sorted(d.glob("*.png"))
+            if not pngs:
+                continue
+            sprites = []
+            for p in pngs:
+                img = Image.open(p).convert("RGBA")
+                frames = _make_bounce_frames(img, n_frames=30)
+                sprites.append((p.stem, frames))
+            log.info(f"Loaded {len(sprites)} sprites from {d} (OpenMoji)")
+            return sprites
 
-    if not sprites:
-        raise FileNotFoundError(
-            f"No sprites found for theme '{theme}'. Run: python scripts/download_sprites.py"
-        )
-
-    log.info(f"Loaded {len(sprites)} characters (theme='{theme}')")
-    return sprites
+    raise FileNotFoundError(
+        f"No sprites found for theme '{theme}'. Check assets/sprites_new/"
+    )
 
 
-def build_audio(duration_sec: float) -> AudioFileClip:
-    """Assemble a non-repeating audio track by chaining Kevin MacLeod tracks."""
+# Upbeat tracks suitable for kids dance videos (min ~90 BPM, fun feel)
+DANCE_TRACKS = {
+    "Monkeys Spinning Monkeys.mp3",  # 144 BPM — fun, upbeat
+    "Happy Happy Game Show.mp3",     # 117 BPM — cheerful
+    "Merry Go.mp3",                  # 129 BPM — playful carousel
+    "Quirky Dog.mp3",                # 123 BPM — bouncy
+    "Pinball Spring.mp3",            # 117 BPM — energetic
+    "Hyperfun.mp3",                  # 99 BPM — light and fun
+    "Carefree.mp3",                  # 96 BPM — warm and gentle
+    "Wholesome.mp3",                 # gentle, cozy
+    "Heartwarming.mp3",              # soft and sweet
+    "Fluffing a Duck.mp3",           # 96 BPM — playful, fun
+    "George Street Shuffle.mp3",     # 110 BPM — shuffling fun
+    "Pixelland.mp3",                 # 120 BPM — game-like, upbeat
+    "Overworld.mp3",                 # 120 BPM — adventure, fun
+    "Circus of Freaks.mp3",          # 120 BPM — circus fun
+}
+
+
+def build_audio(duration_sec: float, dance_only: bool = True) -> AudioFileClip:
+    """Assemble a non-repeating audio track by chaining upbeat kids music."""
     music_dirs = [
         ROOT / "assets" / "music" / "kevin",
         ROOT / "assets" / "music",
     ]
-    tracks = []
+    all_tracks = []
     for d in music_dirs:
         if d.exists():
-            tracks += list(d.glob("*.mp3")) + list(d.glob("*.wav"))
-    tracks = list({str(p): p for p in tracks}.values())  # deduplicate
+            all_tracks += list(d.glob("*.mp3")) + list(d.glob("*.wav"))
+    all_tracks = list({str(p): p for p in all_tracks}.values())
+
+    if dance_only:
+        # Use only upbeat dance-friendly tracks
+        tracks = [p for p in all_tracks if p.name in DANCE_TRACKS]
+        if not tracks:
+            tracks = all_tracks  # fallback to all if none match
+    else:
+        tracks = all_tracks
+
     if not tracks:
         raise FileNotFoundError("No music files. Run: python scripts/setup_assets.py")
 
@@ -177,46 +208,27 @@ def hex_to_rgb(hex_color: str) -> Tuple[int, int, int]:
 # ── Background ─────────────────────────────────────────────────────────────────
 
 def draw_background(W: int, H: int, color: Tuple[int, int, int], t: float) -> Image.Image:
-    """Gradient background with slowly drifting stars/circles."""
-    img = Image.new("RGB", (W, H))
+    """Light pastel background — TutiTuTV style: clean, bright, minimal."""
+    img = Image.new("RGB", (W, H), color)
     draw = ImageDraw.Draw(img)
 
-    # Gradient (top lighter, bottom darker)
+    # Very subtle gradient — just 8% darker at bottom (keeps it light)
     r, g, b = color
     for y in range(H):
-        ratio = y / H
-        cr = int(r + (r * 0.35) * (1 - ratio))
-        cg = int(g + (g * 0.35) * (1 - ratio))
-        cb = int(b + (b * 0.35) * (1 - ratio))
-        draw.line([(0, y), (W, y)], fill=(min(cr,255), min(cg,255), min(cb,255)))
+        ratio = y / H * 0.08
+        cr = max(0, int(r - r * ratio))
+        cg = max(0, int(g - g * ratio))
+        cb = max(0, int(b - b * ratio))
+        draw.line([(0, y), (W, y)], fill=(cr, cg, cb))
 
-    # Floating decorative circles (static per-segment, drift slowly)
-    rng = random.Random(int(color[0]*1000 + color[1]*100 + color[2]))
-    for _ in range(18):
-        cx = rng.randint(0, W)
-        cy = rng.randint(0, H)
-        radius = rng.randint(18, 65)
-        drift = math.sin(t * 0.4 + rng.random() * math.tau) * 22
-        bright = tuple(min(255, int(c * 1.25)) for c in color)
-        alpha = rng.randint(25, 60)
-        circle_img = Image.new("RGBA", (radius*2, radius*2), (0,0,0,0))
-        cdraw = ImageDraw.Draw(circle_img)
-        cdraw.ellipse([0, 0, radius*2, radius*2], fill=bright + (alpha,))
-        img.paste(circle_img.convert("RGB"), (int(cx - radius), int(cy - radius + drift)),
-                  circle_img)
-
-    # Sparkle stars
-    rng2 = random.Random(int(t * 3))
-    for _ in range(6):
-        sx = rng2.randint(50, W - 50)
-        sy = rng2.randint(30, H - 30)
-        star_r = rng2.randint(3, 8)
-        star_alpha = rng2.randint(80, 180)
-        star_img = Image.new("RGBA", (star_r*4, star_r*4), (0,0,0,0))
-        sdraw = ImageDraw.Draw(star_img)
-        sdraw.ellipse([star_r, star_r, star_r*3, star_r*3],
-                      fill=(255, 255, 255, star_alpha))
-        img.paste(star_img.convert("RGB"), (sx, sy), star_img)
+    # Soft polka dots in corners — subtle, kid-friendly decoration
+    rng = random.Random(int(color[0] * 100 + color[1]))
+    dot_color = tuple(max(0, int(c * 0.88)) for c in color)  # slightly darker than bg
+    for _ in range(12):
+        cx = rng.randint(30, W - 30)
+        cy = rng.randint(30, H - 30)
+        r_dot = rng.randint(12, 30)
+        draw.ellipse([cx - r_dot, cy - r_dot, cx + r_dot, cy + r_dot], fill=dot_color)
 
     return img
 
@@ -237,23 +249,52 @@ SWAY_DIR = [1, -1, 1, -1, 1]  # adjacent chars mirror each other
 # Each entry: (choreo_name, n_chars)
 # Varied number of chars per scene keeps it visually fresh
 CHOREO_SEQUENCE = [
-    ("grid_bounce",   4),
     ("line_h",        4),
-    ("carousel",      4),
-    ("grid_sway",     4),
-    ("parade",        3),
-    ("diagonal_in",   4),
-    ("zigzag",        4),
-    ("grid_bounce",   3),
-    ("line_h",        5),
-    ("carousel",      3),
-    ("parade",        4),
-    ("grid_sway",     4),
-    ("zigzag",        3),
-    ("diagonal_in",   4),
     ("carousel",      5),
-    ("line_h",        3),
+    ("grid_bounce",   4),
+    ("parade",        4),
+    ("twist",         4),
+    ("grid_sway",     5),
+    ("stomp",         4),
+    ("diagonal_in",   4),
+    ("spin_out",      4),
+    ("zigzag",        4),
+    ("robot",         4),
+    ("wave_sync",     5),
+    ("line_h",        5),
+    ("carousel",      4),
+    ("parade",        5),
+    ("grid_combo",    4),
+    ("twist",         5),
+    ("stomp",         4),
+    ("spin_out",      5),
+    ("wave_sync",     4),
 ]
+
+# Human-readable style names shown briefly on screen
+CHOREO_LABELS = {
+    "grid_bounce":  "Let's Jump!",
+    "line_h":       "Dance Line!",
+    "carousel":     "Round & Round!",
+    "grid_sway":    "Wiggle Time!",
+    "parade":       "March March!",
+    "diagonal_in":  "Surprise!",
+    "zigzag":       "Zig Zag!",
+    "grid_combo":   "Party Mix!",
+    "twist":        "Twist!",
+    "stomp":        "Stomp It!",
+    "spin_out":     "Spin!",
+    "robot":        "Robot Dance!",
+    "wave_sync":    "Wave Dance!",
+    "solo_bounce":  "Bounce!",
+    "solo_sway":    "Wiggle!",
+    "solo_spin":    "Spin!",
+    "solo_wave":    "Wave!",
+    "solo_jump":    "Jump!",
+    "solo_twist":   "Twist!",
+    "solo_nod":     "Nod!",
+    "solo_shimmy":  "Shimmy!",
+}
 
 
 # ── Sprite actor ───────────────────────────────────────────────────────────────
@@ -387,19 +428,150 @@ class SpriteActor:
 
         # ── Zigzag: each char weaves across the whole screen ────────────────
         elif self.choreo == "zigzag":
-            # Characters distributed vertically, each sweeps full screen width
             margin_y = H * 0.18
             span_y = H - 2 * margin_y
             base_y = margin_y + (self.slot / max(self.n_slots - 1, 1)) * span_y \
                      if self.n_slots > 1 else H * 0.5
             freq = self.beat_freq * 0.45
             phase = self.slot * math.pi * 0.75
-            # Horizontal sweep: full screen width
             x = W * 0.5 + math.sin(rel * freq * math.pi + phase) * (W * 0.42)
-            # Vertical oscillation around base_y
             y = base_y + math.cos(rel * freq * math.pi * 0.6 + phase) * (H * 0.12)
             scale = 1.0 + 0.08 * bp
-            angle = math.sin(rel * freq * math.pi + phase) * 18  # tilt with direction
+            angle = math.sin(rel * freq * math.pi + phase) * 18
+
+        # ── Twist: hips sway hard left-right, big rotation ───────────────────
+        elif self.choreo == "twist":
+            layout = GRID_LAYOUTS.get(self.n_slots, GRID_LAYOUTS[4])
+            gx, gy = layout[self.slot % len(layout)]
+            x = gx * W
+            s = math.sin(math.pi * 2 * self.beat_freq * max(0, rel - self.wave_delay))
+            y = gy * H - abs(s) * 40
+            angle = s * 35          # big hip rotation
+            scale = 1.0 + 0.06 * abs(s)
+
+        # ── Stomp: heavy bounce with squash on landing ────────────────────────
+        elif self.choreo == "stomp":
+            layout = GRID_LAYOUTS.get(self.n_slots, GRID_LAYOUTS[4])
+            gx, gy = layout[self.slot % len(layout)]
+            x = gx * W
+            beat_t = max(0, rel - self.wave_delay) * self.beat_freq
+            phase_t = beat_t % 1.0
+            # Fast drop, slow rise
+            if phase_t < 0.25:
+                rise = 1.0 - (phase_t / 0.25)
+            else:
+                rise = (phase_t - 0.25) / 0.75
+            y = gy * H - rise * 90
+            # Squash on land (bottom), stretch at peak
+            scale = 1.0 + 0.15 * rise - 0.10 * (1.0 - rise)
+            angle = 0.0
+
+        # ── Spin out: characters spin continuously + orbit ────────────────────
+        elif self.choreo == "spin_out":
+            cx, cy = W * 0.5, H * 0.5
+            rx = W * 0.30
+            ry = H * 0.22
+            base_a = self.slot * (math.tau / self.n_slots)
+            theta = base_a + rel * 0.70
+            x = cx + math.cos(theta) * rx
+            y = cy + math.sin(theta) * ry
+            angle = rel * 180 % 360   # full spin
+            persp = 0.70 + 0.40 * (math.sin(theta) + 1) / 2
+            scale = persp * (1.0 + 0.05 * bp)
+
+        # ── Robot: stiff jerky mechanical movement ────────────────────────────
+        elif self.choreo == "robot":
+            layout = GRID_LAYOUTS.get(self.n_slots, GRID_LAYOUTS[4])
+            gx, gy = layout[self.slot % len(layout)]
+            beat_t = max(0, rel - self.wave_delay) * self.beat_freq
+            # Snap to beat: quantize movement
+            beat_int = int(beat_t)
+            snap = beat_int % 4
+            x_offsets = [0, 30, 0, -30]
+            y_offsets = [-40, 0, -40, 0]
+            x = gx * W + x_offsets[snap]
+            y = gy * H + y_offsets[snap]
+            angle = [0, 15, 0, -15][snap]
+            scale = [1.05, 0.95, 1.05, 0.95][snap]
+
+        # ── Wave sync: flowing wave across all characters ─────────────────────
+        elif self.choreo == "wave_sync":
+            margin = W * 0.10
+            span = W - 2 * margin
+            x = margin + (self.slot / max(self.n_slots - 1, 1)) * span \
+                if self.n_slots > 1 else W * 0.5
+            wave_phase = rel * self.beat_freq * math.pi - self.slot * 0.6
+            y = H * 0.55 - abs(math.sin(wave_phase)) * 110
+            scale = 1.0 + 0.12 * abs(math.sin(wave_phase))
+            angle = math.sin(wave_phase) * 12
+
+        # ══ SOLO choreographies (1 large character, TutiTuTV style) ═══════════
+
+        elif self.choreo == "solo_bounce":
+            x = W * 0.5
+            y = H * 0.52 - bp * 80
+            scale = 1.0 + 0.10 * bp
+            if bp < 0.15:
+                scale -= 0.08 * (1.0 - bp / 0.15)  # squash on land
+            angle = math.sin(math.pi * beat * 2) * 6
+
+        elif self.choreo == "solo_sway":
+            s = math.sin(math.pi * beat)
+            x = W * 0.5 + s * 60
+            y = H * 0.52 - abs(s) * 20
+            angle = s * 22
+            scale = 1.0 + 0.05 * abs(s)
+
+        elif self.choreo == "solo_spin":
+            x = W * 0.5
+            y = H * 0.52 - bp * 40
+            angle = rel * 90 % 360
+            scale = 1.0 + 0.08 * bp
+
+        elif self.choreo == "solo_wave":
+            x = W * 0.5 + math.sin(rel * self.beat_freq * math.pi * 0.7) * 30
+            pulse = abs(math.sin(math.pi * beat))
+            y = H * 0.52 - pulse * 60
+            scale = 1.0 + 0.14 * pulse
+            angle = math.sin(math.pi * beat) * 10
+
+        elif self.choreo == "solo_jump":
+            beat_t = max(0, rel) * self.beat_freq
+            phase_t = beat_t % 1.0
+            # Quick jump: fast up, slow float down
+            if phase_t < 0.35:
+                h = math.sin(math.pi * phase_t / 0.35)
+            else:
+                h = math.sin(math.pi * 0.35 / 0.35) * (1.0 - (phase_t - 0.35) / 0.65)
+            h = max(0.0, h)
+            x = W * 0.5
+            y = H * 0.52 - h * 130
+            scale = 1.0 + 0.12 * h
+            angle = math.sin(phase_t * math.pi * 2) * 8
+
+        elif self.choreo == "solo_twist":
+            s = math.sin(math.pi * 2 * self.beat_freq * rel)
+            x = W * 0.5
+            y = H * 0.52 - abs(s) * 30
+            angle = s * 40
+            scale = 1.0 + 0.07 * abs(s)
+
+        elif self.choreo == "solo_nod":
+            # Forward nod: scale Y squish + slight drop
+            nod = abs(math.sin(math.pi * beat))
+            x = W * 0.5
+            y = H * 0.52 + nod * 25
+            scale = 1.0 - 0.08 * nod
+            angle = 0.0
+
+        elif self.choreo == "solo_shimmy":
+            # Fast side vibration — double beat frequency
+            fast = abs(math.sin(math.pi * beat * 2))
+            s = math.sin(math.pi * beat * 2)
+            x = W * 0.5 + s * 35
+            y = H * 0.52 - fast * 25
+            angle = s * 12
+            scale = 1.0 + 0.05 * fast
 
         return x, y, scale, angle
 
@@ -563,7 +735,7 @@ class VideoGenerator:
         self.bg_colors = config["video"]["background_colors"]
         self.group_interval = config["animation"]["group_change_interval"]
 
-        self.char_sprites = load_animated_sprites(theme)
+        self.char_sprites = load_animated_sprites(theme, config)
         self.audio = build_audio(duration_sec)
         self.bpm, self._beat_times = analyze_beats(self.audio)
 
@@ -656,7 +828,7 @@ class VideoGenerator:
                         # Fallback: pick any available char
                         frames = self.char_sprites[slot % len(self.char_sprites)][1]
 
-                    if entry == "together":
+                    if entry in ("together", "zoom_in"):
                         appear = t
                     elif entry == "left_to_right":
                         appear = t + slot * 0.20
