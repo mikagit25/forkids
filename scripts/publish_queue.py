@@ -148,7 +148,7 @@ def main():
     parser = argparse.ArgumentParser(description="Publish queue to YouTube")
     parser.add_argument("--dry-run",     action="store_true")
     parser.add_argument("--limit",       type=int, default=0, help="Max videos to upload")
-    parser.add_argument("--no-schedule", action="store_true", help="Upload as public immediately")
+    parser.add_argument("--no-schedule", action="store_true", default=True, help="Upload as public immediately (default)")
     args = parser.parse_args()
 
     QUEUE_DIR.mkdir(parents=True, exist_ok=True)
@@ -167,6 +167,8 @@ def main():
         print("DRY RUN mode")
     if not args.no_schedule:
         print("Scheduled publishing ON (videos will be private until publish time)")
+    else:
+        print("Publishing as PUBLIC immediately")
 
     uploaded = 0
     failed   = 0

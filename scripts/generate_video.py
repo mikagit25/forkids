@@ -82,21 +82,48 @@ def _make_bounce_frames(img: Image.Image, n_frames: int = 30) -> List[Image.Imag
     return frames
 
 
+def _load_spritesheet(path: Path, frame_size: int = 512) -> List[Image.Image]:
+    """Load a horizontal sprite sheet (N frames side by side) into a list of frames."""
+    sheet = Image.open(path).convert("RGBA")
+    n_frames = sheet.width // frame_size
+    frames = []
+    for i in range(n_frames):
+        frame = sheet.crop((i * frame_size, 0, (i + 1) * frame_size, frame_size))
+        frames.append(frame)
+    return frames
+
+
 def load_animated_sprites(theme: str, config: dict = None) -> List[Tuple[str, List[Image.Image]]]:
     """
     Returns list of (name, frames) tuples.
-    Uses sprites_new (OpenMoji) if available, falls back to sprites.
+    Prefers spritesheets/ (8 semantic frames) over sprites_new/ (generates 30 bounce frames).
     """
-    # Prefer configured sprites_dir
+    sheets_dir = ROOT / "assets" / "spritesheets"
     sprites_dir_name = (config or {}).get("animation", {}).get("sprites_dir", "assets/sprites_new")
     sprites_new = ROOT / sprites_dir_name
     sprites_old = ROOT / "assets" / "sprites"
 
-    # Try new sprites first, then old
+    # 1. Try spritesheets/ first (pre-generated semantic frames)
+    for theme_key in (theme, "animals", "fruits", "vegetables"):
+        sheet_dir = sheets_dir / theme_key
+        if not sheet_dir.exists():
+            continue
+        pngs = sorted(sheet_dir.glob("*.png"))
+        if not pngs:
+            continue
+        sprites = []
+        for p in pngs:
+            frames = _load_spritesheet(p, frame_size=512)
+            if frames:
+                sprites.append((p.stem, frames))
+        if sprites:
+            log.info(f"Loaded {len(sprites)} spritesheets from {sheet_dir} (8 semantic frames)")
+            return sprites
+
+    # 2. Fall back to sprites_new / sprites (generate bounce frames)
     for sprites_root in (sprites_new, sprites_old):
         if not sprites_root.exists():
             continue
-
         candidate_dirs = []
         theme_dir = sprites_root / theme
         if theme_dir.exists():
@@ -105,7 +132,6 @@ def load_animated_sprites(theme: str, config: dict = None) -> List[Tuple[str, Li
             d = sprites_root / fallback
             if d.exists() and d not in candidate_dirs:
                 candidate_dirs.append(d)
-
         for d in candidate_dirs:
             pngs = sorted(d.glob("*.png"))
             if not pngs:
@@ -115,11 +141,11 @@ def load_animated_sprites(theme: str, config: dict = None) -> List[Tuple[str, Li
                 img = Image.open(p).convert("RGBA")
                 frames = _make_bounce_frames(img, n_frames=30)
                 sprites.append((p.stem, frames))
-            log.info(f"Loaded {len(sprites)} sprites from {d} (OpenMoji)")
+            log.info(f"Loaded {len(sprites)} sprites from {d} (bounce frames)")
             return sprites
 
     raise FileNotFoundError(
-        f"No sprites found for theme '{theme}'. Check assets/sprites_new/"
+        f"No sprites found for theme '{theme}'. Check assets/spritesheets/ or assets/sprites_new/"
     )
 
 
@@ -340,9 +366,85 @@ class SpriteActor:
         self.grid_y = gy * H
         self._cache: Dict[int, Image.Image] = {}
 
+    # Spritesheet frame indices (from generate_spritesheets.py):
+    # 0=normal  1=squash  2=stretch  3=big  4=lean-L  5=lean-R  6=tilt-L  7=tilt-R
+    _FRAME_NORMAL  = 0
+    _FRAME_SQUASH  = 1
+    _FRAME_STRETCH = 2
+    _FRAME_BIG     = 3
+    _FRAME_LEAN_L  = 4
+    _FRAME_LEAN_R  = 5
+    _FRAME_TILT_L  = 6
+    _FRAME_TILT_R  = 7
+
+    def _get_semantic_frame(self, rel: float) -> int:
+        """Choose which spritesheet frame fits the current choreography state."""
+        beat = max(0.0, rel - self.wave_delay) * self.beat_freq
+        bp   = abs(math.sin(math.pi * beat))   # 0..1 pulse
+        s    = math.sin(math.pi * beat)         # -1..1 signed
+
+        choreo = self.choreo
+        if choreo == "solo_bounce" or choreo == "grid_bounce" or choreo == "stomp":
+            if bp > 0.7:
+                return self._FRAME_STRETCH  # rising / at peak
+            elif bp < 0.15:
+                return self._FRAME_SQUASH   # landing
+            return self._FRAME_NORMAL
+
+        elif choreo in ("solo_sway", "grid_sway", "solo_shimmy"):
+            if s < -0.3:
+                return self._FRAME_LEAN_L
+            elif s > 0.3:
+                return self._FRAME_LEAN_R
+            return self._FRAME_NORMAL
+
+        elif choreo in ("solo_jump", "line_h"):
+            if bp > 0.6:
+                return self._FRAME_STRETCH
+            elif bp < 0.2:
+                return self._FRAME_SQUASH
+            return self._FRAME_NORMAL
+
+        elif choreo in ("solo_twist", "twist"):
+            if s < -0.3:
+                return self._FRAME_TILT_L
+            elif s > 0.3:
+                return self._FRAME_TILT_R
+            return self._FRAME_NORMAL
+
+        elif choreo in ("solo_spin", "spin_out"):
+            phase = (rel * self.beat_freq * 2) % 1.0
+            if phase < 0.25:
+                return self._FRAME_TILT_L
+            elif phase < 0.5:
+                return self._FRAME_TILT_R
+            elif phase < 0.75:
+                return self._FRAME_LEAN_L
+            return self._FRAME_LEAN_R
+
+        elif choreo == "solo_nod":
+            return self._FRAME_SQUASH if bp > 0.5 else self._FRAME_NORMAL
+
+        elif choreo == "solo_wave" or choreo == "wave_sync":
+            return self._FRAME_BIG if bp > 0.6 else self._FRAME_NORMAL
+
+        elif choreo == "robot":
+            beat_t  = max(0, rel - self.wave_delay) * self.beat_freq
+            snap    = int(beat_t) % 4
+            return [self._FRAME_NORMAL, self._FRAME_LEAN_R,
+                    self._FRAME_BIG,    self._FRAME_LEAN_L][snap]
+
+        return self._FRAME_NORMAL
+
     def _get_frame(self, global_t: float) -> Image.Image:
         n = len(self.frames)
-        frame_idx = int((global_t - self.appear_at) * ANIM_FPS) % n
+        # 8-frame spritesheets: pick semantically correct frame for the choreo
+        if n == 8:
+            rel = global_t - self.appear_at
+            frame_idx = self._get_semantic_frame(rel)
+        else:
+            frame_idx = int((global_t - self.appear_at) * ANIM_FPS) % n
+        frame_idx = max(0, min(frame_idx, n - 1))
         if frame_idx not in self._cache:
             self._cache[frame_idx] = self.frames[frame_idx].resize(
                 (self.size, self.size), Image.LANCZOS
