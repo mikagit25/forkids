@@ -72,10 +72,39 @@ python3 scripts/publish_queue.py --no-schedule  # сразу публичные
 | short_shape | shorts_shape.yaml | 60с | ✅ theme=shapes |
 | short_dance | shorts_dance.yaml | 60с | ✅ |
 
+## Танцевальный конвейер (Фаза 11)
+
+```bash
+# Генерация всех шортсов (42 штуки: 20 животных + 12 фруктов + 10 овощей)
+python3 scripts/generate_animal_shorts.py        # --animals bear tiger ...
+python3 scripts/generate_fruit_shorts.py         # --fruits apple banana ...
+python3 scripts/generate_vegetable_shorts.py     # --vegetables carrot broccoli ...
+
+# Генерация 30-мин скриптов
+python3 scripts/generate_dance_script.py --duration 30
+python3 scripts/generate_fruit_dance_script.py --duration 30
+python3 scripts/generate_vegetable_dance_script.py --duration 30
+
+# Генерация 30-мин видео (каждое ~45-60 мин рендера)
+python3 scripts/generate_video.py --theme animals --duration 30 \
+  --script config/scripts/dance_animals.yaml \
+  --output output/queue/dance_animals_$(date +%Y%m%d).mp4
+python3 scripts/generate_video.py --theme fruits --duration 30 \
+  --script config/scripts/dance_fruits.yaml \
+  --output output/queue/dance_fruits_$(date +%Y%m%d).mp4
+python3 scripts/generate_video.py --theme vegetables --duration 30 \
+  --script config/scripts/dance_vegetables.yaml \
+  --output output/queue/dance_vegetables_$(date +%Y%m%d).mp4
+
+# Предпросмотр (SSH туннель: ssh -L 8899:localhost:8899 root@38.19.202.103 -N)
+python3 preview_server.py   # → http://localhost:8899
+```
+
 ## Ассеты
 
-- Спрайты: `assets/sprites/{animals,fruits,shapes}/`
-- Музыка: `assets/music/kevin/` (20 треков Kevin MacLeod CC0)
+- Спрайты новые: `assets/sprites_new/{animals,fruits,vegetables}/` (OpenMoji CC0)
+- Спрайты старые: `assets/sprites/{animals,fruits,shapes}/`
+- Музыка: `assets/music/kevin/` (14 треков в DANCE_TRACKS, Kevin MacLeod CC0)
 - Voiceover: `assets/audio/voiceover/en/` (111 MP3)
 - Оформление: `output/channel/{banner,icon,thumbnail_template}.png`
 
@@ -92,7 +121,13 @@ python3 scripts/publish_queue.py --no-schedule  # сразу публичные
 3. ✅ **manage_playlists.py** → плейлисты (создать через --create-all после сброса квоты)
 4. ✅ **Новые типы:** short_vocabulary + short_counting добавлены
 5. ✅ **Scheduled publishing** → publishAt через meta sidecar файлы
-6. **Vegetables** тема спрайтов
-7. **Расширить ABC** shorts: A-E, F-J, K-O, P-T, U-Z (5 разных шортсов)
+6. ✅ **Vegetables** тема спрайтов — 10 спрайтов + shorts + 30-мин скрипт
+7. ✅ **Танцевальный конвейер** — 42 шортса (20 животных + 12 фруктов + 10 овощей)
+8. ✅ **Публиковать на YouTube** — конвейер запущен, кронтаб Mon-Sat 6/день
+9. 🔄 **Цветовые шортсы** — 24 шортса (8 цветов × 3 темы: animals/fruits/vegetables)
+10. ⏸️ **ABC** — на паузе, удалено с YouTube. Нужен правильный маппинг букв→картинки.
+    Животные покрывают: B=bear, C=cat/cow, D=dog/duck, E=elephant, F=fox/frog,
+    G=goat?, K=koala, L=lion, M=monkey, O=owl, P=panda/pig/parrot/penguin, R=rabbit, T=tiger, U=unicorn
+    Контент в hold: output/hold_abc/
 
 Полный роадмап: `ROADMAP.md`
