@@ -31,8 +31,11 @@ PLAYLISTS_PATH = ROOT / "config" / "playlists.yaml"
 log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
-SCOPES = ["https://www.googleapis.com/auth/youtube.upload",
-          "https://www.googleapis.com/auth/youtube"]
+SCOPES = [
+    "https://www.googleapis.com/auth/youtube",
+    "https://www.googleapis.com/auth/youtube.upload",
+    "https://www.googleapis.com/auth/youtube.force-ssl",
+]
 
 
 def load_config() -> dict:
@@ -69,33 +72,68 @@ def load_playlists() -> dict:
 
 
 def get_youtube_service(config: dict):
-    creds_path = ROOT / config["youtube"]["credentials"]
-    token_path = ROOT / config["youtube"]["token"]
-
-    if not creds_path.exists():
-        raise FileNotFoundError(
-            f"YouTube credentials not found: {creds_path}\n"
-            "Download OAuth 2.0 client JSON from Google Cloud Console."
-        )
+    import json as _json, datetime as _dt
+    creds_path  = ROOT / config["youtube"]["credentials"]
+    pickle_path = ROOT / config["youtube"]["token"]
+    json_path   = ROOT / "credentials" / "youtube_token.json"  # web OAuth token
 
     creds = None
-    if token_path.exists():
-        with open(token_path, "rb") as f:
-            creds = pickle.load(f)
 
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
+    # Prefer JSON token (renewed via web OAuth link in Telegram)
+    if json_path.exists():
+        try:
+            with open(json_path) as f:
+                t = _json.load(f)
+            if t.get("refresh_token"):
+                creds = Credentials(
+                    token=t.get("access_token"),
+                    refresh_token=t["refresh_token"],
+                    token_uri="https://oauth2.googleapis.com/token",
+                    client_id=t["client_id"],
+                    client_secret=t["client_secret"],
+                    scopes=SCOPES,
+                )
+                # Set expiry so the library knows whether to refresh
+                expires_at = t.get("expires_at")
+                if expires_at:
+                    creds.expiry = _dt.datetime.utcfromtimestamp(float(expires_at))
+                log.info("Using JSON token (web OAuth)")
+        except Exception as e:
+            log.warning(f"JSON token load failed: {e} — falling back to pickle")
+            creds = None
+
+    # Fall back to legacy pickle token
+    if creds is None and pickle_path.exists():
+        with open(pickle_path, "rb") as f:
+            creds = pickle.load(f)
+        log.info("Using pickle token (legacy)")
+
+    if not creds:
+        raise RuntimeError(
+            "No token found. Renew via Telegram link or run:\n"
+            "  python3 scripts/reauth_youtube.py"
+        )
+
+    if not creds.valid:
+        if creds.expired and creds.refresh_token:
             log.info("Refreshing access token...")
             creds.refresh(Request())
+            # Write back to whichever format we loaded from
+            if json_path.exists() and json_path.stat().st_size > 2:
+                with open(json_path) as f:
+                    t = _json.load(f)
+                t["access_token"] = creds.token
+                t["expires_at"] = creds.expiry.timestamp() if creds.expiry else 0
+                with open(json_path, "w") as f:
+                    _json.dump(t, f, indent=2)
+            else:
+                with open(pickle_path, "wb") as f:
+                    pickle.dump(creds, f)
         else:
-            log.info("Running OAuth flow (opens browser)...")
-            flow = InstalledAppFlow.from_client_secrets_file(str(creds_path), SCOPES)
-            creds = flow.run_local_server(port=8765)
-
-        token_path.parent.mkdir(exist_ok=True)
-        with open(token_path, "wb") as f:
-            pickle.dump(creds, f)
-        log.info(f"Token saved: {token_path}")
+            raise RuntimeError(
+                "Token invalid and cannot refresh. Renew via Telegram link or run:\n"
+                "  python3 scripts/reauth_youtube.py"
+            )
 
     return build("youtube", "v3", credentials=creds)
 
