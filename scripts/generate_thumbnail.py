@@ -130,15 +130,17 @@ def add_logo_badge(draw):
 
 
 def add_shorts_badge(img):
-    """Красный #SHORTS бейдж снизу."""
-    ov = Image.new("RGBA", (W, H), (0,0,0,0))
-    d  = ImageDraw.Draw(ov)
-    bh = 64
-    d.rounded_rectangle([W//2-140, H-bh-14, W//2+140, H-14],
-                         radius=32, fill=(255,0,0,230))
+    """Красный #SHORTS бейдж — нижний правый угол, не перекрывает текст."""
+    ov   = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d    = ImageDraw.Draw(ov)
     font = load_font(36)
-    d.text((W//2-text_w(d,"#SHORTS",font)//2, H-bh-6), "#SHORTS",
-           font=font, fill=(255,255,255,255))
+    bw, bh = 280, 62
+    x1 = W - bw - 20
+    y1 = H - bh - 16
+    d.rounded_rectangle([x1, y1, x1 + bw, y1 + bh], radius=31, fill=(220, 0, 0, 235))
+    tw = text_w(d, "#SHORTS", font)
+    d.text((x1 + (bw - tw) // 2, y1 + (bh - 36) // 2), "#SHORTS",
+           font=font, fill=(255, 255, 255, 255))
     return Image.alpha_composite(img.convert("RGBA"), ov).convert("RGB")
 
 
@@ -149,11 +151,13 @@ def thumb_dance(theme: str, title: str, variant: int = 0) -> Image.Image:
     img = gradient_bg(sc["bg_top"], sc["bg_bot"])
     img = add_dots(img, seed=variant)
 
-    # 3 animals side by side
-    d = SPRITES / "animals"
-    animals = sorted(d.glob("*.png"))
-    chosen  = [animals[(variant * 3 + i) % len(animals)] for i in range(3)]
-    positions = [(180, 320), (640, 260), (1100, 320)]
+    # 3 sprites from the correct theme (fall back to animals)
+    d = SPRITES / theme
+    if not d.exists() or not list(d.glob("*.png")):
+        d = SPRITES / "animals"
+    sprites = sorted(d.glob("*.png"))
+    chosen    = [sprites[(variant * 3 + i) % len(sprites)] for i in range(3)]
+    positions = [(180, 310), (640, 250), (1100, 310)]
     for sp_path, (px, py) in zip(chosen, positions):
         sp = load_sprite(sp_path, 340)
         img.paste(sp, (px - sp.width//2, py - sp.height//2), sp)
@@ -161,29 +165,32 @@ def thumb_dance(theme: str, title: str, variant: int = 0) -> Image.Image:
     draw = ImageDraw.Draw(img)
     add_logo_badge(draw)
 
-    # Title in lower white band
-    band_h = 160
-    draw.rectangle([0, H-band_h, W, H], fill=(0,0,0,160))
-    font_t = load_font(72)
-    # Wrap if too long
-    words = title.replace(" #shorts","").split()
+    # Title in lower dark band — height adapts to number of wrapped lines
+    font_t    = load_font(66)
+    line_h    = 76
+    words     = title.replace(" #shorts", "").split()
     lines, cur = [], []
     for w in words:
         test = " ".join(cur + [w])
-        if text_w(draw, test, font_t) > W - 60:
-            lines.append(" ".join(cur))
+        if text_w(draw, test, font_t) > W - 80:
+            if cur:
+                lines.append(" ".join(cur))
             cur = [w]
         else:
             cur.append(w)
     if cur:
         lines.append(" ".join(cur))
+    lines = lines[:3]   # cap at 3 lines max
 
-    y0 = H - band_h + (band_h - len(lines)*80)//2
+    band_h = max(130, len(lines) * line_h + 28)
+    draw.rectangle([0, H - band_h, W, H], fill=(0, 0, 0, 170))
+
+    y0 = H - band_h + (band_h - len(lines) * line_h) // 2
     for line in lines:
         x = center_x(draw, line, font_t)
         outlined_text(draw, (x, y0), line, font_t,
-                      fill=(255,255,255), outline=(0,0,0), stroke=4)
-        y0 += 80
+                      fill=(255, 255, 255), outline=(0, 0, 0), stroke=4)
+        y0 += line_h
 
     return img
 
@@ -260,33 +267,41 @@ def thumb_numbers(theme: str, number: str) -> Image.Image:
 
 def thumb_colors(color_key: str) -> Image.Image:
     bg = COLOR_BG.get(color_key, (100, 100, 200))
-    # Make it bright
-    bg_top = tuple(min(255, int(c * 1.3)) for c in bg)
-    bg_bot = bg
+    bg_top = tuple(min(255, int(c * 1.25)) for c in bg)
+    bg_bot = tuple(max(0, int(c * 0.75)) for c in bg)
     img  = gradient_bg(bg_top, bg_bot)
-    img  = add_dots(img, color=(255,255,255), alpha=30)
+    img  = add_dots(img, color=(255, 255, 255), alpha=30)
 
     draw = ImageDraw.Draw(img)
     add_logo_badge(draw)
 
     color_name = color_key.capitalize()
-    font_big   = load_font(280)
-    font_sub   = load_font(90)
+    font_big   = load_font(260)
+    font_sub   = load_font(72)
 
-    # Color name
+    # Color name — pushed up to leave room for circle + badge
     cx = center_x(draw, color_name, font_big)
-    outlined_text(draw, (cx, 80), color_name, font_big,
-                  fill=(255,255,255), outline=(0,0,0,180), stroke=10)
+    outlined_text(draw, (cx, 70), color_name, font_big,
+                  fill=(255, 255, 255), outline=(0, 0, 0), stroke=10)
 
-    # Color swatch circle
-    swatch = Image.new("RGBA", (220, 220), (0,0,0,0))
-    ImageDraw.Draw(swatch).ellipse([10,10,210,210], fill=bg+(255,), outline=(255,255,255,200), width=8)
-    img.paste(swatch, (W//2 - 110, H-280), swatch)
-
-    # "!" subtitle
-    sx = center_x(draw, f"{color_name}!", font_sub)
-    outlined_text(draw, (sx, H-90), f"{color_name}!", font_sub,
-                  fill=(255,255,200), outline=(0,0,0,180), stroke=5)
+    # Color swatch: white disk + lighter-colored inner fill (clearly visible)
+    lighter = tuple(min(255, int(c * 1.6)) for c in bg)
+    sw  = 120   # radius
+    # Center circle in the space between title (ends ~y=330) and bottom badge area (starts ~y=640)
+    cx2 = W // 2
+    cy2 = 490
+    ov  = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    od  = ImageDraw.Draw(ov)
+    # Shadow
+    od.ellipse([cx2 - sw + 8, cy2 - sw + 8, cx2 + sw + 8, cy2 + sw + 8],
+               fill=(0, 0, 0, 80))
+    # White ring
+    od.ellipse([cx2 - sw, cy2 - sw, cx2 + sw, cy2 + sw],
+               fill=(255, 255, 255, 255))
+    # Lighter color fill inside
+    od.ellipse([cx2 - sw + 18, cy2 - sw + 18, cx2 + sw - 18, cy2 + sw - 18],
+               fill=lighter + (255,))
+    img = Image.alpha_composite(img.convert("RGBA"), ov).convert("RGB")
 
     return img
 

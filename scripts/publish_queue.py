@@ -6,10 +6,15 @@ Reads meta_*.yaml sidecar files for full metadata (title, tags, upload_day,
 upload_time). Falls back to weekly_plan.yaml matching if no sidecar found.
 
 Usage:
-    python3 publish_queue.py              # upload all, schedule from plan
-    python3 publish_queue.py --dry-run    # show what would be uploaded
-    python3 publish_queue.py --limit 6    # upload at most N videos
-    python3 publish_queue.py --no-schedule  # upload as public immediately
+    python3 publish_queue.py                  # upload 1 of any type
+    python3 publish_queue.py --type short     # upload shorts only
+    python3 publish_queue.py --type long      # upload long videos only
+    python3 publish_queue.py --dry-run        # show what would be uploaded
+    python3 publish_queue.py --limit 2        # upload at most N videos
+
+Content split strategy (6 uploads/day within 10k quota):
+    --type long  at 09:00 and 13:00  → 2 long videos/day
+    --type short at 11:00, 15:00, 17:00, 19:00 → 4 shorts/day
 """
 
 import argparse
@@ -22,6 +27,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 QUEUE_DIR    = ROOT / "output" / "queue"
+QUEUE_AR_DIR = ROOT / "output" / "queue_ar"
 UPLOADED_DIR = ROOT / "uploaded"
 PLAN_PATH    = ROOT / "config" / "weekly_plan.yaml"
 
@@ -119,6 +125,8 @@ def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
         print(f"  [DRY RUN] would upload")
         return True
 
+    language = metadata.get("language", "en")
+
     cmd = [
         sys.executable,
         str(ROOT / "scripts" / "upload_youtube.py"),
@@ -127,6 +135,7 @@ def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
         "--video-type", video_type,
         "--theme",      theme,
         "--status",     "private" if publish_at else metadata.get("status", "public"),
+        "--language",   language,
     ]
 
     if tags_str:
@@ -144,31 +153,61 @@ def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
     return result.returncode == 0
 
 
+SHORT_PREFIXES = ("short_",)
+LONG_PREFIXES  = ("dance_", "compilation_", "abc_", "numbers_", "colors_", "counting_")
+
+
+def is_short(path: Path) -> bool:
+    return path.name.startswith(SHORT_PREFIXES)
+
+
+def is_long(path: Path) -> bool:
+    return not is_short(path)
+
+
+def filter_queue(queue: list[Path], kind: str) -> list[Path]:
+    if kind == "short":
+        return [p for p in queue if is_short(p)]
+    if kind == "long":
+        return [p for p in queue if is_long(p)]
+    return queue   # "any" — no filter
+
+
 def main():
     parser = argparse.ArgumentParser(description="Publish queue to YouTube")
     parser.add_argument("--dry-run",     action="store_true")
-    parser.add_argument("--limit",       type=int, default=0, help="Max videos to upload")
-    parser.add_argument("--no-schedule", action="store_true", default=True, help="Upload as public immediately (default)")
+    parser.add_argument("--limit",       type=int, default=1, help="Max videos to upload (default 1)")
+    parser.add_argument("--type",        choices=["short", "long", "any"], default="any",
+                        help="Filter: short=60s videos, long=30min videos, any=no filter")
+    parser.add_argument("--no-schedule", action="store_true", default=True,
+                        help="Upload as public immediately (default)")
+    parser.add_argument("--queue", choices=["en", "ar"], default="en",
+                        help="Which queue to publish from: en=output/queue/, ar=output/queue_ar/")
     args = parser.parse_args()
 
-    QUEUE_DIR.mkdir(parents=True, exist_ok=True)
+    active_queue_dir = QUEUE_AR_DIR if args.queue == "ar" else QUEUE_DIR
+    active_queue_dir.mkdir(parents=True, exist_ok=True)
     UPLOADED_DIR.mkdir(parents=True, exist_ok=True)
 
-    queue = sorted(QUEUE_DIR.glob("*.mp4"), key=lambda p: p.stat().st_mtime)
+    all_queue = sorted(
+        [p for p in active_queue_dir.glob("*.mp4") if "test_" not in p.name],
+        key=lambda p: p.stat().st_mtime
+    )
+    queue = filter_queue(all_queue, args.type)
+
     if not queue:
-        print("Queue is empty. Run batch_generate.py first.")
+        print(f"Queue is empty (type={args.type}). Nothing to upload.")
         return
 
     plan  = load_plan()
     limit = args.limit if args.limit > 0 else len(queue)
 
-    print(f"\nPublish queue — {len(queue)} video(s) waiting")
+    shorts_count = len([p for p in all_queue if is_short(p)])
+    longs_count  = len([p for p in all_queue if is_long(p)])
+    print(f"\nPublish queue — {len(all_queue)} total ({longs_count} long, {shorts_count} shorts)")
+    print(f"Uploading: {args.type} (limit={limit})")
     if args.dry_run:
         print("DRY RUN mode")
-    if not args.no_schedule:
-        print("Scheduled publishing ON (videos will be private until publish time)")
-    else:
-        print("Publishing as PUBLIC immediately")
 
     uploaded = 0
     failed   = 0

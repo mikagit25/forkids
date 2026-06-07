@@ -1,0 +1,49 @@
+video_type: short_color
+theme: animals
+duration_minutes: 1
+style: tutitu
+scenes:
+- start_sec: 0.0
+  duration: 15.0
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - bear
+  entry: zoom_in
+  bg_color: '#FF69B4'
+  text: Pink
+  sub_text: Pink!
+  voiceover_key: pink
+- start_sec: 15.0
+  duration: 15.0
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - cat
+  entry: zoom_in
+  bg_color: '#FF69B4'
+  text: Pink
+  sub_text: Pink!
+  voiceover_key: pink
+- start_sec: 30.0
+  duration: 15.0
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - dog
+  entry: zoom_in
+  bg_color: '#FF69B4'
+  text: Pink
+  sub_text: Pink!
+  voiceover_key: pink
+- start_sec: 45.0
+  duration: 15.0
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - duck
+  entry: zoom_in
+  bg_color: '#FF69B4'
+  text: Pink
+  sub_text: Pink!
+  voiceover_key: pink

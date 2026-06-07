@@ -1,0 +1,49 @@
+video_type: short_color
+theme: vegetables
+duration_minutes: 1
+style: tutitu
+scenes:
+- start_sec: 0.0
+  duration: 15.0
+  choreo: solo_bounce
+  n: 1
+  chars:
+  - carrot
+  entry: zoom_in
+  bg_color: '#8B4513'
+  text: Brown
+  sub_text: Brown!
+  voiceover_key: brown
+- start_sec: 15.0
+  duration: 15.0
+  choreo: solo_bounce
+  n: 1
+  chars:
+  - broccoli
+  entry: zoom_in
+  bg_color: '#8B4513'
+  text: Brown
+  sub_text: Brown!
+  voiceover_key: brown
+- start_sec: 30.0
+  duration: 15.0
+  choreo: solo_bounce
+  n: 1
+  chars:
+  - corn
+  entry: zoom_in
+  bg_color: '#8B4513'
+  text: Brown
+  sub_text: Brown!
+  voiceover_key: brown
+- start_sec: 45.0
+  duration: 15.0
+  choreo: solo_bounce
+  n: 1
+  chars:
+  - tomato
+  entry: zoom_in
+  bg_color: '#8B4513'
+  text: Brown
+  sub_text: Brown!
+  voiceover_key: brown

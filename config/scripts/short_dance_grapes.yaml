@@ -5,11 +5,11 @@ style: tutitu
 scenes:
 - start_sec: 0.0
   duration: 60.0
-  choreo: solo_bounce
+  choreo: solo_wave
   n: 1
   chars:
   - grapes
   entry: zoom_in
-  bg_color: '#FFF9E6'
+  bg_color: '#FCE4EC'
   text: Grapes
   sub_text: Let's dance!

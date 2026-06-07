@@ -20,12 +20,24 @@ video:
     - "#55EFC4"
 
 animation:
-  sprite_size: 230
-  bounce_height: 45
-  sway_angle: 15
-  pulse_scale: 0.18
-  sprites_on_screen: 4
-  group_change_interval: [30, 55]   # seconds min/max
+  sprite_size: 520
+  bounce_height: 55
+  sway_angle: 18
+  pulse_scale: 0.15
+  sprites_on_screen: 1
+  group_change_interval: [35, 40]   # seconds per animal
+  sprites_dir: "assets/sprites_new"
+
+  # Light pastel backgrounds (TutiTuTV style)
+  background_colors_dance:
+    - "#FFF9E6"   # warm cream
+    - "#E8F5E9"   # mint
+    - "#E3F2FD"   # sky blue
+    - "#FCE4EC"   # rose
+    - "#F3E5F5"   # lavender
+    - "#E0F7FA"   # aqua
+    - "#FFFDE7"   # lemon
+    - "#F9FBE7"   # lime cream
 
 music:
   source: "local"

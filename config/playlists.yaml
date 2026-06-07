@@ -1,71 +1,100 @@
-# Happy Bear Kids — YouTube Playlists
-# id: set automatically by manage_playlists.py --create-all
-# video_types: which video types go into this playlist
-
 playlists:
+- key: dance
+  name: 🎵 Dance & Music for Kids
+  description: 'Fun dance videos for babies and toddlers! Animals and fruits dance
+    to happy music.
 
-  - key: dance
-    name: "🎵 Dance & Music for Kids"
-    description: |
-      Fun dance videos for babies and toddlers! Animals and fruits dance to happy music.
-      Great for sensory play, movement, and making kids smile.
+    Great for sensory play, movement, and making kids smile.
 
-      Subscribe for new dance videos every week! 🐻
 
-      #kidsmusic #danceforkids #toddlersongs #happybear #babydance
-    video_types: [dance, short_dance]
-    id: null
+    Subscribe for new dance videos every week! 🐻
 
-  - key: abc
-    name: "🔤 Learn ABC — Alphabet for Kids"
-    description: |
-      Learn the alphabet with Happy Bear Kids! ABC songs, letter videos, and phonics
-      for babies and toddlers. A is for Apple, B is for Bear! 🔤
 
-      Perfect for preschool and early learning.
+    #kidsmusic #danceforkids #toddlersongs #happybear #babydance
 
-      #abcsong #alphabet #phonics #kidslearning #toddlereducation
-    video_types: [abc, short_letter]
-    id: null
+    '
+  video_types:
+  - dance
+  - short_dance
+  id: PL8oKafGZe1chDvZKt5iqvFVdYKnUKKqU9
+- key: abc
+  name: 🔤 Learn ABC — Alphabet for Kids
+  description: 'Learn the alphabet with Happy Bear Kids! ABC songs, letter videos,
+    and phonics
 
-  - key: numbers
-    name: "🔢 Numbers & Counting for Kids"
-    description: |
-      Count 1 to 10 with cute animals! Fun number videos and counting songs
-      for babies and toddlers. Learn math the fun way! 🔢
+    for babies and toddlers. A is for Apple, B is for Bear! 🔤
 
-      #numbersforkids #counting #mathforkids #toddlerlearning #123
-    video_types: [numbers, short_number]
-    id: null
 
-  - key: colors
-    name: "🎨 Learn Colors for Kids"
-    description: |
-      Red, yellow, blue and green! Learn colors with Happy Bear Kids.
-      Colorful videos with cute characters for babies and toddlers. 🌈
+    Perfect for preschool and early learning.
 
-      #colorsforkids #learncolors #rainbow #toddlereducation #babysensory
-    video_types: [colors, short_color]
-    id: null
 
-  - key: shapes
-    name: "⭐ Shapes for Kids"
-    description: |
-      Circle, square, triangle and star! Learn shapes with Happy Bear Kids.
-      Fun shape videos for babies and toddlers. ⭐
+    #abcsong #alphabet #phonics #kidslearning #toddlereducation
 
-      #shapesforkids #learnshapes #geometry #toddlereducation #preschool
-    video_types: [short_shape]
-    id: null
+    '
+  video_types:
+  - abc
+  - short_letter
+  id: PL8oKafGZe1cgkeH8TIQ8OWPqpm-ytOdWe
+- key: numbers
+  name: 🔢 Numbers & Counting for Kids
+  description: 'Count 1 to 10 with cute animals! Fun number videos and counting songs
 
-  - key: shorts
-    name: "🐻 Happy Bear Shorts — 60 Second Fun"
-    description: |
-      Quick 60-second educational videos for babies and toddlers!
-      Learn ABC, numbers, colors, and shapes with Happy Bear Kids. 🐻
+    for babies and toddlers. Learn math the fun way! 🔢
 
-      New Shorts every day! #shorts
 
-      #happybearshorts #kidsshorts #babyshorts #shorts #toddlershorts
-    video_types: [short_letter, short_number, short_color, short_shape, short_dance, short_vocabulary, short_counting]
-    id: null
+    #numbersforkids #counting #mathforkids #toddlerlearning #123
+
+    '
+  video_types:
+  - numbers
+  - short_number
+  id: PL8oKafGZe1cg6fEuiXPecRiSvLX2FQLIY
+- key: colors
+  name: 🎨 Learn Colors for Kids
+  description: 'Red, yellow, blue and green! Learn colors with Happy Bear Kids.
+
+    Colorful videos with cute characters for babies and toddlers. 🌈
+
+
+    #colorsforkids #learncolors #rainbow #toddlereducation #babysensory
+
+    '
+  video_types:
+  - colors
+  - short_color
+  id: PL8oKafGZe1chD4fNdSNBOcQDv6k-YnB6Q
+- key: shapes
+  name: ⭐ Shapes for Kids
+  description: 'Circle, square, triangle and star! Learn shapes with Happy Bear Kids.
+
+    Fun shape videos for babies and toddlers. ⭐
+
+
+    #shapesforkids #learnshapes #geometry #toddlereducation #preschool
+
+    '
+  video_types:
+  - short_shape
+  id: PL8oKafGZe1chKLsAVWdGILpx9abRAaUcx
+- key: shorts
+  name: 🐻 Happy Bear Shorts — 60 Second Fun
+  description: 'Quick 60-second educational videos for babies and toddlers!
+
+    Learn ABC, numbers, colors, and shapes with Happy Bear Kids. 🐻
+
+
+    New Shorts every day! #shorts
+
+
+    #happybearshorts #kidsshorts #babyshorts #shorts #toddlershorts
+
+    '
+  video_types:
+  - short_letter
+  - short_number
+  - short_color
+  - short_shape
+  - short_dance
+  - short_vocabulary
+  - short_counting
+  id: PL8oKafGZe1chnxOk3uVQ1VfwLYYlFzaRk

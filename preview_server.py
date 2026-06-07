@@ -4,7 +4,8 @@ from http.server import HTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import unquote
 
-QUEUE_DIR = Path("/opt/kids_channel/output/queue")
+OUTPUT_DIR  = Path("/opt/kids_channel/output")
+QUEUE_DIR   = Path("/opt/kids_channel/output/queue")
 UPLOADED_DIR = Path("/opt/kids_channel/uploaded")
 SPRITES_DIR = Path("/opt/kids_channel/assets/sprites_new")
 PORT = 8899
@@ -44,11 +45,11 @@ CSS = """
 
 JS = """
 function showTab(name) {
-  ['queue','uploaded','sprites'].forEach(function(t) {
+  ['output','queue','uploaded','sprites'].forEach(function(t) {
     document.getElementById('tab-'+t).style.display = (t===name) ? '' : 'none';
   });
   document.querySelectorAll('.tab').forEach(function(el, i) {
-    el.classList.toggle('active', ['queue','uploaded','sprites'][i] === name);
+    el.classList.toggle('active', ['output','queue','uploaded','sprites'][i] === name);
   });
 }
 """
@@ -72,8 +73,14 @@ def make_video_card(mp4_path: Path, badge: str) -> str:
 
 
 def build_html() -> str:
+    output_files = sorted(f for f in OUTPUT_DIR.glob("*.mp4"))   # only root output/, not queue/
     queue_files = sorted(QUEUE_DIR.glob("*.mp4"))
     uploaded_files = sorted(UPLOADED_DIR.glob("*.mp4"))
+
+    if output_files:
+        output_html = '<div class="grid">' + "".join(make_video_card(f, "output") for f in output_files) + "</div>"
+    else:
+        output_html = "<p class='empty'>No test videos in output/</p>"
 
     if queue_files:
         queue_html = '<div class="grid">' + "".join(make_video_card(f, "queue") for f in queue_files) + "</div>"
@@ -103,6 +110,7 @@ def build_html() -> str:
         )
     sprites_html = "".join(sprite_parts) or "<p class='empty'>No sprites found</p>"
 
+    oc = len(output_files)
     qc = len(queue_files)
     uc = len(uploaded_files)
 
@@ -117,11 +125,16 @@ def build_html() -> str:
 <body>
 <h1>🐻 Happy Bear Kids — Preview</h1>
 <div class="tabs">
-  <button class="tab active" onclick="showTab('queue')">Queue ({qc})</button>
+  <button class="tab active" onclick="showTab('output')">Output ({oc})</button>
+  <button class="tab" onclick="showTab('queue')">Queue ({qc})</button>
   <button class="tab" onclick="showTab('uploaded')">Uploaded ({uc})</button>
   <button class="tab" onclick="showTab('sprites')">Sprites</button>
 </div>
-<div id="tab-queue" class="section">
+<div id="tab-output" class="section">
+  <h2>Test / Output Videos</h2>
+  {output_html}
+</div>
+<div id="tab-queue" class="section" style="display:none">
   <h2>Videos in Queue</h2>
   {queue_html}
 </div>
@@ -192,6 +205,10 @@ class Handler(BaseHTTPRequestHandler):
             self.send_header("Content-Length", str(len(html)))
             self.end_headers()
             self.wfile.write(html)
+
+        elif path.startswith("/video/output/"):
+            fname = path[len("/video/output/"):]
+            self.send_file(OUTPUT_DIR / fname, "video/mp4")
 
         elif path.startswith("/video/queue/"):
             fname = path[len("/video/queue/"):]

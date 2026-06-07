@@ -100,6 +100,35 @@ python3 scripts/generate_video.py --theme vegetables --duration 30 \
 python3 preview_server.py   # → http://localhost:8899
 ```
 
+## Remotion (React/Chromium рендерер)
+
+Используется для vocabulary shorts — лучшее качество шрифтов и спрайтов, чем Manim.  
+Проект: `remotion/` | Node.js v18 уже установлен.
+
+```bash
+# Генерация 26 vocabulary shorts (A-Z) через Remotion
+python3 scripts/generate_vocab_shorts.py
+python3 scripts/generate_vocab_shorts.py --letters A B C   # отдельные буквы
+python3 scripts/generate_vocab_shorts.py --force            # перегенерить
+
+# Превью одного видео (тест)
+cd remotion && npx remotion render src/index.ts VocabularyShort /tmp/test.mp4 \
+  --props '{"letter":"B","word":"BANANA","spritePath":"fruits/banana.png","audioFile":"b__banana__b_is_for_banana.mp3","letterColor":"#F9A825","bgColor":"#FFF9C4"}' \
+  --log error
+```
+
+**Типы (Remotion):**
+
+| video_type | скрипт | кол-во | длина |
+|---|---|---|---|
+| short_vocab | generate_vocab_shorts.py | 26 (A-Z) | 55с |
+| short_shape_float | generate_shape_float_shorts.py | 32 (8 фигур × 4 режима) | 55с |
+| short_shape_dance | generate_shape_dance_shorts.py | 13 комбо | 55с |
+| short_color_learn | generate_color_learn_shorts.py | 7 цветов | 55с |
+
+**Remotion композиции:** VocabularyShort, ShapeFloatShort, ShapeDanceShort, ColorLearnShort, ShapeFloatLong, ShapeDanceLong
+
+
 ## Ассеты
 
 - Спрайты новые: `assets/sprites_new/{animals,fruits,vegetables}/` (OpenMoji CC0)
@@ -124,10 +153,10 @@ python3 preview_server.py   # → http://localhost:8899
 6. ✅ **Vegetables** тема спрайтов — 10 спрайтов + shorts + 30-мин скрипт
 7. ✅ **Танцевальный конвейер** — 42 шортса (20 животных + 12 фруктов + 10 овощей)
 8. ✅ **Публиковать на YouTube** — конвейер запущен, кронтаб Mon-Sat 6/день
-9. 🔄 **Цветовые шортсы** — 24 шортса (8 цветов × 3 темы: animals/fruits/vegetables)
-10. ⏸️ **ABC** — на паузе, удалено с YouTube. Нужен правильный маппинг букв→картинки.
-    Животные покрывают: B=bear, C=cat/cow, D=dog/duck, E=elephant, F=fox/frog,
-    G=goat?, K=koala, L=lion, M=monkey, O=owl, P=panda/pig/parrot/penguin, R=rabbit, T=tiger, U=unicorn
+9. ✅ **Remotion** — установлен в `remotion/`, VocabularyShort composition готов
+10. 🔄 **Цветовые шортсы** — 24 шортса (8 цветов × 3 темы: animals/fruits/vegetables)
+11. 🔄 **Vocab shorts** — 26 видео (A-Z) через Remotion, запускать: generate_vocab_shorts.py
+12. ⏸️ **ABC (Manim)** — на паузе, удалено с YouTube. Vocab (Remotion) заменяет.
     Контент в hold: output/hold_abc/
 
 Полный роадмап: `ROADMAP.md`

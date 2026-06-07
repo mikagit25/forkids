@@ -5,11 +5,11 @@ style: tutitu
 scenes:
 - start_sec: 0.0
   duration: 60.0
-  choreo: solo_bounce
+  choreo: solo_jump
   n: 1
   chars:
   - lion
   entry: zoom_in
-  bg_color: '#FFF9E6'
+  bg_color: '#F3E5F5'
   text: Lion
   sub_text: Let's dance!

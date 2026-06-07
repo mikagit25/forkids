@@ -148,6 +148,7 @@ def upload_video(
     video_type: str = "dance",
     publish_at: Optional[str] = None,
     config: dict = None,
+    language: str = "en",
 ) -> str:
     if config is None:
         config = load_config()
@@ -171,7 +172,8 @@ def upload_video(
             "description": description[:5000],
             "tags": tags[:500],
             "categoryId": "27",       # Education
-            "defaultLanguage": "en",
+            "defaultLanguage": language,
+            "defaultAudioLanguage": language,
         },
         "status": video_status,
     }
@@ -237,6 +239,8 @@ def main():
     parser.add_argument("--thumbnail",   default=None, help="Thumbnail PNG path")
     parser.add_argument("--publish-at",  default=None,
                         help="ISO 8601 UTC datetime to schedule (e.g. 2026-05-26T09:00:00Z)")
+    parser.add_argument("--language", default="en",
+                        help="BCP-47 language code: en, ar, etc.")
     args = parser.parse_args()
 
     config   = load_config()
@@ -264,6 +268,7 @@ def main():
         video_type=args.video_type,
         publish_at=args.publish_at,
         config=config,
+        language=args.language,
     )
 
 

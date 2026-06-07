@@ -15,6 +15,12 @@ FRUITS = [
     "pineapple", "cherry", "peach", "lemon", "pear", "melon",
 ]
 
+# Fruits with high-quality cartoon sprites (use fruits_cartoon theme)
+CARTOON_FRUITS = {
+    "apple", "banana", "strawberry", "grapes", "orange",
+    "pineapple", "peach", "pear",
+}
+
 FRUIT_NAMES = {
     "apple": "Apple", "banana": "Banana", "strawberry": "Strawberry",
     "grapes": "Grapes", "watermelon": "Watermelon", "orange": "Orange",
@@ -53,10 +59,11 @@ def make_short_script(fruit: str, idx: int) -> Path:
     choreo = SOLO_CHOREOS[idx % len(SOLO_CHOREOS)]
     bg = BG_COLORS[idx % len(BG_COLORS)]
     name = FRUIT_NAMES.get(fruit, fruit.capitalize())
+    theme = "fruits_cartoon" if fruit in CARTOON_FRUITS else "fruits"
 
     script = {
         "video_type": "short_dance",
-        "theme": "fruits",
+        "theme": theme,
         "duration_minutes": 1,
         "style": "tutitu",
         "scenes": [
@@ -82,10 +89,11 @@ def make_short_script(fruit: str, idx: int) -> Path:
 
 def make_meta(fruit: str, output_file: Path) -> Path:
     name = FRUIT_NAMES.get(fruit, fruit.capitalize())
+    theme = "fruits_cartoon" if fruit in CARTOON_FRUITS else "fruits"
     meta = {
         "title": TITLES[fruit],
         "video_type": "short_dance",
-        "theme": "fruits",
+        "theme": theme,
         "duration_minutes": 1,
         "is_short": True,
         "tags": [

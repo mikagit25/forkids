@@ -1,0 +1,49 @@
+video_type: short_color
+theme: fruits
+duration_minutes: 1
+style: tutitu
+scenes:
+- start_sec: 0.0
+  duration: 15.0
+  choreo: solo_sway
+  n: 1
+  chars:
+  - apple
+  entry: zoom_in
+  bg_color: '#FF4444'
+  text: Red
+  sub_text: Red!
+  voiceover_key: red
+- start_sec: 15.0
+  duration: 15.0
+  choreo: solo_sway
+  n: 1
+  chars:
+  - banana
+  entry: zoom_in
+  bg_color: '#FF4444'
+  text: Red
+  sub_text: Red!
+  voiceover_key: red
+- start_sec: 30.0
+  duration: 15.0
+  choreo: solo_sway
+  n: 1
+  chars:
+  - strawberry
+  entry: zoom_in
+  bg_color: '#FF4444'
+  text: Red
+  sub_text: Red!
+  voiceover_key: red
+- start_sec: 45.0
+  duration: 15.0
+  choreo: solo_sway
+  n: 1
+  chars:
+  - orange
+  entry: zoom_in
+  bg_color: '#FF4444'
+  text: Red
+  sub_text: Red!
+  voiceover_key: red
