@@ -15,6 +15,12 @@ VEGETABLES = [
     "cucumber", "potato", "mushroom", "onion", "pepper",
 ]
 
+# Vegetables with new cartoon sprites (vegetables_cartoon/)
+CARTOON_VEGETABLES = {
+    "carrot", "broccoli", "corn", "eggplant", "tomato",
+    "cucumber", "potato", "onion", "pepper",
+}
+
 VEGETABLE_NAMES = {
     "carrot": "Carrot", "broccoli": "Broccoli", "corn": "Corn",
     "eggplant": "Eggplant", "tomato": "Tomato", "cucumber": "Cucumber",
@@ -52,9 +58,10 @@ def make_short_script(veg: str, idx: int) -> Path:
     bg = BG_COLORS[idx % len(BG_COLORS)]
     name = VEGETABLE_NAMES.get(veg, veg.capitalize())
 
+    theme = "vegetables_cartoon" if veg in CARTOON_VEGETABLES else "vegetables"
     script = {
         "video_type": "short_dance",
-        "theme": "vegetables",
+        "theme": theme,
         "duration_minutes": 1,
         "style": "tutitu",
         "scenes": [
@@ -80,10 +87,11 @@ def make_short_script(veg: str, idx: int) -> Path:
 
 def make_meta(veg: str, output_file: Path) -> Path:
     name = VEGETABLE_NAMES.get(veg, veg.capitalize())
+    theme = "vegetables_cartoon" if veg in CARTOON_VEGETABLES else "vegetables"
     meta = {
         "title": TITLES[veg],
         "video_type": "short_dance",
-        "theme": "vegetables",
+        "theme": theme,
         "duration_minutes": 1,
         "is_short": True,
         "tags": [

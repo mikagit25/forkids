@@ -69,7 +69,7 @@ LETTERS = {
     "V": {"word": "VIOLIN",     "audio": "v__violin__v_is_for_violin.mp3",
           "sprite": None,                     "color": "#6A1B9A", "bg": "#EDE7F6"},
     "W": {"word": "WATERMELON", "audio": "w__watermelon__w_is_for_watermelon.mp3",
-          "sprite": "fruits/watermelon.png",      "color": "#2E7D32", "bg": "#E8F5E9"},
+          "sprite": "fruits_cartoon/watermelon.png", "color": "#2E7D32", "bg": "#E8F5E9"},
     "X": {"word": "XYLOPHONE",  "audio": "x__xylophone__x_is_for_xylophone.mp3",
           "sprite": None,                     "color": "#C62828", "bg": "#FFEBEE"},
     "Y": {"word": "YAK",        "audio": "y__yak__y_is_for_yak.mp3",
