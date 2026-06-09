@@ -19,7 +19,7 @@ REMOTION  = ROOT / "remotion"
 QUEUE_AR  = ROOT / "output" / "queue_ar"
 
 from arabic_data import (
-    SHAPES_AR, COLORS_AR, COLOR_TAGLINES_AR,
+    SHAPES_AR, SHAPES_AUDIO_AR, COLORS_AR, COLOR_TAGLINES_AR,
     short_color_meta_ar, short_shape_meta_ar,
 )
 
@@ -184,7 +184,7 @@ def gen_shapefloat_ar(force: bool):
                 "mode":        mode,
                 "count":       count,
                 "showLabel":   True,
-                "audioFile":   data["audio"],
+                "audioFile":   SHAPES_AUDIO_AR.get(shape_en, data["audio"]),
                 "musicFile":   music,
                 "speed":       speed,
                 "customLabel": shape_ar,

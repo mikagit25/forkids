@@ -18,6 +18,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { Shape, ShapeName, SHAPE_LABELS } from "./components/Shape";
+import { ArabicFonts } from "./components/ArabicFonts";
 
 export type FloatMode = "lr" | "tb" | "diag" | "float";
 
@@ -128,6 +129,7 @@ export const ShapeFloat: React.FC<ShapeFloatProps> = ({
 
   return (
     <AbsoluteFill style={{ backgroundColor: bgColor, overflow: "hidden" }}>
+      <ArabicFonts />
       {audioFile && (
         <>
           <Audio src={staticFile(`audio/${audioFile}`)} startFrom={Math.round(fps * 1)} />

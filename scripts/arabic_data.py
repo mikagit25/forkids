@@ -15,18 +15,32 @@ SHAPES_AR = {
     "oval":     "بيضاوي",
 }
 
-# ── Colors ────────────────────────────────────────────────────────────────────
-COLORS_AR = {
-    "red":    {"name": "أحمر",    "audio": "red__red__can_you_find_something_red.mp3"},
-    "orange": {"name": "برتقالي", "audio": "orange__orange__can_you_find_something_orange.mp3"},
-    "yellow": {"name": "أصفر",    "audio": "yellow__yellow__can_you_find_something_yellow.mp3"},
-    "green":  {"name": "أخضر",    "audio": "green__green__can_you_find_something_green.mp3"},
-    "blue":   {"name": "أزرق",    "audio": "blue__blue__can_you_find_something_blue.mp3"},
-    "purple": {"name": "بنفسجي",  "audio": "purple__purple__can_you_find_something_purple.mp3"},
-    "pink":   {"name": "وردي",    "audio": "pink__pink__can_you_find_something_pink.mp3"},
+# Arabic TTS audio for shapes (-15% speed, ar-SA-ZariyahNeural)
+SHAPES_AUDIO_AR = {
+    "circle":   "ar/ar_circle__dairah__this_is_a_circle.mp3",
+    "square":   "ar/ar_square__murabba__this_is_a_square.mp3",
+    "triangle": "ar/ar_triangle__muthalath__this_is_a_triangle.mp3",
+    "star":     "ar/ar_star__najma__this_is_a_star.mp3",
+    "diamond":  "ar/ar_diamond__muaayan__this_is_a_diamond.mp3",
+    "heart":    "ar/ar_heart__qalb__this_is_a_heart.mp3",
+    "hexagon":  "ar/ar_hexagon__musaddas__this_is_a_hexagon.mp3",
+    "oval":     "ar/ar_oval__baydawi__this_is_an_oval.mp3",
 }
 
-# Color taglines (no Arabic TTS yet — we reuse English audio, show Arabic text only)
+# ── Colors ────────────────────────────────────────────────────────────────────
+# audioFile paths are relative to remotion/public/audio/ (for Remotion)
+# Arabic TTS generated at -15% speed via ar-SA-ZariyahNeural
+COLORS_AR = {
+    "red":    {"name": "أحمر",    "audio": "ar/ar_red__احمر__هل_يمكنك_ايجاد_شيء_احمر.mp3"},
+    "orange": {"name": "برتقالي", "audio": "ar/ar_orange__برتقالي__هل_يمكنك_ايجاد_شيء_برتقالي.mp3"},
+    "yellow": {"name": "أصفر",    "audio": "ar/ar_yellow__اصفر__هل_يمكنك_ايجاد_شيء_اصفر.mp3"},
+    "green":  {"name": "أخضر",    "audio": "ar/ar_green__اخضر__هل_يمكنك_ايجاد_شيء_اخضر.mp3"},
+    "blue":   {"name": "أزرق",    "audio": "ar/ar_blue__ازرق__هل_يمكنك_ايجاد_شيء_ازرق.mp3"},
+    "purple": {"name": "بنفسجي",  "audio": "ar/ar_purple__بنفسجي__هل_يمكنك_ايجاد_شيء_بنفسجي.mp3"},
+    "pink":   {"name": "وردي",    "audio": "ar/ar_pink__وردي__هل_يمكنك_ايجاد_شيء_وردي.mp3"},
+}
+
+# Color taglines shown in video (Arabic text + Arabic TTS audio above)
 COLOR_TAGLINES_AR = {
     "red":    "هل يمكنك إيجاد شيء أحمر؟",
     "orange": "هل يمكنك إيجاد شيء برتقالي؟",

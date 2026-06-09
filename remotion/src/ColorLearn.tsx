@@ -20,6 +20,7 @@ import {
   useVideoConfig,
 } from "remotion";
 import { Shape, ShapeName } from "./components/Shape";
+import { ArabicFonts } from "./components/ArabicFonts";
 
 export interface ColorLearnProps {
   colorName: string;          // "RED" or "أحمر"
@@ -197,6 +198,7 @@ export const ColorLearn: React.FC<ColorLearnProps> = ({
 
   return (
     <AbsoluteFill style={{ backgroundColor: bgColor, overflow: "hidden" }}>
+      <ArabicFonts />
       <Audio src={staticFile(`audio/${audioFile}`)} startFrom={Math.round(fps * 1)} />
       <Audio src={staticFile(`audio/${audioFile}`)} startFrom={Math.round(fps * 20)} />
       <Audio src={staticFile(`audio/${audioFile}`)} startFrom={Math.round(fps * 39)} />
