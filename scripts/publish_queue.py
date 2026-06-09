@@ -153,8 +153,9 @@ def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
     return result.returncode == 0
 
 
-SHORT_PREFIXES = ("short_",)
-LONG_PREFIXES  = ("dance_", "compilation_", "abc_", "numbers_", "colors_", "counting_")
+SHORT_PREFIXES = ("short_", "ar_short_")
+LONG_PREFIXES  = ("dance_", "compilation_", "abc_", "numbers_", "colors_", "counting_",
+                  "ar_dance_", "ar_counting_", "ar_colors_")
 
 
 def is_short(path: Path) -> bool:

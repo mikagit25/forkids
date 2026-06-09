@@ -54,18 +54,24 @@ def load_config() -> dict:
 # ── Asset loaders ──────────────────────────────────────────────────────────────
 
 def _make_bounce_frames(img: Image.Image, n_frames: int = 30) -> List[Image.Image]:
-    """Synthesize bounce + squish animation frames from a single static sprite."""
+    """Synthesize bounce + squash-and-stretch frames from a single static sprite."""
     frames = []
     w, h = img.size
     for i in range(n_frames):
         t = i / n_frames
-        # Bounce: goes up and comes back (sine arch)
-        bounce = abs(math.sin(math.pi * t))
-        # Squish on landing, stretch at peak
-        sy = 1.0 + 0.12 * bounce          # taller at peak
-        sx = 1.0 - 0.08 * bounce          # narrower at peak
-        # Slight tilt left/right
-        tilt = math.sin(2 * math.pi * t) * 8
+        bounce = abs(math.sin(math.pi * t))   # 0=ground, 1=peak
+
+        # Stretch at peak, squash on landing (volume-preserving)
+        sy = 0.84 + 0.31 * bounce             # 0.84 → 1.15 (tall at peak)
+        sx = 1.17 - 0.27 * bounce             # 1.17 → 0.90 (narrow at peak)
+
+        # Extra squash impulse on landing (t near 0 or 1)
+        landing = max(0.0, 1.0 - abs(math.sin(math.pi * t)) / 0.18)
+        sy -= 0.10 * landing
+        sx += 0.08 * landing
+
+        # Slight tilt — leans into the motion
+        tilt = math.sin(2 * math.pi * t) * 10
 
         new_w = max(1, int(w * sx))
         new_h = max(1, int(h * sy))
@@ -73,7 +79,6 @@ def _make_bounce_frames(img: Image.Image, n_frames: int = 30) -> List[Image.Imag
         if abs(tilt) > 0.5:
             frame = frame.rotate(-tilt, expand=True, resample=Image.BILINEAR)
 
-        # Paste onto same-size canvas so all frames have identical dimensions
         canvas = Image.new("RGBA", (w, h), (0, 0, 0, 0))
         ox = (w - frame.width) // 2
         oy = (h - frame.height) // 2
@@ -697,6 +702,25 @@ class SpriteActor:
 
         if abs(angle) > 0.5:
             img = img.rotate(-angle, expand=True, resample=Image.BILINEAR)
+
+        # Drop shadow: drawn at grid_y (ground), squashes as character rises
+        ground_y = self.grid_y
+        height_above = max(0.0, ground_y - y)
+        if height_above > 2:
+            rise_norm = min(1.0, height_above / (self.size * 0.6))
+            sw = max(4, int(final_size * 0.62 * (1.0 - rise_norm * 0.35)))
+            sh = max(2, int(sw * 0.22))
+            sh_alpha = int(80 * alpha * (1.0 - rise_norm * 0.55))
+            shadow = Image.new("RGBA", (sw, sh), (0, 0, 0, 0))
+            sd = ImageDraw.Draw(shadow)
+            for row in range(sh):
+                fade = 1.0 - (row / max(sh - 1, 1)) ** 0.5
+                a_row = int(sh_alpha * fade * 0.9)
+                sd.line([(0, row), (sw, row)], fill=(0, 0, 0, a_row))
+            sx_pos = int(x - sw / 2)
+            sy_pos = int(ground_y + final_size * 0.08)
+            if 0 <= sx_pos < W and 0 <= sy_pos < H:
+                canvas.paste(shadow, (sx_pos, sy_pos), shadow)
 
         if alpha < 0.98:
             r, g, b, a = img.split()

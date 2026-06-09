@@ -4,6 +4,7 @@ import { VocabularyShort, VocabularyShortProps } from "./VocabularyShort";
 import { ShapeFloat, ShapeFloatProps } from "./ShapeFloat";
 import { ShapeDance, ShapeDanceProps } from "./ShapeDance";
 import { ColorLearn, ColorLearnProps } from "./ColorLearn";
+import { DanceSpriteShort, DanceSpriteShortProps } from "./DanceSpriteShort";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const C = Composition as React.ComponentType<any>;
@@ -94,6 +95,24 @@ export const Root: React.FC = () => {
         width={1080}
         height={1920}
         defaultProps={defaultColorProps}
+      />
+
+      {/* DanceSpriteShort — animated character dance (animals/fruits/vegetables) */}
+      <C
+        id="DanceSpriteShort"
+        component={DanceSpriteShort}
+        durationInFrames={FPS * SHORT_DUR}
+        fps={FPS}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          spritePath: "animals/bear.png",
+          characterName: "Bear",
+          audioFile: null,
+          musicFile: "Carefree.mp3",
+          bgColor: "#FFF9E6",
+          accentColor: "#E67E22",
+        } as DanceSpriteShortProps}
       />
 
       {/* Long compositions (30 min, landscape) */}
