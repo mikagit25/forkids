@@ -102,11 +102,12 @@ def calc_publish_at(upload_day: str, upload_time: str) -> str | None:
 
 def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
                  dry_run: bool = False) -> bool:
-    title      = metadata.get("title", mp4_path.stem)
-    theme      = metadata.get("theme", "animals")
-    video_type = metadata.get("video_type", "dance")
-    tags       = metadata.get("tags", [])
-    tags_str   = ",".join(str(t) for t in tags) if tags else ""
+    title       = metadata.get("title", mp4_path.stem)
+    theme       = metadata.get("theme", "animals")
+    video_type  = metadata.get("video_type", "dance")
+    tags        = metadata.get("tags", [])
+    tags_str    = ",".join(str(t) for t in tags) if tags else ""
+    description = metadata.get("description", "")
 
     publish_at = None
     if schedule:
@@ -141,6 +142,9 @@ def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
     if tags_str:
         cmd += ["--tags", tags_str]
 
+    if description:
+        cmd += ["--description", description]
+
     thumb_path = mp4_path.parent / f"thumb_{mp4_path.stem}.png"
     if thumb_path.exists():
         cmd += ["--thumbnail", str(thumb_path)]
@@ -148,6 +152,11 @@ def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
 
     if publish_at:
         cmd += ["--publish-at", publish_at]
+
+    # Tell upload_youtube.py where to write the video ID after upload
+    meta_path = mp4_path.parent / f"meta_{mp4_path.stem}.yaml"
+    if meta_path.exists():
+        cmd += ["--meta-path", str(meta_path)]
 
     result = subprocess.run(cmd, capture_output=False)
     return result.returncode == 0

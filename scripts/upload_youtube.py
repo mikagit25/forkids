@@ -241,6 +241,8 @@ def main():
                         help="ISO 8601 UTC datetime to schedule (e.g. 2026-05-26T09:00:00Z)")
     parser.add_argument("--language", default="en",
                         help="BCP-47 language code: en, ar, etc.")
+    parser.add_argument("--meta-path", default=None,
+                        help="Path to meta YAML sidecar — video ID will be written back after upload")
     args = parser.parse_args()
 
     config   = load_config()
@@ -258,7 +260,7 @@ def main():
     extra_tags = [t.strip() for t in args.tags.split(",")] if args.tags else []
     tags = build_tags(args.video_type, args.theme, extra_tags, meta)
 
-    upload_video(
+    video_id = upload_video(
         file_path=args.file,
         title=title,
         description=description,
@@ -270,6 +272,16 @@ def main():
         config=config,
         language=args.language,
     )
+
+    if args.meta_path and video_id:
+        meta_path = Path(args.meta_path)
+        if meta_path.exists():
+            with open(meta_path) as f:
+                m = yaml.safe_load(f) or {}
+            m["youtube_id"] = video_id
+            with open(meta_path, "w") as f:
+                yaml.dump(m, f, allow_unicode=True, default_flow_style=False)
+            log.info(f"Saved youtube_id={video_id} → {meta_path.name}")
 
 
 # Fix missing import for Optional
