@@ -40,7 +40,7 @@ GEMINI_API_BASE    = "https://generativelanguage.googleapis.com/v1beta/models"
 
 # Together.ai — FLUX.1-schnell, free $25 credit on signup, then ~$0.0003/image
 TOGETHER_IMAGE_URL = "https://api.together.xyz/v1/images/generations"
-TOGETHER_MODEL     = "black-forest-labs/FLUX.1-schnell-Free"  # free tier
+TOGETHER_MODEL     = "black-forest-labs/FLUX.1-schnell"  # serverless, pay-per-use
 
 # ── Prompt templates ──────────────────────────────────────────────────────────
 
@@ -188,34 +188,35 @@ def load_together_key() -> str | None:
 
 
 def together_generate_image(prompt: str, key: str) -> bytes | None:
-    """Generate image via Together.ai FLUX.1-schnell (free tier)."""
-    payload = json.dumps({
-        "model":  TOGETHER_MODEL,
-        "prompt": prompt,
-        "width":  1280,
-        "height": 720,
-        "steps":  4,
-        "n":      1,
-    }).encode()
-    req = urllib.request.Request(
-        TOGETHER_IMAGE_URL, data=payload,
-        headers={"Authorization": f"Bearer {key}",
-                 "Content-Type": "application/json"})
+    """Generate image via Together.ai FLUX.1-schnell."""
     try:
-        with urllib.request.urlopen(req, timeout=60) as r:
-            data = json.loads(r.read())
-            b64 = data["data"][0].get("b64_json")
-            if b64:
-                return base64.b64decode(b64)
-            # Some models return URL instead
-            url = data["data"][0].get("url")
-            if url:
-                with urllib.request.urlopen(url, timeout=30) as img_r:
-                    return img_r.read()
-    except urllib.error.HTTPError as e:
-        body = e.read().decode()
-        err  = json.loads(body).get("error", {})
-        print(f"    Together error {e.code}: {err.get('message','')[:80]}")
+        import requests as _req
+    except ImportError:
+        print("    pip install requests  (needed for Together.ai)")
+        return None
+    try:
+        r = _req.post(
+            TOGETHER_IMAGE_URL,
+            headers={"Authorization": f"Bearer {key}"},
+            json={"model": TOGETHER_MODEL, "prompt": prompt,
+                  "width": 1280, "height": 720, "steps": 4, "n": 1},
+            timeout=90)
+        if r.status_code != 200:
+            try:
+                msg = r.json().get("error", {}).get("message", r.text[:120])
+            except Exception:
+                msg = r.text[:120]
+            print(f"    Together error {r.status_code}: {msg}")
+            return None
+        item = r.json()["data"][0]
+        b64 = item.get("b64_json")
+        if b64:
+            return base64.b64decode(b64)
+        url = item.get("url")
+        if url:
+            img_r = _req.get(url, timeout=30)
+            if img_r.status_code == 200:
+                return img_r.content
     except Exception as e:
         print(f"    Together request failed: {e}")
     return None
@@ -342,13 +343,15 @@ def process_queue(queue_dir: Path, key: str, force: bool,
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate AI thumbnails via Gemini")
+        description="Generate AI thumbnails via Gemini or Together.ai")
     parser.add_argument("--queue",   choices=["en", "ar", "both"], default="both")
     parser.add_argument("--force",   action="store_true")
     parser.add_argument("--dry-run", action="store_true",
                         help="Show prompts without calling API")
     parser.add_argument("--test",    metavar="CHARACTER",
                         help="Test one character (e.g. --test bear)")
+    parser.add_argument("--backend", choices=["gemini", "together", "auto"],
+                        default="auto", help="Force specific backend (default: auto)")
     args = parser.parse_args()
 
     gemini_key   = load_key()
@@ -360,9 +363,21 @@ def main():
         print(f"  Together.ai:    {TOGETHER_KEY_FILE}")
         sys.exit(1)
 
-    # Pick backend: prefer Gemini, fall back to Together
-    key    = gemini_key or together_key
-    backend = "gemini" if gemini_key else "together"
+    # Pick backend
+    if args.backend == "together":
+        if not together_key:
+            print(f"Together.ai key not found: {TOGETHER_KEY_FILE}")
+            sys.exit(1)
+        key, backend = together_key, "together"
+    elif args.backend == "gemini":
+        if not gemini_key:
+            print(f"Gemini key not found: {KEY_FILE}")
+            sys.exit(1)
+        key, backend = gemini_key, "gemini"
+    else:
+        # auto: prefer Gemini, fall back to Together
+        key    = gemini_key or together_key
+        backend = "gemini" if gemini_key else "together"
     print(f"Backend: {backend}  key: {key[:14]}…")
 
     if args.test:
@@ -372,7 +387,10 @@ def main():
         prompt = make_prompt(stem, meta, is_ar=False)
         print(f"Prompt: {prompt}")
         if not args.dry_run:
-            img = gemini_generate_image(prompt, key)
+            if backend == "together":
+                img = together_generate_image(prompt, key)
+            else:
+                img = gemini_generate_image(prompt, key)
             if img:
                 out = ROOT / f"output/test_ai_thumb_{args.test}.png"
                 out.write_bytes(resize_to_720p(img))
