@@ -4,5 +4,8 @@ uploaded/
 logs/
 assets/music/
 assets/sprites/
+assets/spritesheets/
+assets/sprites_gdrive/
+assets/audio/
 __pycache__/
 *.pyc
