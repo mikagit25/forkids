@@ -18,6 +18,7 @@ Content split strategy (6 uploads/day within 10k quota):
 """
 
 import argparse
+import os
 import shutil
 import subprocess
 import sys
@@ -162,6 +163,17 @@ def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
     return result.returncode == 0
 
 
+def _fix_ar_symlinks(old_path: Path, new_path: Path):
+    """After an EN file moves to uploaded/, update any AR-queue symlinks that pointed to it."""
+    for candidate in QUEUE_AR_DIR.glob("*.mp4"):
+        try:
+            if candidate.is_symlink() and Path(os.readlink(str(candidate))).resolve() == old_path.resolve():
+                candidate.unlink()
+                candidate.symlink_to(str(new_path))
+        except Exception:
+            pass
+
+
 SHORT_PREFIXES = ("short_", "ar_short_")
 LONG_PREFIXES  = ("dance_", "compilation_", "abc_", "numbers_", "colors_", "counting_",
                   "ar_dance_", "ar_counting_", "ar_colors_")
@@ -200,7 +212,8 @@ def main():
     UPLOADED_DIR.mkdir(parents=True, exist_ok=True)
 
     all_queue = sorted(
-        [p for p in active_queue_dir.glob("*.mp4") if "test_" not in p.name],
+        [p for p in active_queue_dir.glob("*.mp4")
+         if "test_" not in p.name and p.exists()],   # p.exists() skips broken symlinks
         key=lambda p: p.stat().st_mtime
     )
     queue = filter_queue(all_queue, args.type)
@@ -238,6 +251,8 @@ def main():
                     side = mp4_path.parent / suffix
                     if side.exists():
                         shutil.move(str(side), str(UPLOADED_DIR / suffix))
+                # Fix any AR symlinks that pointed to this file — redirect to uploaded/
+                _fix_ar_symlinks(mp4_path, dest)
                 print(f"  → moved to uploaded/")
             uploaded += 1
         else:
