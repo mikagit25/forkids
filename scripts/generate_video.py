@@ -785,12 +785,30 @@ class TextOverlay:
         self.font      = self._load_font(font_size)
         self.sub_font  = self._load_font(sub_font_size)
 
+    @staticmethod
+    def _has_arabic(text: str) -> bool:
+        return any('؀' <= c <= 'ۿ' for c in text)
+
+    @staticmethod
+    def _shape_arabic(text: str) -> str:
+        try:
+            import arabic_reshaper
+            from bidi.algorithm import get_display
+            return get_display(arabic_reshaper.reshape(text))
+        except ImportError:
+            return text
+
     def _load_font(self, size: int):
-        for path in [
+        candidates = [
             "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
             "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf",
             "/usr/share/fonts/truetype/freefont/FreeSansBold.ttf",
-        ]:
+        ]
+        ar_font = str(Path(__file__).resolve().parent.parent /
+                      "remotion/public/fonts/NotoSansArabic-Bold.ttf")
+        if self._has_arabic(self.text) or self._has_arabic(self.sub_text):
+            candidates = [ar_font] + candidates
+        for path in candidates:
             if Path(path).exists():
                 try:
                     return ImageFont.truetype(path, size)
@@ -832,12 +850,14 @@ class TextOverlay:
                       fill=(r, g, b, int(255 * alpha)))
 
         # Main letter/text - positioned in upper third
-        draw_text_centered(draw, self.text, self.font,
+        main_text = self._shape_arabic(self.text) if self._has_arabic(self.text) else self.text
+        draw_text_centered(draw, main_text, self.font,
                            int(self.H * 0.08), self.color, alpha, bounce)
 
         # Sub text (word) - below center
         if self.sub_text:
-            draw_text_centered(draw, self.sub_text, self.sub_font,
+            sub = self._shape_arabic(self.sub_text) if self._has_arabic(self.sub_text) else self.sub_text
+            draw_text_centered(draw, sub, self.sub_font,
                                int(self.H * 0.78), (255, 255, 200), alpha)
 
 

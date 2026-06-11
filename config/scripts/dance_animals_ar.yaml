@@ -1,0 +1,486 @@
+video_type: dance
+theme: animals
+language: ar
+duration_minutes: 30
+style: tutitu
+scenes:
+- start_sec: 0.0
+  duration: 38
+  choreo: solo_sway
+  n: 1
+  chars:
+  - unicorn
+  entry: zoom_in
+  bg_color: '#FFF9E6'
+  text: وحيد القرن
+  sub_text: هيا نرقص!
+- start_sec: 38.0
+  duration: 38
+  choreo: solo_bounce
+  n: 1
+  chars:
+  - duck
+  entry: zoom_in
+  bg_color: '#E8F5E9'
+  text: بطة
+  sub_text: هيا نرقص!
+- start_sec: 76.0
+  duration: 38
+  choreo: solo_sway
+  n: 1
+  chars:
+  - parrot
+  entry: zoom_in
+  bg_color: '#E3F2FD'
+  text: ببغاء
+  sub_text: هيا نرقص!
+- start_sec: 114.0
+  duration: 38
+  choreo: solo_nod
+  n: 1
+  chars:
+  - dog
+  entry: zoom_in
+  bg_color: '#FCE4EC'
+  text: كلب
+  sub_text: هيا نرقص!
+- start_sec: 152.0
+  duration: 38
+  choreo: solo_sway
+  n: 1
+  chars:
+  - koala
+  entry: zoom_in
+  bg_color: '#F3E5F5'
+  text: كوالا
+  sub_text: هيا نرقص!
+- start_sec: 190.0
+  duration: 38
+  choreo: solo_bounce
+  n: 1
+  chars:
+  - panda
+  entry: zoom_in
+  bg_color: '#E0F7FA'
+  text: باندا
+  sub_text: هيا نرقص!
+- start_sec: 228.0
+  duration: 38
+  choreo: solo_sway
+  n: 1
+  chars:
+  - penguin
+  entry: zoom_in
+  bg_color: '#FFFDE7'
+  text: بطريق
+  sub_text: هيا نرقص!
+- start_sec: 266.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
+  - tiger
+  entry: zoom_in
+  bg_color: '#F9FBE7'
+  text: نمر
+  sub_text: هيا نرقص!
+- start_sec: 304.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - elephant
+  entry: zoom_in
+  bg_color: '#FFF3E0'
+  text: فيل
+  sub_text: هيا نرقص!
+- start_sec: 342.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
+  - owl
+  entry: zoom_in
+  bg_color: '#E8EAF6'
+  text: بومة
+  sub_text: هيا نرقص!
+- start_sec: 380.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - rabbit
+  entry: zoom_in
+  bg_color: '#F1F8E9'
+  text: أرنب
+  sub_text: هيا نرقص!
+- start_sec: 418.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
+  - lion
+  entry: zoom_in
+  bg_color: '#FFF8E1'
+  text: أسد
+  sub_text: هيا نرقص!
+- start_sec: 456.0
+  duration: 38
+  choreo: solo_nod
+  n: 1
+  chars:
+  - cat
+  entry: zoom_in
+  bg_color: '#E0F2F1'
+  text: قطة
+  sub_text: هيا نرقص!
+- start_sec: 494.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - monkey
+  entry: zoom_in
+  bg_color: '#FCE4EC'
+  text: قرد
+  sub_text: هيا نرقص!
+- start_sec: 532.0
+  duration: 38
+  choreo: solo_bounce
+  n: 1
+  chars:
+  - cow
+  entry: zoom_in
+  bg_color: '#E8F5E9'
+  text: بقرة
+  sub_text: هيا نرقص!
+- start_sec: 570.0
+  duration: 38
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - pig
+  entry: zoom_in
+  bg_color: '#EDE7F6'
+  text: خنزير
+  sub_text: هيا نرقص!
+- start_sec: 608.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
+  - fox
+  entry: zoom_in
+  bg_color: '#E1F5FE'
+  text: ثعلب
+  sub_text: هيا نرقص!
+- start_sec: 646.0
+  duration: 38
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - frog
+  entry: zoom_in
+  bg_color: '#F9FBE7'
+  text: ضفدع
+  sub_text: هيا نرقص!
+- start_sec: 684.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
+  - bear
+  entry: zoom_in
+  bg_color: '#FFF9E6'
+  text: دب
+  sub_text: هيا نرقص!
+- start_sec: 722.0
+  duration: 38
+  choreo: solo_spin
+  n: 1
+  chars:
+  - dino
+  entry: zoom_in
+  bg_color: '#E3F2FD'
+  text: ديناصور
+  sub_text: هيا نرقص!
+- start_sec: 760.0
+  duration: 38
+  choreo: solo_bounce
+  n: 1
+  chars:
+  - parrot
+  entry: zoom_in
+  bg_color: '#FFF9E6'
+  text: ببغاء
+  sub_text: هيا نرقص!
+- start_sec: 798.0
+  duration: 38
+  choreo: solo_nod
+  n: 1
+  chars:
+  - frog
+  entry: zoom_in
+  bg_color: '#E8F5E9'
+  text: ضفدع
+  sub_text: هيا نرقص!
+- start_sec: 836.0
+  duration: 38
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - dino
+  entry: zoom_in
+  bg_color: '#E3F2FD'
+  text: ديناصور
+  sub_text: هيا نرقص!
+- start_sec: 874.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
+  - monkey
+  entry: zoom_in
+  bg_color: '#FCE4EC'
+  text: قرد
+  sub_text: هيا نرقص!
+- start_sec: 912.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - lion
+  entry: zoom_in
+  bg_color: '#F3E5F5'
+  text: أسد
+  sub_text: هيا نرقص!
+- start_sec: 950.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
+  - pig
+  entry: zoom_in
+  bg_color: '#E0F7FA'
+  text: خنزير
+  sub_text: هيا نرقص!
+- start_sec: 988.0
+  duration: 38
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - cat
+  entry: zoom_in
+  bg_color: '#FFFDE7'
+  text: قطة
+  sub_text: هيا نرقص!
+- start_sec: 1026.0
+  duration: 38
+  choreo: solo_sway
+  n: 1
+  chars:
+  - owl
+  entry: zoom_in
+  bg_color: '#F9FBE7'
+  text: بومة
+  sub_text: هيا نرقص!
+- start_sec: 1064.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - duck
+  entry: zoom_in
+  bg_color: '#FFF3E0'
+  text: بطة
+  sub_text: هيا نرقص!
+- start_sec: 1102.0
+  duration: 38
+  choreo: solo_spin
+  n: 1
+  chars:
+  - tiger
+  entry: zoom_in
+  bg_color: '#E8EAF6'
+  text: نمر
+  sub_text: هيا نرقص!
+- start_sec: 1140.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
+  - cow
+  entry: zoom_in
+  bg_color: '#F1F8E9'
+  text: بقرة
+  sub_text: هيا نرقص!
+- start_sec: 1178.0
+  duration: 38
+  choreo: solo_spin
+  n: 1
+  chars:
+  - bear
+  entry: zoom_in
+  bg_color: '#FFF8E1'
+  text: دب
+  sub_text: هيا نرقص!
+- start_sec: 1216.0
+  duration: 38
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - dog
+  entry: zoom_in
+  bg_color: '#E0F2F1'
+  text: كلب
+  sub_text: هيا نرقص!
+- start_sec: 1254.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - koala
+  entry: zoom_in
+  bg_color: '#FCE4EC'
+  text: كوالا
+  sub_text: هيا نرقص!
+- start_sec: 1292.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
+  - penguin
+  entry: zoom_in
+  bg_color: '#E8F5E9'
+  text: بطريق
+  sub_text: هيا نرقص!
+- start_sec: 1330.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - fox
+  entry: zoom_in
+  bg_color: '#EDE7F6'
+  text: ثعلب
+  sub_text: هيا نرقص!
+- start_sec: 1368.0
+  duration: 38
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - panda
+  entry: zoom_in
+  bg_color: '#E1F5FE'
+  text: باندا
+  sub_text: هيا نرقص!
+- start_sec: 1406.0
+  duration: 38
+  choreo: solo_spin
+  n: 1
+  chars:
+  - unicorn
+  entry: zoom_in
+  bg_color: '#F9FBE7'
+  text: وحيد القرن
+  sub_text: هيا نرقص!
+- start_sec: 1444.0
+  duration: 38
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - elephant
+  entry: zoom_in
+  bg_color: '#FFF9E6'
+  text: فيل
+  sub_text: هيا نرقص!
+- start_sec: 1482.0
+  duration: 38
+  choreo: solo_bounce
+  n: 1
+  chars:
+  - rabbit
+  entry: zoom_in
+  bg_color: '#E3F2FD'
+  text: أرنب
+  sub_text: هيا نرقص!
+- start_sec: 1520.0
+  duration: 38
+  choreo: solo_nod
+  n: 1
+  chars:
+  - koala
+  entry: zoom_in
+  bg_color: '#FFF9E6'
+  text: كوالا
+  sub_text: هيا نرقص!
+- start_sec: 1558.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
+  - bear
+  entry: zoom_in
+  bg_color: '#E8F5E9'
+  text: دب
+  sub_text: هيا نرقص!
+- start_sec: 1596.0
+  duration: 38
+  choreo: solo_sway
+  n: 1
+  chars:
+  - unicorn
+  entry: zoom_in
+  bg_color: '#E3F2FD'
+  text: وحيد القرن
+  sub_text: هيا نرقص!
+- start_sec: 1634.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
+  - cow
+  entry: zoom_in
+  bg_color: '#FCE4EC'
+  text: بقرة
+  sub_text: هيا نرقص!
+- start_sec: 1672.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
+  - panda
+  entry: zoom_in
+  bg_color: '#F3E5F5'
+  text: باندا
+  sub_text: هيا نرقص!
+- start_sec: 1710.0
+  duration: 38
+  choreo: solo_nod
+  n: 1
+  chars:
+  - duck
+  entry: zoom_in
+  bg_color: '#E0F7FA'
+  text: بطة
+  sub_text: هيا نرقص!
+- start_sec: 1748.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
+  - lion
+  entry: zoom_in
+  bg_color: '#FFFDE7'
+  text: أسد
+  sub_text: هيا نرقص!
+- start_sec: 1786.0
+  duration: 14.0
+  choreo: solo_wave
+  n: 1
+  chars:
+  - dog
+  entry: zoom_in
+  bg_color: '#F9FBE7'
+  text: كلب
+  sub_text: هيا نرقص!
