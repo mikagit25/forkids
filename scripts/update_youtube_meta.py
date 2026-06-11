@@ -37,6 +37,10 @@ def load_meta(path: Path) -> dict:
         return yaml.safe_load(f)
 
 
+class QuotaExceeded(Exception):
+    pass
+
+
 def update_video(youtube, video_id: str, meta: dict, thumb_path: Path | None,
                  dry_run: bool = False) -> bool:
     title       = meta.get("title", "")
@@ -65,6 +69,8 @@ def update_video(youtube, video_id: str, meta: dict, thumb_path: Path | None,
         youtube.videos().update(part="snippet", body=body).execute()
         print("  Snippet updated.")
     except HttpError as e:
+        if "quotaExceeded" in str(e):
+            raise QuotaExceeded("YouTube quota exceeded — try again tomorrow")
         log.error(f"  Snippet update failed: {e}")
         return False
 
@@ -74,7 +80,10 @@ def update_video(youtube, video_id: str, meta: dict, thumb_path: Path | None,
             youtube.thumbnails().set(videoId=video_id, media_body=media).execute()
             print("  Thumbnail updated.")
         except HttpError as e:
-            log.warning(f"  Thumbnail update failed: {e}")
+            if "quotaExceeded" in str(e):
+                log.warning("  Quota exceeded on thumbnail — snippet was saved")
+            else:
+                log.warning(f"  Thumbnail update failed: {e}")
 
     return True
 
@@ -98,6 +107,7 @@ def main():
     parser.add_argument("--video-id", help="Specific YouTube video ID")
     parser.add_argument("--meta",     help="Path to meta YAML file (use with --video-id)")
     parser.add_argument("--dry-run",  action="store_true")
+    parser.add_argument("--force",    action="store_true", help="Re-update even if meta_updated=True")
     args = parser.parse_args()
 
     config  = load_config()
@@ -112,23 +122,40 @@ def main():
 
     if args.all:
         metas = sorted(UPLOADED_DIR.glob("meta_*.yaml"))
-        print(f"Found {len(metas)} meta files in uploaded/")
-        updated = 0
-        skipped = 0
-        for meta_path in metas:
-            stem = meta_path.stem.replace("meta_", "")
-            meta = load_meta(meta_path)
-            video_id = find_video_id(meta, stem)
-            if not video_id:
-                print(f"  SKIP {stem} — no youtube_id in meta")
-                skipped += 1
+        # Only process videos not yet marked as meta_updated
+        pending = []
+        for mp in metas:
+            m = load_meta(mp)
+            if not m.get("youtube_id"):
                 continue
-            thumb = UPLOADED_DIR / f"thumb_{stem}.png"
-            ok = update_video(youtube, video_id, meta, thumb if thumb.exists() else None,
-                              dry_run=args.dry_run)
-            if ok:
-                updated += 1
-        print(f"\nDone: {updated} updated, {skipped} skipped (no video ID)")
+            if m.get("meta_updated") and not args.force:
+                continue
+            pending.append(mp)
+
+        print(f"Found {len(metas)} meta files | {len(pending)} need update")
+        updated = skipped = failed = 0
+        try:
+            for meta_path in pending:
+                stem = meta_path.stem.replace("meta_", "")
+                meta = load_meta(meta_path)
+                video_id = meta["youtube_id"]
+                thumb = UPLOADED_DIR / f"thumb_{stem}.png"
+                ok = update_video(youtube, video_id, meta,
+                                  thumb if thumb.exists() else None,
+                                  dry_run=args.dry_run)
+                if ok:
+                    if not args.dry_run:
+                        meta["meta_updated"] = True
+                        with open(meta_path, "w") as f:
+                            yaml.dump(meta, f, allow_unicode=True, default_flow_style=False)
+                    updated += 1
+                else:
+                    failed += 1
+        except QuotaExceeded as e:
+            print(f"\n⚠️  {e}")
+            print(f"  Completed {updated} before quota ran out.")
+            print(f"  Remaining: {len(pending) - updated - failed} — run again tomorrow.")
+        print(f"\nDone: {updated} updated, {failed} failed, {skipped} skipped")
         return
 
     parser.print_help()
