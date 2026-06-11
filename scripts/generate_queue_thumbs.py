@@ -112,6 +112,25 @@ def _build_character_map():
 _build_character_map()
 
 
+def clean_title_for_display(title: str, is_ar: bool = False) -> str:
+    """Strip emojis, channel suffix, and shorten long pipe-separated titles."""
+    t = re.sub(r'#\S+', '', title)
+    # Remove channel name suffix wherever it appears
+    for suffix in ["| هابي بير كيدز", "| Happy Bear Kids", "هابي بير كيدز", "Happy Bear Kids"]:
+        t = t.replace(suffix, "")
+    # Strip characters outside Basic Latin, Latin Extended, Arabic — catches all emoji
+    t = re.sub(r'[^\x00-\u024F\u0600-\u06FF\s\d|\-!?.,:()\ \[\]]+', ' ', t)
+    # Clean leading/trailing pipes and collapse whitespace
+    t = re.sub(r'^\s*\|\s*', '', t)
+    t = re.sub(r'\s*\|\s*$', '', t)
+    t = re.sub(r'\s{2,}', ' ', t).strip()
+    # Shorten titles with 3+ pipe sections — keep first 2 meaningful parts
+    parts = [p.strip() for p in t.split('|') if p.strip()]
+    if len(parts) >= 3:
+        t = ' | '.join(parts[:2])
+    return t
+
+
 def load_font(size: int):
     for p in [
         "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
@@ -258,7 +277,7 @@ def theme_sprites(theme: str, exclude: str = "", count: int = 5) -> list[Path]:
 
 def draw_title_band(img: Image.Image, title: str, is_ar=False, alpha=200) -> Image.Image:
     """Bottom dark band with title text."""
-    clean = re.sub(r'#\S+', '', title).strip()
+    clean = title  # already cleaned by clean_title_for_display
     draw = ImageDraw.Draw(img)
     font = load_arabic_font(60) if is_ar else load_font(64)
     words = clean.split()
@@ -292,7 +311,7 @@ def draw_title_band(img: Image.Image, title: str, is_ar=False, alpha=200) -> Ima
 
 def draw_title_top(img: Image.Image, title: str, pal: dict, is_ar=False) -> Image.Image:
     """Colorful top badge with title."""
-    clean = re.sub(r'#\S+', '', title).strip()
+    clean = title  # already cleaned by clean_title_for_display
     draw = ImageDraw.Draw(img)
     font = load_arabic_font(56) if is_ar else load_font(60)
     lines, cur = [], []
@@ -374,7 +393,7 @@ def layout_hero_left(sprite_path: Path, title: str, pal: dict,
     x_char = 60
     img.paste(sp, (x_char, H // 2 - sp.height // 2 - 30), sp)
     # Title text on right
-    clean = re.sub(r'#\S+', '', title).strip()
+    clean = title  # already cleaned by clean_title_for_display
     draw = ImageDraw.Draw(img)
     font = load_arabic_font(62) if is_ar else load_font(68)
     right_x = 560
@@ -480,10 +499,10 @@ def pick_layout(seed: int) -> str:
 # ── Main thumbnail builder ────────────────────────────────────────────────────
 
 def make_thumbnail(stem: str, meta: dict, seed: int = 0) -> Image.Image:
-    title   = re.sub(r'#\S+', '', meta.get("title", stem)).strip()
-    vtype   = meta.get("video_type", "")
-    theme   = meta.get("theme", "animals")
-    is_ar   = meta.get("language", "en") == "ar"
+    is_ar    = meta.get("language", "en") == "ar"
+    title    = clean_title_for_display(meta.get("title", stem), is_ar=is_ar)
+    vtype    = meta.get("video_type", "")
+    theme    = meta.get("theme", "animals")
     is_short = meta.get("is_short", False)
 
     # Normalise stem
@@ -703,9 +722,38 @@ def process_queue(queue_dir: Path, force: bool, label: str):
     print(f"  [{label}] Done: {ok} generated, {skip} skipped, {err} errors")
 
 
+def process_uploaded(force: bool):
+    """Regenerate thumbnails for already-uploaded videos (used by update_youtube_meta.py)."""
+    uploaded_dir = ROOT / "uploaded"
+    mp4s = sorted([p for p in uploaded_dir.glob("*.mp4") if "test_" not in p.name])
+    if not mp4s:
+        print("  No MP4s in uploaded/")
+        return
+    ok = skip = err = 0
+    for i, mp4 in enumerate(mp4s):
+        thumb_path = uploaded_dir / f"thumb_{mp4.stem}.png"
+        if thumb_path.exists() and not force:
+            skip += 1
+            continue
+        meta_path = uploaded_dir / f"meta_{mp4.stem}.yaml"
+        meta = {}
+        if meta_path.exists():
+            with open(meta_path) as f:
+                import yaml as _yaml
+                meta = _yaml.safe_load(f) or {}
+        try:
+            img = make_thumbnail(mp4.stem, meta, seed=i)
+            img.save(str(thumb_path), "PNG", optimize=True)
+            ok += 1
+        except Exception as e:
+            print(f"  ERROR {mp4.name}: {e}")
+            err += 1
+    print(f"  [uploaded] Done: {ok} generated, {skip} skipped, {err} errors")
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--queue", choices=["en", "ar", "both"], default="both")
+    parser.add_argument("--queue", choices=["en", "ar", "both", "uploaded"], default="both")
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
 
@@ -714,6 +762,9 @@ def main():
 
     if args.queue in ("ar", "both"):
         process_queue(ROOT / "output" / "queue_ar", args.force, "AR")
+
+    if args.queue == "uploaded":
+        process_uploaded(args.force)
 
 
 if __name__ == "__main__":
