@@ -28,9 +28,10 @@ from pathlib import Path
 
 import yaml
 
-ROOT     = Path(__file__).resolve().parent.parent
-QUEUE    = ROOT / "output" / "queue"
-QUEUE_AR = ROOT / "output" / "queue_ar"
+ROOT      = Path(__file__).resolve().parent.parent
+QUEUE     = ROOT / "output" / "queue"
+QUEUE_AR  = ROOT / "output" / "queue_ar"
+UPLOADED  = ROOT / "uploaded"
 KEY_FILE        = ROOT / "credentials" / "gemini_api_key.txt"
 TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 
@@ -280,17 +281,29 @@ def resize_to_720p(img_bytes: bytes) -> bytes:
 
 # ── Queue processor ───────────────────────────────────────────────────────────
 
+SHORT_PREFIXES = (
+    "short_", "ar_short_", "ar_counting_", "ar_color_",
+)
+
+
+def is_short(name: str) -> bool:
+    return any(name.startswith(p) for p in SHORT_PREFIXES)
+
+
 def process_queue(queue_dir: Path, key: str, force: bool,
-                  dry_run: bool, label: str, backend: str = "gemini"):
+                  dry_run: bool, label: str, backend: str = "gemini",
+                  long_only: bool = True):
     mp4s = sorted([
         p for p in queue_dir.glob("*.mp4")
-        if "test_" not in p.name and p.exists()
+        if "test_" not in p.name and p.exists() and not p.is_symlink()
     ])
+    if long_only:
+        mp4s = [p for p in mp4s if not is_short(p.name)]
     if not mp4s:
         print(f"  [{label}] Queue empty")
         return
 
-    ok = skip = err = api_fail = 0
+    ok = skip = err = api_fail = consec_fail = 0
 
     for i, mp4 in enumerate(mp4s):
         thumb_path = queue_dir / f"thumb_{mp4.stem}.png"
@@ -324,17 +337,24 @@ def process_queue(queue_dir: Path, key: str, force: bool,
                 thumb_path.write_bytes(final)
                 print(f"    ✓ saved {len(final)//1024}KB")
                 ok += 1
+                consec_fail = 0
             except Exception as e:
                 print(f"    PIL resize error: {e}")
                 err += 1
         else:
             api_fail += 1
-            if api_fail >= 3:
-                print(f"\n  API unavailable — stopping. Use PIL fallback:")
-                print(f"  python3 scripts/generate_queue_thumbs.py --force")
+            consec_fail += 1
+            if consec_fail >= 5:
+                wait = 60
+                print(f"    5 consecutive failures — waiting {wait}s before retry …")
+                time.sleep(wait)
+                consec_fail = 0
+            elif consec_fail >= 10:
+                print(f"\n  API persistently unavailable — stopping.")
                 break
+            continue  # skip sleep on failure, retry sooner
 
-        # Respect free tier rate limit (~10 RPM)
+        # Rate limit: ~10 RPM
         time.sleep(6)
 
     print(f"\n  [{label}] Done: {ok} generated, {skip} skipped, "
@@ -344,14 +364,16 @@ def process_queue(queue_dir: Path, key: str, force: bool,
 def main():
     parser = argparse.ArgumentParser(
         description="Generate AI thumbnails via Gemini or Together.ai")
-    parser.add_argument("--queue",   choices=["en", "ar", "both"], default="both")
+    parser.add_argument("--queue",   choices=["en", "ar", "both", "none"], default="both")
     parser.add_argument("--force",   action="store_true")
     parser.add_argument("--dry-run", action="store_true",
                         help="Show prompts without calling API")
     parser.add_argument("--test",    metavar="CHARACTER",
                         help="Test one character (e.g. --test bear)")
-    parser.add_argument("--backend", choices=["gemini", "together", "auto"],
+    parser.add_argument("--backend",  choices=["gemini", "together", "auto"],
                         default="auto", help="Force specific backend (default: auto)")
+    parser.add_argument("--uploaded", action="store_true",
+                        help="Also process uploaded/ directory (for already-published videos)")
     args = parser.parse_args()
 
     gemini_key   = load_key()
@@ -404,6 +426,9 @@ def main():
 
     if args.queue in ("ar", "both"):
         process_queue(QUEUE_AR, key, args.force, args.dry_run, "AR", backend)
+
+    if args.uploaded:
+        process_queue(UPLOADED, key, args.force, args.dry_run, "UPLOADED", backend)
 
 
 if __name__ == "__main__":

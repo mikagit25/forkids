@@ -16,6 +16,7 @@ Usage:
 import argparse
 import logging
 import sys
+import time
 from pathlib import Path
 
 import yaml
@@ -79,8 +80,12 @@ def update_video(youtube, video_id: str, meta: dict, thumb_path: Path | None,
             media = MediaFileUpload(str(thumb_path), mimetype="image/png")
             youtube.thumbnails().set(videoId=video_id, media_body=media).execute()
             print("  Thumbnail updated.")
+            time.sleep(3)  # avoid uploadRateLimitExceeded
         except HttpError as e:
-            if "quotaExceeded" in str(e):
+            err_str = str(e)
+            if "uploadRateLimitExceeded" in err_str:
+                raise QuotaExceeded("Thumbnail rate limit — stop and retry tomorrow")
+            elif "quotaExceeded" in err_str:
                 log.warning("  Quota exceeded on thumbnail — snippet was saved")
             else:
                 log.warning(f"  Thumbnail update failed: {e}")
@@ -103,11 +108,16 @@ def find_video_id(meta: dict, stem: str) -> str | None:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--all",      action="store_true", help="Update all uploaded videos with meta sidecars")
-    parser.add_argument("--video-id", help="Specific YouTube video ID")
-    parser.add_argument("--meta",     help="Path to meta YAML file (use with --video-id)")
-    parser.add_argument("--dry-run",  action="store_true")
-    parser.add_argument("--force",    action="store_true", help="Re-update even if meta_updated=True")
+    parser.add_argument("--all",       action="store_true", help="Update all uploaded videos with meta sidecars")
+    parser.add_argument("--video-id",  help="Specific YouTube video ID")
+    parser.add_argument("--meta",      help="Path to meta YAML file (use with --video-id)")
+    parser.add_argument("--dry-run",   action="store_true")
+    parser.add_argument("--force",     action="store_true", help="Re-update even if meta_updated=True")
+    parser.add_argument("--limit",     type=int, default=10, help="Max videos to update per run (default 10)")
+    parser.add_argument("--long-only", action="store_true", default=True,
+                        help="Skip shorts (default: True)")
+    parser.add_argument("--include-shorts", action="store_true",
+                        help="Include shorts (overrides --long-only)")
     args = parser.parse_args()
 
     config  = load_config()
@@ -120,11 +130,19 @@ def main():
                      dry_run=args.dry_run)
         return
 
+    short_stems = (
+        "short_", "ar_short_", "ar_counting_", "ar_color_",
+    )
+    long_only = args.long_only and not args.include_shorts
+
     if args.all:
         metas = sorted(UPLOADED_DIR.glob("meta_*.yaml"))
         # Only process videos not yet marked as meta_updated
         pending = []
         for mp in metas:
+            stem = mp.stem.replace("meta_", "")
+            if long_only and any(stem.startswith(p) for p in short_stems):
+                continue
             m = load_meta(mp)
             if not m.get("youtube_id"):
                 continue
@@ -132,7 +150,12 @@ def main():
                 continue
             pending.append(mp)
 
-        print(f"Found {len(metas)} meta files | {len(pending)} need update")
+        # Apply daily limit
+        if len(pending) > args.limit:
+            print(f"Found {len(pending)} pending — limiting to {args.limit} per run")
+            pending = pending[:args.limit]
+
+        print(f"Found {len(metas)} meta files | {len(pending)} to update this run")
         updated = skipped = failed = 0
         try:
             for meta_path in pending:
