@@ -43,37 +43,37 @@ class QuotaExceeded(Exception):
 
 
 def update_video(youtube, video_id: str, meta: dict, thumb_path: Path | None,
-                 dry_run: bool = False) -> bool:
+                 dry_run: bool = False, thumb_only: bool = False) -> bool:
     title       = meta.get("title", "")
     description = meta.get("description", "")
     tags        = meta.get("tags", [])
 
     print(f"\n  Video ID: {video_id}")
     print(f"  Title:    {title[:80]}")
-    print(f"  Desc len: {len(description)} chars")
     print(f"  Thumb:    {thumb_path.name if thumb_path and thumb_path.exists() else 'none'}")
 
     if dry_run:
         print("  [DRY RUN] would update")
         return True
 
-    try:
-        body = {
-            "id": video_id,
-            "snippet": {
-                "title":       title[:100],
-                "description": description[:5000],
-                "tags":        tags[:500],
-                "categoryId":  "27",
-            },
-        }
-        youtube.videos().update(part="snippet", body=body).execute()
-        print("  Snippet updated.")
-    except HttpError as e:
-        if "quotaExceeded" in str(e):
-            raise QuotaExceeded("YouTube quota exceeded — try again tomorrow")
-        log.error(f"  Snippet update failed: {e}")
-        return False
+    if not thumb_only:
+        try:
+            body = {
+                "id": video_id,
+                "snippet": {
+                    "title":       title[:100],
+                    "description": description[:5000],
+                    "tags":        tags[:500],
+                    "categoryId":  "27",
+                },
+            }
+            youtube.videos().update(part="snippet", body=body).execute()
+            print("  Snippet updated.")
+        except HttpError as e:
+            if "quotaExceeded" in str(e):
+                raise QuotaExceeded("YouTube quota exceeded — try again tomorrow")
+            log.error(f"  Snippet update failed: {e}")
+            return False
 
     if thumb_path and thumb_path.exists():
         try:
@@ -118,6 +118,8 @@ def main():
                         help="Skip shorts (default: True)")
     parser.add_argument("--include-shorts", action="store_true",
                         help="Include shorts (overrides --long-only)")
+    parser.add_argument("--thumb-only", action="store_true",
+                        help="Only update thumbnail, skip snippet/description update")
     args = parser.parse_args()
 
     config  = load_config()
@@ -165,7 +167,8 @@ def main():
                 thumb = UPLOADED_DIR / f"thumb_{stem}.png"
                 ok = update_video(youtube, video_id, meta,
                                   thumb if thumb.exists() else None,
-                                  dry_run=args.dry_run)
+                                  dry_run=args.dry_run,
+                                  thumb_only=args.thumb_only)
                 if ok:
                     if not args.dry_run:
                         meta["meta_updated"] = True
