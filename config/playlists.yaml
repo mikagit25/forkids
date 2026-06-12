@@ -76,6 +76,66 @@ playlists:
   video_types:
   - short_shape
   id: PL8oKafGZe1chKLsAVWdGILpx9abRAaUcx
+- key: dance_ar
+  name: 🎵 رقص وموسيقى للأطفال | هابي بير كيدز
+  language: ar
+  description: 'تمتع بـ 30 دقيقة من الرقص والمرح المتواصل مع الحيوانات والفواكه والخضروات!
+    🐻
+
+    رسوم متحركة ملونة مع موسيقى مرحة للأطفال الرضع والصغار.
+
+
+    اشترك لمشاهدة فيديوهات جديدة كل أسبوع! ▶ @HappyBearKids1
+
+
+    #رقص_أطفال #هابي_بير_كيدز #أغاني_أطفال #رسوم_متحركة #أطفال
+
+    '
+  video_types:
+  - dance_ar
+  id: PL8oKafGZe1cjmQ8aykOgEp40toY_yY8qY
+- key: counting_ar
+  name: 🔢 تعلم العد من 1 إلى 10 | هابي بير كيدز
+  language: ar
+  description: 'هيا نعد من 1 إلى 10 مع هابي بير كيدز! 🔢
+
+    فيديوهات تعليمية ممتعة للأطفال لتعلم الأرقام والعد.
+
+
+    #تعلم_العد #أرقام_للأطفال #هابي_بير_كيدز #تعليم_أطفال
+
+    '
+  video_types:
+  - counting_ar
+  id: PL8oKafGZe1ch0sOomMbs5zvajQg_wQALV
+- key: colors_ar
+  name: 🎨 تعلم الألوان | هابي بير كيدز
+  language: ar
+  description: 'تعلم الألوان بالعربية مع هابي بير كيدز! 🌈
+
+    أحمر وأزرق وأخضر وأصفر — تعلم الألوان بطريقة ممتعة.
+
+
+    #تعلم_الألوان #ألوان_للأطفال #هابي_بير_كيدز #تعليم
+
+    '
+  video_types:
+  - colors_ar
+  id: PL8oKafGZe1cjmc3KoArSdHe3PDwFMtiQV
+- key: shapes_ar
+  name: تعلم الأشكال | هابي بير كيدز
+  language: ar
+  description: 'تعلم الأشكال الهندسية بالعربية مع هابي بير كيدز!
+
+    دائرة ومربع ومثلث ونجمة — ارقص وتعلم.
+
+
+    #تعلم_الأشكال #أشكال_للأطفال #هابي_بير_كيدز #تعليم
+
+    '
+  video_types:
+  - shapes_ar
+  id: PL8oKafGZe1cheMpnWOP2NP4U6NkD0hDxu
 - key: shorts
   name: 🐻 Happy Bear Shorts — 60 Second Fun
   description: 'Quick 60-second educational videos for babies and toddlers!

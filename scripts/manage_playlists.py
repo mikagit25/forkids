@@ -9,6 +9,7 @@ Usage:
 """
 
 import argparse
+import json
 import logging
 import pickle
 import sys
@@ -16,6 +17,7 @@ import yaml
 from pathlib import Path
 
 from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
@@ -49,22 +51,42 @@ def save_playlists(playlists: list):
 
 
 def get_youtube_service(config: dict):
-    creds_path = ROOT / config["youtube"]["credentials"]
-    token_path = ROOT / config["youtube"]["token"]
-
-    if not creds_path.exists():
-        raise FileNotFoundError(f"Credentials not found: {creds_path}")
-
+    """Auth: prefer credentials/youtube_token.json (web OAuth), fall back to pickle."""
+    json_path   = ROOT / "credentials" / "youtube_token.json"
+    pickle_path = ROOT / config["youtube"]["token"]
     creds = None
-    if token_path.exists():
-        with open(token_path, "rb") as f:
-            creds = pickle.load(f)
 
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
+    # Try JSON token first (same method as upload_youtube.py)
+    if json_path.exists():
+        try:
+            t = json.loads(json_path.read_text())
+            if t.get("refresh_token"):
+                creds = Credentials(
+                    token=t.get("access_token"),
+                    refresh_token=t["refresh_token"],
+                    token_uri="https://oauth2.googleapis.com/token",
+                    client_id=t.get("client_id"),
+                    client_secret=t.get("client_secret"),
+                )
+                log.info("Using JSON token (web OAuth)")
+        except Exception as e:
+            log.warning(f"JSON token load failed: {e}")
+
+    # Fall back to pickle
+    if creds is None and pickle_path.exists():
+        with open(pickle_path, "rb") as f:
+            creds = pickle.load(f)
+        log.info("Using pickle token (legacy)")
+
+    if creds is None:
+        log.error("No valid token found.")
+        sys.exit(1)
+
+    if not creds.valid:
+        if creds.expired and creds.refresh_token:
             creds.refresh(Request())
         else:
-            log.error("Token expired and cannot be refreshed. Re-run auth_youtube.py.")
+            log.error("Token expired. Re-authenticate.")
             sys.exit(1)
 
     return build("youtube", "v3", credentials=creds)
@@ -110,13 +132,29 @@ def add_video_to_playlist(youtube, playlist_id: str, video_id: str) -> bool:
         return False
 
 
-def add_to_playlists(youtube, video_id: str, video_type: str) -> int:
-    """Add video to all matching playlists. Returns number of playlists updated."""
+def add_to_playlists(youtube, video_id: str, video_type: str,
+                     language: str = "en") -> int:
+    """Add video to matching playlists. AR videos → AR playlists only."""
     playlists = load_playlists()
     count = 0
+
     for pl in playlists:
-        if video_type not in pl.get("video_types", []):
-            continue
+        pl_types = pl.get("video_types", [])
+        pl_lang  = pl.get("language", "en")
+
+        if language == "ar":
+            # AR video: only add to explicitly AR playlists matching {type}_ar
+            if pl_lang != "ar":
+                continue
+            if f"{video_type}_ar" not in pl_types:
+                continue
+        else:
+            # EN video: only add to EN (non-language-tagged) playlists
+            if pl_lang == "ar":
+                continue
+            if video_type not in pl_types:
+                continue
+
         playlist_id = pl.get("id")
         if not playlist_id:
             log.warning(f"Playlist '{pl['key']}' has no ID — run --create-all first")
@@ -154,15 +192,100 @@ def cmd_list(youtube):
     print(f"{'─'*70}\n")
 
 
+CHANNEL_ID = "UCIOerrKr02oTAAk2_oOg0Xg"
+
+# Channel sections: each entry maps to one section on the homepage
+SECTIONS = [
+    {
+        "title": "🇸🇦 بالعربي — Arabic Videos",
+        "playlist_keys": ["dance_ar", "counting_ar", "colors_ar", "shapes_ar"],
+    },
+    {
+        "title": "🇬🇧 English Videos",
+        "playlist_keys": ["dance", "numbers", "colors", "shapes"],
+    },
+]
+
+
+def cmd_create_ar(youtube):
+    """Create only Arabic playlists (those with language: ar)."""
+    playlists = load_playlists()
+    created = 0
+    for pl in playlists:
+        if pl.get("language") != "ar":
+            continue
+        if pl.get("id"):
+            log.info(f"  '{pl['name']}' already exists: {pl['id']}")
+            continue
+        playlist_id = create_playlist(youtube, pl["name"], pl["description"].strip())
+        pl["id"] = playlist_id
+        created += 1
+    save_playlists(playlists)
+    log.info(f"Created {created} Arabic playlists")
+
+
+def cmd_setup_sections(youtube):
+    """Create channel homepage sections grouping EN and AR playlists."""
+    playlists = load_playlists()
+    pl_by_key = {p["key"]: p for p in playlists}
+
+    # List existing sections to avoid duplicates
+    existing = youtube.channelSections().list(
+        part="snippet", channelId=CHANNEL_ID).execute()
+    existing_titles = {s["snippet"].get("title", "") for s in existing.get("items", [])}
+    log.info(f"Existing sections: {existing_titles}")
+
+    for section in SECTIONS:
+        title = section["title"]
+        if title in existing_titles:
+            log.info(f"  Section '{title}' already exists — skipping")
+            continue
+
+        # Collect playlist IDs for this section
+        playlist_ids = []
+        for key in section["playlist_keys"]:
+            pl = pl_by_key.get(key)
+            if pl and pl.get("id"):
+                playlist_ids.append(pl["id"])
+            else:
+                log.warning(f"  Playlist '{key}' has no ID — run --create-all/--create-ar first")
+
+        if not playlist_ids:
+            log.warning(f"  No valid playlists for section '{title}' — skipping")
+            continue
+
+        body = {
+            "snippet": {
+                "channelId": CHANNEL_ID,
+                "title":     title,
+                "type":      "multiplePlaylists",
+                "style":     "verticalList",
+            },
+            "contentDetails": {
+                "playlists": playlist_ids,
+            },
+        }
+        try:
+            resp = youtube.channelSections().insert(
+                part="snippet,contentDetails", body=body).execute()
+            log.info(f"  Created section '{title}' (id={resp['id']}) with {len(playlist_ids)} playlists")
+        except HttpError as e:
+            log.error(f"  Failed to create section '{title}': {e}")
+
+    log.info("Channel sections setup complete.")
+
+
 def main():
-    parser = argparse.ArgumentParser(description="Manage YouTube playlists")
-    parser.add_argument("--create-all",  action="store_true", help="Create all playlists")
-    parser.add_argument("--list",        action="store_true", help="Show all playlists")
-    parser.add_argument("--add",         metavar="VIDEO_ID",  help="Add video to playlists")
-    parser.add_argument("--video-type",  default="dance",     help="Video type for --add")
+    parser = argparse.ArgumentParser(description="Manage YouTube playlists and channel sections")
+    parser.add_argument("--create-all",     action="store_true", help="Create all playlists")
+    parser.add_argument("--create-ar",      action="store_true", help="Create Arabic playlists only")
+    parser.add_argument("--setup-sections", action="store_true", help="Create EN/AR sections on channel homepage")
+    parser.add_argument("--list",           action="store_true", help="Show all playlists")
+    parser.add_argument("--add",            metavar="VIDEO_ID",  help="Add video to playlists")
+    parser.add_argument("--video-type",     default="dance",     help="Video type for --add")
     args = parser.parse_args()
 
-    if not any([args.create_all, args.list, args.add]):
+    if not any([args.create_all, args.create_ar, args.setup_sections, args.list, args.add]):
         parser.print_help()
         return
 
@@ -171,6 +294,10 @@ def main():
 
     if args.create_all:
         cmd_create_all(youtube)
+    if args.create_ar:
+        cmd_create_ar(youtube)
+    if args.setup_sections:
+        cmd_setup_sections(youtube)
     if args.list:
         cmd_list(youtube)
     if args.add:

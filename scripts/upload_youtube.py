@@ -216,7 +216,7 @@ def upload_video(
     try:
         sys.path.insert(0, str(Path(__file__).parent))
         from manage_playlists import add_to_playlists
-        n = add_to_playlists(youtube, video_id, video_type)
+        n = add_to_playlists(youtube, video_id, video_type, language=language)
         if n:
             log.info(f"Added to {n} playlist(s).")
     except Exception as exc:
