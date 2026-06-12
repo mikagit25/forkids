@@ -283,6 +283,7 @@ def main():
     parser.add_argument("--list",           action="store_true", help="Show all playlists")
     parser.add_argument("--add",            metavar="VIDEO_ID",  help="Add video to playlists")
     parser.add_argument("--video-type",     default="dance",     help="Video type for --add")
+    parser.add_argument("--language",       default="en",        help="Language for --add (en or ar)")
     args = parser.parse_args()
 
     if not any([args.create_all, args.create_ar, args.setup_sections, args.list, args.add]):
@@ -301,7 +302,7 @@ def main():
     if args.list:
         cmd_list(youtube)
     if args.add:
-        n = add_to_playlists(youtube, args.add, args.video_type)
+        n = add_to_playlists(youtube, args.add, args.video_type, language=args.language)
         print(f"Added to {n} playlist(s).")
 
 

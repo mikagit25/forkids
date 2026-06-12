@@ -282,7 +282,7 @@ def resize_to_720p(img_bytes: bytes) -> bytes:
 # ── Queue processor ───────────────────────────────────────────────────────────
 
 SHORT_PREFIXES = (
-    "short_", "ar_short_", "ar_counting_", "ar_color_",
+    "short_", "ar_short_",
 )
 
 
