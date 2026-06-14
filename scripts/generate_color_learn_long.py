@@ -18,10 +18,11 @@ import yaml
 from datetime import datetime
 from pathlib import Path
 
-ROOT       = Path(__file__).resolve().parent.parent
-DATA_PATH  = ROOT / "config" / "color_learn_data.yaml"
-QUEUE_DIR  = ROOT / "output" / "queue"
-REMOTION   = ROOT / "remotion"
+ROOT         = Path(__file__).resolve().parent.parent
+DATA_PATH    = ROOT / "config" / "color_learn_data.yaml"
+QUEUE_DIR    = ROOT / "output" / "queue"
+QUEUE_AR_DIR = ROOT / "output" / "queue_ar"
+REMOTION     = ROOT / "remotion"
 
 MUSIC_TRACKS = [
     "Happy Happy Game Show.mp3",
@@ -147,7 +148,9 @@ def render_video(color: dict, lang: str, force: bool = False, dry_run: bool = Fa
     key      = color["key"]
     date_str = datetime.now().strftime("%Y%m%d")
     fname    = f"color_learn_{key}_{lang}_{date_str}.mp4"
-    out_path = QUEUE_DIR / fname
+    # AR videos go to queue_ar/ so cron publishes them on the AR schedule
+    dest_dir = QUEUE_AR_DIR if lang == "ar" else QUEUE_DIR
+    out_path = dest_dir / fname
 
     if out_path.exists() and not force:
         size_mb = out_path.stat().st_size / 1024 / 1024
@@ -170,7 +173,7 @@ def render_video(color: dict, lang: str, force: bool = False, dry_run: bool = Fa
         make_meta(color, lang, out_path)
         return True
 
-    QUEUE_DIR.mkdir(parents=True, exist_ok=True)
+    dest_dir.mkdir(parents=True, exist_ok=True)
 
     cmd = [
         "npx", "remotion", "render",
