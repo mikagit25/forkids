@@ -4,6 +4,7 @@ import { VocabularyShort, VocabularyShortProps } from "./VocabularyShort";
 import { ShapeFloat, ShapeFloatProps } from "./ShapeFloat";
 import { ShapeDance, ShapeDanceProps } from "./ShapeDance";
 import { ColorLearn, ColorLearnProps } from "./ColorLearn";
+import { ColorLearnLong, ColorLearnLongProps } from "./ColorLearnLong";
 import { DanceSpriteShort, DanceSpriteShortProps } from "./DanceSpriteShort";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -113,6 +114,30 @@ export const Root: React.FC = () => {
           bgColor: "#FFF9E6",
           accentColor: "#E67E22",
         } as DanceSpriteShortProps}
+      />
+
+      {/* ColorLearnLong — 20-min "One Concept Deep" landscape */}
+      <C
+        id="ColorLearnLong"
+        component={ColorLearnLong}
+        durationInFrames={FPS * 1200}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          colorName: "RED",
+          colorHex: "#E53935",
+          bgColor: "#FFF5F5",
+          rtl: false,
+          lang: "en",
+          colorKey: "red",
+          musicFile: "Happy Happy Game Show.mp3",
+          objects: [
+            { name: "strawberry", nameLocalized: "Strawberry", spritePath: "fruits/strawberry.png" },
+            { name: "apple",      nameLocalized: "Apple",      spritePath: "fruits/apple.png" },
+            { name: "tomato",     nameLocalized: "Tomato",     spritePath: "vegetables/tomato.png" },
+          ],
+        } as ColorLearnLongProps}
       />
 
       {/* Long compositions (30 min, landscape) */}

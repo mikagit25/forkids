@@ -1,0 +1,174 @@
+# Color Learn Long — data for 9 colors × 2 languages
+# objects: exactly 3 per color, each with sprite path and translations
+
+colors:
+  - key: red
+    hex: "#E53935"
+    bg: "#FFF5F5"
+    name_en: "RED"
+    name_ar: "أحمر"
+    objects:
+      - key: strawberry
+        name_en: "strawberry"
+        name_ar: "فراولة"
+        sprite: "fruits/strawberry.png"
+      - key: apple
+        name_en: "apple"
+        name_ar: "تفاحة"
+        sprite: "fruits/apple.png"
+      - key: tomato
+        name_en: "tomato"
+        name_ar: "طماطم"
+        sprite: "vegetables/tomato.png"
+
+  - key: blue
+    hex: "#1E88E5"
+    bg: "#E3F2FD"
+    name_en: "BLUE"
+    name_ar: "أزرق"
+    objects:
+      - key: blueberry
+        name_en: "blueberry"
+        name_ar: "توت أزرق"
+        sprite: "objects/blueberry.png"       # AI generated
+      - key: butterfly
+        name_en: "butterfly"
+        name_ar: "فراشة"
+        sprite: "objects/blue_butterfly.png"  # AI generated
+      - key: whale
+        name_en: "whale"
+        name_ar: "حوت"
+        sprite: "objects/blue_whale.png"      # AI generated
+
+  - key: yellow
+    hex: "#F9A825"
+    bg: "#FFFDE7"
+    name_en: "YELLOW"
+    name_ar: "أصفر"
+    objects:
+      - key: banana
+        name_en: "banana"
+        name_ar: "موزة"
+        sprite: "fruits/banana.png"
+      - key: corn
+        name_en: "corn"
+        name_ar: "ذرة"
+        sprite: "vegetables/corn.png"
+      - key: lemon
+        name_en: "lemon"
+        name_ar: "ليمون"
+        sprite: "fruits/lemon.png"
+
+  - key: green
+    hex: "#43A047"
+    bg: "#E8F5E9"
+    name_en: "GREEN"
+    name_ar: "أخضر"
+    objects:
+      - key: frog
+        name_en: "frog"
+        name_ar: "ضفدع"
+        sprite: "animals/frog.png"
+      - key: broccoli
+        name_en: "broccoli"
+        name_ar: "بروكلي"
+        sprite: "vegetables/broccoli.png"
+      - key: cucumber
+        name_en: "cucumber"
+        name_ar: "خيار"
+        sprite: "vegetables/cucumber.png"
+
+  - key: orange
+    hex: "#FB8C00"
+    bg: "#FFF3E0"
+    name_en: "ORANGE"
+    name_ar: "برتقالي"
+    objects:
+      - key: orange
+        name_en: "orange"
+        name_ar: "برتقالة"
+        sprite: "fruits/orange.png"
+      - key: carrot
+        name_en: "carrot"
+        name_ar: "جزرة"
+        sprite: "vegetables/carrot.png"
+      - key: pumpkin
+        name_en: "pumpkin"
+        name_ar: "قرعة"
+        sprite: "objects/pumpkin.png"         # AI generated
+
+  - key: purple
+    hex: "#8E24AA"
+    bg: "#F3E5F5"
+    name_en: "PURPLE"
+    name_ar: "بنفسجي"
+    objects:
+      - key: grapes
+        name_en: "grapes"
+        name_ar: "عنب"
+        sprite: "fruits/grapes.png"
+      - key: eggplant
+        name_en: "eggplant"
+        name_ar: "باذنجان"
+        sprite: "vegetables/eggplant.png"
+      - key: plum
+        name_en: "plum"
+        name_ar: "برقوق"
+        sprite: "objects/plum.png"            # AI generated
+
+  - key: pink
+    hex: "#E91E8C"
+    bg: "#FCE4EC"
+    name_en: "PINK"
+    name_ar: "وردي"
+    objects:
+      - key: pig
+        name_en: "pig"
+        name_ar: "خنزير"
+        sprite: "animals/pig.png"
+      - key: peach
+        name_en: "peach"
+        name_ar: "خوخ"
+        sprite: "fruits/peach.png"
+      - key: flamingo
+        name_en: "flamingo"
+        name_ar: "فلامنغو"
+        sprite: "objects/flamingo.png"        # AI generated
+
+  - key: white
+    hex: "#BDBDBD"
+    bg: "#FAFAFA"
+    name_en: "WHITE"
+    name_ar: "أبيض"
+    objects:
+      - key: rabbit
+        name_en: "rabbit"
+        name_ar: "أرنب"
+        sprite: "animals/rabbit.png"
+      - key: cloud
+        name_en: "cloud"
+        name_ar: "سحابة"
+        sprite: "objects/cloud.png"           # AI generated
+      - key: polar_bear
+        name_en: "polar bear"
+        name_ar: "دب قطبي"
+        sprite: "objects/polar_bear.png"      # AI generated
+
+  - key: black
+    hex: "#424242"
+    bg: "#F5F5F5"
+    name_en: "BLACK"
+    name_ar: "أسود"
+    objects:
+      - key: penguin
+        name_en: "penguin"
+        name_ar: "بطريق"
+        sprite: "animals/penguin.png"
+      - key: cat
+        name_en: "cat"
+        name_ar: "قطة"
+        sprite: "animals/cat.png"
+      - key: crow
+        name_en: "crow"
+        name_ar: "غراب"
+        sprite: "objects/crow.png"            # AI generated
