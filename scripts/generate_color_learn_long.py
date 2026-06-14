@@ -180,6 +180,7 @@ def render_video(color: dict, lang: str, force: bool = False, dry_run: bool = Fa
         "src/index.ts", "ColorLearnLong",
         str(out_path),
         "--props", props_json,
+        "--concurrency", "1",
         "--log", "error",
     ]
 
@@ -187,6 +188,7 @@ def render_video(color: dict, lang: str, force: bool = False, dry_run: bool = Fa
     result = subprocess.run(
         cmd, cwd=str(REMOTION),
         capture_output=True, text=True,
+        timeout=7200,  # 2h max per video
     )
 
     if result.returncode == 0 and out_path.exists():
