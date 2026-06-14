@@ -5,6 +5,7 @@ import { ShapeFloat, ShapeFloatProps } from "./ShapeFloat";
 import { ShapeDance, ShapeDanceProps } from "./ShapeDance";
 import { ColorLearn, ColorLearnProps } from "./ColorLearn";
 import { ColorLearnLong, ColorLearnLongProps } from "./ColorLearnLong";
+import { NumberLearnLong, NumberLearnLongProps } from "./NumberLearnLong";
 import { DanceSpriteShort, DanceSpriteShortProps } from "./DanceSpriteShort";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -138,6 +139,32 @@ export const Root: React.FC = () => {
             { name: "tomato",     nameLocalized: "Tomato",     spritePath: "vegetables/tomato.png" },
           ],
         } as ColorLearnLongProps}
+      />
+
+      {/* NumberLearnLong — 20-min "One Concept Deep" number 1-10 */}
+      <C
+        id="NumberLearnLong"
+        component={NumberLearnLong}
+        durationInFrames={FPS * 1200}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          numberValue: 3,
+          numberName: "THREE",
+          numberDigit: "3",
+          accentColor: "#43A047",
+          bgColor: "#E8F5E9",
+          rtl: false,
+          lang: "en",
+          numberKey: "three",
+          musicFile: "Happy Happy Game Show.mp3",
+          objects: [
+            { name: "apple",  nameLocalized: "Apple",  pluralLocalized: "Apples",  spritePath: "fruits/apple.png" },
+            { name: "star",   nameLocalized: "Star",   pluralLocalized: "Stars",   spritePath: "objects/star.png" },
+            { name: "duck",   nameLocalized: "Duck",   pluralLocalized: "Ducks",   spritePath: "animals/duck.png" },
+          ],
+        } as NumberLearnLongProps}
       />
 
       {/* Long compositions (30 min, landscape) */}
