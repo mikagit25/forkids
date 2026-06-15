@@ -5,11 +5,11 @@ GitHub: https://github.com/mikagit25/forkids
 
 ## YouTube каналы
 
-| Канал | Язык | Хэндл | Channel ID | Токен | Очередь |
-|-------|------|--------|------------|-------|---------|
-| **Happy Bear Kids** | EN | @HappyBearKids1 | UCIOerrKr02oTAAk2_oOg0Xg | `credentials/youtube_token.json` | `output/queue/` |
-| **Happy Bear Kids العربية** | AR | @happybearkidsar | UCTAAc0Ih4PpwY9agi2tT8Gg | `credentials/youtube_token_ar.json` | `output/queue_ar/` |
-| **Happy Bear Kids Indonesia** | ID | @happybearkidsin | UCOozTZwjXgkfYiTAzSzePAA | `credentials/youtube_token_id.json` | `output/queue_id/` |
+| Канал | Язык | Хэндл | Channel ID | Google аккаунт | Токен | Очередь |
+|-------|------|--------|------------|----------------|-------|---------|
+| **Happy Bear Kids** | EN | @HappyBearKids1 | UCIOerrKr02oTAAk2_oOg0Xg | lapidainvest@gmail.com | `credentials/youtube_token.json` | `output/queue/` |
+| **Happy Bear Kids العربية** | AR | @happybearkidsar | UCTAAc0Ih4PpwY9agi2tT8Gg | kidsar6945071@gmail.com | `credentials/youtube_token_ar.json` | `output/queue_ar/` |
+| **Happy Bear Kids Indonesia** | ID | @happybearkidsin | UCOozTZwjXgkfYiTAzSzePAA | kidain6945071@gmail.com | `credentials/youtube_token_id.json` | `output/queue_id/` |
 
 - GCP проект: `kids-chanel-497308` (588442208504) — отдельный от MedMind
 
