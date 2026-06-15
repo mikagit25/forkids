@@ -97,6 +97,8 @@ def show_channel(youtube, channel: str):
         s  = item["snippet"]
         st = item["statistics"]
         bs = item.get("brandingSettings", {}).get("channel", {})
+        # description lives in brandingSettings.channel (writable) and snippet (read-only copy)
+        desc = bs.get("description") or s.get("description", "—")
         print(f"\n{'='*60}")
         print(f"  Channel [{channel.upper()}]: {s['title']}")
         print(f"  ID:       {item['id']}")
@@ -104,7 +106,7 @@ def show_channel(youtube, channel: str):
         print(f"  Videos:   {st.get('videoCount', '?')}")
         print(f"  Country:  {bs.get('country', '—')}")
         print(f"  Keywords: {bs.get('keywords', '—')[:80]}")
-        print(f"  Desc:     {s.get('description','—')[:120]}...")
+        print(f"  Desc:     {desc[:120]}...")
         print(f"{'='*60}\n")
 
 
