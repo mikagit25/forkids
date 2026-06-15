@@ -8,36 +8,88 @@ Sets:
   - Profile picture (icon)         (cannot be set via API — must be done manually)
 
 Usage:
-    python3 setup_channel.py --all
-    python3 setup_channel.py --description
-    python3 setup_channel.py --banner
-    python3 setup_channel.py --show        # show current channel info
+    python3 scripts/setup_channel.py --channel en
+    python3 scripts/setup_channel.py --channel ar
+    python3 scripts/setup_channel.py --channel id
+    python3 scripts/setup_channel.py --channel ar --description  # description only
+    python3 scripts/setup_channel.py --channel ar --banner       # banner only
+    python3 scripts/setup_channel.py --channel ar --show         # show current info
+    python3 scripts/setup_channel.py --all                       # all 3 channels
 """
 
 import argparse
 import pickle
+import subprocess
 import sys
 import yaml
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-sys.path.insert(0, str(ROOT / "scripts"))
-from upload_youtube import get_youtube_service, load_config
+CHANNEL_META = {
+    "en": ROOT / "config" / "channel_metadata.yaml",
+    "ar": ROOT / "config" / "channel_metadata_ar.yaml",
+    "id": ROOT / "config" / "channel_metadata_id.yaml",
+}
+
+CHANNEL_CREDS = {
+    "en": ROOT / "credentials" / "youtube_token.json",
+    "ar": ROOT / "credentials" / "youtube_token_ar.json",
+    "id": ROOT / "credentials" / "youtube_token_id.json",
+}
+
+CHANNEL_BANNER = {
+    "en": ROOT / "output" / "channel" / "banner.png",
+    "ar": ROOT / "output" / "channel" / "banner_ar.png",
+    "id": ROOT / "output" / "channel" / "banner_id.png",
+}
 
 from googleapiclient.http import MediaFileUpload
 
-METADATA_PATH = ROOT / "config" / "channel_metadata.yaml"
-BANNER_PATH   = ROOT / "output" / "channel" / "banner.png"
-ICON_PATH     = ROOT / "output" / "channel" / "icon.png"
 
-
-def load_metadata() -> dict:
-    with open(METADATA_PATH) as f:
+def load_metadata(channel: str) -> dict:
+    path = CHANNEL_META[channel]
+    with open(path) as f:
         return yaml.safe_load(f)
 
 
-def show_channel(youtube):
+def get_youtube_service(channel: str):
+    import json as _json, datetime as _dt
+    from google.oauth2.credentials import Credentials
+    from google.auth.transport.requests import Request
+    from googleapiclient.discovery import build
+
+    SCOPES = [
+        "https://www.googleapis.com/auth/youtube",
+        "https://www.googleapis.com/auth/youtube.force-ssl",
+    ]
+
+    json_path = CHANNEL_CREDS[channel]
+    if not json_path.exists():
+        print(f"  No token for [{channel}]. Run: python3 scripts/reauth_youtube.py --channel {channel}")
+        sys.exit(1)
+
+    t = _json.loads(json_path.read_text())
+    creds = Credentials(
+        token=t.get("access_token"),
+        refresh_token=t["refresh_token"],
+        token_uri="https://oauth2.googleapis.com/token",
+        client_id=t["client_id"],
+        client_secret=t["client_secret"],
+        scopes=SCOPES,
+    )
+    if t.get("expires_at"):
+        creds.expiry = _dt.datetime.utcfromtimestamp(float(t["expires_at"]))
+    if not creds.valid and creds.expired and creds.refresh_token:
+        creds.refresh(Request())
+        t["access_token"] = creds.token
+        t["expires_at"] = creds.expiry.timestamp() if creds.expiry else 0
+        json_path.write_text(_json.dumps(t, indent=2))
+
+    return build("youtube", "v3", credentials=creds)
+
+
+def show_channel(youtube, channel: str):
     res = youtube.channels().list(
         part="snippet,brandingSettings,statistics", mine=True
     ).execute()
@@ -46,7 +98,7 @@ def show_channel(youtube):
         st = item["statistics"]
         bs = item.get("brandingSettings", {}).get("channel", {})
         print(f"\n{'='*60}")
-        print(f"  Channel:  {s['title']}")
+        print(f"  Channel [{channel.upper()}]: {s['title']}")
         print(f"  ID:       {item['id']}")
         print(f"  Subs:     {st.get('subscriberCount', 'hidden')}")
         print(f"  Videos:   {st.get('videoCount', '?')}")
@@ -59,7 +111,7 @@ def show_channel(youtube):
 def update_description(youtube, meta: dict):
     ch   = meta["channel"]
     desc = ch["description"].strip()
-    kw   = ch["keywords"].replace("\n", " ").strip()
+    kw   = ch.get("keywords", "").replace("\n", " ").strip()
 
     print(f"  Updating description ({len(desc)} chars) and keywords…")
 
@@ -75,8 +127,8 @@ def update_description(youtube, meta: dict):
             "brandingSettings": {
                 "channel": {
                     "title":       channel_title,
-                    "description": desc,
-                    "keywords":    kw,
+                    "description": desc[:1000],
+                    "keywords":    kw[:500],
                     "country":     ch.get("country", "US"),
                 }
             }
@@ -85,17 +137,17 @@ def update_description(youtube, meta: dict):
     print(f"  ✓ Description ({len(desc)} chars) & keywords updated.")
 
 
-def upload_banner(youtube):
-    if not BANNER_PATH.exists():
-        print(f"  Banner not found: {BANNER_PATH}")
-        print("  Run: python3 scripts/generate_channel_art.py")
+def upload_banner(youtube, channel: str):
+    banner_path = CHANNEL_BANNER[channel]
+    if not banner_path.exists():
+        print(f"  Banner not found: {banner_path}")
+        print(f"  Run: python3 scripts/generate_channel_art.py --channel {channel}")
         return
 
-    print(f"  Uploading banner: {BANNER_PATH.name}  "
-          f"({BANNER_PATH.stat().st_size // 1024} KB)")
+    print(f"  Uploading banner: {banner_path.name}  "
+          f"({banner_path.stat().st_size // 1024} KB)")
 
-    # Step 1: upload banner image
-    media = MediaFileUpload(str(BANNER_PATH), mimetype="image/png", resumable=True)
+    media = MediaFileUpload(str(banner_path), mimetype="image/png", resumable=True)
     res = youtube.channelBanners().insert(media_body=media).execute()
     banner_url = res.get("url", "")
 
@@ -105,10 +157,9 @@ def upload_banner(youtube):
 
     print(f"  Banner URL: {banner_url[:80]}")
 
-    # Step 2: apply banner to channel (title required in body)
     ch_res = youtube.channels().list(part="id,snippet", mine=True).execute()
     ch = ch_res["items"][0]
-    channel_id = ch["id"]
+    channel_id    = ch["id"]
     channel_title = ch["snippet"]["title"]
 
     youtube.channels().update(
@@ -124,62 +175,79 @@ def upload_banner(youtube):
     print(f"  ✓ Banner applied to channel: {channel_title} ({channel_id})")
 
 
-def _my_channel_id(youtube) -> str:
-    res = youtube.channels().list(part="id", mine=True).execute()
-    items = res.get("items", [])
-    if not items:
-        raise RuntimeError("No channel found for this account.")
-    return items[0]["id"]
-
-
-def print_manual_steps():
-    print("""
+def print_manual_steps(channel: str):
+    handles = {"en": "@HappyBearKids1", "ar": "@happybearkidsar", "id": "@happybearkidsin"}
+    print(f"""
   ─────────────────────────────────────────────────────
-  MANUAL STEPS (cannot be done via API):
+  MANUAL STEPS for [{channel.upper()}] (cannot be done via API):
 
-  1. Profile picture (icon):
-     YouTube Studio → Customisation → Branding
+  1. Profile picture:
+     YouTube Studio → Customisation → Branding → Picture
      Upload: output/channel/icon.png  (800×800 px)
 
-  2. Channel handle:
+  2. Channel handle should be: {handles.get(channel, '')}
      YouTube Studio → Customisation → Basic Info
-     Set handle to: @HappyBearKids
 
   3. Channel trailer:
-     YouTube Studio → Customisation → Layout
-     Add Featured video (first uploaded video)
+     YouTube Studio → Customisation → Layout → Add Featured video
 
-  4. Sections layout:
-     Add sections: Latest Videos, Popular Videos
+  4. Add sections: Latest Videos, Popular Videos
   ─────────────────────────────────────────────────────
 """)
 
 
+def setup_one_channel(channel: str, do_desc: bool, do_banner: bool, do_show: bool):
+    print(f"\n{'='*55}")
+    print(f"  Setting up channel: {channel.upper()}")
+    print(f"{'='*55}")
+
+    meta    = load_metadata(channel)
+    youtube = get_youtube_service(channel)
+
+    if do_show:
+        show_channel(youtube, channel)
+
+    if do_desc:
+        update_description(youtube, meta)
+
+    if do_banner:
+        # Auto-generate banner if missing
+        banner_path = CHANNEL_BANNER[channel]
+        if not banner_path.exists():
+            print(f"  Banner not found — generating via generate_channel_art.py…")
+            subprocess.run([
+                sys.executable, str(ROOT / "scripts" / "generate_channel_art.py"),
+                "--channel", channel
+            ], check=True)
+        upload_banner(youtube, channel)
+
+    print_manual_steps(channel)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Setup YouTube channel branding")
-    parser.add_argument("--all",         action="store_true", help="Apply everything via API")
-    parser.add_argument("--description", action="store_true", help="Update description & keywords")
-    parser.add_argument("--banner",      action="store_true", help="Upload and set banner")
+    parser.add_argument("--channel",     choices=["en", "ar", "id"], default=None,
+                        help="Target channel (en/ar/id)")
+    parser.add_argument("--all",         action="store_true", help="Apply to all 3 channels")
+    parser.add_argument("--description", action="store_true", help="Update description & keywords only")
+    parser.add_argument("--banner",      action="store_true", help="Upload and set banner only")
     parser.add_argument("--show",        action="store_true", help="Show current channel info")
     args = parser.parse_args()
 
-    config   = load_config()
-    meta     = load_metadata()
-    youtube  = get_youtube_service(config)
-
-    if args.show or not any([args.all, args.description, args.banner]):
-        show_channel(youtube)
-        print_manual_steps()
+    if not args.channel and not args.all:
+        parser.print_help()
         return
 
-    if args.all or args.description:
-        update_description(youtube, meta)
+    do_all    = not args.description and not args.banner and not args.show
+    do_desc   = do_all or args.description
+    do_banner = do_all or args.banner
+    do_show   = args.show
 
-    if args.all or args.banner:
-        upload_banner(youtube)
+    channels = ["en", "ar", "id"] if args.all else [args.channel]
+    for ch in channels:
+        setup_one_channel(ch, do_desc=do_desc, do_banner=do_banner, do_show=do_show)
 
-    show_channel(youtube)
-    print_manual_steps()
+    print("\n✓ Done.\n")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,138 @@
+# ─────────────────────────────────────────────────────────────
+# YouTube Channel Metadata — Happy Bear Kids INDONESIA
+# Bahasa Indonesia channel — fill handle/ID after channel creation
+# ─────────────────────────────────────────────────────────────
+
+channel:
+  name: "Happy Bear Kids Indonesia"
+  handle: "@happybearkidsin"
+  youtube_id: "UCOozTZwjXgkfYiTAzSzePAA"
+
+  description: |
+    🐻 Selamat datang di Happy Bear Kids Indonesia — dunia belajar yang menyenangkan untuk bayi dan balita!
+
+    Kami membuat video edukatif yang cerah dan ceria untuk anak usia 0–5 tahun:
+    🔤 Alfabet ABC — belajar setiap huruf dengan hewan lucu
+    🔢 Angka — hitung dari 1 sampai 10 bersama teman berwarna-warni
+    🎨 Warna — merah, biru, kuning, hijau, dan lainnya!
+    ⭐ Bentuk — lingkaran, kotak, segitiga, dan bintang
+    🎵 Lagu Anak — lagu-lagu populer Indonesia dengan karakter kartun yang menari
+
+    Setiap video dirancang aman, menenangkan, dan menarik untuk si kecil. Tanpa iklan yang menggangu, tanpa konten menakutkan — hanya kegembiraan dan pembelajaran murni!
+
+    🔔 Subscribe dan jangan lewatkan video baru!
+    Video baru setiap Senin, Selasa dan Rabu pukul 09:00.
+
+    Dibuat dengan penuh cinta untuk si kecil. 🐻💛
+
+  keywords: >
+    belajar anak, video bayi, edukasi balita, alfabet untuk anak,
+    lagu alfabet, angka untuk anak, warna untuk balita, bentuk untuk anak,
+    lagu anak indonesia, balonku, cicak-cicak, pelangi-pelangi, naik kereta api,
+    video edukasi, happy bear kids, belajar bahasa indonesia, kartun anak,
+    prasekolah, video sensori anak, musik anak, bayi, balita
+
+  country: "ID"
+  language: "id"
+  made_for_kids: true
+  links: []
+  trailer_video_id: ""
+
+# ─────────────────────────────────────────────────────────────
+# VIDEO DEFAULTS
+# ─────────────────────────────────────────────────────────────
+
+video_defaults:
+  category_id: "27"          # Education
+  made_for_kids: true
+  default_language: "id"
+  license: "youtube"
+
+  description_template: |
+    🐻 Happy Bear Kids Indonesia — Video belajar untuk bayi dan balita!
+
+    {video_description}
+
+    ────────────────────────────────────
+    🔔 Subscribe untuk video baru setiap minggu!
+    👍 Like dan bagikan ke teman!
+
+    📚 VIDEO LAINNYA DARI HAPPY BEAR KIDS:
+    🔤 Alfabet ABC: https://www.youtube.com/@HappyBearKidsID
+    🔢 Belajar Angka: https://www.youtube.com/@HappyBearKidsID
+    🎨 Belajar Warna: https://www.youtube.com/@HappyBearKidsID
+    ⭐ Bentuk untuk Anak: https://www.youtube.com/@HappyBearKidsID
+    🎵 Lagu & Tari: https://www.youtube.com/@HappyBearKidsID
+
+    ────────────────────────────────────
+    ✅ Aman untuk anak-anak — Tanpa iklan, tanpa konten menakutkan
+    ✅ Dirancang untuk usia 0–5 tahun
+    ✅ Edukatif & menghibur
+
+    #HappyBearKids #BelajarAnak #VideoBalita #LaguAnakIndonesia #Edukatif
+
+  tags_base:
+    - happy bear kids
+    - belajar anak
+    - video balita
+    - video bayi
+    - video edukasi anak
+    - belajar untuk balita
+    - kartun anak
+    - prasekolah indonesia
+    - lagu anak indonesia
+
+# ─────────────────────────────────────────────────────────────
+# VIDEO DESCRIPTIONS per type (Bahasa Indonesia)
+# ─────────────────────────────────────────────────────────────
+
+video_descriptions:
+  dance:
+    animals: >
+      Lihat hewan-hewan kartun lucu menari dan melompat mengikuti musik yang ceria!
+      Video latar yang sempurna untuk bayi dan balita.
+      Karakter berwarna-warni akan membuat si kecil terhibur selama berjam-jam!
+    fruits: >
+      Buah-buahan lucu yang menari mengikuti musik yang riang!
+      Video yang colorful dan penuh kegembiraan, cocok untuk bayi, balita, dan anak kecil.
+    vegetables: >
+      Sayuran-sayuran lucu menari bersama! Seru dan edukatif untuk anak-anak.
+
+  nursery_id:
+    balonku: >
+      🎈 Balonku Ada Lima — Lagu anak Indonesia yang terkenal! Nyanyikan bersama-sama
+      dan belajar warna melalui balon-balon yang lucu. Merah, kuning, hijau, di dalam
+      keranjang... Mari bernyanyi bersama si kecil!
+    cicak: >
+      🦎 Cicak-cicak di Dinding — Lagu anak Indonesia klasik! Ikuti petualangan cicak
+      kecil yang berjalan di dinding. Anak-anak pasti suka bernyanyi dan bergerak!
+    naik_kereta: >
+      🚂 Naik Kereta Api — Yuk naik kereta api, tut tut tut! Lagu perjalanan yang
+      menyenangkan untuk anak-anak. Belajar sambil bernyanyi!
+    pelangi: >
+      🌈 Pelangi-Pelangi — Indahnya pelangi di langit yang cerah! Lagu anak Indonesia
+      yang indah tentang warna-warni pelangi. Belajar warna dengan cara yang menyenangkan!
+    dua_mata: >
+      👀 Dua Mata Saya — Belajar bagian tubuh dengan lagu yang lucu! Dua mata saya,
+      hidung saya satu, dua kaki saya... Aktivitas yang bagus untuk bayi dan balita!
+    kebunku: >
+      🌸 Kebunku — Lihat kebun bunga yang indah! Lagu tentang alam dan tumbuhan yang
+      mengajarkan anak-anak untuk mencintai lingkungan. Mawar merah, melati putih...
+
+  numbers:
+    animals: >
+      Belajar berhitung dari 1 sampai 10 bersama hewan-hewan kartun yang lucu!
+      Satu beruang, dua kelinci, tiga bebek... Mari hitung bersama!
+      Sempurna untuk bayi dan balita yang baru belajar angka pertama mereka.
+
+  colors:
+    animals: >
+      Belajar warna bersama hewan-hewan kartun lucu!
+      Merah, biru, kuning, hijau, oranye, ungu, merah muda, dan lainnya!
+      Video yang cerah dan berwarna-warni, sempurna untuk balita dan prasekolah.
+
+  sensory_loop:
+    default: >
+      Video sensori yang menenangkan untuk bayi usia 0-12 bulan. Loop visual yang
+      lembut dengan musik yang menenangkan. Dirancang khusus untuk stimulasi visual
+      awal dan waktu tidur siang yang nyaman.
