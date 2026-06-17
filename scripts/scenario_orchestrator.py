@@ -4,15 +4,20 @@ Scenario Orchestrator — reads Google Sheets queue and dispatches video renders
 
 Sheet: https://docs.google.com/spreadsheets/d/1MAHh_LxESZCd0sWOx0qAjSWWIElR79oTfo-XiPbJc7o
 Tab: Queue
-Columns: id | type | lang | key | params | priority | status | youtube_id_en | youtube_id_ar | youtube_id_id | notes | created | updated
+Actual columns (A–M):
+  id | type | lang | key | doc_url | params | priority | status |
+  youtube_id_en | youtube_id_ar | notes | created | updated
 
 Statuses: pending → rendering → rendered → failed
 lang values:
-  en   — English only   → output/queue/
-  ar   — Arabic only    → output/queue_ar/
+  en   — English only    → output/queue/
+  ar   — Arabic only     → output/queue_ar/
   id   — Indonesian only → output/queue_id/
-  both — EN + AR         → 2 renders (videos WITH voice/text)
-  all  — EN + AR + ID    → 3 renders or 1 render → 3 queues (videos WITHOUT text/voice)
+  both — EN + AR + ID    → expand_langs() returns ['en','ar','id']
+  all  — EN + AR + ID    → same as both (1 render shared, or 3 separate renders)
+
+NOTE: Scripts that generate no-text content handle all 3 queues internally —
+      dispatch functions for those scripts do NOT pass --lang.
 
 Cron: 0 * * * * cd /opt/kids_channel && python3 scripts/scenario_orchestrator.py >> logs/orchestrator.log 2>&1
 """
@@ -38,11 +43,11 @@ SCOPES    = [
 ]
 TAB       = 'Queue'
 
-# Column indices (0-based)
+# Column indices (0-based) — A through N (14 columns)
 COL = {
     'id': 0, 'type': 1, 'lang': 2, 'key': 3, 'doc_url': 4, 'params': 5,
     'priority': 6, 'status': 7, 'youtube_id_en': 8, 'youtube_id_ar': 9,
-    'notes': 10, 'created': 11, 'updated': 12,
+    'youtube_id_id': 10, 'notes': 11, 'created': 12, 'updated': 13,
 }
 
 BOT_TOKEN = "8657721269:AAEkhJ92vHR4K1CkA14nFcy0_bA95c38QZk"
@@ -123,18 +128,21 @@ def parse_params(params_str: str) -> dict:
 
 
 def any_render_running() -> bool:
-    procs = ['generate_number_learn_long.py', 'generate_color_learn_long.py',
-             'generate_shape_learn.py', 'run_renders_sequential.sh', 'scenario_orchestrator.py']
     import psutil
     self_pid = os.getpid()
     for proc in psutil.process_iter(['pid', 'cmdline']):
         try:
-            cmdline = ' '.join(proc.info['cmdline'] or [])
             if proc.info['pid'] == self_pid:
                 continue
-            for p in procs:
-                if p in cmdline:
-                    return True
+            cmdline = ' '.join(proc.info['cmdline'] or [])
+            # Any kids_channel generate script or sequential runner = render in progress
+            if ('kids_channel' in cmdline or '/opt/kids_channel' in cmdline) and (
+                'generate_' in cmdline or 'run_renders_sequential' in cmdline
+            ):
+                return True
+            # Remotion render process
+            if 'remotion render' in cmdline and 'kids_channel' in cmdline:
+                return True
         except Exception:
             pass
     return False
@@ -152,15 +160,13 @@ LANG_QUEUE = {
 
 def expand_langs(lang: str) -> list[str]:
     """Expand lang shorthand to list of language codes."""
-    if lang == 'both':
-        return ['en', 'ar']
-    if lang == 'all':
+    if lang in ('both', 'all'):
         return ['en', 'ar', 'id']
     return [lang]
 
 
 def dispatch_color_learn(row: dict) -> bool:
-    """Render color_learn video(s). lang=both → EN+AR, lang=all → EN+AR+ID."""
+    """Render color_learn video(s). lang=both/all → EN+AR+ID (3 renders)."""
     key   = row['key']          # e.g. "purple"
     lang  = row['lang']         # en | ar | id | both | all
     langs = expand_langs(lang)
@@ -177,7 +183,7 @@ def dispatch_color_learn(row: dict) -> bool:
 
 
 def dispatch_number_learn(row: dict) -> bool:
-    """Render number_learn video(s). lang=both → EN+AR, lang=all → EN+AR+ID."""
+    """Render number_learn video(s). lang=both/all → EN+AR+ID (3 renders)."""
     key   = row['key']          # e.g. "1" or "five"
     lang  = row['lang']
     langs = expand_langs(lang)
@@ -209,43 +215,296 @@ def dispatch_shape_learn(row: dict) -> bool:
 
 
 def dispatch_dance(row: dict) -> bool:
-    key = row['key']            # animals | fruits | vegetables
-    p   = parse_params(row['params'])
-    dur = p.get('duration', '30')
-    script_map = {
-        'animals':    'generate_dance_script.py',
-        'fruits':     'generate_fruit_dance_script.py',
-        'vegetables': 'generate_vegetable_dance_script.py',
-    }
-    gen_script = script_map.get(key)
-    if not gen_script:
-        log(f"  Unknown dance theme: {key}")
+    """Render 30-min dance video via generate_dance_long.py (auto meta + thumbnail)."""
+    key   = row['key']   # animals | fruits | vegetables
+    valid = ('animals', 'fruits', 'vegetables')
+    if key not in valid:
+        log(f"  Unknown dance theme: {key}. Valid: {valid}")
         return False
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_dance_long.py'), '--themes', key]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=21600)
+    return r.returncode == 0
 
-    date_str = datetime.now().strftime('%Y%m%d')
-    out_mp4  = ROOT / 'output' / 'queue' / f'dance_{key}_{date_str}.mp4'
-    script_yaml = ROOT / 'config' / 'scripts' / f'dance_{key}.yaml'
 
-    steps = [
-        [sys.executable, str(ROOT / 'scripts' / gen_script), '--duration', dur],
-        [sys.executable, str(ROOT / 'scripts' / 'generate_video.py'),
-         '--theme', key, '--duration', dur,
-         '--script', str(script_yaml), '--output', str(out_mp4)],
-    ]
-    for cmd in steps:
+def dispatch_nursery_ar(row: dict) -> bool:
+    """Render Arabic nursery rhyme. lang=ar → AR only; both/all → EN+AR+ID."""
+    key  = row['key']
+    lang = row['lang']
+    cmd  = [sys.executable, str(ROOT / 'scripts' / 'generate_nursery_ar.py'),
+            '--key', key, '--lang', lang]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=21600)
+    return r.returncode == 0
+
+
+def dispatch_nursery_id(row: dict) -> bool:
+    """Render Indonesian nursery rhyme."""
+    key  = row['key']
+    lang = row['lang']   # typically 'id' or 'all'
+    cmd  = [sys.executable, str(ROOT / 'scripts' / 'generate_nursery_id.py'),
+            '--key', key, '--lang', lang]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=21600)
+    return r.returncode == 0
+
+
+def dispatch_sensory_loop(row: dict) -> bool:
+    """Render sensory loop abstract animation videos. No text → all 3 channels."""
+    key = row['key']
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_sensory_loop.py'), '--key', key]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_stars_bubbles(row: dict) -> bool:
+    """Render stars and bubbles abstract video. No text → all 3 channels."""
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_stars_bubbles.py')]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=21600)
+    return r.returncode == 0
+
+
+def dispatch_dance_shape(row: dict) -> bool:
+    """Render dancing shapes series. No text → all 3 channels."""
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_dance_shape.py')]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_dance_pet(row: dict) -> bool:
+    """Render dancing home pets series. No text → all 3 channels."""
+    key = row['key']
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_dance_pet.py'), '--key', key]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_dance_item(row: dict) -> bool:
+    """Render dancing household items series. No text → all 3 channels."""
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_dance_item.py')]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+_LULLABY_EPISODES = {'sleepy_stars', 'ocean_night', 'moon_garden',
+                     'sleepy_train', 'rain_window', 'forest_night'}
+
+def dispatch_lullaby_long(row: dict) -> bool:
+    """Render long-form lullaby sleep videos (1-2 hours). No text → all 3 channels.
+    key = specific episode name OR meta-key (e.g. lullaby_nature) → run all."""
+    key = row['key']
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_lullaby.py')]
+    if key in _LULLABY_EPISODES:
+        cmd += ['--keys', key]
+    # otherwise run all episodes (no --keys = process all)
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_transform_block(row: dict) -> bool:
+    """Render transform block SVG morphing videos."""
+    key  = row['key']
+    lang = row['lang']
+    cmd  = [sys.executable, str(ROOT / 'scripts' / 'generate_transform_block.py'),
+            '--key', key, '--lang', lang]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_dance_fruits_group(row: dict) -> bool:
+    """Render group fruit/vegetable dance videos. No text → all 3 channels."""
+    key = row['key']
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_dance_fruits_group.py'), '--key', key]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_dance_fruits_2stage(row: dict) -> bool:
+    """Render 2-stage fruit/vegetable dance. No text → all 3 channels."""
+    key = row['key']
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_dance_fruits_2stage.py'), '--key', key]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_learn_to_talk(row: dict) -> bool:
+    """Render Learn to Talk speech development videos. All 3 channels."""
+    key = row['key']
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_learn_to_talk.py'), '--key', key]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_emotions_ocean(row: dict) -> bool:
+    """Render Roundy character series. All 3 channels."""
+    key = row['key']
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_emotions_ocean.py'), '--key', key]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_special_mechanics(row: dict) -> bool:
+    """Render special mechanics game videos. All 3 channels."""
+    key = row['key']
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_special_mechanics.py'), '--key', key]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_shape_roundelay(row: dict) -> bool:
+    """Render shape roundelay spinning/dancing shapes."""
+    key  = row['key']
+    lang = row['lang']
+    cmd  = [sys.executable, str(ROOT / 'scripts' / 'generate_shape_roundelay.py'),
+            '--key', key, '--lang', lang]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=21600)
+    return r.returncode == 0
+
+
+def dispatch_ocd_vehicles(row: dict) -> bool:
+    """Render One Concept Deep vehicles series — generates all 6 episodes."""
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_ocd_vehicles.py')]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_construction_music(row: dict) -> bool:
+    """Render construction + musical instruments series — generates all 6 episodes."""
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_construction_music.py')]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_bubble_pop_song(row: dict) -> bool:
+    """Render Bubble Pop song (Baby Shark formula) — 3 min + 20 min extended."""
+    key  = row['key']
+    lang = row['lang']
+    cmd  = [sys.executable, str(ROOT / 'scripts' / 'generate_bubble_pop_song.py'),
+            '--key', key, '--lang', lang]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=21600)
+    return r.returncode == 0
+
+
+def dispatch_satisfying_3fmt(row: dict) -> bool:
+    """Render satisfying/calming shape dance series — generates all 8 episodes."""
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_satisfying_3fmt.py')]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_nature_calm(row: dict) -> bool:
+    """Render calm nature shape series — generates all 6 episodes."""
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_nature_calm.py')]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_interactive_coview(row: dict) -> bool:
+    """Render interactive co-viewing scenarios (Category 3)."""
+    key  = row['key']
+    lang = row['lang']
+    cmd  = [sys.executable, str(ROOT / 'scripts' / 'generate_interactive_coview.py'),
+            '--key', key, '--lang', lang]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_emotional_values(row: dict) -> bool:
+    """Render emotional values dance series — generates all 8 episodes."""
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_emotional_values.py')]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_shorts_funnel(row: dict) -> bool:
+    """Generate Shorts funnel clips from existing long videos (all queues)."""
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_shorts_funnel.py'),
+           '--queue', 'all', '--max-per-run', '5']
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=21600)
+    return r.returncode == 0
+
+
+def dispatch_edu_entertain(row: dict) -> bool:
+    """Render educational-entertainment scenarios (Category 1)."""
+    key  = row['key']
+    lang = row['lang']
+    cmd  = [sys.executable, str(ROOT / 'scripts' / 'generate_edu_entertain.py'),
+            '--key', key, '--lang', lang]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
+def dispatch_character_dialogue(row: dict) -> bool:
+    """Render CharacterDialogueLong — bear character speaks to child.
+    Auto-generates sprites + TTS audio before rendering.
+    key = episode key (e.g. emotions, colors_character, animals_character).
+    lang = en | ar | id | both | all."""
+    key   = row['key']
+    lang  = row['lang']
+    langs = expand_langs(lang)
+    for lg in langs:
+        cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_character_dialogue_long.py'),
+               '--episode', key, '--lang', lg]
         log(f"  Running: {' '.join(cmd)}")
-        r = subprocess.run(cmd, capture_output=False, timeout=21600)
+        r = subprocess.run(cmd, capture_output=False, timeout=86400)
         if r.returncode != 0:
-            log(f"  dance {key} step FAILED")
+            log(f"  character_dialogue {key}/{lg} FAILED")
             return False
     return True
 
 
 DISPATCHERS = {
-    'color_learn':  dispatch_color_learn,
-    'number_learn': dispatch_number_learn,
-    'shape_learn':  dispatch_shape_learn,
-    'dance':        dispatch_dance,
+    'color_learn':        dispatch_color_learn,
+    'number_learn':       dispatch_number_learn,
+    'shape_learn':        dispatch_shape_learn,
+    'dance':              dispatch_dance,
+    'nursery_ar':         dispatch_nursery_ar,
+    'nursery_id':         dispatch_nursery_id,
+    'sensory_loop':       dispatch_sensory_loop,
+    'stars_bubbles':      dispatch_stars_bubbles,
+    'dance_shape':        dispatch_dance_shape,
+    'dance_pet':          dispatch_dance_pet,
+    'dance_item':         dispatch_dance_item,
+    'lullaby_long':       dispatch_lullaby_long,
+    'transform_block':    dispatch_transform_block,
+    'dance_fruits_group': dispatch_dance_fruits_group,
+    'dance_fruits_2stage':dispatch_dance_fruits_2stage,
+    'learn_to_talk':      dispatch_learn_to_talk,
+    'emotions_ocean':     dispatch_emotions_ocean,
+    'special_mechanics':  dispatch_special_mechanics,
+    'shape_roundelay':    dispatch_shape_roundelay,
+    'ocd_vehicles':       dispatch_ocd_vehicles,
+    'construction_music': dispatch_construction_music,
+    'bubble_pop_song':    dispatch_bubble_pop_song,
+    'satisfying_3fmt':    dispatch_satisfying_3fmt,
+    'nature_calm':        dispatch_nature_calm,
+    'interactive_coview': dispatch_interactive_coview,
+    'emotional_values':   dispatch_emotional_values,
+    'shorts_funnel':      dispatch_shorts_funnel,
+    'edu_entertain':      dispatch_edu_entertain,
+    'character_dialogue': dispatch_character_dialogue,
 }
 
 
@@ -254,7 +513,7 @@ DISPATCHERS = {
 def read_queue(svc) -> list[dict]:
     result = svc.values().get(
         spreadsheetId=SHEET_ID,
-        range=f'{TAB}!A2:M200'
+        range=f'{TAB}!A2:N200'
     ).execute()
     rows = result.get('values', [])
     out  = []
@@ -349,6 +608,17 @@ def main():
         update_status(svc, row['_row'], 'rendered', f"Done {now_iso()}")
         tg(f"✅ <b>Kids Channel</b>\nРендер завершён: <b>{row['key']}</b> ({vtype})\nВидео в очереди на публикацию.")
         log(f"  ✓ Done — {row['key']} queued for publication.")
+        # Thumbnail sweep — catches videos from scripts that don't generate thumbnails inline
+        log("  Running thumbnail sweep for all queues...")
+        thumbs_script = ROOT / 'scripts' / 'generate_ai_thumbs.py'
+        for q in ('en', 'ar', 'id'):
+            r = subprocess.run(
+                [sys.executable, str(thumbs_script), '--queue', q, '--backend', 'together'],
+                capture_output=False, timeout=3600,
+            )
+            if r.returncode != 0:
+                log(f"  thumbs {q}: exit {r.returncode} (non-fatal)")
+        log("  Thumbnail sweep done.")
     else:
         update_status(svc, row['_row'], 'failed', f"Failed {now_iso()}")
         tg(f"❌ <b>Kids Channel</b>\nРендер провалился: <b>{row['key']}</b> ({vtype})\nПроверь: tail -f logs/orchestrator.log")
