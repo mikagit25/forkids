@@ -4,6 +4,7 @@ import {
   Audio,
   Img,
   interpolate,
+  Sequence,
   spring,
   staticFile,
   useCurrentFrame,
@@ -109,9 +110,15 @@ export const VocabularyShort: React.FC<VocabularyShortProps> = ({
   return (
     <AbsoluteFill style={{ backgroundColor: bgColor, overflow: "hidden" }}>
       {/* Audio: voiceover plays 3× at t=1s, 19s, 37.5s */}
-      <Audio src={staticFile(`audio/${audioFile}`)} startFrom={Math.round(fps * 1)} />
-      <Audio src={staticFile(`audio/${audioFile}`)} startFrom={Math.round(fps * 19)} />
-      <Audio src={staticFile(`audio/${audioFile}`)} startFrom={Math.round(fps * 37.5)} />
+      <Sequence from={Math.round(fps * 1)}>
+        <Audio src={staticFile(`audio/${audioFile}`)} />
+      </Sequence>
+      <Sequence from={Math.round(fps * 19)}>
+        <Audio src={staticFile(`audio/${audioFile}`)} />
+      </Sequence>
+      <Sequence from={Math.round(fps * 37.5)}>
+        <Audio src={staticFile(`audio/${audioFile}`)} />
+      </Sequence>
 
       <AbsoluteFill style={{ opacity: fadeOutOpacity }}>
         {/* ── Big letter (top area) ──────────────────────────────────────────── */}

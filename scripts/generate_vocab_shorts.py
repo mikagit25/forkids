@@ -85,6 +85,7 @@ def make_meta(letter: str, word: str, out_path: Path):
         "title":            f"Letter {letter} | {letter} is for {word_cap} | ABC for Kids | Happy Bear Kids #shorts",
         "video_type":       "short_vocab",
         "theme":            "abc",
+        "language":         "en",
         "duration_minutes": 1,
         "is_short":         True,
         "tags":             [

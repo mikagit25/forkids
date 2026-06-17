@@ -16,6 +16,7 @@ import {
   Audio,
   Img,
   interpolate,
+  Sequence,
   spring,
   staticFile,
   useCurrentFrame,
@@ -36,7 +37,7 @@ export interface ColorLearnLongProps {
   rtl: boolean;
   objects: [ColorLearnLongObject, ColorLearnLongObject, ColorLearnLongObject];
   // Audio paths relative to public/audio/color_learn/{lang}/
-  lang: "en" | "ar";
+  lang: "en" | "ar" | "id";
   colorKey: string;       // "red"
   musicFile: string;      // from public/music/
 }
@@ -435,35 +436,40 @@ export const ColorLearnLong: React.FC<ColorLearnLongProps> = ({
       <Audio src={staticFile(`music/${musicFile}`)} volume={0.12} loop />
 
       {/* Audio: intro */}
-      <Audio src={staticFile(`${audioBase}_intro.mp3`)} startFrom={0} />
+      <Audio src={staticFile(`${audioBase}_intro.mp3`)} />
       {/* Audio: obj1 — plays once per cycle (4 times) */}
       {[0, 1, 2, 3].map((i) => (
-        <Audio
-          key={`a1_${i}`}
-          src={staticFile(`${audioBase}_obj1.mp3`)}
-          startFrom={fps * T_SCENE1 + i * CYCLE * fps}
-        />
+        <Sequence key={`a1_${i}`} from={fps * T_SCENE1 + i * CYCLE * fps}>
+          <Audio src={staticFile(`${audioBase}_obj1.mp3`)} />
+        </Sequence>
       ))}
       {/* Audio: obj2 */}
       {[0, 1, 2, 3].map((i) => (
-        <Audio
-          key={`a2_${i}`}
-          src={staticFile(`${audioBase}_obj2.mp3`)}
-          startFrom={fps * T_SCENE2 + i * CYCLE * fps}
-        />
+        <Sequence key={`a2_${i}`} from={fps * T_SCENE2 + i * CYCLE * fps}>
+          <Audio src={staticFile(`${audioBase}_obj2.mp3`)} />
+        </Sequence>
       ))}
       {/* Audio: obj3 */}
       {[0, 1, 2, 3].map((i) => (
-        <Audio
-          key={`a3_${i}`}
-          src={staticFile(`${audioBase}_obj3.mp3`)}
-          startFrom={fps * T_SCENE3 + i * CYCLE * fps}
-        />
+        <Sequence key={`a3_${i}`} from={fps * T_SCENE3 + i * CYCLE * fps}>
+          <Audio src={staticFile(`${audioBase}_obj3.mp3`)} />
+        </Sequence>
       ))}
       {/* Audio: song */}
-      <Audio src={staticFile(`${audioBase}_song.mp3`)} startFrom={fps * T_SONG} />
+      <Sequence from={fps * T_SONG}>
+        <Audio src={staticFile(`${audioBase}_song.mp3`)} />
+      </Sequence>
+      {/* Audio: review — loops twice to cover 320s */}
+      <Sequence from={fps * T_REVIEW}>
+        <Audio src={staticFile(`${audioBase}_review.mp3`)} />
+      </Sequence>
+      <Sequence from={fps * (T_REVIEW + 160)}>
+        <Audio src={staticFile(`${audioBase}_review.mp3`)} />
+      </Sequence>
       {/* Audio: outro */}
-      <Audio src={staticFile(`${audioBase}_outro.mp3`)} startFrom={fps * T_OUTRO} />
+      <Sequence from={fps * T_OUTRO}>
+        <Audio src={staticFile(`${audioBase}_outro.mp3`)} />
+      </Sequence>
 
       <AbsoluteFill style={{ opacity: fadeOut }}>
 
@@ -559,7 +565,7 @@ export const ColorLearnLong: React.FC<ColorLearnLongProps> = ({
                 }}>
                   <Img
                     src={staticFile(`sprites/${obj.spritePath}`)}
-                    style={{ width: 240, height: 240, objectFit: "contain" }}
+                    style={{ width: 360, height: 360, objectFit: "contain" }}
                   />
                   <div style={{
                     backgroundColor: colorHex, borderRadius: 12, padding: "8px 24px",

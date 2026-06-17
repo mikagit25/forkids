@@ -9,6 +9,7 @@ import {
   Audio,
   Img,
   interpolate,
+  Sequence,
   spring,
   staticFile,
   useCurrentFrame,
@@ -16,15 +17,24 @@ import {
 } from "remotion";
 import { ArabicFonts } from "./components/ArabicFonts";
 
+export interface SpriteFrames {
+  idle:   string;            // "animals_flux/bear_idle.png" — always required
+  smile?: string;            // happy expression
+  blink?: string;            // eyes closed
+  jump?:  string;            // mid-air / arms up
+  wave?:  string;            // waving
+}
+
 export interface DanceSpriteShortProps {
-  spritePath: string;        // "animals/bear.png"
-  characterName: string;     // "Bear"
+  spritePath?: string;       // legacy single image "animals/bear.png"
+  spriteFrames?: SpriteFrames; // frame-by-frame animation (preferred)
+  characterName: string;
   audioFile?: string | null;
   musicFile: string;
   bgColor: string;
   accentColor: string;
   language?: "en" | "ar";
-  customLabel?: string;      // Arabic name override
+  customLabel?: string;
 }
 
 const BPM = 118;
@@ -69,8 +79,37 @@ const Bubble: React.FC<{
 };
 
 // ── Main component ─────────────────────────────────────────────────────────
+// ── Frame selector for frame-by-frame animation ───────────────────────────
+function selectFrame(
+  frames: SpriteFrames,
+  currentFrame: number,
+  fps: number,
+  bounceNorm: number,
+): string {
+  // Blink every ~3.5s for 5 frames
+  const blinkPeriod = Math.round(fps * 3.5);
+  const blinkLen    = 5;
+  const inBlink     = (currentFrame % blinkPeriod) < blinkLen;
+  if (inBlink && frames.blink) return frames.blink;
+
+  // Jump frame at bounce peak
+  if (bounceNorm > 0.70 && frames.jump) return frames.jump;
+
+  // Wave: show for 30 frames every ~5s
+  const wavePeriod = Math.round(fps * 5);
+  const waveLen    = 30;
+  if (frames.wave && (currentFrame % wavePeriod) < waveLen) return frames.wave;
+
+  // Smile: alternate every 2s
+  const smilePeriod = Math.round(fps * 2);
+  if (frames.smile && Math.floor(currentFrame / smilePeriod) % 2 === 1) return frames.smile;
+
+  return frames.idle;
+}
+
 export const DanceSpriteShort: React.FC<DanceSpriteShortProps> = ({
   spritePath,
+  spriteFrames,
   characterName,
   audioFile,
   musicFile,
@@ -149,7 +188,9 @@ export const DanceSpriteShort: React.FC<DanceSpriteShortProps> = ({
         <Audio src={staticFile(`music/${musicFile}`)} volume={0.22} loop />
       )}
       {audioFile && [fps * 1, fps * 20, fps * 39].map((start, i) => (
-        <Audio key={i} src={staticFile(`audio/${audioFile}`)} startFrom={Math.round(start)} />
+        <Sequence key={i} from={Math.round(start)}>
+          <Audio src={staticFile(`audio/${audioFile}`)} />
+        </Sequence>
       ))}
 
       <AbsoluteFill style={{ opacity: fadeOut }}>
@@ -188,7 +229,11 @@ export const DanceSpriteShort: React.FC<DanceSpriteShortProps> = ({
           }}
         >
           <Img
-            src={staticFile(`sprites/${spritePath}`)}
+            src={staticFile(`sprites/${
+              spriteFrames
+                ? selectFrame(spriteFrames, frame, fps, bounceNorm)
+                : spritePath ?? ""
+            }`)}
             style={{ width: "100%", height: "100%", objectFit: "contain" }}
           />
         </div>

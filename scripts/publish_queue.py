@@ -29,8 +29,15 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 QUEUE_DIR    = ROOT / "output" / "queue"
 QUEUE_AR_DIR = ROOT / "output" / "queue_ar"
+QUEUE_ID_DIR = ROOT / "output" / "queue_id"
 UPLOADED_DIR = ROOT / "uploaded"
 PLAN_PATH    = ROOT / "config" / "weekly_plan.yaml"
+
+QUEUE_DIRS = {
+    "en": QUEUE_DIR,
+    "ar": QUEUE_AR_DIR,
+    "id": QUEUE_ID_DIR,
+}
 
 DAY_OFFSETS = {
     "monday": 0, "tuesday": 1, "wednesday": 2,
@@ -175,8 +182,6 @@ def _fix_ar_symlinks(old_path: Path, new_path: Path):
 
 
 SHORT_PREFIXES = ("short_", "ar_short_")
-LONG_PREFIXES  = ("dance_", "compilation_", "abc_", "numbers_", "colors_", "counting_",
-                  "ar_dance_", "ar_counting_", "ar_colors_")
 
 
 def is_short(path: Path) -> bool:
@@ -192,7 +197,29 @@ def filter_queue(queue: list[Path], kind: str) -> list[Path]:
         return [p for p in queue if is_short(p)]
     if kind == "long":
         return [p for p in queue if is_long(p)]
-    return queue   # "any" — no filter
+    # "any" — longs first (by mtime), then shorts (by mtime)
+    longs  = [p for p in queue if is_long(p)]
+    shorts = [p for p in queue if is_short(p)]
+    return longs + shorts
+
+
+def is_ready(mp4_path: Path) -> tuple[bool, str]:
+    """Return (ready, reason). Video is ready only when meta+description+thumbnail exist."""
+    meta_path  = mp4_path.parent / f"meta_{mp4_path.stem}.yaml"
+    thumb_path = mp4_path.parent / f"thumb_{mp4_path.stem}.png"
+
+    if not meta_path.exists():
+        return False, "no meta file"
+
+    meta = yaml.safe_load(open(meta_path)) or {}
+    if not meta.get("title", "").strip():
+        return False, "empty title"
+    if not meta.get("description", "").strip():
+        return False, "empty description"
+    if not thumb_path.exists():
+        return False, "no thumbnail"
+
+    return True, "ok"
 
 
 def main():
@@ -201,41 +228,59 @@ def main():
     parser.add_argument("--limit",       type=int, default=1, help="Max videos to upload (default 1)")
     parser.add_argument("--type",        choices=["short", "long", "any"], default="any",
                         help="Filter: short=60s videos, long=30min videos, any=no filter")
-    parser.add_argument("--no-schedule", action="store_true", default=True,
-                        help="Upload as public immediately (default)")
-    parser.add_argument("--queue", choices=["en", "ar"], default="en",
-                        help="Which queue to publish from: en=output/queue/, ar=output/queue_ar/")
+    parser.add_argument("--no-schedule", action="store_true", default=False,
+                        help="Upload as public immediately (default: use upload_day/time from meta)")
+    parser.add_argument("--queue", choices=["en", "ar", "id"], default="en",
+                        help="Queue: en=output/queue/, ar=output/queue_ar/, id=output/queue_id/")
     args = parser.parse_args()
 
-    active_queue_dir = QUEUE_AR_DIR if args.queue == "ar" else QUEUE_DIR
+    active_queue_dir = QUEUE_DIRS[args.queue]
     active_queue_dir.mkdir(parents=True, exist_ok=True)
     UPLOADED_DIR.mkdir(parents=True, exist_ok=True)
 
-    all_queue = sorted(
+    all_mp4s = sorted(
         [p for p in active_queue_dir.glob("*.mp4")
          if "test_" not in p.name and p.exists()],   # p.exists() skips broken symlinks
         key=lambda p: p.stat().st_mtime
     )
-    queue = filter_queue(all_queue, args.type)
+    all_queue = filter_queue(all_mp4s, args.type)
 
-    if not queue:
-        print(f"Queue is empty (type={args.type}). Nothing to upload.")
+    # Split into ready (have meta+description+thumbnail) and not-ready
+    ready_queue   = []
+    not_ready     = []
+    for p in all_queue:
+        ok, reason = is_ready(p)
+        if ok:
+            ready_queue.append(p)
+        else:
+            not_ready.append((p, reason))
+
+    shorts_count = len([p for p in all_mp4s if is_short(p)])
+    longs_count  = len([p for p in all_mp4s if is_long(p)])
+    print(f"\nPublish queue ({args.queue.upper()}) — {len(all_mp4s)} total ({longs_count} long, {shorts_count} short)")
+    print(f"  Ready to publish: {len(ready_queue)}")
+    if not_ready:
+        print(f"  Waiting (missing meta/thumb): {len(not_ready)}")
+        for p, reason in not_ready[:5]:
+            print(f"    - {p.name}: {reason}")
+        if len(not_ready) > 5:
+            print(f"    ... and {len(not_ready)-5} more")
+
+    if not ready_queue:
+        print(f"\nNo videos ready to publish (type={args.type}). Check meta+thumbnail.")
         return
 
     plan  = load_plan()
-    limit = args.limit if args.limit > 0 else len(queue)
+    limit = args.limit if args.limit > 0 else len(ready_queue)
 
-    shorts_count = len([p for p in all_queue if is_short(p)])
-    longs_count  = len([p for p in all_queue if is_long(p)])
-    print(f"\nPublish queue — {len(all_queue)} total ({longs_count} long, {shorts_count} shorts)")
-    print(f"Uploading: {args.type} (limit={limit})")
+    print(f"\nUploading up to {limit} video(s) (type={args.type})")
     if args.dry_run:
         print("DRY RUN mode")
 
     uploaded = 0
     failed   = 0
 
-    for mp4_path in queue[:limit]:
+    for mp4_path in ready_queue[:limit]:
         metadata = load_sidecar(mp4_path) or match_metadata(mp4_path.name, plan)
         success  = upload_video(
             mp4_path, metadata,

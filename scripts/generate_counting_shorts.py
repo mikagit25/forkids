@@ -283,6 +283,7 @@ def make_meta(pair: tuple, out_path: Path, palette_name: str):
         "title":            TITLES.get(pair, f"Count Shapes 1-5 | Happy Bear Kids #shorts"),
         "video_type":       "short_counting",
         "theme":            "shapes",
+        "language":         "en",
         "duration_minutes": 1,
         "is_short":         True,
         "tags":             ["counting", "numbers", "shapes", "kids", "shorts",

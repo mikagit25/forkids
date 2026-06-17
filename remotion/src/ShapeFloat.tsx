@@ -13,6 +13,7 @@ import {
   AbsoluteFill,
   Audio,
   interpolate,
+  Sequence,
   staticFile,
   useCurrentFrame,
   useVideoConfig,
@@ -132,9 +133,15 @@ export const ShapeFloat: React.FC<ShapeFloatProps> = ({
       <ArabicFonts />
       {audioFile && (
         <>
-          <Audio src={staticFile(`audio/${audioFile}`)} startFrom={Math.round(fps * 1)} />
-          <Audio src={staticFile(`audio/${audioFile}`)} startFrom={Math.round(fps * 20)} />
-          <Audio src={staticFile(`audio/${audioFile}`)} startFrom={Math.round(fps * 39)} />
+          <Sequence from={Math.round(fps * 1)}>
+            <Audio src={staticFile(`audio/${audioFile}`)} />
+          </Sequence>
+          <Sequence from={Math.round(fps * 20)}>
+            <Audio src={staticFile(`audio/${audioFile}`)} />
+          </Sequence>
+          <Sequence from={Math.round(fps * 39)}>
+            <Audio src={staticFile(`audio/${audioFile}`)} />
+          </Sequence>
         </>
       )}
       {musicFile && (

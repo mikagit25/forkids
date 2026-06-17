@@ -1,0 +1,532 @@
+﻿🎨 Sensory Videos — Production Plan + Image Prompts
+________________
+
+
+IMPORTANT: Most sensory videos need NO images
+#
+	Video
+	Needs images?
+	Why
+	1
+	Bouncing Balls
+	❌ No
+	Pure SVG circles in Remotion
+	2
+	Pendulum Balls
+	❌ No
+	Pure SVG circles + lines
+	3
+	Circular Motion
+	❌ No
+	Pure SVG circles
+	4
+	Falling Stars
+	❌ No
+	Pure SVG polygons
+	5
+	B&W Shapes
+	❌ No
+	Pure SVG — black/white only
+	6
+	Expanding Circles
+	❌ No
+	Pure SVG circles
+	7
+	Checkerboard
+	❌ No
+	Pure SVG grid
+	8
+	Rainbow Spiral
+	❌ No
+	SVG arcs + rotation
+	9
+	Color Burst
+	❌ No
+	SVG particles
+	10
+	Floating Bubbles
+	❌ No
+	SVG circles with opacity
+	11
+	Dancing Fruits
+	✅ YES
+	Fruit characters need art
+	12
+	Slow Float
+	❌ No
+	Pure SVG shapes
+	13
+	Breathing Ball
+	❌ No
+	Single SVG circle
+	14
+	Firefly Night
+	❌ No
+	SVG glow circles
+	Only video 11 (Dancing Fruits) needs image prompts. Videos 1–10, 12–14 are 100% code — no external assets needed.
+________________
+
+
+IMAGE PROMPTS — VIDEO 11: DANCING FRUITS
+Style suffix for all:
+3D Pixar-style cartoon, very simple round shape, bright saturated color, happy face with big eyes and smile, pure BLACK background, children's sensory video style, isolated character, high quality render, Hey Bear sensory style
+Critical: Black background — these are sensory videos, not white background like other videos.
+________________
+
+
+PROMPT 01 — Red Apple
+A cute 3D cartoon apple character, perfectly round, bright red, big happy eyes, wide smile, rosy cheeks, small leaf on top, no arms or legs needed, floating pose, pure black background. 3D Pixar-style cartoon, simple round shape, bright red color, expressive happy face, children's sensory video style, high quality render
+
+
+Save as: fruit_apple.png
+________________
+
+
+PROMPT 02 — Yellow Banana
+A cute 3D cartoon banana character, curved banana shape, bright yellow, happy smiling face in the center of the curve, pure black background. 3D Pixar-style cartoon, simple banana shape, bright yellow color, expressive happy face, children's sensory video style, high quality render
+
+
+Save as: fruit_banana.png
+________________
+
+
+PROMPT 03 — Orange
+A cute 3D cartoon orange fruit character, perfectly round, bright orange color, happy face, small green leaf on top, pure black background. 3D Pixar-style cartoon, simple round shape, bright orange color, expressive face, children's sensory video style, high quality render
+
+
+Save as: fruit_orange.png
+________________
+
+
+PROMPT 04 — Pink Strawberry
+A cute 3D cartoon strawberry character, heart-shaped body, bright red-pink, yellow seeds visible, green leafy top, happy big eyes and smile, pure black background. 3D Pixar-style cartoon, strawberry shape, bright pink-red, expressive face, children's sensory video style, high quality render
+
+
+Save as: fruit_strawberry.png
+________________
+
+
+PROMPT 05 — Green Watermelon
+A cute 3D cartoon watermelon slice character, triangle slice shape, bright green rind, red interior, black seeds, happy face on the red part, pure black background. 3D Pixar-style cartoon, watermelon slice, bright green and red, expressive face, children's sensory video style, high quality render
+
+
+Save as: fruit_watermelon.png
+________________
+
+
+PROMPT 06 — Purple Grapes
+A cute 3D cartoon bunch of grapes character, cluster of round purple grapes, happy smiling face on the front grape, green vine on top, pure black background. 3D Pixar-style cartoon, grape cluster, bright purple, expressive face, children's sensory video style, high quality render
+
+
+Save as: fruit_grapes.png
+________________
+
+
+PROMPT 07 — Yellow Pineapple
+A cute 3D cartoon pineapple character, round yellow body with texture pattern, spiky green top, happy face, pure black background. 3D Pixar-style cartoon, pineapple shape, bright yellow with green top, expressive happy face, children's sensory video style, high quality render
+
+
+Save as: fruit_pineapple.png
+________________
+
+
+PROMPT 08 — Red Cherries Pair
+A cute 3D cartoon pair of cherries, two round red cherries connected by their stems at the top, both with happy faces, pure black background. 3D Pixar-style cartoon, cherry pair, bright red, connected stems, two happy faces, children's sensory video style, high quality render
+
+
+Save as: fruit_cherries.png
+________________
+
+
+PROMPT 09 — Yellow Lemon
+A cute 3D cartoon lemon character, oval lemon shape, bright yellow, slightly pointy ends, happy squinting eyes and smile, pure black background. 3D Pixar-style cartoon, lemon shape, bright yellow, expressive face, children's sensory video style, high quality render
+
+
+Save as: fruit_lemon.png
+________________
+
+
+PROMPT 10 — Blue Blueberry
+A cute 3D cartoon blueberry character, small round shape, deep blue-purple color, star-shaped top detail, very big eyes relative to tiny body, pure black background. 3D Pixar-style cartoon, tiny blueberry, deep blue, oversized cute eyes, children's sensory video style, high quality render
+
+
+Save as: fruit_blueberry.png
+________________
+
+
+PROMPT 11 — Orange Mango
+A cute 3D cartoon mango character, kidney-shaped mango body, bright orange-yellow color, happy smiling face, pure black background. 3D Pixar-style cartoon, mango shape, bright orange, expressive face, children's sensory video style, high quality render
+
+
+Save as: fruit_mango.png
+________________
+
+
+PROMPT 12 — Brown Coconut
+A cute 3D cartoon coconut character, round brown hairy coconut, happy face, three dark spots at top that look like a face naturally, pure black background. 3D Pixar-style cartoon, coconut shape, brown textured, expressive face, children's sensory video style, high quality render
+
+
+Save as: fruit_coconut.png
+________________
+
+
+PROMPT 13 — Green Kiwi Slice
+A cute 3D cartoon kiwi fruit slice, round cross-section showing green flesh with black seeds in pattern, brown rind edge, happy face, pure black background. 3D Pixar-style cartoon, kiwi slice, bright green with seed pattern, expressive face, children's sensory video style, high quality render
+
+
+Save as: fruit_kiwi.png
+________________
+
+
+PROMPT 14 — Pink Peach
+A cute 3D cartoon peach character, round peach shape, soft pink-orange gradient color, small leaf on top, happy gentle smile, cheeks blushing, pure black background. 3D Pixar-style cartoon, peach shape, soft pink-orange, blushing cheeks, children's sensory video style, high quality render
+
+
+Save as: fruit_peach.png
+________________
+
+
+PROMPT 15 — All Fruits Together (thumbnail/finale)
+All 14 cute 3D cartoon fruit characters together in a group: apple, banana, orange, strawberry, watermelon, grapes, pineapple, cherries, lemon, blueberry, mango, coconut, kiwi, peach — all bouncing and happy, pure black background. 3D Pixar-style cartoon, fruit party group, all bright colors, all happy faces, children's sensory video style, high quality render
+
+
+Save as: fruit_all_together.png
+________________
+
+
+COMPLETE REMOTION CODE — VIDEO 1: BOUNCING BALLS
+(Ready to implement — most fundamental sensory video)
+import { useCurrentFrame, interpolate, AbsoluteFill } from 'remotion';
+
+
+interface Ball {
+  x: number;
+  startY: number;
+  radius: number;
+  color: string;
+  phase: number; // slight timing offset
+}
+
+
+const BALLS: Ball[] = [
+  { x: 137, startY: 100, radius: 70, color: '#FF2222', phase: 0 },
+  { x: 274, startY: 80,  radius: 65, color: '#FF8800', phase: 3 },
+  { x: 411, startY: 120, radius: 75, color: '#FFDD00', phase: 6 },
+  { x: 548, startY: 90,  radius: 70, color: '#22CC44', phase: 9 },
+  { x: 685, startY: 110, radius: 65, color: '#2255FF', phase: 12 },
+  { x: 822, startY: 85,  radius: 72, color: '#8833FF', phase: 5 },
+  { x: 959, startY: 100, radius: 68, color: '#FF44AA', phase: 8 },
+];
+
+
+const GROUND_Y = 880;
+const GRAVITY = 0.65;
+const BOUNCINESS = 0.82;
+
+
+// Pre-bake physics for smooth playback
+function bakePhysics(ball: Ball, totalFrames: number) {
+  const positions: { y: number; vy: number }[] = [];
+  let y = ball.startY + ball.radius;
+  let vy = 0;
+  for (let f = 0; f < totalFrames; f++) {
+    const adjustedF = f + ball.phase;
+    vy += GRAVITY;
+    y += vy;
+    if (y >= GROUND_Y - ball.radius) {
+      y = GROUND_Y - ball.radius;
+      vy = -Math.abs(vy) * BOUNCINESS;
+    }
+    positions.push({ y, vy });
+  }
+  return positions;
+}
+
+
+export const BouncingBalls = () => {
+  const frame = useCurrentFrame();
+  const totalFrames = 30 * 60 * 3; // 3 minute loop
+  
+  const allPositions = BALLS.map(ball => bakePhysics(ball, totalFrames));
+
+
+  return (
+    <AbsoluteFill style={{ background: '#000000' }}>
+      <svg width="1920" height="1080" viewBox="0 0 1920 1080">
+        {BALLS.map((ball, i) => {
+          const pos = allPositions[i][frame % totalFrames];
+          const speed = Math.abs(pos.vy);
+          
+          // Squash & stretch
+          const isLanding = pos.vy > 0 && pos.y >= GROUND_Y - ball.radius - 5;
+          const scaleX = isLanding ? 1.35 : interpolate(speed, [0, 25], [1, 0.88]);
+          const scaleY = isLanding ? 0.65 : interpolate(speed, [0, 25], [1, 1.18]);
+          
+          // Shadow on ground
+          const shadowOpacity = interpolate(pos.y, [200, GROUND_Y - ball.radius], [0.1, 0.4]);
+          const shadowWidth = ball.radius * 2 * scaleX;
+          
+          // Shine highlight
+          const shineX = ball.x - ball.radius * 0.3;
+          const shineY = pos.y - ball.radius * 0.35;
+          
+          return (
+            <g key={i}>
+              {/* Shadow */}
+              <ellipse
+                cx={ball.x}
+                cy={GROUND_Y + 8}
+                rx={shadowWidth * 0.6}
+                ry={10}
+                fill="rgba(255,255,255,0.15)"
+                opacity={shadowOpacity}
+              />
+              
+              {/* Ball */}
+              <g transform={`translate(${ball.x}, ${pos.y}) scale(${scaleX}, ${scaleY})`}>
+                <circle r={ball.radius} fill={ball.color} />
+                {/* Shine */}
+                <ellipse
+                  cx={-ball.radius * 0.25}
+                  cy={-ball.radius * 0.3}
+                  rx={ball.radius * 0.3}
+                  ry={ball.radius * 0.2}
+                  fill="rgba(255,255,255,0.4)"
+                />
+              </g>
+              
+              {/* Landing impact ring */}
+              {isLanding && (
+                <circle
+                  cx={ball.x}
+                  cy={GROUND_Y}
+                  r={ball.radius * 1.5}
+                  fill="none"
+                  stroke={ball.color}
+                  strokeWidth={3}
+                  opacity={0.3}
+                />
+              )}
+            </g>
+          );
+        })}
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+
+________________
+
+
+COMPLETE REMOTION CODE — VIDEO 13: BREATHING BALL
+(Simplest to implement — great starting point)
+import { useCurrentFrame, interpolate, Easing, AbsoluteFill } from 'remotion';
+
+
+export const BreathingBall = () => {
+  const frame = useCurrentFrame();
+  
+  const CYCLE_FRAMES = 300; // 10 seconds at 30fps
+  const cyclePos = (frame % CYCLE_FRAMES) / CYCLE_FRAMES;
+  
+  // Breathing curve: 0-0.4 inhale, 0.4-0.5 hold, 0.5-0.9 exhale, 0.9-1.0 hold
+  let breathe: number;
+  if (cyclePos < 0.4) {
+    breathe = interpolate(cyclePos, [0, 0.4], [0, 1], {
+      easing: Easing.inOut(Easing.cubic)
+    });
+  } else if (cyclePos < 0.5) {
+    breathe = 1;
+  } else if (cyclePos < 0.9) {
+    breathe = interpolate(cyclePos, [0.5, 0.9], [1, 0], {
+      easing: Easing.inOut(Easing.cubic)
+    });
+  } else {
+    breathe = 0;
+  }
+  
+  const minRadius = 120;
+  const maxRadius = 220;
+  const radius = interpolate(breathe, [0, 1], [minRadius, maxRadius]);
+  
+  // Very slow color cycle
+  const hue = (frame * 0.3) % 360;
+  const color = `hsl(${hue}, 70%, 55%)`;
+  const glowColor = `hsl(${hue}, 70%, 70%)`;
+  
+  // Outer rings also breathe with delay
+  const ring1Radius = radius * 1.4;
+  const ring2Radius = radius * 1.9;
+  
+  return (
+    <AbsoluteFill style={{ background: '#080818' }}>
+      <svg width="1920" height="1080" viewBox="0 0 1920 1080">
+        {/* Outer glow rings */}
+        <circle cx={960} cy={540} r={ring2Radius} 
+                fill="none" stroke={glowColor} strokeWidth={2} opacity={0.15} />
+        <circle cx={960} cy={540} r={ring1Radius} 
+                fill="none" stroke={glowColor} strokeWidth={3} opacity={0.25} />
+        
+        {/* Main ball */}
+        <circle cx={960} cy={540} r={radius} fill={color} opacity={0.9} />
+        
+        {/* Shine */}
+        <ellipse
+          cx={960 - radius * 0.25}
+          cy={540 - radius * 0.3}
+          rx={radius * 0.35}
+          ry={radius * 0.22}
+          fill="rgba(255,255,255,0.35)"
+        />
+        
+        {/* Very subtle text guide (optional) */}
+        {cyclePos < 0.4 && (
+          <text x={960} y={540 + radius + 60}
+                textAnchor="middle"
+                fill="rgba(255,255,255,0.3)"
+                fontSize={28}
+                fontFamily="sans-serif">
+            breathe in...
+          </text>
+        )}
+        {cyclePos > 0.5 && cyclePos < 0.9 && (
+          <text x={960} y={540 + radius + 60}
+                textAnchor="middle"
+                fill="rgba(255,255,255,0.3)"
+                fontSize={28}
+                fontFamily="sans-serif">
+            breathe out...
+          </text>
+        )}
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+
+________________
+
+
+REMOTION CODE — VIDEO 6: EXPANDING CIRCLES
+(Easiest infinite loop)
+import { useCurrentFrame, AbsoluteFill } from 'remotion';
+
+
+export const ExpandingCircles = () => {
+  const frame = useCurrentFrame();
+  
+  const RING_INTERVAL = 18; // new ring every 18 frames (0.6 sec)
+  const EXPAND_SPEED = 4;   // px per frame
+  const MAX_RADIUS = 900;    // screen diagonal approx
+  const STROKE_WIDTH = 10;
+  
+  // Calculate all active rings
+  const rings = [];
+  for (let i = 0; i * RING_INTERVAL <= frame; i++) {
+    const birthFrame = i * RING_INTERVAL;
+    const age = frame - birthFrame;
+    const radius = age * EXPAND_SPEED;
+    
+    if (radius > MAX_RADIUS) continue;
+    
+    const opacity = 1 - (radius / MAX_RADIUS);
+    rings.push({ radius, opacity });
+  }
+  
+  return (
+    <AbsoluteFill style={{ background: '#000000' }}>
+      <svg width="1920" height="1080" viewBox="0 0 1920 1080">
+        {rings.map((ring, i) => (
+          <circle
+            key={i}
+            cx={960}
+            cy={540}
+            r={ring.radius}
+            fill="none"
+            stroke="white"
+            strokeWidth={STROKE_WIDTH}
+            opacity={ring.opacity}
+          />
+        ))}
+        {/* Center dot */}
+        <circle cx={960} cy={540} r={12} fill="white" />
+      </svg>
+    </AbsoluteFill>
+  );
+};
+
+
+________________
+
+
+FFmpeg LOOP COMMAND
+# After rendering 3-minute loop:
+ffmpeg -stream_loop 9 -i bouncing_balls_3min.mp4 \
+  -c:v copy -c:a copy \
+  bouncing_balls_30min.mp4
+
+
+# With audio loop too:
+ffmpeg -stream_loop 9 -i loop_3min.mp4 \
+  -stream_loop 9 -i music_3min.mp3 \
+  -map 0:v -map 1:a \
+  -c:v copy -c:a aac \
+  -shortest \
+  output_30min.mp4
+
+
+________________
+
+
+RECOMMENDED PRODUCTION ORDER
+Week 1 — Code only (no images needed):
+1. Expanding Circles (simplest)
+2. Breathing Ball
+3. Bouncing Balls
+4. Checkerboard
+5. B&W Shapes
+Week 2 — More complex code:
+6. Pendulum Balls
+7. Falling Stars
+8. Rainbow Spiral
+9. Circular Motion
+10. Firefly Night
+Week 3 — With images:
+11. Dancing Fruits (generate images first)
+12. Floating Bubbles
+13. Color Burst
+14. Slow Float
+________________
+
+
+MUSIC RECOMMENDATIONS (royalty-free)
+Video type
+	Music style
+	BPM
+	Source
+	Active (1,3,9,11)
+	Xylophone, upbeat
+	90-110
+	YouTube Audio Library
+	Calm (2,4,12)
+	Piano, ambient
+	60-75
+	YouTube Audio Library
+	Newborn (5,6,7)
+	Classical, simple
+	60-70
+	Beethoven/Mozart (public domain)
+	Color (8,10)
+	Electronic, flowing
+	80-90
+	YouTube Audio Library
+	Sleep (13,14)
+	Lullaby, near silence
+	50-60
+	YouTube Audio Library
+	All YouTube Audio Library tracks are free for monetized YouTube videos.
+________________
+
+
+Production plan v1.0 — 14 sensory videos — complete

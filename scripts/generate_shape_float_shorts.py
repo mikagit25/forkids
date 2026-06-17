@@ -62,6 +62,7 @@ def make_meta(shape: str, mode: str, out_path: Path):
         "title":            f"{shape_cap} Shape | {mode.upper()} | Shapes for Kids | Happy Bear Kids #shorts",
         "video_type":       "short_shape_float",
         "theme":            "shapes",
+        "language":         "en",
         "duration_minutes": 1,
         "is_short":         True,
         "tags":             [

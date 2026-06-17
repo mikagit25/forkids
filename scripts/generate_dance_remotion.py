@@ -23,9 +23,11 @@ ROOT     = Path(__file__).resolve().parent.parent
 REMOTION = ROOT / "remotion"
 QUEUE    = ROOT / "output" / "queue"
 QUEUE_AR = ROOT / "output" / "queue_ar"
+QUEUE_ID = ROOT / "output" / "queue_id"
 
 sys.path.insert(0, str(ROOT / "scripts"))
 from arabic_data import ANIMALS_AR, FRUITS_AR, VEGETABLES_AR
+from indonesian_data import ANIMALS_ID, FRUITS_ID, VEGETABLES_ID, dance_meta_id
 
 DATE_STR = datetime.now().strftime("%Y%m%d")
 
@@ -169,13 +171,13 @@ def write_meta(name: str, theme: str, out_path: Path):
 
 
 # ── Arabic audio paths (relative to remotion/public/audio/) ──────────────────
-# All files live in assets/audio/voiceover/ar/ → accessible via symlink as ar/
 def _ar_audio(name: str) -> str | None:
     path = ROOT / "assets" / "audio" / "voiceover" / "ar" / f"ar_dance_{name}.mp3"
     return f"ar/ar_dance_{name}.mp3" if path.exists() else None
 
-# Arabic label dicts merged (animals + fruits + vegetables)
+# Merged label dicts per language
 _LABELS_AR: dict[str, str] = {**ANIMALS_AR, **FRUITS_AR, **VEGETABLES_AR}
+_LABELS_ID: dict[str, str] = {**ANIMALS_ID, **FRUITS_ID, **VEGETABLES_ID}
 
 
 def write_meta_ar(name: str, name_ar: str, theme: str, out_path: Path):
@@ -203,37 +205,53 @@ def write_meta_ar(name: str, name_ar: str, theme: str, out_path: Path):
         yaml.dump(meta, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
 
 
+def write_meta_id(name: str, name_id: str, theme: str, out_path: Path):
+    meta = dance_meta_id(name, name_id, theme)
+    meta_path = out_path.parent / f"meta_{out_path.stem}.yaml"
+    with open(meta_path, "w") as f:
+        yaml.dump(meta, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
+
+
 def gen_theme(characters: dict, theme: str, only: set, force: bool, lang: str = "en"):
-    queue = QUEUE_AR if lang == "ar" else QUEUE
+    queue = {"ar": QUEUE_AR, "id": QUEUE_ID}.get(lang, QUEUE)
     ok = 0
     for i, (name, cfg) in enumerate(characters.items()):
         if only and name not in only:
             continue
 
-        suffix = f"_{DATE_STR}_ar_remotion" if lang == "ar" else f"_{DATE_STR}_remotion"
+        if lang == "ar":
+            suffix = f"_{DATE_STR}_ar_remotion"
+        elif lang == "id":
+            suffix = f"_{DATE_STR}_id_remotion"
+        else:
+            suffix = f"_{DATE_STR}_remotion"
         out_name = f"short_dance_{name}{suffix}.mp4"
         out_path = queue / out_name
         if out_path.exists() and not force:
             print(f"  [{name}] skip"); continue
 
         name_ar = _LABELS_AR.get(name, name)
+        name_id = _LABELS_ID.get(name, name.capitalize())
+        custom_label = {"ar": name_ar, "id": name_id}.get(lang)
         props = {
             "spritePath":    cfg["sprite"],
             "characterName": name.capitalize(),
-            "customLabel":   name_ar if lang == "ar" else None,
+            "customLabel":   custom_label,
             "audioFile":     _ar_audio(name) if lang == "ar" else AUDIO_EN.get(name),
             "musicFile":     MUSIC_TRACKS[i % len(MUSIC_TRACKS)],
             "bgColor":       cfg["bg"],
             "accentColor":   cfg["accent"],
-            "language":      lang,
+            "language":      lang if lang in ("ar", "en") else "en",
         }
-        label = f"{name_ar}" if lang == "ar" else name
+        label = custom_label or name
         print(f"  [{name:12} → {label}]", end="  ", flush=True)
         if render(out_path, props):
             size = out_path.stat().st_size / 1024 / 1024
             print(f"✓  {size:.1f}MB")
             if lang == "ar":
                 write_meta_ar(name, name_ar, theme, out_path)
+            elif lang == "id":
+                write_meta_id(name, name_id, theme, out_path)
             else:
                 write_meta(name, theme, out_path)
             ok += 1
@@ -248,12 +266,12 @@ def main():
                         choices=["animals", "fruits", "vegetables", "all"],
                         default=["all"])
     parser.add_argument("--only", nargs="+", help="Render specific characters")
-    parser.add_argument("--lang", choices=["en", "ar"], default="en",
-                        help="Output language (en=queue/, ar=queue_ar/)")
+    parser.add_argument("--lang", choices=["en", "ar", "id"], default="en",
+                        help="Output language (en=queue/, ar=queue_ar/, id=queue_id/)")
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
 
-    queue = QUEUE_AR if args.lang == "ar" else QUEUE
+    queue = {"ar": QUEUE_AR, "id": QUEUE_ID}.get(args.lang, QUEUE)
     queue.mkdir(parents=True, exist_ok=True)
 
     themes = set(args.theme)
@@ -262,7 +280,9 @@ def main():
     only = set(args.only) if args.only else set()
 
     total_ok = 0
-    lang_label = "Arabic → queue_ar/" if args.lang == "ar" else "English → queue/"
+    lang_label = {"ar": "Arabic → queue_ar/", "id": "Indonesian → queue_id/"}.get(
+        args.lang, "English → queue/"
+    )
     print(f"\nGenerating dance shorts via Remotion [{lang_label}]\n")
 
     if "animals" in themes:

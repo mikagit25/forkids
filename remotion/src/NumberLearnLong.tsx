@@ -20,7 +20,7 @@
  */
 import React from "react";
 import {
-  AbsoluteFill, Audio, Img, interpolate, spring,
+  AbsoluteFill, Audio, Img, interpolate, Sequence, spring,
   staticFile, useCurrentFrame, useVideoConfig,
 } from "remotion";
 import { ArabicFonts } from "./components/ArabicFonts";
@@ -39,7 +39,7 @@ export interface NumberLearnLongProps {
   accentColor: string;    // "#43A047"
   bgColor: string;
   rtl: boolean;
-  lang: "en" | "ar";
+  lang: "en" | "ar" | "id";
   numberKey: string;      // "three"
   objects: [NumberObject, NumberObject, NumberObject];
   musicFile: string;
@@ -119,7 +119,7 @@ interface CountSceneProps {
   numberName: string;
   numberDigit: string;
   rtl: boolean;
-  lang: "en" | "ar";
+  lang: "en" | "ar" | "id";
   numberKey: string;
   objIndex: number;       // 0,1,2 — which object slot
 }
@@ -165,7 +165,7 @@ const CountScene: React.FC<CountSceneProps> = ({
   // Layout: N objects in a row (max 5 per row)
   const cols   = Math.min(N, 5);
   const rows   = Math.ceil(N / cols);
-  const objW   = Math.min(240, Math.floor(1600 / cols));
+  const objW   = Math.min(500, Math.floor(1400 / Math.max(cols, 1)));
   const startX = (1920 - cols * objW) / 2;
   const startY = rows > 1 ? 200 : 280;
 
@@ -180,7 +180,7 @@ const CountScene: React.FC<CountSceneProps> = ({
   return (
     <AbsoluteFill style={{ opacity: fadeOut }}>
       {/* Audio — start at cycle beginning */}
-      <Audio src={staticFile(audioFile)} startFrom={cycleStart} />
+      <Audio src={staticFile(audioFile)} />
 
       {/* Question */}
       <div style={{
@@ -256,90 +256,110 @@ const CountScene: React.FC<CountSceneProps> = ({
   );
 };
 
+// ── SVG Hand ─────────────────────────────────────────────────────────────────
+const HandSVG: React.FC<{
+  fingersUp: number; totalFingers: number; color: string; mirror?: boolean;
+}> = ({ fingersUp, totalFingers, color, mirror = false }) => {
+  const fingerXs  = [14, 40, 64, 88, 110];
+  const fingerW   = 22;
+  const upHeight  = 100;
+  const downHeight = 38;
+  const palmTop   = 130;
+
+  return (
+    <svg
+      width="150" height="220" viewBox="0 0 150 220"
+      style={{ transform: mirror ? "scaleX(-1)" : "none" }}
+    >
+      {/* Palm */}
+      <rect x="4" y={palmTop} width="142" height="82" rx="22" fill={color} />
+      {/* Fingers */}
+      {fingerXs.map((x, i) => {
+        const active = i < totalFingers;
+        const isUp   = i < fingersUp;
+        const h      = isUp ? upHeight : downHeight;
+        const y      = isUp ? palmTop - upHeight : palmTop - downHeight + 8;
+        return (
+          <rect
+            key={i}
+            x={x} y={y} width={fingerW} height={h}
+            rx={fingerW / 2}
+            fill={color}
+            opacity={active ? (isUp ? 1 : 0.45) : 0}
+          />
+        );
+      })}
+      {/* Thumb */}
+      <ellipse cx="8" cy={palmTop + 35} rx="14" ry="20" fill={color} />
+    </svg>
+  );
+};
+
 // ── Animated finger counter ───────────────────────────────────────────────────
 const FingerCount: React.FC<{
   frame: number; fps: number; globalStart: number;
   N: number; accentColor: string; numberName: string; rtl: boolean;
-}> = ({ frame, fps, globalStart, N, accentColor, numberName, rtl }) => {
+  lang: "en" | "ar" | "id"; numberKey: string;
+}> = ({ frame, fps, globalStart, N, accentColor, numberName, rtl, lang, numberKey }) => {
   const f      = frame - globalStart;
-  const totalS = 120;
+  const totalS = T_SONG - T_FINGERS;  // 120s
   if (f < 0 || f >= totalS * fps) return null;
 
-  const fSec    = f / fps;
-  const cycleS  = 30;
-  const cycleF  = Math.floor(fSec / cycleS);
-  const localF  = fSec % cycleS;
-  const font    = rtl ? "'Noto Sans Arabic','Noto Kufi Arabic',sans-serif" : "'Arial Black',sans-serif";
+  const fSec   = f / fps;
+  const cycleS = 30;
+  const localF = fSec % cycleS;
+  const font   = rtl ? "'Noto Sans Arabic','Noto Kufi Arabic',sans-serif" : "'Arial Black',sans-serif";
 
-  // How many fingers are up at this moment (animate raising)
-  const fingersShown = Math.min(N, Math.floor(localF / (cycleS / (N + 1))) + 1);
+  // Animate fingers appearing one by one within each 30s cycle
+  const fingersShown = Math.min(N, Math.floor(localF * (N + 1) / (cycleS * 0.7)) + 1);
+  const leftUp  = Math.min(fingersShown, 5);
+  const rightUp = N > 5 ? Math.max(0, fingersShown - 5) : 0;
 
-  const fingers = Array.from({ length: 5 }, (_, i) => {
-    // Left hand: fingers 1-5
-    // Right hand: fingers 6-10 (if N > 5)
-    const hand1Up = i < Math.min(N, 5) && i < fingersShown;
-    const hand2Up = N > 5 && i < N - 5 && i < (fingersShown - 5);
-    return { hand1Up, hand2Up };
-  });
-
-  const handStyle = (isUp: boolean, delay: number): React.CSSProperties => ({
-    width: 28,
-    height: isUp ? 100 : 40,
-    backgroundColor: isUp ? accentColor : "#D4A574",
-    borderRadius: "14px 14px 8px 8px",
-    transition: "height 0.3s ease",
-    margin: "0 4px",
-    opacity: 1,
-    transform: `translateY(${isUp ? 0 : 60}px)`,
-  });
-
-  const HandDisplay: React.FC<{ ups: boolean[]; label?: string }> = ({ ups, label }) => (
-    <div style={{
-      display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
-    }}>
-      <div style={{ display: "flex", alignItems: "flex-end", height: 130 }}>
-        {ups.map((up, i) => (
-          <div key={i} style={handStyle(up, i * 0.1)} />
-        ))}
-      </div>
-      {/* Palm */}
-      <div style={{
-        width: 180, height: 50, backgroundColor: "#D4A574", borderRadius: 12,
-      }} />
-      {label && (
-        <span style={{ fontFamily: font, fontSize: 40, color: accentColor, fontWeight: 900 }}>
-          {label}
-        </span>
-      )}
-    </div>
-  );
+  const pulse = 1 + Math.abs(Math.sin(fSec * 1.8)) * 0.06;
 
   return (
     <AbsoluteFill style={{
       display: "flex", flexDirection: "column",
-      alignItems: "center", justifyContent: "center", gap: 40,
+      alignItems: "center", justifyContent: "center", gap: 32,
     }}>
+      {/* Audio — voiced finger counting */}
+      <Audio
+        src={staticFile(`audio/number_learn/${lang}/${numberKey}_fingers.mp3`)}
+      />
+
+      {/* Number name */}
       <span style={{
-        fontFamily: font, fontSize: 100, fontWeight: 900,
+        fontFamily: font, fontSize: 110, fontWeight: 900,
         color: accentColor, WebkitTextStroke: "5px white",
         direction: rtl ? "rtl" : "ltr",
+        transform: `scale(${pulse})`,
       }}>
         {numberName}
       </span>
 
-      <div style={{ display: "flex", gap: 80 }}>
-        <HandDisplay ups={fingers.map(f => f.hand1Up)} label={N > 5 ? "5" : undefined} />
+      {/* Hands */}
+      <div style={{ display: "flex", gap: 60, alignItems: "flex-end" }}>
+        <HandSVG fingersUp={leftUp} totalFingers={Math.min(N, 5)} color={accentColor} />
         {N > 5 && (
-          <HandDisplay ups={fingers.map(f => f.hand2Up)} label={String(N - 5)} />
+          <HandSVG fingersUp={rightUp} totalFingers={N - 5} color={accentColor} mirror />
         )}
       </div>
 
-      <span style={{
-        fontFamily: font, fontSize: 72, fontWeight: 700, color: "#555",
+      {/* Finger count display */}
+      <div style={{
+        display: "flex", gap: 16, alignItems: "center",
         direction: rtl ? "rtl" : "ltr",
       }}>
-        {rtl ? "أرني بأصابعك!" : "Show me with your fingers!"}
-      </span>
+        {Array.from({ length: N }, (_, i) => (
+          <div key={i} style={{
+            width: 54, height: 54, borderRadius: "50%",
+            backgroundColor: i < fingersShown ? accentColor : "#ddd",
+            border: "4px solid white",
+            boxShadow: i < fingersShown ? `0 4px 16px ${accentColor}88` : "none",
+            transition: "all 0.3s",
+          }} />
+        ))}
+      </div>
     </AbsoluteFill>
   );
 };
@@ -348,7 +368,7 @@ const FingerCount: React.FC<{
 const SongSection: React.FC<{
   frame: number; fps: number; globalStart: number;
   N: number; objects: NumberObject[]; numberName: string; numberDigit: string;
-  accentColor: string; rtl: boolean; lang: "en" | "ar"; numberKey: string;
+  accentColor: string; rtl: boolean; lang: "en" | "ar" | "id"; numberKey: string;
 }> = ({ frame, fps, globalStart, N, objects, numberName, numberDigit, accentColor, rtl, lang, numberKey }) => {
   const f    = frame - globalStart;
   const lenS = T_OUTRO - T_SONG;
@@ -364,8 +384,7 @@ const SongSection: React.FC<{
 
   return (
     <AbsoluteFill>
-      <Audio src={staticFile(`audio/number_learn/${lang}/${numberKey}_song.mp3`)}
-             startFrom={globalStart} />
+      <Audio src={staticFile(`audio/number_learn/${lang}/${numberKey}_song.mp3`)} />
 
       {/* Big digit + name */}
       <div style={{
@@ -460,10 +479,14 @@ export const NumberLearnLong: React.FC<NumberLearnLongProps> = ({
       <ArabicFonts />
       <Audio src={staticFile(`music/${musicFile}`)} volume={0.1} loop />
 
-      {/* Intro audio */}
-      <Audio src={staticFile(`${audioBase}_intro.mp3`)} startFrom={0} />
-      {/* Outro audio */}
-      <Audio src={staticFile(`${audioBase}_outro.mp3`)} startFrom={fps * T_OUTRO} />
+      {/* Section audio */}
+      <Audio src={staticFile(`${audioBase}_intro.mp3`)} />
+      <Sequence from={fps * T_REVIEW}>
+        <Audio src={staticFile(`${audioBase}_review.mp3`)} />
+      </Sequence>
+      <Sequence from={fps * T_OUTRO}>
+        <Audio src={staticFile(`${audioBase}_outro.mp3`)} />
+      </Sequence>
 
       <AbsoluteFill style={{ opacity: fadeOut }}>
 
@@ -498,14 +521,44 @@ export const NumberLearnLong: React.FC<NumberLearnLongProps> = ({
           </AbsoluteFill>
         )}
 
-        {/* ── REVIEW (30–90s): quick flash of numbers 1..N-1 ─────────────── */}
-        {fSec >= T_REVIEW && fSec < T_SCENE1 && N > 1 && (() => {
+        {/* ── REVIEW (30–90s) ──────────────────────────────────────────────── */}
+        {fSec >= T_REVIEW && fSec < T_SCENE1 && (() => {
           const reviewLen = T_SCENE1 - T_REVIEW;
-          const slotLen   = reviewLen / Math.min(N - 1, 6);
           const fLocal    = fSec - T_REVIEW;
+
+          if (N === 1) {
+            // For ONE: pulse the big digit with breathing animation
+            const pulse = 1 + Math.abs(Math.sin(fLocal * 1.4)) * 0.14;
+            return (
+              <AbsoluteFill style={{
+                display: "flex", flexDirection: "column",
+                alignItems: "center", justifyContent: "center", gap: 24,
+              }}>
+                <span style={{
+                  fontFamily: "'Arial Black', sans-serif",
+                  fontSize: 360, fontWeight: 900,
+                  color: accentColor, WebkitTextStroke: "14px white",
+                  textShadow: `0 20px 80px ${accentColor}66`,
+                  lineHeight: 1, transform: `scale(${pulse})`,
+                }}>
+                  {numberDigit}
+                </span>
+                <span style={{
+                  fontFamily: font, fontSize: 120, fontWeight: 900,
+                  color: accentColor, WebkitTextStroke: "6px white",
+                  direction: rtl ? "rtl" : "ltr",
+                  transform: `scale(${1 + Math.abs(Math.sin(fLocal * 1.4 + 0.8)) * 0.08})`,
+                }}>
+                  {numberName}
+                </span>
+              </AbsoluteFill>
+            );
+          }
+
+          // For N>1: flash previous digits
+          const slotLen   = reviewLen / Math.min(N - 1, 6);
           const idx       = Math.floor(fLocal / slotLen);
-          // Show digit idx+1
-          const showDigit = String(idx + 1);
+          const showDigit = String(Math.min(idx + 1, N - 1));
           const sp = spring({
             frame: f - fps * (T_REVIEW + idx * slotLen), fps,
             config: { damping: 12, stiffness: 140 }, durationInFrames: fps * 0.8,
@@ -526,8 +579,7 @@ export const NumberLearnLong: React.FC<NumberLearnLongProps> = ({
                 fontFamily: "'Arial Black', sans-serif",
                 fontSize: 280, fontWeight: 900,
                 color: accentColor, WebkitTextStroke: "10px white",
-                transform: `scale(${sc})`,
-                lineHeight: 1,
+                transform: `scale(${sc})`, lineHeight: 1,
               }}>
                 {showDigit}
               </span>
@@ -578,6 +630,7 @@ export const NumberLearnLong: React.FC<NumberLearnLongProps> = ({
         <FingerCount
           frame={f} fps={fps} globalStart={fps * T_FINGERS}
           N={N} accentColor={accentColor} numberName={numberName} rtl={rtl}
+          lang={lang} numberKey={numberKey}
         />
 
         {/* ── SONG ───────────────────────────────────────────────────────── */}

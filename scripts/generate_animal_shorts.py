@@ -105,6 +105,7 @@ def make_meta(animal: str, output_file: Path) -> Path:
         "title": TITLES[animal],
         "video_type": "short_dance",
         "theme": "animals",
+        "language": "en",
         "duration_minutes": 1,
         "is_short": True,
         "tags": [

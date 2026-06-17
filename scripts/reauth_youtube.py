@@ -1,21 +1,32 @@
 #!/usr/bin/env python3
 """
-Re-authenticate YouTube OAuth token (console flow — no browser needed on server).
+Re-authenticate YouTube OAuth token for any channel.
 
-Run this script locally via SSH tunnel, or directly on the server.
-It prints an auth URL → you open it in your browser → paste the code back.
+Flow (web, no copy-paste):
+  1. Script generates OAuth URL using the web client (client_secret_kids_web.json)
+  2. URL is sent to Telegram as a clickable link
+  3. Admin taps the link → Google consent screen → clicks Allow
+  4. Google redirects to https://medmind.pro/api/v1/auth/youtube/callback
+  5. medmind backend exchanges code and saves token automatically
+  6. Done — no terminal paste needed
 
 Usage:
-    python3 scripts/reauth_youtube.py
+    python3 scripts/reauth_youtube.py              # EN channel
+    python3 scripts/reauth_youtube.py --channel ar # AR channel
+    python3 scripts/reauth_youtube.py --channel id # Indonesian channel
 """
-import pickle
+import argparse
+import json
+import urllib.parse
+import urllib.request
 from pathlib import Path
-from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
 
-ROOT       = Path(__file__).resolve().parent.parent
-CREDS_PATH = ROOT / "credentials" / "youtube_client.json"
-TOKEN_PATH = ROOT / "credentials" / "token.pickle"
+ROOT = Path(__file__).resolve().parent.parent
+
+BOT_TOKEN    = "8657721269:AAEkhJ92vHR4K1CkA14nFcy0_bA95c38QZk"
+CHAT_ID      = "209381269"
+WEB_SECRET   = ROOT / "credentials" / "client_secret_kids_web.json"
+CALLBACK_URL = "https://medmind.pro/api/v1/auth/youtube/callback"
 
 SCOPES = [
     "https://www.googleapis.com/auth/youtube",
@@ -23,42 +34,80 @@ SCOPES = [
     "https://www.googleapis.com/auth/youtube.force-ssl",
 ]
 
+CHANNEL_CFG = {
+    "en": {"name": "Happy Bear Kids 🐻 EN", "state": "kids"},
+    "ar": {"name": "Happy Bear Kids 🐻 AR", "state": "kids_ar"},
+    "id": {"name": "Happy Bear Kids 🐻 ID", "state": "kids_id"},
+}
+
+
+def send_telegram(text: str) -> None:
+    try:
+        payload = json.dumps({
+            "chat_id": CHAT_ID,
+            "text": text,
+            "parse_mode": "HTML",
+            "disable_web_page_preview": False,
+        }).encode()
+        req = urllib.request.Request(
+            f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage",
+            data=payload,
+            headers={"Content-Type": "application/json"},
+            method="POST",
+        )
+        urllib.request.urlopen(req, timeout=10)
+        print("✓ Ссылка отправлена в Telegram")
+    except Exception as e:
+        print(f"  (Telegram не отвечает: {e})")
+
+
+def build_auth_url(client_id: str, state: str) -> str:
+    params = {
+        "client_id":     client_id,
+        "redirect_uri":  CALLBACK_URL,
+        "response_type": "code",
+        "scope":         " ".join(SCOPES),
+        "access_type":   "offline",
+        "prompt":        "consent",
+        "state":         state,
+    }
+    return "https://accounts.google.com/o/oauth2/v2/auth?" + urllib.parse.urlencode(params)
+
 
 def main():
-    # Delete old token to force fresh auth
-    if TOKEN_PATH.exists():
-        TOKEN_PATH.unlink()
-        print(f"Deleted old token: {TOKEN_PATH}")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--channel", choices=["en", "ar", "id"], default="en")
+    args = parser.parse_args()
 
-    print(f"\nStarting OAuth flow (console mode)...")
-    print(f"Credentials: {CREDS_PATH}\n")
+    cfg = CHANNEL_CFG[args.channel]
 
-    flow = InstalledAppFlow.from_client_secrets_file(str(CREDS_PATH), SCOPES)
-    flow.redirect_uri = "urn:ietf:wg:oauth:2.0:oob"
+    if not WEB_SECRET.exists():
+        print(f"ERROR: {WEB_SECRET} not found")
+        return
 
-    auth_url, _ = flow.authorization_url(
-        access_type="offline",
-        prompt="consent",          # force refresh_token even if already granted
-        include_granted_scopes="true",
+    with open(WEB_SECRET) as f:
+        secret = json.load(f)
+    client_id = (secret.get("web") or secret.get("installed") or {})["client_id"]
+
+    auth_url = build_auth_url(client_id, cfg["state"])
+
+    print(f"\n{'='*60}")
+    print(f"  Reauth: {cfg['name']}")
+    print(f"  State:  {cfg['state']}")
+    print(f"{'='*60}")
+    print(f"\nОткрой ссылку в браузере (войди под нужным Google аккаунтом):\n")
+    print(auth_url)
+    print(f"\nИли жди ссылку в Telegram.\n")
+
+    send_telegram(
+        f"🔑 <b>YouTube reauth — {cfg['name']}</b>\n\n"
+        f"Войди в нужный Google аккаунт и нажми:\n"
+        f'<a href="{auth_url}">👉 Авторизовать {cfg["name"]}</a>\n\n'
+        f"После нажатия «Разрешить» токен сохранится автоматически."
     )
 
-    print("=" * 60)
-    print("Open this URL in your browser:\n")
-    print(auth_url)
-    print("\n" + "=" * 60)
-    code = input("Paste the authorization code here: ").strip()
-
-    flow.fetch_token(code=code)
-    creds = flow.credentials
-
-    TOKEN_PATH.parent.mkdir(exist_ok=True)
-    with open(TOKEN_PATH, "wb") as f:
-        pickle.dump(creds, f)
-
-    print(f"\n✓ Token saved: {TOKEN_PATH}")
-    print("Scopes granted:")
-    for s in creds.scopes or SCOPES:
-        print(f"  {s}")
+    print("После авторизации в браузере токен сохранится автоматически.")
+    print("Скрипт завершён.")
 
 
 if __name__ == "__main__":

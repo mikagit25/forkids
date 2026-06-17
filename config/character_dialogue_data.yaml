@@ -1,0 +1,142 @@
+# Character Dialogue Long — episode configurations for CharacterDialogueLong composition
+# Bear character (Roundy) speaks TO the child with dialogue, 20-min videos
+# Each episode: 4 scenes × 5 cycles × ~55s = 20 minutes
+# Audio: audio/character_dialogue/{lang}/{episode_key}_{section}.mp3
+
+episodes:
+
+  - key: emotions
+    title_en: "Feelings with Roundy!"
+    title_ar: "مشاعر مع راوندي!"
+    title_id: "Perasaan Bersama Roundy!"
+    character_sprite: "characters/bear_happy_3d.png"
+    accent_color: "#FF6B35"
+    bg_color: "#FFF8F0"
+    music_file: "Carefree.mp3"
+    scenes:
+      - id: happy
+        title_en: "Happy"
+        title_ar: "سعيد"
+        title_id: "Senang"
+        sprite: "emotions/happy_3d.png"
+        bg_color: "#FFD700"
+      - id: sad
+        title_en: "Sad"
+        title_ar: "حزين"
+        title_id: "Sedih"
+        sprite: "emotions/sad_3d.png"
+        bg_color: "#64B5F6"
+      - id: angry
+        title_en: "Angry"
+        title_ar: "غاضب"
+        title_id: "Marah"
+        sprite: "emotions/angry_3d.png"
+        bg_color: "#EF5350"
+      - id: surprised
+        title_en: "Surprised"
+        title_ar: "مندهش"
+        title_id: "Terkejut"
+        sprite: "emotions/surprised_3d.png"
+        bg_color: "#AB47BC"
+
+  - key: colors_character
+    title_en: "Colors with Roundy!"
+    title_ar: "ألوان مع راوندي!"
+    title_id: "Warna Bersama Roundy!"
+    character_sprite: "characters/bear_happy_3d.png"
+    accent_color: "#E91E63"
+    bg_color: "#FFF0F5"
+    music_file: "Happy Happy Game Show.mp3"
+    scenes:
+      - id: red
+        title_en: "Red"
+        title_ar: "أحمر"
+        title_id: "Merah"
+        sprite: "fruits/strawberry_3d.png"
+        bg_color: "#FFCDD2"
+      - id: blue
+        title_en: "Blue"
+        title_ar: "أزرق"
+        title_id: "Biru"
+        sprite: "objects/star_3d.png"
+        bg_color: "#BBDEFB"
+      - id: yellow
+        title_en: "Yellow"
+        title_ar: "أصفر"
+        title_id: "Kuning"
+        sprite: "objects/sun_3d.png"
+        bg_color: "#FFF9C4"
+      - id: green
+        title_en: "Green"
+        title_ar: "أخضر"
+        title_id: "Hijau"
+        sprite: "vegetables/broccoli_3d.png"
+        bg_color: "#C8E6C9"
+
+  - key: numbers_character
+    title_en: "Numbers with Roundy!"
+    title_ar: "أرقام مع راوندي!"
+    title_id: "Angka Bersama Roundy!"
+    character_sprite: "characters/bear_happy_3d.png"
+    accent_color: "#1565C0"
+    bg_color: "#F0F4FF"
+    music_file: "Pinball Spring.mp3"
+    scenes:
+      - id: one
+        title_en: "ONE"
+        title_ar: "واحد"
+        title_id: "SATU"
+        sprite: "animals/duck_3d.png"
+        bg_color: "#E3F2FD"
+      - id: two
+        title_en: "TWO"
+        title_ar: "اثنان"
+        title_id: "DUA"
+        sprite: "fruits/apple_3d.png"
+        bg_color: "#FFEBEE"
+      - id: three
+        title_en: "THREE"
+        title_ar: "ثلاثة"
+        title_id: "TIGA"
+        sprite: "objects/star_3d.png"
+        bg_color: "#FFFDE7"
+      - id: four
+        title_en: "FOUR"
+        title_ar: "أربعة"
+        title_id: "EMPAT"
+        sprite: "objects/butterfly_3d.png"
+        bg_color: "#F3E5F5"
+
+  - key: animals_character
+    title_en: "Animals with Roundy!"
+    title_ar: "حيوانات مع راوندي!"
+    title_id: "Hewan Bersama Roundy!"
+    character_sprite: "characters/bear_happy_3d.png"
+    accent_color: "#2E7D32"
+    bg_color: "#F1F8E9"
+    music_file: "Wholesome.mp3"
+    scenes:
+      - id: duck
+        title_en: "Duck"
+        title_ar: "بطة"
+        title_id: "Bebek"
+        sprite: "animals/duck_3d.png"
+        bg_color: "#FFF9C4"
+      - id: cat
+        title_en: "Cat"
+        title_ar: "قط"
+        title_id: "Kucing"
+        sprite: "animals/cat_3d.png"
+        bg_color: "#FCE4EC"
+      - id: frog
+        title_en: "Frog"
+        title_ar: "ضفدع"
+        title_id: "Katak"
+        sprite: "animals/frog_3d.png"
+        bg_color: "#E8F5E9"
+      - id: elephant
+        title_en: "Elephant"
+        title_ar: "فيل"
+        title_id: "Gajah"
+        sprite: "animals/elephant_3d.png"
+        bg_color: "#E3F2FD"

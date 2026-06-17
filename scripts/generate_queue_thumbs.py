@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 """
-Generate unique thumb_{stem}.png for every MP4 in output/queue/ and output/queue_ar/.
+Generate unique thumb_{stem}.png for every MP4 in output/queue/, queue_ar/, and queue_id/.
 
 Each video type and character gets distinct colors, layout, and visual style.
 Layouts: hero_center, hero_left, crowd, burst — chosen by video type.
 
 Usage:
-  python3 scripts/generate_queue_thumbs.py              # both queues
+  python3 scripts/generate_queue_thumbs.py              # EN + AR queues (both)
+  python3 scripts/generate_queue_thumbs.py --queue all  # all 3 queues
   python3 scripts/generate_queue_thumbs.py --queue en
   python3 scripts/generate_queue_thumbs.py --queue ar
+  python3 scripts/generate_queue_thumbs.py --queue id
   python3 scripts/generate_queue_thumbs.py --force      # regenerate all
 """
 import argparse
@@ -753,15 +755,19 @@ def process_uploaded(force: bool):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--queue", choices=["en", "ar", "both", "uploaded"], default="both")
+    parser.add_argument("--queue", choices=["en", "ar", "id", "both", "all", "uploaded"],
+                        default="both")
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
 
-    if args.queue in ("en", "both"):
+    if args.queue in ("en", "both", "all"):
         process_queue(ROOT / "output" / "queue", args.force, "EN")
 
-    if args.queue in ("ar", "both"):
+    if args.queue in ("ar", "both", "all"):
         process_queue(ROOT / "output" / "queue_ar", args.force, "AR")
+
+    if args.queue in ("id", "all"):
+        process_queue(ROOT / "output" / "queue_id", args.force, "ID")
 
     if args.queue == "uploaded":
         process_uploaded(args.force)

@@ -6,6 +6,7 @@ numbers:
     key: one
     name_en: "ONE"
     name_ar: "واحد"
+    name_id: "SATU"
     digit: "1"
     accent: "#F9A825"   # yellow
     bg: "#FFFDE7"
@@ -13,26 +14,33 @@ numbers:
       - key: apple
         name_en: "apple"
         name_ar: "تفاحة"
+        name_id: "apel"
         plural_en: "apples"
         plural_ar: "تفاحات"
-        sprite: "fruits/apple.png"
+        plural_id: "apel-apel"
+        sprite: "fruits/apple_3d.png"
       - key: sun
         name_en: "sun"
         name_ar: "شمس"
+        name_id: "matahari"
         plural_en: "suns"
         plural_ar: "شموس"
-        sprite: "objects/sun.png"
+        plural_id: "matahari-matahari"
+        sprite: "objects/sun_3d.png"
       - key: duck
         name_en: "duck"
         name_ar: "بطة"
+        name_id: "bebek"
         plural_en: "ducks"
         plural_ar: "بطات"
-        sprite: "animals/duck.png"
+        plural_id: "bebek-bebek"
+        sprite: "animals/duck_3d.png"
 
   - value: 2
     key: two
     name_en: "TWO"
     name_ar: "اثنان"
+    name_id: "DUA"
     digit: "2"
     accent: "#FB8C00"   # orange
     bg: "#FFF3E0"
@@ -40,26 +48,33 @@ numbers:
       - key: cherry
         name_en: "cherry"
         name_ar: "كرز"
+        name_id: "ceri"
         plural_en: "cherries"
         plural_ar: "كرزات"
-        sprite: "fruits/cherry.png"
+        plural_id: "ceri-ceri"
+        sprite: "fruits/cherry_3d.png"
       - key: duck
         name_en: "duck"
         name_ar: "بطة"
+        name_id: "bebek"
         plural_en: "ducks"
         plural_ar: "بطات"
-        sprite: "animals/duck.png"
+        plural_id: "bebek-bebek"
+        sprite: "animals/duck_3d.png"
       - key: shoe
         name_en: "shoe"
         name_ar: "حذاء"
+        name_id: "sepatu"
         plural_en: "shoes"
         plural_ar: "أحذية"
-        sprite: "objects/shoe.png"
+        plural_id: "sepatu-sepatu"
+        sprite: "objects/shoe_3d.png"
 
   - value: 3
     key: three
     name_en: "THREE"
     name_ar: "ثلاثة"
+    name_id: "TIGA"
     digit: "3"
     accent: "#43A047"   # green
     bg: "#E8F5E9"
@@ -67,26 +82,33 @@ numbers:
       - key: apple
         name_en: "apple"
         name_ar: "تفاحة"
+        name_id: "apel"
         plural_en: "apples"
         plural_ar: "تفاحات"
-        sprite: "fruits/apple.png"
+        plural_id: "apel-apel"
+        sprite: "fruits/apple_3d.png"
       - key: star
         name_en: "star"
         name_ar: "نجمة"
+        name_id: "bintang"
         plural_en: "stars"
         plural_ar: "نجوم"
-        sprite: "objects/star.png"
+        plural_id: "bintang-bintang"
+        sprite: "objects/star_3d.png"
       - key: duck
         name_en: "duck"
         name_ar: "بطة"
+        name_id: "bebek"
         plural_en: "ducks"
         plural_ar: "بطات"
-        sprite: "animals/duck.png"
+        plural_id: "bebek-bebek"
+        sprite: "animals/duck_3d.png"
 
   - value: 4
     key: four
     name_en: "FOUR"
     name_ar: "أربعة"
+    name_id: "EMPAT"
     digit: "4"
     accent: "#1E88E5"   # blue
     bg: "#E3F2FD"
@@ -94,26 +116,33 @@ numbers:
       - key: apple
         name_en: "apple"
         name_ar: "تفاحة"
+        name_id: "apel"
         plural_en: "apples"
         plural_ar: "تفاحات"
-        sprite: "fruits/apple.png"
+        plural_id: "apel-apel"
+        sprite: "fruits/apple_3d.png"
       - key: car
         name_en: "car"
         name_ar: "سيارة"
+        name_id: "mobil"
         plural_en: "cars"
         plural_ar: "سيارات"
-        sprite: "objects/car.png"
+        plural_id: "mobil-mobil"
+        sprite: "objects/car_3d.png"
       - key: duck
         name_en: "duck"
         name_ar: "بطة"
+        name_id: "bebek"
         plural_en: "ducks"
         plural_ar: "بطات"
-        sprite: "animals/duck.png"
+        plural_id: "bebek-bebek"
+        sprite: "animals/duck_3d.png"
 
   - value: 5
     key: five
     name_en: "FIVE"
     name_ar: "خمسة"
+    name_id: "LIMA"
     digit: "5"
     accent: "#8E24AA"   # purple
     bg: "#F3E5F5"
@@ -121,26 +150,33 @@ numbers:
       - key: apple
         name_en: "apple"
         name_ar: "تفاحة"
+        name_id: "apel"
         plural_en: "apples"
         plural_ar: "تفاحات"
-        sprite: "fruits/apple.png"
+        plural_id: "apel-apel"
+        sprite: "fruits/apple_3d.png"
       - key: star
         name_en: "star"
         name_ar: "نجمة"
+        name_id: "bintang"
         plural_en: "stars"
         plural_ar: "نجوم"
-        sprite: "objects/star.png"
+        plural_id: "bintang-bintang"
+        sprite: "objects/star_3d.png"
       - key: banana
         name_en: "banana"
         name_ar: "موزة"
+        name_id: "pisang"
         plural_en: "bananas"
         plural_ar: "موزات"
-        sprite: "fruits/banana.png"
+        plural_id: "pisang-pisang"
+        sprite: "fruits/banana_3d.png"
 
   - value: 6
     key: six
     name_en: "SIX"
     name_ar: "ستة"
+    name_id: "ENAM"
     digit: "6"
     accent: "#E91E8C"   # pink
     bg: "#FCE4EC"
@@ -148,26 +184,33 @@ numbers:
       - key: apple
         name_en: "apple"
         name_ar: "تفاحة"
+        name_id: "apel"
         plural_en: "apples"
         plural_ar: "تفاحات"
-        sprite: "fruits/apple.png"
+        plural_id: "apel-apel"
+        sprite: "fruits/apple_3d.png"
       - key: butterfly
         name_en: "butterfly"
         name_ar: "فراشة"
+        name_id: "kupu-kupu"
         plural_en: "butterflies"
         plural_ar: "فراشات"
-        sprite: "objects/butterfly.png"
+        plural_id: "kupu-kupu"
+        sprite: "objects/butterfly_3d.png"
       - key: duck
         name_en: "duck"
         name_ar: "بطة"
+        name_id: "bebek"
         plural_en: "ducks"
         plural_ar: "بطات"
-        sprite: "animals/duck.png"
+        plural_id: "bebek-bebek"
+        sprite: "animals/duck_3d.png"
 
   - value: 7
     key: seven
     name_en: "SEVEN"
     name_ar: "سبعة"
+    name_id: "TUJUH"
     digit: "7"
     accent: "#E53935"   # red
     bg: "#FFF5F5"
@@ -175,26 +218,33 @@ numbers:
       - key: apple
         name_en: "apple"
         name_ar: "تفاحة"
+        name_id: "apel"
         plural_en: "apples"
         plural_ar: "تفاحات"
-        sprite: "fruits/apple.png"
+        plural_id: "apel-apel"
+        sprite: "fruits/apple_3d.png"
       - key: star
         name_en: "star"
         name_ar: "نجمة"
+        name_id: "bintang"
         plural_en: "stars"
         plural_ar: "نجوم"
-        sprite: "objects/star.png"
+        plural_id: "bintang-bintang"
+        sprite: "objects/star_3d.png"
       - key: rainbow
         name_en: "rainbow"
         name_ar: "قوس قزح"
+        name_id: "pelangi"
         plural_en: "rainbows"
         plural_ar: "أقواس قزح"
-        sprite: "objects/rainbow.png"
+        plural_id: "pelangi-pelangi"
+        sprite: "objects/rainbow_3d.png"
 
   - value: 8
     key: eight
     name_en: "EIGHT"
     name_ar: "ثمانية"
+    name_id: "DELAPAN"
     digit: "8"
     accent: "#00897B"   # teal
     bg: "#E0F2F1"
@@ -202,26 +252,33 @@ numbers:
       - key: apple
         name_en: "apple"
         name_ar: "تفاحة"
+        name_id: "apel"
         plural_en: "apples"
         plural_ar: "تفاحات"
-        sprite: "fruits/apple.png"
+        plural_id: "apel-apel"
+        sprite: "fruits/apple_3d.png"
       - key: octopus
         name_en: "octopus"
         name_ar: "أخطبوط"
+        name_id: "gurita"
         plural_en: "octopuses"
         plural_ar: "أخطبوطات"
-        sprite: "objects/octopus.png"
+        plural_id: "gurita-gurita"
+        sprite: "objects/octopus_3d.png"
       - key: duck
         name_en: "duck"
         name_ar: "بطة"
+        name_id: "bebek"
         plural_en: "ducks"
         plural_ar: "بطات"
-        sprite: "animals/duck.png"
+        plural_id: "bebek-bebek"
+        sprite: "animals/duck_3d.png"
 
   - value: 9
     key: nine
     name_en: "NINE"
     name_ar: "تسعة"
+    name_id: "SEMBILAN"
     digit: "9"
     accent: "#F4511E"   # deep orange
     bg: "#FBE9E7"
@@ -229,26 +286,33 @@ numbers:
       - key: apple
         name_en: "apple"
         name_ar: "تفاحة"
+        name_id: "apel"
         plural_en: "apples"
         plural_ar: "تفاحات"
-        sprite: "fruits/apple.png"
+        plural_id: "apel-apel"
+        sprite: "fruits/apple_3d.png"
       - key: star
         name_en: "star"
         name_ar: "نجمة"
+        name_id: "bintang"
         plural_en: "stars"
         plural_ar: "نجوم"
-        sprite: "objects/star.png"
+        plural_id: "bintang-bintang"
+        sprite: "objects/star_3d.png"
       - key: balloon
         name_en: "balloon"
         name_ar: "بالون"
+        name_id: "balon"
         plural_en: "balloons"
         plural_ar: "بالونات"
-        sprite: "objects/balloon.png"
+        plural_id: "balon-balon"
+        sprite: "objects/balloon_3d.png"
 
   - value: 10
     key: ten
     name_en: "TEN"
     name_ar: "عشرة"
+    name_id: "SEPULUH"
     digit: "10"
     accent: "#6D4C41"   # brown/gold
     bg: "#EFEBE9"
@@ -256,18 +320,24 @@ numbers:
       - key: apple
         name_en: "apple"
         name_ar: "تفاحة"
+        name_id: "apel"
         plural_en: "apples"
         plural_ar: "تفاحات"
-        sprite: "fruits/apple.png"
+        plural_id: "apel-apel"
+        sprite: "fruits/apple_3d.png"
       - key: star
         name_en: "star"
         name_ar: "نجمة"
+        name_id: "bintang"
         plural_en: "stars"
         plural_ar: "نجوم"
-        sprite: "objects/star.png"
+        plural_id: "bintang-bintang"
+        sprite: "objects/star_3d.png"
       - key: duck
         name_en: "duck"
         name_ar: "بطة"
+        name_id: "bebek"
         plural_en: "ducks"
         plural_ar: "بطات"
-        sprite: "animals/duck.png"
+        plural_id: "bebek-bebek"
+        sprite: "animals/duck_3d.png"

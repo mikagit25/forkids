@@ -44,7 +44,7 @@ title: "..."          # не пустой
 description: "..."    # минимум 200 слов, хэштеги в конце
 tags: [...]           # до 40 тегов
 video_type: dance     # см. таблицу типов ниже
-language: en          # en или ar
+language: en          # en, ar или id
 is_short: false       # true для Shorts (≤60с)
 status: public
 ```
@@ -88,6 +88,7 @@ python3 scripts/generate_color_learn_long.py --regen-meta
 python3 scripts/generate_number_learn_long.py --regen-meta
 python3 scripts/generate_ai_thumbs.py --queue en --backend together
 python3 scripts/generate_ai_thumbs.py --queue ar --backend together
+python3 scripts/generate_ai_thumbs.py --queue id --backend together
 ```
 
 ### 7. Dance-видео (Manim) требуют meta вручную
@@ -136,13 +137,14 @@ manage_playlists.py автоматически добавляет по `video_ty
 ## КОНВЕЙЕР
 
 ```
-Генерация → output/queue/ или queue_ar/ → (meta + thumb обязательны) → publish_queue.py → YouTube
+Генерация → output/queue/ + queue_ar/ + queue_id/ → (meta + thumb обязательны) → publish_queue.py → YouTube
 ```
 
 ```bash
 # Проверить состояние очереди (сколько готово к публикации)
 python3 scripts/publish_queue.py --dry-run --queue en --type long
 python3 scripts/publish_queue.py --dry-run --queue ar --type long
+python3 scripts/publish_queue.py --dry-run --queue id --type long
 
 # Проверить прогресс рендеринга
 tail -f logs/renders_sequential.log
@@ -152,26 +154,45 @@ tail -f logs/color_learn.log
 
 ---
 
-## Типы видео
+## Типы видео — полная таблица генерации
 
-| video_type | скрипт генерации | длина | канал | is_short |
-|---|---|---|---|---|
-| dance | generate_video.py (Manim) | 20-30м | EN | — |
-| numbers | — | 2м | EN | — |
-| colors | — | 2м | EN | — |
-| numbers (lang=en) | generate_number_learn_long.py | 20м | EN | — |
-| numbers (lang=ar) | generate_number_learn_long.py | 20м | AR | — |
-| colors (lang=en) | generate_color_learn_long.py | 20м | EN | — |
-| colors (lang=ar) | generate_color_learn_long.py | 20м | AR | — |
-| short_vocab | generate_vocab_shorts.py | 55с | EN | ✅ |
-| short_shape_float | generate_shape_notxt.py | 55с | AR | ✅ |
-| short_shape_dance | generate_shape_notxt.py | 55с | AR | ✅ |
-| short_letter | shorts_letter.yaml | 60с | EN | ✅ |
-| short_number | shorts_number.yaml | 60с | EN | ✅ |
-| short_color | shorts_color.yaml | 60с | EN | ✅ |
-| short_dance | shorts_dance.yaml | 60с | EN | ✅ |
+Оркестратор (только длинные видео): `bash scripts/run_renders_sequential.sh`
+Возобновить с шага N: `bash scripts/run_renders_sequential.sh --from N`
 
-**Remotion композиции:** VocabularyShort, ShapeFloatShort, ShapeDanceShort, ColorLearnShort, ShapeFloatLong, ShapeDanceLong, NumberLearnLong, ColorLearnLong
+### Длинные видео (приоритет, автоматически через оркестратор)
+
+| Шаг | video_type | Скрипт | Длина | Каналы | Кол-во | Код |
+|-----|-----------|--------|-------|--------|--------|-----|
+| 1 | number_learn | `scripts/generate_number_learn_long.py` | 20м | EN+AR+ID | 10×3=30 | ✅ |
+| 2 | color_learn | `scripts/generate_color_learn_long.py` | 20м | EN+AR+ID | 9×3=27 | ✅ |
+| 3 | shape_learn | `scripts/generate_shape_learn.py` | 30м | EN+AR+ID | 8×3=24 | ✅ |
+| 4 | dance (animals) | `scripts/generate_dance_long.py --themes animals` | 30м | EN | 1 | ✅ |
+| 5 | dance (fruits) | `scripts/generate_dance_long.py --themes fruits` | 30м | EN | 1 | ✅ |
+| 6 | dance (vegetables) | `scripts/generate_dance_long.py --themes vegetables` | 30м | EN | 1 | ✅ |
+| 7 | character_dialogue | `scripts/generate_character_dialogue_long.py` | 20м | EN+AR+ID | 4×3=12 | ✅ |
+| 8 | lullaby | `scripts/generate_lullaby.py` | 20м | EN+AR+ID | 6×3=18 | ✅ |
+| 9 | nursery_ar | `scripts/generate_nursery_ar.py` | 5м | AR | 3 | ✅ |
+| 10 | nursery_id | `scripts/generate_nursery_id.py` | 5м | ID | 6 | ✅ |
+| 11-13 | thumbnails | `scripts/generate_ai_thumbs.py` | — | EN+AR+ID | все | ✅ |
+
+### Шортсы (после завершения всех длинных видео)
+
+Запускаются отдельно: `bash scripts/run_shorts.sh` (не входит в основной оркестратор)
+
+| video_type | Скрипт | Длина | Каналы | Кол-во | Код |
+|-----------|--------|-------|--------|--------|-----|
+| short_vocab | `scripts/generate_vocab_shorts.py` | 55с | EN | A-Z=26 | ✅ |
+| short_colorlearn | `scripts/generate_color_learn_shorts.py` | 55с | EN+AR+ID | 7×3=21 | ✅ |
+| short_shape_float | `scripts/generate_shape_float_shorts.py` | 55с | EN | 8×4=32 | ✅ |
+| short_shape_dance | `scripts/generate_shape_dance_shorts.py` | 55с | EN | 13 | ✅ |
+| short_dance | `scripts/generate_animal_shorts.py` | 60с | EN | 20 | ✅ |
+| short_dance | `scripts/generate_fruit_shorts.py` | 60с | EN | 12 | ✅ |
+| short_dance | `scripts/generate_vegetable_shorts.py` | 60с | EN | 10 | ✅ |
+| short_counting | `scripts/generate_counting_shorts.py` | 60с | EN | 8 | ✅ |
+| short_shapes | `scripts/generate_shapes_shorts.py` | 60с | EN | 16 | ✅ |
+| short_shape_float/dance | `scripts/generate_shape_notxt.py` | 55с | AR+ID | 45×2 | ✅ |
+
+**Remotion композиции:** NumberLearnLong, ColorLearnLong, ShapeLearnLong, CharacterDialogueLong, LullabyLong, NurseryRhymeLong, VocabularyShort, ColorLearnShort, ShapeFloatShort, ShapeDanceShort, ShapeFloatLong, ShapeDanceLong
 
 ---
 
@@ -184,6 +205,7 @@ bash scripts/run_renders_sequential.sh
 # Thumbnails для всей очереди (если пропустили)
 python3 scripts/generate_ai_thumbs.py --queue en --backend together
 python3 scripts/generate_ai_thumbs.py --queue ar --backend together
+python3 scripts/generate_ai_thumbs.py --queue id --backend together
 
 # Переместить в hold (приостановить публикацию)
 mv output/queue/video.mp4 output/hold/
@@ -243,8 +265,8 @@ python3 scripts/generate_vegetable_shorts.py
 
 | Скрипт | Статус | Видео | Очередь |
 |---|---|---|---|
-| number_learn | 🔄 в процессе | 10 цифр × 2 языка = 20 | queue/ + queue_ar/ |
-| color_learn | ⏳ ждёт number_learn | 9 цветов × 2 языка = 18 | queue/ + queue_ar/ |
+| number_learn | 🔄 в процессе | 10 цифр × 2 языка = 20 | queue/ + queue_ar/ (ID не готов) |
+| color_learn | ⏳ ждёт number_learn | 9 цветов × 2 языка = 18 | queue/ + queue_ar/ (ID не готов) |
 
 Следить: `tail -f logs/renders_sequential.log`
 
@@ -252,20 +274,22 @@ python3 scripts/generate_vegetable_shorts.py
 
 ---
 
-## ПРАВИЛО: ВИДЕО БЕЗ ТЕКСТА → ДВА КАНАЛА
+## ПРАВИЛО: ВИДЕО БЕЗ ТЕКСТА → ТРИ КАНАЛА
 
 **Если видео не содержит текста/слов на экране и голосового сопровождения —**
-оно публикуется на ОБОИХ каналах (EN + AR) с разными описаниями на каждом языке.
+оно публикуется на ВСЕХ ТРЁХ каналах (EN + AR + ID) с разными описаниями на каждом языке.
 
 Это делается через:
 1. Один рендер (один MP4 файл)
-2. Копия MP4 кладётся в `output/queue/` (EN) и `output/queue_ar/` (AR)
-3. Для каждого канала — своя `meta_*.yaml` (EN описание / AR описание)
+2. Копия MP4 кладётся в `output/queue/` (EN), `output/queue_ar/` (AR) и `output/queue_id/` (ID)
+3. Для каждого канала — своя `meta_*.yaml` (EN / AR / ID описание)
 4. Для каждого канала — свой `thumb_*.png`
 
 **Почему:** пользователь читает описание на своём языке и понимает контент, хотя само видео одинаковое.
 
-Примеры: ShapeLearnLong, ShapeFloatLong, shape_dance без меток
+**ПО УМОЛЧАНИЮ: все новые серии без текста генерируются для всех 3 каналов.**
+
+Примеры: ShapeLearnLong, ShapeFloatLong, shape_dance без меток, sensory_loop, lullaby, transform_block
 
 ---
 
@@ -298,18 +322,19 @@ python3 scripts/generate_shape_learn.py --regen-meta
 - HYPNO (1440–1770с): Много фигур с дрейфом цвета, для сна
 - OUTRO (1770–1800с): Фигура затухает
 
-**Публикация:** 1 рендер → EN queue (английское описание) + AR queue (арабское описание)
+**Публикация:** 1 рендер → EN queue + AR queue + ID queue (отдельное описание на каждом языке)
 
 ---
 
 ## Следующие задачи (по приоритету)
 
-1. ✅ **Публикация EN+AR** — cron пн-сб, чередование EN/AR каждые 2 часа
-2. ✅ **number_learn** — 20 видео (EN+AR), рендерится сейчас
-3. ✅ **color_learn** — 18 видео (EN+AR), запустится после number_learn
+1. ✅ **Публикация EN+AR+ID** — cron 3 канала, каждый публикует независимо
+2. ✅ **number_learn** — видео EN+AR (ID pending: generate_number_learn_long.py для ID)
+3. ✅ **color_learn** — видео EN+AR (ID pending: generate_color_learn_long.py для ID)
 4. ✅ **publish_queue.py** — проверка meta+thumbnail перед публикацией
-5. ✅ **ShapeLearnLong** — сценарий готов, скрипт `generate_shape_learn.py` написан
-6. ⏸️ **Шортсы** — НЕ ТРОГАТЬ до завершения длинных видео
-7. ⏸️ **ABC (Manim)** — на паузе, заменён Vocab Remotion. Контент в hold/hold_abc/
+5. ✅ **ShapeLearnLong** — скрипт написан, генерирует EN+AR+ID
+6. ✅ **Все серии без текста** — generate_* скрипты обновлены для 3 каналов
+7. ⏸️ **Шортсы** — НЕ ТРОГАТЬ до завершения длинных видео
+8. ⏸️ **ABC (Manim)** — на паузе, заменён Vocab Remotion. Контент в hold/hold_abc/
 
 Полный роадмап: `ROADMAP.md`

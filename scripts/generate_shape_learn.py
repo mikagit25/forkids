@@ -248,8 +248,8 @@ def generate_thumbnail(shape: str, lang: str, out_path: Path) -> bool:
     if lang == "ar":
         prompt = (
             f"Big bold cartoon {shape} shape, colorful rainbow colors, "
-            f"Arabic kids educational YouTube thumbnail, bright vivid background, "
-            f"cute friendly character style, bold outlines, no text, 1280x720, {STYLE_BASE}"
+            f"educational kids YouTube thumbnail, bright vivid background, "
+            f"cute friendly character style, bold outlines, no text, no letters, no words, no numbers, 1280x720"
         )
     else:
         prompt = (

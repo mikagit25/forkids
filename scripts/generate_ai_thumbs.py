@@ -31,6 +31,7 @@ import yaml
 ROOT      = Path(__file__).resolve().parent.parent
 QUEUE     = ROOT / "output" / "queue"
 QUEUE_AR  = ROOT / "output" / "queue_ar"
+QUEUE_ID  = ROOT / "output" / "queue_id"
 UPLOADED  = ROOT / "uploaded"
 KEY_FILE        = ROOT / "credentials" / "gemini_api_key.txt"
 TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
@@ -59,117 +60,176 @@ AR_NAMES = {
     "cucumber": "خيار", "pumpkin": "قرع", "mushroom": "فطر",
 }
 
-STYLE_BASE = (
+STYLE_EN = (
     "bright colorful children's illustration, cartoon style, "
     "bold outlines, cheerful expression, kids YouTube thumbnail, "
-    "16:9 format 1280x720, no text"
+    "16:9 format 1280x720"
 )
 
-STYLE_AR = (
-    "رسوم متحركة للأطفال، ألوان زاهية، نمط كرتوني، "
-    "ملصق قناة يوتيوب للأطفال، بدون نص"
+# AR channel: same style but absolutely no text — FLUX can't render Arabic (non-Latin)
+STYLE_AR_NOTXT = (
+    "bright colorful children's illustration, cartoon style, "
+    "bold outlines, cheerful expression, kids YouTube thumbnail, "
+    "16:9 format 1280x720, no text, no letters, no words, no numbers"
 )
+
+# ID channel: Indonesian uses Latin script → text allowed, same style as EN
+# (STYLE_EN is reused for Indonesian)
 
 
 def make_prompt(stem: str, meta: dict, is_ar: bool = False) -> str:
-    """Build an image generation prompt from video metadata."""
+    """Build an English image generation prompt from video metadata.
+
+    Always English — FLUX/Gemini don't render Arabic text well.
+    is_ar=True → adds 'no text, no letters' suffix to keep images clean.
+    Indonesian (id) uses Latin script, so text is allowed — same style as EN.
+    """
     vtype  = meta.get("video_type", "")
     theme  = meta.get("theme", "animals")
-    title  = meta.get("title", stem)
+    style  = STYLE_AR_NOTXT if is_ar else STYLE_EN
 
-    # Strip channel suffix and clean title
-    for s in ["| هابي بير كيدز", "| Happy Bear Kids", "هابي بير كيدز",
-              "Happy Bear Kids", "#Shorts", "#shorts"]:
-        title = title.replace(s, "")
-    title = re.sub(r'[^\w\s؀-ۿ\-]', '', title).strip()
-
-    # Detect character from stem
+    # Normalise stem: strip ar_ prefix and date suffix
     name = re.sub(r'^ar_', '', re.sub(r'_\d{8}.*$', '', stem))
+
+    # Detect specific character (bear, apple, circle, …) from filename
     character = ""
     for char in AR_NAMES:
         if char in name:
             character = char
             break
 
-    # ── Build prompt by video type ────────────────────────────────────────────
+    # ── dance ─────────────────────────────────────────────────────────────────
     if "dance" in vtype or "dance" in name:
         if character:
-            char_name = AR_NAMES.get(character, character) if is_ar else character.capitalize()
-            if is_ar:
-                prompt = (
-                    f"كرتون {char_name} يرقص بسعادة، حركة راقصة ممتعة، "
-                    f"خلفية ملونة مشرقة، {STYLE_AR}"
-                )
-            else:
-                prompt = (
-                    f"Cute cartoon {character} dancing happily, dynamic dance pose, "
-                    f"bright colorful background with musical notes and stars, {STYLE_BASE}"
-                )
-        else:
-            # Long 30-min dance video — crowd of characters
-            theme_desc = {"animals": "animals", "fruits": "fruits",
-                          "vegetables": "vegetables"}.get(theme, theme)
-            if is_ar:
-                prompt = (
-                    f"مجموعة من الشخصيات الكرتونية ({theme_desc} بالعربية) "
-                    f"يرقصون معاً، {STYLE_AR}"
-                )
-            else:
-                prompt = (
-                    f"Group of cute cartoon {theme_desc} characters dancing together joyfully, "
-                    f"confetti and musical notes, 30 minute compilation badge, {STYLE_BASE}"
-                )
-
-    elif "counting" in vtype or "counting" in name:
-        if is_ar:
-            prompt = f"أرقام كرتونية كبيرة ملونة 1 2 3، حيوانات كرتونية تعد، {STYLE_AR}"
-        else:
             prompt = (
-                f"Big colorful cartoon numbers 1 2 3 floating, cute animals counting, "
-                f"bright educational kids background, {STYLE_BASE}"
+                f"Cute cartoon {character} dancing happily, dynamic dance pose, "
+                f"bright colorful background with musical notes and stars, {style}"
+            )
+        else:
+            theme_en = {"animals": "animals", "fruits": "fruits",
+                        "vegetables": "vegetables", "shapes": "geometric shapes",
+                        "mixed": "cartoon characters"}.get(theme, "cartoon characters")
+            prompt = (
+                f"Group of cute cartoon {theme_en} dancing together joyfully, "
+                f"confetti and musical notes, bright pastel background, {style}"
             )
 
-    elif "color" in vtype or "color" in name:
-        # Extract color
+    # ── numbers / counting ────────────────────────────────────────────────────
+    elif "counting" in vtype or "counting" in name or vtype == "numbers" or "number_learn" in name:
+        num_match = re.search(
+            r'number_learn_(one|two|three|four|five|six|seven|eight|nine|ten)', name)
+        digit_map = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5",
+                     "six": "6", "seven": "7", "eight": "8", "nine": "9", "ten": "10"}
+        if num_match:
+            digit = digit_map[num_match.group(1)]
+            if is_ar:
+                prompt = (
+                    f"Cute cartoon animals around a big colorful star, "
+                    f"confetti and sparkles, bright educational kids background, {style}"
+                )
+            else:
+                prompt = (
+                    f"Big bold cartoon number {digit}, cute cartoon animals around it, "
+                    f"stars and confetti, bright educational kids background, {style}"
+                )
+        else:
+            if is_ar:
+                prompt = (
+                    f"Cute cartoon animals playing with colorful balloons and stars, "
+                    f"bright educational kids background, {style}"
+                )
+            else:
+                prompt = (
+                    f"Big colorful cartoon numbers 1 2 3 floating, cute animals counting, "
+                    f"bright educational kids background, {style}"
+                )
+
+    # ── colors ────────────────────────────────────────────────────────────────
+    elif "color" in vtype or "color_learn" in name or "color" in name:
         color_match = re.search(
-            r'(red|blue|green|yellow|orange|purple|pink|brown)', name)
+            r'(red|blue|green|yellow|orange|purple|pink|brown|white|black)', name)
         color = color_match.group(1) if color_match else "rainbow"
-        if is_ar:
-            colors_ar = {"red": "أحمر", "blue": "أزرق", "green": "أخضر",
-                         "yellow": "أصفر", "orange": "برتقالي",
-                         "purple": "بنفسجي", "pink": "وردي"}
-            c_ar = colors_ar.get(color, color)
-            prompt = (
-                f"لون {c_ar}، دوائر وأشكال {c_ar} كبيرة وجميلة، "
-                f"شخصيات كرتونية {c_ar}، {STYLE_AR}"
-            )
-        else:
-            prompt = (
-                f"Big bold {color} color theme, cartoon characters and objects in {color}, "
-                f"educational color learning for kids, {STYLE_BASE}"
-            )
+        prompt = (
+            f"Big bold {color} color theme, cute cartoon characters and objects in {color}, "
+            f"educational color learning for kids, {style}"
+        )
 
+    # ── shapes ────────────────────────────────────────────────────────────────
     elif "shape" in vtype or "shape" in name or "float" in name:
         shape_match = re.search(
-            r'(circle|square|triangle|star|heart|diamond|hexagon|oval)', name)
-        shape = shape_match.group(1) if shape_match else "shapes"
-        if is_ar:
-            shapes_ar = {"circle": "دائرة", "square": "مربع", "triangle": "مثلث",
-                         "star": "نجمة", "heart": "قلب", "diamond": "معين"}
-            s_ar = shapes_ar.get(shape, "أشكال")
-            prompt = f"شكل {s_ar} كرتوني كبير ملون، يرقص ويتحرك، {STYLE_AR}"
-        else:
-            prompt = (
-                f"Cute cartoon {shape} shape character dancing and bouncing, "
-                f"bright colors, educational shapes for kids, {STYLE_BASE}"
-            )
+            r'(circle|square|triangle|star|heart|diamond|hexagon|oval|pentagon)', name)
+        shape = shape_match.group(1) if shape_match else "circle"
+        prompt = (
+            f"Cute cartoon {shape} character with eyes and smile, dancing and bouncing, "
+            f"bright vivid colors, educational shapes for kids, {style}"
+        )
 
+    # ── Indonesian nursery songs ──────────────────────────────────────────────
+    elif vtype == "nursery_id" or "nursery_id" in name or "balonku" in name or "cicak" in name \
+            or "naik_kereta" in name or "pelangi" in name or "dua_mata" in name or "kebunku" in name:
+        song_visuals = {
+            "balonku":     "colorful balloons floating up in a blue sky, cute cartoon bear holding balloons",
+            "cicak":       "cute cartoon lizard walking on a wall, tropical leaves, friendly and cheerful",
+            "naik_kereta": "cute cartoon train puffing steam, colorful carriages, happy animals riding",
+            "pelangi":     "beautiful rainbow over green hills, cute cartoon animals under the rainbow",
+            "dua_mata":    "cute cartoon bear pointing to its eyes and smiling, simple body parts lesson",
+            "kebunku":     "colorful flower garden, cute cartoon butterfly and bee, cheerful garden scene",
+        }
+        song_key = next((k for k in song_visuals if k in name), None)
+        visual = song_visuals.get(song_key,
+                    "cute cartoon characters singing Indonesian nursery rhyme, colorful musical notes")
+        prompt = f"{visual}, bright cheerful kids illustration, {style}"
+
+    # ── Arabic nursery songs ───────────────────────────────────────────────────
+    elif vtype == "nursery_ar" or "nursery_ar" in name or "batta_batta" in name \
+            or "ya_matar" in name or "dajaja" in name:
+        song_visuals = {
+            "batta_batta": "cute cartoon duck splashing in a pond, cheerful water scene",
+            "ya_matar":    "cartoon rain clouds and rainbow, colorful raindrops, happy animals in rain",
+            "dajaja":      "cute cartoon hen with baby chicks, colorful farm scene, cheerful morning",
+        }
+        song_key = next((k for k in song_visuals if k in name), None)
+        visual = song_visuals.get(song_key,
+                    "cute cartoon animals singing cheerful Arabic nursery song, colorful musical notes")
+        prompt = f"{visual}, bright cheerful kids illustration, {style}"
+
+    # ── sensory loop / lullaby ────────────────────────────────────────────────
+    elif vtype in ("sensory_loop", "lullaby_long") or "sensory" in name or "lullaby" in name:
+        prompt = (
+            f"Soothing pastel dreamscape, floating stars and soft glowing shapes, "
+            f"gentle gradient colors, calming baby sleep video background, "
+            f"no faces, no text, peaceful and magical, {style}"
+        )
+
+    # ── dancing shapes ────────────────────────────────────────────────────────
+    elif vtype == "dance_shape" or "dance_shape" in name:
+        prompt = (
+            f"Cute cartoon geometric shapes dancing and bouncing, "
+            f"colorful circle square triangle star with happy faces, "
+            f"bright pastel background, {style}"
+        )
+
+    # ── dancing pets / items ──────────────────────────────────────────────────
+    elif vtype in ("dance_pet", "dance_item") or "dance_pet" in name or "dance_item" in name:
+        prompt = (
+            f"Cute cartoon household pet dancing happily with musical notes, "
+            f"bright colorful background, cheerful dance pose, {style}"
+        )
+
+    # ── stars and bubbles ─────────────────────────────────────────────────────
+    elif vtype == "stars_bubbles" or "stars_bubble" in name:
+        prompt = (
+            f"Magical floating soap bubbles and twinkling stars, "
+            f"bright colorful background, one big bubble about to pop, "
+            f"sparkles and light trails, kids entertainment, {style}"
+        )
+
+    # ── generic fallback ──────────────────────────────────────────────────────
     else:
-        # Generic fallback
-        if is_ar:
-            prompt = f"شخصيات كرتونية للأطفال، {title[:40]}, {STYLE_AR}"
-        else:
-            prompt = f"Cute cartoon characters, {title[:60]}, {STYLE_BASE}"
+        prompt = (
+            f"Cute cartoon characters for kids educational video, "
+            f"bright colorful background, happy animals and objects, {style}"
+        )
 
     return prompt
 
@@ -317,7 +377,9 @@ def process_queue(queue_dir: Path, key: str, force: bool,
             with open(meta_path) as f:
                 meta = yaml.safe_load(f) or {}
 
-        is_ar  = meta.get("language", "en") == "ar" or mp4.name.startswith("ar_")
+        lang   = meta.get("language", "en")
+        is_ar  = lang == "ar" or mp4.name.startswith("ar_")
+        # Indonesian uses Latin script → text allowed, same style as EN (is_ar=False)
         prompt = make_prompt(mp4.stem, meta, is_ar=is_ar)
 
         print(f"  [{label}] {i+1}/{len(mp4s)} {mp4.name}")
@@ -364,7 +426,7 @@ def process_queue(queue_dir: Path, key: str, force: bool,
 def main():
     parser = argparse.ArgumentParser(
         description="Generate AI thumbnails via Gemini or Together.ai")
-    parser.add_argument("--queue",   choices=["en", "ar", "both", "none"], default="both")
+    parser.add_argument("--queue",   choices=["en", "ar", "id", "all", "both", "none"], default="both")
     parser.add_argument("--force",   action="store_true")
     parser.add_argument("--dry-run", action="store_true",
                         help="Show prompts without calling API")
@@ -421,11 +483,14 @@ def main():
                 print("Generation failed — model may need billing enabled")
         return
 
-    if args.queue in ("en", "both"):
+    if args.queue in ("en", "both", "all"):
         process_queue(QUEUE, key, args.force, args.dry_run, "EN", backend)
 
-    if args.queue in ("ar", "both"):
+    if args.queue in ("ar", "both", "all"):
         process_queue(QUEUE_AR, key, args.force, args.dry_run, "AR", backend)
+
+    if args.queue in ("id", "all"):
+        process_queue(QUEUE_ID, key, args.force, args.dry_run, "ID", backend)
 
     if args.uploaded:
         process_queue(UPLOADED, key, args.force, args.dry_run, "UPLOADED", backend)

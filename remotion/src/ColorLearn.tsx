@@ -14,6 +14,7 @@ import {
   Audio,
   Img,
   interpolate,
+  Sequence,
   spring,
   staticFile,
   useCurrentFrame,
@@ -199,9 +200,15 @@ export const ColorLearn: React.FC<ColorLearnProps> = ({
   return (
     <AbsoluteFill style={{ backgroundColor: bgColor, overflow: "hidden" }}>
       <ArabicFonts />
-      <Audio src={staticFile(`audio/${audioFile}`)} startFrom={Math.round(fps * 1)} />
-      <Audio src={staticFile(`audio/${audioFile}`)} startFrom={Math.round(fps * 20)} />
-      <Audio src={staticFile(`audio/${audioFile}`)} startFrom={Math.round(fps * 39)} />
+      <Sequence from={Math.round(fps * 1)}>
+        <Audio src={staticFile(`audio/${audioFile}`)} />
+      </Sequence>
+      <Sequence from={Math.round(fps * 20)}>
+        <Audio src={staticFile(`audio/${audioFile}`)} />
+      </Sequence>
+      <Sequence from={Math.round(fps * 39)}>
+        <Audio src={staticFile(`audio/${audioFile}`)} />
+      </Sequence>
       {musicFile && (
         <Audio src={staticFile(`music/${musicFile}`)} volume={0.15} loop />
       )}

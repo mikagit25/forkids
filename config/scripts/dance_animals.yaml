@@ -5,327 +5,327 @@ style: tutitu
 scenes:
 - start_sec: 0.0
   duration: 38
-  choreo: solo_spin
-  n: 1
-  chars:
-  - dog
-  entry: zoom_in
-  bg_color: '#FFF9E6'
-  text: Dog
-  sub_text: Let's dance!
-- start_sec: 38.0
-  duration: 38
-  choreo: solo_shimmy
-  n: 1
-  chars:
-  - lion
-  entry: zoom_in
-  bg_color: '#E8F5E9'
-  text: Lion
-  sub_text: Let's dance!
-- start_sec: 76.0
-  duration: 38
-  choreo: solo_nod
-  n: 1
-  chars:
-  - koala
-  entry: zoom_in
-  bg_color: '#E3F2FD'
-  text: Koala
-  sub_text: Let's dance!
-- start_sec: 114.0
-  duration: 38
-  choreo: solo_shimmy
-  n: 1
-  chars:
-  - monkey
-  entry: zoom_in
-  bg_color: '#FCE4EC'
-  text: Monkey
-  sub_text: Let's dance!
-- start_sec: 152.0
-  duration: 38
-  choreo: solo_jump
-  n: 1
-  chars:
-  - frog
-  entry: zoom_in
-  bg_color: '#F3E5F5'
-  text: Frog
-  sub_text: Let's dance!
-- start_sec: 190.0
-  duration: 38
   choreo: solo_nod
   n: 1
   chars:
   - tiger
   entry: zoom_in
-  bg_color: '#E0F7FA'
+  bg_color: '#FFF9E6'
   text: Tiger
   sub_text: Let's dance!
-- start_sec: 228.0
+- start_sec: 38.0
   duration: 38
-  choreo: solo_jump
+  choreo: solo_sway
   n: 1
   chars:
-  - bear
+  - cat
   entry: zoom_in
-  bg_color: '#FFFDE7'
-  text: Bear
+  bg_color: '#E8F5E9'
+  text: Cat
   sub_text: Let's dance!
-- start_sec: 266.0
-  duration: 38
-  choreo: solo_wave
-  n: 1
-  chars:
-  - fox
-  entry: zoom_in
-  bg_color: '#F9FBE7'
-  text: Fox
-  sub_text: Let's dance!
-- start_sec: 304.0
+- start_sec: 76.0
   duration: 38
   choreo: solo_bounce
   n: 1
   chars:
+  - bear
+  entry: zoom_in
+  bg_color: '#E3F2FD'
+  text: Bear
+  sub_text: Let's dance!
+- start_sec: 114.0
+  duration: 38
+  choreo: solo_sway
+  n: 1
+  chars:
+  - elephant
+  entry: zoom_in
+  bg_color: '#FCE4EC'
+  text: Elephant
+  sub_text: Let's dance!
+- start_sec: 152.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - penguin
+  entry: zoom_in
+  bg_color: '#F3E5F5'
+  text: Penguin
+  sub_text: Let's dance!
+- start_sec: 190.0
+  duration: 38
+  choreo: solo_bounce
+  n: 1
+  chars:
+  - owl
+  entry: zoom_in
+  bg_color: '#E0F7FA'
+  text: Owl
+  sub_text: Let's dance!
+- start_sec: 228.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - unicorn
+  entry: zoom_in
+  bg_color: '#FFFDE7'
+  text: Unicorn
+  sub_text: Let's dance!
+- start_sec: 266.0
+  duration: 38
+  choreo: solo_sway
+  n: 1
+  chars:
   - rabbit
   entry: zoom_in
-  bg_color: '#FFF3E0'
+  bg_color: '#F9FBE7'
   text: Rabbit
+  sub_text: Let's dance!
+- start_sec: 304.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
+  - fox
+  entry: zoom_in
+  bg_color: '#FFF3E0'
+  text: Fox
   sub_text: Let's dance!
 - start_sec: 342.0
   duration: 38
   choreo: solo_sway
   n: 1
   chars:
-  - unicorn
+  - duck
   entry: zoom_in
   bg_color: '#E8EAF6'
-  text: Unicorn
+  text: Duck
   sub_text: Let's dance!
 - start_sec: 380.0
   duration: 38
-  choreo: solo_shimmy
+  choreo: solo_twist
   n: 1
   chars:
-  - elephant
+  - dog
   entry: zoom_in
   bg_color: '#F1F8E9'
-  text: Elephant
+  text: Dog
   sub_text: Let's dance!
 - start_sec: 418.0
   duration: 38
   choreo: solo_nod
   n: 1
   chars:
-  - cat
+  - pig
   entry: zoom_in
   bg_color: '#FFF8E1'
-  text: Cat
+  text: Pig
   sub_text: Let's dance!
 - start_sec: 456.0
   duration: 38
-  choreo: solo_wave
+  choreo: solo_jump
   n: 1
   chars:
-  - dino
+  - lion
   entry: zoom_in
   bg_color: '#E0F2F1'
-  text: Dino
+  text: Lion
   sub_text: Let's dance!
 - start_sec: 494.0
   duration: 38
-  choreo: solo_bounce
+  choreo: solo_twist
   n: 1
   chars:
-  - cow
+  - monkey
   entry: zoom_in
   bg_color: '#FCE4EC'
-  text: Cow
+  text: Monkey
   sub_text: Let's dance!
 - start_sec: 532.0
   duration: 38
-  choreo: solo_wave
+  choreo: solo_jump
   n: 1
   chars:
-  - parrot
+  - frog
   entry: zoom_in
   bg_color: '#E8F5E9'
-  text: Parrot
+  text: Frog
   sub_text: Let's dance!
 - start_sec: 570.0
   duration: 38
   choreo: solo_twist
   n: 1
   chars:
-  - panda
+  - cow
   entry: zoom_in
   bg_color: '#EDE7F6'
-  text: Panda
+  text: Cow
   sub_text: Let's dance!
 - start_sec: 608.0
-  duration: 38
-  choreo: solo_jump
-  n: 1
-  chars:
-  - penguin
-  entry: zoom_in
-  bg_color: '#E1F5FE'
-  text: Penguin
-  sub_text: Let's dance!
-- start_sec: 646.0
-  duration: 38
-  choreo: solo_twist
-  n: 1
-  chars:
-  - duck
-  entry: zoom_in
-  bg_color: '#F9FBE7'
-  text: Duck
-  sub_text: Let's dance!
-- start_sec: 684.0
   duration: 38
   choreo: solo_wave
   n: 1
   chars:
-  - owl
+  - parrot
   entry: zoom_in
-  bg_color: '#FFF9E6'
-  text: Owl
+  bg_color: '#E1F5FE'
+  text: Parrot
   sub_text: Let's dance!
-- start_sec: 722.0
+- start_sec: 646.0
   duration: 38
-  choreo: solo_bounce
+  choreo: solo_shimmy
   n: 1
   chars:
-  - pig
+  - dino
   entry: zoom_in
-  bg_color: '#E3F2FD'
-  text: Pig
+  bg_color: '#F9FBE7'
+  text: Dino
   sub_text: Let's dance!
-- start_sec: 760.0
+- start_sec: 684.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
+  - panda
+  entry: zoom_in
+  bg_color: '#FFF9E6'
+  text: Panda
+  sub_text: Let's dance!
+- start_sec: 722.0
   duration: 38
   choreo: solo_nod
   n: 1
   chars:
   - koala
   entry: zoom_in
-  bg_color: '#FFF9E6'
+  bg_color: '#E3F2FD'
   text: Koala
   sub_text: Let's dance!
-- start_sec: 798.0
+- start_sec: 760.0
   duration: 38
-  choreo: solo_twist
-  n: 1
-  chars:
-  - bear
-  entry: zoom_in
-  bg_color: '#E8F5E9'
-  text: Bear
-  sub_text: Let's dance!
-- start_sec: 836.0
-  duration: 38
-  choreo: solo_spin
-  n: 1
-  chars:
-  - penguin
-  entry: zoom_in
-  bg_color: '#E3F2FD'
-  text: Penguin
-  sub_text: Let's dance!
-- start_sec: 874.0
-  duration: 38
-  choreo: solo_shimmy
-  n: 1
-  chars:
-  - duck
-  entry: zoom_in
-  bg_color: '#FCE4EC'
-  text: Duck
-  sub_text: Let's dance!
-- start_sec: 912.0
-  duration: 38
-  choreo: solo_nod
-  n: 1
-  chars:
-  - dino
-  entry: zoom_in
-  bg_color: '#F3E5F5'
-  text: Dino
-  sub_text: Let's dance!
-- start_sec: 950.0
-  duration: 38
-  choreo: solo_shimmy
-  n: 1
-  chars:
-  - frog
-  entry: zoom_in
-  bg_color: '#E0F7FA'
-  text: Frog
-  sub_text: Let's dance!
-- start_sec: 988.0
-  duration: 38
-  choreo: solo_nod
+  choreo: solo_jump
   n: 1
   chars:
   - panda
   entry: zoom_in
-  bg_color: '#FFFDE7'
+  bg_color: '#FFF9E6'
   text: Panda
   sub_text: Let's dance!
-- start_sec: 1026.0
+- start_sec: 798.0
+  duration: 38
+  choreo: solo_nod
+  n: 1
+  chars:
+  - frog
+  entry: zoom_in
+  bg_color: '#E8F5E9'
+  text: Frog
+  sub_text: Let's dance!
+- start_sec: 836.0
   duration: 38
   choreo: solo_shimmy
   n: 1
   chars:
+  - unicorn
+  entry: zoom_in
+  bg_color: '#E3F2FD'
+  text: Unicorn
+  sub_text: Let's dance!
+- start_sec: 874.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
   - elephant
   entry: zoom_in
-  bg_color: '#F9FBE7'
+  bg_color: '#FCE4EC'
   text: Elephant
+  sub_text: Let's dance!
+- start_sec: 912.0
+  duration: 38
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - fox
+  entry: zoom_in
+  bg_color: '#F3E5F5'
+  text: Fox
+  sub_text: Let's dance!
+- start_sec: 950.0
+  duration: 38
+  choreo: solo_nod
+  n: 1
+  chars:
+  - owl
+  entry: zoom_in
+  bg_color: '#E0F7FA'
+  text: Owl
+  sub_text: Let's dance!
+- start_sec: 988.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - cat
+  entry: zoom_in
+  bg_color: '#FFFDE7'
+  text: Cat
+  sub_text: Let's dance!
+- start_sec: 1026.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
+  - parrot
+  entry: zoom_in
+  bg_color: '#F9FBE7'
+  text: Parrot
   sub_text: Let's dance!
 - start_sec: 1064.0
   duration: 38
   choreo: solo_bounce
   n: 1
   chars:
-  - lion
+  - cow
   entry: zoom_in
   bg_color: '#FFF3E0'
-  text: Lion
+  text: Cow
   sub_text: Let's dance!
 - start_sec: 1102.0
-  duration: 38
-  choreo: solo_spin
-  n: 1
-  chars:
-  - monkey
-  entry: zoom_in
-  bg_color: '#E8EAF6'
-  text: Monkey
-  sub_text: Let's dance!
-- start_sec: 1140.0
-  duration: 38
-  choreo: solo_sway
-  n: 1
-  chars:
-  - rabbit
-  entry: zoom_in
-  bg_color: '#F1F8E9'
-  text: Rabbit
-  sub_text: Let's dance!
-- start_sec: 1178.0
   duration: 38
   choreo: solo_shimmy
   n: 1
   chars:
-  - cat
+  - koala
+  entry: zoom_in
+  bg_color: '#E8EAF6'
+  text: Koala
+  sub_text: Let's dance!
+- start_sec: 1140.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - bear
+  entry: zoom_in
+  bg_color: '#F1F8E9'
+  text: Bear
+  sub_text: Let's dance!
+- start_sec: 1178.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
+  - rabbit
   entry: zoom_in
   bg_color: '#FFF8E1'
-  text: Cat
+  text: Rabbit
   sub_text: Let's dance!
 - start_sec: 1216.0
   duration: 38
-  choreo: solo_spin
+  choreo: solo_sway
   n: 1
   chars:
   - dog
@@ -335,151 +335,151 @@ scenes:
   sub_text: Let's dance!
 - start_sec: 1254.0
   duration: 38
-  choreo: solo_bounce
+  choreo: solo_shimmy
   n: 1
   chars:
-  - pig
+  - monkey
   entry: zoom_in
   bg_color: '#FCE4EC'
-  text: Pig
+  text: Monkey
   sub_text: Let's dance!
 - start_sec: 1292.0
-  duration: 38
-  choreo: solo_spin
-  n: 1
-  chars:
-  - unicorn
-  entry: zoom_in
-  bg_color: '#E8F5E9'
-  text: Unicorn
-  sub_text: Let's dance!
-- start_sec: 1330.0
-  duration: 38
-  choreo: solo_nod
-  n: 1
-  chars:
-  - owl
-  entry: zoom_in
-  bg_color: '#EDE7F6'
-  text: Owl
-  sub_text: Let's dance!
-- start_sec: 1368.0
   duration: 38
   choreo: solo_twist
   n: 1
   chars:
-  - tiger
+  - penguin
+  entry: zoom_in
+  bg_color: '#E8F5E9'
+  text: Penguin
+  sub_text: Let's dance!
+- start_sec: 1330.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - lion
+  entry: zoom_in
+  bg_color: '#EDE7F6'
+  text: Lion
+  sub_text: Let's dance!
+- start_sec: 1368.0
+  duration: 38
+  choreo: solo_sway
+  n: 1
+  chars:
+  - duck
   entry: zoom_in
   bg_color: '#E1F5FE'
-  text: Tiger
+  text: Duck
   sub_text: Let's dance!
 - start_sec: 1406.0
   duration: 38
   choreo: solo_shimmy
   n: 1
   chars:
-  - fox
+  - tiger
   entry: zoom_in
   bg_color: '#F9FBE7'
-  text: Fox
+  text: Tiger
   sub_text: Let's dance!
 - start_sec: 1444.0
   duration: 38
-  choreo: solo_wave
+  choreo: solo_spin
   n: 1
   chars:
-  - parrot
+  - dino
   entry: zoom_in
   bg_color: '#FFF9E6'
-  text: Parrot
+  text: Dino
   sub_text: Let's dance!
 - start_sec: 1482.0
   duration: 38
-  choreo: solo_jump
+  choreo: solo_bounce
   n: 1
   chars:
-  - cow
+  - pig
   entry: zoom_in
   bg_color: '#E3F2FD'
-  text: Cow
+  text: Pig
   sub_text: Let's dance!
 - start_sec: 1520.0
   duration: 38
-  choreo: solo_wave
+  choreo: solo_spin
   n: 1
   chars:
-  - cow
+  - bear
   entry: zoom_in
   bg_color: '#FFF9E6'
-  text: Cow
+  text: Bear
   sub_text: Let's dance!
 - start_sec: 1558.0
   duration: 38
   choreo: solo_bounce
   n: 1
   chars:
-  - elephant
+  - penguin
   entry: zoom_in
   bg_color: '#E8F5E9'
-  text: Elephant
+  text: Penguin
   sub_text: Let's dance!
 - start_sec: 1596.0
   duration: 38
-  choreo: solo_wave
-  n: 1
-  chars:
-  - tiger
-  entry: zoom_in
-  bg_color: '#E3F2FD'
-  text: Tiger
-  sub_text: Let's dance!
-- start_sec: 1634.0
-  duration: 38
-  choreo: solo_jump
-  n: 1
-  chars:
-  - dino
-  entry: zoom_in
-  bg_color: '#FCE4EC'
-  text: Dino
-  sub_text: Let's dance!
-- start_sec: 1672.0
-  duration: 38
-  choreo: solo_nod
-  n: 1
-  chars:
-  - penguin
-  entry: zoom_in
-  bg_color: '#F3E5F5'
-  text: Penguin
-  sub_text: Let's dance!
-- start_sec: 1710.0
-  duration: 38
-  choreo: solo_sway
-  n: 1
-  chars:
-  - dog
-  entry: zoom_in
-  bg_color: '#E0F7FA'
-  text: Dog
-  sub_text: Let's dance!
-- start_sec: 1748.0
-  duration: 38
-  choreo: solo_twist
+  choreo: solo_spin
   n: 1
   chars:
   - frog
   entry: zoom_in
-  bg_color: '#FFFDE7'
+  bg_color: '#E3F2FD'
   text: Frog
   sub_text: Let's dance!
-- start_sec: 1786.0
-  duration: 14.0
-  choreo: solo_sway
+- start_sec: 1634.0
+  duration: 38
+  choreo: solo_bounce
   n: 1
   chars:
   - parrot
   entry: zoom_in
-  bg_color: '#F9FBE7'
+  bg_color: '#FCE4EC'
   text: Parrot
+  sub_text: Let's dance!
+- start_sec: 1672.0
+  duration: 38
+  choreo: solo_spin
+  n: 1
+  chars:
+  - monkey
+  entry: zoom_in
+  bg_color: '#F3E5F5'
+  text: Monkey
+  sub_text: Let's dance!
+- start_sec: 1710.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
+  - lion
+  entry: zoom_in
+  bg_color: '#E0F7FA'
+  text: Lion
+  sub_text: Let's dance!
+- start_sec: 1748.0
+  duration: 38
+  choreo: solo_spin
+  n: 1
+  chars:
+  - unicorn
+  entry: zoom_in
+  bg_color: '#FFFDE7'
+  text: Unicorn
+  sub_text: Let's dance!
+- start_sec: 1786.0
+  duration: 14.0
+  choreo: solo_bounce
+  n: 1
+  chars:
+  - dog
+  entry: zoom_in
+  bg_color: '#F9FBE7'
+  text: Dog
   sub_text: Let's dance!

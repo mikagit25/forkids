@@ -133,6 +133,7 @@ def make_meta(choreo: str, out_path: Path, colors_name: str):
         "title":            CHOREO_TITLES.get(choreo, f"Shapes Dance | Happy Bear Kids #shorts"),
         "video_type":       "short_shape_dance",
         "theme":            "shapes",
+        "language":         "en",
         "duration_minutes": 1,
         "is_short":         True,
         "tags":             TAGS_BASE + [choreo.replace("_", " "), colors_name],

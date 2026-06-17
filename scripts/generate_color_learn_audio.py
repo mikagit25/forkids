@@ -33,6 +33,7 @@ OUT_DIR   = ROOT / "remotion" / "public" / "audio" / "color_learn"
 
 EN_VOICE = "en-US-JennyNeural"
 AR_VOICE = "ar-SA-ZariyahNeural"
+ID_VOICE = "id-ID-GadisNeural"
 
 
 def load_data() -> list:
@@ -83,6 +84,88 @@ def en_outro(color: str, obj1: str, obj2: str, obj3: str) -> str:
     )
 
 
+def en_review(color: str, obj1: str, obj2: str, obj3: str) -> str:
+    return (
+        f"Great job! Let's review! "
+        f"What color is the {obj1}? "
+        f"The {obj1} is {color}! {color}! "
+        f"What color is the {obj2}? "
+        f"The {obj2} is {color}! {color}! "
+        f"What color is the {obj3}? "
+        f"The {obj3} is {color}! {color}! "
+        f"You are so smart! Can you say {color}? "
+        f"{color}! {color}! {color}! "
+        f"The {obj1} is {color}! Say it with me! {color}! "
+        f"The {obj2} is {color}! Say it with me! {color}! "
+        f"The {obj3} is {color}! Say it with me! {color}! "
+        f"Wonderful! You know the color {color}! "
+        f"{color}! {color}! Let's say it one more time! {color}! "
+        f"You did it! You are a color champion!"
+    )
+
+
+# ── ID script templates ───────────────────────────────────────────────────────
+
+def id_intro(color_id: str) -> str:
+    return (
+        f"Halo teman-teman! Hari ini kita belajar warna {color_id}! "
+        f"{color_id}! Bisakah kamu bilang {color_id}? Ayo mulai!"
+    )
+
+
+def id_obj_cycle(color_id: str, obj_name: str) -> str:
+    return (
+        f"Lihat! Ini {obj_name}! "
+        f"{obj_name} berwarna {color_id}! "
+        f"Apa warna {obj_name}? "
+        f"... "
+        f"Betul! {color_id}! "
+        f"{obj_name} berwarna {color_id}! "
+        f"{color_id}! {color_id}! {color_id}! "
+        f"Hebat sekali!"
+    )
+
+
+def id_song(color_id: str, obj1: str, obj2: str, obj3: str) -> str:
+    return (
+        f"{color_id}, {color_id}, semuanya {color_id}! "
+        f"{obj1} {color_id}, {obj2} {color_id}, {obj3} {color_id}! "
+        f"Bisakah kamu melihat warna {color_id}? "
+        f"Aku melihat {color_id}! "
+        f"{color_id}, {color_id}, {color_id}! "
+        f"Aku suka warna {color_id}!"
+    )
+
+
+def id_outro(color_id: str, obj1: str, obj2: str, obj3: str) -> str:
+    return (
+        f"Luar biasa! Sekarang kamu tahu warna {color_id}! "
+        f"{obj1} {color_id}! {obj2} {color_id}! {obj3} {color_id}! "
+        f"Kamu sangat pintar! "
+        f"Sampai jumpa lagi! Dadah!"
+    )
+
+
+def id_review(color_id: str, obj1: str, obj2: str, obj3: str) -> str:
+    return (
+        f"Kerja bagus! Ayo kita ulang! "
+        f"Apa warna {obj1}? "
+        f"{obj1} berwarna {color_id}! {color_id}! "
+        f"Apa warna {obj2}? "
+        f"{obj2} berwarna {color_id}! {color_id}! "
+        f"Apa warna {obj3}? "
+        f"{obj3} berwarna {color_id}! {color_id}! "
+        f"Kamu sangat pintar! Bisakah kamu bilang {color_id}? "
+        f"{color_id}! {color_id}! {color_id}! "
+        f"{obj1} berwarna {color_id}! Bilang bersamaku! {color_id}! "
+        f"{obj2} berwarna {color_id}! Bilang bersamaku! {color_id}! "
+        f"{obj3} berwarna {color_id}! Bilang bersamaku! {color_id}! "
+        f"Luar biasa! Kamu tahu warna {color_id}! "
+        f"{color_id}! {color_id}! Ayo bilang sekali lagi! {color_id}! "
+        f"Kamu berhasil! Kamu juara warna!"
+    )
+
+
 # ── AR script templates ───────────────────────────────────────────────────────
 
 def ar_intro(color_ar: str) -> str:
@@ -122,6 +205,26 @@ def ar_outro(color_ar: str, obj1_ar: str, obj2_ar: str, obj3_ar: str) -> str:
         f"{obj1_ar} {color_ar}! {obj2_ar} {color_ar}! {obj3_ar} {color_ar}! "
         f"أنت ذكي جداً! "
         f"إلى اللقاء! مع السلامة!"
+    )
+
+
+def ar_review(color_ar: str, obj1_ar: str, obj2_ar: str, obj3_ar: str) -> str:
+    return (
+        f"عمل رائع! هيا نراجع! "
+        f"ما لون {obj1_ar}؟ "
+        f"{obj1_ar} لونه {color_ar}! {color_ar}! "
+        f"ما لون {obj2_ar}؟ "
+        f"{obj2_ar} لونه {color_ar}! {color_ar}! "
+        f"ما لون {obj3_ar}؟ "
+        f"{obj3_ar} لونه {color_ar}! {color_ar}! "
+        f"أنت ذكي جداً! هل يمكنك قول {color_ar}؟ "
+        f"{color_ar}! {color_ar}! {color_ar}! "
+        f"{obj1_ar} لونه {color_ar}! قل معي! {color_ar}! "
+        f"{obj2_ar} لونه {color_ar}! قل معي! {color_ar}! "
+        f"{obj3_ar} لونه {color_ar}! قل معي! {color_ar}! "
+        f"رائع! أنت تعرف اللون {color_ar}! "
+        f"{color_ar}! {color_ar}! قلها مرة أخرى! {color_ar}! "
+        f"أحسنت! أنت بطل الألوان!"
     )
 
 
@@ -166,25 +269,41 @@ def generate_color(color_data: dict, lang: str, force: bool = False):
 
     print(f"\n  [{lang.upper()}] {key.upper()} ({color_en} / {color_ar})")
 
+    color_id = color_data.get("name_id", color_en).capitalize()
+    obj_id   = [o.get("name_id", o["name_en"]) for o in objs]
+
     if lang == "en":
         voice  = EN_VOICE
         scripts = {
-            "intro": en_intro(color_en),
-            "obj1":  en_obj_cycle(color_en, obj_en[0], article(obj_en[0])),
-            "obj2":  en_obj_cycle(color_en, obj_en[1], article(obj_en[1])),
-            "obj3":  en_obj_cycle(color_en, obj_en[2], article(obj_en[2])),
-            "song":  en_song(color_en, obj_en[0], obj_en[1], obj_en[2]),
-            "outro": en_outro(color_en, obj_en[0], obj_en[1], obj_en[2]),
+            "intro":  en_intro(color_en),
+            "obj1":   en_obj_cycle(color_en, obj_en[0], article(obj_en[0])),
+            "obj2":   en_obj_cycle(color_en, obj_en[1], article(obj_en[1])),
+            "obj3":   en_obj_cycle(color_en, obj_en[2], article(obj_en[2])),
+            "song":   en_song(color_en, obj_en[0], obj_en[1], obj_en[2]),
+            "review": en_review(color_en, obj_en[0], obj_en[1], obj_en[2]),
+            "outro":  en_outro(color_en, obj_en[0], obj_en[1], obj_en[2]),
+        }
+    elif lang == "id":
+        voice  = ID_VOICE
+        scripts = {
+            "intro":  id_intro(color_id),
+            "obj1":   id_obj_cycle(color_id, obj_id[0]),
+            "obj2":   id_obj_cycle(color_id, obj_id[1]),
+            "obj3":   id_obj_cycle(color_id, obj_id[2]),
+            "song":   id_song(color_id, obj_id[0], obj_id[1], obj_id[2]),
+            "review": id_review(color_id, obj_id[0], obj_id[1], obj_id[2]),
+            "outro":  id_outro(color_id, obj_id[0], obj_id[1], obj_id[2]),
         }
     else:
         voice  = AR_VOICE
         scripts = {
-            "intro": ar_intro(color_ar),
-            "obj1":  ar_obj_cycle(color_ar, obj_ar[0]),
-            "obj2":  ar_obj_cycle(color_ar, obj_ar[1]),
-            "obj3":  ar_obj_cycle(color_ar, obj_ar[2]),
-            "song":  ar_song(color_ar, obj_ar[0], obj_ar[1], obj_ar[2]),
-            "outro": ar_outro(color_ar, obj_ar[0], obj_ar[1], obj_ar[2]),
+            "intro":  ar_intro(color_ar),
+            "obj1":   ar_obj_cycle(color_ar, obj_ar[0]),
+            "obj2":   ar_obj_cycle(color_ar, obj_ar[1]),
+            "obj3":   ar_obj_cycle(color_ar, obj_ar[2]),
+            "song":   ar_song(color_ar, obj_ar[0], obj_ar[1], obj_ar[2]),
+            "review": ar_review(color_ar, obj_ar[0], obj_ar[1], obj_ar[2]),
+            "outro":  ar_outro(color_ar, obj_ar[0], obj_ar[1], obj_ar[2]),
         }
 
     ok = fail = 0
@@ -201,7 +320,7 @@ def generate_color(color_data: dict, lang: str, force: bool = False):
 def main():
     parser = argparse.ArgumentParser(description="Generate color learn audio via edge-tts")
     parser.add_argument("--color", help="Single color key (e.g. red)")
-    parser.add_argument("--lang",  choices=["en", "ar"], help="Single language")
+    parser.add_argument("--lang",  choices=["en", "ar", "id"], help="Single language")
     parser.add_argument("--force", action="store_true", help="Regenerate existing files")
     args = parser.parse_args()
 
@@ -212,7 +331,7 @@ def main():
             print(f"Color '{args.color}' not found in data.")
             sys.exit(1)
 
-    langs = [args.lang] if args.lang else ["en", "ar"]
+    langs = [args.lang] if args.lang else ["en", "ar", "id"]
 
     total_ok = total_fail = 0
     for color_data in colors:

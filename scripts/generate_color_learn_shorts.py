@@ -73,6 +73,7 @@ def make_meta(color: str, out_path: Path):
         "title":            f"Color {color_cap} | Learn Colors for Kids | Happy Bear Kids #shorts",
         "video_type":       "short_color_learn",
         "theme":            "colors",
+        "language":         "en",
         "duration_minutes": 1,
         "is_short":         True,
         "tags":             [

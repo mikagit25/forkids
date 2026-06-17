@@ -5,297 +5,297 @@ style: tutitu
 scenes:
 - start_sec: 0.0
   duration: 38
-  choreo: solo_nod
+  choreo: solo_wave
   n: 1
   chars:
-  - corn
+  - onion
   entry: zoom_in
   bg_color: '#E8F5E9'
-  text: Corn
+  text: Onion
   sub_text: Let's dance!
 - start_sec: 38.0
   duration: 38
-  choreo: solo_spin
+  choreo: solo_sway
   n: 1
   chars:
-  - eggplant
+  - tomato
   entry: zoom_in
   bg_color: '#F1F8E9'
-  text: Eggplant
+  text: Tomato
   sub_text: Let's dance!
 - start_sec: 76.0
   duration: 38
-  choreo: solo_shimmy
+  choreo: solo_bounce
   n: 1
   chars:
-  - pepper
+  - carrot
   entry: zoom_in
   bg_color: '#E0F2F1'
-  text: Pepper
+  text: Carrot
   sub_text: Let's dance!
 - start_sec: 114.0
   duration: 38
-  choreo: solo_spin
+  choreo: solo_shimmy
   n: 1
   chars:
-  - onion
+  - cucumber
   entry: zoom_in
   bg_color: '#F9FBE7'
-  text: Onion
+  text: Cucumber
   sub_text: Let's dance!
 - start_sec: 152.0
   duration: 38
-  choreo: solo_nod
+  choreo: solo_spin
   n: 1
   chars:
-  - carrot
+  - eggplant
   entry: zoom_in
   bg_color: '#FFF9E6'
-  text: Carrot
+  text: Eggplant
   sub_text: Let's dance!
 - start_sec: 190.0
   duration: 38
-  choreo: solo_spin
+  choreo: solo_bounce
   n: 1
   chars:
-  - cucumber
+  - corn
   entry: zoom_in
   bg_color: '#E3F2FD'
-  text: Cucumber
+  text: Corn
   sub_text: Let's dance!
 - start_sec: 228.0
   duration: 38
-  choreo: solo_shimmy
-  n: 1
-  chars:
-  - tomato
-  entry: zoom_in
-  bg_color: '#FCE4EC'
-  text: Tomato
-  sub_text: Let's dance!
-- start_sec: 266.0
-  duration: 38
-  choreo: solo_twist
-  n: 1
-  chars:
-  - broccoli
-  entry: zoom_in
-  bg_color: '#F3E5F5'
-  text: Broccoli
-  sub_text: Let's dance!
-- start_sec: 304.0
-  duration: 38
-  choreo: solo_wave
+  choreo: solo_jump
   n: 1
   chars:
   - potato
   entry: zoom_in
-  bg_color: '#E0F7FA'
+  bg_color: '#FCE4EC'
   text: Potato
   sub_text: Let's dance!
-- start_sec: 342.0
+- start_sec: 266.0
+  duration: 38
+  choreo: solo_nod
+  n: 1
+  chars:
+  - pepper
+  entry: zoom_in
+  bg_color: '#F3E5F5'
+  text: Pepper
+  sub_text: Let's dance!
+- start_sec: 304.0
   duration: 38
   choreo: solo_bounce
   n: 1
   chars:
   - mushroom
   entry: zoom_in
-  bg_color: '#FFFDE7'
+  bg_color: '#E0F7FA'
   text: Mushroom
   sub_text: Let's dance!
-- start_sec: 380.0
-  duration: 38
-  choreo: solo_jump
-  n: 1
-  chars:
-  - broccoli
-  entry: zoom_in
-  bg_color: '#E8F5E9'
-  text: Broccoli
-  sub_text: Let's dance!
-- start_sec: 418.0
-  duration: 38
-  choreo: solo_twist
-  n: 1
-  chars:
-  - pepper
-  entry: zoom_in
-  bg_color: '#F1F8E9'
-  text: Pepper
-  sub_text: Let's dance!
-- start_sec: 456.0
-  duration: 38
-  choreo: solo_jump
-  n: 1
-  chars:
-  - carrot
-  entry: zoom_in
-  bg_color: '#E0F2F1'
-  text: Carrot
-  sub_text: Let's dance!
-- start_sec: 494.0
+- start_sec: 342.0
   duration: 38
   choreo: solo_nod
   n: 1
   chars:
-  - tomato
+  - broccoli
+  entry: zoom_in
+  bg_color: '#FFFDE7'
+  text: Broccoli
+  sub_text: Let's dance!
+- start_sec: 380.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - potato
+  entry: zoom_in
+  bg_color: '#E8F5E9'
+  text: Potato
+  sub_text: Let's dance!
+- start_sec: 418.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
+  - onion
+  entry: zoom_in
+  bg_color: '#F1F8E9'
+  text: Onion
+  sub_text: Let's dance!
+- start_sec: 456.0
+  duration: 38
+  choreo: solo_nod
+  n: 1
+  chars:
+  - pepper
+  entry: zoom_in
+  bg_color: '#E0F2F1'
+  text: Pepper
+  sub_text: Let's dance!
+- start_sec: 494.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - eggplant
   entry: zoom_in
   bg_color: '#F9FBE7'
-  text: Tomato
+  text: Eggplant
   sub_text: Let's dance!
 - start_sec: 532.0
+  duration: 38
+  choreo: solo_nod
+  n: 1
+  chars:
+  - corn
+  entry: zoom_in
+  bg_color: '#FFF9E6'
+  text: Corn
+  sub_text: Let's dance!
+- start_sec: 570.0
+  duration: 38
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - mushroom
+  entry: zoom_in
+  bg_color: '#E3F2FD'
+  text: Mushroom
+  sub_text: Let's dance!
+- start_sec: 608.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - carrot
+  entry: zoom_in
+  bg_color: '#FCE4EC'
+  text: Carrot
+  sub_text: Let's dance!
+- start_sec: 646.0
+  duration: 38
+  choreo: solo_sway
+  n: 1
+  chars:
+  - tomato
+  entry: zoom_in
+  bg_color: '#F3E5F5'
+  text: Tomato
+  sub_text: Let's dance!
+- start_sec: 684.0
   duration: 38
   choreo: solo_spin
   n: 1
   chars:
-  - onion
-  entry: zoom_in
-  bg_color: '#FFF9E6'
-  text: Onion
-  sub_text: Let's dance!
-- start_sec: 570.0
-  duration: 38
-  choreo: solo_twist
-  n: 1
-  chars:
-  - eggplant
-  entry: zoom_in
-  bg_color: '#E3F2FD'
-  text: Eggplant
-  sub_text: Let's dance!
-- start_sec: 608.0
-  duration: 38
-  choreo: solo_sway
-  n: 1
-  chars:
   - cucumber
   entry: zoom_in
-  bg_color: '#FCE4EC'
+  bg_color: '#E0F7FA'
   text: Cucumber
   sub_text: Let's dance!
-- start_sec: 646.0
-  duration: 38
-  choreo: solo_bounce
-  n: 1
-  chars:
-  - mushroom
-  entry: zoom_in
-  bg_color: '#F3E5F5'
-  text: Mushroom
-  sub_text: Let's dance!
-- start_sec: 684.0
-  duration: 38
-  choreo: solo_sway
-  n: 1
-  chars:
-  - potato
-  entry: zoom_in
-  bg_color: '#E0F7FA'
-  text: Potato
-  sub_text: Let's dance!
 - start_sec: 722.0
-  duration: 38
-  choreo: solo_wave
-  n: 1
-  chars:
-  - corn
-  entry: zoom_in
-  bg_color: '#FFFDE7'
-  text: Corn
-  sub_text: Let's dance!
-- start_sec: 760.0
   duration: 38
   choreo: solo_sway
   n: 1
   chars:
   - broccoli
   entry: zoom_in
-  bg_color: '#E8F5E9'
+  bg_color: '#FFFDE7'
   text: Broccoli
   sub_text: Let's dance!
-- start_sec: 798.0
-  duration: 38
-  choreo: solo_bounce
-  n: 1
-  chars:
-  - pepper
-  entry: zoom_in
-  bg_color: '#F1F8E9'
-  text: Pepper
-  sub_text: Let's dance!
-- start_sec: 836.0
-  duration: 38
-  choreo: solo_sway
-  n: 1
-  chars:
-  - potato
-  entry: zoom_in
-  bg_color: '#E0F2F1'
-  text: Potato
-  sub_text: Let's dance!
-- start_sec: 874.0
-  duration: 38
-  choreo: solo_wave
-  n: 1
-  chars:
-  - corn
-  entry: zoom_in
-  bg_color: '#F9FBE7'
-  text: Corn
-  sub_text: Let's dance!
-- start_sec: 912.0
+- start_sec: 760.0
   duration: 38
   choreo: solo_shimmy
   n: 1
   chars:
-  - eggplant
+  - carrot
   entry: zoom_in
-  bg_color: '#FFF9E6'
-  text: Eggplant
+  bg_color: '#E8F5E9'
+  text: Carrot
   sub_text: Let's dance!
-- start_sec: 950.0
+- start_sec: 798.0
   duration: 38
-  choreo: solo_nod
+  choreo: solo_twist
+  n: 1
+  chars:
+  - cucumber
+  entry: zoom_in
+  bg_color: '#F1F8E9'
+  text: Cucumber
+  sub_text: Let's dance!
+- start_sec: 836.0
+  duration: 38
+  choreo: solo_wave
   n: 1
   chars:
   - onion
   entry: zoom_in
-  bg_color: '#E3F2FD'
+  bg_color: '#E0F2F1'
   text: Onion
+  sub_text: Let's dance!
+- start_sec: 874.0
+  duration: 38
+  choreo: solo_bounce
+  n: 1
+  chars:
+  - broccoli
+  entry: zoom_in
+  bg_color: '#F9FBE7'
+  text: Broccoli
+  sub_text: Let's dance!
+- start_sec: 912.0
+  duration: 38
+  choreo: solo_spin
+  n: 1
+  chars:
+  - pepper
+  entry: zoom_in
+  bg_color: '#FFF9E6'
+  text: Pepper
+  sub_text: Let's dance!
+- start_sec: 950.0
+  duration: 38
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - tomato
+  entry: zoom_in
+  bg_color: '#E3F2FD'
+  text: Tomato
   sub_text: Let's dance!
 - start_sec: 988.0
   duration: 38
-  choreo: solo_sway
+  choreo: solo_twist
   n: 1
   chars:
-  - carrot
+  - corn
   entry: zoom_in
   bg_color: '#FCE4EC'
-  text: Carrot
+  text: Corn
   sub_text: Let's dance!
 - start_sec: 1026.0
   duration: 38
   choreo: solo_spin
   n: 1
   chars:
-  - tomato
+  - eggplant
   entry: zoom_in
   bg_color: '#F3E5F5'
-  text: Tomato
+  text: Eggplant
   sub_text: Let's dance!
 - start_sec: 1064.0
   duration: 38
-  choreo: solo_bounce
+  choreo: solo_twist
   n: 1
   chars:
-  - cucumber
+  - potato
   entry: zoom_in
   bg_color: '#E0F7FA'
-  text: Cucumber
+  text: Potato
   sub_text: Let's dance!
 - start_sec: 1102.0
   duration: 38
-  choreo: solo_wave
+  choreo: solo_sway
   n: 1
   chars:
   - mushroom
@@ -305,17 +305,17 @@ scenes:
   sub_text: Let's dance!
 - start_sec: 1140.0
   duration: 38
-  choreo: solo_bounce
+  choreo: solo_twist
   n: 1
   chars:
-  - tomato
+  - mushroom
   entry: zoom_in
   bg_color: '#E8F5E9'
-  text: Tomato
+  text: Mushroom
   sub_text: Let's dance!
 - start_sec: 1178.0
   duration: 38
-  choreo: solo_shimmy
+  choreo: solo_sway
   n: 1
   chars:
   - pepper
@@ -325,7 +325,7 @@ scenes:
   sub_text: Let's dance!
 - start_sec: 1216.0
   duration: 38
-  choreo: solo_sway
+  choreo: solo_spin
   n: 1
   chars:
   - broccoli
@@ -335,87 +335,87 @@ scenes:
   sub_text: Let's dance!
 - start_sec: 1254.0
   duration: 38
-  choreo: solo_jump
+  choreo: solo_shimmy
   n: 1
   chars:
-  - mushroom
+  - eggplant
   entry: zoom_in
   bg_color: '#F9FBE7'
-  text: Mushroom
+  text: Eggplant
   sub_text: Let's dance!
 - start_sec: 1292.0
   duration: 38
   choreo: solo_nod
   n: 1
   chars:
-  - potato
+  - carrot
   entry: zoom_in
   bg_color: '#FFF9E6'
-  text: Potato
+  text: Carrot
   sub_text: Let's dance!
 - start_sec: 1330.0
-  duration: 38
-  choreo: solo_wave
-  n: 1
-  chars:
-  - corn
-  entry: zoom_in
-  bg_color: '#E3F2FD'
-  text: Corn
-  sub_text: Let's dance!
-- start_sec: 1368.0
-  duration: 38
-  choreo: solo_nod
-  n: 1
-  chars:
-  - eggplant
-  entry: zoom_in
-  bg_color: '#FCE4EC'
-  text: Eggplant
-  sub_text: Let's dance!
-- start_sec: 1406.0
   duration: 38
   choreo: solo_shimmy
   n: 1
   chars:
+  - potato
+  entry: zoom_in
+  bg_color: '#E3F2FD'
+  text: Potato
+  sub_text: Let's dance!
+- start_sec: 1368.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
   - onion
   entry: zoom_in
-  bg_color: '#F3E5F5'
+  bg_color: '#FCE4EC'
   text: Onion
   sub_text: Let's dance!
-- start_sec: 1444.0
-  duration: 38
-  choreo: solo_bounce
-  n: 1
-  chars:
-  - cucumber
-  entry: zoom_in
-  bg_color: '#E0F7FA'
-  text: Cucumber
-  sub_text: Let's dance!
-- start_sec: 1482.0
-  duration: 38
-  choreo: solo_nod
-  n: 1
-  chars:
-  - carrot
-  entry: zoom_in
-  bg_color: '#FFFDE7'
-  text: Carrot
-  sub_text: Let's dance!
-- start_sec: 1520.0
+- start_sec: 1406.0
   duration: 38
   choreo: solo_twist
   n: 1
   chars:
-  - mushroom
+  - corn
+  entry: zoom_in
+  bg_color: '#F3E5F5'
+  text: Corn
+  sub_text: Let's dance!
+- start_sec: 1444.0
+  duration: 38
+  choreo: solo_sway
+  n: 1
+  chars:
+  - tomato
+  entry: zoom_in
+  bg_color: '#E0F7FA'
+  text: Tomato
+  sub_text: Let's dance!
+- start_sec: 1482.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
+  - cucumber
+  entry: zoom_in
+  bg_color: '#FFFDE7'
+  text: Cucumber
+  sub_text: Let's dance!
+- start_sec: 1520.0
+  duration: 38
+  choreo: solo_spin
+  n: 1
+  chars:
+  - carrot
   entry: zoom_in
   bg_color: '#E8F5E9'
-  text: Mushroom
+  text: Carrot
   sub_text: Let's dance!
 - start_sec: 1558.0
   duration: 38
-  choreo: solo_jump
+  choreo: solo_twist
   n: 1
   chars:
   - pepper
@@ -425,47 +425,47 @@ scenes:
   sub_text: Let's dance!
 - start_sec: 1596.0
   duration: 38
-  choreo: solo_shimmy
+  choreo: solo_nod
   n: 1
   chars:
-  - carrot
+  - broccoli
   entry: zoom_in
   bg_color: '#E0F2F1'
-  text: Carrot
+  text: Broccoli
   sub_text: Let's dance!
 - start_sec: 1634.0
   duration: 38
-  choreo: solo_spin
+  choreo: solo_wave
   n: 1
   chars:
-  - potato
+  - mushroom
   entry: zoom_in
   bg_color: '#F9FBE7'
-  text: Potato
+  text: Mushroom
   sub_text: Let's dance!
 - start_sec: 1672.0
   duration: 38
-  choreo: solo_shimmy
+  choreo: solo_jump
+  n: 1
+  chars:
+  - tomato
+  entry: zoom_in
+  bg_color: '#FFF9E6'
+  text: Tomato
+  sub_text: Let's dance!
+- start_sec: 1710.0
+  duration: 38
+  choreo: solo_bounce
   n: 1
   chars:
   - onion
   entry: zoom_in
-  bg_color: '#FFF9E6'
-  text: Onion
-  sub_text: Let's dance!
-- start_sec: 1710.0
-  duration: 38
-  choreo: solo_spin
-  n: 1
-  chars:
-  - corn
-  entry: zoom_in
   bg_color: '#E3F2FD'
-  text: Corn
+  text: Onion
   sub_text: Let's dance!
 - start_sec: 1748.0
   duration: 38
-  choreo: solo_twist
+  choreo: solo_jump
   n: 1
   chars:
   - cucumber
@@ -475,11 +475,11 @@ scenes:
   sub_text: Let's dance!
 - start_sec: 1786.0
   duration: 14.0
-  choreo: solo_wave
+  choreo: solo_spin
   n: 1
   chars:
-  - eggplant
+  - potato
   entry: zoom_in
   bg_color: '#F3E5F5'
-  text: Eggplant
+  text: Potato
   sub_text: Let's dance!

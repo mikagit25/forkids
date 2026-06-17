@@ -1,0 +1,590 @@
+﻿⭐ Sensory Videos 4–14 — Full Script Collection
+All remaining sensory video scripts in one file
+________________
+
+
+4. FALLING STARS
+Duration: 30 min | Age: 0–12 months | Type: Monotone loop Concept: Stars fall from top to bottom endlessly — like snow but stars
+Loop Structure (6 loops × 5 min)
+Loop
+	Style
+	Speed
+	Density
+	1
+	Gold stars
+	Slow
+	Sparse
+	2
+	Rainbow stars
+	Medium
+	Medium
+	3
+	White on black
+	Slow
+	Dense
+	4
+	Large single stars
+	Very slow
+	Very sparse
+	5
+	Shooting stars
+	Fast diagonal
+	Sparse
+	6
+	Sleep — silver
+	Very slow
+	Sparse
+	Algorithm
+// Star falls from random top position
+// Random size 10–60px, random speed 1–5 px/frame
+// Twinkle: opacity = 0.7 + sin(frame * 0.1 + starIndex) * 0.3
+// When star exits bottom — respawn at top with new random x
+// Trail: 4–8 px behind star, fading opacity
+
+
+stars.map(star => {
+  star.y += star.speed;
+  if (star.y > screenH + 60) {
+    star.y = -60;
+    star.x = Math.random() * screenW;
+  }
+});
+
+
+Key visuals
+* Stars rotate as they fall — 1-3 degrees per frame
+* Each star is 5-pointed polygon — not a circle
+* Occasional "shooting star" — fast diagonal with long trail
+* Subtle parallax — large stars fall faster (foreground)
+* Background: pure black for maximum contrast
+________________
+
+
+5. BLACK & WHITE SHAPES (Newborn)
+Duration: 30 min | Age: 0–3 months | Type: High contrast Concept: Pure black and white geometric shapes — maximum visual development
+Critical design rules for newborns:
+* ONLY black and white — no color except occasional red
+* High contrast = maximum neural stimulation
+* Simple shapes only — circles, squares, triangles, lines
+* Slow movement — 1-2 sec transitions
+* No sudden changes — always predictable
+Sequence (each shape holds 8-10 seconds)
+Phase 1 — Basic shapes (0:00–10:00)
+Black background, white shapes appear center screen:
+* Circle — grows from point to full size (4 sec) — holds (4 sec) — fades
+* Square — same
+* Triangle — same
+* Circle + Square together — contrast each other
+* Stripes horizontal — 5 bold stripes scroll slowly upward
+* Stripes vertical — scroll slowly rightward
+* Checkerboard — appears and slowly rotates
+* Bull's-eye — concentric circles pulse gently
+Phase 2 — Moving shapes (10:00–20:00)
+White background, black shapes move:
+* Circle rolls left to right
+* Square slides side to side
+* Triangle bounces gently
+* Spiral — draws itself slowly from center outward
+* Zigzag line — draws itself across screen
+* Radial lines — from center outward — rotate slowly
+Phase 3 — Red accent (20:00–30:00)
+Add red — the third color newborns can see:
+* White bg, black circle, red dot appears in center
+* Black bg, white circle, red border added
+* Red, white, black stripes alternating
+* Red circle on black background — grows and shrinks
+* B&W checkerboard with red squares appearing
+Algorithm
+// Shape pulse
+const pulseScale = 1 + Math.sin(frame * 0.05) * 0.05; // very subtle
+// Draw circle
+<circle cx={cx} cy={cy} r={radius * pulseScale} fill="white" />
+// Rotating checkerboard
+<g transform={`rotate(${frame * 0.2} ${cx} ${cy})`}>
+  {/* checkerboard squares */}
+</g>
+
+
+________________
+
+
+6. EXPANDING CIRCLES (Newborn High Contrast)
+Duration: 30 min | Age: 0–3 months | Type: High contrast Concept: Concentric rings expand from center — like ripples — infinitely
+Loop (pure infinite loop, 2 seconds per ring)
+* Ring appears as tiny dot at center
+* Expands outward smoothly — growing circle
+* When ring reaches screen edge — fades out
+* New ring appears at center immediately
+* Multiple rings simultaneously — constant expansion
+Visual variants every 5 minutes:
+1. White rings on black — classic
+2. Black rings on white — inverted
+3. Thick rings on black — bolder
+4. Thin fast rings — more rings at once
+5. Red on black — color accent
+6. Slow single ring — very meditative
+Algorithm
+const rings = Array.from({ length: 6 }).map((_, i) => ({
+  startFrame: i * 18, // one new ring every 18 frames (0.6 sec at 30fps)
+  color: 'white',
+}));
+
+
+rings.map(ring => {
+  const age = frame - ring.startFrame;
+  if (age < 0) return null;
+  const radius = age * 4; // expand at 4px per frame
+  const opacity = interpolate(radius, [0, screenDiagonal], [1, 0]);
+  return <circle r={radius} opacity={opacity} stroke={ring.color} fill="none" strokeWidth={8} />;
+});
+
+
+________________
+
+
+7. CHECKERBOARD PULSE (Newborn)
+Duration: 30 min | Age: 0–3 months | Type: High contrast Concept: B&W checkerboard moves, pulses, rotates — classic sensory pattern
+Variants (5 min each × 6)
+1. Slow rotation — full board rotates 360° per 10 sec
+2. Zoom in/out — board zooms toward camera and back
+3. Scroll horizontal — board slides left indefinitely
+4. Scroll vertical — board slides upward indefinitely
+5. Pulse — squares alternate black/white on beat
+6. Diagonal — board slides diagonally
+Square size options:
+* Large: 120px squares — good for far viewing
+* Medium: 80px — standard
+* Small: 40px — more detail for closer viewing
+Algorithm
+// Rotating checkerboard
+const rotation = (frame / 30) * 36; // 36 degrees per second
+// Scrolling
+const offsetX = (frame * 2) % squareSize; // scroll at 2px/frame
+// Pulsing — swap colors on beat
+const isBeat = frame % beatFrames < 2;
+const colorA = isBeat ? 'black' : 'white';
+const colorB = isBeat ? 'white' : 'black';
+
+
+________________
+
+
+8. RAINBOW SPIRAL
+Duration: 30 min | Age: 3–12 months | Type: Color burst Concept: Spinning rainbow spiral — hypnotic and colorful
+Loop (pure infinite rotation)
+* Spiral image rotates continuously
+* Colors cycle through spectrum
+* Speed varies: 3 sec slow → 1 sec fast → 2 sec medium
+* Pulsing: spiral expands and contracts slightly
+* Center: bright white pulsing dot
+Visual variants (5 min each × 6):
+1. Rainbow spiral — all 6 colors, tight coils
+2. Two-color spiral — red/blue alternating
+3. Pastel spiral — soft pink/mint/lavender
+4. Wide spiral — few coils, bold bands
+5. Tight spiral — many coils, thin bands
+6. Reverse — same but counter-rotating
+Algorithm
+// Draw spiral as series of concentric arcs
+// Each arc slightly larger, rotated by frame angle
+const rotationAngle = (frame / 30) * rotationSpeed; // degrees per second
+
+
+// Each color band
+RAINBOW_COLORS.map((color, i) => {
+  const startAngle = rotationAngle + (i / numColors) * 360;
+  const endAngle = startAngle + (360 / numColors);
+  // Draw arc from center outward
+});
+
+
+// Overall pulse
+const pulseScale = 1 + Math.sin(frame * 0.04) * 0.08;
+
+
+________________
+
+
+9. COLOR BURST
+Duration: 30 min | Age: 3–12 months | Type: Color burst Concept: Particles explode from center, drift out, fade, respawn
+Loop
+* 50–100 particles at any time
+* Each born at center — random direction — drift out
+* Fade as they reach edges
+* New particles continuously spawning
+* Colors shift over time: rainbow cycle every 2 min
+Variants (5 min each × 6):
+1. Slow drift — gentle, like dandelion seeds
+2. Fast burst — energetic explosion
+3. Single color — all same color — pure red, then blue etc
+4. Firework — synchronized burst every 3 sec
+5. Gravity — particles arc downward like fountains
+6. Spiral drift — particles follow spiral path outward
+Algorithm
+const particles = useMemo(() => 
+  Array.from({ length: 80 }).map((_, i) => ({
+    birthFrame: Math.floor(Math.random() * totalFrames),
+    angle: Math.random() * Math.PI * 2,
+    speed: 1 + Math.random() * 4,
+    size: 8 + Math.random() * 24,
+    hue: Math.random() * 360,
+  }))
+, []);
+
+
+particles.map(p => {
+  const age = (frame - p.birthFrame + totalFrames) % lifespan;
+  const dist = age * p.speed;
+  const x = cx + Math.cos(p.angle) * dist;
+  const y = cy + Math.sin(p.angle) * dist;
+  const opacity = interpolate(dist, [0, maxDist], [1, 0]);
+  const hue = (p.hue + frame * 0.5) % 360;
+  return { x, y, opacity, size: p.size, color: `hsl(${hue}, 90%, 60%)` };
+});
+
+
+________________
+
+
+10. FLOATING BUBBLES
+Duration: 30 min | Age: 3–12 months | Type: Color burst Concept: Soap bubbles float upward — iridescent and beautiful
+Loop
+* Bubbles continuously spawn at bottom
+* Float upward with gentle sway
+* POP when reaching top (with sparkle)
+* Constantly renewing — never empty screen
+Variants (5 min each × 6):
+1. Few large bubbles — 3–5 big bubbles, slow
+2. Many small bubbles — 20+ small bubbles, fast
+3. Single color tint — all pink, all blue, all gold
+4. Night version — dark background, glowing bubbles
+5. Pop frenzy — bubbles pop quickly with big effects
+6. Sleep version — 2–3 very slow large bubbles, dark bg
+Algorithm
+// Bubble float with sway
+bubble.y -= bubble.riseSpeed; // rise
+bubble.x += Math.sin(frame * 0.03 + bubble.swayPhase) * bubble.swayAmount;
+
+
+// Iridescent color
+const hue = (frame * 2 + bubble.hueOffset) % 360;
+const shimmer = `hsla(${hue}, 80%, 75%, 0.3)`;
+
+
+// Wobble shape
+const wobbleX = 1 + Math.sin(frame * 0.08) * 0.04;
+const wobbleY = 1 + Math.cos(frame * 0.06) * 0.04;
+
+
+// Pop when reaching top
+if (bubble.y < -bubble.radius) triggerPop(bubble);
+
+
+________________
+
+
+11. DANCING FRUITS (Hey Bear Style)
+Duration: 30 min | Age: 3–18 months | Type: Color burst Concept: Colorful fruit characters bounce and dance to upbeat music
+Loop structure (2 min per fruit, 15 fruits = 30 min)
+Each fruit gets its own 2-minute segment:
+1. Apple (red) — bounces left-right
+2. Banana (yellow) — swings in arc
+3. Orange (orange) — rolls and spins
+4. Strawberry (pink) — bounces up-down
+5. Watermelon (green+red) — large, slow bounces
+6. Grapes (purple) — wiggles side to side
+7. Pineapple (yellow+green) — shakes and dances
+8. Cherry (red) — pair swings on stems
+9. Lemon (yellow) — rolls fast
+10. Blueberry (blue) — tiny fast bounces
+11. Mango (orange) — smooth arc motion
+12. Coconut (brown) — heavy slow bounce
+13. Kiwi (brown+green) — medium bounce
+14. Peach (pink-orange) — gentle sway
+15. All together — full fruit party finale
+Key design notes:
+* Dark background (black or very dark) — fruits pop with color
+* Each fruit: simple round shape with face — happy eyes, smile
+* Bounce always on the beat
+* Squash on landing, stretch on rise
+* Subtle wiggle/wave motion even when not bouncing
+* Color trail follows fruit movement
+Algorithm
+// Each fruit has bounce + secondary wiggle
+const bounceY = Math.abs(Math.sin(frame * bounceSpeed)) * bounceHeight;
+const wiggleX = Math.sin(frame * wiggleSpeed) * wiggleAmount;
+const wiggleRotate = Math.sin(frame * 0.08) * 8; // degrees
+
+
+// Squash on landing (bounceY near 0)
+const onGround = bounceY < 5;
+const scaleX = onGround ? 1.3 : 1.0;
+const scaleY = onGround ? 0.7 : 1.0;
+
+
+________________
+
+
+12. SLOW FLOATING SHAPES (Sleep)
+Duration: 30 min | Age: 0–12 months | Type: Calm/Sleep Concept: Simple shapes float very slowly across dark screen — for sleep
+Design rules:
+* Very slow movement — shapes take 15–30 sec to cross screen
+* Soft colors on dark background — not stimulating
+* No sudden movements, no pops, no bright flashes
+* Music: lullaby, very quiet, 60 BPM max
+Loop (continuous, shapes enter/exit randomly)
+* Circles, squares, triangles float across
+* Each shape: soft muted color, slight transparency
+* Random gentle rotation as they drift
+* Random size 40–120px
+* 4–8 shapes visible at any time
+* Entry from any edge, exit opposite edge
+* No collision — shapes pass through each other
+Color palettes (changes every 5 min):
+1. Soft blues and lavenders
+2. Warm pinks and peaches
+3. Muted greens and teals
+4. All pastels mixed
+5. Near-monochrome — soft grey-white
+6. Moonlight — silver-white on deep blue
+Algorithm
+// Very slow drift
+shape.x += Math.cos(shape.direction) * 0.5; // 0.5 px/frame = very slow
+shape.y += Math.sin(shape.direction) * 0.5;
+shape.rotation += 0.1; // very slow spin
+
+
+// Soft fade in/out near edges
+const edgeDist = Math.min(shape.x, screenW - shape.x, shape.y, screenH - shape.y);
+const opacity = interpolate(edgeDist, [0, 80], [0, 0.7]);
+
+
+________________
+
+
+13. BREATHING BALL (Calm)
+Duration: 30 min | Age: 0–12 months | Type: Calm/Sleep Concept: Single ball slowly expands and contracts — like breathing
+The mechanism:
+* Ball in center screen
+* Slowly grows (4 sec) — breathe in
+* Holds large (1 sec)
+* Slowly shrinks (4 sec) — breathe out
+* Holds small (1 sec)
+* Total cycle: 10 seconds
+* Never stops — perfectly rhythmic
+Visual variants (5 min each × 6):
+1. Blue — calm blue on white — classic
+2. Purple — deeper, more meditative
+3. Rainbow color shift — color slowly cycles as it breathes
+4. White on dark — glowing ball
+5. Multiple shells — outer rings also breathe (offset)
+6. Night — very dark bg, soft glowing ball
+Audio:
+* Breathing sound synced to ball (optional)
+* Very soft ambient tone
+* OR complete silence — just the visual
+Algorithm
+// 10-second breathing cycle
+const cycleFrames = 300; // 10 sec at 30fps
+const cyclePos = (frame % cycleFrames) / cycleFrames;
+
+
+// Smooth breathing curve (ease in/out)
+const breathe = (cyclePos < 0.4)
+  ? interpolate(cyclePos, [0, 0.4], [0, 1], { easing: Easing.inOut(Easing.cubic) })
+  : interpolate(cyclePos, [0.5, 0.9], [1, 0], { easing: Easing.inOut(Easing.cubic) });
+
+
+const radius = interpolate(breathe, [0, 1], [minRadius, maxRadius]);
+
+
+// Color breathe (if color shifting)
+const hue = frame * 0.5 % 360; // very slow color cycle
+
+
+________________
+
+
+14. FIREFLY NIGHT (Sleep)
+Duration: 30 min | Age: 0–18 months | Type: Calm/Sleep Concept: Fireflies glow and drift across dark screen — magical and calming
+Loop
+* 10–20 fireflies at any time
+* Each drifts in organic curved path
+* Glow pulses: on (0.5 sec) → off (1–2 sec) → on
+* Very slow movement
+* Dark background — deep navy or forest black
+Variants (5 min each × 6):
+1. Few slow fireflies — 8 fireflies, dark forest green bg
+2. Many fireflies — 20+ tiny glows, black bg
+3. Single color — all amber, all blue, all green
+4. Spiraling fireflies — drift in gentle spirals
+5. Constellation — fireflies slowly form star patterns
+6. Sleep finale — fireflies slowly decrease in number → 1 → none → black
+Algorithm
+// Firefly organic drift
+const drift = (t, fly) => ({
+  x: fly.baseX + Math.sin(t * fly.xFreq + fly.xPhase) * fly.xAmp,
+  y: fly.baseY + Math.sin(t * fly.yFreq + fly.yPhase) * fly.yAmp,
+});
+
+
+// Glow pulse — not regular, slightly random timing
+const glowCycle = frame * 0.05 + fly.glowPhase;
+const glowOn = Math.sin(glowCycle) > fly.glowThreshold; // threshold varies per fly
+const intensity = glowOn
+  ? interpolate(Math.sin(glowCycle), [fly.glowThreshold, 1], [0, 1])
+  : 0;
+
+
+// Warm yellow-green glow
+const glowColor = `rgba(200, 255, 100, ${intensity * 0.9})`;
+const glowRadius = fly.size * (1 + intensity * 2); // bigger when bright
+
+
+// Outer glow (CSS filter or manual)
+// Draw multiple circles with decreasing opacity
+[1.0, 0.4, 0.15].map((opacityMult, i) => (
+  <circle r={glowRadius * (1 + i * 0.8)} 
+          fill={glowColor} 
+          opacity={intensity * opacityMult} />
+));
+
+
+________________
+
+
+SUMMARY TABLE — ALL 14 SENSORY VIDEOS
+#
+	Title
+	Age
+	Type
+	Loop?
+	Duration
+	1
+	Bouncing Balls
+	0–12m
+	Active
+	✓ 10×3min
+	30 min
+	2
+	Pendulum Balls
+	0–6m
+	Calm
+	✓ 10×3min
+	30 min
+	3
+	Circular Motion
+	0–12m
+	Active
+	✓ 10×3min
+	30 min
+	4
+	Falling Stars
+	0–12m
+	Calm
+	✓ 6×5min
+	30 min
+	5
+	B&W Shapes
+	0–3m
+	Newborn
+	3 phases
+	30 min
+	6
+	Expanding Circles
+	0–3m
+	Newborn
+	✓ ∞
+	30 min
+	7
+	Checkerboard
+	0–3m
+	Newborn
+	✓ 6×5min
+	30 min
+	8
+	Rainbow Spiral
+	3–12m
+	Color
+	✓ 6×5min
+	30 min
+	9
+	Color Burst
+	3–12m
+	Color
+	✓ 6×5min
+	30 min
+	10
+	Floating Bubbles
+	3–12m
+	Color
+	✓ 6×5min
+	30 min
+	11
+	Dancing Fruits
+	3–18m
+	Active
+	15 fruits
+	30 min
+	12
+	Slow Float (sleep)
+	0–12m
+	Sleep
+	✓ ∞
+	30 min
+	13
+	Breathing Ball
+	0–12m
+	Sleep
+	✓ ∞
+	30 min
+	14
+	Firefly Night
+	0–18m
+	Sleep
+	✓ 6×5min
+	30 min
+	________________
+
+
+REMOTION PRODUCTION STRATEGY
+For pure loop videos (1, 2, 3, 4, 6, 8, 9, 10, 12, 13):
+// Render 3-minute loop once
+// Use FFmpeg to repeat it 10 times
+ffmpeg -stream_loop 9 -i loop_3min.mp4 -c copy output_30min.mp4
+
+
+For segmented videos (5, 7, 11, 14):
+// Render each segment separately
+// Concatenate with FFmpeg
+ffmpeg -f concat -safe 0 -i segments.txt -c copy output_30min.mp4
+
+
+Music sync for all videos:
+// Pre-calculate beat positions for given BPM
+function getBeatFrames(bpm, fps, totalFrames) {
+  const framesPerBeat = (fps * 60) / bpm;
+  const beats = [];
+  for (let f = 0; f < totalFrames; f += framesPerBeat) {
+    beats.push(Math.round(f));
+  }
+  return beats;
+}
+// Trigger animations exactly on beat frames
+
+
+Performance for 30-min render:
+// Settings for long video render
+const config = {
+  fps: 30,
+  durationInFrames: 30 * 60 * 30, // 54000 frames for 30 min
+  concurrency: 4, // parallel Chrome instances
+  // For loop videos: render 3 min (5400 frames) then loop with FFmpeg
+  // MUCH faster: 5400 frames vs 54000 frames
+};
+
+
+________________
+
+
+All 14 sensory video scripts complete — ready for Remotion development

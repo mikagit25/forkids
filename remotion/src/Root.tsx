@@ -7,6 +7,10 @@ import { ColorLearn, ColorLearnProps } from "./ColorLearn";
 import { ColorLearnLong, ColorLearnLongProps } from "./ColorLearnLong";
 import { NumberLearnLong, NumberLearnLongProps } from "./NumberLearnLong";
 import { DanceSpriteShort, DanceSpriteShortProps } from "./DanceSpriteShort";
+import { ShapeLearnLong, ShapeLearnLongProps } from "./ShapeLearnLong";
+import { NurseryRhymeLong, NurseryRhymeLongProps } from "./NurseryRhymeLong";
+import { LullabyLoop, LullabyLoopProps } from "./LullabyLoop";
+import { CharacterDialogueLong, CharacterDialogueLongProps } from "./CharacterDialogueLong";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const C = Composition as React.ComponentType<any>;
@@ -165,6 +169,89 @@ export const Root: React.FC = () => {
             { name: "duck",   nameLocalized: "Duck",   pluralLocalized: "Ducks",   spritePath: "animals/duck.png" },
           ],
         } as NumberLearnLongProps}
+      />
+
+      {/* ShapeLearnLong — 30-min "One Concept Deep" shape learning, no text, universal */}
+      <C
+        id="ShapeLearnLong"
+        component={ShapeLearnLong}
+        durationInFrames={FPS * LONG_DUR}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          shapeName: "circle",
+          shapeColor: "#2980B9",
+          bgColor: "#E3F2FD",
+          musicFile: "Carefree.mp3",
+        } as ShapeLearnLongProps}
+      />
+
+      {/* NurseryRhymeLong — Arabic/Indonesian nursery rhyme, 20-25 min */}
+      <C
+        id="NurseryRhymeLong"
+        component={NurseryRhymeLong}
+        durationInFrames={FPS * 1380}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          segments: [
+            { arabic: "بتة بتة بتة", english: "Duck, duck, duck", startFrame: 0, durationFrames: 90 },
+          ],
+          characterSprite: "animals_flux/duck.png",
+          bgColorTop: "#87CEEB",
+          bgColorBottom: "#90EE90",
+          accentColor: "#FFD700",
+          musicFile: "Carefree.mp3",
+          titleArabic: "بتة بتة",
+          titleEnglish: "Batta Batta",
+        } as NurseryRhymeLongProps}
+      />
+
+      {/* LullabyLoop — 5-min seamless sleep loop (extended to 1-2h via FFmpeg) */}
+      <C
+        id="LullabyLoop"
+        component={LullabyLoop}
+        durationInFrames={FPS * 300}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          theme: "stars",
+          bgColorTop: "#020815",
+          bgColorBottom: "#050A1A",
+          accentColor: "#B0C4DE",
+          musicFile: "Gymnopedie No 1.mp3",
+          bpm: 50,
+        } as LullabyLoopProps}
+      />
+
+      {/* CharacterDialogueLong — 20-min bear character educational dialogue */}
+      <C
+        id="CharacterDialogueLong"
+        component={CharacterDialogueLong}
+        durationInFrames={FPS * 1200}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          episodeKey: "emotions_happy",
+          episodeTitle: "Feelings with Roundy",
+          characterSprite: "characters/bear_happy_3d.png",
+          accentColor: "#FF6B35",
+          bgColor: "#FFF8F0",
+          rtl: false,
+          lang: "en",
+          musicFile: "Carefree.mp3",
+          audioBase: "audio/character_dialogue/en/emotions_happy",
+          scenes: [
+            { id: "happy",   title: "Happy",   titleLocalized: "Happy",   spritePath: "emotions/happy_3d.png",   bgColor: "#FFD700" },
+            { id: "sad",     title: "Sad",     titleLocalized: "Sad",     spritePath: "emotions/sad_3d.png",     bgColor: "#64B5F6" },
+            { id: "angry",   title: "Angry",   titleLocalized: "Angry",   spritePath: "emotions/angry_3d.png",   bgColor: "#EF5350" },
+            { id: "surprised", title: "Surprised", titleLocalized: "Surprised", spritePath: "emotions/surprised_3d.png", bgColor: "#AB47BC" },
+          ],
+        } as CharacterDialogueLongProps}
       />
 
       {/* Long compositions (30 min, landscape) */}

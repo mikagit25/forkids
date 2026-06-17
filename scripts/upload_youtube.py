@@ -28,6 +28,28 @@ CONFIG_PATH   = ROOT / "config" / "settings.yaml"
 METADATA_PATH = ROOT / "config" / "channel_metadata.yaml"
 PLAYLISTS_PATH = ROOT / "config" / "playlists.yaml"
 
+# Per-channel credential files (token JSON + pickle fallback)
+CHANNEL_CREDS = {
+    "en": {
+        "json":   ROOT / "credentials" / "youtube_token.json",
+        "pickle": ROOT / "credentials" / "token.pickle",
+    },
+    "ar": {
+        "json":   ROOT / "credentials" / "youtube_token_ar.json",
+        "pickle": ROOT / "credentials" / "token_ar.pickle",
+    },
+    "id": {
+        "json":   ROOT / "credentials" / "youtube_token_id.json",
+        "pickle": ROOT / "credentials" / "token_id.pickle",
+    },
+}
+
+CHANNEL_METADATA = {
+    "en": ROOT / "config" / "channel_metadata.yaml",
+    "ar": ROOT / "config" / "channel_metadata_ar.yaml",
+    "id": ROOT / "config" / "channel_metadata_id.yaml",
+}
+
 log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
@@ -71,11 +93,11 @@ def load_playlists() -> dict:
         return yaml.safe_load(f)
 
 
-def get_youtube_service(config: dict):
+def get_youtube_service(config: dict, channel: str = "en"):
     import json as _json, datetime as _dt
-    creds_path  = ROOT / config["youtube"]["credentials"]
-    pickle_path = ROOT / config["youtube"]["token"]
-    json_path   = ROOT / "credentials" / "youtube_token.json"  # web OAuth token
+    ch_creds  = CHANNEL_CREDS.get(channel, CHANNEL_CREDS["en"])
+    json_path   = ch_creds["json"]
+    pickle_path = ch_creds["pickle"]
 
     creds = None
 
@@ -93,32 +115,30 @@ def get_youtube_service(config: dict):
                     client_secret=t["client_secret"],
                     scopes=SCOPES,
                 )
-                # Set expiry so the library knows whether to refresh
                 expires_at = t.get("expires_at")
                 if expires_at:
                     creds.expiry = _dt.datetime.utcfromtimestamp(float(expires_at))
-                log.info("Using JSON token (web OAuth)")
+                log.info(f"Using JSON token [{channel}] (web OAuth)")
         except Exception as e:
-            log.warning(f"JSON token load failed: {e} — falling back to pickle")
+            log.warning(f"JSON token load failed [{channel}]: {e} — falling back to pickle")
             creds = None
 
     # Fall back to legacy pickle token
     if creds is None and pickle_path.exists():
         with open(pickle_path, "rb") as f:
             creds = pickle.load(f)
-        log.info("Using pickle token (legacy)")
+        log.info(f"Using pickle token [{channel}] (legacy)")
 
     if not creds:
         raise RuntimeError(
-            "No token found. Renew via Telegram link or run:\n"
-            "  python3 scripts/reauth_youtube.py"
+            f"No token found for channel '{channel}'. Run:\n"
+            f"  python3 scripts/reauth_youtube.py --channel {channel}"
         )
 
     if not creds.valid:
         if creds.expired and creds.refresh_token:
-            log.info("Refreshing access token...")
+            log.info(f"Refreshing access token [{channel}]...")
             creds.refresh(Request())
-            # Write back to whichever format we loaded from
             if json_path.exists() and json_path.stat().st_size > 2:
                 with open(json_path) as f:
                     t = _json.load(f)
@@ -131,8 +151,8 @@ def get_youtube_service(config: dict):
                     pickle.dump(creds, f)
         else:
             raise RuntimeError(
-                "Token invalid and cannot refresh. Renew via Telegram link or run:\n"
-                "  python3 scripts/reauth_youtube.py"
+                f"Token invalid for channel '{channel}'. Run:\n"
+                f"  python3 scripts/reauth_youtube.py --channel {channel}"
             )
 
     return build("youtube", "v3", credentials=creds)
@@ -149,11 +169,12 @@ def upload_video(
     publish_at: Optional[str] = None,
     config: dict = None,
     language: str = "en",
+    channel: str = "en",
 ) -> str:
     if config is None:
         config = load_config()
 
-    youtube = get_youtube_service(config)
+    youtube = get_youtube_service(config, channel=channel)
 
     video_status: dict = {
         "madeForKids": True,
@@ -240,15 +261,23 @@ def main():
     parser.add_argument("--publish-at",  default=None,
                         help="ISO 8601 UTC datetime to schedule (e.g. 2026-05-26T09:00:00Z)")
     parser.add_argument("--language", default="en",
-                        help="BCP-47 language code: en, ar, etc.")
+                        help="BCP-47 language code: en, ar, id, etc.")
+    parser.add_argument("--channel", default=None,
+                        choices=["en", "ar", "id"],
+                        help="Target YouTube channel. Defaults to matching --language (ar→ar, id→id, else en).")
     parser.add_argument("--meta-path", default=None,
                         help="Path to meta YAML sidecar — video ID will be written back after upload")
     args = parser.parse_args()
 
     config   = load_config()
-    meta     = load_metadata()
 
-    channel_name = config["channel"]["name"]
+    # Auto-detect channel from language if not specified
+    ch = args.channel or (args.language if args.language in ("ar", "id") else "en")
+    meta_path_cfg = CHANNEL_METADATA.get(ch, CHANNEL_METADATA["en"])
+    with open(meta_path_cfg) as _f:
+        meta = yaml.safe_load(_f)
+
+    channel_name = meta.get("channel", {}).get("name", config["channel"]["name"])
     title_tpl    = config["youtube"]["title_template"]
     title = args.title or title_tpl.format(
         theme=args.theme.capitalize(),
@@ -271,6 +300,7 @@ def main():
         publish_at=args.publish_at,
         config=config,
         language=args.language,
+        channel=ch,
     )
 
     if args.meta_path and video_id:
