@@ -38,17 +38,23 @@ echo $$ > "$LOCK_FILE"
 trap 'rm -f "$LOCK_FILE"' EXIT
 
 # ── Count rendered files ───────────────────────────────────────────────────
-count_mp4() { ls $1 2>/dev/null | wc -l; }
+count_mp4() {
+    local total=0
+    for pattern in "$@"; do
+        total=$((total + $(ls $pattern 2>/dev/null | wc -l)))
+    done
+    echo $total
+}
 
-NL_EN=$(count_mp4 "output/queue/number_learn_*.mp4")
-NL_AR=$(count_mp4 "output/queue_ar/number_learn_*.mp4")
-NL_ID=$(count_mp4 "output/queue_id/number_learn_*.mp4")
-CL_EN=$(count_mp4 "output/queue/color_learn_*.mp4")
-CL_AR=$(count_mp4 "output/queue_ar/color_learn_*.mp4")
-CL_ID=$(count_mp4 "output/queue_id/color_learn_*.mp4")
-SL_EN=$(count_mp4 "output/queue/shape_learn_*.mp4")
-SL_AR=$(count_mp4 "output/queue_ar/shape_learn_*.mp4")
-SL_ID=$(count_mp4 "output/queue_id/shape_learn_*.mp4")
+NL_EN=$(count_mp4 "output/queue/number_learn_*.mp4" "uploaded/number_learn_*_en_*.mp4")
+NL_AR=$(count_mp4 "output/queue_ar/number_learn_*.mp4" "uploaded/number_learn_*_ar_*.mp4")
+NL_ID=$(count_mp4 "output/queue_id/number_learn_*.mp4" "uploaded/number_learn_*_id_*.mp4")
+CL_EN=$(count_mp4 "output/queue/color_learn_*.mp4" "uploaded/color_learn_*_en_*.mp4")
+CL_AR=$(count_mp4 "output/queue_ar/color_learn_*.mp4" "uploaded/color_learn_*_ar_*.mp4")
+CL_ID=$(count_mp4 "output/queue_id/color_learn_*.mp4" "uploaded/color_learn_*_id_*.mp4")
+SL_EN=$(count_mp4 "output/queue/shape_learn_*.mp4" "uploaded/shape_learn_*_en_*.mp4")
+SL_AR=$(count_mp4 "output/queue_ar/shape_learn_*.mp4" "uploaded/shape_learn_*_ar_*.mp4")
+SL_ID=$(count_mp4 "output/queue_id/shape_learn_*.mp4" "uploaded/shape_learn_*_id_*.mp4")
 
 NL_TOTAL=$((NL_EN + NL_AR + NL_ID))
 CL_TOTAL=$((CL_EN + CL_AR + CL_ID))
