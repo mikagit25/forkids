@@ -104,7 +104,7 @@ if [[ $FROM_STEP -le 2 ]]; then
         skip 2 "color_learn ($CL/27: EN=$CL_EN AR=$CL_AR ID=$CL_ID)"
     else
         log "[2/13] color_learn — $CL/27 done (EN=$CL_EN AR=$CL_AR ID=$CL_ID)..."
-        python3 -u scripts/generate_color_learn_long.py >> logs/color_learn.log 2>&1
+        python3 -u scripts/generate_color_learn_long.py --force >> logs/color_learn.log 2>&1
         log "[2/13] color_learn done."
     fi
     CLT=$(ls output/queue/thumb_color_learn_*.png output/queue_ar/thumb_color_learn_*.png output/queue_id/thumb_color_learn_*.png 2>/dev/null | wc -l)
