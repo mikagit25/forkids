@@ -123,10 +123,11 @@ def main():
     args = parser.parse_args()
 
     config  = load_config()
-    youtube = get_youtube_service(config)
 
     if args.video_id and args.meta:
         meta = load_meta(Path(args.meta))
+        channel = meta.get("language", "en") if meta.get("language") in ("ar", "id") else "en"
+        youtube = get_youtube_service(config, channel)
         thumb = Path(args.meta).parent / f"thumb_{Path(args.meta).stem.replace('meta_', '')}.png"
         update_video(youtube, args.video_id, meta, thumb if thumb.exists() else None,
                      dry_run=args.dry_run)
@@ -159,13 +160,20 @@ def main():
 
         print(f"Found {len(metas)} meta files | {len(pending)} to update this run")
         updated = skipped = failed = 0
+        # Cache youtube service per channel to avoid repeated auth
+        youtube_cache: dict = {}
         try:
             for meta_path in pending:
                 stem = meta_path.stem.replace("meta_", "")
                 meta = load_meta(meta_path)
                 video_id = meta["youtube_id"]
+                lang = meta.get("language", "en")
+                channel = lang if lang in ("ar", "id") else "en"
+                if channel not in youtube_cache:
+                    youtube_cache[channel] = get_youtube_service(config, channel)
+                yt = youtube_cache[channel]
                 thumb = UPLOADED_DIR / f"thumb_{stem}.png"
-                ok = update_video(youtube, video_id, meta,
+                ok = update_video(yt, video_id, meta,
                                   thumb if thumb.exists() else None,
                                   dry_run=args.dry_run,
                                   thumb_only=args.thumb_only)

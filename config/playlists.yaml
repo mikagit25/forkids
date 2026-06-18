@@ -93,7 +93,7 @@ playlists:
     '
   video_types:
   - dance_ar
-  id: PL8oKafGZe1cjmQ8aykOgEp40toY_yY8qY
+  id: PLILksskUXHEPDHqjrpcU0EBAHA55sLFzi
 - key: counting_ar
   name: 🔢 تعلم العد من 1 إلى 10 | هابي بير كيدز
   language: ar
@@ -108,7 +108,7 @@ playlists:
   video_types:
   - counting_ar
   - numbers_ar
-  id: PL8oKafGZe1ch0sOomMbs5zvajQg_wQALV
+  id: PLILksskUXHEMWzY7gSpjvJd09rIHiCa0u
 - key: colors_ar
   name: 🎨 تعلم الألوان | هابي بير كيدز
   language: ar
@@ -122,7 +122,7 @@ playlists:
     '
   video_types:
   - colors_ar
-  id: PL8oKafGZe1cjmc3KoArSdHe3PDwFMtiQV
+  id: PLILksskUXHEPIgFQaSTKIM-yrDRrIJh8x
 - key: shapes_ar
   name: تعلم الأشكال | هابي بير كيدز
   language: ar
@@ -136,7 +136,48 @@ playlists:
     '
   video_types:
   - shapes_ar
-  id: PL8oKafGZe1cheMpnWOP2NP4U6NkD0hDxu
+  id: PLILksskUXHEMfSKOuD0YgpYAAps-N3PaC
+- key: colors_id
+  name: 🎨 Belajar Warna untuk Anak | Happy Bear Kids Indonesia
+  language: id
+  description: 'Belajar warna bersama Happy Bear Kids! Merah, biru, hijau, kuning
+    dan banyak lagi. Video edukatif untuk bayi dan balita. 🌈
+
+
+    #belajarwarna #warnauntukanak #happybearkids #bayipintar #pendidikananak
+
+    '
+  video_types:
+  - color_learn
+  - colors_id
+  id: PL_M_mng9IOADIGYuTfLFbRzqQMbEPn3Vt
+- key: numbers_id
+  name: 🔢 Belajar Angka 1-10 | Happy Bear Kids Indonesia
+  language: id
+  description: 'Ayo berhitung dari 1 sampai 10 bersama Happy Bear Kids! Video belajar
+    angka yang menyenangkan untuk bayi dan balita. 🔢
+
+
+    #belajarangka #hitunguntukanak #happybearkids #bayipintar
+
+    '
+  video_types:
+  - number_learn
+  - numbers_id
+  id: PL_M_mng9IOAAq7DFECvn7pjd4KyGor_Ub
+- key: dance_id
+  name: 🎵 Tari dan Musik untuk Anak | Happy Bear Kids Indonesia
+  language: id
+  description: 'Menari bersama binatang dan buah lucu! Video tari untuk bayi dan balita.
+    Cocok untuk stimulasi sensorik dan gerakan. 🐻
+
+
+    #tarianakanak #musikanak #happybearkids #animasibayi
+
+    '
+  video_types:
+  - dance_id
+  id: PL_M_mng9IOADOQWtePPjtudG3Cd5LAAr-
 - key: shorts
   name: 🐻 Happy Bear Shorts — 60 Second Fun
   description: 'Quick 60-second educational videos for babies and toddlers!

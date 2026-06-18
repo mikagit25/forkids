@@ -50,13 +50,22 @@ def save_playlists(playlists: list):
         yaml.dump(data, f, allow_unicode=True, sort_keys=False, default_flow_style=False)
 
 
-def get_youtube_service(config: dict):
-    """Auth: prefer credentials/youtube_token.json (web OAuth), fall back to pickle."""
-    json_path   = ROOT / "credentials" / "youtube_token.json"
-    pickle_path = ROOT / config["youtube"]["token"]
+def get_youtube_service(config: dict, channel: str = "en"):
+    """Auth: load token for the given channel (en/ar/id), fall back to pickle."""
+    TOKEN_MAP = {
+        "en": ROOT / "credentials" / "youtube_token.json",
+        "ar": ROOT / "credentials" / "youtube_token_ar.json",
+        "id": ROOT / "credentials" / "youtube_token_id.json",
+    }
+    PICKLE_MAP = {
+        "en": ROOT / config["youtube"]["token"],
+        "ar": ROOT / "credentials" / "token_ar.pickle",
+        "id": ROOT / "credentials" / "token_id.pickle",
+    }
+    json_path   = TOKEN_MAP.get(channel, TOKEN_MAP["en"])
+    pickle_path = PICKLE_MAP.get(channel, PICKLE_MAP["en"])
     creds = None
 
-    # Try JSON token first (same method as upload_youtube.py)
     if json_path.exists():
         try:
             t = json.loads(json_path.read_text())
@@ -68,18 +77,17 @@ def get_youtube_service(config: dict):
                     client_id=t.get("client_id"),
                     client_secret=t.get("client_secret"),
                 )
-                log.info("Using JSON token (web OAuth)")
+                log.info(f"Using JSON token [{channel}] (web OAuth)")
         except Exception as e:
             log.warning(f"JSON token load failed: {e}")
 
-    # Fall back to pickle
     if creds is None and pickle_path.exists():
         with open(pickle_path, "rb") as f:
             creds = pickle.load(f)
-        log.info("Using pickle token (legacy)")
+        log.info(f"Using pickle token [{channel}] (legacy)")
 
     if creds is None:
-        log.error("No valid token found.")
+        log.error(f"No valid token found for channel '{channel}'.")
         sys.exit(1)
 
     if not creds.valid:
@@ -142,15 +150,17 @@ def add_to_playlists(youtube, video_id: str, video_type: str,
         pl_types = pl.get("video_types", [])
         pl_lang  = pl.get("language", "en")
 
-        if language == "ar":
-            # AR video: only add to explicitly AR playlists matching {type}_ar
-            if pl_lang != "ar":
+        if language in ("ar", "id"):
+            # AR/ID video: only add to same-language playlists
+            if pl_lang != language:
                 continue
-            if f"{video_type}_ar" not in pl_types:
+            # Match {type}_ar or {type}_id, or just {type}_{lang}
+            if (f"{video_type}_{language}" not in pl_types and
+                    video_type not in pl_types):
                 continue
         else:
             # EN video: only add to EN (non-language-tagged) playlists
-            if pl_lang == "ar":
+            if pl_lang in ("ar", "id"):
                 continue
             if video_type not in pl_types:
                 continue
@@ -207,15 +217,15 @@ SECTIONS = [
 ]
 
 
-def cmd_create_ar(youtube):
-    """Create only Arabic playlists (those with language: ar)."""
+def cmd_create_ar(youtube, force: bool = False):
+    """Create Arabic playlists on the AR channel. Use --force to recreate."""
     playlists = load_playlists()
     created = 0
     for pl in playlists:
         if pl.get("language") != "ar":
             continue
-        if pl.get("id"):
-            log.info(f"  '{pl['name']}' already exists: {pl['id']}")
+        if pl.get("id") and not force:
+            log.info(f"  '{pl['name']}' already exists: {pl['id']}  (use --force to recreate)")
             continue
         playlist_id = create_playlist(youtube, pl["name"], pl["description"].strip())
         pl["id"] = playlist_id
@@ -275,28 +285,59 @@ def cmd_setup_sections(youtube):
     log.info("Channel sections setup complete.")
 
 
+def cmd_create_id(youtube, force: bool = False):
+    """Create Indonesian playlists on the ID channel. Use --force to recreate."""
+    playlists = load_playlists()
+    created = 0
+    for pl in playlists:
+        if pl.get("language") != "id":
+            continue
+        if pl.get("id") and not force:
+            log.info(f"  '{pl['name']}' already exists: {pl['id']}  (use --force to recreate)")
+            continue
+        playlist_id = create_playlist(youtube, pl["name"], pl.get("description", "").strip())
+        pl["id"] = playlist_id
+        created += 1
+    save_playlists(playlists)
+    log.info(f"Created {created} ID playlists, saved to {PLAYLISTS_PATH}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Manage YouTube playlists and channel sections")
-    parser.add_argument("--create-all",     action="store_true", help="Create all playlists")
-    parser.add_argument("--create-ar",      action="store_true", help="Create Arabic playlists only")
+    parser.add_argument("--create-all",     action="store_true", help="Create all playlists (EN token)")
+    parser.add_argument("--create-ar",      action="store_true", help="Create Arabic playlists (AR token)")
+    parser.add_argument("--create-id",      action="store_true", help="Create Indonesian playlists (ID token)")
     parser.add_argument("--setup-sections", action="store_true", help="Create EN/AR sections on channel homepage")
     parser.add_argument("--list",           action="store_true", help="Show all playlists")
     parser.add_argument("--add",            metavar="VIDEO_ID",  help="Add video to playlists")
     parser.add_argument("--video-type",     default="dance",     help="Video type for --add")
-    parser.add_argument("--language",       default="en",        help="Language for --add (en or ar)")
+    parser.add_argument("--language",       default="en",        help="Language for --add (en/ar/id)")
+    parser.add_argument("--channel",        default=None,        choices=["en","ar","id"],
+                        help="Which channel token to use (default: matches --language)")
+    parser.add_argument("--force",          action="store_true", help="Recreate playlists even if IDs exist")
     args = parser.parse_args()
 
-    if not any([args.create_all, args.create_ar, args.setup_sections, args.list, args.add]):
+    if not any([args.create_all, args.create_ar, args.create_id,
+                args.setup_sections, args.list, args.add]):
         parser.print_help()
         return
 
     config  = load_config()
-    youtube = get_youtube_service(config)
+    # Auto-pick channel from action if not specified
+    channel = args.channel
+    if channel is None:
+        if args.create_ar:   channel = "ar"
+        elif args.create_id: channel = "id"
+        elif args.add:       channel = args.language if args.language in ("ar","id") else "en"
+        else:                channel = "en"
+    youtube = get_youtube_service(config, channel)
 
     if args.create_all:
         cmd_create_all(youtube)
     if args.create_ar:
-        cmd_create_ar(youtube)
+        cmd_create_ar(youtube, force=args.force)
+    if args.create_id:
+        cmd_create_id(youtube, force=args.force)
     if args.setup_sections:
         cmd_setup_sections(youtube)
     if args.list:
