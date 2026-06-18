@@ -51,17 +51,34 @@ if [[ -n "$WAIT_PID" ]]; then
     log "PID $WAIT_PID finished."
 fi
 
+# Helper: count MP4s in queue + uploaded (unique colors/numbers avoid double-count)
+count_done() {
+    local type="$1" lang="$2"
+    local q_dir uploaded_glob
+    case "$lang" in
+        en)  q_dir="output/queue" ;;
+        ar)  q_dir="output/queue_ar" ;;
+        id)  q_dir="output/queue_id" ;;
+    esac
+    local q_count=$(ls ${q_dir}/${type}_*.mp4 2>/dev/null | wc -l)
+    local u_count=$(ls uploaded/${type}_*_${lang}_*.mp4 2>/dev/null | sort -t_ -k5 -u | wc -l)
+    echo $((q_count + u_count))
+}
+
 # ── Step 1: number_learn (10 × 3 = 30 видео) ─────────────────────────────────
 if [[ $FROM_STEP -le 1 ]]; then
     if pgrep -f "generate_number_learn_long.py" > /dev/null; then
         log "[1/13] number_learn running — waiting..."
         while pgrep -f "generate_number_learn_long.py" > /dev/null; do sleep 30; done
     fi
-    NL=$(ls output/queue/number_learn_*.mp4 output/queue_ar/number_learn_*.mp4 output/queue_id/number_learn_*.mp4 2>/dev/null | wc -l)
+    NL_EN=$(count_done "number_learn" "en")
+    NL_AR=$(count_done "number_learn" "ar")
+    NL_ID=$(count_done "number_learn" "id")
+    NL=$((NL_EN + NL_AR + NL_ID))
     if [[ $NL -ge 30 ]]; then
-        skip 1 "number_learn ($NL/30 MP4s exist)"
+        skip 1 "number_learn ($NL/30: EN=$NL_EN AR=$NL_AR ID=$NL_ID)"
     else
-        log "[1/13] number_learn — $NL/30 done..."
+        log "[1/13] number_learn — $NL/30 done (EN=$NL_EN AR=$NL_AR ID=$NL_ID)..."
         python3 -u scripts/generate_number_learn_long.py >> logs/number_learn.log 2>&1
         log "[1/13] number_learn done."
     fi
@@ -79,11 +96,14 @@ if [[ $FROM_STEP -le 2 ]]; then
         log "[2/13] color_learn running — waiting..."
         while pgrep -f "generate_color_learn_long.py" > /dev/null; do sleep 30; done
     fi
-    CL=$(ls output/queue/color_learn_*.mp4 output/queue_ar/color_learn_*.mp4 output/queue_id/color_learn_*.mp4 2>/dev/null | wc -l)
+    CL_EN=$(count_done "color_learn" "en")
+    CL_AR=$(count_done "color_learn" "ar")
+    CL_ID=$(count_done "color_learn" "id")
+    CL=$((CL_EN + CL_AR + CL_ID))
     if [[ $CL -ge 27 ]]; then
-        skip 2 "color_learn ($CL/27 MP4s exist)"
+        skip 2 "color_learn ($CL/27: EN=$CL_EN AR=$CL_AR ID=$CL_ID)"
     else
-        log "[2/13] color_learn — $CL/27 done..."
+        log "[2/13] color_learn — $CL/27 done (EN=$CL_EN AR=$CL_AR ID=$CL_ID)..."
         python3 -u scripts/generate_color_learn_long.py >> logs/color_learn.log 2>&1
         log "[2/13] color_learn done."
     fi
@@ -97,11 +117,14 @@ fi
 
 # ── Step 3: shape_learn (8 × 3 = 24 видео, без текста → EN+AR+ID) ────────────
 if [[ $FROM_STEP -le 3 ]]; then
-    SL=$(ls output/queue/shape_learn_*.mp4 output/queue_ar/shape_learn_*.mp4 output/queue_id/shape_learn_*.mp4 2>/dev/null | wc -l)
+    SL_EN=$(count_done "shape_learn" "en")
+    SL_AR=$(count_done "shape_learn" "ar")
+    SL_ID=$(count_done "shape_learn" "id")
+    SL=$((SL_EN + SL_AR + SL_ID))
     if [[ $SL -ge 24 ]]; then
-        skip 3 "shape_learn ($SL/24 MP4s exist)"
+        skip 3 "shape_learn ($SL/24: EN=$SL_EN AR=$SL_AR ID=$SL_ID)"
     else
-        log "[3/13] shape_learn — $SL/24 done..."
+        log "[3/13] shape_learn — $SL/24 done (EN=$SL_EN AR=$SL_AR ID=$SL_ID)..."
         python3 -u scripts/generate_shape_learn.py >> logs/shape_learn.log 2>&1
         log "[3/13] shape_learn done."
     fi
