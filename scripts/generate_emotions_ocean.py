@@ -1,357 +1,772 @@
 #!/usr/bin/env python3
 """
-Generate Emotions + Ocean + Transport + Professions series.
-Scenario: config/scenarios/emotions_ocean_emotions_4series.txt
+generate_emotions_ocean.py — Series 3–6: Emotions + Ocean + Transport + Professions
+All A-versions (no text → EN + AR + ID). ~25 episodes × 3 channels.
 
-Series 3 — Emotions (6 emotions × A+B = 12 videos)
-Series 4 — Ocean creatures (8 creatures × A+B = 16 videos)
-Series 5 — Transport (6 vehicles × A+B = 12 videos)
-Series 6 — Professions (8 professions × A+B = 16 videos)
-Total: 56 videos
-
-A = no words → EN+AR+ID queues
-B = educational EN+AR → EN+AR queues
+Series 3  Emotions (6)  — DanceSpriteLong with emotion sprites
+Series 4  Ocean    (6)  — DanceSpriteLong/DanceShapeLong ocean creatures
+Series 5  Transport (5) — DanceShapeLong / DanceSpriteLong (balloon)
+Series 6  Professions(8)— DanceShapeLong with occupation-themed colors
 
 Usage:
-  python3 scripts/generate_emotions_ocean.py --key emotions_4series  # all 56 videos
-  python3 scripts/generate_emotions_ocean.py --series emotions        # series 3 only
-  python3 scripts/generate_emotions_ocean.py --item happy             # single item (A+B)
-  python3 scripts/generate_emotions_ocean.py --dry-run
+  python3 scripts/generate_emotions_ocean.py --list
+  python3 scripts/generate_emotions_ocean.py --videos all [--dry-run] [--force]
+  python3 scripts/generate_emotions_ocean.py --videos e_happy o_whale t_balloon
+  python3 scripts/generate_emotions_ocean.py --series emotions
+  python3 scripts/generate_emotions_ocean.py --regen-meta
 """
-import argparse, json, shutil, subprocess, yaml
+import argparse, base64, json, shutil, subprocess, sys, time, yaml
 from datetime import datetime
 from pathlib import Path
 
-ROOT     = Path(__file__).resolve().parent.parent
-REMOTION = ROOT / "remotion"
-QUEUE_EN = ROOT / "output" / "queue"
-QUEUE_AR = ROOT / "output" / "queue_ar"
-QUEUE_ID = ROOT / "output" / "queue_id"
-DATE_STR = datetime.now().strftime("%Y%m%d")
+ROOT      = Path(__file__).resolve().parent.parent
+REMOTION  = ROOT / "remotion"
+QUEUE_EN  = ROOT / "output" / "queue"
+QUEUE_AR  = ROOT / "output" / "queue_ar"
+QUEUE_ID  = ROOT / "output" / "queue_id"
+TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
+TOGETHER_URL   = "https://api.together.xyz/v1/images/generations"
+TOGETHER_MODEL = "black-forest-labs/FLUX.1-schnell"
+DATE_STR  = datetime.now().strftime("%Y%m%d")
 
-# Series 3 — Emotions
-EMOTIONS = {
-    "happy":     {"name_en": "Happy",     "name_ar": "سعيد",          "name_id": "Bahagia",    "bg": "#0A0A05", "accent": "#FFD700", "bpm": 88, "music": "Happy Happy Game Show.mp3"},
-    "sad":       {"name_en": "Sad",       "name_ar": "حزين",          "name_id": "Sedih",      "bg": "#050A14", "accent": "#90CAF9", "bpm": 58, "music": "Gymnopedie No 1.mp3"},
-    "surprised": {"name_en": "Surprised", "name_ar": "مندهش",         "name_id": "Terkejut",   "bg": "#080510", "accent": "#FF6B35", "bpm": 80, "music": "Quirky Dog.mp3"},
-    "angry":     {"name_en": "Angry",     "name_ar": "غاضب",          "name_id": "Marah",      "bg": "#140505", "accent": "#FF4444", "bpm": 90, "music": "Pinball Spring.mp3"},
-    "scared":    {"name_en": "Scared",    "name_ar": "خائف",          "name_id": "Takut",      "bg": "#050510", "accent": "#7E57C2", "bpm": 70, "music": "Crinoline Dreams.mp3"},
-    "love":      {"name_en": "Love",      "name_ar": "حب",            "name_id": "Cinta",      "bg": "#140508", "accent": "#F48FB1", "bpm": 65, "music": "Heartwarming.mp3"},
+SERIES_EN = {"emotions": "Emotions with Roundy", "ocean": "Ocean World",
+             "transport": "Let's Go! Transport", "professions": "People Who Help Us"}
+SERIES_AR = {"emotions": "مشاعر مع روندي", "ocean": "عالم المحيط",
+             "transport": "هيا نمشي! المواصلات", "professions": "الناس الذين يساعدوننا"}
+SERIES_ID = {"emotions": "Emosi bersama Roundy", "ocean": "Dunia Laut",
+             "transport": "Ayo Jalan! Transportasi", "professions": "Orang-orang yang Membantu Kita"}
+
+VIDEOS = {
+    # ── SERIES 3: EMOTIONS ────────────────────────────────────────────────────
+    "e_happy": {
+        "name_en": "Happy",  "name_ar": "سعيد",  "name_id": "Senang",
+        "series": "emotions", "comp": "DanceSpriteLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#1A1000", "bgColorEnd": "#0A0800",
+            "accentColor": "#FFD700",
+            "musicFile": "Happy Happy Game Show.mp3", "volume": 0.20,
+            "bgEffect": "sparkles",
+            "sprites": [
+                {"path": "emotions/happy_3d.png", "size": 380, "posX": 0.50, "posY": 0.44, "seed": 1},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 150,  "motion": "FADEIN",  "amplitude": 60},
+                {"startSec": 150,  "endSec": 500,  "motion": "BOB",     "period": 2.5,  "amplitude": 55},
+                {"startSec": 500,  "endSec": 850,  "motion": "BOUNCE",  "period": 2.0,  "amplitude": 100},
+                {"startSec": 850,  "endSec": 1200, "motion": "SWAY",    "period": 3.0,  "amplitude": 60},
+                {"startSec": 1200, "endSec": 1500, "motion": "BOB",     "period": 3.0,  "amplitude": 45},
+            ],
+        },
+    },
+    "e_sad": {
+        "name_en": "Sad",    "name_ar": "حزين",  "name_id": "Sedih",
+        "series": "emotions", "comp": "DanceSpriteLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#020510", "bgColorEnd": "#010408",
+            "accentColor": "#64B5F6",
+            "musicFile": "Gymnopedie No 1.mp3", "volume": 0.16,
+            "bgEffect": "none",
+            "sprites": [
+                {"path": "emotions/sad_3d.png", "size": 360, "posX": 0.50, "posY": 0.46, "seed": 1},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 200,  "motion": "FADEIN",  "amplitude": 30},
+                {"startSec": 200,  "endSec": 700,  "motion": "BOB",     "period": 6.0,  "amplitude": 18},
+                {"startSec": 700,  "endSec": 1200, "motion": "DRIFT",   "period": 14,   "amplitude": 70},
+                {"startSec": 1200, "endSec": 1500, "motion": "BOB",     "period": 7.0,  "amplitude": 15},
+            ],
+        },
+    },
+    "e_surprised": {
+        "name_en": "Surprised", "name_ar": "مندهش", "name_id": "Terkejut",
+        "series": "emotions", "comp": "DanceSpriteLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#0A0515", "bgColorEnd": "#050210",
+            "accentColor": "#AB47BC",
+            "musicFile": "Quirky Dog.mp3", "volume": 0.18,
+            "bgEffect": "sparkles",
+            "sprites": [
+                {"path": "emotions/surprised_3d.png", "size": 370, "posX": 0.50, "posY": 0.44, "seed": 1},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 150,  "motion": "FADEIN",  "amplitude": 60},
+                {"startSec": 150,  "endSec": 500,  "motion": "BOUNCE",  "period": 2.0,  "amplitude": 120},
+                {"startSec": 500,  "endSec": 900,  "motion": "SWAY",    "period": 2.5,  "amplitude": 70},
+                {"startSec": 900,  "endSec": 1200, "motion": "BOUNCE",  "period": 2.5,  "amplitude": 90},
+                {"startSec": 1200, "endSec": 1500, "motion": "BOB",     "period": 4.0,  "amplitude": 40},
+            ],
+        },
+    },
+    "e_angry": {
+        "name_en": "Angry",  "name_ar": "غاضب",  "name_id": "Marah",
+        "series": "emotions", "comp": "DanceSpriteLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#120200", "bgColorEnd": "#0A0100",
+            "accentColor": "#EF5350",
+            "musicFile": "Carefree.mp3", "volume": 0.18,
+            "bgEffect": "none",
+            "sprites": [
+                {"path": "emotions/angry_3d.png", "size": 370, "posX": 0.50, "posY": 0.44, "seed": 1},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 150,  "motion": "FADEIN",  "amplitude": 60},
+                {"startSec": 150,  "endSec": 500,  "motion": "BOUNCE",  "period": 1.8,  "amplitude": 80},
+                {"startSec": 500,  "endSec": 900,  "motion": "SWAY",    "period": 2.0,  "amplitude": 90},
+                {"startSec": 900,  "endSec": 1200, "motion": "BOUNCE",  "period": 2.2,  "amplitude": 70},
+                {"startSec": 1200, "endSec": 1500, "motion": "BOB",     "period": 5.0,  "amplitude": 30},
+            ],
+        },
+    },
+    "e_scared": {
+        "name_en": "Scared", "name_ar": "خائف",  "name_id": "Takut",
+        "series": "emotions", "comp": "DanceSpriteLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#010508", "bgColorEnd": "#010305",
+            "accentColor": "#78909C",
+            "musicFile": "Crinoline Dreams.mp3", "volume": 0.15,
+            "bgEffect": "none",
+            "sprites": [
+                {"path": "emotions/scared_3d.png", "size": 360, "posX": 0.50, "posY": 0.44, "seed": 1},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 180,  "motion": "FADEIN",  "amplitude": 40},
+                {"startSec": 180,  "endSec": 600,  "motion": "PULSE",   "period": 2.5,  "amplitude": 18},
+                {"startSec": 600,  "endSec": 1100, "motion": "SWAY",    "period": 1.8,  "amplitude": 40},
+                {"startSec": 1100, "endSec": 1500, "motion": "BOB",     "period": 6.0,  "amplitude": 20},
+            ],
+        },
+    },
+    "e_love": {
+        "name_en": "Love",   "name_ar": "حب",    "name_id": "Cinta",
+        "series": "emotions", "comp": "DanceSpriteLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#120010", "bgColorEnd": "#0A000A",
+            "accentColor": "#E91E63",
+            "musicFile": "Wholesome.mp3", "volume": 0.18,
+            "bgEffect": "sparkles",
+            "sprites": [
+                {"path": "emotions/love_3d.png",  "size": 340, "posX": 0.38, "posY": 0.44, "seed": 1},
+                {"path": "emotions/happy_3d.png", "size": 220, "posX": 0.70, "posY": 0.50, "seed": 2},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 180,  "motion": "FADEIN",  "amplitude": 60},
+                {"startSec": 180,  "endSec": 600,  "motion": "BOB",     "period": 3.5,  "amplitude": 45},
+                {"startSec": 600,  "endSec": 1000, "motion": "ORBIT",   "period": 8.0,  "amplitude": 120},
+                {"startSec": 1000, "endSec": 1500, "motion": "BOB",     "period": 4.0,  "amplitude": 40},
+            ],
+        },
+    },
+
+    # ── SERIES 4: OCEAN ──────────────────────────────────────────────────────
+    "o_whale": {
+        "name_en": "Whale",       "name_ar": "حوت",            "name_id": "Paus",
+        "series": "ocean", "comp": "DanceSpriteLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#010810", "bgColorEnd": "#010608",
+            "accentColor": "#29B6F6",
+            "musicFile": "Life of Riley.mp3", "volume": 0.16,
+            "bgEffect": "bubbles",
+            "sprites": [
+                {"path": "animals_3d/whale.png", "size": 480, "posX": 0.50, "posY": 0.46, "seed": 1},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 200,  "motion": "FADEIN",  "amplitude": 40},
+                {"startSec": 200,  "endSec": 700,  "motion": "WAVE",    "period": 6.0,  "amplitude": 50,  "waveDelay": 0},
+                {"startSec": 700,  "endSec": 1100, "motion": "BOB",     "period": 8.0,  "amplitude": 80},
+                {"startSec": 1100, "endSec": 1500, "motion": "DRIFT",   "period": 18,   "amplitude": 90},
+            ],
+        },
+    },
+    "o_octopus": {
+        "name_en": "Octopus",     "name_ar": "أخطبوط",         "name_id": "Gurita",
+        "series": "ocean", "comp": "DanceSpriteLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#020306", "bgColorEnd": "#010205",
+            "accentColor": "#7E57C2",
+            "musicFile": "Crinoline Dreams.mp3", "volume": 0.16,
+            "bgEffect": "bubbles",
+            "sprites": [
+                {"path": "objects/octopus_3d.png", "size": 400, "posX": 0.50, "posY": 0.46, "seed": 1},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 180,  "motion": "FADEIN",  "amplitude": 50},
+                {"startSec": 180,  "endSec": 600,  "motion": "SWAY",    "period": 3.0,  "amplitude": 45},
+                {"startSec": 600,  "endSec": 1000, "motion": "PULSE",   "period": 4.0,  "amplitude": 15},
+                {"startSec": 1000, "endSec": 1500, "motion": "DRIFT",   "period": 12,   "amplitude": 80},
+            ],
+        },
+    },
+    "o_fish": {
+        "name_en": "Fish",        "name_ar": "سمكة",           "name_id": "Ikan",
+        "series": "ocean", "comp": "DanceSpriteLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#010A12", "bgColorEnd": "#010810",
+            "accentColor": "#4FC3F7",
+            "musicFile": "Wholesome.mp3", "volume": 0.16,
+            "bgEffect": "bubbles",
+            "sprites": [
+                {"path": "animals_3d/fish.png", "size": 280, "posX": 0.25, "posY": 0.40, "seed": 1},
+                {"path": "animals_3d/fish.png", "size": 200, "posX": 0.65, "posY": 0.50, "seed": 2},
+                {"path": "animals_3d/fish.png", "size": 160, "posX": 0.80, "posY": 0.35, "seed": 3},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 180,  "motion": "FADEIN",  "amplitude": 60},
+                {"startSec": 180,  "endSec": 600,  "motion": "DRIFT",   "period": 8.0,  "amplitude": 100},
+                {"startSec": 600,  "endSec": 1100, "motion": "WAVE",    "period": 4.0,  "amplitude": 60,  "waveDelay": 0.8},
+                {"startSec": 1100, "endSec": 1500, "motion": "DRIFT",   "period": 10,   "amplitude": 120},
+            ],
+        },
+    },
+    "o_dolphin": {
+        "name_en": "Dolphin",     "name_ar": "دلفين",          "name_id": "Lumba-lumba",
+        "series": "ocean", "comp": "DanceShapeLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#011020",
+            "musicFile": "Pinball Spring.mp3", "volume": 0.18,
+            "shapes": [
+                {"shape": "oval",    "color": "#5C9ED9", "size": 280, "posX": 0.30, "posY": 0.42, "seed": 1},
+                {"shape": "oval",    "color": "#4A8EC4", "size": 250, "posX": 0.65, "posY": 0.46, "seed": 2},
+                {"shape": "diamond", "color": "#80C8F0", "size": 120, "posX": 0.48, "posY": 0.32, "seed": 3},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 150,  "motion": "FADEIN",  "amplitude": 60},
+                {"startSec": 150,  "endSec": 600,  "motion": "BOUNCE",  "period": 2.5,  "amplitude": 130},
+                {"startSec": 600,  "endSec": 1000, "motion": "ORBIT",   "period": 6.0,  "amplitude": 200},
+                {"startSec": 1000, "endSec": 1300, "motion": "SWAY",    "period": 3.0,  "amplitude": 80},
+                {"startSec": 1300, "endSec": 1500, "motion": "BOB",     "period": 5.0,  "amplitude": 40},
+            ],
+        },
+    },
+    "o_jellyfish": {
+        "name_en": "Jellyfish",   "name_ar": "قنديل البحر",   "name_id": "Ubur-ubur",
+        "series": "ocean", "comp": "DanceShapeLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#010508",
+            "musicFile": "Gymnopedie No 1.mp3", "volume": 0.15,
+            "shapes": [
+                {"shape": "circle",  "color": "#80DEEA", "size": 240, "posX": 0.30, "posY": 0.36, "seed": 1, "colorOffset": 0.00},
+                {"shape": "circle",  "color": "#CE93D8", "size": 210, "posX": 0.65, "posY": 0.34, "seed": 2, "colorOffset": 0.33},
+                {"shape": "circle",  "color": "#A5D6A7", "size": 180, "posX": 0.50, "posY": 0.55, "seed": 3, "colorOffset": 0.67},
+                {"shape": "diamond", "color": "#4FC3F7", "size": 110, "posX": 0.18, "posY": 0.62, "seed": 4, "colorOffset": 0.15},
+                {"shape": "diamond", "color": "#BA68C8", "size": 100, "posX": 0.82, "posY": 0.60, "seed": 5, "colorOffset": 0.50},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 200,  "motion": "FADEIN", "amplitude": 40},
+                {"startSec": 200,  "endSec": 800,  "motion": "PULSE",  "period": 5.0,  "amplitude": 12},
+                {"startSec": 800,  "endSec": 1300, "motion": "DRIFT",  "period": 16,   "amplitude": 70},
+                {"startSec": 1300, "endSec": 1500, "motion": "PULSE",  "period": 6.0,  "amplitude": 10},
+            ],
+        },
+    },
+    "o_starfish": {
+        "name_en": "Starfish",    "name_ar": "نجمة البحر",    "name_id": "Bintang Laut",
+        "series": "ocean", "comp": "DanceShapeLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#040A08",
+            "musicFile": "Crinoline Dreams.mp3", "volume": 0.15,
+            "shapes": [
+                {"shape": "star",   "color": "#FF7043", "size": 280, "posX": 0.50, "posY": 0.44, "seed": 1},
+                {"shape": "star",   "color": "#FF8A65", "size": 160, "posX": 0.20, "posY": 0.60, "seed": 2},
+                {"shape": "star",   "color": "#FFAB91", "size": 140, "posX": 0.78, "posY": 0.62, "seed": 3},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 300,  "motion": "FADEIN", "amplitude": 30},
+                {"startSec": 300,  "endSec": 900,  "motion": "BOB",    "period": 10,   "amplitude": 15},
+                {"startSec": 900,  "endSec": 1300, "motion": "DRIFT",  "period": 20,   "amplitude": 40},
+                {"startSec": 1300, "endSec": 1500, "motion": "BOB",    "period": 12,   "amplitude": 12},
+            ],
+        },
+    },
+
+    # ── SERIES 5: TRANSPORT ──────────────────────────────────────────────────
+    "t_airplane": {
+        "name_en": "Airplane",    "name_ar": "طائرة",          "name_id": "Pesawat",
+        "series": "transport", "comp": "DanceShapeLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#040A18",
+            "musicFile": "Carefree.mp3", "volume": 0.18,
+            "shapes": [
+                {"shape": "diamond", "color": "#E8EEF5", "size": 260, "posX": 0.50, "posY": 0.40, "seed": 1},
+                {"shape": "diamond", "color": "#CFD8DC", "size": 180, "posX": 0.30, "posY": 0.44, "seed": 2},
+                {"shape": "diamond", "color": "#CFD8DC", "size": 180, "posX": 0.70, "posY": 0.44, "seed": 3},
+                {"shape": "circle",  "color": "#E3F2FD", "size": 130, "posX": 0.15, "posY": 0.28, "seed": 4},
+                {"shape": "circle",  "color": "#E3F2FD", "size": 110, "posX": 0.82, "posY": 0.25, "seed": 5},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 120,  "motion": "FADEIN",  "amplitude": 60},
+                {"startSec": 120,  "endSec": 600,  "motion": "ORBIT",   "period": 10,   "amplitude": 180},
+                {"startSec": 600,  "endSec": 1100, "motion": "DRIFT",   "period": 8.0,  "amplitude": 120},
+                {"startSec": 1100, "endSec": 1500, "motion": "WAVE",    "period": 6.0,  "amplitude": 50, "waveDelay": 0.5},
+            ],
+        },
+    },
+    "t_helicopter": {
+        "name_en": "Helicopter",  "name_ar": "طائرة مروحية",  "name_id": "Helikopter",
+        "series": "transport", "comp": "DanceShapeLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#06100C",
+            "musicFile": "Quirky Dog.mp3", "volume": 0.18,
+            "shapes": [
+                {"shape": "circle",  "color": "#FFB300", "size": 200, "posX": 0.50, "posY": 0.46, "seed": 1},
+                {"shape": "diamond", "color": "#FDD835", "size": 160, "posX": 0.32, "posY": 0.30, "seed": 2},
+                {"shape": "diamond", "color": "#FDD835", "size": 160, "posX": 0.68, "posY": 0.30, "seed": 3},
+                {"shape": "diamond", "color": "#F9A825", "size": 110, "posX": 0.78, "posY": 0.54, "seed": 4},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 150,  "motion": "FADEIN",  "amplitude": 60},
+                {"startSec": 150,  "endSec": 600,  "motion": "SPIN",    "period": 3.0,  "amplitude": 15},
+                {"startSec": 600,  "endSec": 1100, "motion": "BOB",     "period": 4.0,  "amplitude": 70},
+                {"startSec": 1100, "endSec": 1500, "motion": "DRIFT",   "period": 10,   "amplitude": 100},
+            ],
+        },
+    },
+    "t_ship": {
+        "name_en": "Ship",        "name_ar": "سفينة",          "name_id": "Kapal",
+        "series": "transport", "comp": "DanceShapeLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#010812",
+            "musicFile": "Life of Riley.mp3", "volume": 0.17,
+            "shapes": [
+                {"shape": "hexagon", "color": "#37474F", "size": 280, "posX": 0.50, "posY": 0.56, "seed": 1},
+                {"shape": "square",  "color": "#546E7A", "size": 140, "posX": 0.50, "posY": 0.36, "seed": 2},
+                {"shape": "diamond", "color": "#29B6F6", "size": 160, "posX": 0.20, "posY": 0.70, "seed": 3},
+                {"shape": "diamond", "color": "#4FC3F7", "size": 140, "posX": 0.80, "posY": 0.72, "seed": 4},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 200,  "motion": "FADEIN", "amplitude": 40},
+                {"startSec": 200,  "endSec": 700,  "motion": "WAVE",   "period": 5.0,  "amplitude": 45, "waveDelay": 0.6},
+                {"startSec": 700,  "endSec": 1200, "motion": "BOB",    "period": 7.0,  "amplitude": 50},
+                {"startSec": 1200, "endSec": 1500, "motion": "SWAY",   "period": 6.0,  "amplitude": 40},
+            ],
+        },
+    },
+    "t_boat": {
+        "name_en": "Boat",        "name_ar": "قارب",           "name_id": "Perahu",
+        "series": "transport", "comp": "DanceShapeLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#0A1408",
+            "musicFile": "Carefree.mp3", "volume": 0.18,
+            "shapes": [
+                {"shape": "oval",    "color": "#795548", "size": 200, "posX": 0.50, "posY": 0.58, "seed": 1},
+                {"shape": "triangle","color": "#ECEFF1", "size": 180, "posX": 0.50, "posY": 0.36, "seed": 2},
+                {"shape": "circle",  "color": "#4FC3F7", "size": 120, "posX": 0.28, "posY": 0.70, "seed": 3},
+                {"shape": "circle",  "color": "#29B6F6", "size": 100, "posX": 0.72, "posY": 0.72, "seed": 4},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 180,  "motion": "FADEIN", "amplitude": 50},
+                {"startSec": 180,  "endSec": 600,  "motion": "BOB",    "period": 4.0,  "amplitude": 40},
+                {"startSec": 600,  "endSec": 1100, "motion": "WAVE",   "period": 4.5,  "amplitude": 50, "waveDelay": 0.7},
+                {"startSec": 1100, "endSec": 1500, "motion": "DRIFT",  "period": 10,   "amplitude": 80},
+            ],
+        },
+    },
+    "t_balloon": {
+        "name_en": "Hot Air Balloon", "name_ar": "بالون هوائي ساخن", "name_id": "Balon Udara",
+        "series": "transport", "comp": "DanceSpriteLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#060C18", "bgColorEnd": "#040810",
+            "accentColor": "#FF7043",
+            "musicFile": "Wholesome.mp3", "volume": 0.18,
+            "bgEffect": "sparkles",
+            "sprites": [
+                {"path": "objects/balloon_3d.png", "size": 380, "posX": 0.50, "posY": 0.42, "seed": 1},
+                {"path": "objects/cloud_3d.png",   "size": 220, "posX": 0.18, "posY": 0.30, "seed": 2},
+                {"path": "objects/cloud_3d.png",   "size": 180, "posX": 0.80, "posY": 0.26, "seed": 3},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 200,  "motion": "FADEIN",  "amplitude": 60},
+                {"startSec": 200,  "endSec": 700,  "motion": "DRIFT",   "period": 12,   "amplitude": 90},
+                {"startSec": 700,  "endSec": 1200, "motion": "BOB",     "period": 6.0,  "amplitude": 55},
+                {"startSec": 1200, "endSec": 1500, "motion": "DRIFT",   "period": 10,   "amplitude": 80},
+            ],
+        },
+    },
+
+    # ── SERIES 6: PROFESSIONS ────────────────────────────────────────────────
+    "p_chef": {
+        "name_en": "Chef",        "name_ar": "طباخ",           "name_id": "Koki",
+        "series": "professions", "comp": "DanceShapeLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#150800",
+            "musicFile": "Happy Happy Game Show.mp3", "volume": 0.20,
+            "shapes": [
+                {"shape": "oval",   "color": "#FFFFFF", "size": 200, "posX": 0.50, "posY": 0.22, "seed": 1},
+                {"shape": "circle", "color": "#FFB74D", "size": 230, "posX": 0.50, "posY": 0.46, "seed": 2},
+                {"shape": "circle", "color": "#FF7043", "size": 130, "posX": 0.22, "posY": 0.60, "seed": 3},
+                {"shape": "star",   "color": "#FDD835", "size": 120, "posX": 0.78, "posY": 0.58, "seed": 4},
+                {"shape": "circle", "color": "#66BB6A", "size": 110, "posX": 0.40, "posY": 0.70, "seed": 5},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 150,  "motion": "FADEIN",  "amplitude": 60},
+                {"startSec": 150,  "endSec": 600,  "motion": "BOB",     "period": 3.0,  "amplitude": 45},
+                {"startSec": 600,  "endSec": 1000, "motion": "BOUNCE",  "period": 2.5,  "amplitude": 70},
+                {"startSec": 1000, "endSec": 1500, "motion": "SWAY",    "period": 4.0,  "amplitude": 50},
+            ],
+        },
+    },
+    "p_doctor": {
+        "name_en": "Doctor",      "name_ar": "طبيب",           "name_id": "Dokter",
+        "series": "professions", "comp": "DanceShapeLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#040C15",
+            "musicFile": "Carefree.mp3", "volume": 0.18,
+            "shapes": [
+                {"shape": "circle",  "color": "#ECEFF1", "size": 220, "posX": 0.50, "posY": 0.28, "seed": 1},
+                {"shape": "hexagon", "color": "#CFD8DC", "size": 250, "posX": 0.50, "posY": 0.54, "seed": 2},
+                {"shape": "star",    "color": "#EF5350", "size": 120, "posX": 0.22, "posY": 0.44, "seed": 3},
+                {"shape": "circle",  "color": "#29B6F6", "size": 100, "posX": 0.78, "posY": 0.42, "seed": 4},
+                {"shape": "diamond", "color": "#66BB6A", "size": 110, "posX": 0.50, "posY": 0.72, "seed": 5},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 180,  "motion": "FADEIN", "amplitude": 50},
+                {"startSec": 180,  "endSec": 700,  "motion": "BOB",    "period": 4.0,  "amplitude": 35},
+                {"startSec": 700,  "endSec": 1200, "motion": "PULSE",  "period": 3.0,  "amplitude": 12},
+                {"startSec": 1200, "endSec": 1500, "motion": "DRIFT",  "period": 12,   "amplitude": 70},
+            ],
+        },
+    },
+    "p_firefighter": {
+        "name_en": "Firefighter", "name_ar": "رجل إطفاء",     "name_id": "Pemadam Kebakaran",
+        "series": "professions", "comp": "DanceShapeLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#100200",
+            "musicFile": "Pinball Spring.mp3", "volume": 0.20,
+            "shapes": [
+                {"shape": "triangle","color": "#FF5722", "size": 240, "posX": 0.35, "posY": 0.38, "seed": 1},
+                {"shape": "triangle","color": "#FF9800", "size": 180, "posX": 0.60, "posY": 0.44, "seed": 2},
+                {"shape": "diamond", "color": "#29B6F6", "size": 160, "posX": 0.20, "posY": 0.58, "seed": 3},
+                {"shape": "circle",  "color": "#4FC3F7", "size": 130, "posX": 0.70, "posY": 0.62, "seed": 4},
+                {"shape": "circle",  "color": "#81D4FA", "size": 100, "posX": 0.50, "posY": 0.72, "seed": 5},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 120,  "motion": "FADEIN",  "amplitude": 60},
+                {"startSec": 120,  "endSec": 500,  "motion": "BOUNCE",  "period": 2.0,  "amplitude": 90},
+                {"startSec": 500,  "endSec": 1000, "motion": "PULSE",   "period": 2.5,  "amplitude": 20},
+                {"startSec": 1000, "endSec": 1500, "motion": "SWAY",    "period": 3.5,  "amplitude": 60},
+            ],
+        },
+    },
+    "p_teacher": {
+        "name_en": "Teacher",     "name_ar": "معلم",           "name_id": "Guru",
+        "series": "professions", "comp": "DanceShapeLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#050A00",
+            "musicFile": "Carefree.mp3", "volume": 0.18,
+            "shapes": [
+                {"shape": "square",  "color": "#1B5E20", "size": 260, "posX": 0.65, "posY": 0.42, "seed": 1},
+                {"shape": "circle",  "color": "#FFB74D", "size": 180, "posX": 0.28, "posY": 0.36, "seed": 2},
+                {"shape": "star",    "color": "#FDD835", "size": 110, "posX": 0.18, "posY": 0.62, "seed": 3},
+                {"shape": "star",    "color": "#FF7043", "size": 100, "posX": 0.38, "posY": 0.66, "seed": 4},
+                {"shape": "star",    "color": "#66BB6A", "size": 110, "posX": 0.80, "posY": 0.64, "seed": 5},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 180,  "motion": "FADEIN",  "amplitude": 50},
+                {"startSec": 180,  "endSec": 600,  "motion": "BOB",     "period": 4.5,  "amplitude": 30},
+                {"startSec": 600,  "endSec": 1100, "motion": "WAVE",    "period": 4.0,  "amplitude": 45, "waveDelay": 0.6},
+                {"startSec": 1100, "endSec": 1500, "motion": "DRIFT",   "period": 12,   "amplitude": 80},
+            ],
+        },
+    },
+    "p_musician": {
+        "name_en": "Musician",    "name_ar": "موسيقي",         "name_id": "Musisi",
+        "series": "professions", "comp": "DanceShapeLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#05000F",
+            "musicFile": "Wholesome.mp3", "volume": 0.22,
+            "shapes": [
+                {"shape": "diamond", "color": "#CE93D8", "size": 180, "posX": 0.25, "posY": 0.38, "seed": 1},
+                {"shape": "star",    "color": "#F48FB1", "size": 160, "posX": 0.65, "posY": 0.32, "seed": 2},
+                {"shape": "circle",  "color": "#80CBC4", "size": 150, "posX": 0.50, "posY": 0.54, "seed": 3},
+                {"shape": "diamond", "color": "#FFCC80", "size": 130, "posX": 0.18, "posY": 0.62, "seed": 4},
+                {"shape": "star",    "color": "#A5D6A7", "size": 120, "posX": 0.80, "posY": 0.60, "seed": 5},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 150,  "motion": "FADEIN",  "amplitude": 60},
+                {"startSec": 150,  "endSec": 600,  "motion": "ORBIT",   "period": 5.0,  "amplitude": 150},
+                {"startSec": 600,  "endSec": 1100, "motion": "BOUNCE",  "period": 2.5,  "amplitude": 80},
+                {"startSec": 1100, "endSec": 1500, "motion": "WAVE",    "period": 3.0,  "amplitude": 60, "waveDelay": 0.4},
+            ],
+        },
+    },
+    "p_gardener": {
+        "name_en": "Gardener",    "name_ar": "بستاني",         "name_id": "Tukang Kebun",
+        "series": "professions", "comp": "DanceSpriteLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#031008", "bgColorEnd": "#020A05",
+            "accentColor": "#66BB6A",
+            "musicFile": "Life of Riley.mp3", "volume": 0.18,
+            "bgEffect": "none",
+            "sprites": [
+                {"path": "fruits/apple.png",       "size": 200, "posX": 0.20, "posY": 0.42, "seed": 1},
+                {"path": "vegetables/carrot.png",  "size": 190, "posX": 0.38, "posY": 0.44, "seed": 2},
+                {"path": "fruits/banana.png",      "size": 210, "posX": 0.56, "posY": 0.42, "seed": 3},
+                {"path": "vegetables/broccoli.png","size": 195, "posX": 0.74, "posY": 0.44, "seed": 4},
+                {"path": "fruits/orange.png",      "size": 185, "posX": 0.90, "posY": 0.42, "seed": 5},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 200,  "motion": "FADEIN",  "amplitude": 60},
+                {"startSec": 200,  "endSec": 650,  "motion": "BOB",     "period": 3.5,  "amplitude": 40},
+                {"startSec": 650,  "endSec": 1100, "motion": "WAVE",    "period": 4.0,  "amplitude": 55, "waveDelay": 0.5},
+                {"startSec": 1100, "endSec": 1500, "motion": "SWAY",    "period": 5.0,  "amplitude": 50},
+            ],
+        },
+    },
+    "p_builder": {
+        "name_en": "Builder",     "name_ar": "بنّاء",          "name_id": "Pembangun",
+        "series": "professions", "comp": "DanceShapeLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#0A0800",
+            "musicFile": "Pinball Spring.mp3", "volume": 0.18,
+            "shapes": [
+                {"shape": "square",  "color": "#FF8F00", "size": 200, "posX": 0.50, "posY": 0.60, "seed": 1},
+                {"shape": "square",  "color": "#FFB300", "size": 180, "posX": 0.50, "posY": 0.42, "seed": 2},
+                {"shape": "hexagon", "color": "#FFCA28", "size": 170, "posX": 0.50, "posY": 0.26, "seed": 3},
+                {"shape": "diamond", "color": "#795548", "size": 140, "posX": 0.22, "posY": 0.52, "seed": 4},
+                {"shape": "diamond", "color": "#8D6E63", "size": 130, "posX": 0.78, "posY": 0.52, "seed": 5},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 200,  "motion": "FADEIN",  "amplitude": 50},
+                {"startSec": 200,  "endSec": 700,  "motion": "BOB",     "period": 4.0,  "amplitude": 40},
+                {"startSec": 700,  "endSec": 1200, "motion": "BOUNCE",  "period": 3.0,  "amplitude": 65},
+                {"startSec": 1200, "endSec": 1500, "motion": "SWAY",    "period": 5.0,  "amplitude": 45},
+            ],
+        },
+    },
+    "p_captain": {
+        "name_en": "Captain",     "name_ar": "قبطان",          "name_id": "Kapten",
+        "series": "professions", "comp": "DanceShapeLong", "dur_label": "25 min",
+        "props": {
+            "bgColor": "#020810",
+            "musicFile": "Life of Riley.mp3", "volume": 0.17,
+            "shapes": [
+                {"shape": "circle",  "color": "#8D6E63", "size": 230, "posX": 0.50, "posY": 0.40, "seed": 1},
+                {"shape": "star",    "color": "#FDD835", "size": 150, "posX": 0.22, "posY": 0.28, "seed": 2},
+                {"shape": "star",    "color": "#FFF9C4", "size": 120, "posX": 0.78, "posY": 0.26, "seed": 3},
+                {"shape": "diamond", "color": "#29B6F6", "size": 140, "posX": 0.20, "posY": 0.62, "seed": 4},
+                {"shape": "diamond", "color": "#4FC3F7", "size": 120, "posX": 0.80, "posY": 0.64, "seed": 5},
+            ],
+            "blocks": [
+                {"startSec": 0,    "endSec": 180,  "motion": "FADEIN",  "amplitude": 50},
+                {"startSec": 180,  "endSec": 600,  "motion": "ORBIT",   "period": 8.0,  "amplitude": 160},
+                {"startSec": 600,  "endSec": 1100, "motion": "WAVE",    "period": 6.0,  "amplitude": 50, "waveDelay": 0.5},
+                {"startSec": 1100, "endSec": 1500, "motion": "DRIFT",   "period": 14,   "amplitude": 90},
+            ],
+        },
+    },
 }
 
-# Series 4 — Ocean
-OCEAN = {
-    "whale":     {"name_en": "Whale",       "name_ar": "حوت",           "name_id": "Paus",           "bg": "#020A1A", "accent": "#4FC3F7", "bpm": 50, "music": "Gymnopedie No 1.mp3"},
-    "octopus":   {"name_en": "Octopus",     "name_ar": "أخطبوط",       "name_id": "Gurita",         "bg": "#08020F", "accent": "#AB47BC", "bpm": 68, "music": "Quirky Dog.mp3"},
-    "dolphin":   {"name_en": "Dolphin",     "name_ar": "دلفين",         "name_id": "Lumba-lumba",    "bg": "#021218", "accent": "#00BCD4", "bpm": 85, "music": "Pinball Spring.mp3"},
-    "jellyfish": {"name_en": "Jellyfish",   "name_ar": "قنديل البحر",  "name_id": "Ubur-ubur",      "bg": "#020212", "accent": "#E040FB", "bpm": 48, "music": "Crinoline Dreams.mp3"},
-    "reef":      {"name_en": "Coral Reef",  "name_ar": "الشعاب المرجانية", "name_id": "Terumbu Karang", "bg": "#010810", "accent": "#26A69A", "bpm": 55, "music": "Carefree.mp3"},
-    "starfish":  {"name_en": "Starfish",    "name_ar": "نجمة البحر",   "name_id": "Bintang Laut",   "bg": "#080208", "accent": "#FF8F00", "bpm": 40, "music": "Heartwarming.mp3"},
-    "crab":      {"name_en": "Crab",        "name_ar": "سرطان البحر",  "name_id": "Kepiting",       "bg": "#120408", "accent": "#EF5350", "bpm": 75, "music": "Merry Go.mp3"},
-    "seahorse":  {"name_en": "Seahorse",    "name_ar": "فرس البحر",    "name_id": "Kuda Laut",      "bg": "#050A10", "accent": "#66BB6A", "bpm": 60, "music": "Wholesome.mp3"},
+SERIES_KEYS = {
+    "emotions":    [k for k, v in VIDEOS.items() if v["series"] == "emotions"],
+    "ocean":       [k for k, v in VIDEOS.items() if v["series"] == "ocean"],
+    "transport":   [k for k, v in VIDEOS.items() if v["series"] == "transport"],
+    "professions": [k for k, v in VIDEOS.items() if v["series"] == "professions"],
 }
 
-# Series 5 — Transport
-TRANSPORT = {
-    "airplane":  {"name_en": "Airplane",        "name_ar": "طائرة",              "name_id": "Pesawat",      "bg": "#050810", "accent": "#64B5F6", "bpm": 82, "music": "Hyperfun.mp3"},
-    "helicopter":{"name_en": "Helicopter",      "name_ar": "طائرة مروحية",      "name_id": "Helikopter",   "bg": "#080A10", "accent": "#4CAF50", "bpm": 88, "music": "Monkeys Spinning Monkeys.mp3"},
-    "ship":      {"name_en": "Ship",            "name_ar": "سفينة",              "name_id": "Kapal",        "bg": "#020610", "accent": "#1E88E5", "bpm": 55, "music": "Life of Riley.mp3"},
-    "boat":      {"name_en": "Boat",            "name_ar": "قارب",               "name_id": "Perahu",       "bg": "#030A0A", "accent": "#26C6DA", "bpm": 65, "music": "Carefree.mp3"},
-    "rocket":    {"name_en": "Rocket",          "name_ar": "صاروخ",              "name_id": "Roket",        "bg": "#010108", "accent": "#FF7043", "bpm": 100, "music": "Hyperfun.mp3"},
-    "balloon":   {"name_en": "Hot Air Balloon", "name_ar": "بالون هوائي ساخن",  "name_id": "Balon Udara",  "bg": "#030808", "accent": "#FFEE58", "bpm": 50, "music": "Wholesome.mp3"},
-}
-
-# Series 6 — Professions
-PROFESSIONS = {
-    "chef":         {"name_en": "Chef",         "name_ar": "طباخ",       "name_id": "Koki",         "bg": "#0A0808", "accent": "#FF8C42", "bpm": 80, "music": "Happy Happy Game Show.mp3"},
-    "doctor":       {"name_en": "Doctor",       "name_ar": "طبيب",       "name_id": "Dokter",       "bg": "#050A0F", "accent": "#4FC3F7", "bpm": 65, "music": "Carefree.mp3"},
-    "builder":      {"name_en": "Builder",      "name_ar": "بنّاء",     "name_id": "Tukang Bangunan","bg": "#0A0805", "accent": "#FFC107", "bpm": 88, "music": "Monkeys Spinning Monkeys.mp3"},
-    "teacher":      {"name_en": "Teacher",      "name_ar": "معلم",       "name_id": "Guru",         "bg": "#050A05", "accent": "#66BB6A", "bpm": 70, "music": "Wholesome.mp3"},
-    "firefighter":  {"name_en": "Firefighter",  "name_ar": "إطفائي",    "name_id": "Pemadam Kebakaran","bg": "#120508","accent": "#EF5350","bpm": 95, "music": "Quirky Dog.mp3"},
-    "farmer":       {"name_en": "Farmer",       "name_ar": "مزارع",      "name_id": "Petani",       "bg": "#050A03", "accent": "#8BC34A", "bpm": 72, "music": "Merry Go.mp3"},
-    "pilot":        {"name_en": "Pilot",        "name_ar": "طيار",       "name_id": "Pilot",        "bg": "#030810", "accent": "#42A5F5", "bpm": 85, "music": "Pinball Spring.mp3"},
-    "artist":       {"name_en": "Artist",       "name_ar": "فنان",       "name_id": "Seniman",      "bg": "#0A050F", "accent": "#CE93D8", "bpm": 68, "music": "Heartwarming.mp3"},
-}
-
-ALL_SERIES = {
-    "emotions":    EMOTIONS,
-    "ocean":       OCEAN,
-    "transport":   TRANSPORT,
-    "professions": PROFESSIONS,
-}
-
-SERIES_NAMES = {
-    "emotions":    {"en": "Emotions", "ar": "المشاعر", "id": "Emosi"},
-    "ocean":       {"en": "Ocean",    "ar": "المحيط",  "id": "Lautan"},
-    "transport":   {"en": "Transport","ar": "المواصلات","id": "Transportasi"},
-    "professions": {"en": "Professions","ar": "المهن", "id": "Profesi"},
+PROMPTS = {
+    "e_happy":      "cute 3D Pixar happy smiley character big eyes huge smile, bright yellow warm background, children's animation",
+    "e_sad":        "cute 3D Pixar sad character droopy eyes frown, blue misty background, children's animation",
+    "e_surprised":  "cute 3D Pixar surprised character wide eyes open mouth, purple sparkles background, children's animation",
+    "e_angry":      "cute 3D Pixar angry character furrowed brows, red warm background, children's animation",
+    "e_scared":     "cute 3D Pixar scared character big frightened eyes, dark spooky but cute background, children's animation",
+    "e_love":       "cute 3D Pixar love character heart eyes rosy cheeks, pink sparkles romantic background, children's animation",
+    "o_whale":      "adorable 3D Pixar blue whale swimming deep dark ocean with bubbles, children's animation",
+    "o_octopus":    "cute 3D Pixar purple octopus curling tentacles in deep sea bioluminescent background, children's animation",
+    "o_fish":       "three cute colorful 3D Pixar fish swimming in clear blue ocean, children's animation",
+    "o_dolphin":    "playful 3D Pixar dolphins leaping out of sparkling blue ocean, children's animation",
+    "o_jellyfish":  "glowing bioluminescent jellyfish floating dark deep ocean magical purple blue glow, children's animation",
+    "o_starfish":   "cute orange 3D Pixar starfish resting on ocean floor with tiny companions, children's animation",
+    "t_airplane":   "cute white 3D Pixar airplane flying through fluffy clouds in blue sky, children's animation",
+    "t_helicopter": "cute yellow 3D Pixar helicopter hovering in sky spinning rotor, children's animation",
+    "t_ship":       "big dark 3D Pixar ship sailing on ocean with waves majestic, children's animation",
+    "t_boat":       "small cute 3D Pixar wooden sailing boat white sail on river, children's animation",
+    "t_balloon":    "colorful hot air balloon floating in sky with clouds below, magical, Pixar 3D style",
+    "p_chef":       "cute 3D Pixar chef tall white hat cooking colorful ingredients kitchen, children's animation",
+    "p_doctor":     "friendly 3D Pixar doctor stethoscope white coat medical symbols, children's animation",
+    "p_firefighter":"brave 3D Pixar firefighter red truck water hose battling tiny flames, children's animation",
+    "p_teacher":    "friendly 3D Pixar teacher green chalkboard colorful stars letters, children's animation",
+    "p_musician":   "happy 3D Pixar musician colorful floating music notes, children's animation",
+    "p_gardener":   "cheerful 3D Pixar gardener fruits vegetables growing in garden, children's animation",
+    "p_builder":    "cute 3D Pixar builder yellow hard hat stacking colorful building blocks, children's animation",
+    "p_captain":    "brave 3D Pixar ship captain steering wheel stars guiding at night, children's animation",
 }
 
 
-def make_meta_a(series, item_key, lang):
-    item    = ALL_SERIES[series][item_key]
-    ch      = {'en': '@HappyBearKids1', 'ar': '@happybearkidsar', 'id': '@happybearkidsin'}
-    name    = item[f'name_{lang}']
-    ser_name = SERIES_NAMES[series][lang]
-
-    if lang == 'en':
-        return {
-            "title": f"{name} | 25 Min Baby Animation | Happy Bear Kids",
-            "description": (
-                f"✨ {name} — pure visual animation for babies and toddlers!\n\n"
-                f"Part of our '{ser_name}' series — beautiful animation with no words, no text, "
-                f"just mesmerizing visuals set to gentle music.\n\n"
-                f"Perfect for: visual stimulation, background play, calming screen time.\n"
-                f"No language barriers — universal content for any culture.\n\n"
-                f"👶 Age: 0–3 years | 📺 25 minutes continuous animation\n\n"
-                f"🔔 Subscribe → {ch['en']}\n"
-                f"🎵 Kevin MacLeod (incompetech.com) — CC Attribution 4.0\n\n"
-                f"#{name.replace(' ','')} #HappyBearKids #BabyAnimation "
-                f"#VisualStimulation #NoTalking\n© Happy Bear Kids 2026"
-            ),
-            "tags": [item_key, name.lower(), ser_name.lower(), "baby animation", "happy bear kids",
-                     "no talking", "visual stimulation", "calm baby", "25 minutes"],
-            "video_type": "emotions_ocean", "language": "en", "is_short": False, "status": "public",
-        }
-    elif lang == 'ar':
-        return {
-            "title": f"{name} | رسوم متحركة للرضع 25 دقيقة | هابي بير كيدز",
-            "description": (
-                f"✨ {name} — رسوم متحركة بصرية خالصة للرضع والأطفال الصغار!\n\n"
-                f"جزء من سلسلة '{ser_name}' — رسوم جميلة بدون كلمات أو نصوص، "
-                f"مع موسيقى هادئة ومريحة.\n\n"
-                f"مثالي للتحفيز البصري والتشغيل في الخلفية ووقت الشاشة الهادئ.\n"
-                f"بدون حواجز لغوية — محتوى عالمي لجميع الثقافات.\n\n"
-                f"🔔 اشتركوا → {ch['ar']}\n"
-                f"🎵 Kevin MacLeod — CC Attribution 4.0\n\n"
-                f"#{name.replace(' ','_')} #هابي_بير_كيدز #رسوم_أطفال "
-                f"#تحفيز_بصري\n© هابي بير كيدز 2026"
-            ),
-            "tags": [item_key, name, ser_name, "هابي بير كيدز", "رسوم مجردة", "بدون كلام"],
-            "video_type": "emotions_ocean", "language": "ar", "is_short": False, "status": "public",
-        }
+def make_meta(video_id: str, lang: str) -> dict:
+    v    = VIDEOS[video_id]
+    ser  = v["series"]
+    ch   = {"en": "@HappyBearKids1", "ar": "@happybearkidsar", "id": "@happybearkidsin"}
+    name = v[f"name_{lang}"]
+    dur  = v["dur_label"]
+    if lang == "en":
+        series_name = SERIES_EN[ser]
+        title = f"{name} | {dur} Baby Animation | Happy Bear Kids"
+        description = (
+            f"✨ {name} — captivating visual animation for babies and toddlers!\n\n"
+            f"No words, no text — pure visual experience designed to engage young minds. "
+            f"Beautiful colors, smooth movements, and gentle music create a mesmerizing "
+            f"experience perfect for babies from 0–3 years old.\n\n"
+            f"Part of the {series_name} series — carefully designed educational content "
+            f"that introduces concepts through visual storytelling without any language barriers.\n\n"
+            f"🎯 Perfect for: visual stimulation, sensory development, background TV\n"
+            f"👶 Age: 0–3 years | 📺 {dur} continuous\n"
+            f"🌈 Universal — works for any culture or language\n\n"
+            f"🔔 Subscribe → {ch['en']}\n"
+            f"🎵 Kevin MacLeod (incompetech.com) — CC Attribution 4.0\n\n"
+            f"#{name.replace(' ','')} #{series_name.replace(' ','')} "
+            f"#HappyBearKids #BabyAnimation #VisualStimulation #ToddlerTV"
+            f"\n© Happy Bear Kids 2026"
+        )
+        tags = [name.lower(), series_name.lower(), "baby animation", "happy bear kids",
+                "visual stimulation", "no talking", dur, "toddler tv"]
+    elif lang == "ar":
+        series_name = SERIES_AR[ser]
+        title = f"{name} | {dur} رسوم أطفال | هابي بير كيدز"
+        description = (
+            f"✨ {name} — رسوم متحركة رائعة للرضع والأطفال الصغار!\n\n"
+            f"بدون كلمات أو نصوص — تجربة بصرية خالصة مصممة لإشراك العقول الصغيرة. "
+            f"ألوان جميلة وحركات سلسة وموسيقى هادئة تخلق تجربة آسرة للرضع.\n\n"
+            f"جزء من سلسلة {series_name} — محتوى تعليمي مصمم بعناية يقدم المفاهيم "
+            f"من خلال رواية بصرية بدون حواجز لغوية.\n\n"
+            f"👶 العمر: 0–3 سنوات | 📺 {dur}\n\n"
+            f"🔔 اشتركوا → {ch['ar']}\n"
+            f"🎵 Kevin MacLeod — CC Attribution 4.0\n\n"
+            f"#{name.replace(' ','_')} #هابي_بير_كيدز #رسوم_أطفال #تحفيز_بصري"
+            f"\n© هابي بير كيدز 2026"
+        )
+        tags = [name, series_name, "هابي بير كيدز", "رسوم أطفال", "تحفيز بصري", "بدون كلام"]
     else:
-        return {
-            "title": f"{name} | 25 Menit Animasi Bayi | Happy Bear Kids",
-            "description": (
-                f"✨ {name} — animasi visual murni untuk bayi dan balita!\n\n"
-                f"Bagian dari seri '{ser_name}' — animasi indah tanpa kata-kata atau teks, "
-                f"dengan musik lembut yang menenangkan.\n\n"
-                f"Sempurna untuk: stimulasi visual, hiburan latar belakang, waktu layar yang tenang.\n"
-                f"Tanpa hambatan bahasa — konten universal untuk semua budaya.\n\n"
-                f"🔔 Subscribe → {ch['id']}\n"
-                f"🎵 Kevin MacLeod — CC Attribution 4.0\n\n"
-                f"#{name.replace(' ','')} #HappyBearKids #AnimasiAnak "
-                f"#StimulasiVisual\n© Happy Bear Kids Indonesia 2026"
-            ),
-            "tags": [item_key, name.lower(), ser_name.lower(), "animasi bayi", "happy bear kids",
-                     "tanpa suara", "stimulasi visual"],
-            "video_type": "emotions_ocean", "language": "id", "is_short": False, "status": "public",
-        }
+        series_name = SERIES_ID[ser]
+        title = f"{name} | {dur} Animasi Bayi | Happy Bear Kids"
+        description = (
+            f"✨ {name} — animasi visual yang memukau untuk bayi dan balita!\n\n"
+            f"Tanpa kata-kata atau teks — pengalaman visual murni yang dirancang untuk "
+            f"melibatkan pikiran muda. Warna indah, gerakan halus, dan musik lembut menciptakan "
+            f"pengalaman yang memikat untuk bayi usia 0–3 tahun.\n\n"
+            f"Bagian dari seri {series_name} — konten edukatif yang dirancang dengan cermat "
+            f"yang memperkenalkan konsep melalui cerita visual tanpa hambatan bahasa.\n\n"
+            f"👶 Usia: 0–3 tahun | 📺 {dur}\n\n"
+            f"🔔 Subscribe → {ch['id']}\n"
+            f"🎵 Kevin MacLeod (incompetech.com) — CC Attribution 4.0\n\n"
+            f"#{name.replace(' ','')} #HappyBearKids #AnimasiBayi #StimulasiVisual"
+            f"\n© Happy Bear Kids Indonesia 2026"
+        )
+        tags = [name.lower(), series_name.lower(), "animasi bayi", "happy bear kids",
+                "stimulasi visual", "tanpa suara", dur]
+    return {"title": title, "description": description, "tags": tags,
+            "video_type": "special_mechanics", "language": lang,
+            "is_short": False, "status": "public"}
 
 
-def make_meta_b(series, item_key, lang):
-    item    = ALL_SERIES[series][item_key]
-    ch      = {'en': '@HappyBearKids1', 'ar': '@happybearkidsar', 'id': '@happybearkidsin'}
-    name_en = item['name_en']
-    name_ar = item['name_ar']
-    name_id = item['name_id']
-    name    = item[f'name_{lang}']
-    ser_name = SERIES_NAMES[series][lang]
-
-    if lang == 'en':
-        return {
-            "title": f"Learn: {name_en}! Educational Baby Video | Happy Bear Kids",
-            "description": (
-                f"🎓 Learn about {name_en}! Educational video for babies 0-3 years.\n\n"
-                f"Part of our '{ser_name}' series — featuring Roundy the circle character "
-                f"with expressive animations.\n\n"
-                f"In this educational video:\n"
-                f"• Learn the word '{name_en}' in English, Arabic ({name_ar}), and Indonesian ({name_id})\n"
-                f"• Interactive pauses for baby response time\n"
-                f"• Simple dialogue repeated for language learning\n"
-                f"• Gentle music and colorful visuals\n\n"
-                f"Perfect for: language learning, cognitive development, multicultural families.\n\n"
-                f"👶 Age: 0–3 years | 📺 25 minutes\n\n"
-                f"🔔 Subscribe → {ch['en']}\n"
-                f"🎵 Kevin MacLeod (incompetech.com) — CC Attribution 4.0\n\n"
-                f"#Learn{name_en.replace(' ','')} #HappyBearKids #BilingualBaby "
-                f"#BabyEducation #LearnEnglish\n© Happy Bear Kids 2026"
-            ),
-            "tags": [item_key, f"learn {name_en.lower()}", "bilingual baby", "educational",
-                     "baby learning", "happy bear kids", "english arabic", ser_name.lower()],
-            "video_type": "emotions_ocean", "language": "en", "is_short": False, "status": "public",
-        }
-    elif lang == 'ar':
-        return {
-            "title": f"تعلم: {name_ar}! فيديو تعليمي للرضع | هابي بير كيدز",
-            "description": (
-                f"🎓 تعلم عن {name_ar}! فيديو تعليمي للرضع من 0-3 سنوات.\n\n"
-                f"جزء من سلسلة '{ser_name}' — يضم شخصية كروكي الدائرة مع رسوم تعبيرية جميلة.\n\n"
-                f"في هذا الفيديو التعليمي:\n"
-                f"• تعلم كلمة '{name_ar}' بالعربية والإنجليزية ({name_en})\n"
-                f"• توقفات تفاعلية لوقت استجابة الطفل\n"
-                f"• حوار بسيط مكرر لتعلم اللغة\n"
-                f"• موسيقى هادئة ورسوم ملونة\n\n"
-                f"🔔 اشتركوا → {ch['ar']}\n"
-                f"🎵 Kevin MacLeod — CC Attribution 4.0\n\n"
-                f"#تعلم_{name_ar.replace(' ','_')} #هابي_بير_كيدز #تعليم_الرضع "
-                f"#ثنائي_اللغة\n© هابي بير كيدز 2026"
-            ),
-            "tags": [item_key, name_ar, "تعليم الرضع", "هابي بير كيدز", "ثنائي اللغة"],
-            "video_type": "emotions_ocean", "language": "ar", "is_short": False, "status": "public",
-        }
-    else:  # id
-        return {
-            "title": f"Belajar: {name_id}! Video Edukasi Bayi | Happy Bear Kids",
-            "description": (
-                f"🎓 Belajar tentang {name_id}! Video edukasi untuk bayi 0-3 tahun.\n\n"
-                f"Bagian dari seri '{ser_name}' — menampilkan karakter Roundy si lingkaran "
-                f"dengan animasi ekspresif yang menarik.\n\n"
-                f"Dalam video edukasi ini:\n"
-                f"• Belajar kata '{name_id}' dalam Bahasa Indonesia, Inggris ({name_en}), dan Arab ({name_ar})\n"
-                f"• Jeda interaktif untuk waktu respons bayi\n"
-                f"• Dialog sederhana yang diulang untuk pembelajaran bahasa\n"
-                f"• Musik lembut dan visual berwarna-warni\n\n"
-                f"Sempurna untuk: pembelajaran bahasa, perkembangan kognitif, pendidikan multikultural.\n\n"
-                f"👶 Usia: 0–3 tahun | 📺 25 menit\n\n"
-                f"🔔 Subscribe → {ch['id']}\n"
-                f"🎵 Kevin MacLeod (incompetech.com) — CC Attribution 4.0\n\n"
-                f"#Belajar{name_id.replace(' ','')} #HappyBearKids #BayiPintar "
-                f"#PendidikanBayi #BelajarIndonesia\n© Happy Bear Kids Indonesia 2026"
-            ),
-            "tags": [item_key, f"belajar {name_id.lower()}", "bayi pintar", "pendidikan bayi",
-                     "happy bear kids", "bahasa indonesia", ser_name.lower()],
-            "video_type": "emotions_ocean", "language": "id", "is_short": False, "status": "public",
-        }
+def generate_thumbnail(video_id: str, out_path: Path, lang: str) -> bool:
+    if out_path.exists():
+        return True
+    try:
+        key = TOGETHER_KEY_FILE.read_text().strip()
+    except Exception:
+        return False
+    notext = "" if lang in ("en", "id") else ", no text, no letters, no words, no numbers"
+    prompt = PROMPTS.get(video_id, "baby animation colorful characters") + f", YouTube thumbnail{notext}"
+    import urllib.request
+    try:
+        payload = json.dumps({"model": TOGETHER_MODEL, "prompt": prompt,
+                              "width": 1280, "height": 720, "steps": 4, "n": 1}).encode()
+        req = urllib.request.Request(TOGETHER_URL, data=payload,
+            headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=90) as resp:
+            data = json.loads(resp.read())
+        out_path.write_bytes(base64.b64decode(data["data"][0]["b64_json"]))
+        print(f"    ✓ thumb → {out_path.name}")
+        return True
+    except Exception as e:
+        print(f"    ! thumb failed: {e}"); return False
 
 
-def process_item_a(series, item_key, dry_run, regen_meta):
-    """No-words version → all 3 queues."""
-    item   = ALL_SERIES[series][item_key]
-    queues = {'en': QUEUE_EN, 'ar': QUEUE_AR, 'id': QUEUE_ID}
-    props  = {
-        "shapes": ["circle", "star", "square"],
-        "colors": [item["accent"], "#FFFFFF", item["accent"]],
-        "bgColor": item["bg"], "bpm": item["bpm"],
-        "showLabels": False, "musicFile": item["music"],
-    }
-    out_mp4 = QUEUE_EN / f"eo_{series}_{item_key}_a_{DATE_STR}.mp4"
-
-    if not out_mp4.exists() and not dry_run and not regen_meta:
-        cmd = ["npx", "remotion", "render", "ShapeDanceLong",
-               f"--props={json.dumps(props)}", f"--output={str(out_mp4)}"]
-        print(f"  Render A: {out_mp4.name}")
-        r = subprocess.run(cmd, cwd=str(REMOTION), timeout=21600)
-        if r.returncode != 0:
-            print("  FAILED")
-            return False
-
-    if out_mp4.exists() and not dry_run:
-        for lg in ['ar', 'id']:
-            dest = queues[lg] / out_mp4.name
-            if not dest.exists():
-                shutil.copy2(str(out_mp4), str(dest))
-
-    for lg, q in queues.items():
-        mp = q / f"meta_{out_mp4.stem}.yaml"
-        if not mp.exists() or regen_meta:
-            meta = make_meta_a(series, item_key, lg)
-            if not dry_run:
-                with open(mp, 'w', encoding='utf-8') as f:
-                    yaml.dump(meta, f, allow_unicode=True)
-            print(f"  Meta A ({lg}): {mp.name}")
-
-    return True
+def render_video(video_id: str, force: bool, dry_run: bool) -> Path | None:
+    v    = VIDEOS[video_id]
+    slug = f"eo_{video_id}_{DATE_STR}.mp4"
+    out  = QUEUE_EN / slug
+    if out.exists() and not force:
+        print(f"  skip {slug} ({out.stat().st_size // 1024 // 1024} MB)"); return out
+    print(f"\n  Rendering {video_id}: {v['name_en']} → {slug}")
+    if dry_run:
+        print(f"    [DRY RUN] {v['comp']}"); return out
+    QUEUE_EN.mkdir(parents=True, exist_ok=True)
+    cmd = ["npx", "remotion", "render", "src/index.ts", v["comp"],
+           str(out), "--props", json.dumps(v["props"]),
+           "--concurrency", "1", "--log", "error"]
+    t0 = time.time()
+    r  = subprocess.run(cmd, cwd=str(REMOTION), capture_output=True, text=True, timeout=21600)
+    if r.returncode == 0 and out.exists():
+        print(f"    ✓ {out.stat().st_size // 1024 // 1024} MB in {(time.time()-t0)/60:.0f} min")
+        return out
+    print(f"    ✗ FAILED: {r.stderr[-400:]}"); return None
 
 
-def process_item_b(series, item_key, dry_run, regen_meta):
-    """Educational version → all 3 queues (same video, language-specific meta)."""
-    item   = ALL_SERIES[series][item_key]
-    queues = {'en': QUEUE_EN, 'ar': QUEUE_AR, 'id': QUEUE_ID}
-    props  = {
-        "shapes": ["circle", "star"],
-        "colors": [item["accent"], "#FFFFFF"],
-        "bgColor": item["bg"], "bpm": item["bpm"],
-        "showLabels": False, "musicFile": item["music"],
-    }
-    out_mp4 = QUEUE_EN / f"eo_{series}_{item_key}_b_{DATE_STR}.mp4"
-
-    if not out_mp4.exists() and not dry_run and not regen_meta:
-        cmd = ["npx", "remotion", "render", "ShapeDanceLong",
-               f"--props={json.dumps(props)}", f"--output={str(out_mp4)}"]
-        print(f"  Render B: {out_mp4.name}")
-        r = subprocess.run(cmd, cwd=str(REMOTION), timeout=21600)
-        if r.returncode != 0:
-            print("  FAILED")
-            return False
-
-    if out_mp4.exists() and not dry_run:
-        for lg in ['ar', 'id']:
-            dest = queues[lg] / out_mp4.name
-            if not dest.exists():
-                shutil.copy2(str(out_mp4), str(dest))
-
-    for lg, q in queues.items():
-        mp = q / f"meta_{out_mp4.stem}.yaml"
-        if not mp.exists() or regen_meta:
-            meta = make_meta_b(series, item_key, lg)
-            if not dry_run:
-                with open(mp, 'w', encoding='utf-8') as f:
-                    yaml.dump(meta, f, allow_unicode=True)
-            print(f"  Meta B ({lg}): {mp.name}")
-
-    return True
+def distribute(mp4: Path, video_id: str, dry_run: bool):
+    stem = mp4.stem
+    for lang, q in [("en", QUEUE_EN), ("ar", QUEUE_AR), ("id", QUEUE_ID)]:
+        q.mkdir(parents=True, exist_ok=True)
+        tstem = stem if lang == "en" else f"{stem}_{lang}"
+        tpath = q / f"{tstem}.mp4"
+        if lang != "en" and not tpath.exists() and not dry_run:
+            shutil.copy2(mp4, tpath); print(f"    copy → {tpath.name}")
+        mpath = q / f"meta_{tstem}.yaml"
+        if not mpath.exists():
+            if dry_run:
+                print(f"    [DRY RUN] meta {lang.upper()}")
+            else:
+                with open(mpath, "w", encoding="utf-8") as f:
+                    yaml.dump(make_meta(video_id, lang), f, allow_unicode=True,
+                              default_flow_style=False, sort_keys=False)
+                print(f"    meta {lang.upper()} → {mpath.name}")
+        tp = q / f"thumb_{tstem}.png"
+        if not tp.exists() and not dry_run:
+            time.sleep(0.5); generate_thumbnail(video_id, tp, lang)
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--key',        default=None, help='orchestrator key e.g. emotions_4series')
-    parser.add_argument('--series',     default=None, choices=list(ALL_SERIES))
-    parser.add_argument('--item',       default=None)
-    parser.add_argument('--type',       default='both', choices=['A', 'B', 'both'])
-    parser.add_argument('--dry-run',    action='store_true')
-    parser.add_argument('--regen-meta', action='store_true')
+    parser.add_argument("--list",       action="store_true")
+    parser.add_argument("--videos",     nargs="*", help="Video IDs or 'all'")
+    parser.add_argument("--series",     choices=list(SERIES_KEYS), help="Run one series")
+    parser.add_argument("--dry-run",    action="store_true")
+    parser.add_argument("--force",      action="store_true")
+    parser.add_argument("--regen-meta", action="store_true")
     args = parser.parse_args()
 
-    if args.item:
-        # Find which series this item belongs to
-        found_series = None
-        for s, items in ALL_SERIES.items():
-            if args.item in items:
-                found_series = s
-                break
-        if not found_series:
-            print(f"Unknown item: {args.item}")
-            return
-        series_to_run = {found_series: {args.item: ALL_SERIES[found_series][args.item]}}
-    elif args.series:
-        series_to_run = {args.series: ALL_SERIES[args.series]}
+    if args.list:
+        for ser in ("emotions", "ocean", "transport", "professions"):
+            print(f"\n  ── {SERIES_EN[ser]} ──")
+            for vid in SERIES_KEYS[ser]:
+                v = VIDEOS[vid]
+                print(f"  {vid:20s}  {v['name_en']:22s}  {v['comp']:20s}  {v['dur_label']}")
+        return
+
+    if args.series:
+        ids = SERIES_KEYS[args.series]
+    elif args.videos:
+        ids = list(VIDEOS) if args.videos == ["all"] else args.videos
     else:
-        # --key emotions_4series or no args → all 4 series
-        series_to_run = ALL_SERIES
+        ids = list(VIDEOS)
 
-    total = sum(len(items) for items in series_to_run.values())
-    run_a = args.type in ('A', 'both')
-    run_b = args.type in ('B', 'both')
-    videos_per_item = (1 if run_a else 0) + (1 if run_b else 0)
-    total_videos = total * videos_per_item
-    print(f"=== Emotions+Ocean+Transport+Professions — {total_videos} videos ===")
+    bad = [v for v in ids if v not in VIDEOS]
+    if bad:
+        print(f"Unknown video IDs: {bad}"); sys.exit(1)
 
-    done = 0
-    for series, items in series_to_run.items():
-        ser_name = SERIES_NAMES[series]['en']
-        print(f"\n--- Series: {ser_name} ({len(items)} items) ---")
-        for item_key in items:
-            item = items[item_key]
-            print(f"\n[{item_key.upper()}] {item['name_en']}")
-            if run_a and process_item_a(series, item_key, args.dry_run, args.regen_meta):
-                done += 1
-            if run_b and process_item_b(series, item_key, args.dry_run, args.regen_meta):
-                done += 1
+    print(f"=== Emotions + Ocean + Transport + Professions — {len(ids)} videos ===\n")
+    for vid in ids:
+        v = VIDEOS[vid]
+        print(f"[{vid}] {v['name_en']}  ({v['series']})")
+        slug = f"eo_{vid}_{DATE_STR}"
+        mp4  = QUEUE_EN / f"{slug}.mp4"
+        if args.regen_meta:
+            distribute(mp4, vid, args.dry_run); continue
+        mp4 = render_video(vid, args.force, args.dry_run)
+        if mp4 and (mp4.exists() or args.dry_run):
+            distribute(mp4, vid, args.dry_run)
 
-    print(f"\n=== Done: {done}/{total_videos} ===")
+    print("\n=== Done ===")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

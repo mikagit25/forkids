@@ -5,38 +5,38 @@ All scenario docs saved locally from Google Docs for offline reference.
 ## Dance / Motion Series (no text → EN + AR + ID)
 | File | Content | Videos | Duration | Status |
 |------|---------|--------|----------|--------|
-| dance_shape.txt | 12 abstract shape dance videos (BOB/SWAY/SPIN/DRIFT/PULSE/WAVE/ORBIT/BOUNCE) | 12 | 20-30 min | ⏳ needs script |
-| dance_pet.txt | 33 pet dance videos (cat/dog/rabbit/fish/turtle/parrot/hamster/guinea_pig/duck/kitten) | 33 | 25 min | ⏳ needs script |
-| dance_item.txt | 25 household item dance videos (kitchen/toys/clothing/school/bathroom/home/music) | 25 | 25 min | ⏳ needs script |
-| dance_fruits_group.txt | 8 group fruit+vegetable dance videos | 8 | 25-30 min | ⏳ needs script |
-| dance_fruits_2stage.txt | 2-stage: silence first (visual intro) then text+voice (deep learning) | ~20 | 25-30 min | ⏳ needs script |
-| stars_bubbles.txt | Abstract stars twinkling + bubbles popping, satisfying sounds, 22 min | 1 | 22 min | ⏳ needs composition |
+| dance_shape.txt | 12 abstract shape dance videos (BOB/SWAY/SPIN/DRIFT/PULSE/WAVE/ORBIT/BOUNCE) | 12 | 20-30 min | ✅ generate_dance_shape.py |
+| dance_pet.txt | 33 pet dance videos (cat/dog/rabbit/fish/turtle/parrot/hamster/guinea_pig/duck/kitten) | 33 | 25 min | ✅ generate_dance_pet.py |
+| dance_item.txt | 25 household item dance videos (kitchen/toys/clothing/school/bathroom/home/music) | 25 | 25 min | ✅ generate_dance_item.py (sprites needed) |
+| dance_fruits_group.txt | 8 group fruit+vegetable dance videos | 8 | 25-30 min | ✅ generate_dance_fruits_group.py |
+| dance_fruits_2stage.txt | 2-stage: silence first (visual intro) then text+voice (deep learning) | ~20 | 25-30 min | ✅ generate_dance_fruits_2stage.py (Stage A only, Stage B deferred) |
+| stars_bubbles.txt | Abstract stars twinkling + bubbles popping, satisfying sounds, 22 min | 1 | 22 min | ✅ generate_stars_bubbles.py (StarsBubblesLong composition) |
 
 ## Transform / Abstract Series
 | File | Content | Videos | Duration | Status |
 |------|---------|--------|----------|--------|
-| transform_block_1.txt | Block 1: Transformations (fruit growth, color mixing, shadow play, melting) | 4 | 20 min each | ⏳ needs composition |
-| transform_block_2.txt | Block 2: Color as character (color mixing, rainbow, painting, fireworks) | 4 | 20 min each | ⏳ needs composition |
-| transform_block_3.txt | Block 3: Physical phenomena (gravity, magnetism, water, wind) | 4 | 20 min each | ⏳ needs composition |
-| transform_block_4.txt | Block 4: Patterns and symmetry (kaleidoscope, tessellations, fractals) | 4 | 20 min each | ⏳ needs composition |
-| transform_block_5.txt | Block 5: Natural cycles (day/night, seasons, plant growth, ocean tides) | 4 | 20 min each | ⏳ needs composition |
+| transform_block_1.txt | Block 1: Transformations (fruit growth, color mixing, shadow play, melting) | 4 | 20-25 min | ✅ generate_transform_block_1.py (TransformLong grow + DanceShapeLong) |
+| transform_block_2.txt | Block 2: Color as character (color mixing, rainbow, painting, fireworks) | 4 | 25 min | ✅ generate_transform_block_2.py (DanceShapeLong colorPalette) |
+| transform_block_3.txt | Block 3: Physical phenomena (gravity, magnetism, water, wind) | 4 | 25 min | ✅ generate_transform_block_3.py (DanceShapeLong/Sprite + TransformLong) |
+| transform_block_4.txt | Block 4: Patterns and symmetry (kaleidoscope, tessellations, fractals) | 4 | 20-25 min | ✅ generate_transform_block_4.py (TransformLong kaleidoscope + DanceShapeLong) |
+| transform_block_5.txt | Block 5: Natural cycles (day/night, seasons, plant growth, ocean tides) | 4 | 20-25 min | ✅ generate_transform_block_5.py (TransformLong day_night/rain + DanceShapeLong) |
 
 ## Educational Series
 | File | Content | Videos | Duration | Status |
 |------|---------|--------|----------|--------|
-| learn_to_talk.txt | Ms Rachel style - mouth closeup + slow words, speech development | 10 | 20 min | ⏳ needs script |
-| emotions_ocean.txt | 4 series: Emotions + Ocean + Transport + Professions (Roundy character) | ~40 | 20-25 min | ⏳ needs composition |
+| learn_to_talk.txt | Ms Rachel style - mouth closeup + slow words, speech development | 10 | 20 min | ⏸️ deferred — needs custom mouth/lip-sync composition |
+| emotions_ocean.txt | 4 series: Emotions + Ocean + Transport + Professions (Roundy character) | ~40 | 20-25 min | ✅ generate_emotions_ocean.py (25 A-versions, DanceSpriteLong/DanceShapeLong, 3 channels) |
 | numbers_deep_series.txt | Numbers 1-10 deep series (One Concept Deep per number) | 10 | 20 min | ⏳ reference |
 
 ## Sleep / Background Content
 | File | Content | Videos | Duration | Status |
 |------|---------|--------|----------|--------|
-| lullaby_long.txt | 6 sleep videos (Sleepy Stars/Ocean Night/Moon Garden/Sleepy Train/Rain/Forest) | 6 | 1-2 hours | ⏳ needs script |
+| lullaby_long.txt | 6 sleep videos (Sleepy Stars/Ocean Night/Moon Garden/Sleepy Train/Rain/Forest) | 6 | 1-2 hours | ✅ generate_lullaby.py (LullabyLoop + FFmpeg extend) |
 
 ## Special / Game Mechanics
 | File | Content | Videos | Duration | Status |
 |------|---------|--------|----------|--------|
-| special_mechanics_all.txt | Episodes 7-14: Hide&Seek, Shadows, Bubbles, Reflections, Counting, Birthday, Mirror Dance, Sleep Time | 8 | 25 min | ⏳ needs compositions |
+| special_mechanics_all.txt | Episodes 7-14: Hide&Seek, Shadows, Bubbles, Reflections, Counting, Birthday, Mirror Dance, Sleep Time | 8 | 25 min | ✅ generate_special_mechanics.py (DanceSpriteLong/DanceShapeLong/StarsBubblesLong/DanceShapeLong30) |
 
 ## Nursery Rhymes (already implemented)
 | File | Content | Status |
