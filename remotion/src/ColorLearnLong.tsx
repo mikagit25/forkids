@@ -44,20 +44,20 @@ export interface ColorLearnLongProps {
 
 const FPS = 30;
 
+// Each dialogue cycle is exactly 60s, so 4 cycles × 60s = 240s per scene = no gaps
+const CYCLE = 60;
+
 // Section start times (seconds)
 const T_INTRO        = 0;
 const T_INTRO_LEN    = 25;
-const T_SCENE1       = T_INTRO_LEN;          // 25s
-const T_SCENE2       = T_SCENE1 + 4 * 60;    // 25 + 240 = 265s
-const T_SCENE3       = T_SCENE2 + 4 * 60;    // 505s
-const T_SONG         = T_SCENE3 + 4 * 60;    // 745s
+const T_SCENE1       = T_INTRO_LEN;               // 25s
+const T_SCENE2       = T_SCENE1 + 4 * CYCLE;      // 25 + 240 = 265s
+const T_SCENE3       = T_SCENE2 + 4 * CYCLE;      // 505s
+const T_SONG         = T_SCENE3 + 4 * CYCLE;      // 745s
 const T_SONG_LEN     = 75;
-const T_REVIEW       = T_SONG + T_SONG_LEN;  // 820s
+const T_REVIEW       = T_SONG + T_SONG_LEN;       // 820s
 const T_REVIEW_LEN   = 320;
-const T_OUTRO        = T_REVIEW + T_REVIEW_LEN; // 1140s
-
-// One 45s dialogue cycle — returns frame-relative value
-const CYCLE = 45;
+const T_OUTRO        = T_REVIEW + T_REVIEW_LEN;   // 1140s
 
 // ── Confetti particle ─────────────────────────────────────────────────────────
 const CONFETTI_COLORS = ["#FF4444","#FFD700","#4CAF50","#2196F3","#E91E8C","#FF9800"];
@@ -125,28 +125,26 @@ const ObjectScene: React.FC<ObjectSceneProps> = ({
   const objY      = interpolate(objSpring, [0, 1], [-600, 0], { extrapolateRight: "clamp" });
   const objScale  = interpolate(objSpring, [0, 1], [0.3, 1], { extrapolateRight: "clamp" });
 
-  // Happy bounce (after 17s)
-  const bounceStart = fps * 17;
-  const happyBounce = fSec > 17
-    ? Math.abs(Math.sin((fSec - 17) * 2.5)) * 30
-    : 0;
+  // Happy bounce + left-right sway (after 20s, during extended showcase)
+  const happyBounce = fSec > 20 ? Math.abs(Math.sin((fSec - 20) * 2.5)) * 28 : 0;
+  const sway        = fSec > 20 ? Math.sin((fSec - 20) * 1.1) * 70 : 0;
 
-  // Question: 8–13s
-  const qOpacity = interpolate(f, [fps * 8, fps * 9, fps * 13, fps * 14], [0, 1, 1, 0], {
+  // Question: 8–15s
+  const qOpacity = interpolate(f, [fps * 8, fps * 9, fps * 15, fps * 16], [0, 1, 1, 0], {
     extrapolateLeft: "clamp", extrapolateRight: "clamp",
   });
 
-  // Answer: 17–38s
-  const aOpacity = interpolate(f, [fps * 17, fps * 18], [0, 1], {
+  // Answer: 20–52s
+  const aOpacity = interpolate(f, [fps * 20, fps * 21], [0, 1], {
     extrapolateLeft: "clamp", extrapolateRight: "clamp",
   });
   const aScale   = interpolate(
-    spring({ frame: f - fps * 17, fps, config: { damping: 8, stiffness: 150 }, durationInFrames: fps }),
+    spring({ frame: f - fps * 20, fps, config: { damping: 8, stiffness: 150 }, durationInFrames: fps }),
     [0, 1], [0.3, 1], { extrapolateRight: "clamp" }
   );
 
-  // Fade out last 3s
-  const fadeOut = interpolate(f, [fps * (CYCLE - 3), fps * CYCLE], [1, 0], {
+  // Fade out last 8s
+  const fadeOut = interpolate(f, [fps * (CYCLE - 8), fps * CYCLE], [1, 0], {
     extrapolateLeft: "clamp", extrapolateRight: "clamp",
   });
 
@@ -173,7 +171,7 @@ const ObjectScene: React.FC<ObjectSceneProps> = ({
       <div style={{
         position: "absolute", top: "50%", left: "50%",
         transform: "translate(-50%, -60%)",
-        width: 480, height: 480, borderRadius: "50%",
+        width: 556, height: 556, borderRadius: "50%",
         backgroundColor: colorHex, opacity: 0.12,
       }} />
 
@@ -181,11 +179,11 @@ const ObjectScene: React.FC<ObjectSceneProps> = ({
       <div style={{
         position: "absolute", left: 0, right: 0, top: "8%",
         display: "flex", justifyContent: "center",
-        transform: `translateY(${objY + happyBounce}px) scale(${objScale})`,
+        transform: `translateY(${objY + happyBounce}px) translateX(${sway}px) scale(${objScale})`,
       }}>
         <Img
           src={staticFile(`sprites/${obj.spritePath}`)}
-          style={{ width: 480, height: 480, objectFit: "contain" }}
+          style={{ width: 556, height: 556, objectFit: "contain" }}
         />
       </div>
 
@@ -224,7 +222,7 @@ const ObjectScene: React.FC<ObjectSceneProps> = ({
       </div>
 
       {/* Think dots */}
-      <ThinkSparkle frame={f} startFrame={fps * 13} endFrame={fps * 17} />
+      <ThinkSparkle frame={f} startFrame={fps * 15} endFrame={fps * 20} />
 
       {/* Answer reveal */}
       <div style={{
@@ -242,8 +240,8 @@ const ObjectScene: React.FC<ObjectSceneProps> = ({
       </div>
 
       {/* Confetti */}
-      {fSec > 17 && fSec < 30 && confettiParticles.map((p, i) => (
-        <ConfettiParticle key={i} {...p} frame={f} startFrame={fps * 17} />
+      {fSec > 20 && fSec < 36 && confettiParticles.map((p, i) => (
+        <ConfettiParticle key={i} {...p} frame={f} startFrame={fps * 20} />
       ))}
     </AbsoluteFill>
   );
@@ -299,7 +297,7 @@ const SongSection: React.FC<{
       }}>
         <Img
           src={staticFile(`sprites/${obj.spritePath}`)}
-          style={{ width: 420, height: 420, objectFit: "contain" }}
+          style={{ width: 484, height: 484, objectFit: "contain" }}
         />
       </div>
 
@@ -353,7 +351,7 @@ const ReviewSection: React.FC<{
       <div style={{
         position: "absolute", top: "50%", left: "50%",
         transform: "translate(-50%, -55%)",
-        width: 500, height: 500, borderRadius: "50%",
+        width: 576, height: 576, borderRadius: "50%",
         backgroundColor: colorHex, opacity: 0.15,
       }} />
 
@@ -364,7 +362,7 @@ const ReviewSection: React.FC<{
       }}>
         <Img
           src={staticFile(`sprites/${obj.spritePath}`)}
-          style={{ width: 440, height: 440, objectFit: "contain" }}
+          style={{ width: 506, height: 506, objectFit: "contain" }}
         />
       </div>
 
@@ -499,6 +497,28 @@ export const ColorLearnLong: React.FC<ColorLearnLongProps> = ({
                 {colorName}
               </span>
             </div>
+            {/* Animated objects orbiting the circle */}
+            {objects.map((obj, i) => {
+              const angle = (i * 120 + fSec * 25) * (Math.PI / 180);
+              const rx = 370, ry = 200;
+              const cx = 960 + Math.cos(angle) * rx;
+              const cy = 380 + Math.sin(angle) * ry;
+              const objSway = Math.sin(fSec * 2.2 + i * 1.4) * 12;
+              const objAppear = Math.min(Math.max((fSec - 2 - i * 0.5) * 0.8, 0), 1);
+              return (
+                <div key={i} style={{
+                  position: "absolute",
+                  left: cx - 90, top: cy - 90 + objSway,
+                  opacity: objAppear,
+                  transform: `scale(${introScale * 0.85})`,
+                }}>
+                  <Img
+                    src={staticFile(`sprites/${obj.spritePath}`)}
+                    style={{ width: 210, height: 210, objectFit: "contain" }}
+                  />
+                </div>
+              );
+            })}
           </AbsoluteFill>
         )}
 
@@ -565,7 +585,7 @@ export const ColorLearnLong: React.FC<ColorLearnLongProps> = ({
                 }}>
                   <Img
                     src={staticFile(`sprites/${obj.spritePath}`)}
-                    style={{ width: 360, height: 360, objectFit: "contain" }}
+                    style={{ width: 414, height: 414, objectFit: "contain" }}
                   />
                   <div style={{
                     backgroundColor: colorHex, borderRadius: 12, padding: "8px 24px",

@@ -25,6 +25,7 @@ DATA_PATH        = ROOT / "config" / "color_learn_data.yaml"
 QUEUE_DIR        = ROOT / "output" / "queue"
 QUEUE_AR_DIR     = ROOT / "output" / "queue_ar"
 QUEUE_ID_DIR     = ROOT / "output" / "queue_id"
+UPLOADED_DIR     = ROOT / "uploaded"
 REMOTION         = ROOT / "remotion"
 TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 TOGETHER_URL     = "https://api.together.xyz/v1/images/generations"
@@ -339,10 +340,16 @@ def render_video(color: dict, lang: str, force: bool = False, dry_run: bool = Fa
         dest_dir = QUEUE_DIR
     out_path = dest_dir / fname
 
-    if out_path.exists() and not force:
-        size_mb = out_path.stat().st_size / 1024 / 1024
-        print(f"  skip {fname} ({size_mb:.1f}MB)")
-        return True
+    if not force:
+        if out_path.exists():
+            size_mb = out_path.stat().st_size / 1024 / 1024
+            print(f"  skip {fname} (in queue, {size_mb:.1f}MB)")
+            return True
+        # Also skip if already published in uploaded/
+        existing = list(UPLOADED_DIR.glob(f"color_learn_{key}_{lang}_*.mp4"))
+        if existing:
+            print(f"  skip {fname} (already published: {existing[-1].name})")
+            return True
 
     # Pick music track
     color_idx   = [c["key"] for c in load_data()].index(key)
