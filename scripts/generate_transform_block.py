@@ -18,7 +18,7 @@ Usage:
   python3 scripts/generate_transform_block.py --video 1.1               # specific video
   python3 scripts/generate_transform_block.py --dry-run
 """
-import argparse, base64, json, shutil, subprocess, sys, time, yaml
+import argparse, base64, json, subprocess, sys, time, yaml
 from datetime import datetime
 from pathlib import Path
 
@@ -31,6 +31,23 @@ TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 TOGETHER_URL   = "https://api.together.xyz/v1/images/generations"
 TOGETHER_MODEL = "black-forest-labs/FLUX.1-schnell"
 DATE_STR = datetime.now().strftime("%Y%m%d")
+
+_ALL_TRACKS = [
+    "Carefree.mp3", "Crinoline Dreams.mp3", "Gymnopedie No 1.mp3",
+    "Happy Happy Game Show.mp3", "Heartwarming.mp3", "Hyperfun.mp3",
+    "Life of Riley.mp3", "Merry Go.mp3", "Monkeys Spinning Monkeys.mp3",
+    "Overworld.mp3", "Pinball Spring.mp3", "Pixelland.mp3",
+    "Quirky Dog.mp3", "Salty Ditty.mp3", "Sneaky Snitch.mp3",
+    "Wholesome.mp3", "Fluffing a Duck.mp3", "Walking Along.mp3",
+    "George Street Shuffle.mp3", "Circus of Freaks.mp3",
+]
+
+def alt_music(en_music: str, ep_idx: int, lang: str) -> str:
+    if lang == "en":
+        return en_music
+    offset = 7 if lang == "ar" else 14
+    pool = [t for t in _ALL_TRACKS if t != en_music]
+    return pool[(ep_idx + offset) % len(pool)]
 
 # All 20 videos across 5 blocks
 BLOCKS = {
@@ -137,44 +154,39 @@ def make_meta(block_key, vid_key, lang):
         }
 
 
-def process_video(block_key, vid_key, dry_run, regen_meta):
-    vid    = BLOCKS[block_key]["videos"][vid_key]
-    queues = {'en': QUEUE_EN, 'ar': QUEUE_AR, 'id': QUEUE_ID}
-    props  = {
-        "shapes": ["circle","star","square"],
-        "colors": [vid["accent"], "#FFFFFF", vid["accent"]],
-        "bgColor": vid["bg"], "bpm": vid["bpm"],
-        "showLabels": False, "musicFile": vid["music"],
-    }
-    out_mp4 = QUEUE_EN / f"transform_{vid_key}_{DATE_STR}.mp4"
+def process_video(block_key, vid_key, ep_idx, dry_run, regen_meta):
+    vid  = BLOCKS[block_key]["videos"][vid_key]
+    name = f"transform_{vid_key}_{DATE_STR}.mp4"
+    ok   = True
 
-    if not out_mp4.exists() and not dry_run and not regen_meta:
-        cmd = ["npx","remotion","render","ShapeDanceLong",
-               f"--props={json.dumps(props)}", f"--output={str(out_mp4)}"]
-        print(f"  Render: {out_mp4.name}")
-        r = subprocess.run(cmd, cwd=str(REMOTION), timeout=21600)
-        if r.returncode != 0:
-            print(f"  FAILED")
-            return False
+    for lang, queue in [("en", QUEUE_EN), ("ar", QUEUE_AR), ("id", QUEUE_ID)]:
+        out_mp4    = queue / name
+        lang_music = alt_music(vid["music"], ep_idx, lang)
+        props = {
+            "shapes": ["circle", "star", "square"],
+            "colors": [vid["accent"], "#FFFFFF", vid["accent"]],
+            "bgColor": vid["bg"], "bpm": vid["bpm"],
+            "showLabels": False, "musicFile": lang_music,
+        }
+        if not out_mp4.exists() and not dry_run and not regen_meta:
+            cmd = ["npx", "remotion", "render", "ShapeDanceLong",
+                   f"--props={json.dumps(props)}", f"--output={str(out_mp4)}"]
+            print(f"  Render ({lang}): {out_mp4.name}")
+            r = subprocess.run(cmd, cwd=str(REMOTION), timeout=21600)
+            if r.returncode != 0:
+                print(f"  FAILED ({lang})")
+                ok = False
+                continue
 
-    # Copy to AR and ID queues
-    if out_mp4.exists() and not dry_run:
-        for lg in ['ar','id']:
-            dest = queues[lg] / out_mp4.name
-            if not dest.exists():
-                shutil.copy2(str(out_mp4), str(dest))
-
-    # Meta for all 3 languages
-    for lg, q in queues.items():
-        mp = q / f"meta_{out_mp4.stem}.yaml"
+        mp = queue / f"meta_{Path(name).stem}.yaml"
         if not mp.exists() or regen_meta:
-            meta = make_meta(block_key, vid_key, lg)
+            meta = make_meta(block_key, vid_key, lang)
             if not dry_run:
                 with open(mp, 'w', encoding='utf-8') as f:
                     yaml.dump(meta, f, allow_unicode=True)
-            print(f"  Meta ({lg}): {mp.name}")
+            print(f"  Meta ({lang}): {mp.name}")
 
-    return True
+    return ok
 
 
 def main():
@@ -192,6 +204,8 @@ def main():
     else:
         block_keys = list(BLOCKS.keys())
 
+    # Build global ep_idx across all blocks/videos
+    all_vid_keys = [(bk, vk) for bk in BLOCKS for vk in BLOCKS[bk]["videos"]]
     for block_key in block_keys:
         block = BLOCKS[block_key]
         vid_keys = [args.video] if args.video else list(block["videos"].keys())
@@ -201,8 +215,9 @@ def main():
                 print(f"  Unknown video: {vid_key}")
                 continue
             vid = block["videos"][vid_key]
+            ep_idx = all_vid_keys.index((block_key, vid_key))
             print(f"\n[{vid_key}] {vid['name_en']}")
-            process_video(block_key, vid_key, args.dry_run, args.regen_meta)
+            process_video(block_key, vid_key, ep_idx, args.dry_run, args.regen_meta)
 
 
 if __name__ == '__main__':

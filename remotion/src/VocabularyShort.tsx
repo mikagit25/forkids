@@ -18,6 +18,7 @@ export interface VocabularyShortProps {
   audioFile: string;
   letterColor: string;
   bgColor: string;
+  musicFile?: string;
 }
 
 // Spring-based scale animation
@@ -32,6 +33,7 @@ export const VocabularyShort: React.FC<VocabularyShortProps> = ({
   audioFile,
   letterColor,
   bgColor,
+  musicFile,
 }) => {
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
@@ -96,6 +98,22 @@ export const VocabularyShort: React.FC<VocabularyShortProps> = ({
     ? Math.sin((bounceFrame / fps) * Math.PI * 4) * 12
     : 0;
 
+  // ── Continuous idle animations (apply at all times) ───────────────────────
+  const fSec = frame / fps;
+  const letterBreathe = 1 + Math.sin(fSec * 1.4) * 0.04;   // gentle scale pulse
+  const spriteFloat   = Math.sin(fSec * 1.8) * 18;          // up-down float
+  const spriteRock    = Math.sin(fSec * 2.1) * 4;            // slight rotation
+  const wordBreathe   = 1 + Math.sin(fSec * 2.0 + 1) * 0.03;
+
+  // Background floating orbs
+  const orbs = [
+    { x: 15, y: 10, r: 120, phase: 0 },
+    { x: 80, y: 25, r: 90,  phase: 1.5 },
+    { x: 10, y: 60, r: 100, phase: 2.8 },
+    { x: 75, y: 70, r: 80,  phase: 0.8 },
+    { x: 45, y: 88, r: 110, phase: 2.0 },
+  ];
+
   // Final fade-out (last 1.5s)
   const fadeOutOpacity = interpolate(
     frame,
@@ -109,6 +127,22 @@ export const VocabularyShort: React.FC<VocabularyShortProps> = ({
 
   return (
     <AbsoluteFill style={{ backgroundColor: bgColor, overflow: "hidden" }}>
+      {/* Background floating orbs — always in motion */}
+      {orbs.map((o, i) => (
+        <div key={i} style={{
+          position: "absolute",
+          left: `${o.x}%`, top: `${o.y + Math.sin(fSec * 0.7 + o.phase) * 4}%`,
+          width: o.r * 2, height: o.r * 2,
+          borderRadius: "50%",
+          backgroundColor: letterColor,
+          opacity: 0.06 + Math.sin(fSec * 0.9 + o.phase) * 0.02,
+          transform: `scale(${1 + Math.sin(fSec * 0.5 + o.phase) * 0.08})`,
+        }} />
+      ))}
+
+      {/* Background music (optional) */}
+      {musicFile && <Audio src={staticFile(`music/${musicFile}`)} volume={0.13} loop />}
+
       {/* Audio: voiceover plays 3× at t=1s, 19s, 37.5s */}
       <Sequence from={Math.round(fps * 1)}>
         <Audio src={staticFile(`audio/${audioFile}`)} />
@@ -130,7 +164,7 @@ export const VocabularyShort: React.FC<VocabularyShortProps> = ({
             right: 0,
             display: "flex",
             justifyContent: "center",
-            transform: `translateY(${letterY}px) scale(${letterPulseScale})`,
+            transform: `translateY(${letterY}px) scale(${letterPulseScale * letterBreathe})`,
           }}
         >
           <span
@@ -157,7 +191,7 @@ export const VocabularyShort: React.FC<VocabularyShortProps> = ({
             right: 0,
             display: "flex",
             justifyContent: "center",
-            transform: `translateX(${spriteX}px)`,
+            transform: `translateX(${spriteX}px) translateY(${spriteFloat}px) rotate(${spriteRock}deg)`,
           }}
         >
           {spritePath ? (
@@ -189,7 +223,7 @@ export const VocabularyShort: React.FC<VocabularyShortProps> = ({
             display: "flex",
             justifyContent: "center",
             opacity: wordOpacity,
-            transform: `scale(${wordScale}) translateY(${bounce}px)`,
+            transform: `scale(${wordScale * wordBreathe}) translateY(${bounce}px)`,
           }}
         >
           <span

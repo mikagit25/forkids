@@ -261,7 +261,7 @@ export const ColorLearn: React.FC<ColorLearnProps> = ({
           display: "flex",
           justifyContent: "center",
           opacity: nameOpacity,
-          transform: `scale(${nameScale})`,
+          transform: `scale(${nameScale * (1 + Math.abs(Math.sin(frame / fps * beatFreq * Math.PI)) * 0.07)})`,
         }}>
           <span style={{
             fontFamily: rtl

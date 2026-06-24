@@ -16,7 +16,7 @@ Usage:
   python3 scripts/generate_sensory_loop.py --episode 1   # single episode
   python3 scripts/generate_sensory_loop.py --dry-run
 """
-import argparse, json, shutil, subprocess, yaml
+import argparse, json, subprocess, yaml
 from datetime import datetime
 from pathlib import Path
 
@@ -26,6 +26,23 @@ QUEUE_EN = ROOT / "output" / "queue"
 QUEUE_AR = ROOT / "output" / "queue_ar"
 QUEUE_ID = ROOT / "output" / "queue_id"
 DATE_STR = datetime.now().strftime("%Y%m%d")
+
+_ALL_TRACKS = [
+    "Carefree.mp3", "Crinoline Dreams.mp3", "Gymnopedie No 1.mp3",
+    "Happy Happy Game Show.mp3", "Heartwarming.mp3", "Hyperfun.mp3",
+    "Life of Riley.mp3", "Merry Go.mp3", "Monkeys Spinning Monkeys.mp3",
+    "Overworld.mp3", "Pinball Spring.mp3", "Pixelland.mp3",
+    "Quirky Dog.mp3", "Salty Ditty.mp3", "Sneaky Snitch.mp3",
+    "Wholesome.mp3", "Fluffing a Duck.mp3", "Walking Along.mp3",
+    "George Street Shuffle.mp3", "Circus of Freaks.mp3",
+]
+
+def alt_music(en_music: str, ep_idx: int, lang: str) -> str:
+    if lang == "en":
+        return en_music
+    offset = 7 if lang == "ar" else 14
+    pool = [t for t in _ALL_TRACKS if t != en_music]
+    return pool[(ep_idx + offset) % len(pool)]
 
 EPISODES = {
     "1":  {
@@ -156,43 +173,40 @@ def make_meta(ep_num, lang):
         }
 
 
-def process_episode(ep_num, dry_run, regen_meta):
-    ep     = EPISODES[ep_num]
-    queues = {'en': QUEUE_EN, 'ar': QUEUE_AR, 'id': QUEUE_ID}
-    props  = {
-        "shapes": ["circle", "star", "square"],
-        "colors": [ep["accent"], "#FFFFFF", ep["accent"]],
-        "bgColor": ep["bg"], "bpm": ep["bpm"],
-        "showLabels": False, "musicFile": ep["music"],
-    }
-    slug    = ep['name_en'].lower().replace(' ', '_').replace('&', 'and')
-    out_mp4 = QUEUE_EN / f"sensory_{ep_num:0>2}_{slug}_{DATE_STR}.mp4"
+def process_episode(ep_num, ep_idx, dry_run, regen_meta):
+    ep   = EPISODES[ep_num]
+    slug = ep['name_en'].lower().replace(' ', '_').replace('&', 'and')
+    name = f"sensory_{ep_num:0>2}_{slug}_{DATE_STR}.mp4"
+    ok   = True
 
-    if not out_mp4.exists() and not dry_run and not regen_meta:
-        cmd = ["npx", "remotion", "render", "ShapeDanceLong",
-               f"--props={json.dumps(props)}", f"--output={str(out_mp4)}"]
-        print(f"  Render: {out_mp4.name}")
-        r = subprocess.run(cmd, cwd=str(REMOTION), timeout=21600)
-        if r.returncode != 0:
-            print("  FAILED")
-            return False
+    for lang, queue in [("en", QUEUE_EN), ("ar", QUEUE_AR), ("id", QUEUE_ID)]:
+        out_mp4    = queue / name
+        lang_music = alt_music(ep["music"], ep_idx, lang)
+        props = {
+            "shapes": ["circle", "star", "square"],
+            "colors": [ep["accent"], "#FFFFFF", ep["accent"]],
+            "bgColor": ep["bg"], "bpm": ep["bpm"],
+            "showLabels": False, "musicFile": lang_music,
+        }
+        if not out_mp4.exists() and not dry_run and not regen_meta:
+            cmd = ["npx", "remotion", "render", "ShapeDanceLong",
+                   f"--props={json.dumps(props)}", f"--output={str(out_mp4)}"]
+            print(f"  Render ({lang}): {out_mp4.name}")
+            r = subprocess.run(cmd, cwd=str(REMOTION), timeout=21600)
+            if r.returncode != 0:
+                print(f"  FAILED ({lang})")
+                ok = False
+                continue
 
-    if out_mp4.exists() and not dry_run:
-        for lg in ['ar', 'id']:
-            dest = queues[lg] / out_mp4.name
-            if not dest.exists():
-                shutil.copy2(str(out_mp4), str(dest))
-
-    for lg, q in queues.items():
-        mp = q / f"meta_{out_mp4.stem}.yaml"
+        mp = queue / f"meta_{Path(name).stem}.yaml"
         if not mp.exists() or regen_meta:
-            meta = make_meta(ep_num, lg)
+            meta = make_meta(ep_num, lang)
             if not dry_run:
                 with open(mp, 'w', encoding='utf-8') as f:
                     yaml.dump(meta, f, allow_unicode=True)
-            print(f"  Meta ({lg}): {mp.name}")
+            print(f"  Meta ({lang}): {mp.name}")
 
-    return True
+    return ok
 
 
 def main():
@@ -215,11 +229,13 @@ def main():
 
     print(f"=== Sensory Loop — {len(episodes)} episodes ===")
 
+    ep_keys = list(EPISODES.keys())
     done = 0
     for ep_num in episodes:
         ep = EPISODES[ep_num]
+        ep_idx = ep_keys.index(ep_num)
         print(f"\n[Episode {ep_num}] {ep['name_en']}")
-        if process_episode(ep_num, args.dry_run, args.regen_meta):
+        if process_episode(ep_num, ep_idx, args.dry_run, args.regen_meta):
             done += 1
 
     print(f"\n=== Done: {done}/{len(episodes)} ===")

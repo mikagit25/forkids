@@ -55,53 +55,82 @@ CL_ID=$(count_mp4 "output/queue_id/color_learn_*.mp4" "uploaded/color_learn_*_id
 SL_EN=$(count_mp4 "output/queue/shape_learn_*.mp4" "uploaded/shape_learn_*_en_*.mp4")
 SL_AR=$(count_mp4 "output/queue_ar/shape_learn_*.mp4" "uploaded/shape_learn_*_ar_*.mp4")
 SL_ID=$(count_mp4 "output/queue_id/shape_learn_*.mp4" "uploaded/shape_learn_*_id_*.mp4")
+CD_EN=$(count_mp4 "output/queue/character_dialogue_*.mp4" "uploaded/character_dialogue_*_en_*.mp4")
+CD_AR=$(count_mp4 "output/queue_ar/character_dialogue_*.mp4" "uploaded/character_dialogue_*_ar_*.mp4")
+CD_ID=$(count_mp4 "output/queue_id/character_dialogue_*.mp4" "uploaded/character_dialogue_*_id_*.mp4")
+SM_EN=$(count_mp4 "output/queue/sm*.mp4")
+SM_AR=$(count_mp4 "output/queue_ar/sm*.mp4")
+SM_ID=$(count_mp4 "output/queue_id/sm*.mp4")
+SR_EN=$(count_mp4 "output/queue/shape_roundelay_*.mp4")
+SR_AR=$(count_mp4 "output/queue_ar/shape_roundelay_*.mp4")
+SR_ID=$(count_mp4 "output/queue_id/shape_roundelay_*.mp4")
+OCV_EN=$(count_mp4 "output/queue/ocd_vehicles_*.mp4")
+NC_EN=$(count_mp4 "output/queue/nature_calm_*.mp4")
+TB_EN=$(count_mp4 "output/queue/transform_*.mp4")
+FG_EN=$(count_mp4 "output/queue/fruits_group_*.mp4")
+F2_EN=$(count_mp4 "output/queue/fruits2s_*.mp4")
 
 NL_TOTAL=$((NL_EN + NL_AR + NL_ID))
 CL_TOTAL=$((CL_EN + CL_AR + CL_ID))
 SL_TOTAL=$((SL_EN + SL_AR + SL_ID))
-GRAND_TOTAL=$((NL_TOTAL + CL_TOTAL + SL_TOTAL))
-EXPECTED=81   # 30 number (10×3) + 27 color (9×3) + 24 shape (8×3)
+CD_TOTAL=$((CD_EN + CD_AR + CD_ID))
+SM_TOTAL=$((SM_EN + SM_AR + SM_ID))
+SR_TOTAL=$((SR_EN + SR_AR + SR_ID))
+NEW_TOTAL=$((OCV_EN + NC_EN + TB_EN + FG_EN + F2_EN))
+GRAND_TOTAL=$((NL_TOTAL + CL_TOTAL + SL_TOTAL + CD_TOTAL + SM_TOTAL + SR_TOTAL + NEW_TOTAL))
+# 30 number + 27 color + 24 shape + 12 character_dialogue + 24 special_mechanics
+# + 24 shape_roundelay + new series (tracked partially above)
+EXPECTED=141  # first 6 fully-tracked series
 
-log "Progress: number=$NL_TOTAL/30  color=$CL_TOTAL/27  shape=$SL_TOTAL/24  (total $GRAND_TOTAL/$EXPECTED)"
-log "  EN: NL=$NL_EN CL=$CL_EN SL=$SL_EN  |  AR: NL=$NL_AR CL=$CL_AR SL=$SL_AR  |  ID: NL=$NL_ID CL=$CL_ID SL=$SL_ID"
+log "Progress: NL=$NL_TOTAL/30 CL=$CL_TOTAL/27 SL=$SL_TOTAL/24 CD=$CD_TOTAL/12 SM=$SM_TOTAL/24 SR=$SR_TOTAL/24 (total $GRAND_TOTAL/$EXPECTED)"
+log "  New: ocd=${OCV_EN} nature=${NC_EN} transform=${TB_EN} fruits_grp=${FG_EN} fruits_2s=${F2_EN}"
 
 # ── Check if already fully done ───────────────────────────────────────────
 if [[ $GRAND_TOTAL -ge $EXPECTED ]]; then
-    log "All $EXPECTED renders complete. Nothing to do."
+    log "All tracked $EXPECTED renders complete. Nothing to do."
     exit 0
 fi
 
 # ── Check if runner is alive ──────────────────────────────────────────────
 RUNNER_PID=$(pgrep -f "$RUNNER_SCRIPT" 2>/dev/null | head -1 || true)
-NL_PID=$(pgrep -f "generate_number_learn_long.py" 2>/dev/null | head -1 || true)
-CL_PID=$(pgrep -f "generate_color_learn_long.py" 2>/dev/null | head -1 || true)
-SL_PID=$(pgrep -f "generate_shape_learn.py" 2>/dev/null | head -1 || true)
+ANY_RENDER=$(pgrep -f "remotion render" 2>/dev/null | head -1 || true)
 
 ANY_RUNNING=""
 [[ -n "$RUNNER_PID" ]] && ANY_RUNNING="runner(PID $RUNNER_PID)"
-[[ -n "$NL_PID" ]]     && ANY_RUNNING="number_learn(PID $NL_PID)"
-[[ -n "$CL_PID" ]]     && ANY_RUNNING="color_learn(PID $CL_PID)"
-[[ -n "$SL_PID" ]]     && ANY_RUNNING="shape_learn(PID $SL_PID)"
+[[ -n "$ANY_RENDER" ]] && ANY_RUNNING="remotion_render(PID $ANY_RENDER)"
 
 if [[ -n "$ANY_RUNNING" ]]; then
     log "Pipeline is running: $ANY_RUNNING — OK."
     exit 0
 fi
 
+# ── Find first incomplete step to restart from ────────────────────────────
+# The orchestrator skips already-done steps, so starting from step 7 is always safe.
+# We optimize by finding the first step that still has work.
+FROM_STEP=7
+if [[ $CD_TOTAL -ge 12 ]]; then
+    FROM_STEP=16
+    [[ $SM_TOTAL -ge 24 ]] && FROM_STEP=20
+    [[ $SM_TOTAL -ge 24 && $SR_TOTAL -ge 24 ]] && FROM_STEP=21
+fi
+
 # ── Nothing running but renders incomplete → restart ──────────────────────
-log "ALERT: Pipeline stopped with $GRAND_TOTAL/$EXPECTED renders done. Restarting..."
+log "ALERT: Pipeline stopped with $GRAND_TOTAL/$EXPECTED renders done. Restarting from step $FROM_STEP..."
 
 tg "🔄 <b>Kids Channel — Render Watchdog</b>
-Pipeline остановился! Перезапускаю...
+Pipeline остановился! Перезапускаю с шага $FROM_STEP...
 
 📊 Прогресс:
-• numbers: ${NL_TOTAL}/30 (EN:${NL_EN} AR:${NL_AR} ID:${NL_ID})
-• colors:  ${CL_TOTAL}/27 (EN:${CL_EN} AR:${CL_AR} ID:${CL_ID})
-• shapes:  ${SL_TOTAL}/24 (EN:${SL_EN} AR:${SL_AR} ID:${SL_ID})
+• numbers: ${NL_TOTAL}/30
+• colors:  ${CL_TOTAL}/27
+• shapes:  ${SL_TOTAL}/24
+• dialogues: ${CD_TOTAL}/12
+• special_mechanics: ${SM_TOTAL}/24
+• shape_roundelay: ${SR_TOTAL}/24
 
 Итого: ${GRAND_TOTAL}/${EXPECTED}"
 
-nohup bash "$RUNNER_SCRIPT" >> "$LOG_RENDER" 2>&1 &
+nohup bash "$RUNNER_SCRIPT" --from "$FROM_STEP" >> "$LOG_RENDER" 2>&1 &
 NEW_PID=$!
 log "Restarted runner with PID $NEW_PID"
 

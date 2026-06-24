@@ -23,6 +23,11 @@ SCENE_ID    = "VocabularyShort"
 QUEUE_DIR   = ROOT / "output" / "queue"
 SPRITES     = ROOT / "assets" / "sprites_new"
 
+MUSIC_TRACKS = [
+    "Wholesome.mp3", "Carefree.mp3", "Heartwarming.mp3", "Gymnopedie No 1.mp3",
+    "Fluffing a Duck.mp3", "Crinoline Dreams.mp3", "Walking Along.mp3",
+]
+
 LETTERS = {
     "A": {"word": "APPLE",      "audio": "a__apple__a_is_for_apple.mp3",
           "sprite": "fruits_cartoon/apple.png",    "color": "#E53935", "bg": "#E8F5E9"},
@@ -114,6 +119,7 @@ def render_letter(letter: str, date_str: str, force: bool) -> bool:
     has_sprite    = "sprite" if sprite_exists else "shape "
     print(f"  [{letter}={data['word']:<10}] {has_sprite}", end="  ", flush=True)
 
+    letter_idx = list(LETTERS.keys()).index(letter)
     props = {
         "letter":      letter,
         "word":        data["word"],
@@ -121,6 +127,7 @@ def render_letter(letter: str, date_str: str, force: bool) -> bool:
         "audioFile":   data["audio"],
         "letterColor": data["color"],
         "bgColor":     data["bg"],
+        "musicFile":   MUSIC_TRACKS[letter_idx % len(MUSIC_TRACKS)],
     }
 
     cmd = [

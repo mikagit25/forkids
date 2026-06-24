@@ -23,7 +23,6 @@ Usage:
 import argparse
 import base64
 import json
-import shutil
 import subprocess
 import sys
 import time
@@ -41,6 +40,23 @@ TMP_DIR  = ROOT / "output" / "tmp_lullaby"
 TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 TOGETHER_URL      = "https://api.together.xyz/v1/images/generations"
 TOGETHER_MODEL    = "black-forest-labs/FLUX.1-schnell"
+
+_ALL_TRACKS = [
+    "Carefree.mp3", "Crinoline Dreams.mp3", "Gymnopedie No 1.mp3",
+    "Happy Happy Game Show.mp3", "Heartwarming.mp3", "Hyperfun.mp3",
+    "Life of Riley.mp3", "Merry Go.mp3", "Monkeys Spinning Monkeys.mp3",
+    "Overworld.mp3", "Pinball Spring.mp3", "Pixelland.mp3",
+    "Quirky Dog.mp3", "Salty Ditty.mp3", "Sneaky Snitch.mp3",
+    "Wholesome.mp3", "Fluffing a Duck.mp3", "Walking Along.mp3",
+    "George Street Shuffle.mp3", "Circus of Freaks.mp3",
+]
+
+def alt_music(en_music: str, ep_idx: int, lang: str) -> str:
+    if lang == "en":
+        return en_music
+    offset = 7 if lang == "ar" else 14
+    pool = [t for t in _ALL_TRACKS if t != en_music]
+    return pool[(ep_idx + offset) % len(pool)]
 
 DATE_STR = datetime.now().strftime("%Y%m%d")
 FPS      = 30
@@ -295,16 +311,16 @@ def generate_thumbnail(key: str, out_path: Path) -> bool:
         return False
 
 
-def render_loop(key: str, loop_mp4: Path, dry_run: bool) -> bool:
+def render_loop(key: str, loop_mp4: Path, lang_music: str, dry_run: bool) -> bool:
     """Render 5-min loop using LullabyLoop Remotion composition."""
     v = VIDEOS[key]
     props = {
-        "theme":      v["theme"],
-        "bgColorTop": v["bg_top"],
+        "theme":         v["theme"],
+        "bgColorTop":    v["bg_top"],
         "bgColorBottom": v["bg_bottom"],
-        "accentColor": v["accent"],
-        "musicFile":  v["music"],
-        "bpm":        v["bpm"],
+        "accentColor":   v["accent"],
+        "musicFile":     lang_music,
+        "bpm":           v["bpm"],
     }
     cmd = [
         "npx", "remotion", "render", "LullabyLoop",
@@ -367,58 +383,48 @@ def assemble_lullaby(key: str, loop_mp4: Path, out_mp4: Path, dry_run: bool) -> 
     return result.returncode == 0
 
 
-def process_key(key: str, dry_run: bool, regen_meta: bool):
-    v    = VIDEOS[key]
-    date = DATE_STR
+def process_key(key: str, ep_idx: int, dry_run: bool, regen_meta: bool):
+    v        = VIDEOS[key]
+    en_music = v["music"]
     TMP_DIR.mkdir(parents=True, exist_ok=True)
 
-    out_mp4  = QUEUE_EN / f"lullaby_{key}_{date}.mp4"
-    loop_mp4 = TMP_DIR / f"loop_{key}.mp4"
+    all_ok = True
+    for lang, queue in [("en", QUEUE_EN), ("ar", QUEUE_AR), ("id", QUEUE_ID)]:
+        out_mp4    = queue / f"lullaby_{key}_{DATE_STR}.mp4"
+        lang_music = alt_music(en_music, ep_idx, lang)
+        loop_mp4   = TMP_DIR / f"loop_{key}_{lang}.mp4"
 
-    if not regen_meta:
-        if out_mp4.exists():
-            print(f"  Already exists: {out_mp4.name}")
-        else:
-            # Step 1: render the 5-min loop
-            if not loop_mp4.exists():
-                ok = render_loop(key, loop_mp4, dry_run)
+        if not regen_meta:
+            if out_mp4.exists():
+                print(f"  Already exists ({lang}): {out_mp4.name}")
+            else:
+                if not loop_mp4.exists():
+                    ok = render_loop(key, loop_mp4, lang_music, dry_run)
+                    if not ok:
+                        print(f"  FAILED render loop: {key} ({lang})")
+                        all_ok = False
+                        continue
+
+                ok = assemble_lullaby(key, loop_mp4, out_mp4, dry_run)
                 if not ok:
-                    print(f"  FAILED render loop: {key}")
-                    return False
+                    print(f"  FAILED assemble: {key} ({lang})")
+                    all_ok = False
+                    continue
 
-            # Step 2: assemble into full video
-            ok = assemble_lullaby(key, loop_mp4, out_mp4, dry_run)
-            if not ok:
-                print(f"  FAILED assemble: {key}")
-                return False
+        if out_mp4.exists() or dry_run:
+            meta_path = queue / f"meta_{out_mp4.stem}.yaml"
+            if not meta_path.exists() or regen_meta:
+                meta = make_meta(key, lang)
+                if not dry_run:
+                    with open(meta_path, "w", encoding="utf-8") as f:
+                        yaml.dump(meta, f, allow_unicode=True, default_flow_style=False)
+                print(f"  Meta ({lang}): {meta_path.name}")
 
-    # Copy MP4 to AR and ID queues (no text → all channels)
-    if not dry_run and out_mp4.exists():
-        for q in [QUEUE_AR, QUEUE_ID]:
-            dest = q / out_mp4.name
-            if not dest.exists():
-                shutil.copy2(str(out_mp4), str(dest))
-                print(f"  Copied to {q.name}: {dest.name}")
+            thumb_path = queue / f"thumb_{out_mp4.stem}.png"
+            if not thumb_path.exists() and not dry_run:
+                generate_thumbnail(key, thumb_path)
 
-    # Write meta for each language
-    queues = {"en": QUEUE_EN, "ar": QUEUE_AR, "id": QUEUE_ID}
-    for lang, q in queues.items():
-        meta_path = q / f"meta_{out_mp4.stem}.yaml"
-        if meta_path.exists() and not regen_meta:
-            continue
-        meta = make_meta(key, lang)
-        if not dry_run:
-            with open(meta_path, "w", encoding="utf-8") as f:
-                yaml.dump(meta, f, allow_unicode=True, default_flow_style=False)
-        print(f"  Meta ({lang}): {meta_path.name}")
-
-    # Thumbnails
-    for lang, q in queues.items():
-        thumb_path = q / f"thumb_{out_mp4.stem}.png"
-        if not thumb_path.exists() and not dry_run:
-            generate_thumbnail(key, thumb_path)
-
-    return True
+    return all_ok
 
 
 def main():
@@ -437,10 +443,12 @@ def main():
             sys.exit(1)
 
     print(f"=== Lullaby Long Generator ===")
+    all_keys = list(VIDEOS.keys())
     for k in keys:
-        v = VIDEOS[k]
+        v      = VIDEOS[k]
+        ep_idx = all_keys.index(k)
         print(f"\n[{k}] {v['name_en']} ({v['hours']}h)")
-        process_key(k, args.dry_run, args.regen_meta)
+        process_key(k, ep_idx, args.dry_run, args.regen_meta)
 
 
 if __name__ == "__main__":

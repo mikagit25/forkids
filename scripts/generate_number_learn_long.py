@@ -37,9 +37,9 @@ STYLE_BASE = (
 )
 
 MUSIC_TRACKS = [
-    "Pinball Spring.mp3", "Happy Happy Game Show.mp3", "Carefree.mp3",
-    "Merry Go.mp3", "Wholesome.mp3", "Life of Riley.mp3",
-    "Overworld.mp3", "Quirky Dog.mp3", "Hyperfun.mp3", "Walking Along.mp3",
+    "Gymnopedie No 1.mp3", "Heartwarming.mp3", "Crinoline Dreams.mp3",
+    "Wholesome.mp3", "Carefree.mp3", "Walking Along.mp3",
+    "Fluffing a Duck.mp3", "George Street Shuffle.mp3", "Life of Riley.mp3", "Merry Go.mp3",
 ]
 
 EN_TAGS_BASE = [
@@ -272,10 +272,10 @@ def make_meta(num: dict, lang: str, out_path: Path):
     print(f"    meta → {meta_path.name}")
 
 
-def generate_thumbnail(num: dict, lang: str, out_path: Path) -> bool:
+def generate_thumbnail(num: dict, lang: str, out_path: Path, force: bool = False) -> bool:
     """Generate AI thumbnail via Together.ai and save as thumb_{stem}.png."""
     thumb_path = out_path.parent / f"thumb_{out_path.stem}.png"
-    if thumb_path.exists():
+    if thumb_path.exists() and not force:
         print(f"    thumb exists: {thumb_path.name}")
         return True
     if not TOGETHER_KEY_FILE.exists():
@@ -395,7 +395,7 @@ def render_video(num: dict, lang: str, force: bool, dry_run: bool) -> bool:
         print(f"    ✓ {fname} ({size_mb:.1f}MB)")
         make_meta(num, lang, out_path)
         time.sleep(2)
-        generate_thumbnail(num, lang, out_path)
+        generate_thumbnail(num, lang, out_path, force=force)
         return True
     else:
         print(f"    ✗ FAILED: {result.stderr[-300:]}")

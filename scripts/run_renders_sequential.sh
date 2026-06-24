@@ -17,6 +17,24 @@
 # 11  | thumbnails EN      | generate_ai_thumbs.py --queue en    | EN       | все
 # 12  | thumbnails AR      | generate_ai_thumbs.py --queue ar    | AR       | все
 # 13  | thumbnails ID      | generate_ai_thumbs.py --queue id    | ID       | все
+# 14  | number_learn v2    | generate_number_learn_long.py --force | EN+AR+ID | 30 (новый алгоритм: муз., спрайты)
+# 15  | thumbnails v2      | generate_ai_thumbs.py (EN+AR+ID)   | все      | новые превью для v2
+# 16  | special_mechanics  | generate_special_mechanics.py       | EN+AR+ID | 8×3=24 (Hide&Seek/Shadows/Bubbles/Mirror/...)
+# 17  | emotions_ocean     | generate_emotions_ocean.py          | EN+AR+ID | 25×3=75 (Emotions/Ocean/Transport/Professions)
+# 18  | wiggle_party       | generate_wiggle_party.py            | EN+AR+ID | 5×3=15
+# 19  | thumbnails final   | generate_ai_thumbs.py (EN+AR+ID)   | все      | финальный sweep
+# 20  | shape_roundelay    | generate_shape_roundelay.py         | EN+AR+ID | 8×3=24
+# 21  | ocd_vehicles       | generate_ocd_vehicles.py            | EN+AR+ID | 6×3=18
+# 22  | construction_music | generate_construction_music.py      | EN+AR+ID | 6×3=18
+# 23  | nature_calm        | generate_nature_calm.py             | EN+AR+ID | 6×3=18
+# 24  | satisfying_3fmt    | generate_satisfying_3fmt.py         | EN+AR+ID | 8×3=24
+# 25  | sensory_loop       | generate_sensory_loop.py            | EN+AR+ID | 14×3=42
+# 26  | transform_block    | generate_transform_block.py         | EN+AR+ID | 20×3=60
+# 27  | stars_bubbles      | generate_stars_bubbles.py           | EN+AR+ID | 1×3=3
+# 28  | dance_fruits_group | generate_dance_fruits_group.py      | EN+AR+ID | 8×3=24
+# 29  | dance_fruits_2stage| generate_dance_fruits_2stage.py     | EN+AR+ID | 14×3=42
+# 30  | dance_pet          | generate_dance_pet.py               | EN+AR+ID | 10×2×3=60
+# 31  | thumbnails final2  | generate_ai_thumbs.py (EN+AR+ID)   | все      | финальный sweep
 #
 # Шортсы — отдельно, после завершения всех длинных видео.
 #
@@ -28,6 +46,15 @@
 
 set -e
 cd /opt/kids_channel
+
+# ── PAUSE FLAG: AR videos with on-screen text ─────────────────────────────────
+# Set to 1 to skip generating AR versions of text-heavy content (color_learn,
+# number_learn, character_dialogue, nursery_ar) until Arabic text is reviewed
+# and corrected by a native speaker.
+# Affects steps: 1 (number_learn AR), 2 (color_learn AR), 7 (character_dialogue AR), 9 (nursery_ar)
+# Safe to keep: shape_learn AR, lullaby AR, dance AR (no on-screen text)
+PAUSE_AR_TEXT=1
+# ─────────────────────────────────────────────────────────────────────────────
 
 WAIT_PID=""
 FROM_STEP=1
@@ -74,6 +101,8 @@ if [[ $FROM_STEP -le 1 ]]; then
     NL_EN=$(count_done "number_learn" "en")
     NL_AR=$(count_done "number_learn" "ar")
     NL_ID=$(count_done "number_learn" "id")
+    # PAUSE_AR_TEXT: count AR as "done" so script skips AR generation
+    if [[ $PAUSE_AR_TEXT -eq 1 ]]; then NL_AR=10; fi
     NL=$((NL_EN + NL_AR + NL_ID))
     if [[ $NL -ge 30 ]]; then
         skip 1 "number_learn ($NL/30: EN=$NL_EN AR=$NL_AR ID=$NL_ID)"
@@ -99,6 +128,8 @@ if [[ $FROM_STEP -le 2 ]]; then
     CL_EN=$(count_done "color_learn" "en")
     CL_AR=$(count_done "color_learn" "ar")
     CL_ID=$(count_done "color_learn" "id")
+    # PAUSE_AR_TEXT: count AR as "done" so script skips AR generation
+    if [[ $PAUSE_AR_TEXT -eq 1 ]]; then CL_AR=9; fi
     CL=$((CL_EN + CL_AR + CL_ID))
     if [[ $CL -ge 27 ]]; then
         skip 2 "color_learn ($CL/27: EN=$CL_EN AR=$CL_AR ID=$CL_ID)"
@@ -174,7 +205,12 @@ fi
 
 # ── Step 7: character_dialogue (4 эпизода × 3 языка = 12 видео) ──────────────
 if [[ $FROM_STEP -le 7 ]]; then
-    CD=$(ls output/queue/character_dialogue_*.mp4 output/queue_ar/character_dialogue_*.mp4 output/queue_id/character_dialogue_*.mp4 2>/dev/null | wc -l)
+    CD_EN=$(ls output/queue/character_dialogue_*.mp4 2>/dev/null | wc -l)
+    CD_AR=$(ls output/queue_ar/character_dialogue_*.mp4 2>/dev/null | wc -l)
+    CD_ID=$(ls output/queue_id/character_dialogue_*.mp4 2>/dev/null | wc -l)
+    # PAUSE_AR_TEXT: count AR as "done" so script skips AR generation
+    if [[ $PAUSE_AR_TEXT -eq 1 ]]; then CD_AR=4; fi
+    CD=$((CD_EN + CD_AR + CD_ID))
     if [[ $CD -ge 12 ]]; then
         skip 7 "character_dialogue ($CD/12 MP4s exist)"
     else
@@ -198,6 +234,10 @@ fi
 
 # ── Step 9: nursery_ar (3 песни → AR queue) ───────────────────────────────────
 if [[ $FROM_STEP -le 9 ]]; then
+    # PAUSE_AR_TEXT: skip entirely until Arabic text is reviewed
+    if [[ $PAUSE_AR_TEXT -eq 1 ]]; then
+        skip 9 "nursery_ar — PAUSE_AR_TEXT=1 (AR text under review)"
+    else
     NAR=$(ls output/queue_ar/nursery_*.mp4 2>/dev/null | wc -l)
     if [[ $NAR -ge 3 ]]; then
         skip 9 "nursery_ar ($NAR/3 MP4s exist)"
@@ -208,6 +248,7 @@ if [[ $FROM_STEP -le 9 ]]; then
         done
         log "[9/13] nursery_ar done."
     fi
+    fi  # end PAUSE_AR_TEXT check
 fi
 
 # ── Step 10: nursery_id (6 песен → ID queue) ──────────────────────────────────
@@ -226,21 +267,228 @@ fi
 
 # ── Step 11-13: Thumbnails для всех очередей ──────────────────────────────────
 if [[ $FROM_STEP -le 11 ]]; then
-    log "[11/13] thumbnails EN..."
+    log "[11/15] thumbnails EN..."
     python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
-    log "[11/13] thumbnails EN done."
+    log "[11/15] thumbnails EN done."
 fi
 
 if [[ $FROM_STEP -le 12 ]]; then
-    log "[12/13] thumbnails AR..."
+    log "[12/15] thumbnails AR..."
     python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
-    log "[12/13] thumbnails AR done."
+    log "[12/15] thumbnails AR done."
 fi
 
 if [[ $FROM_STEP -le 13 ]]; then
-    log "[13/13] thumbnails ID..."
+    log "[13/15] thumbnails ID..."
     python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
-    log "[13/13] thumbnails ID done."
+    log "[13/15] thumbnails ID done."
+fi
+
+# ── Step 14: number_learn RE-RENDER (обновлённый алгоритм: новые спрайты, новая музыка) ──
+# Перегенерирует все 30 number_learn видео поверх старых → публикуются как новые видео.
+if [[ $FROM_STEP -le 14 ]]; then
+    NL_RE=$(ls output/queue/number_learn_*.mp4 output/queue_ar/number_learn_*.mp4 output/queue_id/number_learn_*.mp4 2>/dev/null | wc -l)
+    log "[14/15] number_learn RE-RENDER (updated algorithm) — $NL_RE old files will be replaced..."
+    python3 -u scripts/generate_number_learn_long.py --force >> logs/number_learn_v2.log 2>&1
+    log "[14/15] number_learn RE-RENDER done."
+fi
+
+# ── Step 15: thumbnails для переренденных number_learn ──────────────────────────
+if [[ $FROM_STEP -le 15 ]]; then
+    log "[15/15] thumbnails for re-rendered number_learn (EN+AR+ID)..."
+    python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
+    log "[15/15] thumbnails done."
+fi
+
+# ── Step 16: special_mechanics (8 эпизодов × 3 канала = 24 видео) ─────────────
+if [[ $FROM_STEP -le 16 ]]; then
+    SM=$(ls output/queue/sm*.mp4 output/queue_ar/sm*.mp4 output/queue_id/sm*.mp4 2>/dev/null | wc -l)
+    if [[ $SM -ge 24 ]]; then
+        skip 16 "special_mechanics ($SM/24 MP4s exist)"
+    else
+        log "[16/19] special_mechanics — $SM/24 done..."
+        python3 -u scripts/generate_special_mechanics.py --videos all >> logs/special_mechanics.log 2>&1
+        log "[16/19] special_mechanics done."
+    fi
+fi
+
+# ── Step 17: emotions_ocean (25 эпизодов × 3 канала = 75 видео) ───────────────
+if [[ $FROM_STEP -le 17 ]]; then
+    EO=$(ls output/queue/eo_*.mp4 output/queue_ar/eo_*.mp4 output/queue_id/eo_*.mp4 2>/dev/null | wc -l)
+    if [[ $EO -ge 75 ]]; then
+        skip 17 "emotions_ocean ($EO/75 MP4s exist)"
+    else
+        log "[17/19] emotions_ocean — $EO/75 done..."
+        python3 -u scripts/generate_emotions_ocean.py --videos all >> logs/emotions_ocean.log 2>&1
+        log "[17/19] emotions_ocean done."
+    fi
+fi
+
+# ── Step 18: wiggle_party (5 тем × 3 канала = 15 видео, text-free) ────────────
+if [[ $FROM_STEP -le 18 ]]; then
+    WP=$(ls output/queue/wiggle_*.mp4 2>/dev/null | wc -l)
+    if [[ $WP -ge 5 ]]; then
+        skip 18 "wiggle_party ($WP/5 EN MP4s exist)"
+    else
+        log "[18/19] wiggle_party — $WP/5 done (text-free, 1 render → 3 channels)..."
+        python3 -u scripts/generate_wiggle_party.py --themes all >> logs/wiggle_party.log 2>&1
+        log "[18/19] wiggle_party done."
+    fi
+fi
+
+# ── Step 19: thumbnails финальные ─────────────────────────────────────────────
+if [[ $FROM_STEP -le 19 ]]; then
+    log "[19/19] final thumbnails sweep (EN+AR+ID)..."
+    python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
+    log "[19/19] final thumbnails done."
+fi
+
+# ── Step 20: shape_roundelay (8 эпизодов × 3 канала = 24 видео) ──────────────
+if [[ $FROM_STEP -le 20 ]]; then
+    SR=$(ls output/queue/shape_roundelay_*.mp4 output/queue_ar/shape_roundelay_*.mp4 output/queue_id/shape_roundelay_*.mp4 2>/dev/null | wc -l)
+    if [[ $SR -ge 24 ]]; then
+        skip 20 "shape_roundelay ($SR/24 MP4s exist)"
+    else
+        log "[20/31] shape_roundelay — $SR/24 done..."
+        python3 -u scripts/generate_shape_roundelay.py >> logs/shape_roundelay.log 2>&1
+        log "[20/31] shape_roundelay done."
+    fi
+fi
+
+# ── Step 21: ocd_vehicles (6 эпизодов × 3 канала = 18 видео) ─────────────────
+if [[ $FROM_STEP -le 21 ]]; then
+    OCV=$(ls output/queue/ocd_vehicles_*.mp4 output/queue_ar/ocd_vehicles_*.mp4 output/queue_id/ocd_vehicles_*.mp4 2>/dev/null | wc -l)
+    if [[ $OCV -ge 18 ]]; then
+        skip 21 "ocd_vehicles ($OCV/18 MP4s exist)"
+    else
+        log "[21/31] ocd_vehicles — $OCV/18 done..."
+        python3 -u scripts/generate_ocd_vehicles.py >> logs/ocd_vehicles.log 2>&1
+        log "[21/31] ocd_vehicles done."
+    fi
+fi
+
+# ── Step 22: construction_music (6 эпизодов × 3 канала = 18 видео) ───────────
+if [[ $FROM_STEP -le 22 ]]; then
+    CM=$(ls output/queue/construction_music_*.mp4 output/queue_ar/construction_music_*.mp4 output/queue_id/construction_music_*.mp4 2>/dev/null | wc -l)
+    if [[ $CM -ge 18 ]]; then
+        skip 22 "construction_music ($CM/18 MP4s exist)"
+    else
+        log "[22/31] construction_music — $CM/18 done..."
+        python3 -u scripts/generate_construction_music.py >> logs/construction_music.log 2>&1
+        log "[22/31] construction_music done."
+    fi
+fi
+
+# ── Step 23: nature_calm (6 эпизодов × 3 канала = 18 видео) ─────────────────
+if [[ $FROM_STEP -le 23 ]]; then
+    NC=$(ls output/queue/nature_calm_*.mp4 output/queue_ar/nature_calm_*.mp4 output/queue_id/nature_calm_*.mp4 2>/dev/null | wc -l)
+    if [[ $NC -ge 18 ]]; then
+        skip 23 "nature_calm ($NC/18 MP4s exist)"
+    else
+        log "[23/31] nature_calm — $NC/18 done..."
+        python3 -u scripts/generate_nature_calm.py >> logs/nature_calm.log 2>&1
+        log "[23/31] nature_calm done."
+    fi
+fi
+
+# ── Step 24: satisfying_3fmt (8 эпизодов × 3 канала = 24 видео) ──────────────
+if [[ $FROM_STEP -le 24 ]]; then
+    SF=$(ls output/queue/satisfying_*.mp4 output/queue_ar/satisfying_*.mp4 output/queue_id/satisfying_*.mp4 2>/dev/null | wc -l)
+    if [[ $SF -ge 24 ]]; then
+        skip 24 "satisfying_3fmt ($SF/24 MP4s exist)"
+    else
+        log "[24/31] satisfying_3fmt — $SF/24 done..."
+        python3 -u scripts/generate_satisfying_3fmt.py >> logs/satisfying_3fmt.log 2>&1
+        log "[24/31] satisfying_3fmt done."
+    fi
+fi
+
+# ── Step 25: sensory_loop (14 эпизодов × 3 канала = 42 видео) ────────────────
+if [[ $FROM_STEP -le 25 ]]; then
+    SL=$(ls output/queue/sensory_*.mp4 output/queue_ar/sensory_*.mp4 output/queue_id/sensory_*.mp4 2>/dev/null | wc -l)
+    if [[ $SL -ge 42 ]]; then
+        skip 25 "sensory_loop ($SL/42 MP4s exist)"
+    else
+        log "[25/31] sensory_loop — $SL/42 done..."
+        python3 -u scripts/generate_sensory_loop.py >> logs/sensory_loop.log 2>&1
+        log "[25/31] sensory_loop done."
+    fi
+fi
+
+# ── Step 26: transform_block (20 видео × 3 канала = 60 видео) ─────────────────
+if [[ $FROM_STEP -le 26 ]]; then
+    TB=$(ls output/queue/transform_*.mp4 output/queue_ar/transform_*.mp4 output/queue_id/transform_*.mp4 2>/dev/null | wc -l)
+    if [[ $TB -ge 60 ]]; then
+        skip 26 "transform_block ($TB/60 MP4s exist)"
+    else
+        log "[26/31] transform_block — $TB/60 done..."
+        python3 -u scripts/generate_transform_block.py >> logs/transform_block.log 2>&1
+        log "[26/31] transform_block done."
+    fi
+fi
+
+# ── Step 27: stars_bubbles (1 видео × 3 канала = 3 видео) ─────────────────────
+if [[ $FROM_STEP -le 27 ]]; then
+    SB=$(ls output/queue/stars_bubbles_*.mp4 output/queue_ar/stars_bubbles_*.mp4 output/queue_id/stars_bubbles_*.mp4 2>/dev/null | wc -l)
+    if [[ $SB -ge 3 ]]; then
+        skip 27 "stars_bubbles ($SB/3 MP4s exist)"
+    else
+        log "[27/31] stars_bubbles — $SB/3 done..."
+        python3 -u scripts/generate_stars_bubbles.py >> logs/stars_bubbles.log 2>&1
+        log "[27/31] stars_bubbles done."
+    fi
+fi
+
+# ── Step 28: dance_fruits_group (8 видео × 3 канала = 24 видео) ──────────────
+if [[ $FROM_STEP -le 28 ]]; then
+    FG=$(ls output/queue/fruits_group_*.mp4 output/queue_ar/fruits_group_*.mp4 output/queue_id/fruits_group_*.mp4 2>/dev/null | wc -l)
+    if [[ $FG -ge 24 ]]; then
+        skip 28 "dance_fruits_group ($FG/24 MP4s exist)"
+    else
+        log "[28/31] dance_fruits_group — $FG/24 done..."
+        python3 -u scripts/generate_dance_fruits_group.py --videos all >> logs/dance_fruits_group.log 2>&1
+        log "[28/31] dance_fruits_group done."
+    fi
+fi
+
+# ── Step 29: dance_fruits_2stage (14 видео × 3 канала = 42 видео) ─────────────
+if [[ $FROM_STEP -le 29 ]]; then
+    F2=$(ls output/queue/fruits2s_*.mp4 output/queue_ar/fruits2s_*.mp4 output/queue_id/fruits2s_*.mp4 2>/dev/null | wc -l)
+    if [[ $F2 -ge 42 ]]; then
+        skip 29 "dance_fruits_2stage ($F2/42 MP4s exist)"
+    else
+        log "[29/31] dance_fruits_2stage — $F2/42 done..."
+        python3 -u scripts/generate_dance_fruits_2stage.py --videos all >> logs/dance_fruits_2stage.log 2>&1
+        log "[29/31] dance_fruits_2stage done."
+    fi
+fi
+
+# ── Step 30: dance_pet (10 зверей × 2 вида × 3 канала = 60 видео) ────────────
+if [[ $FROM_STEP -le 30 ]]; then
+    DP=$(ls output/queue/pet_*.mp4 output/queue_ar/pet_*.mp4 output/queue_id/pet_*.mp4 2>/dev/null | wc -l)
+    if [[ $DP -ge 60 ]]; then
+        skip 30 "dance_pet ($DP/60 MP4s exist)"
+    else
+        log "[30/31] dance_pet — $DP/60 done..."
+        for animal in cat dog rabbit fish turtle parrot hamster guinea_pig duck kitten; do
+            python3 -u scripts/generate_dance_pet.py --animal "$animal" --type A >> logs/dance_pet.log 2>&1
+            python3 -u scripts/generate_dance_pet.py --animal "$animal" --type B >> logs/dance_pet.log 2>&1
+        done
+        log "[30/31] dance_pet done."
+    fi
+fi
+
+# ── Step 31: финальные thumbnails (полный sweep) ──────────────────────────────
+if [[ $FROM_STEP -le 31 ]]; then
+    log "[31/31] final thumbnails sweep (EN+AR+ID)..."
+    python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
+    log "[31/31] final thumbnails done."
 fi
 
 # ── Итог ──────────────────────────────────────────────────────────────────────

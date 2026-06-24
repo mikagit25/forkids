@@ -50,6 +50,7 @@ export interface SpriteMotionBlock {
   orbitCenterY?: number;
   bobAmplitude?: number;
   bgColorOverride?: string;  // optional per-block background tint
+  wobble?: boolean;          // PIP/BWW outline wobble for this block
 }
 
 export interface DanceSpriteLongProps {
@@ -62,6 +63,7 @@ export interface DanceSpriteLongProps {
   volume?: number;
   bgEffect?: "bubbles" | "sparkles" | "none"; // default "bubbles"
   nightMode?: boolean;
+  wobble?: boolean;            // global PIP/BWW wobble on all sprites (can override per block)
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -120,6 +122,7 @@ function computeSpriteTransform(
   fSec: number,
   width: number,
   height: number,
+  globalWobble: boolean,
 ): SpriteTransform {
   const t       = fSec - block.startSec;
   const blockDur = block.endSec - block.startSec;
@@ -236,9 +239,22 @@ function computeSpriteTransform(
     }
     case "NONE":
     default:
-      cx = baseX + Math.sin(t * 0.4 + sprite.seed) * 5;
-      cy = baseY + Math.sin(t * 0.32 + sprite.seed * 1.4) * 4;
+      // Gentle idle float — never fully static
+      cx = baseX + Math.sin(t * 0.55 + sprite.seed) * 18;
+      cy = baseY + Math.sin(t * 0.42 + sprite.seed * 1.4) * 14;
+      scaleX = 1 + Math.sin(t * 0.9 + sprite.seed * 0.7) * 0.04;
+      scaleY = scaleX;
       break;
+  }
+
+  // PIP/BWW wobble — multi-frequency outline breathing, unique per sprite via seed
+  if (globalWobble || block.wobble) {
+    const s = sprite.seed;
+    scaleX *= 1 + Math.sin(t * (8.3 + s * 0.7)) * 0.038 + Math.sin(t * (5.1 + s * 0.4)) * 0.020;
+    scaleY *= 1 + Math.sin(t * (7.7 + s * 0.9)) * 0.038 + Math.cos(t * (4.2 + s * 1.1)) * 0.020;
+    rotation += Math.sin(t * (6.5 + s * 0.5)) * 1.4;
+    cx += Math.sin(t * (9.1 + s * 0.8)) * 2.8;
+    cy += Math.cos(t * (7.3 + s * 0.6)) * 2.8;
   }
 
   return { cx, cy, rotation, scaleX, scaleY, opacity };
@@ -256,6 +272,7 @@ export const DanceSpriteLong: React.FC<DanceSpriteLongProps> = ({
   volume = 0.2,
   bgEffect = "bubbles",
   nightMode = false,
+  wobble = false,
 }) => {
   const frame = useCurrentFrame();
   const { fps, durationInFrames, width, height } = useVideoConfig();
@@ -312,7 +329,7 @@ export const DanceSpriteLong: React.FC<DanceSpriteLongProps> = ({
         {/* Sprites */}
         {sprites.map((sprite, i) => {
           const { cx, cy, rotation, scaleX, scaleY, opacity } = computeSpriteTransform(
-            currentBlock, sprite, i, sprites.length, fSec, width, height,
+            currentBlock, sprite, i, sprites.length, fSec, width, height, wobble,
           );
           const size = sprite.size;
           const flipX = sprite.flipX ? -1 : 1;

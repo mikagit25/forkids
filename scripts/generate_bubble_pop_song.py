@@ -5,7 +5,7 @@ Scenario: config/scenarios/bubble_pop_song_*.txt
 Usage:
   python3 scripts/generate_bubble_pop_song.py --key KEY --lang both
 """
-import argparse, json, shutil, subprocess, sys, yaml
+import argparse, json, subprocess, sys, yaml
 from datetime import datetime
 from pathlib import Path
 
@@ -15,6 +15,23 @@ QUEUE_EN = ROOT / "output" / "queue"
 QUEUE_AR = ROOT / "output" / "queue_ar"
 QUEUE_ID = ROOT / "output" / "queue_id"
 DATE_STR = datetime.now().strftime("%Y%m%d")
+
+_ALL_TRACKS = [
+    "Carefree.mp3", "Crinoline Dreams.mp3", "Gymnopedie No 1.mp3",
+    "Happy Happy Game Show.mp3", "Heartwarming.mp3", "Hyperfun.mp3",
+    "Life of Riley.mp3", "Merry Go.mp3", "Monkeys Spinning Monkeys.mp3",
+    "Overworld.mp3", "Pinball Spring.mp3", "Pixelland.mp3",
+    "Quirky Dog.mp3", "Salty Ditty.mp3", "Sneaky Snitch.mp3",
+    "Wholesome.mp3", "Fluffing a Duck.mp3", "Walking Along.mp3",
+    "George Street Shuffle.mp3", "Circus of Freaks.mp3",
+]
+
+def alt_music(en_music: str, ep_idx: int, lang: str) -> str:
+    if lang == "en":
+        return en_music
+    offset = 7 if lang == "ar" else 14
+    pool = [t for t in _ALL_TRACKS if t != en_music]
+    return pool[(ep_idx + offset) % len(pool)]
 
 SCENARIO_DIR = ROOT / "config" / "scenarios"
 
@@ -83,11 +100,19 @@ def main():
                 print(f"  FAILED")
                 return
         if out_mp4.exists() and not args.dry_run:
+            en_music = props["musicFile"]
             for lg in langs:
                 if lg != 'en':
                     dest = queues[lg] / out_mp4.name
                     if not dest.exists():
-                        shutil.copy2(str(out_mp4), str(dest))
+                        lang_music  = alt_music(en_music, 0, lg)
+                        props_lang  = dict(props)
+                        props_lang["musicFile"] = lang_music
+                        cmd_lg = ["npx", "remotion", "render", "ShapeDanceLong",
+                                  f"--props={json.dumps(props_lang)}", f"--output={str(dest)}"]
+                        r = subprocess.run(cmd_lg, cwd=str(REMOTION), timeout=86400)
+                        if r.returncode != 0:
+                            print(f"  FAILED ({lg})")
         for lg in langs:
             q = queues[lg]
             mp4_name = out_mp4.name

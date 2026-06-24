@@ -34,6 +34,23 @@ TOGETHER_MODEL = "black-forest-labs/FLUX.1-schnell"
 
 DATE_STR = datetime.now().strftime("%Y%m%d")
 
+_ALL_TRACKS = [
+    "Carefree.mp3", "Crinoline Dreams.mp3", "Gymnopedie No 1.mp3",
+    "Happy Happy Game Show.mp3", "Heartwarming.mp3", "Hyperfun.mp3",
+    "Life of Riley.mp3", "Merry Go.mp3", "Monkeys Spinning Monkeys.mp3",
+    "Overworld.mp3", "Pinball Spring.mp3", "Pixelland.mp3",
+    "Quirky Dog.mp3", "Salty Ditty.mp3", "Sneaky Snitch.mp3",
+    "Wholesome.mp3", "Fluffing a Duck.mp3", "Walking Along.mp3",
+    "George Street Shuffle.mp3", "Circus of Freaks.mp3",
+]
+
+def alt_music(en_music: str, ep_idx: int, lang: str) -> str:
+    if lang == "en":
+        return en_music
+    offset = 7 if lang == "ar" else 14
+    pool = [t for t in _ALL_TRACKS if t != en_music]
+    return pool[(ep_idx + offset) % len(pool)]
+
 FPS       = 30
 LONG_DUR  = 1800   # 30 min
 SHORT_DUR = 55     # 55 sec
@@ -294,13 +311,33 @@ def gen_long(force: bool):
             )
             if generate_thumbnail(thumb_prompt, thumb_path):
                 print(f"    thumb → {thumb_path.name}")
-            # Copy to queue_id/ with Indonesian meta
-            dest_id = QUEUE_ID / fname
+            # Render separate video for ID with different music
+            dest_id  = QUEUE_ID / fname
+            id_music = alt_music(MUSIC_TRACKS[i % len(MUSIC_TRACKS)], i, "id")
             if not dest_id.exists():
-                import shutil as _sh
-                _sh.copy2(str(out_path), str(dest_id))
-            write_meta(meta_long_id(shape), dest_id)
-            print(f"    → queue_id/{fname}")
+                props_id = dict(props)
+                props_id["musicFile"] = id_music
+                print(f"  Rendering (id) {fname}...")
+                start_id = time.time()
+                if render("ShapeFloatLong", dest_id, props_id,
+                          width=1920, height=1080,
+                          dur_frames=LONG_DUR * FPS,
+                          timeout=21600):
+                    elapsed_id = (time.time() - start_id) / 60
+                    sz_id = dest_id.stat().st_size / 1024 / 1024
+                    print(f"    ✓ {sz_id:.0f}MB in {elapsed_id:.0f}min")
+                else:
+                    print(f"    ✗ FAILED (id)")
+            if dest_id.exists():
+                write_meta(meta_long_id(shape), dest_id)
+                thumb_id = QUEUE_ID / f"thumb_{dest_id.stem}.png"
+                id_prompt = (
+                    f"Big colorful cartoon {shape} shape character dancing and bouncing, "
+                    f"bright vivid background, kids educational video, "
+                    f"no text, bright colors, 1280x720, no letters, no words, no numbers"
+                )
+                if generate_thumbnail(id_prompt, thumb_id):
+                    print(f"    thumb ID → {thumb_id.name}")
             ok += 1
         else:
             print(f"    ✗ FAILED")
@@ -339,12 +376,15 @@ def gen_shorts(force: bool):
                 sz = out_path.stat().st_size / 1024 / 1024
                 print(f"✓ {sz:.1f}MB")
                 write_meta(bilingual_meta_short(shape), out_path)
-                # Copy to queue_id/ with Indonesian meta
-                dest_id = QUEUE_ID / fname
+                # Render separate video for ID with different music
+                dest_id  = QUEUE_ID / fname
+                id_music = alt_music(MUSIC_TRACKS[(i * 4 + j) % len(MUSIC_TRACKS)], i * 4 + j, "id")
                 if not dest_id.exists():
-                    import shutil as _sh
-                    _sh.copy2(str(out_path), str(dest_id))
-                write_meta(meta_short_id(shape), dest_id)
+                    props_id = dict(props)
+                    props_id["musicFile"] = id_music
+                    render("ShapeFloatShort", dest_id, props_id)
+                if dest_id.exists():
+                    write_meta(meta_short_id(shape), dest_id)
                 ok += 1
             else:
                 print("✗")
@@ -392,12 +432,15 @@ def gen_dance_shorts(force: bool):
                 "status":     "public",
             }
             write_meta(meta, out_path)
-            # Copy to queue_id/ with Indonesian meta
-            dest_id = QUEUE_ID / fname
+            # Render separate video for ID with different music
+            dest_id  = QUEUE_ID / fname
+            id_music = alt_music(MUSIC_TRACKS[i % len(MUSIC_TRACKS)], i, "id")
             if not dest_id.exists():
-                import shutil as _sh
-                _sh.copy2(str(out_path), str(dest_id))
-            write_meta(meta_dance_short_id(combo["shapes"]), dest_id)
+                props_id = dict(props)
+                props_id["musicFile"] = id_music
+                render("ShapeDanceShort", dest_id, props_id)
+            if dest_id.exists():
+                write_meta(meta_dance_short_id(combo["shapes"]), dest_id)
             ok += 1
         else:
             print("✗")

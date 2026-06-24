@@ -445,6 +445,18 @@ def dispatch_shorts_funnel(row: dict) -> bool:
     return r.returncode == 0
 
 
+def dispatch_wiggle_party(row: dict) -> bool:
+    """Render Wiggle Party series — 3 separate renders per theme with different music."""
+    key = row['key']  # e.g. 'animals', 'fruits', 'all'
+    themes = list(__import__('scripts.generate_wiggle_party', fromlist=['THEMES']).THEMES.keys()) \
+        if key == 'all' else key.split(',')
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_wiggle_party.py'),
+           '--themes'] + themes
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=86400)
+    return r.returncode == 0
+
+
 def dispatch_edu_entertain(row: dict) -> bool:
     """Render educational-entertainment scenarios (Category 1)."""
     key  = row['key']
@@ -505,6 +517,7 @@ DISPATCHERS = {
     'shorts_funnel':      dispatch_shorts_funnel,
     'edu_entertain':      dispatch_edu_entertain,
     'character_dialogue': dispatch_character_dialogue,
+    'wiggle_party':       dispatch_wiggle_party,
 }
 
 

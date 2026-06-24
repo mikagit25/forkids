@@ -53,20 +53,22 @@ const CONFETTI_COLORS = ["#FF4444","#FFD700","#4CAF50","#2196F3","#FF69B4","#FF9
 // ── Confetti ─────────────────────────────────────────────────────────────────
 const Confetti: React.FC<{ f: number }> = ({ f }) => {
   const fps = FPS;
-  if (f < 0 || f > fps * 3) return null;
+  if (f < 0 || f > fps * 4.5) return null;
   return (
     <>
-      {Array.from({ length: 20 }, (_, i) => {
-        const fall  = f * 5;
-        const sway  = Math.sin(f * 0.1 + i) * 40;
-        const alpha = interpolate(f, [0, 10, fps * 2.5], [0, 1, 0], { extrapolateRight: "clamp" });
+      {Array.from({ length: 38 }, (_, i) => {
+        const fall  = f * 5.5 + (i % 4) * 10;
+        const sway  = Math.sin(f * 0.1 + i * 0.9) * 52;
+        const alpha = interpolate(f, [0, 8, fps * 3.8, fps * 4.5], [0, 1, 1, 0], { extrapolateRight: "clamp" });
+        const sz    = 12 + (i % 5) * 4;
+        const br    = i % 3 === 0 ? "50%" : i % 3 === 1 ? "3px" : "0";
         return (
           <div key={i} style={{
             position: "absolute",
-            left: 60 + i * 94, top: 0 + fall,
-            width: 14, height: 14,
+            left: 30 + i * 50, top: -8 + (i % 3) * 6 + fall,
+            width: sz, height: sz,
             backgroundColor: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
-            borderRadius: 3, opacity: alpha,
+            borderRadius: br, opacity: alpha,
             transform: `translateX(${sway}px) rotate(${f * 8 + i * 25}deg)`,
           }} />
         );
@@ -82,7 +84,7 @@ const Character: React.FC<{
   talking: boolean;
   size?: number;
   side?: "left" | "center" | "right";
-}> = ({ spritePath, f, talking, size = 380, side = "center" }) => {
+}> = ({ spritePath, f, talking, size = 440, side = "center" }) => {
   const bounce = talking
     ? Math.sin(f * 0.18) * 12 + Math.abs(Math.sin(f * 0.35)) * 8
     : Math.abs(Math.sin(f * 0.06)) * 10;
@@ -127,10 +129,13 @@ const SpeechBubble: React.FC<{
 
   const topPct = position === "top" ? "5%" : "30%";
 
+  const wobble = Math.sin(localF / FPS * 2.0) * 4;
+  const breathe = 1 + Math.sin(localF / FPS * 1.5) * 0.025;
+
   return (
     <div style={{
       position: "absolute", top: topPct, left: "50%",
-      transform: `translateX(-50%) scale(${sc})`,
+      transform: `translateX(-50%) scale(${sc * breathe}) translateY(${wobble}px)`,
       opacity: op,
       backgroundColor: "white",
       borderRadius: 32, padding: "20px 48px",
@@ -203,7 +208,7 @@ const LearningCycle: React.FC<{
       }}>
         <Img
           src={staticFile(`sprites/${scene.spritePath}`)}
-          style={{ width: 460, height: 460, objectFit: "contain" }}
+          style={{ width: 530, height: 530, objectFit: "contain" }}
         />
       </div>
 
@@ -255,7 +260,7 @@ export const CharacterDialogueLong: React.FC<CharacterDialogueLongProps> = ({
   return (
     <AbsoluteFill style={{ backgroundColor: bgColor, overflow: "hidden" }}>
       <ArabicFonts />
-      <Audio src={staticFile(`music/${musicFile}`)} volume={0.1} loop />
+      <Audio src={staticFile(`music/${musicFile}`)} volume={0.15} loop />
 
       {/* Section audio */}
       <Audio src={staticFile(`${audioBase}_intro.mp3`)} />
@@ -286,7 +291,7 @@ export const CharacterDialogueLong: React.FC<CharacterDialogueLongProps> = ({
             {/* Character big + bouncing */}
             <div style={{ transform: `scale(${introScale}) translateY(${Math.abs(Math.sin(fSec * 1.2)) * -20}px)` }}>
               <Img src={staticFile(characterSprite)}
-                   style={{ width: 480, height: 480, objectFit: "contain" }} />
+                   style={{ width: 552, height: 552, objectFit: "contain" }} />
             </div>
           </AbsoluteFill>
         )}
@@ -340,7 +345,7 @@ export const CharacterDialogueLong: React.FC<CharacterDialogueLongProps> = ({
                   <div key={sc.id} style={{ display: "flex", flexDirection: "column",
                     alignItems: "center", gap: 12, transform: `scale(${pulse})` }}>
                     <Img src={staticFile(`sprites/${sc.spritePath}`)}
-                         style={{ width: 260, height: 260, objectFit: "contain" }} />
+                         style={{ width: 300, height: 300, objectFit: "contain" }} />
                     <span style={{
                       fontFamily: font, fontSize: 44, fontWeight: 900,
                       color: accentColor, direction: rtl ? "rtl" : "ltr",
@@ -353,7 +358,7 @@ export const CharacterDialogueLong: React.FC<CharacterDialogueLongProps> = ({
             </div>
 
             {/* Character */}
-            <Character spritePath={characterSprite} f={f} talking size={300} side="center" />
+            <Character spritePath={characterSprite} f={f} talking size={345} side="center" />
           </AbsoluteFill>
         )}
 
@@ -369,8 +374,8 @@ export const CharacterDialogueLong: React.FC<CharacterDialogueLongProps> = ({
               {episodeTitle}
             </span>
             <Img src={staticFile(characterSprite)}
-                 style={{ width: 420, height: 420, objectFit: "contain",
-                   transform: `translateY(${Math.abs(Math.sin(fSec * 1.4)) * -24}px)` }} />
+                 style={{ width: 483, height: 483, objectFit: "contain",
+                   transform: `translateY(${Math.abs(Math.sin(fSec * 1.4)) * -28}px)` }} />
             <span style={{ fontFamily: "'Arial', sans-serif", fontSize: 52, color: "#888" }}>
               Happy Bear Kids
             </span>

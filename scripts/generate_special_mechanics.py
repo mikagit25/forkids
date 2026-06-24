@@ -35,6 +35,18 @@ DATE_STR  = datetime.now().strftime("%Y%m%d")
 
 RAINBOW = ["#E53935","#FF9800","#FDD835","#43A047","#1E88E5","#9C27B0","#E91E63","#E53935"]
 
+# Different music per language → unique audio fingerprint per channel (avoids YT duplicate detection)
+LANG_MUSIC = {
+    "7":  {"en": "Quirky Dog.mp3",          "ar": "Fluffing a Duck.mp3",       "id": "Sneaky Snitch.mp3"},
+    "8":  {"en": "Crinoline Dreams.mp3",    "ar": "Salty Ditty.mp3",           "id": "George Street Shuffle.mp3"},
+    "9":  {"en": "Wholesome.mp3",           "ar": "Heartwarming.mp3",          "id": "Life of Riley.mp3"},
+    "10": {"en": "Gymnopedie No 1.mp3",     "ar": "Pixelland.mp3",             "id": "Overworld.mp3"},
+    "11": {"en": "Carefree.mp3",            "ar": "Merry Go.mp3",              "id": "Circus of Freaks.mp3"},
+    "12": {"en": "Happy Happy Game Show.mp3","ar": "Monkeys Spinning Monkeys.mp3","id": "Hyperfun.mp3"},
+    "13": {"en": "Pinball Spring.mp3",      "ar": "Walking Along.mp3",         "id": "Heartwarming.mp3"},
+    "14": {"en": "Gymnopedie No 1.mp3",     "ar": "Crinoline Dreams.mp3",      "id": "Salty Ditty.mp3"},
+}
+
 SERIES_EN = "Special Mechanics"
 SERIES_AR = "ميكانيكا خاصة"
 SERIES_ID = "Mekanika Khusus"
@@ -382,18 +394,21 @@ def generate_thumbnail(video_id: str, out_path: Path, lang: str) -> bool:
         print(f"    ! thumb failed: {e}"); return False
 
 
-def render_video(video_id: str, force: bool, dry_run: bool) -> Path | None:
-    v    = VIDEOS[video_id]
-    slug = f"sm{video_id}_{DATE_STR}.mp4"
-    out  = QUEUE_EN / slug
+def render_video(video_id: str, lang: str, force: bool, dry_run: bool) -> Path | None:
+    v       = VIDEOS[video_id]
+    q       = {"en": QUEUE_EN, "ar": QUEUE_AR, "id": QUEUE_ID}[lang]
+    stem    = f"sm{video_id}_{DATE_STR}" if lang == "en" else f"sm{video_id}_{DATE_STR}_{lang}"
+    out     = q / f"{stem}.mp4"
     if out.exists() and not force:
-        print(f"  skip {slug} ({out.stat().st_size // 1024 // 1024} MB)"); return out
-    print(f"\n  Rendering ep{video_id}: {v['name_en']} → {slug}")
+        print(f"  [{lang.upper()}] skip {out.name}"); return out
+    music   = LANG_MUSIC.get(video_id, {}).get(lang, v["props"]["musicFile"])
+    props   = dict(v["props"], musicFile=music)
+    print(f"\n  [{lang.upper()}] Rendering ep{video_id}: {v['name_en']} (music: {music})")
     if dry_run:
         print(f"    [DRY RUN] {v['comp']}"); return out
-    QUEUE_EN.mkdir(parents=True, exist_ok=True)
+    q.mkdir(parents=True, exist_ok=True)
     cmd = ["npx", "remotion", "render", "src/index.ts", v["comp"],
-           str(out), "--props", json.dumps(v["props"]),
+           str(out), "--props", json.dumps(props),
            "--concurrency", "1", "--log", "error"]
     t0 = time.time()
     r  = subprocess.run(cmd, cwd=str(REMOTION), capture_output=True, text=True, timeout=21600)
@@ -403,15 +418,15 @@ def render_video(video_id: str, force: bool, dry_run: bool) -> Path | None:
     print(f"    ✗ FAILED: {r.stderr[-400:]}"); return None
 
 
-def distribute(mp4: Path, video_id: str, dry_run: bool):
-    stem = mp4.stem
+def distribute(video_id: str, force: bool, dry_run: bool):
     for lang, q in [("en", QUEUE_EN), ("ar", QUEUE_AR), ("id", QUEUE_ID)]:
+        stem  = f"sm{video_id}_{DATE_STR}" if lang == "en" else f"sm{video_id}_{DATE_STR}_{lang}"
+        mp4   = q / f"{stem}.mp4"
+        # Render separately per language (different music → unique YT fingerprint)
+        if not mp4.exists() or force:
+            render_video(video_id, lang, force, dry_run)
         q.mkdir(parents=True, exist_ok=True)
-        tstem = stem if lang == "en" else f"{stem}_{lang}"
-        tpath = q / f"{tstem}.mp4"
-        if lang != "en" and not tpath.exists() and not dry_run:
-            shutil.copy2(mp4, tpath); print(f"    copy → {tpath.name}")
-        mpath = q / f"meta_{tstem}.yaml"
+        mpath = q / f"meta_{stem}.yaml"
         if not mpath.exists():
             if dry_run:
                 print(f"    [DRY RUN] meta {lang.upper()}")
@@ -420,7 +435,7 @@ def distribute(mp4: Path, video_id: str, dry_run: bool):
                     yaml.dump(make_meta(video_id, lang), f, allow_unicode=True,
                               default_flow_style=False, sort_keys=False)
                 print(f"    meta {lang.upper()} → {mpath.name}")
-        tp = q / f"thumb_{tstem}.png"
+        tp = q / f"thumb_{stem}.png"
         if not tp.exists() and not dry_run:
             time.sleep(0.5); generate_thumbnail(video_id, tp, lang)
 
@@ -447,13 +462,7 @@ def main():
     print(f"=== Special Mechanics — {len(ids)} episodes ===\n")
     for vid in ids:
         print(f"[ep{vid}] {VIDEOS[vid]['name_en']}")
-        slug = f"sm{vid}_{DATE_STR}"
-        mp4  = QUEUE_EN / f"{slug}.mp4"
-        if args.regen_meta:
-            distribute(mp4, vid, args.dry_run); continue
-        mp4 = render_video(vid, args.force, args.dry_run)
-        if mp4 and (mp4.exists() or args.dry_run):
-            distribute(mp4, vid, args.dry_run)
+        distribute(vid, args.force, args.dry_run)
 
     print("\n=== Done ===")
 

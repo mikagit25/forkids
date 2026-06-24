@@ -164,7 +164,7 @@ export const ShapeFloat: React.FC<ShapeFloatProps> = ({
           />
         ))}
 
-        {/* Shape name label */}
+        {/* Shape name label — gentle pulse so it's never static */}
         {showLabel && (
           <div
             style={{
@@ -176,6 +176,7 @@ export const ShapeFloat: React.FC<ShapeFloatProps> = ({
               justifyContent: "center",
               opacity: labelOpacity,
               pointerEvents: "none",
+              transform: `scale(${1 + Math.sin(frame / fps * 1.4) * 0.03}) translateY(${Math.sin(frame / fps * 1.0) * 6}px)`,
             }}
           >
             <span

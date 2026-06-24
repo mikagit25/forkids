@@ -29,6 +29,21 @@ TOGETHER_URL   = "https://api.together.xyz/v1/images/generations"
 TOGETHER_MODEL = "black-forest-labs/FLUX.1-schnell"
 DATE_STR  = datetime.now().strftime("%Y%m%d")
 
+# All available tracks — for picking per-language alternates (avoids YT duplicate fingerprinting)
+_ALL_TRACKS = [
+    "Carefree.mp3", "Circus of Freaks.mp3", "Crinoline Dreams.mp3", "Fluffing a Duck.mp3",
+    "George Street Shuffle.mp3", "Gymnopedie No 1.mp3", "Happy Happy Game Show.mp3",
+    "Heartwarming.mp3", "Hyperfun.mp3", "Life of Riley.mp3", "Merry Go.mp3",
+    "Monkeys Spinning Monkeys.mp3", "Overworld.mp3", "Pinball Spring.mp3", "Pixelland.mp3",
+    "Quirky Dog.mp3", "Salty Ditty.mp3", "Sneaky Snitch.mp3", "Walking Along.mp3", "Wholesome.mp3",
+]
+
+def alt_music(en_music: str, ep_idx: int, lang: str) -> str:
+    """Return a track different from en_music. AR offset=7, ID offset=14 in the pool."""
+    offset = 7 if lang == "ar" else 14
+    pool = [t for t in _ALL_TRACKS if t != en_music]
+    return pool[(ep_idx + offset) % len(pool)]
+
 SERIES_EN = {"emotions": "Emotions with Roundy", "ocean": "Ocean World",
              "transport": "Let's Go! Transport", "professions": "People Who Help Us"}
 SERIES_AR = {"emotions": "مشاعر مع روندي", "ocean": "عالم المحيط",
@@ -681,18 +696,22 @@ def generate_thumbnail(video_id: str, out_path: Path, lang: str) -> bool:
         print(f"    ! thumb failed: {e}"); return False
 
 
-def render_video(video_id: str, force: bool, dry_run: bool) -> Path | None:
+def render_video(video_id: str, lang: str, ep_idx: int, force: bool, dry_run: bool) -> Path | None:
     v    = VIDEOS[video_id]
-    slug = f"eo_{video_id}_{DATE_STR}.mp4"
-    out  = QUEUE_EN / slug
+    q    = {"en": QUEUE_EN, "ar": QUEUE_AR, "id": QUEUE_ID}[lang]
+    stem = f"eo_{video_id}_{DATE_STR}" if lang == "en" else f"eo_{video_id}_{DATE_STR}_{lang}"
+    out  = q / f"{stem}.mp4"
     if out.exists() and not force:
-        print(f"  skip {slug} ({out.stat().st_size // 1024 // 1024} MB)"); return out
-    print(f"\n  Rendering {video_id}: {v['name_en']} → {slug}")
+        print(f"  [{lang.upper()}] skip {out.name}"); return out
+    en_music = v["props"]["musicFile"]
+    music    = en_music if lang == "en" else alt_music(en_music, ep_idx, lang)
+    props    = dict(v["props"], musicFile=music)
+    print(f"\n  [{lang.upper()}] Rendering {video_id}: {v['name_en']} (music: {music})")
     if dry_run:
         print(f"    [DRY RUN] {v['comp']}"); return out
-    QUEUE_EN.mkdir(parents=True, exist_ok=True)
+    q.mkdir(parents=True, exist_ok=True)
     cmd = ["npx", "remotion", "render", "src/index.ts", v["comp"],
-           str(out), "--props", json.dumps(v["props"]),
+           str(out), "--props", json.dumps(props),
            "--concurrency", "1", "--log", "error"]
     t0 = time.time()
     r  = subprocess.run(cmd, cwd=str(REMOTION), capture_output=True, text=True, timeout=21600)
@@ -702,15 +721,14 @@ def render_video(video_id: str, force: bool, dry_run: bool) -> Path | None:
     print(f"    ✗ FAILED: {r.stderr[-400:]}"); return None
 
 
-def distribute(mp4: Path, video_id: str, dry_run: bool):
-    stem = mp4.stem
+def distribute(video_id: str, ep_idx: int, force: bool, dry_run: bool):
     for lang, q in [("en", QUEUE_EN), ("ar", QUEUE_AR), ("id", QUEUE_ID)]:
+        stem  = f"eo_{video_id}_{DATE_STR}" if lang == "en" else f"eo_{video_id}_{DATE_STR}_{lang}"
+        mp4   = q / f"{stem}.mp4"
+        if not mp4.exists() or force:
+            render_video(video_id, lang, ep_idx, force, dry_run)
         q.mkdir(parents=True, exist_ok=True)
-        tstem = stem if lang == "en" else f"{stem}_{lang}"
-        tpath = q / f"{tstem}.mp4"
-        if lang != "en" and not tpath.exists() and not dry_run:
-            shutil.copy2(mp4, tpath); print(f"    copy → {tpath.name}")
-        mpath = q / f"meta_{tstem}.yaml"
+        mpath = q / f"meta_{stem}.yaml"
         if not mpath.exists():
             if dry_run:
                 print(f"    [DRY RUN] meta {lang.upper()}")
@@ -719,7 +737,7 @@ def distribute(mp4: Path, video_id: str, dry_run: bool):
                     yaml.dump(make_meta(video_id, lang), f, allow_unicode=True,
                               default_flow_style=False, sort_keys=False)
                 print(f"    meta {lang.upper()} → {mpath.name}")
-        tp = q / f"thumb_{tstem}.png"
+        tp = q / f"thumb_{stem}.png"
         if not tp.exists() and not dry_run:
             time.sleep(0.5); generate_thumbnail(video_id, tp, lang)
 
@@ -754,16 +772,10 @@ def main():
         print(f"Unknown video IDs: {bad}"); sys.exit(1)
 
     print(f"=== Emotions + Ocean + Transport + Professions — {len(ids)} videos ===\n")
-    for vid in ids:
+    for ep_idx, vid in enumerate(ids):
         v = VIDEOS[vid]
         print(f"[{vid}] {v['name_en']}  ({v['series']})")
-        slug = f"eo_{vid}_{DATE_STR}"
-        mp4  = QUEUE_EN / f"{slug}.mp4"
-        if args.regen_meta:
-            distribute(mp4, vid, args.dry_run); continue
-        mp4 = render_video(vid, args.force, args.dry_run)
-        if mp4 and (mp4.exists() or args.dry_run):
-            distribute(mp4, vid, args.dry_run)
+        distribute(vid, ep_idx, args.force, args.dry_run)
 
     print("\n=== Done ===")
 

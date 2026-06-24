@@ -37,6 +37,23 @@ DATE_STR = datetime.now().strftime("%Y%m%d")
 FPS      = 30
 LONG_DUR = 1800  # 30 minutes
 
+_ALL_TRACKS = [
+    "Carefree.mp3", "Crinoline Dreams.mp3", "Gymnopedie No 1.mp3",
+    "Happy Happy Game Show.mp3", "Heartwarming.mp3", "Hyperfun.mp3",
+    "Life of Riley.mp3", "Merry Go.mp3", "Monkeys Spinning Monkeys.mp3",
+    "Overworld.mp3", "Pinball Spring.mp3", "Pixelland.mp3",
+    "Quirky Dog.mp3", "Salty Ditty.mp3", "Sneaky Snitch.mp3",
+    "Wholesome.mp3", "Fluffing a Duck.mp3", "Walking Along.mp3",
+    "George Street Shuffle.mp3", "Circus of Freaks.mp3",
+]
+
+def alt_music(en_music: str, ep_idx: int, lang: str) -> str:
+    if lang == "en":
+        return en_music
+    offset = 7 if lang == "ar" else 14
+    pool = [t for t in _ALL_TRACKS if t != en_music]
+    return pool[(ep_idx + offset) % len(pool)]
+
 SHAPES = {
     "circle":   {"color": "#2980B9", "bg": "#E3F2FD", "color_en": "blue",   "color_ar": "أزرق"},
     "square":   {"color": "#E74C3C", "bg": "#FFEBEE", "color_en": "red",    "color_ar": "أحمر"},
@@ -339,78 +356,63 @@ def render_shape(shape: str, force: bool, dry_run: bool) -> Path | None:
 
 
 def publish_to_both_channels(mp4_path: Path, shape: str, dry_run: bool):
-    """Create meta+thumb for EN queue (in place) and copy+meta+thumb to AR and ID queues."""
-    import shutil
-    stem_en = mp4_path.stem  # e.g. shape_learn_circle_20260614
+    """Write meta+thumb for EN; render separate AR/ID MP4s with different music + meta+thumb."""
+    d         = SHAPES[shape]
+    shape_idx = list(SHAPES.keys()).index(shape)
+    en_music  = MUSIC_TRACKS[shape_idx % len(MUSIC_TRACKS)]
+    stem_en   = mp4_path.stem
 
-    # ── EN channel ───────────────────────────────────────────────────────────
-    meta_en  = QUEUE_EN / f"meta_{stem_en}.yaml"
-    thumb_en = QUEUE_EN / f"thumb_{stem_en}.png"
+    make_fn = {"en": make_meta_en, "ar": make_meta_ar, "id": make_meta_id}
+    chan_info = [
+        ("en", QUEUE_EN, stem_en,                              mp4_path),
+        ("ar", QUEUE_AR, f"shape_learn_{shape}_ar_{DATE_STR}", None),
+        ("id", QUEUE_ID, f"shape_learn_{shape}_id_{DATE_STR}", None),
+    ]
 
-    if not meta_en.exists() or dry_run:
-        meta = make_meta_en(shape)
-        if not dry_run:
-            with open(meta_en, "w") as f:
-                yaml.dump(meta, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
-            print(f"    meta EN → {meta_en.name}")
-        else:
-            print(f"    [DRY RUN] meta EN → {meta_en.name}")
+    for lang, queue, stem, existing_mp4 in chan_info:
+        queue.mkdir(parents=True, exist_ok=True)
+        mp4_out  = existing_mp4 or (queue / f"{stem}.mp4")
+        meta_out = queue / f"meta_{stem}.yaml"
+        thumb_out = queue / f"thumb_{stem}.png"
 
-    if not thumb_en.exists() and not dry_run:
-        time.sleep(1)
-        generate_thumbnail(shape, "en", thumb_en)
+        if lang != "en" and not mp4_out.exists() and not dry_run:
+            lang_music = alt_music(en_music, shape_idx, lang)
+            props = {
+                "shapeName":  shape,
+                "shapeColor": d["color"],
+                "bgColor":    d["bg"],
+                "musicFile":  lang_music,
+            }
+            print(f"    Rendering {shape} ({lang.upper()}) → {mp4_out.name}")
+            cmd = [
+                "npx", "remotion", "render",
+                "src/index.ts", "ShapeLearnLong",
+                str(mp4_out),
+                "--props", json.dumps(props),
+                "--concurrency", "1",
+                "--log", "error",
+            ]
+            r = subprocess.run(cmd, cwd=str(REMOTION),
+                               capture_output=True, text=True, timeout=21600)
+            if r.returncode != 0 or not mp4_out.exists():
+                print(f"    ✗ FAILED ({lang}): {r.stderr[-300:]}")
+                continue
+            print(f"    ✓ {mp4_out.stat().st_size/1024/1024:.0f}MB")
+        elif lang != "en" and dry_run:
+            print(f"    [DRY RUN] render {lang.upper()} → {stem}.mp4")
 
-    # ── AR channel (copy MP4 + separate meta/thumb) ───────────────────────────
-    QUEUE_AR.mkdir(parents=True, exist_ok=True)
-    ar_name  = f"shape_learn_{shape}_ar_{DATE_STR}.mp4"
-    mp4_ar   = QUEUE_AR / ar_name
-    meta_ar  = QUEUE_AR / f"meta_{mp4_ar.stem}.yaml"
-    thumb_ar = QUEUE_AR / f"thumb_{mp4_ar.stem}.png"
+        if not meta_out.exists() or dry_run:
+            meta = make_fn[lang](shape)
+            if not dry_run:
+                with open(meta_out, "w") as f:
+                    yaml.dump(meta, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
+                print(f"    meta {lang.upper()} → {meta_out.name}")
+            else:
+                print(f"    [DRY RUN] meta {lang.upper()} → {meta_out.name}")
 
-    if not mp4_ar.exists() and not dry_run:
-        shutil.copy2(str(mp4_path), str(mp4_ar))
-        print(f"    copy → {mp4_ar.name}")
-    elif dry_run:
-        print(f"    [DRY RUN] copy → {ar_name}")
-
-    if not meta_ar.exists() or dry_run:
-        meta = make_meta_ar(shape)
-        if not dry_run:
-            with open(meta_ar, "w") as f:
-                yaml.dump(meta, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
-            print(f"    meta AR → {meta_ar.name}")
-        else:
-            print(f"    [DRY RUN] meta AR → {meta_ar.name}")
-
-    if not thumb_ar.exists() and not dry_run:
-        time.sleep(1)
-        generate_thumbnail(shape, "ar", thumb_ar)
-
-    # ── ID channel (copy MP4 + separate meta/thumb) ───────────────────────────
-    QUEUE_ID.mkdir(parents=True, exist_ok=True)
-    id_name  = f"shape_learn_{shape}_id_{DATE_STR}.mp4"
-    mp4_id   = QUEUE_ID / id_name
-    meta_id  = QUEUE_ID / f"meta_{mp4_id.stem}.yaml"
-    thumb_id = QUEUE_ID / f"thumb_{mp4_id.stem}.png"
-
-    if not mp4_id.exists() and not dry_run:
-        shutil.copy2(str(mp4_path), str(mp4_id))
-        print(f"    copy → {mp4_id.name}")
-    elif dry_run:
-        print(f"    [DRY RUN] copy → {id_name}")
-
-    if not meta_id.exists() or dry_run:
-        meta = make_meta_id(shape)
-        if not dry_run:
-            with open(meta_id, "w") as f:
-                yaml.dump(meta, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
-            print(f"    meta ID → {meta_id.name}")
-        else:
-            print(f"    [DRY RUN] meta ID → {meta_id.name}")
-
-    if not thumb_id.exists() and not dry_run:
-        time.sleep(1)
-        generate_thumbnail(shape, "id", thumb_id)
+        if not thumb_out.exists() and not dry_run:
+            time.sleep(1)
+            generate_thumbnail(shape, lang, thumb_out)
 
 
 def regen_meta(shape_filter: str | None):

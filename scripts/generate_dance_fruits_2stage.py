@@ -29,7 +29,6 @@ Usage:
 import argparse
 import base64
 import json
-import shutil
 import subprocess
 import sys
 import time
@@ -46,6 +45,23 @@ TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 TOGETHER_URL   = "https://api.together.xyz/v1/images/generations"
 TOGETHER_MODEL = "black-forest-labs/FLUX.1-schnell"
 DATE_STR = datetime.now().strftime("%Y%m%d")
+
+_ALL_TRACKS = [
+    "Carefree.mp3", "Crinoline Dreams.mp3", "Gymnopedie No 1.mp3",
+    "Happy Happy Game Show.mp3", "Heartwarming.mp3", "Hyperfun.mp3",
+    "Life of Riley.mp3", "Merry Go.mp3", "Monkeys Spinning Monkeys.mp3",
+    "Overworld.mp3", "Pinball Spring.mp3", "Pixelland.mp3",
+    "Quirky Dog.mp3", "Salty Ditty.mp3", "Sneaky Snitch.mp3",
+    "Wholesome.mp3", "Fluffing a Duck.mp3", "Walking Along.mp3",
+    "George Street Shuffle.mp3", "Circus of Freaks.mp3",
+]
+
+def alt_music(en_music: str, ep_idx: int, lang: str) -> str:
+    if lang == "en":
+        return en_music
+    offset = 7 if lang == "ar" else 14
+    pool = [t for t in _ALL_TRACKS if t != en_music]
+    return pool[(ep_idx + offset) % len(pool)]
 
 BG     = "#0A1628"
 ACCENT = "#FFFFFF"
@@ -465,18 +481,44 @@ def render_video(video_id: str, force: bool, dry_run: bool) -> Path | None:
 
 # ── Publish ────────────────────────────────────────────────────────────────────
 
-def publish_to_all_channels(mp4_path: Path, video_id: str, dry_run: bool):
-    stem = mp4_path.stem
+def publish_to_all_channels(mp4_path: Path, video_id: str, ep_idx: int, dry_run: bool):
+    v        = VIDEOS[video_id]
+    props_en = v["props"]
+    en_music = props_en["musicFile"]
+    comp     = v["comp"]
+    stem     = mp4_path.stem
+
     for lang, queue in [("en", QUEUE_EN), ("ar", QUEUE_AR), ("id", QUEUE_ID)]:
         queue.mkdir(parents=True, exist_ok=True)
         if lang == "en":
-            target, target_stem = mp4_path, stem
+            target      = mp4_path
+            target_stem = stem
         else:
             target_stem = f"{stem}_{lang}"
-            target = queue / f"{target_stem}.mp4"
+            target      = queue / f"{target_stem}.mp4"
             if not target.exists() and not dry_run:
-                shutil.copy2(mp4_path, target)
-                print(f"    copy → {target.name}")
+                lang_music = alt_music(en_music, ep_idx, lang)
+                props_lang = dict(props_en)
+                props_lang["musicFile"] = lang_music
+                print(f"  Rendering ({lang}) {target.name}")
+                cmd = [
+                    "npx", "remotion", "render",
+                    "src/index.ts", comp,
+                    str(target),
+                    "--props", json.dumps(props_lang),
+                    "--concurrency", "1",
+                    "--log", "error",
+                ]
+                start  = time.time()
+                result = subprocess.run(cmd, cwd=str(REMOTION),
+                                        capture_output=True, text=True, timeout=21600)
+                if result.returncode == 0 and target.exists():
+                    elapsed = (time.time() - start) / 60
+                    sz      = target.stat().st_size / 1024 / 1024
+                    print(f"    ✓ {sz:.0f}MB in {elapsed:.0f}min")
+                else:
+                    print(f"    ✗ FAILED ({lang}): {result.stderr[-400:]}")
+                    continue
 
         meta_path  = queue / f"meta_{target_stem}.yaml"
         thumb_path = queue / f"thumb_{target_stem}.png"
@@ -524,7 +566,9 @@ def main():
 
     print(f"=== Dance Fruits 2-Stage A — {len(video_ids)} videos ===\n")
 
+    all_video_ids = list(VIDEOS.keys())
     for video_id in video_ids:
+        ep_idx = all_video_ids.index(video_id)
         print(f"[{video_id}] {ITEM_NAMES[video_id][0]}")
 
         slug = f"fruits2s_{video_id.lower().replace('-', '')}_{DATE_STR}.mp4"
@@ -532,14 +576,14 @@ def main():
 
         if args.regen_meta:
             if mp4.exists():
-                publish_to_all_channels(mp4, video_id, args.dry_run)
+                publish_to_all_channels(mp4, video_id, ep_idx, args.dry_run)
             else:
                 print(f"  ! No MP4 at {mp4}")
             continue
 
         mp4 = render_video(video_id, args.force, args.dry_run)
         if mp4 and (mp4.exists() or args.dry_run):
-            publish_to_all_channels(mp4, video_id, args.dry_run)
+            publish_to_all_channels(mp4, video_id, ep_idx, args.dry_run)
 
     print("\n=== Done ===")
 

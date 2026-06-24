@@ -12,7 +12,6 @@ Usage:
 import argparse
 import base64
 import json
-import shutil
 import subprocess
 import sys
 import time
@@ -29,6 +28,23 @@ TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 TOGETHER_URL   = "https://api.together.xyz/v1/images/generations"
 TOGETHER_MODEL = "black-forest-labs/FLUX.1-schnell"
 DATE_STR  = datetime.now().strftime("%Y%m%d")
+
+_ALL_TRACKS = [
+    "Carefree.mp3", "Crinoline Dreams.mp3", "Gymnopedie No 1.mp3",
+    "Happy Happy Game Show.mp3", "Heartwarming.mp3", "Hyperfun.mp3",
+    "Life of Riley.mp3", "Merry Go.mp3", "Monkeys Spinning Monkeys.mp3",
+    "Overworld.mp3", "Pinball Spring.mp3", "Pixelland.mp3",
+    "Quirky Dog.mp3", "Salty Ditty.mp3", "Sneaky Snitch.mp3",
+    "Wholesome.mp3", "Fluffing a Duck.mp3", "Walking Along.mp3",
+    "George Street Shuffle.mp3", "Circus of Freaks.mp3",
+]
+
+def alt_music(en_music: str, ep_idx: int, lang: str) -> str:
+    if lang == "en":
+        return en_music
+    offset = 7 if lang == "ar" else 14
+    pool = [t for t in _ALL_TRACKS if t != en_music]
+    return pool[(ep_idx + offset) % len(pool)]
 
 # ── Props for StarsBubblesLong ─────────────────────────────────────────────────
 
@@ -246,15 +262,32 @@ def main():
                     print(f"    ✗ FAILED: {result.stderr[-500:]}")
                     sys.exit(1)
 
-    # ── Copy to AR + ID queues ─────────────────────────────────────────────────
-    if not args.dry_run and not args.regen_meta and out_mp4.exists():
+    # ── Render AR + ID with different music ────────────────────────────────────
+    en_music = PROPS["musicFile"]
+    if not args.dry_run and not args.regen_meta:
         for lang in ("ar", "id"):
             q    = queues[lang]
             dest = q / f"{slug}_{lang}.mp4"
             q.mkdir(parents=True, exist_ok=True)
             if not dest.exists():
-                shutil.copy2(out_mp4, dest)
-                print(f"  copy → {dest.name}")
+                lang_music  = alt_music(en_music, 0, lang)
+                props_lang  = dict(PROPS)
+                props_lang["musicFile"] = lang_music
+                print(f"  Rendering ({lang.upper()}) → {dest.name}")
+                cmd = [
+                    "npx", "remotion", "render",
+                    "src/index.ts", "StarsBubblesLong",
+                    str(dest),
+                    "--props", json.dumps(props_lang),
+                    "--concurrency", "1",
+                    "--log", "error",
+                ]
+                r = subprocess.run(cmd, cwd=str(REMOTION),
+                                   capture_output=True, text=True, timeout=21600)
+                if r.returncode == 0 and dest.exists():
+                    print(f"    ✓ {dest.stat().st_size/1024/1024:.0f}MB")
+                else:
+                    print(f"    ✗ FAILED ({lang}): {r.stderr[-300:]}")
 
     # ── Meta + thumbnails ──────────────────────────────────────────────────────
     for lang, q in queues.items():

@@ -156,24 +156,62 @@ tail -f logs/color_learn.log
 
 ## Типы видео — полная таблица генерации
 
-Оркестратор (только длинные видео): `bash scripts/run_renders_sequential.sh`
-Возобновить с шага N: `bash scripts/run_renders_sequential.sh --from N`
+**ИСТОЧНИК ПРАВДЫ:** Google Sheets → https://docs.google.com/spreadsheets/d/1MAHh_LxESZCd0sWOx0qAjSWWIElR79oTfo-XiPbJc7o  
+**Оркестратор:** `python3 scripts/scenario_orchestrator.py` (читает Sheet, ставит статусы)  
+Резервный фикс-скрипт: `bash scripts/run_renders_sequential.sh --from N`
 
-### Длинные видео (приоритет, автоматически через оркестратор)
+### Все 39 сценариев (из Google Sheet — источник правды)
 
-| Шаг | video_type | Скрипт | Длина | Каналы | Кол-во | Код |
-|-----|-----------|--------|-------|--------|--------|-----|
-| 1 | number_learn | `scripts/generate_number_learn_long.py` | 20м | EN+AR+ID | 10×3=30 | ✅ |
-| 2 | color_learn | `scripts/generate_color_learn_long.py` | 20м | EN+AR+ID | 9×3=27 | ✅ |
-| 3 | shape_learn | `scripts/generate_shape_learn.py` | 30м | EN+AR+ID | 8×3=24 | ✅ |
-| 4 | dance (animals) | `scripts/generate_dance_long.py --themes animals` | 30м | EN | 1 | ✅ |
-| 5 | dance (fruits) | `scripts/generate_dance_long.py --themes fruits` | 30м | EN | 1 | ✅ |
-| 6 | dance (vegetables) | `scripts/generate_dance_long.py --themes vegetables` | 30м | EN | 1 | ✅ |
-| 7 | character_dialogue | `scripts/generate_character_dialogue_long.py` | 20м | EN+AR+ID | 4×3=12 | ✅ |
-| 8 | lullaby | `scripts/generate_lullaby.py` | 20м | EN+AR+ID | 6×3=18 | ✅ |
-| 9 | nursery_ar | `scripts/generate_nursery_ar.py` | 5м | AR | 3 | ✅ |
-| 10 | nursery_id | `scripts/generate_nursery_id.py` | 5м | ID | 6 | ✅ |
-| 11-13 | thumbnails | `scripts/generate_ai_thumbs.py` | — | EN+AR+ID | все | ✅ |
+| # | type | key | lang | Статус | Скрипт/Remotion | Примечание |
+|---|------|-----|------|--------|-----------------|------------|
+| 1 | color_learn | purple | both | pending | generate_color_learn_long.py | Фиолетовый |
+| 2 | number_learn | eleven | both | planned | generate_number_learn_long.py | NEEDS: добавить в number_learn_data.yaml |
+| 3 | shape_learn | pentagon | both | planned | generate_shape_learn.py | NEEDS: добавить в SHAPES dict |
+| 4-9 | nursery_id | balonku/cicak/naik_kereta/pelangi/dua_mata/kebunku | id | pending | generate_nursery_id.py | 6 индонезийских песен |
+| 10-12 | nursery_ar | batta_batta/ya_matar/dajaja | ar | pending | generate_nursery_ar.py | 3 арабские песни |
+| 13-14 | sensory_loop | sensory_1_3 / sensory_4_14 | both | pending | ⬜ NEEDS: SensoryLoop Remotion | 3+11 эпизодов |
+| 15 | stars_bubbles | stars_bubbles | en | pending | StarsBubblesLong ✅ | 22 мин, POP sound |
+| 16 | dance_shape | dance_shapes_series | both | pending | DanceShapeLong ✅ | 12 эпизодов × 25м |
+| 17 | dance_pet | dance_pets_series | both | pending | ⬜ NEEDS: generate_dance_pet.py | 33 видео, кошки/собаки/etc |
+| 18 | dance_item | dance_items_series | both | pending | ⬜ NEEDS: generate_dance_item.py | 25 предметов |
+| 19 | lullaby_long | lullaby_nature | both | pending | ⬜ NEEDS: 1-2hr LullabyLong | 5-мин Remotion × FFmpeg loop |
+| 20-24 | transform_block | fruits/color/physics/patterns/nature | both | pending | TransformLong ✅ | 5 блоков × 4 видео |
+| 25 | dance_fruits_group | fruits_veg_group_8 | both | pending | ⬜ NEEDS: generate_fruits_group.py | 8 групповых видео |
+| 26 | dance_fruits_2stage | fruits_veg_2stage | both | pending | ⬜ NEEDS: 2-stage Remotion | Без слов + обучение |
+| 27 | learn_to_talk | learn_to_talk_series | en | pending | ⬜ NEEDS: LearnToTalk Remotion | Ms Rachel стиль, EN only |
+| 28 | emotions_ocean | emotions_4series | both | pending | generate_emotions_ocean.py ✅ | 25 эпизодов скрипт готов |
+| 29 | special_mechanics | special_mech_8series | both | pending | generate_special_mechanics.py ✅ | 8 эпизодов скрипт готов |
+| 30 | shape_roundelay | shape_roundelay | both | pending | ⬜ NEEDS: ShapeRoundelay Remotion | Фигуры в хороводе |
+| 31 | ocd_vehicles | vehicles_ocd_series | both | pending | ⬜ NEEDS: OCDVehicles Remotion | Грузовики, экскаваторы, поезда |
+| 32 | construction_music | construction_instruments | both | pending | ⬜ NEEDS: новый Remotion | Инструменты строителя + музыкальные |
+| 33 | bubble_pop_song | bubble_pop | en | planned | ⬜ NEEDS: BubblePop Remotion | Оригинальная хит-песня |
+| 34 | satisfying_3fmt | satisfying_guess_surprise | both | pending | ⬜ NEEDS: 3 Remotion comp | Satisfying / Guess Sound / Surprise |
+| 35 | nature_calm | nature_calm_cat2 | both | pending | ⬜ NEEDS: NatureCalm Remotion | Спокойная природа |
+| 36 | interactive_coview | coview_cat3 | both | planned | ⬜ NEEDS: Interactive Remotion | Родитель+ребёнок |
+| 37 | emotional_values | emotions_values_cat4 | both | pending | ⬜ NEEDS: EmotionalValues Remotion | Эмпатия/ценности |
+| 38 | shorts_funnel | shorts_from_long | both | pending | clip script | Нарезка шортсов из лонгов |
+| 39 | edu_entertain | edu_entertain_cat1 | both | planned | ⬜ NEEDS: EduEntertain Remotion | Обучение + развлечение |
+| + | wiggle_party | animals/fruits/veg/mixed/night | both | pending | generate_wiggle_party.py ✅ | Добавлено в Sheet не было |
+
+**Готовые скрипты (✅):** generate_special_mechanics.py, generate_emotions_ocean.py, generate_wiggle_party.py  
+**Нужны новые Remotion-композиции (⬜):** SensoryLoop, dance_pet/item, LullabyLong(1-2hr), 2stage, LearnToTalk, ShapeRoundelay, OCDVehicles, BubblePop, Satisfying×3, NatureCalm, Interactive, EmotionalValues
+
+### Шортсы (после завершения всех длинных видео)
+
+Запускаются отдельно: `bash scripts/run_shorts.sh` (не входит в основной оркестратор)
+
+| video_type | Скрипт | Длина | Каналы | Кол-во | Код |
+|-----------|--------|-------|--------|--------|-----|
+| short_vocab | `scripts/generate_vocab_shorts.py` | 55с | EN | A-Z=26 | ✅ |
+| short_colorlearn | `scripts/generate_color_learn_shorts.py` | 55с | EN+AR+ID | 7×3=21 | ✅ |
+| short_shape_float | `scripts/generate_shape_float_shorts.py` | 55с | EN | 8×4=32 | ✅ |
+| short_shape_dance | `scripts/generate_shape_dance_shorts.py` | 55с | EN | 13 | ✅ |
+| short_dance | `scripts/generate_animal_shorts.py` | 60с | EN | 20 | ✅ |
+| short_dance | `scripts/generate_fruit_shorts.py` | 60с | EN | 12 | ✅ |
+| short_dance | `scripts/generate_vegetable_shorts.py` | 60с | EN | 10 | ✅ |
+| short_counting | `scripts/generate_counting_shorts.py` | 60с | EN | 8 | ✅ |
+| short_shapes | `scripts/generate_shapes_shorts.py` | 60с | EN | 16 | ✅ |
+| short_shape_float/dance | `scripts/generate_shape_notxt.py` | 55с | AR+ID | 45×2 | ✅ |
 
 ### Шортсы (после завершения всех длинных видео)
 

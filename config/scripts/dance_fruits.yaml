@@ -5,237 +5,237 @@ style: tutitu
 scenes:
 - start_sec: 0.0
   duration: 38
-  choreo: solo_twist
+  choreo: solo_spin
   n: 1
   chars:
-  - watermelon
+  - peach
   entry: zoom_in
   bg_color: '#FFF9E6'
-  text: Watermelon
+  text: Peach
   sub_text: Let's dance!
 - start_sec: 38.0
   duration: 38
-  choreo: solo_jump
-  n: 1
-  chars:
-  - grapes
-  entry: zoom_in
-  bg_color: '#E8F5E9'
-  text: Grapes
-  sub_text: Let's dance!
-- start_sec: 76.0
-  duration: 38
-  choreo: solo_nod
+  choreo: solo_wave
   n: 1
   chars:
   - pear
   entry: zoom_in
-  bg_color: '#E3F2FD'
+  bg_color: '#E8F5E9'
   text: Pear
+  sub_text: Let's dance!
+- start_sec: 76.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
+  - strawberry
+  entry: zoom_in
+  bg_color: '#E3F2FD'
+  text: Strawberry
   sub_text: Let's dance!
 - start_sec: 114.0
   duration: 38
   choreo: solo_wave
   n: 1
   chars:
-  - banana
+  - apple
   entry: zoom_in
   bg_color: '#FCE4EC'
-  text: Banana
+  text: Apple
   sub_text: Let's dance!
 - start_sec: 152.0
   duration: 38
-  choreo: solo_spin
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - orange
+  entry: zoom_in
+  bg_color: '#F3E5F5'
+  text: Orange
+  sub_text: Let's dance!
+- start_sec: 190.0
+  duration: 38
+  choreo: solo_bounce
   n: 1
   chars:
   - lemon
   entry: zoom_in
-  bg_color: '#F3E5F5'
+  bg_color: '#E0F7FA'
   text: Lemon
   sub_text: Let's dance!
-- start_sec: 190.0
+- start_sec: 228.0
   duration: 38
-  choreo: solo_twist
+  choreo: solo_sway
   n: 1
   chars:
-  - apple
+  - banana
   entry: zoom_in
-  bg_color: '#E0F7FA'
-  text: Apple
+  bg_color: '#FFFDE7'
+  text: Banana
   sub_text: Let's dance!
-- start_sec: 228.0
+- start_sec: 266.0
+  duration: 38
+  choreo: solo_nod
+  n: 1
+  chars:
+  - cherry
+  entry: zoom_in
+  bg_color: '#F9FBE7'
+  text: Cherry
+  sub_text: Let's dance!
+- start_sec: 304.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - watermelon
+  entry: zoom_in
+  bg_color: '#FFF3E0'
+  text: Watermelon
+  sub_text: Let's dance!
+- start_sec: 342.0
+  duration: 38
+  choreo: solo_bounce
+  n: 1
+  chars:
+  - melon
+  entry: zoom_in
+  bg_color: '#E8EAF6'
+  text: Melon
+  sub_text: Let's dance!
+- start_sec: 380.0
   duration: 38
   choreo: solo_jump
   n: 1
   chars:
   - pineapple
   entry: zoom_in
-  bg_color: '#FFFDE7'
-  text: Pineapple
-  sub_text: Let's dance!
-- start_sec: 266.0
-  duration: 38
-  choreo: solo_bounce
-  n: 1
-  chars:
-  - strawberry
-  entry: zoom_in
-  bg_color: '#F9FBE7'
-  text: Strawberry
-  sub_text: Let's dance!
-- start_sec: 304.0
-  duration: 38
-  choreo: solo_nod
-  n: 1
-  chars:
-  - peach
-  entry: zoom_in
-  bg_color: '#FFF3E0'
-  text: Peach
-  sub_text: Let's dance!
-- start_sec: 342.0
-  duration: 38
-  choreo: solo_spin
-  n: 1
-  chars:
-  - orange
-  entry: zoom_in
-  bg_color: '#E8EAF6'
-  text: Orange
-  sub_text: Let's dance!
-- start_sec: 380.0
-  duration: 38
-  choreo: solo_shimmy
-  n: 1
-  chars:
-  - melon
-  entry: zoom_in
   bg_color: '#F1F8E9'
-  text: Melon
+  text: Pineapple
   sub_text: Let's dance!
 - start_sec: 418.0
   duration: 38
-  choreo: solo_wave
+  choreo: solo_shimmy
   n: 1
   chars:
-  - cherry
+  - grapes
   entry: zoom_in
   bg_color: '#FFF8E1'
-  text: Cherry
+  text: Grapes
   sub_text: Let's dance!
 - start_sec: 456.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
+  - pineapple
+  entry: zoom_in
+  bg_color: '#FFF9E6'
+  text: Pineapple
+  sub_text: Let's dance!
+- start_sec: 494.0
   duration: 38
   choreo: solo_shimmy
   n: 1
   chars:
-  - apple
-  entry: zoom_in
-  bg_color: '#FFF9E6'
-  text: Apple
-  sub_text: Let's dance!
-- start_sec: 494.0
-  duration: 38
-  choreo: solo_wave
-  n: 1
-  chars:
-  - peach
+  - grapes
   entry: zoom_in
   bg_color: '#E8F5E9'
-  text: Peach
+  text: Grapes
   sub_text: Let's dance!
 - start_sec: 532.0
   duration: 38
-  choreo: solo_sway
+  choreo: solo_jump
   n: 1
   chars:
-  - orange
+  - pear
   entry: zoom_in
   bg_color: '#E3F2FD'
-  text: Orange
+  text: Pear
   sub_text: Let's dance!
 - start_sec: 570.0
   duration: 38
   choreo: solo_wave
   n: 1
   chars:
-  - pear
-  entry: zoom_in
-  bg_color: '#FCE4EC'
-  text: Pear
-  sub_text: Let's dance!
-- start_sec: 608.0
-  duration: 38
-  choreo: solo_spin
-  n: 1
-  chars:
-  - lemon
-  entry: zoom_in
-  bg_color: '#F3E5F5'
-  text: Lemon
-  sub_text: Let's dance!
-- start_sec: 646.0
-  duration: 38
-  choreo: solo_jump
-  n: 1
-  chars:
-  - strawberry
-  entry: zoom_in
-  bg_color: '#E0F7FA'
-  text: Strawberry
-  sub_text: Let's dance!
-- start_sec: 684.0
-  duration: 38
-  choreo: solo_wave
-  n: 1
-  chars:
   - cherry
   entry: zoom_in
-  bg_color: '#FFFDE7'
+  bg_color: '#FCE4EC'
   text: Cherry
   sub_text: Let's dance!
-- start_sec: 722.0
-  duration: 38
-  choreo: solo_twist
-  n: 1
-  chars:
-  - watermelon
-  entry: zoom_in
-  bg_color: '#F9FBE7'
-  text: Watermelon
-  sub_text: Let's dance!
-- start_sec: 760.0
+- start_sec: 608.0
   duration: 38
   choreo: solo_shimmy
   n: 1
   chars:
-  - pineapple
+  - apple
   entry: zoom_in
-  bg_color: '#FFF3E0'
-  text: Pineapple
+  bg_color: '#F3E5F5'
+  text: Apple
   sub_text: Let's dance!
-- start_sec: 798.0
+- start_sec: 646.0
   duration: 38
-  choreo: solo_sway
+  choreo: solo_wave
+  n: 1
+  chars:
+  - peach
+  entry: zoom_in
+  bg_color: '#E0F7FA'
+  text: Peach
+  sub_text: Let's dance!
+- start_sec: 684.0
+  duration: 38
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - orange
+  entry: zoom_in
+  bg_color: '#FFFDE7'
+  text: Orange
+  sub_text: Let's dance!
+- start_sec: 722.0
+  duration: 38
+  choreo: solo_nod
+  n: 1
+  chars:
+  - lemon
+  entry: zoom_in
+  bg_color: '#F9FBE7'
+  text: Lemon
+  sub_text: Let's dance!
+- start_sec: 760.0
+  duration: 38
+  choreo: solo_jump
   n: 1
   chars:
   - melon
   entry: zoom_in
-  bg_color: '#E8EAF6'
+  bg_color: '#FFF3E0'
   text: Melon
+  sub_text: Let's dance!
+- start_sec: 798.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
+  - strawberry
+  entry: zoom_in
+  bg_color: '#E8EAF6'
+  text: Strawberry
   sub_text: Let's dance!
 - start_sec: 836.0
   duration: 38
-  choreo: solo_bounce
+  choreo: solo_spin
   n: 1
   chars:
-  - grapes
+  - watermelon
   entry: zoom_in
   bg_color: '#F1F8E9'
-  text: Grapes
+  text: Watermelon
   sub_text: Let's dance!
 - start_sec: 874.0
   duration: 38
-  choreo: solo_nod
+  choreo: solo_sway
   n: 1
   chars:
   - banana
@@ -248,204 +248,204 @@ scenes:
   choreo: solo_bounce
   n: 1
   chars:
-  - cherry
+  - orange
   entry: zoom_in
   bg_color: '#FFF9E6'
-  text: Cherry
+  text: Orange
   sub_text: Let's dance!
 - start_sec: 950.0
   duration: 38
-  choreo: solo_shimmy
-  n: 1
-  chars:
-  - orange
-  entry: zoom_in
-  bg_color: '#E8F5E9'
-  text: Orange
-  sub_text: Let's dance!
-- start_sec: 988.0
-  duration: 38
-  choreo: solo_bounce
-  n: 1
-  chars:
-  - pineapple
-  entry: zoom_in
-  bg_color: '#E3F2FD'
-  text: Pineapple
-  sub_text: Let's dance!
-- start_sec: 1026.0
-  duration: 38
-  choreo: solo_jump
-  n: 1
-  chars:
-  - watermelon
-  entry: zoom_in
-  bg_color: '#FCE4EC'
-  text: Watermelon
-  sub_text: Let's dance!
-- start_sec: 1064.0
-  duration: 38
-  choreo: solo_wave
+  choreo: solo_nod
   n: 1
   chars:
   - melon
   entry: zoom_in
-  bg_color: '#F3E5F5'
+  bg_color: '#E8F5E9'
   text: Melon
   sub_text: Let's dance!
-- start_sec: 1102.0
+- start_sec: 988.0
   duration: 38
-  choreo: solo_twist
-  n: 1
-  chars:
-  - apple
-  entry: zoom_in
-  bg_color: '#E0F7FA'
-  text: Apple
-  sub_text: Let's dance!
-- start_sec: 1140.0
-  duration: 38
-  choreo: solo_bounce
+  choreo: solo_shimmy
   n: 1
   chars:
   - pear
   entry: zoom_in
-  bg_color: '#FFFDE7'
+  bg_color: '#E3F2FD'
   text: Pear
   sub_text: Let's dance!
-- start_sec: 1178.0
+- start_sec: 1026.0
   duration: 38
-  choreo: solo_shimmy
-  n: 1
-  chars:
-  - strawberry
-  entry: zoom_in
-  bg_color: '#F9FBE7'
-  text: Strawberry
-  sub_text: Let's dance!
-- start_sec: 1216.0
-  duration: 38
-  choreo: solo_jump
-  n: 1
-  chars:
-  - lemon
-  entry: zoom_in
-  bg_color: '#FFF3E0'
-  text: Lemon
-  sub_text: Let's dance!
-- start_sec: 1254.0
-  duration: 38
-  choreo: solo_shimmy
-  n: 1
-  chars:
-  - peach
-  entry: zoom_in
-  bg_color: '#E8EAF6'
-  text: Peach
-  sub_text: Let's dance!
-- start_sec: 1292.0
-  duration: 38
-  choreo: solo_spin
+  choreo: solo_sway
   n: 1
   chars:
   - grapes
   entry: zoom_in
-  bg_color: '#F1F8E9'
+  bg_color: '#FCE4EC'
   text: Grapes
   sub_text: Let's dance!
-- start_sec: 1330.0
-  duration: 38
-  choreo: solo_wave
-  n: 1
-  chars:
-  - banana
-  entry: zoom_in
-  bg_color: '#FFF8E1'
-  text: Banana
-  sub_text: Let's dance!
-- start_sec: 1368.0
+- start_sec: 1064.0
   duration: 38
   choreo: solo_spin
   n: 1
   chars:
-  - strawberry
+  - apple
   entry: zoom_in
-  bg_color: '#FFF9E6'
-  text: Strawberry
+  bg_color: '#F3E5F5'
+  text: Apple
   sub_text: Let's dance!
-- start_sec: 1406.0
+- start_sec: 1102.0
   duration: 38
-  choreo: solo_shimmy
+  choreo: solo_nod
   n: 1
   chars:
-  - orange
+  - pineapple
   entry: zoom_in
-  bg_color: '#E8F5E9'
-  text: Orange
+  bg_color: '#E0F7FA'
+  text: Pineapple
   sub_text: Let's dance!
-- start_sec: 1444.0
+- start_sec: 1140.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
+  - cherry
+  entry: zoom_in
+  bg_color: '#FFFDE7'
+  text: Cherry
+  sub_text: Let's dance!
+- start_sec: 1178.0
+  duration: 38
+  choreo: solo_wave
+  n: 1
+  chars:
+  - peach
+  entry: zoom_in
+  bg_color: '#F9FBE7'
+  text: Peach
+  sub_text: Let's dance!
+- start_sec: 1216.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
+  - strawberry
+  entry: zoom_in
+  bg_color: '#FFF3E0'
+  text: Strawberry
+  sub_text: Let's dance!
+- start_sec: 1254.0
   duration: 38
   choreo: solo_sway
   n: 1
   chars:
   - banana
   entry: zoom_in
-  bg_color: '#E3F2FD'
+  bg_color: '#E8EAF6'
   text: Banana
+  sub_text: Let's dance!
+- start_sec: 1292.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
+  - watermelon
+  entry: zoom_in
+  bg_color: '#F1F8E9'
+  text: Watermelon
+  sub_text: Let's dance!
+- start_sec: 1330.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
+  - lemon
+  entry: zoom_in
+  bg_color: '#FFF8E1'
+  text: Lemon
+  sub_text: Let's dance!
+- start_sec: 1368.0
+  duration: 38
+  choreo: solo_twist
+  n: 1
+  chars:
+  - banana
+  entry: zoom_in
+  bg_color: '#FFF9E6'
+  text: Banana
+  sub_text: Let's dance!
+- start_sec: 1406.0
+  duration: 38
+  choreo: solo_jump
+  n: 1
+  chars:
+  - pineapple
+  entry: zoom_in
+  bg_color: '#E8F5E9'
+  text: Pineapple
+  sub_text: Let's dance!
+- start_sec: 1444.0
+  duration: 38
+  choreo: solo_spin
+  n: 1
+  chars:
+  - strawberry
+  entry: zoom_in
+  bg_color: '#E3F2FD'
+  text: Strawberry
   sub_text: Let's dance!
 - start_sec: 1482.0
   duration: 38
   choreo: solo_nod
   n: 1
   chars:
-  - cherry
+  - pear
   entry: zoom_in
   bg_color: '#FCE4EC'
-  text: Cherry
+  text: Pear
   sub_text: Let's dance!
 - start_sec: 1520.0
   duration: 38
   choreo: solo_sway
   n: 1
   chars:
-  - lemon
+  - watermelon
   entry: zoom_in
   bg_color: '#F3E5F5'
-  text: Lemon
+  text: Watermelon
   sub_text: Let's dance!
 - start_sec: 1558.0
   duration: 38
-  choreo: solo_twist
+  choreo: solo_wave
   n: 1
   chars:
-  - grapes
+  - cherry
   entry: zoom_in
   bg_color: '#E0F7FA'
-  text: Grapes
+  text: Cherry
   sub_text: Let's dance!
 - start_sec: 1596.0
   duration: 38
   choreo: solo_sway
   n: 1
   chars:
-  - melon
+  - grapes
   entry: zoom_in
   bg_color: '#FFFDE7'
-  text: Melon
+  text: Grapes
   sub_text: Let's dance!
 - start_sec: 1634.0
   duration: 38
-  choreo: solo_spin
+  choreo: solo_jump
   n: 1
   chars:
-  - watermelon
+  - orange
   entry: zoom_in
   bg_color: '#F9FBE7'
-  text: Watermelon
+  text: Orange
   sub_text: Let's dance!
 - start_sec: 1672.0
   duration: 38
-  choreo: solo_sway
+  choreo: solo_bounce
   n: 1
   chars:
   - peach
@@ -455,31 +455,31 @@ scenes:
   sub_text: Let's dance!
 - start_sec: 1710.0
   duration: 38
-  choreo: solo_wave
+  choreo: solo_shimmy
+  n: 1
+  chars:
+  - lemon
+  entry: zoom_in
+  bg_color: '#E8EAF6'
+  text: Lemon
+  sub_text: Let's dance!
+- start_sec: 1748.0
+  duration: 38
+  choreo: solo_bounce
   n: 1
   chars:
   - apple
   entry: zoom_in
-  bg_color: '#E8EAF6'
-  text: Apple
-  sub_text: Let's dance!
-- start_sec: 1748.0
-  duration: 38
-  choreo: solo_sway
-  n: 1
-  chars:
-  - pineapple
-  entry: zoom_in
   bg_color: '#F1F8E9'
-  text: Pineapple
+  text: Apple
   sub_text: Let's dance!
 - start_sec: 1786.0
   duration: 14.0
-  choreo: solo_jump
+  choreo: solo_shimmy
   n: 1
   chars:
-  - pear
+  - melon
   entry: zoom_in
   bg_color: '#FFF8E1'
-  text: Pear
+  text: Melon
   sub_text: Let's dance!

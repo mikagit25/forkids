@@ -87,9 +87,9 @@ const Dancer: React.FC<DancerProps> = ({
         <Shape name={shapeName} size={size} color={color} />
       </div>
 
-      {/* Label stays upright below shape */}
+      {/* Label bounces with the shape */}
       {showLabel && (
-        <div style={{ display: "flex", justifyContent: "center", marginTop: 14 }}>
+        <div style={{ display: "flex", justifyContent: "center", marginTop: 14, transform: `translateY(${-bounce * 0.4}px) scale(${1 + Math.abs(Math.sin(beatPhase)) * 0.06})` }}>
           <span
             style={{
               fontFamily: rtl

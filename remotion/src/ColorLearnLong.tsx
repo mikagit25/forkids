@@ -125,9 +125,12 @@ const ObjectScene: React.FC<ObjectSceneProps> = ({
   const objY      = interpolate(objSpring, [0, 1], [-600, 0], { extrapolateRight: "clamp" });
   const objScale  = interpolate(objSpring, [0, 1], [0.3, 1], { extrapolateRight: "clamp" });
 
-  // Happy bounce + left-right sway (after 20s, during extended showcase)
-  const happyBounce = fSec > 20 ? Math.abs(Math.sin((fSec - 20) * 2.5)) * 28 : 0;
-  const sway        = fSec > 20 ? Math.sin((fSec - 20) * 1.1) * 70 : 0;
+  // Always-active gentle idle float (attention hook — never static)
+  const idleFloat = Math.abs(Math.sin(fSec * 1.8)) * 15;
+  const idleSway  = Math.sin(fSec * 0.85) * 11;
+  // After answer: bigger, livelier bounce added on top
+  const bigBounce = fSec > 20 ? Math.abs(Math.sin((fSec - 20) * 2.5)) * 32 : 0;
+  const bigSway   = fSec > 20 ? Math.sin((fSec - 20) * 1.1) * 68 : 0;
 
   // Question: 8–15s
   const qOpacity = interpolate(f, [fps * 8, fps * 9, fps * 15, fps * 16], [0, 1, 1, 0], {
@@ -179,17 +182,17 @@ const ObjectScene: React.FC<ObjectSceneProps> = ({
       <div style={{
         position: "absolute", left: 0, right: 0, top: "8%",
         display: "flex", justifyContent: "center",
-        transform: `translateY(${objY + happyBounce}px) translateX(${sway}px) scale(${objScale})`,
+        transform: `translateY(${objY + idleFloat + bigBounce}px) translateX(${idleSway + bigSway}px) scale(${objScale})`,
       }}>
         <Img
           src={staticFile(`sprites/${obj.spritePath}`)}
-          style={{ width: 556, height: 556, objectFit: "contain" }}
+          style={{ width: 640, height: 640, objectFit: "contain" }}
         />
       </div>
 
       {/* Object name label */}
       <div style={{
-        position: "absolute", top: "56%", left: 0, right: 0,
+        position: "absolute", top: "63%", left: 0, right: 0,
         display: "flex", justifyContent: "center",
         opacity: Math.min(objSpring, 1),
         direction: rtl ? "rtl" : "ltr",
@@ -297,7 +300,7 @@ const SongSection: React.FC<{
       }}>
         <Img
           src={staticFile(`sprites/${obj.spritePath}`)}
-          style={{ width: 484, height: 484, objectFit: "contain" }}
+          style={{ width: 600, height: 600, objectFit: "contain" }}
         />
       </div>
 
@@ -335,8 +338,9 @@ const ReviewSection: React.FC<{
 
   const font = rtl ? "'Noto Sans Arabic','Noto Kufi Arabic',sans-serif" : "'Arial Black',sans-serif";
 
-  const scale = 0.7 + Math.abs(Math.sin(fSec * 1.8)) * 0.15;
-  const anim  = spring({
+  const scale   = 0.82 + Math.abs(Math.sin(fSec * 1.8)) * 0.14;
+  const floatY  = Math.abs(Math.sin(fSec * 1.5 + 0.3)) * 16;
+  const anim    = spring({
     frame: f - pass * Math.round(slotLen * fps),
     fps, config: { damping: 12, stiffness: 130 }, durationInFrames: fps,
   });
@@ -358,11 +362,11 @@ const ReviewSection: React.FC<{
       <div style={{
         position: "absolute", left: 0, right: 0, top: "12%",
         display: "flex", justifyContent: "center",
-        transform: `scale(${interpolate(anim, [0, 1], [0.5, scale])})`,
+        transform: `scale(${interpolate(anim, [0, 1], [0.5, scale])}) translateY(${-floatY}px)`,
       }}>
         <Img
           src={staticFile(`sprites/${obj.spritePath}`)}
-          style={{ width: 506, height: 506, objectFit: "contain" }}
+          style={{ width: 640, height: 640, objectFit: "contain" }}
         />
       </div>
 
@@ -579,32 +583,39 @@ export const ColorLearnLong: React.FC<ColorLearnLongProps> = ({
           }}>
             {/* All 3 objects in a row */}
             <div style={{ display: "flex", gap: 60, alignItems: "center" }}>
-              {objects.map((obj, i) => (
-                <div key={i} style={{
-                  display: "flex", flexDirection: "column", alignItems: "center", gap: 16,
-                }}>
-                  <Img
-                    src={staticFile(`sprites/${obj.spritePath}`)}
-                    style={{ width: 414, height: 414, objectFit: "contain" }}
-                  />
-                  <div style={{
-                    backgroundColor: colorHex, borderRadius: 12, padding: "8px 24px",
+              {objects.map((obj, i) => {
+                const floatY     = Math.sin(fSec * 1.6 + i * 1.2) * 18;
+                const floatScale = 1 + Math.sin(fSec * 1.1 + i * 0.9) * 0.06;
+                return (
+                  <div key={i} style={{
+                    display: "flex", flexDirection: "column", alignItems: "center", gap: 16,
+                    transform: `translateY(${floatY}px) scale(${floatScale})`,
                   }}>
-                    <span style={{
-                      fontFamily: font, fontSize: 48, fontWeight: 900, color: "white",
+                    <Img
+                      src={staticFile(`sprites/${obj.spritePath}`)}
+                      style={{ width: 414, height: 414, objectFit: "contain" }}
+                    />
+                    <div style={{
+                      backgroundColor: colorHex, borderRadius: 12, padding: "8px 24px",
                     }}>
-                      {obj.nameLocalized}
-                    </span>
+                      <span style={{
+                        fontFamily: font, fontSize: 48, fontWeight: 900, color: "white",
+                      }}>
+                        {obj.nameLocalized}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
-            {/* Color name */}
+            {/* Color name — pulses to keep attention */}
             <span style={{
               fontFamily: font, fontSize: 160, fontWeight: 900,
               color: colorHex, WebkitTextStroke: "8px white",
               textShadow: "0 8px 28px rgba(0,0,0,0.18)",
               direction: rtl ? "rtl" : "ltr",
+              display: "inline-block",
+              transform: `scale(${1 + Math.abs(Math.sin(fSec * 1.5)) * 0.06}) translateY(${Math.sin(fSec * 0.9) * 7}px)`,
             }}>
               {colorName}
             </span>

@@ -44,7 +44,7 @@ PROMPTS: dict[str, str] = {
     "orange":     "A single cute 3D Pixar-style orange fruit character, round glossy body, big eyes, green leaf on top, happy smile, white background, no text",
     "peach":      "A single cute 3D Pixar-style pink peach character, soft round body, big eyes, happy smile, white background, no text",
     "strawberry": "A single cute 3D Pixar-style red strawberry character, heart-shaped body, big eyes, green leafy crown, happy smile, white background, no text",
-    "cherry":     "A single cute 3D Pixar-style red cherry pair, two round cherries on green stem, big eyes, happy face, white background, no text",
+    "cherry":     "Two cute 3D Pixar-style red cherries side by side on a shared green stem with a leaf, EACH cherry has its own big round eyes and happy smile, glossy red shiny surface, both cherries are identical characters with faces, white background, no text",
     "watermelon": "A single cute 3D Pixar-style watermelon slice character, red inside with black seeds, big eyes, happy smile, white background, no text",
     "pineapple":  "A single cute 3D Pixar-style pineapple character, yellow body with crown of leaves, big eyes, happy smile, white background, no text",
     # vegetables

@@ -259,9 +259,10 @@ function computeTransform(
 
     case "NONE":
     default:
-      // Stationary but never truly static — very gentle sway
-      cx = baseX + Math.sin(t * 0.5 + shape.seed) * 6;
-      cy = baseY + Math.sin(t * 0.4 + shape.seed * 1.5) * 4;
+      // Idle float — visible drift so it's never truly static
+      cx = baseX + Math.sin(t * 0.55 + shape.seed) * 18;
+      cy = baseY + Math.sin(t * 0.42 + shape.seed * 1.4) * 14;
+      scale = 1 + Math.sin(t * 0.9 + shape.seed * 0.7) * 0.05;
       break;
   }
 

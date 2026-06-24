@@ -147,21 +147,21 @@ colors:
     name_ar: "وردي"
     name_id: "MERAH MUDA"
     objects:
-      - key: pig
-        name_en: "pig"
-        name_ar: "خنزير"
-        name_id: "babi"
-        sprite: "animals/pig_3d.png"
+      - key: flamingo
+        name_en: "flamingo"
+        name_ar: "فلامنغو"
+        name_id: "flamingo"
+        sprite: "animals/flamingo_3d.png"
       - key: peach
         name_en: "peach"
         name_ar: "خوخ"
         name_id: "persik"
         sprite: "fruits/peach_3d.png"
-      - key: flamingo
-        name_en: "flamingo"
-        name_ar: "فلامنغو"
-        name_id: "flamingo"
-        sprite: "animals/flamingo_3d.png"        # AI generated
+      - key: pig
+        name_en: "pig"
+        name_ar: "خنزير"
+        name_id: "babi"
+        sprite: "animals/pig_3d.png"
 
   - key: white
     hex: "#BDBDBD"

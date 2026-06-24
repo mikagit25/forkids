@@ -216,6 +216,7 @@ export const NurseryRhymeLong: React.FC<NurseryRhymeLongProps> = ({
             display: "flex",
             justifyContent: "center",
             opacity: arabicOpacity,
+            transform: `scale(${1 + Math.sin(frame / fps * 1.6) * 0.018}) translateY(${Math.sin(frame / fps * 1.1) * 5}px)`,
           }}>
             <span style={{
               fontFamily: "'Noto Sans Arabic', 'Noto Kufi Arabic', Arial, sans-serif",
@@ -245,6 +246,7 @@ export const NurseryRhymeLong: React.FC<NurseryRhymeLongProps> = ({
             display: "flex",
             justifyContent: "center",
             opacity: englishOpacity,
+            transform: `scale(${1 + Math.sin(frame / fps * 1.3 + 1) * 0.015}) translateY(${Math.sin(frame / fps * 1.4 + 0.5) * 4}px)`,
           }}>
             <span style={{
               fontFamily: "'Arial', sans-serif",

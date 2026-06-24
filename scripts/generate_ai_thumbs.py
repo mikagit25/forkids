@@ -61,20 +61,35 @@ AR_NAMES = {
 }
 
 STYLE_EN = (
-    "bright colorful children's illustration, cartoon style, "
-    "bold outlines, cheerful expression, kids YouTube thumbnail, "
-    "16:9 format 1280x720"
+    "bright colorful children's illustration, Pixar-style 3D cartoon, "
+    "bold clean composition, cheerful expression, kids YouTube thumbnail, "
+    "16:9 format 1280x720, no watermarks, no logos, no brand names, no copyright symbols"
 )
 
 # AR channel: same style but absolutely no text — FLUX can't render Arabic (non-Latin)
 STYLE_AR_NOTXT = (
-    "bright colorful children's illustration, cartoon style, "
-    "bold outlines, cheerful expression, kids YouTube thumbnail, "
-    "16:9 format 1280x720, no text, no letters, no words, no numbers"
+    "bright colorful children's illustration, Pixar-style 3D cartoon, "
+    "bold clean composition, cheerful expression, kids YouTube thumbnail, "
+    "16:9 format 1280x720, no text, no letters, no words, no numbers, "
+    "no watermarks, no logos, no brand names, no copyright symbols"
 )
 
 # ID channel: Indonesian uses Latin script → text allowed, same style as EN
 # (STYLE_EN is reused for Indonesian)
+
+# Objects shown per number (first object used as main thumbnail subject)
+_NUM_OBJECTS = {
+    "1": ("apple",      "one cute smiling apple"),
+    "2": ("banana",     "two cute smiling bananas"),
+    "3": ("apple",      "three cute smiling apples in a row"),
+    "4": ("balloon",    "four colorful balloons with cute faces"),
+    "5": ("orange",     "five cute smiling oranges"),
+    "6": ("balloon",    "six colorful balloons floating upward"),
+    "7": ("apple",      "seven cute smiling apples arranged in a cluster"),
+    "8": ("orange",     "eight cute smiling oranges in two rows of four"),
+    "9": ("apple",      "nine cute smiling apples arranged in three rows of three"),
+    "10": ("balloon",   "ten colorful balloons clustered together"),
+}
 
 
 def make_prompt(stem: str, meta: dict, is_ar: bool = False) -> str:
@@ -88,60 +103,60 @@ def make_prompt(stem: str, meta: dict, is_ar: bool = False) -> str:
     theme  = meta.get("theme", "animals")
     style  = STYLE_AR_NOTXT if is_ar else STYLE_EN
 
-    # Normalise stem: strip ar_ prefix and date suffix
-    name = re.sub(r'^ar_', '', re.sub(r'_\d{8}.*$', '', stem))
+    # Normalise stem: strip lang suffix and date
+    name = re.sub(r'_(en|ar|id)$', '', re.sub(r'_\d{8}.*$', '', stem))
+    name = re.sub(r'^(ar|id)_', '', name)
 
-    # Detect specific character (bear, apple, circle, …) from filename
+    # Detect specific character/object from filename
     character = ""
     for char in AR_NAMES:
         if char in name:
             character = char
             break
 
-    # ── dance ─────────────────────────────────────────────────────────────────
-    if "dance" in vtype or "dance" in name:
-        if character:
-            prompt = (
-                f"Cute cartoon {character} dancing happily, dynamic dance pose, "
-                f"bright colorful background with musical notes and stars, {style}"
-            )
-        else:
-            theme_en = {"animals": "animals", "fruits": "fruits",
-                        "vegetables": "vegetables", "shapes": "geometric shapes",
-                        "mixed": "cartoon characters"}.get(theme, "cartoon characters")
-            prompt = (
-                f"Group of cute cartoon {theme_en} dancing together joyfully, "
-                f"confetti and musical notes, bright pastel background, {style}"
-            )
-
     # ── numbers / counting ────────────────────────────────────────────────────
-    elif "counting" in vtype or "counting" in name or vtype == "numbers" or "number_learn" in name:
+    if "counting" in vtype or "counting" in name or vtype == "numbers" or "number_learn" in name:
         num_match = re.search(
             r'number_learn_(one|two|three|four|five|six|seven|eight|nine|ten)', name)
         digit_map = {"one": "1", "two": "2", "three": "3", "four": "4", "five": "5",
                      "six": "6", "seven": "7", "eight": "8", "nine": "9", "ten": "10"}
         if num_match:
             digit = digit_map[num_match.group(1)]
+            obj_name, obj_desc = _NUM_OBJECTS.get(digit, ("apple", f"{digit} cute apples"))
             if is_ar:
+                # No digit (FLUX can't render Arabic numerals cleanly)
                 prompt = (
-                    f"Cute cartoon animals around a big colorful star, "
-                    f"confetti and sparkles, bright educational kids background, {style}"
+                    f"{obj_desc} with big round eyes and happy smiles, "
+                    f"grouped together in a cheerful cluster, "
+                    f"all faces clearly visible and unobstructed, "
+                    f"bright warm gradient background, small colorful confetti around them, "
+                    f"clean open composition, educational toddler video, {style}"
                 )
             else:
                 prompt = (
-                    f"Big bold cartoon number {digit}, cute cartoon animals around it, "
-                    f"stars and confetti, bright educational kids background, {style}"
+                    f"Giant bold bubble-letter number {digit} in vivid yellow with dark outline "
+                    f"centered at the top of the image, "
+                    f"{obj_desc} with big round eyes and happy smiles "
+                    f"arranged in a neat row at the bottom, "
+                    f"objects placed well below the number not overlapping it, "
+                    f"all characters' faces clearly visible and unobstructed, "
+                    f"bright cheerful background, small colorful confetti falling, "
+                    f"clean composition with clear separation between number and objects, "
+                    f"{style}"
                 )
         else:
             if is_ar:
                 prompt = (
-                    f"Cute cartoon animals playing with colorful balloons and stars, "
-                    f"bright educational kids background, {style}"
+                    f"Cute smiling cartoon apple and balloon characters in a cheerful group, "
+                    f"all faces clearly visible, bright educational background, "
+                    f"small confetti and sparkles, {style}"
                 )
             else:
                 prompt = (
-                    f"Big colorful cartoon numbers 1 2 3 floating, cute animals counting, "
-                    f"bright educational kids background, {style}"
+                    f"Three giant bold bubble-letter numbers 1 2 3 in vivid colors at the top, "
+                    f"cute smiling cartoon animals standing below them in a row, "
+                    f"characters' faces unobstructed, bright cheerful background, "
+                    f"small colorful confetti falling, {style}"
                 )
 
     # ── colors ────────────────────────────────────────────────────────────────
@@ -149,87 +164,179 @@ def make_prompt(stem: str, meta: dict, is_ar: bool = False) -> str:
         color_match = re.search(
             r'(red|blue|green|yellow|orange|purple|pink|brown|white|black)', name)
         color = color_match.group(1) if color_match else "rainbow"
-        prompt = (
-            f"Big bold {color} color theme, cute cartoon characters and objects in {color}, "
-            f"educational color learning for kids, {style}"
-        )
+        if color == "rainbow":
+            prompt = (
+                f"Vibrant rainbow arc over a cheerful scene, cute cartoon bear character "
+                f"standing below it with arms raised, colorful objects in every color, "
+                f"bright saturated background, educational color learning for kids, {style}"
+            )
+        else:
+            prompt = (
+                f"Scene bathed in vivid {color} light, cute Pixar-style cartoon bear character "
+                f"surrounded by large {color} objects like fruits and balloons, "
+                f"bold {color} gradient background, character's face clearly visible, "
+                f"educational color learning for toddlers, {style}"
+            )
 
     # ── shapes ────────────────────────────────────────────────────────────────
     elif "shape" in vtype or "shape" in name or "float" in name:
         shape_match = re.search(
             r'(circle|square|triangle|star|heart|diamond|hexagon|oval|pentagon)', name)
         shape = shape_match.group(1) if shape_match else "circle"
+        color_map = {
+            "circle": "bright red", "square": "vivid blue", "triangle": "lime green",
+            "star": "golden yellow", "heart": "hot pink", "diamond": "cyan",
+            "hexagon": "deep purple", "oval": "orange", "pentagon": "teal",
+        }
+        shape_color = color_map.get(shape, "vivid")
         prompt = (
-            f"Cute cartoon {shape} character with eyes and smile, dancing and bouncing, "
-            f"bright vivid colors, educational shapes for kids, {style}"
+            f"Giant {shape_color} cartoon {shape} character with big cute eyes and wide happy smile "
+            f"taking up most of the image, bold and eye-catching, "
+            f"several smaller {shape} shapes with happy faces scattered in the background, "
+            f"the main {shape}'s face is fully clear and unobstructed, "
+            f"bright vivid background in contrasting color, educational shapes for kids, {style}"
         )
+
+    # ── dance ─────────────────────────────────────────────────────────────────
+    elif "dance" in vtype or "dance" in name:
+        theme_en = {"animals": "animals", "fruits": "fruits",
+                    "vegetables": "vegetables", "shapes": "geometric shapes",
+                    "mixed": "cartoon characters"}.get(theme, "cartoon characters")
+        if character:
+            prompt = (
+                f"Cute Pixar-style 3D {character} character in an energetic joyful dance pose, "
+                f"arms raised, big smile, facing the viewer, "
+                f"bright colorful background with musical notes and colorful confetti, "
+                f"character face clearly visible and prominent, no shapes overlapping the face, "
+                f"vibrant and eye-catching, {style}"
+            )
+        else:
+            prompt = (
+                f"Group of three cute Pixar-style 3D cartoon {theme_en} characters "
+                f"dancing together joyfully, each with big smiles and raised arms, "
+                f"all faces clearly visible and unobstructed, "
+                f"colorful confetti and musical notes in the background, "
+                f"bright vivid background, energetic and fun, {style}"
+            )
+
+    # ── character dialogue (Roundy the bear) ─────────────────────────────────
+    elif vtype == "character_dialogue" or "character_dialogue" in name:
+        topic_map = {
+            "emotions":  ("happy bear showing emotions", "colorful emotion face icons around it"),
+            "colors":    ("bear surrounded by colorful paint splashes", "rainbow colors everywhere"),
+            "numbers":   ("bear pointing at floating numbers", "colorful number bubbles"),
+            "animals":   ("bear surrounded by cute animal friends", "jungle scene"),
+        }
+        topic = next((k for k in topic_map if k in name), None)
+        desc, detail = topic_map.get(topic, ("cute cartoon bear character talking to child",
+                                             "speech bubble, friendly educational scene"))
+        prompt = (
+            f"Cute Pixar-style 3D bear character with big expressive eyes and warm smile, "
+            f"{desc}, {detail}, "
+            f"bear's face is the clear main focus of the image, "
+            f"bright friendly background, engaging and inviting for toddlers, {style}"
+        )
+
+    # ── ABC / vocabulary shorts ───────────────────────────────────────────────
+    elif vtype == "short_vocab" or "short_vocab" in name or "vocab" in name:
+        letter_match = re.search(r'short_vocab_([a-z])', name)
+        if letter_match:
+            letter = letter_match.group(1).upper()
+            prompt = (
+                f"Giant bold bubble letter {letter} in vivid color taking up the left half, "
+                f"cute cartoon object starting with {letter} on the right side with big eyes, "
+                f"letter and object clearly separated, bright cheerful background, "
+                f"ABC learning for toddlers, {style}"
+            )
+        else:
+            prompt = (
+                f"Colorful alphabet letters A B C in giant bubble style, "
+                f"cute cartoon characters around them, bright educational background, {style}"
+            )
 
     # ── Indonesian nursery songs ──────────────────────────────────────────────
     elif vtype == "nursery_id" or "nursery_id" in name or "balonku" in name or "cicak" in name \
             or "naik_kereta" in name or "pelangi" in name or "dua_mata" in name or "kebunku" in name:
         song_visuals = {
-            "balonku":     "colorful balloons floating up in a blue sky, cute cartoon bear holding balloons",
-            "cicak":       "cute cartoon lizard walking on a wall, tropical leaves, friendly and cheerful",
-            "naik_kereta": "cute cartoon train puffing steam, colorful carriages, happy animals riding",
-            "pelangi":     "beautiful rainbow over green hills, cute cartoon animals under the rainbow",
-            "dua_mata":    "cute cartoon bear pointing to its eyes and smiling, simple body parts lesson",
-            "kebunku":     "colorful flower garden, cute cartoon butterfly and bee, cheerful garden scene",
+            "balonku":     "three colorful balloons with happy faces floating in blue sky, "
+                           "cute cartoon bear holding balloon strings below",
+            "cicak":       "cute cartoon gecko character with big eyes clinging to a wall, "
+                           "bright tropical green leaves behind it",
+            "naik_kereta": "cute cartoon steam train with smiling face, colorful carriages, "
+                           "happy animal passengers waving from windows",
+            "pelangi":     "beautiful vivid rainbow arching across blue sky, "
+                           "cute cartoon animals standing under it with arms raised joyfully",
+            "dua_mata":    "cute cartoon bear character pointing to its big round eyes with a smile, "
+                           "simple bright background",
+            "kebunku":     "colorful garden with giant sunflowers and flowers, "
+                           "cute cartoon butterfly with big eyes landing on a flower",
         }
         song_key = next((k for k in song_visuals if k in name), None)
         visual = song_visuals.get(song_key,
-                    "cute cartoon characters singing Indonesian nursery rhyme, colorful musical notes")
+                    "cute cartoon characters singing together, colorful musical notes floating around")
         prompt = f"{visual}, bright cheerful kids illustration, {style}"
 
     # ── Arabic nursery songs ───────────────────────────────────────────────────
     elif vtype == "nursery_ar" or "nursery_ar" in name or "batta_batta" in name \
             or "ya_matar" in name or "dajaja" in name:
         song_visuals = {
-            "batta_batta": "cute cartoon duck splashing in a pond, cheerful water scene",
-            "ya_matar":    "cartoon rain clouds and rainbow, colorful raindrops, happy animals in rain",
-            "dajaja":      "cute cartoon hen with baby chicks, colorful farm scene, cheerful morning",
+            "batta_batta": "cute Pixar-style cartoon duck with big eyes splashing happily in a pond, "
+                           "water droplets sparkling around it",
+            "ya_matar":    "cartoon rain clouds with smiling faces and bright rainbow, "
+                           "colorful raindrops falling, happy animals dancing in the rain",
+            "dajaja":      "cute cartoon mother hen with fluffy yellow baby chicks around her, "
+                           "cheerful sunny farm background",
         }
         song_key = next((k for k in song_visuals if k in name), None)
         visual = song_visuals.get(song_key,
-                    "cute cartoon animals singing cheerful Arabic nursery song, colorful musical notes")
+                    "cute cartoon animals in a cheerful singing pose, colorful musical notes")
         prompt = f"{visual}, bright cheerful kids illustration, {style}"
 
-    # ── sensory loop / lullaby ────────────────────────────────────────────────
+    # ── lullaby / sensory ─────────────────────────────────────────────────────
     elif vtype in ("sensory_loop", "lullaby_long") or "sensory" in name or "lullaby" in name:
         prompt = (
-            f"Soothing pastel dreamscape, floating stars and soft glowing shapes, "
-            f"gentle gradient colors, calming baby sleep video background, "
-            f"no faces, no text, peaceful and magical, {style}"
+            f"Dreamy night sky with glowing crescent moon and soft twinkling stars, "
+            f"gentle pastel clouds in purple and blue tones, "
+            f"floating soft glowing orbs and sparkles, "
+            f"peaceful and magical baby sleep atmosphere, "
+            f"16:9 format 1280x720, no text, no letters, no words, no numbers, "
+            f"no faces, no watermarks, no logos, no brand names"
         )
 
     # ── dancing shapes ────────────────────────────────────────────────────────
     elif vtype == "dance_shape" or "dance_shape" in name:
         prompt = (
-            f"Cute cartoon geometric shapes dancing and bouncing, "
-            f"colorful circle square triangle star with happy faces, "
-            f"bright pastel background, {style}"
-        )
-
-    # ── dancing pets / items ──────────────────────────────────────────────────
-    elif vtype in ("dance_pet", "dance_item") or "dance_pet" in name or "dance_item" in name:
-        prompt = (
-            f"Cute cartoon household pet dancing happily with musical notes, "
-            f"bright colorful background, cheerful dance pose, {style}"
+            f"Four cute cartoon geometric shape characters — a circle, square, triangle, and star — "
+            f"each with big eyes and wide smiles, dancing together in a joyful pose, "
+            f"all faces clearly visible and unobstructed, "
+            f"bright vivid pastel background with colorful confetti, {style}"
         )
 
     # ── stars and bubbles ─────────────────────────────────────────────────────
     elif vtype == "stars_bubbles" or "stars_bubble" in name:
         prompt = (
-            f"Magical floating soap bubbles and twinkling stars, "
-            f"bright colorful background, one big bubble about to pop, "
-            f"sparkles and light trails, kids entertainment, {style}"
+            f"Dozens of transparent soap bubbles floating in a magical glowing scene, "
+            f"one giant bubble in the center reflecting rainbow light, "
+            f"soft twinkling stars in the background, "
+            f"sparkles and light trails, dreamy and mesmerizing for babies, "
+            f"16:9 format 1280x720, no text, no letters, no words, no numbers, "
+            f"no watermarks, no logos, no brand names"
         )
 
     # ── generic fallback ──────────────────────────────────────────────────────
     else:
-        prompt = (
-            f"Cute cartoon characters for kids educational video, "
-            f"bright colorful background, happy animals and objects, {style}"
-        )
+        if character:
+            prompt = (
+                f"Cute Pixar-style 3D {character} character with big eyes and happy smile, "
+                f"face clearly visible and prominent, bright colorful background, "
+                f"educational kids video, {style}"
+            )
+        else:
+            prompt = (
+                f"Three cute Pixar-style cartoon animal characters with big smiles "
+                f"waving at the viewer, all faces clearly visible, "
+                f"bright vivid colorful background, educational kids video, {style}"
+            )
 
     return prompt
 

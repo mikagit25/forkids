@@ -8,7 +8,7 @@ Usage:
   python3 scripts/generate_emotional_values.py --key emotions_values_cat4
   python3 scripts/generate_emotional_values.py --regen-meta
 """
-import argparse, base64, json, shutil, subprocess, sys, yaml
+import argparse, base64, json, subprocess, sys, yaml
 from datetime import datetime
 from pathlib import Path
 import requests
@@ -21,6 +21,23 @@ SCRIPT_DIR= ROOT / "config" / "scripts"
 TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 TOGETHER_URL      = "https://api.together.xyz/v1/images/generations"
 DATE_STR  = datetime.now().strftime("%Y%m%d")
+
+_ALL_TRACKS = [
+    "Carefree.mp3", "Crinoline Dreams.mp3", "Gymnopedie No 1.mp3",
+    "Happy Happy Game Show.mp3", "Heartwarming.mp3", "Hyperfun.mp3",
+    "Life of Riley.mp3", "Merry Go.mp3", "Monkeys Spinning Monkeys.mp3",
+    "Overworld.mp3", "Pinball Spring.mp3", "Pixelland.mp3",
+    "Quirky Dog.mp3", "Salty Ditty.mp3", "Sneaky Snitch.mp3",
+    "Wholesome.mp3", "Fluffing a Duck.mp3", "Walking Along.mp3",
+    "George Street Shuffle.mp3", "Circus of Freaks.mp3",
+]
+
+def alt_music(en_music: str, ep_idx: int, lang: str) -> str:
+    if lang == "en":
+        return en_music
+    offset = 7 if lang == "ar" else 14
+    pool = [t for t in _ALL_TRACKS if t != en_music]
+    return pool[(ep_idx + offset) % len(pool)]
 
 # Sprites in assets/sprites_new/emotions/ (stem names used in YAML)
 CHOREOS = ["solo_bounce", "solo_sway", "solo_spin", "solo_wave",
@@ -220,34 +237,38 @@ def make_meta(ep_key, ep, lang, queue, out_name):
         yaml.dump(meta, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
 
 
-def render_episode(ep_key, ep, dry_run, regen_meta):
-    out_name = f"emotional_values_{ep_key}_{DATE_STR}.mp4"
-    out_en   = QUEUE_EN / out_name
-    if not out_en.exists() and not regen_meta and not dry_run:
-        script_data = build_yaml_script(ep_key, ep)
-        script_path = SCRIPT_DIR / f"emotional_{ep_key}.yaml"
-        SCRIPT_DIR.mkdir(parents=True, exist_ok=True)
-        with open(script_path, "w") as f:
-            yaml.dump(script_data, f, allow_unicode=True, default_flow_style=False)
-        cmd = [sys.executable, str(ROOT / "scripts" / "generate_video.py"),
-               "--theme", "emotions", "--duration", "20",
-               "--script", str(script_path), "--output", str(out_en)]
-        print(f"  Rendering {ep_key} (20 min, Manim)...", flush=True)
-        r = subprocess.run(cmd, capture_output=False, timeout=86400, cwd=str(ROOT))
-        if r.returncode != 0 or not out_en.exists():
-            print(f"  FAILED: {ep_key}")
-            return False
-        print(f"  ✓ {out_name} ({out_en.stat().st_size/1024/1024:.1f}MB)")
-    elif out_en.exists():
-        print(f"  EXISTS {ep_key}")
-    if out_en.exists():
-        for dest in (QUEUE_AR / out_name, QUEUE_ID / out_name):
-            if not dest.exists():
-                shutil.copy2(str(out_en), str(dest))
+def render_episode(ep_key, ep, ep_idx, dry_run, regen_meta):
+    out_name  = f"emotional_values_{ep_key}_{DATE_STR}.mp4"
+    en_music  = MUSIC_MAP.get(ep_key, "Happy Happy Game Show.mp3")
+    ok = True
+    SCRIPT_DIR.mkdir(parents=True, exist_ok=True)
+
     for lang, queue in [("en", QUEUE_EN), ("ar", QUEUE_AR), ("id", QUEUE_ID)]:
-        make_meta(ep_key, ep, lang, queue, out_name)
-        generate_thumbnail(ep_key, ep, queue, out_name, lang)
-    return True
+        out_mp4    = queue / out_name
+        lang_music = alt_music(en_music, ep_idx, lang)
+        if not out_mp4.exists() and not regen_meta and not dry_run:
+            script_data = build_yaml_script(ep_key, ep)
+            script_data["music"] = lang_music
+            script_path = SCRIPT_DIR / f"emotional_{ep_key}_{lang}.yaml"
+            with open(script_path, "w") as f:
+                yaml.dump(script_data, f, allow_unicode=True, default_flow_style=False)
+            cmd = [sys.executable, str(ROOT / "scripts" / "generate_video.py"),
+                   "--theme", "emotions", "--duration", "20",
+                   "--script", str(script_path), "--output", str(out_mp4)]
+            print(f"  Rendering {ep_key} ({lang}, 20 min, Manim)...", flush=True)
+            r = subprocess.run(cmd, capture_output=False, timeout=86400, cwd=str(ROOT))
+            if r.returncode != 0 or not out_mp4.exists():
+                print(f"  FAILED: {ep_key} ({lang})")
+                ok = False
+                continue
+            print(f"  ✓ {out_name} ({out_mp4.stat().st_size/1024/1024:.1f}MB)")
+        elif out_mp4.exists():
+            print(f"  EXISTS {ep_key} ({lang})")
+        if out_mp4.exists() or dry_run:
+            make_meta(ep_key, ep, lang, queue, out_name)
+            generate_thumbnail(ep_key, ep, queue, out_name, lang)
+
+    return ok
 
 
 def main():
@@ -260,9 +281,9 @@ def main():
         d.mkdir(parents=True, exist_ok=True)
     print(f"\n=== Emotional Values: {len(EPISODES)} episodes → EN+AR+ID ===\n")
     ok = 0
-    for ep_key, ep in EPISODES.items():
+    for ep_idx, (ep_key, ep) in enumerate(EPISODES.items()):
         print(f"[{ep_key}]")
-        if render_episode(ep_key, ep, args.dry_run, args.regen_meta):
+        if render_episode(ep_key, ep, ep_idx, args.dry_run, args.regen_meta):
             ok += 1
     print(f"\nDone: {ok}/{len(EPISODES)}")
 

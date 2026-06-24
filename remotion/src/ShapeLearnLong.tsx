@@ -119,16 +119,22 @@ const FormSection: React.FC<{
   const [h, s, l] = hexToHSL(bg);
   const bgShift = hslToHex((h + cycleIdx * 15) % 360, s * 0.5, Math.min(l + 5, 95));
 
-  // Gentle pulse
-  const pulse = 1 + Math.sin(f / (fps * 0.8)) * 0.025;
+  // Always-active animation — never static
+  const fSec = f / fps;
+  const idlePulse = 1 + Math.sin(fSec * 1.4) * 0.09;
+  const idleFloat = Math.sin(fSec * 1.1) * 22;
+  const idleSway  = Math.sin(fSec * 0.75 + 0.6) * 18;
 
   return (
     <AbsoluteFill style={{ backgroundColor: bgShift, display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <div style={{ transform: `scale(${scale * pulse})`, opacity: fadeOut }}>
+      <div style={{
+        transform: `scale(${scale * idlePulse}) translate(${idleSway}px, ${idleFloat}px)`,
+        opacity: fadeOut,
+      }}>
         <Shape name={shapeName} size={size} color={color} />
       </div>
 
-      {/* Decorative smaller shapes in corners */}
+      {/* Decorative smaller shapes in corners — each floats independently */}
       {[
         { x: "8%",  y: "10%" },
         { x: "82%", y: "10%" },
@@ -137,11 +143,13 @@ const FormSection: React.FC<{
       ].map((pos, i) => {
         const cornerDelay = fps * (1 + i * 0.3);
         const cornerA = spring({ frame: Math.max(0, f - cornerDelay), fps, config: { damping: 14, stiffness: 90 }, durationInFrames: fps });
+        const cFloat  = Math.sin(fSec * 1.3 + i * 1.1) * 10;
+        const cPulse  = 1 + Math.abs(Math.sin(fSec * 1.6 + i * 0.8)) * 0.12;
         return (
           <div key={i} style={{
             position: "absolute", left: pos.x, top: pos.y,
-            transform: `scale(${interpolate(cornerA, [0, 1], [0, 1])})`,
-            opacity: fadeOut * 0.35,
+            transform: `scale(${interpolate(cornerA, [0, 1], [0, cPulse])}) translateY(${cFloat}px)`,
+            opacity: fadeOut * 0.4,
           }}>
             <Shape name={shapeName} size={80} color={color} />
           </div>
@@ -252,21 +260,26 @@ const CountSection: React.FC<{
   const [h, s, l] = hexToHSL(bg);
   const countBg = hslToHex(h, s * 0.4, Math.min(l + 8, 96));
 
+  // Idle animation for placed shapes — always moving
+  const fSecCount = f / fps;
+
   return (
     <AbsoluteFill style={{ backgroundColor: countBg, display: "flex", alignItems: "center", justifyContent: "center" }}>
       {shapes.map((pos, i) => {
         const isNew = i >= prevCount;
         const entryF = isNew ? Math.max(0, (phaseT - 0.1 * i) * fps * COUNT_CYCLE * 0.33) : fps * 2;
         const entrySpring = spring({ frame: entryF, fps, config: { damping: 10, stiffness: 120 }, durationInFrames: fps * 1.2 });
-        const sc = interpolate(entrySpring, [0, 1], [0.1, 1], { extrapolateRight: "clamp" });
+        const sc        = interpolate(entrySpring, [0, 1], [0.1, 1], { extrapolateRight: "clamp" });
+        const idlePulse = 1 + Math.abs(Math.sin(fSecCount * 1.5 + i * 0.8)) * 0.09;
+        const idleFloat = Math.sin(fSecCount * 1.2 + i * 1.0) * 16;
         return (
           <div key={i} style={{
             position: "absolute",
             left: "50%",
             top: "50%",
-            transform: `translate(calc(-50% + ${pos.x}px), calc(-50% + ${pos.y}px)) scale(${sc})`,
+            transform: `translate(calc(-50% + ${pos.x}px), calc(-50% + ${pos.y + idleFloat}px)) scale(${sc * idlePulse})`,
           }}>
-            <Shape name={shapeName} size={240} color={color} />
+            <Shape name={shapeName} size={300} color={color} />
           </div>
         );
       })}

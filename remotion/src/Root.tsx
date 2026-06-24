@@ -31,6 +31,7 @@ const defaultVocabProps: VocabularyShortProps = {
   audioFile: "a__apple__a_is_for_apple.mp3",
   letterColor: "#E53935",
   bgColor: "#E8F5E9",
+  musicFile: "Wholesome.mp3",
 };
 
 // ── ShapeFloat ───────────────────────────────────────────────────────────────
