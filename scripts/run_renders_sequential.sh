@@ -35,6 +35,8 @@
 # 29  | dance_fruits_2stage| generate_dance_fruits_2stage.py     | EN+AR+ID | 14×3=42
 # 30  | dance_pet          | generate_dance_pet.py               | EN+AR+ID | 10×2×3=60
 # 31  | thumbnails final2  | generate_ai_thumbs.py (EN+AR+ID)   | все      | финальный sweep
+# 32  | shape_learn_v2     | generate_shape_learn_v2.py          | EN+AR+ID | 8×3=24 (3D+DVD bounce+fly-in count)
+# 33  | thumbnails final3  | generate_ai_thumbs.py (EN+AR+ID)   | все      | sweep после v2
 #
 # Шортсы — отдельно, после завершения всех длинных видео.
 #
@@ -484,11 +486,32 @@ fi
 
 # ── Step 31: финальные thumbnails (полный sweep) ──────────────────────────────
 if [[ $FROM_STEP -le 31 ]]; then
-    log "[31/31] final thumbnails sweep (EN+AR+ID)..."
+    log "[31/33] final thumbnails sweep (EN+AR+ID)..."
     python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
     python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
     python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
-    log "[31/31] final thumbnails done."
+    log "[31/33] final thumbnails done."
+fi
+
+# ── Step 32: shape_learn_v2 (8 фигур × 3 канала = 24 видео, 3D+DVD+fly-in) ───
+if [[ $FROM_STEP -le 32 ]]; then
+    SL2=$(ls output/queue/shape_learn2_*.mp4 output/queue_ar/shape_learn2_*.mp4 output/queue_id/shape_learn2_*.mp4 2>/dev/null | wc -l)
+    if [[ $SL2 -ge 24 ]]; then
+        skip 32 "shape_learn_v2 ($SL2/24 MP4s exist)"
+    else
+        log "[32/33] shape_learn_v2 — $SL2/24 done..."
+        python3 -u scripts/generate_shape_learn_v2.py >> logs/shape_learn_v2.log 2>&1
+        log "[32/33] shape_learn_v2 done."
+    fi
+fi
+
+# ── Step 33: финальные thumbnails после v2 ────────────────────────────────────
+if [[ $FROM_STEP -le 33 ]]; then
+    log "[33/33] final thumbnails v2 sweep (EN+AR+ID)..."
+    python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
+    log "[33/33] final thumbnails v2 done."
 fi
 
 # ── Итог ──────────────────────────────────────────────────────────────────────

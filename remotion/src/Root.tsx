@@ -15,6 +15,7 @@ import { DanceShapeLong, DanceShapeLongProps } from "./DanceShapeLong";
 import { DanceSpriteLong, DanceSpriteLongProps } from "./DanceSpriteLong";
 import { StarsBubblesLong, StarsBubblesLongProps } from "./StarsBubblesLong";
 import { TransformLong, TransformLongProps } from "./TransformLong";
+import { ShapeLearnLong2, ShapeLearnLong2Props } from "./ShapeLearnLong2";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const C = Composition as React.ComponentType<any>;
@@ -403,6 +404,23 @@ export const Root: React.FC = () => {
             { startSec: 1290, endSec: 1320, mode: "calm" },
           ],
         } as StarsBubblesLongProps}
+      />
+
+      {/* ShapeLearnLong2 — 30-min v2 with 3D sprites, DVD bounce, fly-in count 1→5, wobble */}
+      <C
+        id="ShapeLearnLong2"
+        component={ShapeLearnLong2}
+        durationInFrames={FPS * LONG_DUR}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          spritePath: "shapes_3d/circle.png",
+          shapeColor: "#2980B9",
+          bgColor: "#E3F2FD",
+          musicFile: "Carefree.mp3",
+          musicFile2: "Wholesome.mp3",
+        } as ShapeLearnLong2Props}
       />
 
       {/* Long compositions (30 min, landscape) */}
