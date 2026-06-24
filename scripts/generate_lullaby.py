@@ -311,9 +311,11 @@ def generate_thumbnail(key: str, out_path: Path) -> bool:
         return False
 
 
-def render_loop(key: str, loop_mp4: Path, lang_music: str, dry_run: bool) -> bool:
+def render_loop(key: str, loop_mp4: Path, lang_music: str, lang: str, dry_run: bool) -> bool:
     """Render 5-min loop using LullabyLoop Remotion composition."""
     v = VIDEOS[key]
+    # phaseOffset shifts star phases so EN/AR/ID have visually distinct patterns
+    phase_offset = 0.0 if lang == "en" else (0.37 if lang == "ar" else 0.68)
     props = {
         "theme":         v["theme"],
         "bgColorTop":    v["bg_top"],
@@ -321,6 +323,7 @@ def render_loop(key: str, loop_mp4: Path, lang_music: str, dry_run: bool) -> boo
         "accentColor":   v["accent"],
         "musicFile":     lang_music,
         "bpm":           v["bpm"],
+        "phaseOffset":   phase_offset,
     }
     cmd = [
         "npx", "remotion", "render", "LullabyLoop",
@@ -399,7 +402,7 @@ def process_key(key: str, ep_idx: int, dry_run: bool, regen_meta: bool):
                 print(f"  Already exists ({lang}): {out_mp4.name}")
             else:
                 if not loop_mp4.exists():
-                    ok = render_loop(key, loop_mp4, lang_music, dry_run)
+                    ok = render_loop(key, loop_mp4, lang_music, lang, dry_run)
                     if not ok:
                         print(f"  FAILED render loop: {key} ({lang})")
                         all_ok = False

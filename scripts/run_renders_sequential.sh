@@ -499,19 +499,47 @@ if [[ $FROM_STEP -le 32 ]]; then
     if [[ $SL2 -ge 24 ]]; then
         skip 32 "shape_learn_v2 ($SL2/24 MP4s exist)"
     else
-        log "[32/33] shape_learn_v2 — $SL2/24 done..."
+        log "[32/35] shape_learn_v2 — $SL2/24 done..."
         python3 -u scripts/generate_shape_learn_v2.py >> logs/shape_learn_v2.log 2>&1
-        log "[32/33] shape_learn_v2 done."
+        log "[32/35] shape_learn_v2 done."
     fi
 fi
 
 # ── Step 33: финальные thumbnails после v2 ────────────────────────────────────
 if [[ $FROM_STEP -le 33 ]]; then
-    log "[33/33] final thumbnails v2 sweep (EN+AR+ID)..."
+    log "[33/35] final thumbnails v2 sweep (EN+AR+ID)..."
     python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
     python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
     python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
-    log "[33/33] final thumbnails v2 done."
+    log "[33/35] final thumbnails v2 done."
+fi
+
+# ── Step 34: lullaby sleepy_stars re-render (new drifting stars) ──────────────
+if [[ $FROM_STEP -le 34 ]]; then
+    # Count how many NEW sleepy_stars exist across all 3 queues (date >= today)
+    SS_TOTAL=$(ls output/queue/lullaby_sleepy_stars_*.mp4 output/queue_ar/lullaby_sleepy_stars_*.mp4 output/queue_id/lullaby_sleepy_stars_*.mp4 2>/dev/null | wc -l)
+    if [[ $SS_TOTAL -ge 3 ]]; then
+        skip 34 "lullaby sleepy_stars ($SS_TOTAL/3 exist)"
+    else
+        log "[34/35] lullaby sleepy_stars re-render (new drifting sprites)..."
+        # Remove cached loop files so Remotion re-renders with new LullabyLoop code
+        rm -f output/tmp_lullaby/loop_sleepy_stars_*.mp4
+        # Remove old static ID file still in queue
+        rm -f output/queue_id/lullaby_sleepy_stars_20260622.mp4
+        rm -f output/queue_id/meta_lullaby_sleepy_stars_20260622.yaml
+        rm -f output/queue_id/thumb_lullaby_sleepy_stars_20260622.png
+        python3 -u scripts/generate_lullaby.py --keys sleepy_stars >> logs/lullaby.log 2>&1
+        log "[34/35] lullaby sleepy_stars done."
+    fi
+fi
+
+# ── Step 35: thumbnails for new lullaby files ─────────────────────────────────
+if [[ $FROM_STEP -le 35 ]]; then
+    log "[35/35] thumbnails for lullaby re-render..."
+    python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
+    log "[35/35] thumbnails done."
 fi
 
 # ── Итог ──────────────────────────────────────────────────────────────────────

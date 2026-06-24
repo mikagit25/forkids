@@ -8,6 +8,7 @@ import React from "react";
 import {
   AbsoluteFill,
   Audio,
+  Img,
   interpolate,
   staticFile,
   useCurrentFrame,
@@ -21,6 +22,7 @@ export interface LullabyLoopProps {
   accentColor: string;
   musicFile?: string;
   bpm?: number;
+  phaseOffset?: number; // 0..1 — offsets all star phases so EN/AR/ID have different visual rhythm
 }
 
 function seededRand(seed: number): number {
@@ -28,58 +30,97 @@ function seededRand(seed: number): number {
   return x - Math.floor(x);
 }
 
-// ── Star particle ────────────────────────────────────────────────────────────
-const StarParticle: React.FC<{
-  seed: number; w: number; h: number; color: string; frame: number;
-}> = ({ seed, w, h, color, frame }) => {
-  const r  = seededRand;
-  const cx = r(seed * 7) * w;
-  const cy = r(seed * 11) * h * 0.7;
-  const sz = 1.5 + r(seed * 3) * 4;
-  const twinkleSpeed = 0.3 + r(seed * 5) * 0.4;
-  const twinklePhase = r(seed * 13) * Math.PI * 2;
-  const opacity = 0.15 + r(seed * 17) * 0.5;
-  const brightness = opacity * (0.7 + 0.3 * Math.sin(frame * twinkleSpeed * 0.05 + twinklePhase));
+// ── Background star field (tiny CSS dots, 3 depth layers) ────────────────────
+const StarField: React.FC<{
+  w: number; h: number; frame: number; color: string;
+}> = ({ w, h, frame, color }) => {
+  const r = seededRand;
+  const t = frame / 30;
   return (
-    <div style={{
-      position: "absolute",
-      left: cx - sz / 2,
-      top:  cy - sz / 2,
-      width: sz, height: sz,
-      borderRadius: "50%",
-      backgroundColor: color,
-      opacity: brightness,
-      boxShadow: brightness > 0.3 ? `0 0 ${sz * 2}px ${color}` : "none",
-    }} />
+    <>
+      {Array.from({ length: 90 }, (_, i) => {
+        const cx = r(i * 7) * w;
+        const cy = r(i * 11) * h;
+        const sz = 1 + r(i * 3) * 2.5;
+        const tw = 0.6 + r(i * 5) * 0.8;
+        const ph = r(i * 13) * Math.PI * 2;
+        const op = (0.12 + r(i * 17) * 0.35) * (0.7 + 0.3 * Math.sin(t * tw + ph));
+        return (
+          <div key={i} style={{
+            position: "absolute",
+            left: cx - sz / 2, top: cy - sz / 2,
+            width: sz, height: sz,
+            borderRadius: "50%",
+            backgroundColor: color,
+            opacity: op,
+          }} />
+        );
+      })}
+    </>
   );
 };
 
-// ── Shooting star ────────────────────────────────────────────────────────────
-const ShootingStar: React.FC<{
-  seed: number; w: number; h: number; frame: number; cycleSec: number; fps: number;
-}> = ({ seed, w, h, frame, cycleSec, fps }) => {
+// ── Drifting star sprite (FLUX PNG, travels across screen) ───────────────────
+const DriftingStar: React.FC<{
+  seed: number; w: number; h: number; frame: number; fps: number;
+  phaseOffset: number; yOffset?: number; sizeScale?: number;
+}> = ({ seed, w, h, frame, fps, phaseOffset, yOffset = 0, sizeScale = 1 }) => {
   const r = seededRand;
-  const totalFrames = cycleSec * fps;
-  const offset = Math.round(r(seed * 19) * totalFrames);
-  const localFrame = (frame + offset) % totalFrames;
-  const active = localFrame < fps * 2;
-  if (!active) return null;
-  const progress = localFrame / (fps * 2);
-  const startX = r(seed * 23) * w;
-  const startY = r(seed * 29) * h * 0.5;
-  const len = 80 + r(seed * 31) * 120;
-  const x = startX + progress * len;
-  const y = startY + progress * len * 0.4;
-  const opacity = Math.sin(progress * Math.PI);
+  const t = frame / fps;
+
+  // Size tier by seed range
+  const rawSize = seed <= 3  ? 55  + r(seed * 3) * 35   // far: 55–90px
+                : seed <= 7  ? 110 + r(seed * 3) * 55   // mid: 110–165px
+                :              175 + r(seed * 3) * 95;  // near: 175–270px
+  const size = rawSize * sizeScale;
+
+  // Crossing period (seconds): far=slow, near=faster
+  const period = seed <= 3  ? 75 + r(seed * 7) * 35
+               : seed <= 7  ? 48 + r(seed * 7) * 22
+               :              30 + r(seed * 7) * 16;
+
+  const direction = r(seed * 17) > 0.5 ? 1 : -1;
+  const phase     = ((r(seed * 23) + phaseOffset) % 1 + 1) % 1;
+
+  // X: linear wrap
+  const xNorm = ((t / period + phase) % 1 + 1) % 1;
+  const rawX  = xNorm * (w + size * 2) - size;
+  const cx    = direction > 0 ? rawX : w + size - rawX;
+
+  // Y: base + gentle oscillation
+  const yBase  = r(seed * 31) * h * 0.78 + h * 0.11;
+  const yFreq  = 0.12 + r(seed * 37) * 0.14;
+  const yAmp   = 22 + r(seed * 41) * 28;
+  const yPh    = r(seed * 43) * Math.PI * 2;
+  const cy     = yBase + yOffset + Math.sin(t * yFreq + yPh) * yAmp;
+
+  // Wobble (PIP/BWW formula)
+  const s = seed * 0.1;
+  const scaleX = 1 + Math.sin(t * (8.3 + s * 0.7)) * 0.038 + Math.sin(t * (5.1 + s * 0.4)) * 0.020;
+  const scaleY = 1 + Math.sin(t * (7.7 + s * 0.9)) * 0.038 + Math.cos(t * (4.2 + s * 1.1)) * 0.020;
+  const rot    = Math.sin(t * (6.5 + s * 0.5)) * 1.4;
+
+  // Twinkle + subtle hue shift
+  const twFreq = 0.7 + r(seed * 53) * 0.7;
+  const twPh   = r(seed * 59) * Math.PI * 2;
+  const opacity = 0.50 + 0.38 * Math.sin(t * twFreq + twPh);
+  const hue    = Math.sin(t * 0.07 + seed) * 22;
+
   return (
-    <div style={{
-      position: "absolute",
-      left: x, top: y,
-      width: len * 0.6, height: 1.5,
-      background: `linear-gradient(90deg, rgba(255,255,255,${opacity}) 0%, transparent 100%)`,
-      transform: `rotate(25deg)`,
-      transformOrigin: "left center",
-    }} />
+    <Img
+      src={staticFile("sprites/objects/star_sleep.png")}
+      style={{
+        position: "absolute",
+        left: cx - size / 2,
+        top:  cy - size / 2,
+        width: size, height: size,
+        opacity,
+        mixBlendMode: "screen" as const,
+        transform: `scaleX(${scaleX}) scaleY(${scaleY}) rotate(${rot}deg)`,
+        filter: `drop-shadow(0 0 ${size * 0.22}px rgba(255,215,70,0.65)) hue-rotate(${hue}deg)`,
+        pointerEvents: "none",
+      }}
+    />
   );
 };
 
@@ -164,17 +205,19 @@ const RainDrop: React.FC<{
 
 // ── Moon ─────────────────────────────────────────────────────────────────────
 const Moon: React.FC<{ frame: number; w: number }> = ({ frame, w }) => {
-  const glow = 0.12 + 0.04 * Math.sin(frame * 0.015);
+  const t = frame / 30;
+  const glow = 0.14 + 0.05 * Math.sin(t * 0.4);
+  const breathe = 1 + 0.015 * Math.sin(t * 0.25);
   return (
     <div style={{
       position: "absolute",
-      right: w * 0.1,
-      top: "8%",
-      width: 70, height: 70,
+      right: w * 0.08,
+      top: "6%",
+      width: 110 * breathe, height: 110 * breathe,
       borderRadius: "50%",
-      backgroundColor: "#FFFFCC",
-      opacity: 0.6,
-      boxShadow: `0 0 ${40 + glow * 30}px ${20 + glow * 20}px rgba(255,255,200,${glow})`,
+      backgroundColor: "#FFFFD5",
+      opacity: 0.75,
+      boxShadow: `0 0 ${70 + glow * 50}px ${35 + glow * 30}px rgba(255,255,180,${glow}), 0 0 ${140 + glow * 80}px rgba(255,255,150,${glow * 0.4})`,
     }} />
   );
 };
@@ -187,11 +230,12 @@ export const LullabyLoop: React.FC<LullabyLoopProps> = ({
   accentColor,
   musicFile,
   bpm = 52,
+  phaseOffset = 0,
 }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
 
-  const PARTICLE_COUNT = theme === "stars" ? 60 : theme === "rain" ? 40 : 12;
+  const PARTICLE_COUNT = theme === "rain" ? 40 : 12;
 
   return (
     <AbsoluteFill style={{
@@ -212,11 +256,30 @@ export const LullabyLoop: React.FC<LullabyLoopProps> = ({
       {/* Theme-specific elements */}
       {theme === "stars" && (
         <>
-          {Array.from({ length: PARTICLE_COUNT }, (_, i) => (
-            <StarParticle key={i} seed={i + 1} w={width} h={height} color={accentColor} frame={frame} />
+          {/* Background field of tiny static-drift stars */}
+          <StarField w={width} h={height} frame={frame} color={accentColor} />
+
+          {/* Far layer: 3 small slow stars */}
+          {[1,2,3].map(i => (
+            <DriftingStar key={`far${i}`} seed={i} w={width} h={height} frame={frame} fps={fps} phaseOffset={phaseOffset} />
           ))}
-          {Array.from({ length: 3 }, (_, i) => (
-            <ShootingStar key={i} seed={i + 1} w={width} h={height} frame={frame} cycleSec={40} fps={fps} />
+
+          {/* Mid layer: 4 medium stars */}
+          {[4,5,6,7].map(i => (
+            <DriftingStar key={`mid${i}`} seed={i} w={width} h={height} frame={frame} fps={fps} phaseOffset={phaseOffset} />
+          ))}
+
+          {/* Near layer: 3 large fast stars */}
+          {[8,9,10].map(i => (
+            <DriftingStar key={`near${i}`} seed={i} w={width} h={height} frame={frame} fps={fps} phaseOffset={phaseOffset} />
+          ))}
+
+          {/* 3 pairs: two stars drifting together with Y offset */}
+          {[20,21,22].map(i => (
+            <React.Fragment key={`pair${i}`}>
+              <DriftingStar seed={i} w={width} h={height} frame={frame} fps={fps} phaseOffset={phaseOffset} yOffset={-28} sizeScale={1.0} />
+              <DriftingStar seed={i} w={width} h={height} frame={frame} fps={fps} phaseOffset={phaseOffset} yOffset={32} sizeScale={0.7} />
+            </React.Fragment>
           ))}
         </>
       )}

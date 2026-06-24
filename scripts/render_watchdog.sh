@@ -81,12 +81,16 @@ SM_TOTAL=$((SM_EN + SM_AR + SM_ID))
 SR_TOTAL=$((SR_EN + SR_AR + SR_ID))
 SL2_TOTAL=$((SL2_EN + SL2_AR + SL2_ID))
 NEW_TOTAL=$((OCV_EN + NC_EN + TB_EN + FG_EN + F2_EN))
-GRAND_TOTAL=$((NL_TOTAL + CL_TOTAL + SL_TOTAL + CD_TOTAL + SM_TOTAL + SR_TOTAL + SL2_TOTAL + NEW_TOTAL))
+SS_EN=$(count_mp4 "output/queue/lullaby_sleepy_stars_*.mp4" "uploaded/lullaby_sleepy_stars_*.mp4")
+SS_AR=$(count_mp4 "output/queue_ar/lullaby_sleepy_stars_*.mp4")
+SS_ID=$(count_mp4 "output/queue_id/lullaby_sleepy_stars_*.mp4")
+SS_TOTAL=$((SS_EN + SS_AR + SS_ID))
+GRAND_TOTAL=$((NL_TOTAL + CL_TOTAL + SL_TOTAL + CD_TOTAL + SM_TOTAL + SR_TOTAL + SL2_TOTAL + NEW_TOTAL + SS_TOTAL))
 # 30 number + 27 color + 24 shape_v1 + 12 character_dialogue + 24 special_mechanics
-# + 24 shape_roundelay + 24 shape_learn_v2 + new series (tracked partially)
-EXPECTED=165  # raised: +24 for shape_learn_v2
+# + 24 shape_roundelay + 24 shape_learn_v2 + new series + 3 sleepy_stars re-render
+EXPECTED=168  # raised: +3 for sleepy_stars re-render
 
-log "Progress: NL=$NL_TOTAL/30 CL=$CL_TOTAL/27 SL=$SL_TOTAL/24 CD=$CD_TOTAL/12 SM=$SM_TOTAL/24 SR=$SR_TOTAL/24 SL2=$SL2_TOTAL/24 (total $GRAND_TOTAL/$EXPECTED)"
+log "Progress: NL=$NL_TOTAL/30 CL=$CL_TOTAL/27 SL=$SL_TOTAL/24 CD=$CD_TOTAL/12 SM=$SM_TOTAL/24 SR=$SR_TOTAL/24 SL2=$SL2_TOTAL/24 SS=$SS_TOTAL/3 (total $GRAND_TOTAL/$EXPECTED)"
 log "  New: ocd=${OCV_EN} nature=${NC_EN} transform=${TB_EN} fruits_grp=${FG_EN} fruits_2s=${F2_EN}"
 
 # ── Check if already fully done ───────────────────────────────────────────
@@ -117,6 +121,7 @@ if [[ $CD_TOTAL -ge 12 ]]; then
     [[ $SM_TOTAL -ge 24 ]] && FROM_STEP=20
     [[ $SM_TOTAL -ge 24 && $SR_TOTAL -ge 24 ]] && FROM_STEP=21
     [[ $SM_TOTAL -ge 24 && $SR_TOTAL -ge 24 && $SL2_TOTAL -ge 24 ]] && FROM_STEP=33
+    [[ $SM_TOTAL -ge 24 && $SR_TOTAL -ge 24 && $SL2_TOTAL -ge 24 && $SS_TOTAL -ge 3 ]] && FROM_STEP=35
 fi
 
 # ── Nothing running but renders incomplete → restart ──────────────────────
