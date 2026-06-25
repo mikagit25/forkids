@@ -107,7 +107,7 @@ VIDEOS = {
         "bg_top":   "#040810",
         "bg_bottom":"#060C18",
         "accent":   "#DDAA55",
-        "music":    "Wholesome.mp3",
+        "music":    "Walking Along.mp3",   # rhythmic stride matches train clickety-clack
         "bpm":      50,
         "theme":    "train",
     },

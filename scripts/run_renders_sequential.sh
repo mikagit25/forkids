@@ -542,6 +542,42 @@ if [[ $FROM_STEP -le 35 ]]; then
     log "[35/35] thumbnails done."
 fi
 
+# ── Step 36: ocean_night re-render (FLUX jellyfish + fish + rising bubbles) ──
+if [[ $FROM_STEP -le 36 ]]; then
+    ON_TOTAL=$(ls output/queue/lullaby_ocean_night_*.mp4 output/queue_ar/lullaby_ocean_night_*.mp4 output/queue_id/lullaby_ocean_night_*.mp4 2>/dev/null | wc -l)
+    # Need at least 6: 3 old + 3 new (old 20260622 + new today)
+    if [[ $ON_TOTAL -ge 6 ]]; then
+        skip 36 "lullaby ocean_night ($ON_TOTAL videos exist, new set already generated)"
+    else
+        log "[36/38] lullaby ocean_night re-render (drifting jellyfish/fish)..."
+        rm -f output/tmp_lullaby/loop_ocean_night_*.mp4
+        python3 -u scripts/generate_lullaby.py --keys ocean_night >> logs/lullaby.log 2>&1
+        log "[36/38] ocean_night done."
+    fi
+fi
+
+# ── Step 37: sleepy_train re-render (CSS parallax window + Walking Along) ────
+if [[ $FROM_STEP -le 37 ]]; then
+    ST_TOTAL=$(ls output/queue/lullaby_sleepy_train_*.mp4 output/queue_ar/lullaby_sleepy_train_*.mp4 output/queue_id/lullaby_sleepy_train_*.mp4 2>/dev/null | wc -l)
+    if [[ $ST_TOTAL -ge 6 ]]; then
+        skip 37 "lullaby sleepy_train ($ST_TOTAL videos exist, new set already generated)"
+    else
+        log "[37/38] lullaby sleepy_train re-render (parallax window + train music)..."
+        rm -f output/tmp_lullaby/loop_sleepy_train_*.mp4
+        python3 -u scripts/generate_lullaby.py --keys sleepy_train >> logs/lullaby.log 2>&1
+        log "[37/38] sleepy_train done."
+    fi
+fi
+
+# ── Step 38: thumbnails for re-rendered lullabies ─────────────────────────────
+if [[ $FROM_STEP -le 38 ]]; then
+    log "[38/38] thumbnails for lullaby re-renders..."
+    python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
+    log "[38/38] thumbnails done."
+fi
+
 # ── Итог ──────────────────────────────────────────────────────────────────────
 log "════════════════════════════════════════════════════════"
 log "ВСЕ ДЛИННЫЕ ВИДЕО ГОТОВЫ"

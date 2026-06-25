@@ -124,31 +124,142 @@ const DriftingStar: React.FC<{
   );
 };
 
-// ── Jellyfish (ocean theme) ──────────────────────────────────────────────────
-const Jellyfish: React.FC<{
-  seed: number; w: number; h: number; frame: number; fps: number; color: string;
-}> = ({ seed, w, h, frame, fps, color }) => {
+// ── Ocean: drifting jellyfish (FLUX PNG) ─────────────────────────────────────
+const DriftingJellyfish: React.FC<{
+  seed: number; w: number; h: number; frame: number; fps: number; phaseOffset: number;
+}> = ({ seed, w, h, frame, fps, phaseOffset }) => {
   const r = seededRand;
-  const baseX = r(seed * 7) * w * 0.8 + w * 0.1;
-  const baseY = r(seed * 11) * h * 0.6 + h * 0.2;
-  const sz    = 40 + r(seed * 3) * 60;
-  const pulseSpeed = 0.5 + r(seed * 5) * 0.3;
-  const pulse = 1 + 0.15 * Math.sin(frame * pulseSpeed * 0.05);
-  const swayX = Math.sin(frame * 0.008 + r(seed * 13) * 6) * 30;
-  const swayY = Math.cos(frame * 0.006 + r(seed * 17) * 4) * 20;
-  const opacity = 0.2 + r(seed * 19) * 0.25;
+  const t = frame / fps;
+
+  const size    = 100 + r(seed * 3) * 140;   // 100–240px
+  const period  = 50  + r(seed * 7) * 40;    // 50–90s to cross screen
+  const dir     = r(seed * 17) > 0.5 ? 1 : -1;
+  const phase   = ((r(seed * 23) + phaseOffset) % 1 + 1) % 1;
+  const xNorm   = ((t / period + phase) % 1 + 1) % 1;
+  const rawX    = xNorm * (w + size * 2) - size;
+  const cx      = dir > 0 ? rawX : w + size - rawX;
+
+  // Y: mid-screen with gentle vertical drift
+  const yBase   = h * 0.2 + r(seed * 31) * h * 0.55;
+  const cy      = yBase + Math.sin(t * (0.18 + r(seed * 37) * 0.1) + r(seed * 43) * Math.PI * 2) * 35;
+
+  // Pulse (jellyfish breathing)
+  const pulse   = 1 + 0.12 * Math.sin(t * (1.2 + r(seed * 5) * 0.4) + r(seed * 11) * Math.PI * 2);
+
+  // Wobble (PIP/BWW)
+  const s       = seed * 0.1;
+  const scaleX  = pulse * (1 + Math.sin(t * (8.3 + s * 0.7)) * 0.025);
+  const scaleY  = pulse * (1 + Math.cos(t * (7.7 + s * 0.9)) * 0.025);
+  const rot     = Math.sin(t * (4.5 + s * 0.5)) * 6;
+
+  // Glow opacity — gentle breathe
+  const opacity = 0.55 + 0.32 * Math.sin(t * (0.8 + r(seed * 53) * 0.5) + r(seed * 59) * Math.PI * 2);
+  const hue     = Math.sin(t * 0.06 + seed) * 40; // shift between blue and purple
+
+  return (
+    <Img
+      src={staticFile("sprites/objects/jellyfish_glow.png")}
+      style={{
+        position: "absolute",
+        left: cx - (size * scaleX) / 2,
+        top:  cy - (size * scaleY) / 2,
+        width: size * scaleX, height: size * scaleY,
+        opacity,
+        mixBlendMode: "screen" as const,
+        transform: `rotate(${rot}deg)`,
+        filter: `drop-shadow(0 0 ${size * 0.18}px rgba(80,120,255,0.6)) hue-rotate(${hue}deg)`,
+        pointerEvents: "none",
+      }}
+    />
+  );
+};
+
+// ── Ocean: rising bubbles ────────────────────────────────────────────────────
+const RisingBubble: React.FC<{
+  seed: number; w: number; h: number; frame: number; fps: number;
+}> = ({ seed, w, h, frame, fps }) => {
+  const r  = seededRand;
+  const t  = frame / fps;
+  const sz = 8 + r(seed * 3) * 28;                // 8–36px
+  const riseSpeed  = 20 + r(seed * 7) * 30;       // px/s
+  const period     = (h + sz) / riseSpeed;
+  const initPhase  = r(seed * 13);
+  const yNorm      = ((t / period + initPhase) % 1 + 1) % 1;
+  const cy         = h + sz - yNorm * (h + sz * 2); // bottom→top
+  const cx         = r(seed * 23) * w * 0.9 + w * 0.05;
+  const sway       = Math.sin(t * (0.9 + r(seed * 31) * 0.4) + r(seed * 37) * 6) * 18;
+  const opacity    = (0.3 + r(seed * 41) * 0.4) * (0.7 + 0.3 * Math.sin(t * 1.5 + r(seed * 43) * 6));
   return (
     <div style={{
       position: "absolute",
-      left: baseX + swayX - sz * pulse / 2,
-      top:  baseY + swayY - sz * pulse / 2,
-      width:  sz * pulse,
-      height: sz * pulse * 0.7,
-      borderRadius: "50% 50% 0 0",
-      backgroundColor: color,
-      opacity,
-      boxShadow: `0 0 ${sz * 0.5}px ${color}`,
+      left: cx + sway - sz / 2, top: cy - sz / 2,
+      width: sz, height: sz,
+      borderRadius: "50%",
+      border: `${sz * 0.06 + 0.5}px solid rgba(140,200,255,${opacity * 0.8})`,
+      background: `radial-gradient(circle at 35% 35%, rgba(200,230,255,${opacity * 0.3}), rgba(80,140,220,${opacity * 0.08}))`,
+      boxShadow: `0 0 ${sz * 0.5}px rgba(100,180,255,${opacity * 0.4})`,
     }} />
+  );
+};
+
+// ── Ocean: drifting fish (FLUX PNG) ─────────────────────────────────────────
+const DriftingFish: React.FC<{
+  seed: number; w: number; h: number; frame: number; fps: number; phaseOffset: number;
+}> = ({ seed, w, h, frame, fps, phaseOffset }) => {
+  const r = seededRand;
+  const t = frame / fps;
+  const size   = 60 + r(seed * 3) * 80;
+  const period = 40 + r(seed * 7) * 30;
+  const dir    = r(seed * 17) > 0.5 ? 1 : -1;
+  const phase  = ((r(seed * 23) + phaseOffset * 0.6) % 1 + 1) % 1;
+  const xNorm  = ((t / period + phase) % 1 + 1) % 1;
+  const rawX   = xNorm * (w + size * 2) - size;
+  const cx     = dir > 0 ? rawX : w + size - rawX;
+  const yBase  = h * 0.3 + r(seed * 31) * h * 0.5;
+  const cy     = yBase + Math.sin(t * (0.25 + r(seed * 37) * 0.15) + r(seed * 43) * 6) * 25;
+  const wobble = Math.sin(t * 5 + r(seed * 53) * 6) * 4;  // tail waggle expressed as rotation
+  const opacity= 0.45 + 0.35 * Math.sin(t * (0.6 + r(seed * 59) * 0.4) + r(seed * 61) * 6);
+  // flip horizontally if moving right so fish faces correct direction
+  const flipX  = dir > 0 ? -1 : 1;
+
+  return (
+    <Img
+      src={staticFile("sprites/objects/fish_deep.png")}
+      style={{
+        position: "absolute",
+        left: cx - size / 2, top: cy - size / 2,
+        width: size, height: size,
+        opacity,
+        mixBlendMode: "screen" as const,
+        transform: `scaleX(${flipX}) rotate(${wobble}deg)`,
+        filter: `drop-shadow(0 0 ${size * 0.15}px rgba(0,220,200,0.5))`,
+        pointerEvents: "none",
+      }}
+    />
+  );
+};
+
+// ── Ocean: caustic light rays from above ─────────────────────────────────────
+const OceanCaustics: React.FC<{ w: number; h: number; frame: number }> = ({ w, h, frame }) => {
+  const t = frame / 30;
+  return (
+    <>
+      {[0, 1, 2, 3].map(i => {
+        const x   = w * (0.15 + i * 0.22 + Math.sin(t * 0.08 + i * 1.4) * 0.05);
+        const ht  = h * (0.4 + Math.sin(t * 0.05 + i * 2.1) * 0.08);
+        const op  = 0.04 + 0.025 * Math.sin(t * 0.12 + i * 1.7);
+        const wid = 30 + Math.sin(t * 0.09 + i * 1.1) * 14;
+        return (
+          <div key={i} style={{
+            position: "absolute",
+            left: x - wid / 2, top: 0,
+            width: wid, height: ht,
+            background: `linear-gradient(180deg, rgba(80,160,255,${op}) 0%, transparent 100%)`,
+            transform: `skewX(${Math.sin(t * 0.07 + i * 0.9) * 6}deg)`,
+          }} />
+        );
+      })}
+    </>
   );
 };
 
@@ -286,9 +397,30 @@ export const LullabyLoop: React.FC<LullabyLoopProps> = ({
 
       {theme === "ocean" && (
         <>
-          {Array.from({ length: 6 }, (_, i) => (
-            <Jellyfish key={i} seed={i + 1} w={width} h={height} frame={frame} fps={fps} color={accentColor} />
+          {/* Caustic light shafts from surface */}
+          <OceanCaustics w={width} h={height} frame={frame} />
+
+          {/* 5 drifting FLUX jellyfish, 2 size tiers */}
+          {[1,2,3,4,5].map(i => (
+            <DriftingJellyfish key={i} seed={i} w={width} h={height} frame={frame} fps={fps} phaseOffset={phaseOffset} />
           ))}
+
+          {/* 3 drifting fish */}
+          {[10,11,12].map(i => (
+            <DriftingFish key={i} seed={i} w={width} h={height} frame={frame} fps={fps} phaseOffset={phaseOffset} />
+          ))}
+
+          {/* Rising bubbles: 18 at various sizes + speeds */}
+          {Array.from({ length: 18 }, (_, i) => (
+            <RisingBubble key={i} seed={i + 1} w={width} h={height} frame={frame} fps={fps} />
+          ))}
+
+          {/* Deep ocean ambient glow at bottom */}
+          <div style={{
+            position: "absolute", bottom: 0, left: 0, right: 0, height: "30%",
+            background: "linear-gradient(0deg, rgba(0,40,80,0.5) 0%, transparent 100%)",
+            pointerEvents: "none",
+          }} />
         </>
       )}
 
@@ -318,22 +450,152 @@ export const LullabyLoop: React.FC<LullabyLoopProps> = ({
 
       {theme === "train" && (
         <>
-          {/* Train window lights scrolling */}
-          {Array.from({ length: 4 }, (_, i) => {
-            const speed = 0.3;
-            const startX = i * 280;
-            const x = (startX - frame * speed) % (width + 280);
+          {/* ── Outside (seen through window): parallax landscape ── */}
+
+          {/* Far layer: distant hills scrolling very slowly */}
+          {Array.from({ length: 5 }, (_, i) => {
+            const layerW = width * 0.45;
+            const speed  = 0.18; // px/frame
+            const x = ((i * layerW - frame * speed) % (layerW * 5 + width) + layerW * 5 + width) % (layerW * 5 + width) - layerW;
+            const hillH = height * (0.22 + seededRand(i * 7) * 0.12);
+            const hue = 200 + seededRand(i * 11) * 20;
             return (
-              <div key={i} style={{
+              <div key={`hill${i}`} style={{
                 position: "absolute",
-                left: x - 280, bottom: "25%",
-                width: 220, height: 140,
-                border: "3px solid rgba(180,120,50,0.3)",
-                borderRadius: 4,
-                background: "rgba(255,190,80,0.06)",
+                left: x,
+                bottom: height * 0.18,
+                width: layerW,
+                height: hillH,
+                borderRadius: "50% 50% 0 0",
+                backgroundColor: `hsl(${hue},25%,9%)`,
               }} />
             );
           })}
+
+          {/* Mid layer: tree silhouettes */}
+          {Array.from({ length: 14 }, (_, i) => {
+            const speed  = 1.2; // px/frame
+            const gap    = 110 + seededRand(i * 7) * 90;
+            const totalW = 14 * 140;
+            const x = ((i * gap - frame * speed) % totalW + totalW + width) % totalW - gap;
+            const treeH  = height * (0.14 + seededRand(i * 11) * 0.10);
+            const treeW  = 22 + seededRand(i * 13) * 28;
+            return (
+              <React.Fragment key={`tree${i}`}>
+                {/* Trunk */}
+                <div style={{
+                  position: "absolute",
+                  left: x + treeW * 0.4,
+                  bottom: height * 0.18,
+                  width: treeW * 0.2,
+                  height: treeH * 0.4,
+                  backgroundColor: "#090c08",
+                }} />
+                {/* Crown */}
+                <div style={{
+                  position: "absolute",
+                  left: x,
+                  bottom: height * 0.18 + treeH * 0.3,
+                  width: treeW,
+                  height: treeH * 0.8,
+                  borderRadius: "50% 50% 20% 20%",
+                  backgroundColor: "#060d05",
+                }} />
+              </React.Fragment>
+            );
+          })}
+
+          {/* Near layer: telegraph poles + wire */}
+          {Array.from({ length: 8 }, (_, i) => {
+            const speed  = 4.5;
+            const gap    = 240;
+            const totalW = 8 * gap;
+            const x = ((i * gap - frame * speed) % totalW + totalW + width) % totalW - gap;
+            return (
+              <React.Fragment key={`pole${i}`}>
+                <div style={{
+                  position: "absolute",
+                  left: x,
+                  bottom: height * 0.18,
+                  width: 5,
+                  height: height * 0.35,
+                  backgroundColor: "rgba(20,15,8,0.9)",
+                }} />
+                <div style={{
+                  position: "absolute",
+                  left: x - gap + 5,
+                  bottom: height * 0.18 + height * 0.33,
+                  width: gap,
+                  height: 2,
+                  background: "rgba(20,15,8,0.5)",
+                }} />
+              </React.Fragment>
+            );
+          })}
+
+          {/* Ground strip */}
+          <div style={{
+            position: "absolute",
+            bottom: 0, left: 0, right: 0,
+            height: height * 0.19,
+            background: "linear-gradient(0deg, #040602 0%, #080d06 100%)",
+          }} />
+
+          {/* Flickering distant lights (farmhouses) */}
+          {Array.from({ length: 6 }, (_, i) => {
+            const speed  = 0.55;
+            const gap    = width * 0.38;
+            const totalW = 6 * gap;
+            const x = ((i * gap - frame * speed) % totalW + totalW + width) % totalW - gap;
+            const flicker = 0.5 + 0.5 * Math.sin(frame * (0.07 + seededRand(i * 5) * 0.04) + i * 1.9);
+            const y = height * 0.48 + seededRand(i * 7) * height * 0.12;
+            return (
+              <div key={`light${i}`} style={{
+                position: "absolute",
+                left: x, top: y,
+                width: 6, height: 4,
+                backgroundColor: `rgba(255,200,80,${0.6 * flicker})`,
+                boxShadow: `0 0 ${10 * flicker}px ${5 * flicker}px rgba(255,180,60,${0.4 * flicker})`,
+              }} />
+            );
+          })}
+
+          {/* ── Window frame overlay ── */}
+          {/* Top/bottom rails */}
+          <div style={{
+            position: "absolute", top: 0, left: 0, right: 0,
+            height: "16%",
+            background: "linear-gradient(180deg, rgba(15,10,5,0.98) 0%, rgba(15,10,5,0.7) 70%, transparent 100%)",
+          }} />
+          <div style={{
+            position: "absolute", bottom: 0, left: 0, right: 0,
+            height: "18%",
+            background: "linear-gradient(0deg, rgba(15,10,5,0.98) 0%, rgba(15,10,5,0.7) 70%, transparent 100%)",
+          }} />
+          {/* Left/right curtain panels */}
+          <div style={{
+            position: "absolute", top: 0, bottom: 0, left: 0,
+            width: "9%",
+            background: "linear-gradient(90deg, rgba(10,6,3,0.95) 0%, rgba(30,18,10,0.4) 100%)",
+          }} />
+          <div style={{
+            position: "absolute", top: 0, bottom: 0, right: 0,
+            width: "9%",
+            background: "linear-gradient(270deg, rgba(10,6,3,0.95) 0%, rgba(30,18,10,0.4) 100%)",
+          }} />
+
+          {/* ── Interior warmth: ambient amber lamp glow ── */}
+          <div style={{
+            position: "absolute", bottom: 0, left: 0, right: 0, height: "22%",
+            background: `radial-gradient(ellipse 60% 80% at 50% 100%, rgba(255,160,40,${0.06 + 0.02 * Math.sin(frame * 0.04)}) 0%, transparent 100%)`,
+          }} />
+
+          {/* ── Rhythmic window vibration (train movement feel) ── */}
+          <div style={{
+            position: "absolute", inset: 0,
+            opacity: 0.018 * Math.abs(Math.sin(frame * 0.52)),
+            backgroundColor: "#FFFFEE",
+          }} />
         </>
       )}
 
