@@ -263,53 +263,253 @@ const OceanCaustics: React.FC<{ w: number; h: number; frame: number }> = ({ w, h
   );
 };
 
-// ── Firefly ──────────────────────────────────────────────────────────────────
+// ── Garden/Forest: firefly (large glow, always visible, drifts independently) ─
 const Firefly: React.FC<{
-  seed: number; w: number; h: number; frame: number; color: string;
-}> = ({ seed, w, h, frame, color }) => {
+  seed: number; w: number; h: number; frame: number; fps: number;
+  color: string; phaseOffset: number;
+}> = ({ seed, w, h, frame, fps, color, phaseOffset }) => {
   const r = seededRand;
-  const baseX = r(seed * 7) * w;
-  const baseY = h * 0.4 + r(seed * 11) * h * 0.5;
-  const driftX = Math.sin(frame * 0.012 + r(seed * 13) * 6) * 60;
-  const driftY = Math.cos(frame * 0.009 + r(seed * 17) * 4) * 40;
-  const glowCycle = 0.3 + 0.7 * Math.pow(Math.sin(frame * 0.04 + r(seed * 5) * Math.PI), 2);
+  const t = frame / fps;
+
+  // Position shifts per language via phaseOffset (Rule 8 + per-language differentiation)
+  const baseX = ((r(seed * 7) + phaseOffset * 0.3) % 1) * w * 0.82 + w * 0.09;
+  const baseY = h * 0.22 + r(seed * 11) * h * 0.55;
+
+  // Independent drift per firefly (Rule 8: each has unique phase)
+  const driftX = Math.sin(t * (0.35 + r(seed * 13) * 0.28) + seed * 1.2) * (52 + r(seed * 15) * 35);
+  const driftY = Math.cos(t * (0.28 + r(seed * 17) * 0.22) + seed * 0.8) * (38 + r(seed * 19) * 22);
+
+  // Size: 14–30px (was 6px — Rule 6)
+  const sz = 14 + r(seed * 3) * 16;
+
+  // Always-visible glow: min 0.50 so firefly never disappears (Rule 3)
+  const glowCycle = 0.50 + 0.50 * Math.pow(
+    Math.abs(Math.sin(t * (1.1 + r(seed * 5) * 0.7) + r(seed * 21) * Math.PI * 2)), 1.3
+  );
+
+  // Wobble (PIP/BWW — Rule 7)
+  const s = seed * 0.1;
+  const scale = 1 + Math.sin(t * (8.3 + s * 0.7)) * 0.04 + Math.cos(t * (5.1 + s * 0.4)) * 0.02;
+
   return (
     <div style={{
       position: "absolute",
-      left: baseX + driftX - 3,
-      top:  baseY + driftY - 3,
-      width: 6, height: 6,
+      left: baseX + driftX - (sz * scale) / 2,
+      top:  baseY + driftY - (sz * scale) / 2,
+      width: sz * scale, height: sz * scale,
       borderRadius: "50%",
       backgroundColor: color,
-      opacity: glowCycle * 0.9,
-      boxShadow: `0 0 ${8 * glowCycle}px ${4 * glowCycle}px ${color}`,
+      opacity: glowCycle * 0.95,
+      boxShadow: `0 0 ${sz * 1.8 * glowCycle}px ${sz * glowCycle}px ${color}, 0 0 ${sz * 3.5 * glowCycle}px ${color}55`,
     }} />
   );
 };
 
-// ── Rain drop ────────────────────────────────────────────────────────────────
-const RainDrop: React.FC<{
+// ── Garden: floating petal / Forest: floating leaf ────────────────────────────
+const FloatingParticle: React.FC<{
   seed: number; w: number; h: number; frame: number; fps: number;
-}> = ({ seed, w, h, frame, fps }) => {
+  isForest: boolean; phaseOffset: number;
+}> = ({ seed, w, h, frame, fps, isForest, phaseOffset }) => {
   const r = seededRand;
-  const x = r(seed * 7) * w;
-  const speed = 3 + r(seed * 11) * 4; // px per frame
-  const startY = -(20 + r(seed * 3) * 30);
-  const offset = Math.round(r(seed * 13) * fps * 5);
-  const localFrame = (frame + offset) % (fps * 5);
-  const y = startY + localFrame * speed;
-  if (y > h + 20) return null;
-  const opacity = 0.05 + r(seed * 17) * 0.12;
+  const t = frame / fps;
+  const speed  = 18 + r(seed * 7) * 22;           // px/s upward
+  const period = (h * 1.3) / speed;
+  const initPh = ((r(seed * 13) + phaseOffset * 0.45) % 1 + 1) % 1;
+  const yNorm  = ((t / period + initPh) % 1 + 1) % 1;
+  const cy     = h * 1.1 - yNorm * (h * 1.45);
+  const cx     = r(seed * 23) * w * 0.78 + w * 0.11
+               + Math.sin(t * (0.38 + r(seed * 29) * 0.28) + seed * 1.6) * 38;
+  const pW     = isForest ? 8 + r(seed * 3) * 10 : 6 + r(seed * 3) * 8;
+  const pH     = pW * (0.35 + r(seed * 5) * 0.40);
+  const rot    = r(seed * 31) * 360 + t * (18 + r(seed * 37) * 28);
+  const opacity = 0.30 + 0.42 * Math.abs(Math.sin(t * (0.45 + r(seed * 41) * 0.3) + r(seed * 43) * 6));
+  // Garden: pink/white petals; Forest: brown/amber leaves. Hue shifts per language.
+  const hue  = isForest ? 28 + r(seed * 43) * 20 + phaseOffset * 15
+                        : 320 + r(seed * 43) * 50 + phaseOffset * 40;
+  const sat  = isForest ? 50 : 55;
+  const lig  = isForest ? 55 : 85;
+
   return (
     <div style={{
       position: "absolute",
-      left: x,
-      top: y,
-      width: 1,
-      height: 12 + r(seed * 5) * 8,
-      backgroundColor: "#AACCEE",
-      opacity,
-      transform: "rotate(10deg)",
+      left: cx - pW / 2, top: cy - pH / 2,
+      width: pW, height: pH,
+      borderRadius: "50%",
+      backgroundColor: `hsla(${hue}, ${sat}%, ${lig}%, ${opacity})`,
+      transform: `rotate(${rot}deg)`,
+    }} />
+  );
+};
+
+// ── Garden/Forest scene background (ground, plants, trees) ───────────────────
+const NightSceneBackground: React.FC<{
+  w: number; h: number; frame: number; isForest: boolean; phaseOffset: number;
+}> = ({ w, h, frame, isForest, phaseOffset }) => {
+  const t = frame / 30;
+
+  // Tree count: forest=more/larger, garden=fewer/smaller
+  const treeCount  = isForest ? 7 : 4;
+  const treeScale  = isForest ? 1.35 : 1.0;
+  const groundHue  = isForest ? 140 : 130;
+
+  return (
+    <>
+      {/* Ground strip */}
+      <div style={{
+        position: "absolute", bottom: 0, left: 0, right: 0,
+        height: h * 0.22,
+        background: `linear-gradient(0deg, hsl(${groundHue},25%,3%) 0%, hsl(${groundHue},20%,6%) 100%)`,
+      }} />
+
+      {/* Garden only: moonlit path shifts position per language */}
+      {!isForest && (
+        <div style={{
+          position: "absolute",
+          left: w * (0.36 + phaseOffset * 0.10),
+          bottom: 0,
+          width: w * 0.28,
+          height: h * 0.22,
+          background: `linear-gradient(0deg, rgba(${isForest ? "20,18,12" : "38,35,20"},0.5) 0%, rgba(${isForest ? "15,13,8" : "30,28,15"},0.18) 100%)`,
+          clipPath: "polygon(18% 0%, 82% 0%, 100% 100%, 0% 100%)",
+        }} />
+      )}
+
+      {/* Bushes / undergrowth */}
+      {Array.from({ length: isForest ? 9 : 6 }, (_, i) => {
+        const bX = ((seededRand(i * 7 + 200) + phaseOffset * 0.25) % 1) * w;
+        const bW = (isForest ? 70 : 55) + seededRand(i * 11 + 200) * 85;
+        const bH = bW * (0.35 + seededRand(i * 13 + 200) * 0.38);
+        return (
+          <div key={`bu${i}`} style={{
+            position: "absolute",
+            left: bX - bW / 2,
+            bottom: h * 0.19,
+            width: bW, height: bH,
+            borderRadius: isForest ? "40% 60% 0 0" : "50% 50% 10% 10%",
+            backgroundColor: `hsl(${groundHue + 10},22%,5%)`,
+          }} />
+        );
+      })}
+
+      {/* Trees */}
+      {Array.from({ length: treeCount }, (_, i) => {
+        const tX = (seededRand(i * 7 + 300 + phaseOffset * 10) * 0.9 + 0.05) * w;
+        const tW = (50 + seededRand(i * 11 + 300) * 60) * treeScale;
+        const tH = h * (0.38 + seededRand(i * 13 + 300) * 0.28) * treeScale;
+        const isPine = seededRand(i * 17 + 300) > (isForest ? 0.35 : 0.6);
+        return (
+          <React.Fragment key={`sc${i}`}>
+            <div style={{
+              position: "absolute",
+              left: tX - tW * 0.07, bottom: h * 0.19,
+              width: tW * 0.14, height: tH * 0.48,
+              backgroundColor: `hsl(${groundHue},18%,4%)`,
+            }} />
+            {isPine ? (
+              <div style={{
+                position: "absolute",
+                left: tX - tW / 2, bottom: h * 0.19 + tH * 0.38,
+                width: tW, height: tH * 0.72,
+                backgroundColor: `hsl(${groundHue + 5},20%,4%)`,
+                clipPath: "polygon(50% 0%, 5% 100%, 95% 100%)",
+              }} />
+            ) : (
+              <div style={{
+                position: "absolute",
+                left: tX - tW / 2, bottom: h * 0.19 + tH * 0.30,
+                width: tW, height: tH * 0.82,
+                borderRadius: "50%",
+                backgroundColor: `hsl(${groundHue + 5},20%,4%)`,
+              }} />
+            )}
+          </React.Fragment>
+        );
+      })}
+
+      {/* Garden: flower glow spots at ground level */}
+      {!isForest && Array.from({ length: 18 }, (_, i) => {
+        const fx  = ((seededRand(i * 7 + 400) + phaseOffset * 0.2) % 1) * w * 0.85 + w * 0.08;
+        const fy  = h * 0.77 + seededRand(i * 11 + 400) * h * 0.04;
+        const fsz = 4 + seededRand(i * 3 + 400) * 5;
+        const pulse = 0.55 + 0.45 * Math.sin(t * (0.8 + seededRand(i * 5 + 400) * 0.5) + i * 0.9 + phaseOffset * 4);
+        const fhue = 260 + seededRand(i * 17 + 400) * 100 + phaseOffset * 50;
+        return (
+          <div key={`fl${i}`} style={{
+            position: "absolute",
+            left: fx - fsz / 2, top: fy - fsz / 2,
+            width: fsz, height: fsz,
+            borderRadius: "50%",
+            backgroundColor: `hsla(${fhue}, 70%, 75%, ${0.65 * pulse})`,
+            boxShadow: `0 0 ${fsz * 1.8}px hsla(${fhue}, 70%, 75%, ${0.45 * pulse})`,
+          }} />
+        );
+      })}
+
+      {/* Moonlight glow on ground (position shifts per language) */}
+      <div style={{
+        position: "absolute",
+        left: w * (0.22 + phaseOffset * 0.15),
+        bottom: h * 0.19,
+        width: w * 0.56,
+        height: h * 0.07,
+        background: "radial-gradient(ellipse at center, rgba(200,215,255,0.10) 0%, transparent 70%)",
+      }} />
+    </>
+  );
+};
+
+// ── Rain: falling drop (visible width, proper opacity, angle per language) ────
+const RainDrop: React.FC<{
+  seed: number; w: number; h: number; frame: number; fps: number; phaseOffset: number;
+}> = ({ seed, w, h, frame, fps, phaseOffset }) => {
+  const r  = seededRand;
+  const t  = frame / fps;
+  const spd   = 280 + r(seed * 11) * 240; // px/s
+  const period = (h + 60) / spd;
+  const initPh = r(seed * 13);
+  const yNorm  = ((t / period + initPh) % 1 + 1) % 1;
+  const cy     = yNorm * (h + 60) - 30;
+  const cx     = r(seed * 7) * w;
+  const dropH  = 14 + r(seed * 5) * 20;
+  const dropW  = 2 + r(seed * 3) * 1.5;  // 2–3.5px (was 1px)
+  const opacity = 0.28 + r(seed * 17) * 0.30; // 0.28–0.58 (was 0.05–0.17)
+  // Angle varies per language: EN=10°, AR=13°, ID=7°
+  const angle  = 7 + phaseOffset * 9;
+  return (
+    <div style={{
+      position: "absolute",
+      left: cx, top: cy,
+      width: dropW,
+      height: dropH,
+      background: `linear-gradient(180deg, transparent 0%, rgba(160,210,255,${opacity}) 40%, rgba(130,185,240,${opacity}) 100%)`,
+      borderRadius: dropW,
+      transform: `rotate(${angle}deg)`,
+    }} />
+  );
+};
+
+// ── Rain: water streaks running down the glass ────────────────────────────────
+const WaterStreak: React.FC<{
+  seed: number; w: number; h: number; frame: number; fps: number;
+}> = ({ seed, w, h, frame, fps }) => {
+  const r  = seededRand;
+  const t  = frame / fps;
+  const cx    = r(seed * 7) * w * 0.82 + w * 0.09;
+  const speed = 60 + r(seed * 11) * 90; // px/s (much slower than drops)
+  const period = h / speed;
+  const initPh = r(seed * 13);
+  const yNorm  = ((t / period + initPh) % 1 + 1) % 1;
+  const cy     = yNorm * h;
+  const sway   = Math.sin(t * (0.4 + r(seed * 17) * 0.3) + seed * 1.4) * 12;
+  const stH    = 40 + r(seed * 19) * 80;
+  const opacity = 0.12 + r(seed * 21) * 0.14;
+  return (
+    <div style={{
+      position: "absolute",
+      left: cx + sway, top: cy,
+      width: 2, height: stH,
+      background: `linear-gradient(180deg, transparent 0%, rgba(150,200,255,${opacity}) 30%, rgba(120,180,240,${opacity}) 75%, transparent 100%)`,
+      borderRadius: 2,
     }} />
   );
 };
@@ -431,24 +631,101 @@ export const LullabyLoop: React.FC<LullabyLoopProps> = ({
 
       {(theme === "garden" || theme === "forest") && (
         <>
-          {Array.from({ length: PARTICLE_COUNT }, (_, i) => (
-            <Firefly key={i} seed={i + 1} w={width} h={height} frame={frame} color={accentColor} />
+          {/* Ground, trees, bushes, plants */}
+          <NightSceneBackground
+            w={width} h={height} frame={frame}
+            isForest={theme === "forest"} phaseOffset={phaseOffset}
+          />
+
+          {/* 22 fireflies: large glowing dots, always visible (Rule 3, 6) */}
+          {Array.from({ length: 22 }, (_, i) => (
+            <Firefly
+              key={i} seed={i + 1}
+              w={width} h={height} frame={frame} fps={fps}
+              color={accentColor} phaseOffset={phaseOffset}
+            />
+          ))}
+
+          {/* 20 floating petals (garden) or leaves (forest) */}
+          {Array.from({ length: 20 }, (_, i) => (
+            <FloatingParticle
+              key={i} seed={i + 1}
+              w={width} h={height} frame={frame} fps={fps}
+              isForest={theme === "forest"} phaseOffset={phaseOffset}
+            />
           ))}
         </>
       )}
 
       {theme === "rain" && (
         <>
-          {Array.from({ length: PARTICLE_COUNT }, (_, i) => (
-            <RainDrop key={i} seed={i + 1} w={width} h={height} frame={frame} fps={fps} />
+          {/* Dark rainy-night exterior behind glass */}
+          <div style={{
+            position: "absolute", inset: 0,
+            background: "linear-gradient(180deg, #050810 0%, #030608 100%)",
+          }} />
+
+          {/* Blurry building/tree silhouettes visible through wet glass */}
+          {Array.from({ length: 5 }, (_, i) => {
+            const bW = 110 + seededRand(i * 7 + phaseOffset * 3) * 130;
+            const bH = height * (0.22 + seededRand(i * 11) * 0.28);
+            const bX = ((seededRand(i * 13 + phaseOffset * 5) * 0.8) + 0.1) * width;
+            return (
+              <div key={`bld${i}`} style={{
+                position: "absolute",
+                left: bX - bW / 2,
+                bottom: height * 0.13,
+                width: bW, height: bH,
+                backgroundColor: "rgba(8,12,20,0.75)",
+                filter: "blur(4px)",
+              }} />
+            );
+          })}
+
+          {/* 65 rain drops: 2–3.5px wide, 0.28–0.58 opacity — clearly visible */}
+          {Array.from({ length: 65 }, (_, i) => (
+            <RainDrop key={i} seed={i + 1} w={width} h={height} frame={frame} fps={fps} phaseOffset={phaseOffset} />
           ))}
-          {/* Cosy window glow */}
+
+          {/* 14 water streaks running down glass */}
+          {Array.from({ length: 14 }, (_, i) => (
+            <WaterStreak key={i} seed={i + 1} w={width} h={height} frame={frame} fps={fps} />
+          ))}
+
+          {/* Window sill */}
+          <div style={{
+            position: "absolute", bottom: "12%", left: 0, right: 0,
+            height: 7, backgroundColor: "rgba(35,22,10,0.55)",
+          }} />
+
+          {/* Interior window frame panels */}
+          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "11%",
+            background: "linear-gradient(180deg, rgba(5,3,1,0.95) 0%, transparent 100%)" }} />
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "13%",
+            background: "linear-gradient(0deg, rgba(5,3,1,0.98) 0%, transparent 100%)" }} />
+          <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: "8%",
+            background: "linear-gradient(90deg, rgba(4,2,1,0.95) 0%, transparent 100%)" }} />
+          <div style={{ position: "absolute", top: 0, bottom: 0, right: 0, width: "8%",
+            background: "linear-gradient(270deg, rgba(4,2,1,0.95) 0%, transparent 100%)" }} />
+
+          {/* Cosy interior amber glow from below — much stronger than before */}
+          {/* Hue shifts per language: EN=amber, AR=warm orange, ID=golden */}
+          <div style={{
+            position: "absolute", bottom: 0, left: "8%", right: "8%", height: "40%",
+            background: `radial-gradient(ellipse 100% 100% at 50% 100%,
+              hsla(${30 + phaseOffset * 12}, 90%, 55%, ${0.20 + 0.05 * Math.sin(t * 0.7)}) 0%,
+              hsla(${30 + phaseOffset * 12}, 80%, 45%, 0.08) 50%,
+              transparent 100%)`,
+          }} />
+
+          {/* Warm candle/lamp spot (position shifts per language) */}
           <div style={{
             position: "absolute",
-            right: "8%", bottom: "10%",
-            width: 200, height: 250,
-            borderRadius: 8,
-            background: `radial-gradient(ellipse at center, rgba(255,200,100,0.12) 0%, transparent 70%)`,
+            bottom: "13%",
+            left: `${12 + phaseOffset * 18}%`,
+            width: 100, height: 70,
+            background: `radial-gradient(ellipse at center,
+              rgba(255,200,80,${0.28 + 0.08 * Math.sin(t * 1.6)}) 0%, transparent 70%)`,
           }} />
         </>
       )}

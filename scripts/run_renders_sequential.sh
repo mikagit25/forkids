@@ -569,13 +569,61 @@ if [[ $FROM_STEP -le 37 ]]; then
     fi
 fi
 
-# ── Step 38: thumbnails for re-rendered lullabies ─────────────────────────────
+# ── Step 38: thumbnails for ocean+train re-renders ────────────────────────────
 if [[ $FROM_STEP -le 38 ]]; then
-    log "[38/38] thumbnails for lullaby re-renders..."
+    log "[38/42] thumbnails for ocean/train re-renders..."
     python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
     python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
     python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
-    log "[38/38] thumbnails done."
+    log "[38/42] thumbnails done."
+fi
+
+# ── Step 39: moon_garden re-render (fireflies + garden background) ────────────
+if [[ $FROM_STEP -le 39 ]]; then
+    MG_TOTAL=$(ls output/queue/lullaby_moon_garden_*.mp4 output/queue_ar/lullaby_moon_garden_*.mp4 output/queue_id/lullaby_moon_garden_*.mp4 2>/dev/null | wc -l)
+    if [[ $MG_TOTAL -ge 6 ]]; then
+        skip 39 "lullaby moon_garden ($MG_TOTAL videos, new set already generated)"
+    else
+        log "[39/42] lullaby moon_garden re-render (fireflies + garden scene)..."
+        rm -f output/tmp_lullaby/loop_moon_garden_*.mp4
+        python3 -u scripts/generate_lullaby.py --keys moon_garden >> logs/lullaby.log 2>&1
+        log "[39/42] moon_garden done."
+    fi
+fi
+
+# ── Step 40: forest_night re-render (fireflies + forest background) ───────────
+if [[ $FROM_STEP -le 40 ]]; then
+    FN_TOTAL=$(ls output/queue/lullaby_forest_night_*.mp4 output/queue_ar/lullaby_forest_night_*.mp4 output/queue_id/lullaby_forest_night_*.mp4 2>/dev/null | wc -l)
+    if [[ $FN_TOTAL -ge 6 ]]; then
+        skip 40 "lullaby forest_night ($FN_TOTAL videos, new set already generated)"
+    else
+        log "[40/42] lullaby forest_night re-render (fireflies + forest scene)..."
+        rm -f output/tmp_lullaby/loop_forest_night_*.mp4
+        python3 -u scripts/generate_lullaby.py --keys forest_night >> logs/lullaby.log 2>&1
+        log "[40/42] forest_night done."
+    fi
+fi
+
+# ── Step 41: rain_window re-render (visible rain + window scene) ──────────────
+if [[ $FROM_STEP -le 41 ]]; then
+    RW_TOTAL=$(ls output/queue/lullaby_rain_window_*.mp4 output/queue_ar/lullaby_rain_window_*.mp4 output/queue_id/lullaby_rain_window_*.mp4 2>/dev/null | wc -l)
+    if [[ $RW_TOTAL -ge 6 ]]; then
+        skip 41 "lullaby rain_window ($RW_TOTAL videos, new set already generated)"
+    else
+        log "[41/42] lullaby rain_window re-render (visible drops + window interior)..."
+        rm -f output/tmp_lullaby/loop_rain_window_*.mp4
+        python3 -u scripts/generate_lullaby.py --keys rain_window >> logs/lullaby.log 2>&1
+        log "[41/42] rain_window done."
+    fi
+fi
+
+# ── Step 42: final thumbnails for all lullaby re-renders ──────────────────────
+if [[ $FROM_STEP -le 42 ]]; then
+    log "[42/42] final thumbnails — all lullaby re-renders..."
+    python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
+    log "[42/42] final thumbnails done."
 fi
 
 # ── Итог ──────────────────────────────────────────────────────────────────────
