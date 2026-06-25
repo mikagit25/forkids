@@ -345,6 +345,11 @@ export const LullabyLoop: React.FC<LullabyLoopProps> = ({
 }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
+  const t = frame / fps;
+
+  // Train: sky hue shifts per language so EN/AR/ID look different
+  // EN(0)→hsl(215), AR(0.37)→hsl(224), ID(0.68)→hsl(232)
+  const trainSkyHue = 215 + phaseOffset * 25;
 
   const PARTICLE_COUNT = theme === "rain" ? 40 : 12;
 
@@ -361,8 +366,8 @@ export const LullabyLoop: React.FC<LullabyLoopProps> = ({
         />
       )}
 
-      {/* Moon visible in all themes */}
-      <Moon frame={frame} w={width} />
+      {/* Moon for all themes except train (train renders its own moon inside the window) */}
+      {theme !== "train" && <Moon frame={frame} w={width} />}
 
       {/* Theme-specific elements */}
       {theme === "stars" && (
@@ -450,151 +455,244 @@ export const LullabyLoop: React.FC<LullabyLoopProps> = ({
 
       {theme === "train" && (
         <>
-          {/* ── Outside (seen through window): parallax landscape ── */}
+          {/* ── Night sky: replaces the near-black AbsoluteFill background ── */}
+          {/* EN≈cool blue, AR≈blue-violet, ID≈indigo — trainSkyHue shifts per language */}
+          <div style={{
+            position: "absolute", inset: 0,
+            background: `linear-gradient(180deg,
+              hsl(${trainSkyHue},52%,15%) 0%,
+              hsl(${trainSkyHue},46%,10%) 42%,
+              hsl(${trainSkyHue},38%,6%) 65%,
+              hsl(${trainSkyHue},28%,3%) 100%)`,
+          }} />
 
-          {/* Far layer: distant hills scrolling very slowly */}
-          {Array.from({ length: 5 }, (_, i) => {
-            const layerW = width * 0.45;
-            const speed  = 0.18; // px/frame
-            const x = ((i * layerW - frame * speed) % (layerW * 5 + width) + layerW * 5 + width) % (layerW * 5 + width) - layerW;
-            const hillH = height * (0.22 + seededRand(i * 7) * 0.12);
-            const hue = 200 + seededRand(i * 11) * 20;
+          {/* Stars twinkling in the sky */}
+          {Array.from({ length: 80 }, (_, i) => {
+            const cx = seededRand(i * 7 + 1) * width;
+            const cy = seededRand(i * 11 + 1) * height * 0.50;
+            const sz = 0.8 + seededRand(i * 3 + 1) * 1.8;
+            const tw = 0.5 + 0.5 * Math.sin(t * (0.7 + seededRand(i * 5 + 1) * 0.5) + i * 0.7);
             return (
-              <div key={`hill${i}`} style={{
+              <div key={`ts${i}`} style={{
                 position: "absolute",
-                left: x,
-                bottom: height * 0.18,
-                width: layerW,
-                height: hillH,
-                borderRadius: "50% 50% 0 0",
-                backgroundColor: `hsl(${hue},25%,9%)`,
+                left: cx - sz / 2, top: cy - sz / 2,
+                width: sz, height: sz,
+                borderRadius: "50%",
+                backgroundColor: "#FFFFFF",
+                opacity: tw * 0.78,
+                boxShadow: sz > 1.8 ? `0 0 ${sz * 1.5}px rgba(255,255,255,0.45)` : "none",
               }} />
             );
           })}
 
-          {/* Mid layer: tree silhouettes */}
-          {Array.from({ length: 14 }, (_, i) => {
-            const speed  = 1.2; // px/frame
-            const gap    = 110 + seededRand(i * 7) * 90;
-            const totalW = 14 * 140;
-            const x = ((i * gap - frame * speed) % totalW + totalW + width) % totalW - gap;
-            const treeH  = height * (0.14 + seededRand(i * 11) * 0.10);
-            const treeW  = 22 + seededRand(i * 13) * 28;
+          {/* Moon — position shifts per language (EN right → ID center-left) */}
+          {(() => {
+            const moonX  = width * (0.74 - phaseOffset * 0.22);
+            const moonG  = 0.13 + 0.04 * Math.sin(t * 0.3);
+            const mb     = 1 + 0.012 * Math.sin(t * 0.22);
             return (
-              <React.Fragment key={`tree${i}`}>
-                {/* Trunk */}
+              <div style={{
+                position: "absolute",
+                left: moonX - 55,
+                top: height * 0.05,
+                width: 110 * mb, height: 110 * mb,
+                borderRadius: "50%",
+                backgroundColor: "#FFFDD5",
+                opacity: 0.90,
+                boxShadow: `0 0 ${55+moonG*45}px ${28+moonG*22}px rgba(255,250,175,${moonG}), 0 0 ${110+moonG*65}px rgba(255,245,155,${moonG*0.35})`,
+              }} />
+            );
+          })()}
+
+          {/* Far mountains (slowest, 0.12 px/frame) */}
+          {Array.from({ length: 7 }, (_, i) => {
+            const speed  = 0.12;
+            const mW     = width * 0.34;
+            const totalW = 7 * mW;
+            const initX  = phaseOffset * totalW;
+            const x = ((i * mW + initX - frame * speed) % totalW + totalW) % totalW - mW;
+            const mH = height * (0.22 + seededRand(i * 7 + 11) * 0.18);
+            return (
+              <div key={`mtn${i}`} style={{
+                position: "absolute",
+                left: x,
+                bottom: height * 0.22,
+                width: mW,
+                height: mH,
+                backgroundColor: `hsl(${trainSkyHue - 10},35%,6%)`,
+                clipPath: "polygon(20% 100%, 50% 0%, 80% 100%)",
+              }} />
+            );
+          })}
+
+          {/* Far rolling hills */}
+          {Array.from({ length: 6 }, (_, i) => {
+            const speed  = 0.28;
+            const hW     = width * 0.48;
+            const totalW = 6 * hW;
+            const initX  = phaseOffset * totalW;
+            const x = ((i * hW + initX - frame * speed) % totalW + totalW) % totalW - hW;
+            const hH = height * (0.14 + seededRand(i * 11 + 5) * 0.10);
+            return (
+              <div key={`hl${i}`} style={{
+                position: "absolute",
+                left: x,
+                bottom: height * 0.22,
+                width: hW,
+                height: hH,
+                borderRadius: "60% 60% 0 0",
+                backgroundColor: `hsl(${trainSkyHue - 5},32%,5%)`,
+              }} />
+            );
+          })}
+
+          {/* Horizon glow (moonlight on fields) */}
+          <div style={{
+            position: "absolute",
+            left: 0, right: 0,
+            bottom: height * 0.22,
+            height: 50,
+            background: `linear-gradient(0deg, hsl(${trainSkyHue+15},40%,8%) 0%, transparent 100%)`,
+          }} />
+
+          {/* Mid trees: pines and round trees alternating */}
+          {Array.from({ length: 18 }, (_, i) => {
+            const speed   = 1.6;
+            const gap     = 90 + seededRand(i * 7 + 3) * 85;
+            const totalW  = 18 * 115;
+            const initX   = phaseOffset * totalW;
+            const x = ((i * gap + initX - frame * speed) % totalW + totalW) % totalW - gap;
+            const tH      = height * (0.15 + seededRand(i * 11 + 7) * 0.14);
+            const tW      = 26 + seededRand(i * 13 + 5) * 36;
+            const isPine  = seededRand(i * 17 + 3) > 0.42;
+            return (
+              <React.Fragment key={`tr${i}`}>
                 <div style={{
                   position: "absolute",
-                  left: x + treeW * 0.4,
-                  bottom: height * 0.18,
-                  width: treeW * 0.2,
-                  height: treeH * 0.4,
-                  backgroundColor: "#090c08",
+                  left: x + tW * 0.43, bottom: height * 0.22,
+                  width: tW * 0.14, height: tH * 0.44,
+                  backgroundColor: "#060A0F",
                 }} />
-                {/* Crown */}
+                {isPine ? (
+                  <div style={{
+                    position: "absolute",
+                    left: x, bottom: height * 0.22 + tH * 0.36,
+                    width: tW, height: tH * 0.74,
+                    backgroundColor: "#040910",
+                    clipPath: "polygon(50% 0%, 5% 100%, 95% 100%)",
+                  }} />
+                ) : (
+                  <div style={{
+                    position: "absolute",
+                    left: x, bottom: height * 0.22 + tH * 0.30,
+                    width: tW, height: tH * 0.82,
+                    borderRadius: "50%",
+                    backgroundColor: "#050A10",
+                  }} />
+                )}
+              </React.Fragment>
+            );
+          })}
+
+          {/* Telegraph poles (near, fast: 5.5 px/frame) + cross-arm + wire */}
+          {Array.from({ length: 9 }, (_, i) => {
+            const speed  = 5.5;
+            const gap    = 260;
+            const totalW = 9 * gap;
+            const initX  = phaseOffset * totalW;
+            const x = ((i * gap + initX - frame * speed) % totalW + totalW) % totalW - gap;
+            const pH = height * 0.45;
+            return (
+              <React.Fragment key={`pl${i}`}>
                 <div style={{
                   position: "absolute",
-                  left: x,
-                  bottom: height * 0.18 + treeH * 0.3,
-                  width: treeW,
-                  height: treeH * 0.8,
-                  borderRadius: "50% 50% 20% 20%",
-                  backgroundColor: "#060d05",
+                  left: x, bottom: height * 0.22,
+                  width: 6, height: pH,
+                  backgroundColor: "#1E1810",
+                }} />
+                <div style={{
+                  position: "absolute",
+                  left: x - 22, bottom: height * 0.22 + pH - 20,
+                  width: 48, height: 5,
+                  backgroundColor: "#181410",
+                }} />
+                <div style={{
+                  position: "absolute",
+                  left: x, bottom: height * 0.22 + pH - 9,
+                  width: gap, height: 2,
+                  backgroundColor: "#16120E",
                 }} />
               </React.Fragment>
             );
           })}
 
-          {/* Near layer: telegraph poles + wire */}
-          {Array.from({ length: 8 }, (_, i) => {
-            const speed  = 4.5;
-            const gap    = 240;
-            const totalW = 8 * gap;
-            const x = ((i * gap - frame * speed) % totalW + totalW + width) % totalW - gap;
-            return (
-              <React.Fragment key={`pole${i}`}>
-                <div style={{
-                  position: "absolute",
-                  left: x,
-                  bottom: height * 0.18,
-                  width: 5,
-                  height: height * 0.35,
-                  backgroundColor: "rgba(20,15,8,0.9)",
-                }} />
-                <div style={{
-                  position: "absolute",
-                  left: x - gap + 5,
-                  bottom: height * 0.18 + height * 0.33,
-                  width: gap,
-                  height: 2,
-                  background: "rgba(20,15,8,0.5)",
-                }} />
-              </React.Fragment>
-            );
-          })}
-
-          {/* Ground strip */}
+          {/* Ground (track bed) */}
           <div style={{
             position: "absolute",
             bottom: 0, left: 0, right: 0,
-            height: height * 0.19,
-            background: "linear-gradient(0deg, #040602 0%, #080d06 100%)",
+            height: height * 0.23,
+            background: `linear-gradient(0deg, #010305 0%, hsl(${trainSkyHue},22%,4%) 100%)`,
           }} />
 
-          {/* Flickering distant lights (farmhouses) */}
-          {Array.from({ length: 6 }, (_, i) => {
-            const speed  = 0.55;
-            const gap    = width * 0.38;
-            const totalW = 6 * gap;
-            const x = ((i * gap - frame * speed) % totalW + totalW + width) % totalW - gap;
-            const flicker = 0.5 + 0.5 * Math.sin(frame * (0.07 + seededRand(i * 5) * 0.04) + i * 1.9);
-            const y = height * 0.48 + seededRand(i * 7) * height * 0.12;
+          {/* Converging rails (perspective) */}
+          {([-1, 1] as const).map(side => (
+            <div key={`rl${side}`} style={{
+              position: "absolute",
+              left: width * 0.5 + side * (width * 0.055 + height * 0.20 * 0.22),
+              bottom: 0,
+              width: 4,
+              height: height * 0.23,
+              background: "linear-gradient(0deg, rgba(110,90,55,0.75) 0%, rgba(110,90,55,0.2) 100%)",
+            }} />
+          ))}
+
+          {/* Distant town + farmhouse lights — warm/cool mix varies by language */}
+          {Array.from({ length: 10 }, (_, i) => {
+            const speed  = 0.5;
+            const gap    = width * 0.22 + seededRand(i * 7 + 9) * width * 0.15;
+            const totalW = 10 * (width * 0.28);
+            const initX  = phaseOffset * totalW;
+            const x = ((i * gap + initX - frame * speed) % totalW + totalW) % totalW - gap;
+            const flicker = 0.5 + 0.5 * Math.sin(t * (0.9 + seededRand(i * 5 + 1) * 0.6) + i * 1.9);
+            const y = height * 0.28 + seededRand(i * 7 + 3) * height * 0.22;
+            const sz = 3 + seededRand(i * 11 + 5) * 6;
+            const isWarm = seededRand(i * 13 + phaseOffset * 7) > 0.45;
+            const col  = isWarm ? `rgba(255,185,55,${0.75*flicker})` : `rgba(180,210,255,${0.55*flicker})`;
+            const glow = isWarm ? `rgba(255,160,40,${0.35*flicker})` : `rgba(160,200,255,${0.3*flicker})`;
             return (
-              <div key={`light${i}`} style={{
+              <div key={`lgt${i}`} style={{
                 position: "absolute",
                 left: x, top: y,
-                width: 6, height: 4,
-                backgroundColor: `rgba(255,200,80,${0.6 * flicker})`,
-                boxShadow: `0 0 ${10 * flicker}px ${5 * flicker}px rgba(255,180,60,${0.4 * flicker})`,
+                width: sz, height: sz * 0.65,
+                borderRadius: "50%",
+                backgroundColor: col,
+                boxShadow: `0 0 ${sz * 2.5 * flicker}px ${sz * 1.2 * flicker}px ${glow}`,
               }} />
             );
           })}
 
-          {/* ── Window frame overlay ── */}
-          {/* Top/bottom rails */}
+          {/* ── Interior window frame panels ── */}
+          <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "14%",
+            background: "linear-gradient(180deg, rgba(5,3,1,1) 0%, rgba(5,3,1,0.82) 60%, transparent 100%)" }} />
+          <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "20%",
+            background: "linear-gradient(0deg, rgba(5,3,1,1) 0%, rgba(5,3,1,0.82) 55%, transparent 100%)" }} />
+          <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: "10%",
+            background: "linear-gradient(90deg, rgba(4,2,1,0.98) 0%, rgba(12,8,3,0.55) 70%, transparent 100%)" }} />
+          <div style={{ position: "absolute", top: 0, bottom: 0, right: 0, width: "10%",
+            background: "linear-gradient(270deg, rgba(4,2,1,0.98) 0%, rgba(12,8,3,0.55) 70%, transparent 100%)" }} />
+
+          {/* Warm amber lamp glow from interior below */}
           <div style={{
-            position: "absolute", top: 0, left: 0, right: 0,
-            height: "16%",
-            background: "linear-gradient(180deg, rgba(15,10,5,0.98) 0%, rgba(15,10,5,0.7) 70%, transparent 100%)",
-          }} />
-          <div style={{
-            position: "absolute", bottom: 0, left: 0, right: 0,
-            height: "18%",
-            background: "linear-gradient(0deg, rgba(15,10,5,0.98) 0%, rgba(15,10,5,0.7) 70%, transparent 100%)",
-          }} />
-          {/* Left/right curtain panels */}
-          <div style={{
-            position: "absolute", top: 0, bottom: 0, left: 0,
-            width: "9%",
-            background: "linear-gradient(90deg, rgba(10,6,3,0.95) 0%, rgba(30,18,10,0.4) 100%)",
-          }} />
-          <div style={{
-            position: "absolute", top: 0, bottom: 0, right: 0,
-            width: "9%",
-            background: "linear-gradient(270deg, rgba(10,6,3,0.95) 0%, rgba(30,18,10,0.4) 100%)",
+            position: "absolute", bottom: 0, left: "10%", right: "10%", height: "28%",
+            background: `radial-gradient(ellipse 90% 100% at 50% 100%, rgba(255,135,25,${0.09+0.025*Math.sin(t*0.5)}) 0%, transparent 100%)`,
           }} />
 
-          {/* ── Interior warmth: ambient amber lamp glow ── */}
-          <div style={{
-            position: "absolute", bottom: 0, left: 0, right: 0, height: "22%",
-            background: `radial-gradient(ellipse 60% 80% at 50% 100%, rgba(255,160,40,${0.06 + 0.02 * Math.sin(frame * 0.04)}) 0%, transparent 100%)`,
-          }} />
-
-          {/* ── Rhythmic window vibration (train movement feel) ── */}
+          {/* Subtle rhythmic screen flash = train wheel bump feel */}
           <div style={{
             position: "absolute", inset: 0,
-            opacity: 0.018 * Math.abs(Math.sin(frame * 0.52)),
-            backgroundColor: "#FFFFEE",
+            opacity: 0.018 * Math.abs(Math.sin(t * 16.5)),
+            backgroundColor: "#F0EDE5",
+            pointerEvents: "none",
           }} />
         </>
       )}
