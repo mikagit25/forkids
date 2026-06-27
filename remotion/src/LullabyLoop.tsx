@@ -23,6 +23,8 @@ export interface LullabyLoopProps {
   musicFile?: string;
   bpm?: number;
   phaseOffset?: number; // 0..1 — offsets all star phases so EN/AR/ID have different visual rhythm
+  showEqualizer?: boolean; // animated equalizer bars at bottom
+  equalizerColor?: string; // defaults to accentColor
 }
 
 function seededRand(seed: number): number {
@@ -533,6 +535,137 @@ const Moon: React.FC<{ frame: number; w: number }> = ({ frame, w }) => {
   );
 };
 
+// ── Equalizer — animated bars at bottom, no audio sync (visual rhythm) ───────
+const Equalizer: React.FC<{
+  frame: number; fps: number; w: number; h: number; color: string;
+}> = ({ frame, fps, w, h, color }) => {
+  const t = frame / fps;
+  const N = 32;
+  const barW = 20;
+  const gap = 6;
+  const totalW = N * (barW + gap) - gap;
+  const startX = (w - totalW) / 2;
+  const maxBarH = 88;
+  const minBarH = 5;
+  const bottomY = h - 44;
+
+  return (
+    <>
+      {Array.from({ length: N }, (_, i) => {
+        // Each bar has its own pair of frequencies for a natural, musical look
+        const fa = 0.55 + i * 0.18;
+        const fb = 1.1  + i * 0.09;
+        const fc = 0.3  + i * 0.07;
+        const ph = i * 0.44 + 0.1;
+        const raw =
+          Math.abs(Math.sin(t * fa + ph)) * 0.50 +
+          Math.abs(Math.sin(t * fb + ph * 1.6)) * 0.30 +
+          Math.abs(Math.sin(t * fc + ph * 0.7)) * 0.20;
+        const barH = minBarH + (maxBarH - minBarH) * Math.min(1, raw * 1.15);
+        const glow = 0.35 + raw * 0.65;
+        return (
+          <div key={i} style={{
+            position: "absolute",
+            left: startX + i * (barW + gap),
+            top: bottomY - barH,
+            width: barW,
+            height: barH,
+            background: `linear-gradient(180deg, ${color} 0%, ${color}99 100%)`,
+            borderRadius: "3px 3px 1px 1px",
+            opacity: 0.55 + glow * 0.40,
+            boxShadow: `0 0 ${6 + glow * 14}px ${color}, 0 0 ${2 + glow * 6}px ${color}`,
+          }} />
+        );
+      })}
+      {/* Thin baseline */}
+      <div style={{
+        position: "absolute",
+        left: startX,
+        top: bottomY,
+        width: totalW,
+        height: 2,
+        background: `linear-gradient(90deg, transparent, ${color}60, transparent)`,
+        borderRadius: 1,
+      }} />
+    </>
+  );
+};
+
+// ── DriftingNote — floating golden musical note sprite ────────────────────────
+const DriftingNote: React.FC<{
+  seed: number; w: number; h: number; frame: number; fps: number; phaseOffset: number;
+}> = ({ seed, w, h, frame, fps, phaseOffset }) => {
+  const r = seededRand;
+  const t = frame / fps;
+  const size = 70 + r(seed * 31) * 80;         // 70–150px
+  const period = 55 + r(seed * 19) * 45;        // 55–100s to cross screen
+  const dir = r(seed * 37) > 0.5 ? 1 : -1;
+  const phase = r(seed * 13) + phaseOffset;
+  const baseY = (0.15 + r(seed * 7) * 0.65) * h;
+  const rawX = ((t / period + phase) % 1) * (w + size * 2) - size;
+  const cx = dir > 0 ? rawX : w + size - rawX;
+  const cy = baseY + Math.sin(t * 0.38 + seed * 1.1) * 28;
+  const sc = seededRand(seed * 41);
+  let scaleX = size / 512;
+  let scaleY = size / 512;
+  let rotation = Math.sin(t * 0.25 + seed * 0.9) * 12 * dir;
+  // PIP/BWW wobble
+  scaleX *= 1 + Math.sin(t * (8.1 + sc * 0.6)) * 0.035 + Math.sin(t * (5.3 + sc * 0.3)) * 0.018;
+  scaleY *= 1 + Math.sin(t * (7.4 + sc * 0.8)) * 0.035 + Math.cos(t * (4.5 + sc * 1.0)) * 0.018;
+  rotation += Math.sin(t * (6.2 + sc * 0.5)) * 1.2;
+  const glowOp = 0.55 + Math.sin(t * 0.7 + seed) * 0.25;
+  return (
+    <Img src={staticFile("sprites/objects/note_gold.png")} style={{
+      position: "absolute",
+      left: cx - size / 2,
+      top: cy - size / 2,
+      width: size,
+      height: size,
+      transform: `scaleX(${scaleX * (512 / size)}) scaleY(${scaleY * (512 / size)}) rotate(${rotation}deg)`,
+      transformOrigin: "center",
+      opacity: glowOp,
+      mixBlendMode: "screen",
+      pointerEvents: "none",
+    }} />
+  );
+};
+
+// ── DriftingOrb — soft ambient light orb ─────────────────────────────────────
+const DriftingOrb: React.FC<{
+  seed: number; w: number; h: number; frame: number; fps: number; phaseOffset: number;
+}> = ({ seed, w, h, frame, fps, phaseOffset }) => {
+  const r = seededRand;
+  const t = frame / fps;
+  const size = 90 + r(seed * 23) * 110;
+  const period = 70 + r(seed * 17) * 50;
+  const dir = r(seed * 41) > 0.5 ? 1 : -1;
+  const phase = r(seed * 11) + phaseOffset * 0.7;
+  const baseY = (0.1 + r(seed * 9) * 0.75) * h;
+  const rawX = ((t / period + phase) % 1) * (w + size * 2) - size;
+  const cx = dir > 0 ? rawX : w + size - rawX;
+  const cy = baseY + Math.sin(t * 0.28 + seed * 1.3) * 35;
+  const sc = seededRand(seed * 43);
+  let scaleX = size / 512;
+  let scaleY = size / 512;
+  scaleX *= 1 + Math.sin(t * (7.8 + sc * 0.7)) * 0.04;
+  scaleY *= 1 + Math.cos(t * (5.0 + sc * 1.1)) * 0.04;
+  const glowOp = 0.30 + Math.sin(t * 0.55 + seed * 1.2) * 0.18;
+  return (
+    <Img src={staticFile("sprites/objects/orb_amber.png")} style={{
+      position: "absolute",
+      left: cx - size / 2,
+      top: cy - size / 2,
+      width: size,
+      height: size,
+      transform: `scaleX(${scaleX * (512 / size)}) scaleY(${scaleY * (512 / size)})`,
+      transformOrigin: "center",
+      opacity: glowOp,
+      mixBlendMode: "screen",
+      pointerEvents: "none",
+    }} />
+  );
+};
+
 // ── Main ─────────────────────────────────────────────────────────────────────
 export const LullabyLoop: React.FC<LullabyLoopProps> = ({
   theme,
@@ -542,6 +675,8 @@ export const LullabyLoop: React.FC<LullabyLoopProps> = ({
   musicFile,
   bpm = 52,
   phaseOffset = 0,
+  showEqualizer = false,
+  equalizerColor,
 }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
@@ -981,6 +1116,29 @@ export const LullabyLoop: React.FC<LullabyLoopProps> = ({
         background: `radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0,0,0,0.4) 0%, transparent 60%)`,
         pointerEvents: "none",
       }} />
+
+      {/* Floating notes and orbs — shown when equalizer is active */}
+      {showEqualizer && (
+        <>
+          {[1,2,3].map(i => (
+            <DriftingNote key={`n${i}`} seed={i} w={width} h={height} frame={frame} fps={fps} phaseOffset={phaseOffset} />
+          ))}
+          {[4,5,6].map(i => (
+            <DriftingOrb key={`o${i}`} seed={i} w={width} h={height} frame={frame} fps={fps} phaseOffset={phaseOffset} />
+          ))}
+        </>
+      )}
+
+      {/* Equalizer bars — rendered on top of everything */}
+      {showEqualizer && (
+        <Equalizer
+          frame={frame}
+          fps={fps}
+          w={width}
+          h={height}
+          color={equalizerColor ?? accentColor}
+        />
+      )}
     </AbsoluteFill>
   );
 };

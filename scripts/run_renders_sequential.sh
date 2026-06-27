@@ -514,116 +514,118 @@ if [[ $FROM_STEP -le 33 ]]; then
     log "[33/35] final thumbnails v2 done."
 fi
 
-# ── Step 34: lullaby sleepy_stars re-render (new drifting stars) ──────────────
+# ── Step 34-41: re-render ALL lullaby themes with fixed transparent sprites ────
+# Sprites were fixed (black/white bg removed → contour transparency).
+# Runs once: if hold/lullaby_rect_sprites/DONE exists, skips (already re-rendered).
 if [[ $FROM_STEP -le 34 ]]; then
-    # Count how many NEW sleepy_stars exist across all 3 queues (date >= today)
-    SS_TOTAL=$(ls output/queue/lullaby_sleepy_stars_*.mp4 output/queue_ar/lullaby_sleepy_stars_*.mp4 output/queue_id/lullaby_sleepy_stars_*.mp4 2>/dev/null | wc -l)
-    if [[ $SS_TOTAL -ge 3 ]]; then
-        skip 34 "lullaby sleepy_stars ($SS_TOTAL/3 exist)"
+    HOLD_LUL="output/hold/lullaby_rect_sprites"
+    if [[ -f "$HOLD_LUL/DONE" ]]; then
+        LUL_Q=$(ls output/queue/lullaby_*.mp4 output/queue_ar/lullaby_*.mp4 output/queue_id/lullaby_*.mp4 2>/dev/null | wc -l)
+        skip 34 "lullaby transparent re-render already done ($LUL_Q videos in queue)"
     else
-        log "[34/35] lullaby sleepy_stars re-render (new drifting sprites)..."
-        # Remove cached loop files so Remotion re-renders with new LullabyLoop code
-        rm -f output/tmp_lullaby/loop_sleepy_stars_*.mp4
-        # Remove old static ID file still in queue
-        rm -f output/queue_id/lullaby_sleepy_stars_20260622.mp4
-        rm -f output/queue_id/meta_lullaby_sleepy_stars_20260622.yaml
-        rm -f output/queue_id/thumb_lullaby_sleepy_stars_20260622.png
-        python3 -u scripts/generate_lullaby.py --keys sleepy_stars >> logs/lullaby.log 2>&1
-        log "[34/35] lullaby sleepy_stars done."
+        mkdir -p "$HOLD_LUL"
+        # Move all existing lullaby files to hold (may have rectangular sprite glows)
+        for q in output/queue output/queue_ar output/queue_id; do
+            for f in "$q"/lullaby_*.mp4 "$q"/meta_lullaby_*.yaml "$q"/thumb_lullaby_*.png; do
+                [[ -f "$f" ]] && mv "$f" "$HOLD_LUL/" 2>/dev/null && true
+            done
+        done
+        # Delete all cached loop files → force Remotion re-render with transparent sprites
+        rm -f output/tmp_lullaby/loop_*.mp4
+        log "[34/42] Moved old lullaby files to hold. Re-rendering all 6 themes with transparent sprites + classical music..."
+        python3 -u scripts/generate_lullaby.py >> logs/lullaby_v2.log 2>&1
+        touch "$HOLD_LUL/DONE"
+        log "[34/42] All lullaby themes re-rendered."
     fi
 fi
 
-# ── Step 35: thumbnails for new lullaby files ─────────────────────────────────
+# ── Step 35: thumbnails for re-rendered lullaby files ─────────────────────────
 if [[ $FROM_STEP -le 35 ]]; then
-    log "[35/35] thumbnails for lullaby re-render..."
+    log "[35/42] thumbnails for lullaby re-render (all queues)..."
     python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
     python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
     python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
-    log "[35/35] thumbnails done."
+    log "[35/42] thumbnails done."
 fi
 
-# ── Step 36: ocean_night re-render (FLUX jellyfish + fish + rising bubbles) ──
-if [[ $FROM_STEP -le 36 ]]; then
-    ON_TOTAL=$(ls output/queue/lullaby_ocean_night_*.mp4 output/queue_ar/lullaby_ocean_night_*.mp4 output/queue_id/lullaby_ocean_night_*.mp4 2>/dev/null | wc -l)
-    # Need at least 6: 3 old + 3 new (old 20260622 + new today)
-    if [[ $ON_TOTAL -ge 6 ]]; then
-        skip 36 "lullaby ocean_night ($ON_TOTAL videos exist, new set already generated)"
-    else
-        log "[36/38] lullaby ocean_night re-render (drifting jellyfish/fish)..."
-        rm -f output/tmp_lullaby/loop_ocean_night_*.mp4
-        python3 -u scripts/generate_lullaby.py --keys ocean_night >> logs/lullaby.log 2>&1
-        log "[36/38] ocean_night done."
-    fi
-fi
+# Steps 36-41 consolidated into step 34 (moved all old files + re-rendered all themes at once)
 
-# ── Step 37: sleepy_train re-render (CSS parallax window + Walking Along) ────
-if [[ $FROM_STEP -le 37 ]]; then
-    ST_TOTAL=$(ls output/queue/lullaby_sleepy_train_*.mp4 output/queue_ar/lullaby_sleepy_train_*.mp4 output/queue_id/lullaby_sleepy_train_*.mp4 2>/dev/null | wc -l)
-    if [[ $ST_TOTAL -ge 6 ]]; then
-        skip 37 "lullaby sleepy_train ($ST_TOTAL videos exist, new set already generated)"
-    else
-        log "[37/38] lullaby sleepy_train re-render (parallax window + train music)..."
-        rm -f output/tmp_lullaby/loop_sleepy_train_*.mp4
-        python3 -u scripts/generate_lullaby.py --keys sleepy_train >> logs/lullaby.log 2>&1
-        log "[37/38] sleepy_train done."
-    fi
-fi
-
-# ── Step 38: thumbnails for ocean+train re-renders ────────────────────────────
-if [[ $FROM_STEP -le 38 ]]; then
-    log "[38/42] thumbnails for ocean/train re-renders..."
-    python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
-    python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
-    python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
-    log "[38/42] thumbnails done."
-fi
-
-# ── Step 39: moon_garden re-render (fireflies + garden background) ────────────
-if [[ $FROM_STEP -le 39 ]]; then
-    MG_TOTAL=$(ls output/queue/lullaby_moon_garden_*.mp4 output/queue_ar/lullaby_moon_garden_*.mp4 output/queue_id/lullaby_moon_garden_*.mp4 2>/dev/null | wc -l)
-    if [[ $MG_TOTAL -ge 6 ]]; then
-        skip 39 "lullaby moon_garden ($MG_TOTAL videos, new set already generated)"
-    else
-        log "[39/42] lullaby moon_garden re-render (fireflies + garden scene)..."
-        rm -f output/tmp_lullaby/loop_moon_garden_*.mp4
-        python3 -u scripts/generate_lullaby.py --keys moon_garden >> logs/lullaby.log 2>&1
-        log "[39/42] moon_garden done."
-    fi
-fi
-
-# ── Step 40: forest_night re-render (fireflies + forest background) ───────────
-if [[ $FROM_STEP -le 40 ]]; then
-    FN_TOTAL=$(ls output/queue/lullaby_forest_night_*.mp4 output/queue_ar/lullaby_forest_night_*.mp4 output/queue_id/lullaby_forest_night_*.mp4 2>/dev/null | wc -l)
-    if [[ $FN_TOTAL -ge 6 ]]; then
-        skip 40 "lullaby forest_night ($FN_TOTAL videos, new set already generated)"
-    else
-        log "[40/42] lullaby forest_night re-render (fireflies + forest scene)..."
-        rm -f output/tmp_lullaby/loop_forest_night_*.mp4
-        python3 -u scripts/generate_lullaby.py --keys forest_night >> logs/lullaby.log 2>&1
-        log "[40/42] forest_night done."
-    fi
-fi
-
-# ── Step 41: rain_window re-render (visible rain + window scene) ──────────────
-if [[ $FROM_STEP -le 41 ]]; then
-    RW_TOTAL=$(ls output/queue/lullaby_rain_window_*.mp4 output/queue_ar/lullaby_rain_window_*.mp4 output/queue_id/lullaby_rain_window_*.mp4 2>/dev/null | wc -l)
-    if [[ $RW_TOTAL -ge 6 ]]; then
-        skip 41 "lullaby rain_window ($RW_TOTAL videos, new set already generated)"
-    else
-        log "[41/42] lullaby rain_window re-render (visible drops + window interior)..."
-        rm -f output/tmp_lullaby/loop_rain_window_*.mp4
-        python3 -u scripts/generate_lullaby.py --keys rain_window >> logs/lullaby.log 2>&1
-        log "[41/42] rain_window done."
-    fi
-fi
-
-# ── Step 42: final thumbnails for all lullaby re-renders ──────────────────────
+# ── Step 42: final thumbnails sweep after all lullaby videos ──────────────────
 if [[ $FROM_STEP -le 42 ]]; then
-    log "[42/42] final thumbnails — all lullaby re-renders..."
+    log "[42/44] final thumbnails — all lullaby videos..."
     python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
     python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
     python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
-    log "[42/42] final thumbnails done."
+    log "[42/44] final thumbnails done."
+fi
+
+# ── Step 43: Mozart calm videos (3 × 60 min, EN only, stars/garden/ocean) ─────
+if [[ $FROM_STEP -le 43 ]]; then
+    MOZ_TOTAL=$(ls output/queue/mozart_*.mp4 2>/dev/null | wc -l)
+    if [[ $MOZ_TOTAL -ge 3 ]]; then
+        skip 43 "Mozart calm videos ($MOZ_TOTAL videos already generated)"
+    else
+        log "[43/46] Mozart calm videos — romance/minuet/rondo (3 × 60 min, EN)..."
+        python3 -u scripts/generate_mozart_calm.py >> logs/mozart_calm.log 2>&1
+        log "[43/46] Mozart calm done."
+    fi
+fi
+
+# ── Step 44: thumbnails for Mozart calm videos ────────────────────────────────
+if [[ $FROM_STEP -le 44 ]]; then
+    log "[44/46] thumbnails — Mozart calm (EN queue)..."
+    python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
+    log "[44/46] Mozart thumbnails done."
+fi
+
+# ── Step 45: classical visualizer — 7 pieces × 3 channels = 21 videos ─────────
+# Pieces: Vaughan Williams + Mozart (×3) + Beethoven 5 + Verdi Traviata + Telemann Flute
+# THEME ROTATION: each 60-min video cycles through 4 visual themes (15 min each).
+# 12 shared Remotion loops (4 themes × 3 channels) are rendered once, reused for all pieces.
+if [[ $FROM_STEP -le 45 ]]; then
+    CV_TOTAL=$(ls output/queue/classical_*_en_*.mp4 \
+                  output/queue_ar/classical_*_ar_*.mp4 \
+                  output/queue_id/classical_*_id_*.mp4 2>/dev/null | wc -l)
+    if [[ $CV_TOTAL -ge 21 ]]; then
+        skip 45 "classical visualizer ($CV_TOTAL / 21 videos already generated)"
+    else
+        log "[45/48] classical visualizer — 7 pieces × 3 channels = 21 videos (60 min each, theme rotation)..."
+        python3 -u scripts/generate_classical_visualizer.py >> logs/classical_visualizer.log 2>&1
+        log "[45/48] classical visualizer done."
+    fi
+fi
+
+# ── Step 46: thumbnails for classical visualizer ───────────────────────────────
+if [[ $FROM_STEP -le 46 ]]; then
+    log "[46/48] thumbnails — classical visualizer (all queues)..."
+    python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
+    log "[46/48] classical visualizer thumbnails done."
+fi
+
+# ── Step 47: shape_roundelay v2 — N shapes per episode, thumbnail = video ─────
+# Episode N has exactly N shape types. Titles: "1 Shape Roundelay", "2 Shapes", ...
+if [[ $FROM_STEP -le 47 ]]; then
+    SR2_TOTAL=$(ls output/queue/shape_roundelay_*_$(date +%Y%m%d).mp4 \
+                   output/queue_ar/shape_roundelay_*_$(date +%Y%m%d).mp4 \
+                   output/queue_id/shape_roundelay_*_$(date +%Y%m%d).mp4 2>/dev/null | wc -l)
+    if [[ $SR2_TOTAL -ge 24 ]]; then
+        skip 47 "shape_roundelay v2 ($SR2_TOTAL / 24 videos already generated)"
+    else
+        log "[47/48] shape_roundelay v2 — 8 eps × 3 channels = 24 videos (N shapes = episode N)..."
+        python3 -u scripts/generate_shape_roundelay.py >> logs/shape_roundelay.log 2>&1
+        log "[47/48] shape_roundelay v2 done."
+    fi
+fi
+
+# ── Step 48: final thumbnails sweep ───────────────────────────────────────────
+if [[ $FROM_STEP -le 48 ]]; then
+    log "[48/48] final thumbnails sweep (all queues)..."
+    python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
+    log "[48/48] final thumbnails done."
 fi
 
 # ── Итог ──────────────────────────────────────────────────────────────────────

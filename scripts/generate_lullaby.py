@@ -41,21 +41,25 @@ TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 TOGETHER_URL      = "https://api.together.xyz/v1/images/generations"
 TOGETHER_MODEL    = "black-forest-labs/FLUX.1-schnell"
 
-_ALL_TRACKS = [
-    "Carefree.mp3", "Crinoline Dreams.mp3", "Gymnopedie No 1.mp3",
-    "Happy Happy Game Show.mp3", "Heartwarming.mp3", "Hyperfun.mp3",
-    "Life of Riley.mp3", "Merry Go.mp3", "Monkeys Spinning Monkeys.mp3",
-    "Overworld.mp3", "Pinball Spring.mp3", "Pixelland.mp3",
-    "Quirky Dog.mp3", "Salty Ditty.mp3", "Sneaky Snitch.mp3",
-    "Wholesome.mp3", "Fluffing a Duck.mp3", "Walking Along.mp3",
-    "George Street Shuffle.mp3", "Circus of Freaks.mp3",
+# Calm tracks only — suitable for sleep/lullaby content
+# Used for AR and ID to avoid rhythmic/upbeat Kevin MacLeod tracks
+_CALM_TRACKS = [
+    "Gymnopedie No 1.mp3",     # Satie — perfect for sleep
+    "Crinoline Dreams.mp3",    # gentle/dreamy
+    "Heartwarming.mp3",        # warm/tender
+    "Carefree.mp3",            # gentle/light
+    "Wholesome.mp3",           # calm/warm
+    "Life of Riley.mp3",       # gentle jazz
+    "Merry Go.mp3",            # slow waltz
+    "Fluffing a Duck.mp3",     # gentle/playful-slow
 ]
 
 def alt_music(en_music: str, ep_idx: int, lang: str) -> str:
     if lang == "en":
         return en_music
-    offset = 7 if lang == "ar" else 14
-    pool = [t for t in _ALL_TRACKS if t != en_music]
+    # AR and ID: pick only from calm pool to avoid rhythmic upbeat tracks
+    pool = [t for t in _CALM_TRACKS if t != en_music]
+    offset = 0 if lang == "ar" else 4
     return pool[(ep_idx + offset) % len(pool)]
 
 DATE_STR = datetime.now().strftime("%Y%m%d")
@@ -71,7 +75,8 @@ VIDEOS = {
         "bg_top":   "#020815",
         "bg_bottom":"#050A1A",
         "accent":   "#B0C4DE",
-        "music":    "Gymnopedie No 1.mp3",
+        "music":    "Mozart - Romance.mp3",
+        "music_credit": "W.A. Mozart — Serenade in G major, K.525 «Eine kleine Nachtmusik», I. Romanze",
         "bpm":      50,
         "theme":    "stars",
     },
@@ -83,7 +88,8 @@ VIDEOS = {
         "bg_top":   "#020B18",
         "bg_bottom":"#041020",
         "accent":   "#4488BB",
-        "music":    "Crinoline Dreams.mp3",
+        "music":    "Vaughan Williams - Fantasia.mp3",
+        "music_credit": "Ralph Vaughan Williams — Fantasia on a Theme by Thomas Tallis (1910)",
         "bpm":      50,
         "theme":    "ocean",
     },
@@ -95,7 +101,8 @@ VIDEOS = {
         "bg_top":   "#060A10",
         "bg_bottom":"#0A1220",
         "accent":   "#88BB44",
-        "music":    "Heartwarming.mp3",
+        "music":    "Mozart - Minuet.mp3",
+        "music_credit": "W.A. Mozart — Serenade in G major, K.525 «Eine kleine Nachtmusik», II. Menuett",
         "bpm":      52,
         "theme":    "garden",
     },
@@ -145,6 +152,20 @@ def make_meta(key: str, lang: str) -> dict:
 
     if lang == "en":
         name = v["name_en"]
+        music_credit = v.get("music_credit")
+        if music_credit:
+            music_line = (
+                f"🎼 Classical Music: {music_credit}\n"
+                f"Public domain — no copyright restrictions.\n"
+            )
+            extra_tags = "#ClassicalMusic #ClassicForBabies #MozartForBabies #ClassicalLullaby "
+        else:
+            music_line = (
+                f"🎵 Music: Kevin MacLeod (incompetech.com)\n"
+                f"Licensed under Creative Commons Attribution 4.0\n"
+                f"http://creativecommons.org/licenses/by/4.0/\n"
+            )
+            extra_tags = ""
         desc = (
             f"🌙 {name} — {h_str} of soothing sleep content for babies and toddlers\n\n"
             f"Specially designed sleep video with gradually dimming visuals and calming music. "
@@ -162,25 +183,26 @@ def make_meta(key: str, lang: str) -> dict:
             f"• Works as white noise + gentle visual for light sleepers\n"
             f"• {h_str} duration means it plays through the whole night\n\n"
             f"🔔 Subscribe → @HappyBearKids1 for more sleep content!\n\n"
-            f"🎵 Music: Kevin MacLeod (incompetech.com)\n"
-            f"Licensed under Creative Commons Attribution 4.0\n"
-            f"http://creativecommons.org/licenses/by/4.0/\n\n"
+            f"{music_line}\n"
             f"#BabySleepVideo #{name.replace(' ', '')} #BabyBedtime #ToddlerSleep "
             f"#SleepMusic #HappyBearKids #BabySleep #NightRoutine "
-            f"#BabyLullaby #SleepBaby #LongSleepVideo\n\n"
+            f"#BabyLullaby #SleepBaby #LongSleepVideo {extra_tags}\n\n"
             f"© Happy Bear Kids 2026"
         )
+        base_tags = ["baby sleep video", "lullaby", "sleep music", "bedtime routine",
+                     "happy bear kids", h_str, name.lower(), "baby bedtime",
+                     "toddler sleep", "night routine", "calming video", "baby lullaby", "sleep baby"]
+        if music_credit:
+            base_tags += ["classical music for babies", "classical lullaby", "mozart for babies",
+                          "classical baby sleep", "classical music sleep"]
         return {
             "title":       f"{name} 🌙 {h_str} Sleep Video for Babies | Happy Bear Kids",
             "description": desc,
-            "tags": ["baby sleep video", "lullaby", "sleep music", "bedtime routine",
-                     "happy bear kids", f"{h_str}", name.lower(), "baby bedtime",
-                     "toddler sleep", "night routine", "calming video", "white noise visual",
-                     "baby lullaby", "sleep baby"],
-            "video_type": "lullaby_long",
-            "language":   "en",
-            "is_short":   False,
-            "status":     "public",
+            "tags":        base_tags,
+            "video_type":  "lullaby_long",
+            "language":    "en",
+            "is_short":    False,
+            "status":      "public",
         }
 
     elif lang == "ar":

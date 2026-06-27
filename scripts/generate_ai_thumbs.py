@@ -543,6 +543,8 @@ def main():
                         default="auto", help="Force specific backend (default: auto)")
     parser.add_argument("--uploaded", action="store_true",
                         help="Also process uploaded/ directory (for already-published videos)")
+    parser.add_argument("--shorts", action="store_true",
+                        help="Process shorts (short_* files) instead of long videos")
     args = parser.parse_args()
 
     gemini_key   = load_key()
@@ -590,17 +592,19 @@ def main():
                 print("Generation failed — model may need billing enabled")
         return
 
+    long_only = not args.shorts
+
     if args.queue in ("en", "both", "all"):
-        process_queue(QUEUE, key, args.force, args.dry_run, "EN", backend)
+        process_queue(QUEUE, key, args.force, args.dry_run, "EN", backend, long_only=long_only)
 
     if args.queue in ("ar", "both", "all"):
-        process_queue(QUEUE_AR, key, args.force, args.dry_run, "AR", backend)
+        process_queue(QUEUE_AR, key, args.force, args.dry_run, "AR", backend, long_only=long_only)
 
     if args.queue in ("id", "all"):
-        process_queue(QUEUE_ID, key, args.force, args.dry_run, "ID", backend)
+        process_queue(QUEUE_ID, key, args.force, args.dry_run, "ID", backend, long_only=long_only)
 
     if args.uploaded:
-        process_queue(UPLOADED, key, args.force, args.dry_run, "UPLOADED", backend)
+        process_queue(UPLOADED, key, args.force, args.dry_run, "UPLOADED", backend, long_only=long_only)
 
 
 if __name__ == "__main__":

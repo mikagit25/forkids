@@ -44,60 +44,97 @@ MUSIC_TRACKS = [
     "Monkeys Spinning Monkeys.mp3", "Pinball Spring.mp3",
 ]
 
+# Episode N = exactly N shape TYPES in the video.
+# Title "N Shape(s) Roundelay" matches the number of shapes on screen.
+# Thumbnail shows EXACTLY those N shapes so thumbnail = video content.
 EPISODES = {
     "roundelay_1": {
-        "shapes": ["circle", "hexagon", "star", "diamond"],
-        "colors": ["#FF4499", "#44AAFF", "#FFCC00", "#FF6B35"],
-        "bgColor": "#0A0A1A", "bpm": 80, "music": "Happy Happy Game Show.mp3",
-        "thumb_prompt": "colorful circles hexagons stars diamonds dancing in a circle, rainbow colors, dark background, kids animation",
+        "shapes": ["circle"],
+        "colors": ["#FF6EB4"],
+        "bgColor": "#0A0014", "bpm": 65, "music": "Wholesome.mp3",
+        "thumb_prompt": (
+            "one large pink circle, Pixar 3D render style, glossy smooth surface, "
+            "soft studio lighting, subtle drop shadow, dark purple background, "
+            "kids video thumbnail, no text, no letters"
+        ),
     },
     "roundelay_2": {
-        "shapes": ["heart", "oval", "circle", "star"],
-        "colors": ["#FF6B9D", "#FF8E53", "#FF4444", "#FFD700"],
-        "bgColor": "#1A0A10", "bpm": 70, "music": "Wholesome.mp3",
-        "thumb_prompt": "cute cartoon hearts ovals stars dancing in a round, warm pink orange colors, dark background, toddler animation",
+        "shapes": ["circle", "star"],
+        "colors": ["#44AAFF", "#FFD700"],
+        "bgColor": "#00050F", "bpm": 70, "music": "Carefree.mp3",
+        "thumb_prompt": (
+            "exactly two shapes: one blue circle and one yellow star, "
+            "Pixar 3D render style, glossy surfaces, soft lighting, "
+            "dark navy background, kids video thumbnail, no text, no letters"
+        ),
     },
     "roundelay_3": {
-        "shapes": ["square", "triangle", "hexagon", "diamond"],
-        "colors": ["#00D4FF", "#0099CC", "#6633FF", "#00FFCC"],
-        "bgColor": "#020A14", "bpm": 90, "music": "Hyperfun.mp3",
-        "thumb_prompt": "geometric squares triangles hexagons diamonds spinning in a pattern, cool blue purple colors, dark background, kids video",
+        "shapes": ["circle", "heart", "triangle"],
+        "colors": ["#FF6EB4", "#FF4444", "#FFD700"],
+        "bgColor": "#0A0500", "bpm": 75, "music": "Happy Happy Game Show.mp3",
+        "thumb_prompt": (
+            "exactly three shapes: pink circle, red heart, yellow triangle, "
+            "Pixar 3D render style, glossy cute toy look, soft studio lighting, "
+            "dark background, kids video thumbnail, no text, no letters"
+        ),
     },
     "roundelay_4": {
-        "shapes": ["circle", "star", "heart", "hexagon"],
-        "colors": ["#FF00FF", "#00FF41", "#FF4500", "#00FFFF"],
-        "bgColor": "#020202", "bpm": 100, "music": "Quirky Dog.mp3",
-        "thumb_prompt": "neon glowing shapes dancing in a roundelay, bright magenta green cyan, black background, vibrant kids animation",
+        "shapes": ["circle", "heart", "star", "square"],
+        "colors": ["#FF6EB4", "#FF4444", "#FFD700", "#FF8C00"],
+        "bgColor": "#0F050A", "bpm": 75, "music": "Monkeys Spinning Monkeys.mp3",
+        "thumb_prompt": (
+            "exactly four shapes: pink circle, red heart, yellow star, orange square, "
+            "Pixar 3D render style, glossy bright toy colours, soft studio lighting, "
+            "dark background, kids thumbnail, no text, no letters"
+        ),
     },
     "roundelay_5": {
-        "shapes": ["circle", "heart", "oval"],
-        "colors": ["#FFB3BA", "#FFDFBA", "#BAFFC9"],
-        "bgColor": "#0A0A0F", "bpm": 60, "music": "Carefree.mp3",
-        "thumb_prompt": "soft pastel circles hearts ovals gently dancing, baby pink peach mint, dark background, calm baby animation",
+        "shapes": ["circle", "heart", "star", "square", "triangle"],
+        "colors": ["#FF6EB4", "#FF4444", "#FFD700", "#44AAFF", "#00CC66"],
+        "bgColor": "#020A06", "bpm": 80, "music": "Hyperfun.mp3",
+        "thumb_prompt": (
+            "exactly five colorful 3D shapes: pink circle, red heart, yellow star, "
+            "blue square, green triangle, Pixar 3D toy render, glossy surfaces, "
+            "dark background, kids video thumbnail, no text, no letters"
+        ),
     },
     "roundelay_6": {
-        "shapes": ["star", "diamond", "triangle", "square"],
-        "colors": ["#FF4500", "#FF8C00", "#FFD700", "#FF6347"],
-        "bgColor": "#0A0500", "bpm": 85, "music": "Merry Go.mp3",
-        "thumb_prompt": "fiery stars diamonds triangles dancing in a round, red orange gold colors, dark background, exciting kids video",
+        "shapes": ["circle", "heart", "star", "square", "triangle", "diamond"],
+        "colors": ["#FF6EB4", "#FF4444", "#FFD700", "#44AAFF", "#00CC66", "#CC44FF"],
+        "bgColor": "#05000A", "bpm": 85, "music": "Quirky Dog.mp3",
+        "thumb_prompt": (
+            "exactly six colorful 3D shapes: pink circle, red heart, yellow star, "
+            "blue square, green triangle, purple diamond, Pixar 3D toy render, "
+            "glossy surfaces, dark background, kids video thumbnail, no text, no letters"
+        ),
     },
     "roundelay_7": {
-        "shapes": ["hexagon", "circle", "oval", "heart"],
-        "colors": ["#006994", "#0099CC", "#00CED1", "#20B2AA"],
-        "bgColor": "#010810", "bpm": 65, "music": "Pinball Spring.mp3",
-        "thumb_prompt": "ocean-colored hexagons circles ovals dancing in a circle, deep blue teal, dark background, soothing kids animation",
+        "shapes": ["circle", "heart", "star", "square", "triangle", "diamond", "hexagon"],
+        "colors": ["#FF6EB4", "#FF4444", "#FFD700", "#44AAFF", "#00CC66", "#CC44FF", "#00CCCC"],
+        "bgColor": "#00050A", "bpm": 80, "music": "Merry Go.mp3",
+        "thumb_prompt": (
+            "exactly seven colorful 3D shapes: pink circle, red heart, yellow star, "
+            "blue square, green triangle, purple diamond, teal hexagon, "
+            "Pixar 3D toy render, glossy surfaces, dark background, "
+            "kids video thumbnail, no text, no letters"
+        ),
     },
     "roundelay_8": {
-        "shapes": ["circle", "triangle", "star", "heart"],
-        "colors": ["#FF6EB4", "#FF85A1", "#FFB347", "#FFEC6E"],
-        "bgColor": "#0F050A", "bpm": 75, "music": "Monkeys Spinning Monkeys.mp3",
-        "thumb_prompt": "candy-colored circles triangles stars hearts in a joyful roundelay, pink yellow orange, dark background, fun kids animation",
+        "shapes": ["circle", "heart", "star", "square", "triangle", "diamond", "hexagon", "oval"],
+        "colors": ["#FF6EB4", "#FF4444", "#FFD700", "#44AAFF", "#00CC66", "#CC44FF", "#00CCCC", "#FF8C00"],
+        "bgColor": "#050505", "bpm": 90, "music": "Pinball Spring.mp3",
+        "thumb_prompt": (
+            "exactly eight colorful 3D shapes: pink circle, red heart, yellow star, "
+            "blue square, green triangle, purple diamond, teal hexagon, orange oval, "
+            "all eight shapes clearly visible, Pixar 3D toy render, glossy surfaces, "
+            "dark background, kids video thumbnail, no text, no letters"
+        ),
     },
 }
 
-TITLE_EN = "🔄 {name} Shapes Roundelay | 30 Minutes | Happy Bear Kids"
-TITLE_AR = "🔄 دائرة الأشكال {num} | ٣٠ دقيقة | Happy Bear Kids"
-TITLE_ID = "🔄 Rondo Bentuk {num} | 30 Menit | Happy Bear Kids"
+TITLE_EN = "🔄 {name} {shape_word} Roundelay | 30 Minutes | Happy Bear Kids"
+TITLE_AR = "🔄 دائرة {num} أشكال | ٣٠ دقيقة | Happy Bear Kids"
+TITLE_ID = "🔄 Rondo {num} Bentuk | 30 Menit | Happy Bear Kids"
 
 DESC_EN = """\
 Welcome to Happy Bear Kids! 🐻
@@ -250,10 +287,11 @@ def generate_thumbnail(ep_key: str, ep: dict, queue: Path, out_name: str, lang: 
 
 
 def make_meta(ep_key: str, ep_num: int, lang: str, queue: Path, out_name: str):
-    num_str = str(ep_num)
-    name_str = ep_key.replace("roundelay_", "").replace("_", " ").title()
+    num_str   = str(ep_num)
+    name_str  = ep_key.replace("roundelay_", "").replace("_", " ").title()
+    shape_word = "Shape" if ep_num == 1 else "Shapes"
     if lang == "en":
-        title = TITLE_EN.format(name=name_str)
+        title = TITLE_EN.format(name=name_str, shape_word=shape_word)
         desc  = DESC_EN
     elif lang == "ar":
         title = TITLE_AR.format(num=num_str)
