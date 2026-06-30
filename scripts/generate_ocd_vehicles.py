@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Generate OCD Vehicles series — 6 calming vehicle-themed shape dance videos, 30 min, no text.
-Uses ShapeDanceLong Remotion composition with vehicle-inspired color palettes.
-No text → EN+AR+ID (1 render, 3 queues).
+Generate OCD Vehicles series — 6 vehicle parade videos, 30 min, no text.
+Uses OCDVehicles Remotion composition — real CSS vehicles walking across screen with
+BackgroundParallax depth. No text → EN+AR+ID (1 render, 3 queues).
 
 Usage:
   python3 scripts/generate_ocd_vehicles.py
@@ -21,6 +21,23 @@ QUEUE_ID = ROOT / "output" / "queue_id"
 TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 TOGETHER_URL      = "https://api.together.xyz/v1/images/generations"
 DATE_STR = datetime.now().strftime("%Y%m%d")
+LOOPS_DIR = ROOT / "output" / "_ocd_loops"
+
+# Map episode keys → OCDVehicles Remotion theme
+OCD_THEME_MAP = {
+    "cars":         "city",
+    "trains":       "city",
+    "planes":       "countryside",
+    "boats":        "countryside",
+    "buses":        "city",
+    "vehicles_mix": "rainbow",
+}
+
+# Speed tuning per episode
+OCD_SPEED_MAP = {
+    "cars": 1.2, "trains": 0.9, "planes": 1.4,
+    "boats": 0.8, "buses": 1.1, "vehicles_mix": 1.3,
+}
 
 _ALL_TRACKS = [
     "Carefree.mp3", "Crinoline Dreams.mp3", "Gymnopedie No 1.mp3",
@@ -277,31 +294,65 @@ def make_meta(ep_key, ep_num, lang, queue, out_name):
         yaml.dump(meta, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
 
 
+def _render_ocd_loop(ep_key, ep, lang, loop_path: Path, dry_run: bool) -> bool:
+    """Render 5-min OCDVehicles loop."""
+    props = json.dumps({
+        "theme":           OCD_THEME_MAP.get(ep_key, "city"),
+        "musicFile":       alt_music(ep["music"], list(EPISODES.keys()).index(ep_key), lang),
+        "vehiclesPerLane": 5,
+        "speedMultiplier": OCD_SPEED_MAP.get(ep_key, 1.0),
+    })
+    cmd = ["npx", "remotion", "render", "OCDVehicles", str(loop_path),
+           "--props", props, "--log", "error"]
+    if dry_run:
+        print(f"    [DRY RUN] {' '.join(cmd[:4])}")
+        return True
+    loop_path.parent.mkdir(parents=True, exist_ok=True)
+    r = subprocess.run(cmd, cwd=str(REMOTION), timeout=1800)
+    return r.returncode == 0
+
+
+def _extend_to_30min(loop_path: Path, out_path: Path, dry_run: bool) -> bool:
+    """Tile 5-min loop 6× → 30 min."""
+    concat = out_path.parent / f"_concat_{out_path.stem}.txt"
+    concat.write_text("\n".join([f"file '{loop_path.resolve()}'"] * 6))
+    cmd = ["ffmpeg", "-y", "-f", "concat", "-safe", "0",
+           "-i", str(concat), "-c", "copy", str(out_path)]
+    if dry_run:
+        print(f"    [DRY RUN] ffmpeg concat 6× → {out_path.name}")
+        concat.unlink(missing_ok=True)
+        return True
+    r = subprocess.run(cmd, timeout=600)
+    concat.unlink(missing_ok=True)
+    return r.returncode == 0
+
+
 def render_episode(ep_key, ep, ep_num, ep_idx, dry_run, regen_meta):
     out_name = f"ocd_vehicles_{ep_key}_{DATE_STR}.mp4"
     ok = True
+    LOOPS_DIR.mkdir(parents=True, exist_ok=True)
 
     for lang, queue in [("en", QUEUE_EN), ("ar", QUEUE_AR), ("id", QUEUE_ID)]:
-        out_mp4    = queue / out_name
-        lang_music = alt_music(ep["music"], ep_idx, lang)
+        out_mp4  = queue / out_name
+        loop_mp4 = LOOPS_DIR / f"ocd_loop_{ep_key}_{lang}.mp4"
+
         if out_mp4.exists() and not regen_meta:
             print(f"  SKIP {ep_key} ({lang}, exists)")
         elif not dry_run and not regen_meta:
-            props = {
-                "shapes": ep["shapes"], "colors": ep["colors"],
-                "bgColor": ep["bgColor"], "bpm": ep["bpm"],
-                "showLabels": False, "musicFile": lang_music,
-            }
-            cmd = ["npx", "remotion", "render", "ShapeDanceLong",
-                   f"--props={json.dumps(props)}", f"--output={str(out_mp4)}",
-                   "--log=error"]
-            print(f"  Rendering {ep_key} ({lang}, 30 min)...", flush=True)
-            r = subprocess.run(cmd, cwd=str(REMOTION), timeout=86400)
-            if r.returncode != 0 or not out_mp4.exists():
-                print(f"  FAILED render: {ep_key} ({lang})")
+            # Step 1: render 5-min OCDVehicles loop
+            if not loop_mp4.exists():
+                print(f"  OCDVehicles render {ep_key} ({lang})...", flush=True)
+                if not _render_ocd_loop(ep_key, ep, lang, loop_mp4, dry_run):
+                    print(f"  FAILED render: {ep_key} ({lang})")
+                    ok = False
+                    continue
+            # Step 2: extend 5 min × 6 = 30 min
+            print(f"  Extending 6× → {out_name}", flush=True)
+            if not _extend_to_30min(loop_mp4, out_mp4, dry_run):
                 ok = False
                 continue
-            print(f"  ✓ {out_name} ({out_mp4.stat().st_size/1024/1024:.1f}MB)")
+            if out_mp4.exists():
+                print(f"  ✓ {out_name} ({out_mp4.stat().st_size/1024/1024:.1f}MB)")
 
         if out_mp4.exists() or dry_run:
             if not dry_run:

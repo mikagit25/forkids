@@ -16,6 +16,9 @@ import { DanceSpriteLong, DanceSpriteLongProps } from "./DanceSpriteLong";
 import { StarsBubblesLong, StarsBubblesLongProps } from "./StarsBubblesLong";
 import { TransformLong, TransformLongProps } from "./TransformLong";
 import { ShapeLearnLong2, ShapeLearnLong2Props } from "./ShapeLearnLong2";
+import { SensoryLoop, SensoryLoopProps } from "./SensoryLoop";
+import { NatureCalm, NatureCalmProps } from "./NatureCalm";
+import { OCDVehicles, OCDVehiclesProps } from "./OCDVehicles";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const C = Composition as React.ComponentType<any>;
@@ -244,7 +247,7 @@ export const Root: React.FC = () => {
         defaultProps={{
           episodeKey: "emotions_happy",
           episodeTitle: "Feelings with Roundy",
-          characterSprite: "characters/bear_happy_3d.png",
+          characterSprite: "sprites/characters/bear_happy_3d.png",
           accentColor: "#FF6B35",
           bgColor: "#FFF8F0",
           rtl: false,
@@ -421,6 +424,52 @@ export const Root: React.FC = () => {
           musicFile: "Carefree.mp3",
           musicFile2: "Wholesome.mp3",
         } as ShapeLearnLong2Props}
+      />
+
+      {/* SensoryLoop — 5-min calming loop for babies (bubbles/bloom/ocean/galaxy) */}
+      <C
+        id="SensoryLoop"
+        component={SensoryLoop}
+        durationInFrames={FPS * 300}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          theme: "bubbles",
+          musicFile: "Gymnopedie No 1.mp3",
+          phaseOffset: 0,
+        } as SensoryLoopProps}
+      />
+
+      {/* NatureCalm — 5-min calm nature loop (meadow/sunset/night/underwater) */}
+      <C
+        id="NatureCalm"
+        component={NatureCalm}
+        durationInFrames={FPS * 300}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          theme: "meadow",
+          musicFile: "Gymnopedie No 1.mp3",
+          phaseOffset: 0,
+        } as NatureCalmProps}
+      />
+
+      {/* OCDVehicles — satisfying vehicles parade, no text, universal */}
+      <C
+        id="OCDVehicles"
+        component={OCDVehicles}
+        durationInFrames={FPS * 300}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          theme: "city",
+          musicFile: "Pinball Spring.mp3",
+          vehiclesPerLane: 5,
+          speedMultiplier: 1.0,
+        } as OCDVehiclesProps}
       />
 
       {/* Long compositions (30 min, landscape) */}
