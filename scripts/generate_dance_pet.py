@@ -105,15 +105,17 @@ ANIMALS = {
     },
     "hamster":    {
         "name_en": "Hamster",    "name_ar": "هامستر",       "name_id": "Hamster",
-        "sprite": "animals_flux/pig.png",    # closest available
+        "sprite": "animals_flux/pig.png",    # EN only — pig sprite, closest available
+        "sprite_ar": "animals_flux/rabbit.png",  # AR/ID: use rabbit (no pig on Muslim channels)
         "bg": "#FFF8E1", "accent": "#F9A825",
         "music": "Monkeys Spinning Monkeys.mp3",
         "partner": None,
         "mood": "tiny and very fast",
     },
     "guinea_pig": {
-        "name_en": "Guinea Pig", "name_ar": "خنزير غيني",  "name_id": "Marmot",
-        "sprite": "animals_flux/pig.png",
+        "name_en": "Guinea Pig", "name_ar": "أرنب صغير",   "name_id": "Kelinci Kecil",
+        "sprite": "animals_flux/pig.png",    # EN only
+        "sprite_ar": "animals_flux/rabbit.png",  # AR/ID: rabbit substitute
         "bg": "#FFF3E0", "accent": "#FF8F00",
         "music": "Life of Riley.mp3",
         "partner": None,
@@ -455,6 +457,9 @@ def publish_to_all_channels(en_mp4: Path, animal: str, vtype: str, ep_idx: int, 
             lang_music = alt_music(en_music, ep_idx, lang)
             props = make_props_A(animal) if vtype == "A" else make_props_B(animal)
             props["musicFile"] = lang_music
+            # AR/ID: swap pig sprite for halal substitute
+            if lang in ("ar", "id") and "sprite_ar" in a:
+                props["sprites"][0]["path"] = a["sprite_ar"]
             print(f"\n    Rendering {animal} [{vtype}] ({lang.upper()}) → {target.name}")
             cmd = [
                 "npx", "remotion", "render",

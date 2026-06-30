@@ -115,6 +115,14 @@ AUDIO_EN = {
     # fruits & vegetables — no dance voiceover yet
 }
 
+# Characters forbidden on AR and ID channels (Muslim audience).
+# Use a halal substitute sprite/name instead.
+AR_ID_FORBIDDEN = {"pig"}
+AR_ID_SUBSTITUTE = {
+    "pig": {"name_ar": "خروف", "name_id": "Domba",
+            "sprite": "animals/sheep.png", "accent": "#FFFDE7", "bg": "#F5F5DC"},
+}
+
 TITLE_EMOJI = {
     "bear": "🐻", "tiger": "🐯", "frog": "🐸", "penguin": "🐧", "lion": "🦁",
     "panda": "🐼", "koala": "🐨", "fox": "🦊", "rabbit": "🐰", "cow": "🐮",
@@ -219,31 +227,42 @@ def gen_theme(characters: dict, theme: str, only: set, force: bool, lang: str = 
         if only and name not in only:
             continue
 
+        # Replace forbidden animals with halal substitute for AR/ID channels
+        render_name = name
+        render_cfg  = cfg
+        if lang in ("ar", "id") and name in AR_ID_FORBIDDEN:
+            sub = AR_ID_SUBSTITUTE.get(name, {})
+            if not sub or not (ROOT / "assets" / "sprites_new" / sub["sprite"]).exists():
+                print(f"  [{name}] SKIP — forbidden on {lang.upper()}, no substitute sprite")
+                continue
+            render_name = f"sheep"   # output filename uses substitute name
+            render_cfg  = {"sprite": sub["sprite"], "accent": sub["accent"], "bg": sub["bg"]}
+
         if lang == "ar":
             suffix = f"_{DATE_STR}_ar_remotion"
         elif lang == "id":
             suffix = f"_{DATE_STR}_id_remotion"
         else:
             suffix = f"_{DATE_STR}_remotion"
-        out_name = f"short_dance_{name}{suffix}.mp4"
+        out_name = f"short_dance_{render_name}{suffix}.mp4"
         out_path = queue / out_name
         if out_path.exists() and not force:
-            print(f"  [{name}] skip"); continue
+            print(f"  [{name}→{render_name}] skip"); continue
 
-        name_ar = _LABELS_AR.get(name, name)
-        name_id = _LABELS_ID.get(name, name.capitalize())
+        name_ar = _LABELS_AR.get(render_name, _LABELS_AR.get(name, name))
+        name_id = _LABELS_ID.get(render_name, _LABELS_ID.get(name, name.capitalize()))
         custom_label = {"ar": name_ar, "id": name_id}.get(lang)
         props = {
-            "spritePath":    cfg["sprite"],
-            "characterName": name.capitalize(),
+            "spritePath":    render_cfg["sprite"],
+            "characterName": render_name.capitalize(),
             "customLabel":   custom_label,
             "audioFile":     _ar_audio(name) if lang == "ar" else AUDIO_EN.get(name),
             "musicFile":     MUSIC_TRACKS[i % len(MUSIC_TRACKS)],
             "bgColor":       cfg["bg"],
-            "accentColor":   cfg["accent"],
+            "accentColor":   render_cfg["accent"],
             "language":      lang if lang in ("ar", "en") else "en",
         }
-        label = custom_label or name
+        label = custom_label or render_name
         print(f"  [{name:12} → {label}]", end="  ", flush=True)
         if render(out_path, props):
             size = out_path.stat().st_size / 1024 / 1024
