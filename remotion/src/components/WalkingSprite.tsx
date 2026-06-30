@@ -1,7 +1,8 @@
 /**
- * WalkingSprite — sprite that walks across the screen left-to-right (or loops).
- * Applies translateX travel + Math.sin vertical bounce for organic walking feel.
- * Used by OCDVehicles, DancePet, ShapeRoundelay, etc.
+ * WalkingSprite — sprite that walks across the screen (WalkingWrapper pattern).
+ * translateX travel + Math.sin vertical bounce + Math.sin lean rotation.
+ * Lean (±maxLeanDeg) alternates each "step" — like a character rocking side to side.
+ * Used by OCDVehicles, DancePet, ShapeRoundelay, PeekABoo, etc.
  */
 import React from "react";
 import { Img, interpolate, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
@@ -21,13 +22,15 @@ export interface WalkingSpriteProps {
   bounceAmp?: number;
   /** Bounce frequency — higher = faster steps (default: 4.5) */
   bounceFreq?: number;
+  /** Max lean/tilt angle in degrees (default: 8). Set 0 to disable. */
+  maxLeanDeg?: number;
   /** Frame on which walking begins (default: 0) */
   startFrame?: number;
   /** Frame on which walking ends (default: durationInFrames) */
   endFrame?: number;
   /** Flip horizontally when walking right-to-left (default: false) */
   flipX?: boolean;
-  /** Extra CSS transform appended after walk (e.g. "scale(1.1)") */
+  /** Extra CSS transform appended last */
   extraTransform?: string;
 }
 
@@ -39,6 +42,7 @@ export const WalkingSprite: React.FC<WalkingSpriteProps> = ({
   size = 320,
   bounceAmp = 22,
   bounceFreq = 4.5,
+  maxLeanDeg = 8,
   startFrame = 0,
   endFrame,
   flipX = false,
@@ -47,7 +51,6 @@ export const WalkingSprite: React.FC<WalkingSpriteProps> = ({
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
   const end = endFrame ?? durationInFrames;
-
   const t = frame / fps;
   const localF = frame - startFrame;
 
@@ -58,9 +61,11 @@ export const WalkingSprite: React.FC<WalkingSpriteProps> = ({
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
-  const bounce = localF >= 0
-    ? Math.abs(Math.sin(t * bounceFreq)) * bounceAmp
-    : 0;
+  // Vertical bounce — abs(sin) so object always lifts, never dips below baseline
+  const bounce = localF >= 0 ? Math.abs(Math.sin(t * bounceFreq)) * bounceAmp : 0;
+
+  // Side-to-side lean synced with bounce (lean right when bouncing up on right foot)
+  const lean = maxLeanDeg > 0 ? Math.sin(t * bounceFreq) * maxLeanDeg : 0;
 
   const scaleX = flipX ? -1 : 1;
 
@@ -74,7 +79,8 @@ export const WalkingSprite: React.FC<WalkingSpriteProps> = ({
         width: size,
         height: size,
         objectFit: "contain",
-        transform: `translateX(${x}px) translateY(${-bounce}px) scaleX(${scaleX}) ${extraTransform}`,
+        transform: `translateX(${x}px) translateY(${-bounce}px) rotate(${lean}deg) scaleX(${scaleX}) ${extraTransform}`,
+        transformOrigin: "center bottom",
         willChange: "transform",
       }}
     />

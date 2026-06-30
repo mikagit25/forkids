@@ -19,6 +19,9 @@ import { ShapeLearnLong2, ShapeLearnLong2Props } from "./ShapeLearnLong2";
 import { SensoryLoop, SensoryLoopProps } from "./SensoryLoop";
 import { NatureCalm, NatureCalmProps } from "./NatureCalm";
 import { OCDVehicles, OCDVehiclesProps } from "./OCDVehicles";
+import { PeekABoo, PeekABooProps } from "./PeekABoo";
+import { FactoryTransform, FactoryTransformProps } from "./FactoryTransform";
+import { PuzzleAssembly, PuzzleAssemblyProps } from "./PuzzleAssembly";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const C = Composition as React.ComponentType<any>;
@@ -470,6 +473,53 @@ export const Root: React.FC = () => {
           vehiclesPerLane: 5,
           speedMultiplier: 1.0,
         } as OCDVehiclesProps}
+      />
+
+      {/* PeekABoo — "Who's hiding?" mechanic, 5 items, loops ≈ 55s */}
+      <C
+        id="PeekABoo"
+        component={PeekABoo}
+        durationInFrames={FPS * SHORT_DUR * 4}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          region: "US",
+          itemsCount: 5,
+          bgColor: "#FFF8E1",
+          musicFile: "Happy Happy Game Show.mp3",
+        } as PeekABooProps}
+      />
+
+      {/* FactoryTransform — B&W → color conveyor belt mechanic */}
+      <C
+        id="FactoryTransform"
+        component={FactoryTransform}
+        durationInFrames={FPS * SHORT_DUR * 4}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          region: "US",
+          theme: "mixed",
+          musicFile: "Pinball Spring.mp3",
+          bgColor: "#E8F5E9",
+        } as FactoryTransformProps}
+      />
+
+      {/* PuzzleAssembly — arc-trajectory pieces snap into silhouette */}
+      <C
+        id="PuzzleAssembly"
+        component={PuzzleAssembly}
+        durationInFrames={FPS * SHORT_DUR * 6}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          puzzle: "star",
+          musicFile: "Wholesome.mp3",
+          loops: 2,
+        } as PuzzleAssemblyProps}
       />
 
       {/* Long compositions (30 min, landscape) */}
