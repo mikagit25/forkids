@@ -22,9 +22,9 @@ import { OCDVehicles, OCDVehiclesProps } from "./OCDVehicles";
 import { PeekABoo, PeekABooProps } from "./PeekABoo";
 import { FactoryTransform, FactoryTransformProps } from "./FactoryTransform";
 import { PuzzleAssembly, PuzzleAssemblyProps } from "./PuzzleAssembly";
-import { PeekABooEggs, PeekABooEggsProps } from "./PeekABooEggs";
-import { NeonCarWash, NeonCarWashProps } from "./NeonCarWash";
-import { DinoBuild, DinoBuildProps } from "./DinoBuild";
+import { PeekABooEggs, PeekABooEggsProps, EggItem } from "./PeekABooEggs";
+import { NeonCarWash, NeonCarWashProps, VehicleItem } from "./NeonCarWash";
+import { DinoBuild, DinoBuildProps, DinoCfg } from "./DinoBuild";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const C = Composition as React.ComponentType<any>;
@@ -525,44 +525,63 @@ export const Root: React.FC = () => {
         } as PuzzleAssemblyProps}
       />
 
-      {/* PeekABooEggs — magic egg hatching mechanic (1350f = 45s) */}
+      {/* PeekABooEggsLoop — 5-min parameterized loop → FFmpeg ×6 → 30 min */}
       <C
-        id="PeekABooEggs"
+        id="PeekABooEggsLoop"
         component={PeekABooEggs}
-        durationInFrames={1350}
+        durationInFrames={FPS * 300}
         fps={FPS}
         width={1920}
         height={1080}
         defaultProps={{
-          region: "US",
+          eggs: [
+            { shellColor: "#7BC67E", spotColor: "#A5D6A7", animalSprite: "sprites/animals/cow.png",
+              accentColor: "#66BB6A", bgColor: "#F1F8E9" },
+            { shellColor: "#FFF176", spotColor: "#FFF9C4", animalSprite: "sprites/animals/duck.png",
+              accentColor: "#FDD835", bgColor: "#FFFDE7" },
+            { shellColor: "#F48FB1", spotColor: "#F8BBD0", animalSprite: "sprites/animals/pig.png",
+              accentColor: "#EC407A", bgColor: "#FCE4EC" },
+            { shellColor: "#80DEEA", spotColor: "#B2EBF2", animalSprite: "sprites/animals/frog.png",
+              accentColor: "#26C6DA", bgColor: "#E0F7FA" },
+          ] as EggItem[],
           musicFile: "Happy Happy Game Show.mp3",
           bgColor: "#FFF8F0",
         } as PeekABooEggsProps}
       />
 
-      {/* NeonCarWash — B&W car → colorful through wash gate (1620f = 54s) */}
+      {/* NeonCarWashLoop — 5-min parameterized loop → FFmpeg ×6 → 30 min */}
       <C
-        id="NeonCarWash"
+        id="NeonCarWashLoop"
         component={NeonCarWash}
-        durationInFrames={1620}
+        durationInFrames={FPS * 300}
         fps={FPS}
         width={1920}
         height={1080}
         defaultProps={{
+          vehicles: [
+            { label: "truck", color: "#E53935", accentColor: "#E53935", bgColor: "#FFEBEE", foamColor: "#FF8A80" },
+            { label: "car",   color: "#1565C0", accentColor: "#1565C0", bgColor: "#E3F2FD", foamColor: "#82B1FF" },
+            { label: "bus",   color: "#F9A825", accentColor: "#F9A825", bgColor: "#FFFDE7", foamColor: "#FFD740" },
+          ] as VehicleItem[],
           musicFile: "Pinball Spring.mp3",
           bgColor: "#E8F5E9",
         } as NeonCarWashProps}
       />
 
-      {/* DinoBuild — arc-trajectory dino parts snap together (1800f = 60s) */}
+      {/* DinoBuildLoop — 5-min parameterized loop → FFmpeg ×6 → 30 min */}
       <C
-        id="DinoBuild"
+        id="DinoBuildLoop"
         component={DinoBuild}
-        durationInFrames={1800}
+        durationInFrames={FPS * 300}
         fps={FPS}
         width={1920}
         height={1080}
         defaultProps={{
+          dinos: [
+            { sprite: "sprites/animals/dino.png", hueRotate:   0, bgTop: "#1B5E20", bgBottom: "#4CAF50", accentColor: "#76FF03", snapColor: "#B2FF59" },
+            { sprite: "sprites/animals/dino.png", hueRotate: 200, bgTop: "#0D47A1", bgBottom: "#42A5F5", accentColor: "#40C4FF", snapColor: "#80D8FF" },
+            { sprite: "sprites/animals/dino.png", hueRotate: 300, bgTop: "#880E4F", bgBottom: "#E91E63", accentColor: "#FF80AB", snapColor: "#FFB3C5" },
+          ] as DinoCfg[],
           musicFile: "Wholesome.mp3",
         } as DinoBuildProps}
       />

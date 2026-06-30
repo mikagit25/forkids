@@ -39,9 +39,9 @@
 Шаг 29 dance_fruits_2stage⏳  14×3=42
 Шаг 30 dance_pet          ⏳  10×2×3=60
 Шаг 31 thumbnails sweep   ⏳
-Шаг 49 peekaboo_eggs      ⏳  1×3=3    (PeekABooEggs: волшебные яйца, 45с)
-Шаг 50 neon_carwash       ⏳  1×3=3    (NeonCarWash: машина в мойке, 54с)
-Шаг 51 dino_build         ⏳  1×3=3    (DinoBuild: сборка динозавра, 60с)
+Шаг 49 peekaboo_eggs      ⏳  6×3=18   (PeekABooEggs: 6 тем×3 канала, 30 мин, farm/jungle/pets/arctic/safari/night)
+Шаг 50 neon_carwash       ⏳  5×3=15   (NeonCarWash: 5 тем×3 канала, 30 мин, city/emergency/heavy/rainbow/fantasy)
+Шаг 51 dino_build         ⏳  4×3=12   (DinoBuild: 4 темы×3 канала, 30 мин, prehistoric/candy/galaxy/volcano)
 Watchdog перезапускает оркестратор каждые 30 мин если нет прогресса.
 ```
 
