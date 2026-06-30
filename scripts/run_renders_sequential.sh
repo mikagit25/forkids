@@ -619,13 +619,55 @@ if [[ $FROM_STEP -le 47 ]]; then
     fi
 fi
 
+# ── Step 49: peek-a-boo eggs — 1 video × 3 channels = 3 videos ────────────────
+if [[ $FROM_STEP -le 49 ]]; then
+    EGG_TOTAL=$(ls output/queue/peekaboo_eggs_farm_*.mp4 \
+                   output/queue_ar/peekaboo_eggs_farm_*.mp4 \
+                   output/queue_id/peekaboo_eggs_farm_*.mp4 2>/dev/null | wc -l)
+    if [[ $EGG_TOTAL -ge 3 ]]; then
+        skip 49 "peek-a-boo eggs ($EGG_TOTAL / 3 videos already generated)"
+    else
+        log "[49/51] peek-a-boo eggs — 1 × 3 channels = 3 videos..."
+        python3 -u scripts/generate_peekaboo_eggs.py --videos all >> logs/peekaboo_eggs.log 2>&1
+        log "[49/51] peek-a-boo eggs done."
+    fi
+fi
+
+# ── Step 50: neon car wash — 1 video × 3 channels = 3 videos ──────────────────
+if [[ $FROM_STEP -le 50 ]]; then
+    CW_TOTAL=$(ls output/queue/neon_carwash_*.mp4 \
+                  output/queue_ar/neon_carwash_*.mp4 \
+                  output/queue_id/neon_carwash_*.mp4 2>/dev/null | wc -l)
+    if [[ $CW_TOTAL -ge 3 ]]; then
+        skip 50 "neon car wash ($CW_TOTAL / 3 videos already generated)"
+    else
+        log "[50/51] neon car wash — 1 × 3 channels = 3 videos..."
+        python3 -u scripts/generate_neon_carwash.py --videos all >> logs/neon_carwash.log 2>&1
+        log "[50/51] neon car wash done."
+    fi
+fi
+
+# ── Step 51: dino build — 1 video × 3 channels = 3 videos ────────────────────
+if [[ $FROM_STEP -le 51 ]]; then
+    DB_TOTAL=$(ls output/queue/dino_build_*.mp4 \
+                  output/queue_ar/dino_build_*.mp4 \
+                  output/queue_id/dino_build_*.mp4 2>/dev/null | wc -l)
+    if [[ $DB_TOTAL -ge 3 ]]; then
+        skip 51 "dino build ($DB_TOTAL / 3 videos already generated)"
+    else
+        log "[51/51] dino build — 1 × 3 channels = 3 videos..."
+        python3 -u scripts/generate_dino_build.py --videos all >> logs/dino_build.log 2>&1
+        log "[51/51] dino build done."
+    fi
+fi
+
 # ── Step 48: final thumbnails sweep ───────────────────────────────────────────
 if [[ $FROM_STEP -le 48 ]]; then
-    log "[48/48] final thumbnails sweep (all queues)..."
+    log "[48/51] final thumbnails sweep (all queues)..."
     python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
     python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
     python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
-    log "[48/48] final thumbnails done."
+    log "[48/51] final thumbnails done."
 fi
 
 # ── Итог ──────────────────────────────────────────────────────────────────────

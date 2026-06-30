@@ -22,6 +22,9 @@ import { OCDVehicles, OCDVehiclesProps } from "./OCDVehicles";
 import { PeekABoo, PeekABooProps } from "./PeekABoo";
 import { FactoryTransform, FactoryTransformProps } from "./FactoryTransform";
 import { PuzzleAssembly, PuzzleAssemblyProps } from "./PuzzleAssembly";
+import { PeekABooEggs, PeekABooEggsProps } from "./PeekABooEggs";
+import { NeonCarWash, NeonCarWashProps } from "./NeonCarWash";
+import { DinoBuild, DinoBuildProps } from "./DinoBuild";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const C = Composition as React.ComponentType<any>;
@@ -520,6 +523,48 @@ export const Root: React.FC = () => {
           musicFile: "Wholesome.mp3",
           loops: 2,
         } as PuzzleAssemblyProps}
+      />
+
+      {/* PeekABooEggs — magic egg hatching mechanic (1350f = 45s) */}
+      <C
+        id="PeekABooEggs"
+        component={PeekABooEggs}
+        durationInFrames={1350}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          region: "US",
+          musicFile: "Happy Happy Game Show.mp3",
+          bgColor: "#FFF8F0",
+        } as PeekABooEggsProps}
+      />
+
+      {/* NeonCarWash — B&W car → colorful through wash gate (1620f = 54s) */}
+      <C
+        id="NeonCarWash"
+        component={NeonCarWash}
+        durationInFrames={1620}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          musicFile: "Pinball Spring.mp3",
+          bgColor: "#E8F5E9",
+        } as NeonCarWashProps}
+      />
+
+      {/* DinoBuild — arc-trajectory dino parts snap together (1800f = 60s) */}
+      <C
+        id="DinoBuild"
+        component={DinoBuild}
+        durationInFrames={1800}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          musicFile: "Wholesome.mp3",
+        } as DinoBuildProps}
       />
 
       {/* Long compositions (30 min, landscape) */}

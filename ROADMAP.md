@@ -20,7 +20,7 @@
 Фаза 9  Мониторинг               ░░░░░░░░░░   0%  ⬜
 Фаза 10 Расширение контента      ██████████ 100%  ✅  (vocabulary+counting+vegetables+ABC expansion)
 Фаза 11 Танцевальный контент     ████████░░  85%  🔄  (42 шортса: 20 животных + 12 фруктов + 10 овощей)
-Фаза 12 Text-Free Animation      ████████░░  80%  🔄  (wobble ✅, wiggle_party ✅, новые серии в очереди шагов 20-31)
+Фаза 12 Text-Free Animation      █████████░  90%  🔄  (wobble ✅, wiggle_party ✅, PeekABooEggs/NeonCarWash/DinoBuild ✅, шаги 20-31+49-51)
 Фаза 13 Анти-дублирование        ██████████ 100%  ✅  (alt_music во всех скриптах, 3 разных трека на канал)
 ```
 
@@ -39,6 +39,9 @@
 Шаг 29 dance_fruits_2stage⏳  14×3=42
 Шаг 30 dance_pet          ⏳  10×2×3=60
 Шаг 31 thumbnails sweep   ⏳
+Шаг 49 peekaboo_eggs      ⏳  1×3=3    (PeekABooEggs: волшебные яйца, 45с)
+Шаг 50 neon_carwash       ⏳  1×3=3    (NeonCarWash: машина в мойке, 54с)
+Шаг 51 dino_build         ⏳  1×3=3    (DinoBuild: сборка динозавра, 60с)
 Watchdog перезапускает оркестратор каждые 30 мин если нет прогресса.
 ```
 
