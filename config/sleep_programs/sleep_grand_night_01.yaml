@@ -1,0 +1,23 @@
+id: sleep_grand_night_01
+title_en: "Grand Classical Night 🌠 {duration} | Tchaikovsky · Beethoven · Chopin & More"
+video_type: sleep_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: night_bear
+loop_duration_sec: 300
+durations_hours: [3, 8]
+tracks:
+  - {id: chopin_nocturne_in_e_flat_major_op_9_no_2,                          composer: "Frédéric Chopin",            piece: "Nocturne in E♭ major, Op. 9 No. 2",           duration_sec: 277, mood: gentle}
+  - {id: tchaikovsky_swan_lake_op_20_act_ii_pt_1,                             composer: "Pyotr Ilyich Tchaikovsky",   piece: "Swan Lake — Act II Pt. 1",                    duration_sec: 250, mood: lyrical}
+  - {id: beethoven_piano_sonata_no_14_in_c_m_moonlight_op_27_no_2_i_adagio_so, composer: "Ludwig van Beethoven",     piece: "Moonlight Sonata — I. Adagio sostenuto",      duration_sec: 276, mood: nocturnal}
+  - {id: tchaikovsky_swan_lake_op_20_act_ii_concl,                            composer: "Pyotr Ilyich Tchaikovsky",   piece: "Swan Lake — Act II Conclusion",               duration_sec: 369, mood: flowing}
+  - {id: vwilliams_fantasia_on_a_theme_by_thomas_tallis,                      composer: "Ralph Vaughan Williams",     piece: "Fantasia on a Theme by Thomas Tallis",        duration_sec: 894, mood: soaring}
+  - {id: chopin_nocturne_in_b_flat_minor_op_9_no_1,                           composer: "Frédéric Chopin",            piece: "Nocturne in B♭ minor, Op. 9 No. 1",          duration_sec: 337, mood: introspective}
+  - {id: tchaikovsky_swan_lake_op_20_act_iv_intro,                            composer: "Pyotr Ilyich Tchaikovsky",   piece: "Swan Lake — Act IV Intro",                    duration_sec: 1262, mood: sweeping}
+  - {id: mozart_mozart_serenade_in_g_major_i_romance,                        composer: "Wolfgang Amadeus Mozart",    piece: "Serenade in G major — I. Romance",            duration_sec: 266, mood: romantic}
+  - {id: beethoven_symphony_no_5_in_cm_op_67_ii_andante_con_moto,            composer: "Ludwig van Beethoven",       piece: "Symphony No. 5 — II. Andante con moto",       duration_sec: 682, mood: lyrical}
+  - {id: tchaikovsky_swan_lake_op_20_act_iii_pt_1,                            composer: "Pyotr Ilyich Tchaikovsky",   piece: "Swan Lake — Act III Pt. 1",                   duration_sec: 903, mood: dramatic}
+  - {id: unknown_3_fantaisies_for_solo_flute_op_38_fantaisie_no_1,           composer: "Unknown",                    piece: "Fantaisie for Solo Flute, Op. 38 No. 1",      duration_sec: 656, mood: airy}
+  - {id: verdi_giuseppe_verdi_la_traviata_i,                                  composer: "Giuseppe Verdi",             piece: "La Traviata — Act I",                         duration_sec: 1358, mood: operatic}
+tags: [tchaikovsky, beethoven, chopin, classical sleep music, grand classical, full night, 8 hour sleep, calm classics]

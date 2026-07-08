@@ -1,0 +1,81 @@
+# ─────────────────────────────────────────────────────────────
+# YouTube Channel Metadata — Calm Classics
+# Repurposed from Happy Bear Kids Indonesia channel
+# Same token: credentials/youtube_token_id.json
+# Same channel ID: UCOozTZwjXgkfYiTAzSzePAA
+# Target audience: adults — sleep, focus, relaxation
+# ─────────────────────────────────────────────────────────────
+
+channel:
+  name: "Classical Night Relax"
+  handle: "@ClassicalNightRelax"
+  youtube_id: "UCOozTZwjXgkfYiTAzSzePAA"
+  token: "credentials/youtube_token_id.json"
+  queue: "output/queue_id"            # same queue folder, new content
+
+  description: |
+    🎵 Calm Classics — Classical music for sleep, focus and relaxation.
+
+    Bach, Chopin, Debussy, Mozart and more — paired with beautiful looping visuals.
+    Perfect for deep sleep, study, work, meditation and relaxation.
+
+    🌙 Sleep programs — 1h, 3h and 8h versions
+    📚 Focus & study — Bach and Baroque for concentration
+    🌊 Relaxation — gentle nature visuals with classical music
+    ✨ Beautifully animated loops — night sky, moon, rain, fireplace
+
+    New programs every week. Subscribe and sleep better tonight.
+
+  keywords: >
+    classical music for sleep, sleep music, study music, focus music,
+    relaxation music, bach for sleep, chopin nocturnes, debussy piano,
+    mozart study music, calm music, peaceful music, sleep aid,
+    8 hour sleep music, 1 hour classical, music for concentration,
+    baby sleep music, white noise, rain sounds, ambient classical
+
+  country: "US"
+  language: "en"
+  made_for_kids: false               # ADULT channel — critical flag
+
+# ─────────────────────────────────────────────────────────────
+# VIDEO DEFAULTS
+# ─────────────────────────────────────────────────────────────
+
+video_defaults:
+  category_id: "10"          # Music
+  made_for_kids: false        # MUST be false for monetization
+  default_language: "en"
+  license: "youtube"
+
+  tags_base:
+    - calm classics
+    - classical music
+    - sleep music
+    - relaxation music
+    - focus music
+    - study music
+    - piano music
+    - peaceful music
+    - ambient classical
+    - music for sleep
+
+# ─────────────────────────────────────────────────────────────
+# CONTENT TRACKS
+# ─────────────────────────────────────────────────────────────
+
+tracks:
+  calm_classics:
+    description: "Adult sleep/focus/relaxation — primary monetization track"
+    publish_slots_per_week: 5        # Mon–Fri 20:00
+    shorts_per_week: 3               # Mon/Wed/Fri 21:00
+    video_types:
+      - sleep_program
+      - focus_program
+      - visual_theme
+      - sleep_short
+
+  kids_sleep:
+    description: "Children lullaby/sleep — cross-publishes to EN channel"
+    video_types:
+      - lullaby_long
+      - sleep_lullaby

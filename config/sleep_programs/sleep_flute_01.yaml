@@ -1,0 +1,18 @@
+id: sleep_flute_01
+title_en: "Peaceful Flute & Strings 🎶 {duration} | Classical Sleep Music"
+video_type: sleep_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: warm_waves
+loop_duration_sec: 240
+durations_hours: [1, 3]
+tracks:
+  - {id: unknown_3_fantaisies_for_solo_flute_op_38_fantaisie_no_1,          composer: "Unknown",                 piece: "3 Fantaisies for Solo Flute, Op. 38 — No. 1",  duration_sec: 656, mood: airy}
+  - {id: mozart_mozart_serenade_in_g_major_i_romance,                       composer: "Wolfgang Amadeus Mozart", piece: "Serenade in G major — I. Romance",              duration_sec: 266, mood: gentle}
+  - {id: unknown_24_etudes_for_flute_op_15_vi_moderato_in_b_minor,          composer: "Unknown",                 piece: "24 Études for Flute, Op. 15 — VI. Moderato",   duration_sec: 330, mood: flowing}
+  - {id: bach_cello_suite_no_1_prelude_in_g_bwv_1007,                       composer: "Johann Sebastian Bach",   piece: "Cello Suite No. 1 — Prelude in G, BWV 1007",   duration_sec: 150, mood: structured}
+  - {id: unknown_24_etudes_for_flute_op_15_iii_allegro_con_brio_in_g_major, composer: "Unknown",                 piece: "24 Études for Flute, Op. 15 — III. Allegro",   duration_sec: 152, mood: bright}
+  - {id: mozart_mozart_serenade_in_g_major_ii_minuet,                       composer: "Wolfgang Amadeus Mozart", piece: "Serenade in G major — II. Minuet",              duration_sec: 123, mood: clear}
+  - {id: mozart_mozart_serenade_in_g_major_iii_rondo,                       composer: "Wolfgang Amadeus Mozart", piece: "Serenade in G major — III. Rondo",              duration_sec: 194, mood: lively}
+tags: [flute music, classical sleep, mozart, bach, peaceful music, calm classics, nature sounds, sleep aid]

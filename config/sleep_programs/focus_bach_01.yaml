@@ -1,0 +1,17 @@
+id: focus_bach_01
+title_en: "Bach for Focus & Study 🎵 {duration} | Calm Classics"
+video_type: focus_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: rain_window
+loop_duration_sec: 240
+durations_hours: [1, 3]
+tracks:
+  - {id: bach_prelude_c_major, composer: J.S. Bach, piece: "Prelude in C major, BWV 846 (Well-Tempered Clavier)", duration_sec: 130, mood: clear}
+  - {id: bach_invention_1, composer: J.S. Bach, piece: "Invention No. 1 in C major, BWV 772", duration_sec: 80, mood: focused}
+  - {id: bach_air_g_string, composer: J.S. Bach, piece: "Air on the G String (Suite No. 3, BWV 1068)", duration_sec: 330, mood: flowing}
+  - {id: bach_jesu_joy, composer: J.S. Bach, piece: "Jesu, Joy of Man's Desiring (Cantata BWV 147)", duration_sec: 215, mood: uplifting}
+  - {id: bach_prelude_bwv_999, composer: J.S. Bach, piece: "Prelude in C minor, BWV 999", duration_sec: 115, mood: focused}
+  - {id: bach_goldberg_aria, composer: J.S. Bach, piece: "Goldberg Variations: Aria, BWV 988", duration_sec: 195, mood: meditative}
+tags: [bach, focus music, study music, classical music, concentration, rain sounds, calm classics]

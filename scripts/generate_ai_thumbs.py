@@ -100,12 +100,25 @@ def make_prompt(stem: str, meta: dict, is_ar: bool = False) -> str:
     Indonesian (id) uses Latin script, so text is allowed — same style as EN.
     """
     vtype  = meta.get("video_type", "")
-    theme  = meta.get("theme", "animals")
     style  = STYLE_AR_NOTXT if is_ar else STYLE_EN
 
     # Normalise stem: strip lang suffix and date
     name = re.sub(r'_(en|ar|id)$', '', re.sub(r'_\d{8}.*$', '', stem))
     name = re.sub(r'^(ar|id)_', '', name)
+
+    # Infer theme from meta, fallback to filename
+    if meta.get("theme"):
+        theme = meta["theme"]
+    elif "fruit" in name:
+        theme = "fruits"
+    elif "vegetable" in name or "veggie" in name:
+        theme = "vegetables"
+    elif "shape" in name:
+        theme = "shapes"
+    elif "mixed" in name:
+        theme = "mixed"
+    else:
+        theme = "animals"
 
     # Detect specific character/object from filename
     character = ""
@@ -113,6 +126,24 @@ def make_prompt(stem: str, meta: dict, is_ar: bool = False) -> str:
         if char in name:
             character = char
             break
+
+    # ── Calm Classics: sleep_program / focus_program / visual_theme ──────────
+    if vtype in ("sleep_program", "focus_program", "visual_theme", "sleep_short"):
+        _CC_THEME_PROMPTS = {
+            "moon_clouds":  "peaceful moonlit night sky with soft drifting clouds, full moon glow, "
+                            "classical music sleep relaxation, dark blue cinematic, no text",
+            "night_bear":   "sleeping bear silhouette under moonlit night sky with fireflies, "
+                            "classical lullaby, peaceful dark forest, cozy, no text",
+            "warm_waves":   "calm ocean waves at dusk with warm amber golden sunset, "
+                            "classical music relaxation, cinematic peaceful, no text",
+            "rain_window":  "cozy rainy window with warm candlelight inside glowing, "
+                            "classical music study focus atmosphere, no text",
+        }
+        cc_theme = meta.get("theme", "moon_clouds")
+        base_prompt = _CC_THEME_PROMPTS.get(cc_theme, _CC_THEME_PROMPTS["moon_clouds"])
+        dur_label = meta.get("duration_hours", "")
+        dur_str = f", {dur_label} hour" if dur_label else ""
+        return f"{base_prompt}, {meta.get('title', 'classical music')[:40]}{dur_str}, professional YouTube thumbnail{style}"
 
     # ── numbers / counting ────────────────────────────────────────────────────
     if "counting" in vtype or "counting" in name or vtype == "numbers" or "number_learn" in name:
@@ -321,6 +352,268 @@ def make_prompt(stem: str, meta: dict, is_ar: bool = False) -> str:
             f"sparkles and light trails, dreamy and mesmerizing for babies, "
             f"16:9 format 1280x720, no text, no letters, no words, no numbers, "
             f"no watermarks, no logos, no brand names"
+        )
+
+    # ── special mechanics (sm1-sm14) ──────────────────────────────────────────
+    elif vtype == "special_mechanics" and re.match(r'^sm\d+', name):
+        _SM_PROMPTS = {
+            "sm7":  "cute cartoon rabbit, cat and dog playing peek-a-boo behind colorful trees, "
+                    "surprised expressions, dark magical forest background, Pixar 3D style",
+            "sm8":  "colorful bright 3D shapes casting dark dramatic shadows on the ground, "
+                    "warm golden directional light, clean dark background, Pixar 3D style",
+            "sm9":  "magical glowing transparent soap bubbles of all sizes floating upward, "
+                    "iridescent rainbow reflections inside each bubble, deep dark blue background, Pixar 3D style",
+            "sm10": "colorful geometric shapes — star, circle, diamond — each with a perfect mirror "
+                    "reflection below it on a shiny surface, dark blue symmetric background, Pixar 3D style",
+            "sm11": "ten colorful glowing circles arranged in two neat rows of five, "
+                    "two large golden stars above them, counting visual, dark background, Pixar 3D style",
+            "sm12": "festive birthday celebration scene with colorful balloons, rainbow confetti, "
+                    "stars and sparkles, warm golden party background, Pixar 3D style",
+            "sm13": "cute bear and cat character dancing joyfully with their perfect mirror reflections "
+                    "below them on a shiny purple floor, purple sparkles background, Pixar 3D style",
+            "sm14": "peaceful glowing crescent moon and seven soft twinkling stars in a deep dark blue "
+                    "night sky, gentle sparkles, magical serene baby sleep atmosphere, Pixar 3D style",
+        }
+        sm_match = re.match(r'^(sm\d+)', name)
+        sm_key = sm_match.group(1) if sm_match else ""
+        visual = _SM_PROMPTS.get(sm_key,
+            "magical colorful abstract visual effects, glowing geometric patterns, "
+            "dreamy baby animation atmosphere, Pixar 3D style")
+        prompt = f"{visual}, {style}"
+
+    # ── emotions_ocean (eo_e_* emotions, eo_o_* ocean, eo_t_* transport, eo_p_* professions) ───
+    elif vtype == "special_mechanics" and re.match(r'^eo_', name):
+        _EMOTION_PROMPTS = {
+            "happy":     "cute Pixar-style 3D bear character with the biggest joyful smile, "
+                         "arms raised in celebration, golden sunlight and confetti background",
+            "sad":       "cute Pixar-style 3D bear with big teary blue eyes, one small teardrop "
+                         "falling on its cheek, soft blue-grey clouds background, gentle and sympathetic",
+            "angry":     "cute Pixar-style 3D bear with a grumpy scowl and crossed arms, "
+                         "wavy red and orange energy lines background, eyebrows furrowed",
+            "surprised": "cute Pixar-style 3D bear with huge wide-open eyes and open mouth in shock, "
+                         "yellow sparkle burst around it, comic surprise expression",
+            "scared":    "cute Pixar-style 3D bear peeking nervously with big fearful eyes, "
+                         "hiding behind a colorful pillow, dark cozy night background",
+            "love":      "cute Pixar-style 3D bear with rosy cheeks and heart-shaped eyes, "
+                         "surrounded by floating pink and red hearts, warm pink background",
+            "calm":      "cute Pixar-style 3D bear in a peaceful relaxed pose with soft closed eyes, "
+                         "gentle pastel blue background, floating soft glowing orbs",
+            "excited":   "cute Pixar-style 3D bear jumping with pure excitement, confetti everywhere, "
+                         "rainbow streaks background, big open smile",
+        }
+        _OCEAN_PROMPTS = {
+            "octopus":   "cute Pixar-style 3D purple octopus character with big eyes and eight curly "
+                         "tentacles, underwater bubble background, friendly smile",
+            "whale":     "majestic cute Pixar-style 3D blue whale character with kind eyes, "
+                         "deep ocean background, light rays from above, water bubbles",
+            "dolphin":   "cute smiling Pixar-style 3D dolphin leaping from sparkling ocean waves, "
+                         "sunny tropical background",
+            "crab":      "cute Pixar-style 3D red crab character with big claws and happy expression, "
+                         "sandy beach with colorful shells background",
+            "seahorse":  "cute Pixar-style 3D seahorse with a curling tail and big eyes, "
+                         "colorful coral reef background",
+            "jellyfish": "beautiful glowing Pixar-style 3D jellyfish with trailing tentacles, "
+                         "deep dark ocean, bioluminescent glow",
+            "fish":      "cute Pixar-style 3D tropical fish with bright orange and white stripes "
+                         "and a big friendly smile, coral reef background",
+        }
+        _TRANSPORT_PROMPTS = {
+            "bus":       "cute Pixar-style 3D red bus with a friendly smiling face and big round eyes, "
+                         "cheerful city street background",
+            "train":     "cute Pixar-style 3D steam train with a smiling face and colorful carriages, "
+                         "green countryside track background",
+            "airplane":  "cute Pixar-style 3D white airplane with a joyful smile, fluffy clouds "
+                         "and blue sky background, colorful wingtips",
+            "car":       "cute Pixar-style 3D colorful car character with big headlight eyes and "
+                         "wide grill smile, bright road background",
+            "boat":      "cute Pixar-style 3D sailing boat with a happy face on its bow, "
+                         "sparkling ocean waves and sunny sky background",
+            "rocket":    "cute Pixar-style 3D rocket ship with a big smile, "
+                         "launching through space with colorful stars and planets",
+        }
+        _PROFESSION_PROMPTS = {
+            "doctor":    "cute Pixar-style 3D bear doctor character in white coat with stethoscope, "
+                         "friendly smile, clean clinic background",
+            "teacher":   "cute Pixar-style 3D bear teacher character holding a book, "
+                         "colorful classroom with blackboard background",
+            "chef":      "cute Pixar-style 3D bear chef character in a white hat, holding a big spoon, "
+                         "colorful kitchen background",
+            "firefighter": "cute Pixar-style 3D bear firefighter in red helmet and suit, "
+                           "fire truck background, heroic pose",
+            "police":    "cute Pixar-style 3D bear police character with a badge, "
+                         "friendly city background",
+            "farmer":    "cute Pixar-style 3D bear farmer with overalls and a straw hat, "
+                         "sunny farm with colorful crops background",
+        }
+        # Extract category and subject: eo_e_happy → e/happy, eo_o_whale → o/whale
+        eo_match = re.match(r'^eo_([eopt])_(.+)', name)
+        if eo_match:
+            cat, subject = eo_match.group(1), eo_match.group(2)
+            if cat == "e":
+                visual = _EMOTION_PROMPTS.get(subject,
+                    f"cute Pixar-style 3D bear character showing {subject} emotion, expressive face, "
+                    f"colorful emotional background")
+            elif cat == "o":
+                visual = _OCEAN_PROMPTS.get(subject,
+                    f"cute Pixar-style 3D {subject} sea creature character with big eyes and smile, "
+                    f"colorful underwater background")
+            elif cat == "t":
+                visual = _TRANSPORT_PROMPTS.get(subject,
+                    f"cute Pixar-style 3D {subject} vehicle character with a friendly face, "
+                    f"cheerful transportation background")
+            elif cat == "p":
+                visual = _PROFESSION_PROMPTS.get(subject,
+                    f"cute Pixar-style 3D bear character dressed as a {subject}, "
+                    f"relevant background for the profession")
+            else:
+                visual = "cute Pixar-style 3D bear character in an expressive educational scene"
+        else:
+            visual = "cute Pixar-style 3D character with big expressive eyes, colorful background"
+        prompt = f"{visual}, {style}"
+
+    # ── shadow puppet ─────────────────────────────────────────────────────────
+    elif vtype == "special_mechanics" and name.startswith("shadow_"):
+        subj_map = {
+            "animals": "cute cartoon rabbit, cat, bear and elephant as shadow puppets on a warm glowing "
+                       "screen, dramatic shadow silhouettes with soft backlight",
+            "fruits":  "shadow puppet silhouettes of apple, banana, strawberry and orange on a warm "
+                       "glowing amber screen, dramatic crisp shadows with colorful back-lighting",
+            "mixed":   "whimsical mix of animal and fruit shadow puppets on a glowing backlit screen, "
+                       "crisp dark silhouettes, colorful ambient glow around the edges",
+        }
+        subj = next((k for k in subj_map if k in name), "animals")
+        no_txt = ", no text, no letters, no words, no numbers, no watermarks"
+        prompt = (
+            f"{subj_map[subj]}, magical theatrical shadow puppet show for children, "
+            f"warm amber and golden backlight, dark vignette border, "
+            f"16:9 format 1280x720{no_txt}"
+        )
+
+    # ── nature_calm / lullaby (nature backgrounds) ────────────────────────────
+    elif vtype in ("nature_calm", "lullaby_long", "sensory_loop") \
+            or any(k in name for k in ("nature_calm", "sensory", "lullaby")):
+        _NATURE_PROMPTS = {
+            "night":      "peaceful moonlit night sky with glowing crescent moon, soft twinkling "
+                          "stars, gentle purple-blue gradient, calm and serene baby sleep atmosphere",
+            "night_sky":  "beautiful starry night sky with glowing full moon, soft nebula colors in "
+                          "deep blue and purple, magical peaceful baby sleep atmosphere",
+            "meadow":     "beautiful sunlit meadow with wildflowers, soft clouds in blue sky, "
+                          "butterflies, peaceful nature scene for babies",
+            "sunset":     "warm golden sunset over rolling hills, orange and pink sky, gentle silhouette "
+                          "of trees, peaceful romantic nature atmosphere",
+            "underwater": "magical underwater world with soft blue-green light, colorful coral, "
+                          "gentle fish and bubbles rising, dreamy ocean depth",
+            "garden":     "moonlit garden with soft glowing flowers, fireflies, gentle night breeze, "
+                          "magical and peaceful baby sleep nature scene",
+            "forest":     "misty forest at dawn with sunlight filtering through tall trees, "
+                          "dew on leaves, peaceful magical woodland atmosphere",
+            "rain":       "gentle rain falling on a cozy window, soft drops on glass, "
+                          "warm orange light from inside, peaceful rainy night mood",
+            "train":      "cute cozy train traveling through a moonlit countryside at night, "
+                          "glowing windows, stars above, peaceful baby lullaby atmosphere",
+            "stars":      "deep night sky full of twinkling stars, glowing crescent moon, "
+                          "soft purple and blue clouds, magical peaceful sleeping atmosphere",
+            "ocean":      "calm moonlit ocean at night, silver reflection of moon on still water, "
+                          "gentle waves, peaceful baby sleep atmosphere",
+        }
+        # Match scene from filename
+        scene_key = next((k for k in _NATURE_PROMPTS if k in name), None)
+        visual = _NATURE_PROMPTS.get(scene_key,
+            "dreamy peaceful night sky with soft glowing moon and twinkling stars, "
+            "gentle pastel clouds in purple and blue, magical baby sleep atmosphere")
+        no_txt_suffix = ", no text, no letters, no words, no numbers, no faces, no watermarks"
+        prompt = f"{visual}, soft dreamlike illustration style, 16:9 format 1280x720{no_txt_suffix}"
+
+    # ── satisfying loop ───────────────────────────────────────────────────────
+    elif vtype == "satisfying_loop" or "satisfying" in name:
+        _SATISFYING_PROMPTS = {
+            "rainbow":    "mesmerizing rainbow color wave flowing smoothly, satisfying gradient "
+                          "ripple effect, vivid spectrum colors, abstract baby visual",
+            "neon":       "glowing neon geometric shapes bouncing and pulsing in a dark background, "
+                          "electric blue and pink neon trails, satisfying loop visual",
+            "bubble":     "hundreds of colorful soap bubbles rising and popping, satisfying visual "
+                          "pop effect, soft pastel background, mesmerizing for babies",
+            "spiral":     "hypnotic colorful spiral pattern rotating smoothly, vivid colors, "
+                          "satisfying infinite zoom effect, baby attention visual",
+            "bounce":     "colorful geometric shapes bouncing perfectly off walls, "
+                          "bright vivid colors on dark background, satisfying physics visual",
+            "flow":       "smooth flowing colorful liquid waves, paint-like gradient flow, "
+                          "mesmerizing and satisfying visual for babies",
+        }
+        subj = next((k for k in _SATISFYING_PROMPTS if k in name), None)
+        visual = _SATISFYING_PROMPTS.get(subj,
+            "mesmerizing colorful abstract shapes flowing and transforming smoothly, "
+            "vibrant rainbow colors, satisfying visual loop for babies")
+        no_txt_suffix = ", no text, no letters, no words, no numbers, no watermarks"
+        prompt = f"{visual}, dreamy soft illustration style, 16:9 format 1280x720{no_txt_suffix}"
+
+    # ── shapes_long / shape_learn ─────────────────────────────────────────────
+    elif vtype in ("shapes_long", "shape_learn") or "shape_learn" in name:
+        shape_match = re.search(
+            r'(circle|square|triangle|star|heart|diamond|hexagon|oval|pentagon)', name)
+        shape = shape_match.group(1) if shape_match else "circle"
+        color_map = {
+            "circle": "bright red", "square": "vivid blue", "triangle": "lime green",
+            "star": "golden yellow", "heart": "hot pink", "diamond": "cyan",
+            "hexagon": "deep purple", "oval": "orange", "pentagon": "teal",
+        }
+        shape_color = color_map.get(shape, "vivid rainbow")
+        prompt = (
+            f"Giant {shape_color} {shape} glowing softly in the center of the frame, "
+            f"smaller {shape} shapes in the same color scattered elegantly around it, "
+            f"deep dark background making the shapes pop with vibrant glow, "
+            f"beautiful and hypnotic, educational shapes for babies, "
+            f"no text, no letters, no words, no numbers, 16:9 1280x720"
+        )
+
+    # ── shape_roundelay / wiggle_party ────────────────────────────────────────
+    elif vtype in ("shape_roundelay", "wiggle_party") or "roundelay" in name or "wiggle" in name:
+        theme_en = {"animals": "animals", "fruits": "fruits",
+                    "vegetables": "vegetables", "mixed": "cartoon characters"}.get(theme, "characters")
+        prompt = (
+            f"Group of five cute Pixar-style 3D cartoon {theme_en} characters "
+            f"dancing in a joyful circle, all smiling with arms out, "
+            f"vibrant colorful confetti and musical notes in the background, "
+            f"bright festive background, energetic party atmosphere, {style}"
+        )
+
+    # ── nature_classical ──────────────────────────────────────────────────────
+    elif vtype == "nature_classical" or "nature_classical" in name:
+        _CLASSICAL_NATURE = {
+            "meadow":     "sunlit meadow with wildflowers and butterflies, golden morning light, "
+                          "peaceful pastoral scene, classical music atmosphere",
+            "sunset":     "warm golden sunset over rolling hills, orange-pink sky, dramatic classical "
+                          "music atmosphere, silhouettes of trees",
+            "night":      "moonlit peaceful night landscape, full glowing moon reflected in still lake, "
+                          "twinkling stars, romantic classical music atmosphere",
+            "underwater": "moonlit lake with white swans gliding on still silver water, "
+                          "magical mist rising, classical ballet atmosphere",
+        }
+        scene = next((k for k in _CLASSICAL_NATURE if k in name), "meadow")
+        visual = _CLASSICAL_NATURE[scene]
+        no_txt_suffix = ", no text, no letters, no words, no numbers, no watermarks" if is_ar else ""
+        prompt = (
+            f"{visual}, beautiful dreamlike illustration, 16:9 format 1280x720{no_txt_suffix}"
+        )
+
+    # ── bubble color series ───────────────────────────────────────────────────
+    elif vtype == "stars_bubbles" and "bubbles_" in name:
+        color_match = re.search(
+            r'bubbles_(red|blue|green|yellow|orange|purple|pink|teal|rainbow|swirl|rain|drift)', name)
+        bcolor = color_match.group(1) if color_match else "rainbow"
+        color_desc = {
+            "red": "deep ruby red", "blue": "electric blue", "green": "emerald green",
+            "yellow": "golden yellow", "orange": "warm orange", "purple": "violet purple",
+            "pink": "rose pink", "teal": "turquoise teal",
+            "rainbow": "rainbow multicolored", "swirl": "swirling blue",
+            "rain": "falling violet", "drift": "drifting rainbow",
+        }.get(bcolor, "colorful")
+        no_txt_suffix = ", no text, no letters, no words, no numbers, no watermarks"
+        prompt = (
+            f"Dozens of beautiful {color_desc} transparent bubbles floating in a magical dark space, "
+            f"one giant {color_desc} bubble in the center glowing from within, "
+            f"soft twinkling stars in background, sparkles and light trails, "
+            f"dreamy mesmerizing for babies, 16:9 format 1280x720{no_txt_suffix}"
         )
 
     # ── generic fallback ──────────────────────────────────────────────────────

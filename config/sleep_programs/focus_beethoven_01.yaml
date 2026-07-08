@@ -1,0 +1,54 @@
+id: focus_beethoven_01
+title: "Beethoven for Focus & Study 🎵 {dur} | Calm Classics"
+video_type: focus_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: rain_window
+loop_duration_sec: 240
+durations_hours: [1, 3]
+
+# Beethoven tracks available: Moonlight Sonata Mvmt 1 + Symphony No. 5 (4 movements)
+# Total: ~36 min. Will loop to fill 1h/3h.
+tracks:
+  - id: beethoven_piano_sonata_no_14_in_c_m_moonlight_op_27_no_2_i_adagio_so
+    composer: Ludwig van Beethoven
+    piece: "Piano Sonata No. 14 'Moonlight', Op. 27 No. 2 — I. Adagio sostenuto"
+    duration_sec: 276
+    mood: gentle_entry
+
+  - id: beethoven_symphony_no_5_in_cm_op_67_ii_andante_con_moto
+    composer: Ludwig van Beethoven
+    piece: "Symphony No. 5 in C minor, Op. 67 — II. Andante con moto"
+    duration_sec: 682
+    mood: flowing
+
+  - id: beethoven_symphony_no_5_in_cm_op_67_i_allegro_con_brio
+    composer: Ludwig van Beethoven
+    piece: "Symphony No. 5 in C minor, Op. 67 — I. Allegro con brio"
+    duration_sec: 474
+    mood: energetic
+
+  - id: beethoven_symphony_no_5_in_cm_op_67_iii_allegro
+    composer: Ludwig van Beethoven
+    piece: "Symphony No. 5 in C minor, Op. 67 — III. Allegro"
+    duration_sec: 337
+    mood: scherzo
+
+  - id: beethoven_symphony_no_5_in_cm_op_67_iv_allegro
+    composer: Ludwig van Beethoven
+    piece: "Symphony No. 5 in C minor, Op. 67 — IV. Allegro"
+    duration_sec: 687
+    mood: triumphant
+
+tags:
+  - beethoven
+  - symphony no 5
+  - moonlight sonata
+  - focus music
+  - study music
+  - classical music
+  - concentration
+  - calm classics
+  - work from home music
+  - instrumental focus

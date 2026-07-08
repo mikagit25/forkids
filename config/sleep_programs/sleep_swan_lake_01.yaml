@@ -1,0 +1,54 @@
+id: sleep_swan_lake_01
+title: "Swan Lake for Sleep 🦢 {dur} | Calm Classics"
+video_type: sleep_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: moon_clouds
+loop_duration_sec: 240
+durations_hours: [1, 3, 8]
+
+# Tchaikovsky Swan Lake Op.20 — we have 5 movements (~73 min total)
+# Perfect for 1h without looping. 3h/8h will loop the playlist.
+tracks:
+  - id: tchaikovsky_swan_lake_op_20_act_ii_pt_1
+    composer: Pyotr Ilyich Tchaikovsky
+    piece: "Swan Lake Op.20 — Act II Part 1"
+    duration_sec: 250
+    mood: gentle_entry
+
+  - id: tchaikovsky_swan_lake_op_20_act_ii_concl
+    composer: Pyotr Ilyich Tchaikovsky
+    piece: "Swan Lake Op.20 — Act II Conclusion"
+    duration_sec: 369
+    mood: flowing
+
+  - id: tchaikovsky_swan_lake_op_20_act_iv_intro
+    composer: Pyotr Ilyich Tchaikovsky
+    piece: "Swan Lake Op.20 — Act IV Introduction"
+    duration_sec: 1262
+    mood: deep
+
+  - id: tchaikovsky_swan_lake_op_20_act_iii_pt_1
+    composer: Pyotr Ilyich Tchaikovsky
+    piece: "Swan Lake Op.20 — Act III Part 1"
+    duration_sec: 903
+    mood: tender
+
+  - id: tchaikovsky_swan_lake_op_20_act_iii_concl_allegro
+    composer: Pyotr Ilyich Tchaikovsky
+    piece: "Swan Lake Op.20 — Act III Conclusion"
+    duration_sec: 1432
+    mood: grand_finale
+
+tags:
+  - tchaikovsky
+  - swan lake
+  - classical music for sleep
+  - ballet music
+  - sleep music
+  - calm classics
+  - orchestral music
+  - 1 hour sleep music
+  - relaxation music
+  - peaceful music

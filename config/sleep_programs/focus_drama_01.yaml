@@ -1,0 +1,17 @@
+id: focus_drama_01
+title_en: "Classical Drama for Focus 🎼 {duration} | Beethoven · Verdi · Vaughan Williams"
+video_type: focus_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: rain_window
+loop_duration_sec: 240
+durations_hours: [1, 3]
+tracks:
+  - {id: beethoven_symphony_no_5_in_cm_op_67_i_allegro_con_brio,   composer: "Ludwig van Beethoven", piece: "Symphony No. 5 — I. Allegro con brio",  duration_sec: 474, mood: dramatic}
+  - {id: beethoven_symphony_no_5_in_cm_op_67_ii_andante_con_moto,  composer: "Ludwig van Beethoven", piece: "Symphony No. 5 — II. Andante con moto", duration_sec: 682, mood: lyrical}
+  - {id: verdi_giuseppe_verdi_la_traviata_i,                        composer: "Giuseppe Verdi",       piece: "La Traviata — Act I",                   duration_sec: 1358, mood: operatic}
+  - {id: beethoven_symphony_no_5_in_cm_op_67_iii_allegro,           composer: "Ludwig van Beethoven", piece: "Symphony No. 5 — III. Allegro",         duration_sec: 337, mood: intense}
+  - {id: vwilliams_fantasia_on_a_theme_by_thomas_tallis,            composer: "Ralph Vaughan Williams", piece: "Fantasia on a Theme by Thomas Tallis", duration_sec: 894, mood: soaring}
+  - {id: beethoven_symphony_no_5_in_cm_op_67_iv_allegro,            composer: "Ludwig van Beethoven", piece: "Symphony No. 5 — IV. Allegro",          duration_sec: 687, mood: triumphant}
+tags: [beethoven, verdi, symphony, focus music, classical music, concentration, drama, calm classics]

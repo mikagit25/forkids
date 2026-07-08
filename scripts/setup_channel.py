@@ -113,7 +113,10 @@ def show_channel(youtube, channel: str):
 def update_description(youtube, meta: dict):
     ch   = meta["channel"]
     desc = ch["description"].strip()
-    kw   = ch.get("keywords", "").replace("\n", " ").strip()
+    # YouTube requires multi-word keywords in double quotes: "classical music" "sleep music"
+    kw_raw   = ch.get("keywords", "").replace("\n", " ")
+    kw_parts = [k.strip() for k in kw_raw.split(",") if k.strip()]
+    kw       = " ".join(f'"{k}"' if " " in k else k for k in kw_parts)
 
     print(f"  Updating description ({len(desc)} chars) and keywords…")
 
@@ -122,13 +125,13 @@ def update_description(youtube, meta: dict):
     channel_id    = ch_item["id"]
     channel_title = ch_item["snippet"]["title"]
 
+    # Note: title is NOT included — it's read-only in brandingSettings via API
     youtube.channels().update(
         part="brandingSettings",
         body={
             "id": channel_id,
             "brandingSettings": {
                 "channel": {
-                    "title":       channel_title,
                     "description": desc[:1000],
                     "keywords":    kw[:500],
                     "country":     ch.get("country", "US"),
@@ -178,7 +181,7 @@ def upload_banner(youtube, channel: str):
 
 
 def print_manual_steps(channel: str):
-    handles = {"en": "@HappyBearKids1", "ar": "@happybearkidsar", "id": "@happybearkidsin"}
+    handles = {"en": "@HappyBearKids1", "ar": "@happybearkidsar", "id": "@ClassicalNightRelax"}
     print(f"""
   ─────────────────────────────────────────────────────
   MANUAL STEPS for [{channel.upper()}] (cannot be done via API):

@@ -1,0 +1,16 @@
+id: sleep_lullaby_01
+title_en: "Lullabies for Sleep 🌙 {duration} | Happy Bear Kids"
+video_type: lullaby_long
+track: kids_sleep
+made_for_kids: true
+queue: output/queue    # EN children's channel
+visual_theme: night_bear
+loop_duration_sec: 300
+durations_hours: [1, 2]
+tracks:
+  - {id: brahms_lullaby, composer: Johannes Brahms, piece: "Wiegenlied (Lullaby) Op. 49 No. 4", duration_sec: 155, mood: gentle_start}
+  - {id: schubert_lullaby, composer: Franz Schubert, piece: "Wiegenlied D 498", duration_sec: 135, mood: tender}
+  - {id: satie_gymnopedie_1, composer: Erik Satie, piece: "Gymnopédie No. 1", duration_sec: 205, mood: drifting}
+  - {id: bach_sleepers_wake, composer: J.S. Bach, piece: "Sleepers Wake, BWV 140", duration_sec: 340, mood: deep_sleep}
+  - {id: brahms_intermezzo_op118, composer: Johannes Brahms, piece: "Intermezzo in A major Op. 118 No. 2", duration_sec: 390, mood: near_silence}
+tags: [lullaby, baby sleep, sleep music, brahms lullaby, classical lullaby, bedtime music, happy bear kids, baby bedtime]

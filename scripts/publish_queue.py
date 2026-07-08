@@ -181,7 +181,7 @@ def _fix_ar_symlinks(old_path: Path, new_path: Path):
             pass
 
 
-SHORT_PREFIXES = ("short_", "ar_short_")
+SHORT_PREFIXES = ("short_", "ar_short_", "sleep_short_")
 
 
 def is_short(path: Path) -> bool:
@@ -226,8 +226,10 @@ def main():
     parser = argparse.ArgumentParser(description="Publish queue to YouTube")
     parser.add_argument("--dry-run",     action="store_true")
     parser.add_argument("--limit",       type=int, default=1, help="Max videos to upload (default 1)")
-    parser.add_argument("--type",        choices=["short", "long", "any"], default="any",
+    parser.add_argument("--type",          choices=["short", "long", "any"], default="any",
                         help="Filter: short=60s videos, long=30min videos, any=no filter")
+    parser.add_argument("--fallback-type", choices=["short", "long", "any"], default=None,
+                        help="If --type queue is empty, publish this type instead")
     parser.add_argument("--no-schedule", action="store_true", default=False,
                         help="Upload as public immediately (default: use upload_day/time from meta)")
     parser.add_argument("--queue", choices=["en", "ar", "id"], default="en",
@@ -267,8 +269,24 @@ def main():
             print(f"    ... and {len(not_ready)-5} more")
 
     if not ready_queue:
-        print(f"\nNo videos ready to publish (type={args.type}). Check meta+thumbnail.")
-        return
+        if args.fallback_type:
+            print(f"\nNo {args.type} videos ready — falling back to {args.fallback_type}")
+            args.type = args.fallback_type
+            all_queue   = filter_queue(all_mp4s, args.type)
+            ready_queue = []
+            not_ready   = []
+            for p in all_queue:
+                ok, reason = is_ready(p)
+                if ok:
+                    ready_queue.append(p)
+                else:
+                    not_ready.append((p, reason))
+            if not ready_queue:
+                print(f"No {args.type} videos ready either. Queue empty.")
+                return
+        else:
+            print(f"\nNo videos ready to publish (type={args.type}). Check meta+thumbnail.")
+            return
 
     plan  = load_plan()
     limit = args.limit if args.limit > 0 else len(ready_queue)

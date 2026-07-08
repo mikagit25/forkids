@@ -1,138 +1,69 @@
 # ─────────────────────────────────────────────────────────────
-# YouTube Channel Metadata — Happy Bear Kids INDONESIA
-# Bahasa Indonesia channel — fill handle/ID after channel creation
+# YouTube Channel Metadata — Calm Classics
+# Repurposed from Happy Bear Kids Indonesia
+# Handle: @ClassicalNightRelax
+# Channel ID: UCOozTZwjXgkfYiTAzSzePAA
+# Token: credentials/youtube_token_id.json
+# Queue: output/queue_id/
 # ─────────────────────────────────────────────────────────────
 
 channel:
-  name: "Happy Bear Kids Indonesia"
-  handle: "@happybearkidsin"
+  name: "Classical Night Relax"
+  handle: "@ClassicalNightRelax"
   youtube_id: "UCOozTZwjXgkfYiTAzSzePAA"
+  token: "credentials/youtube_token_id.json"
+  queue: "output/queue_id"
 
   description: |
-    🐻 Selamat datang di Happy Bear Kids Indonesia — dunia belajar yang menyenangkan untuk bayi dan balita!
+    🎵 Classical Night Relax — The finest classical music for sleep, focus and deep relaxation.
 
-    Kami membuat video edukatif yang cerah dan ceria untuk anak usia 0–5 tahun:
-    🔤 Alfabet ABC — belajar setiap huruf dengan hewan lucu
-    🔢 Angka — hitung dari 1 sampai 10 bersama teman berwarna-warni
-    🎨 Warna — merah, biru, kuning, hijau, dan lainnya!
-    ⭐ Bentuk — lingkaran, kotak, segitiga, dan bintang
-    🎵 Lagu Anak — lagu-lagu populer Indonesia dengan karakter kartun yang menari
+    Drift away with Bach, Chopin, Debussy, Mozart, Beethoven, Tchaikovsky and more — paired with beautiful looping visuals designed for the night. Perfect for deep sleep, late-night study sessions, work from home, meditation and unwinding after a long day.
 
-    Setiap video dirancang aman, menenangkan, dan menarik untuk si kecil. Tanpa iklan yang menggangu, tanpa konten menakutkan — hanya kegembiraan dan pembelajaran murni!
+    What you'll find here:
+    🌙 Sleep Programs — 1 hour, 3 hour and 8 hour versions for uninterrupted rest
+    📚 Focus & Study — Bach, Mozart and Baroque for concentration and deep work
+    🌊 Relaxation Sets — gentle visuals (moonlit sky, ocean waves, rain window, firefly night)
+    🦢 Great orchestral works — Swan Lake, Symphony No. 5 and more
+    ✨ Seamlessly looping animations — crafted so nothing interrupts your rest
 
-    🔔 Subscribe dan jangan lewatkan video baru!
-    Video baru setiap Senin, Selasa dan Rabu pukul 09:00.
+    All recordings are public domain performances. No ads during playback on sleep programs. New programs added every week.
 
-    Dibuat dengan penuh cinta untuk si kecil. 🐻💛
+    Subscribe and sleep better tonight. 🎶
 
   keywords: >
-    belajar anak, video bayi, edukasi balita, alfabet untuk anak,
-    lagu alfabet, angka untuk anak, warna untuk balita, bentuk untuk anak,
-    lagu anak indonesia, balonku, cicak-cicak, pelangi-pelangi, naik kereta api,
-    video edukasi, happy bear kids, belajar bahasa indonesia, kartun anak,
-    prasekolah, video sensori anak, musik anak, bayi, balita
+    classical music for sleep, sleep music classical, study music classical,
+    focus music classical, relaxation music, bach for sleep, chopin nocturnes sleep,
+    debussy piano sleep, mozart study music, beethoven focus, tchaikovsky relaxation,
+    calm music, peaceful classical music, sleep aid music, 8 hour sleep music,
+    1 hour classical music, 3 hour classical music, music for concentration,
+    piano music for sleep, orchestral sleep music, night music, ambient classical,
+    deep sleep music, classical music relaxation, music for reading, work music,
+    meditation music classical, bach focus, sleep program, classical night relax
 
-  country: "ID"
-  language: "id"
-  made_for_kids: true
-  links: []
-  trailer_video_id: ""
+  country: "US"
+  language: "en"
+  made_for_kids: false
 
 # ─────────────────────────────────────────────────────────────
 # VIDEO DEFAULTS
 # ─────────────────────────────────────────────────────────────
 
 video_defaults:
-  category_id: "27"          # Education
-  made_for_kids: true
-  default_language: "id"
+  category_id: "10"          # Music (not Education)
+  made_for_kids: false       # MUST be false — adult channel, monetization enabled
+  default_language: "en"
   license: "youtube"
 
-  description_template: |
-    🐻 Happy Bear Kids Indonesia — Video belajar untuk bayi dan balita!
-
-    {video_description}
-
-    ────────────────────────────────────
-    🔔 Subscribe untuk video baru setiap minggu!
-    👍 Like dan bagikan ke teman!
-
-    📚 VIDEO LAINNYA DARI HAPPY BEAR KIDS:
-    🔤 Alfabet ABC: https://www.youtube.com/@HappyBearKidsID
-    🔢 Belajar Angka: https://www.youtube.com/@HappyBearKidsID
-    🎨 Belajar Warna: https://www.youtube.com/@HappyBearKidsID
-    ⭐ Bentuk untuk Anak: https://www.youtube.com/@HappyBearKidsID
-    🎵 Lagu & Tari: https://www.youtube.com/@HappyBearKidsID
-
-    ────────────────────────────────────
-    ✅ Aman untuk anak-anak — Tanpa iklan, tanpa konten menakutkan
-    ✅ Dirancang untuk usia 0–5 tahun
-    ✅ Edukatif & menghibur
-
-    #HappyBearKids #BelajarAnak #VideoBalita #LaguAnakIndonesia #Edukatif
-
   tags_base:
-    - happy bear kids
-    - belajar anak
-    - video balita
-    - video bayi
-    - video edukasi anak
-    - belajar untuk balita
-    - kartun anak
-    - prasekolah indonesia
-    - lagu anak indonesia
-
-# ─────────────────────────────────────────────────────────────
-# VIDEO DESCRIPTIONS per type (Bahasa Indonesia)
-# ─────────────────────────────────────────────────────────────
-
-video_descriptions:
-  dance:
-    animals: >
-      Lihat hewan-hewan kartun lucu menari dan melompat mengikuti musik yang ceria!
-      Video latar yang sempurna untuk bayi dan balita.
-      Karakter berwarna-warni akan membuat si kecil terhibur selama berjam-jam!
-    fruits: >
-      Buah-buahan lucu yang menari mengikuti musik yang riang!
-      Video yang colorful dan penuh kegembiraan, cocok untuk bayi, balita, dan anak kecil.
-    vegetables: >
-      Sayuran-sayuran lucu menari bersama! Seru dan edukatif untuk anak-anak.
-
-  nursery_id:
-    balonku: >
-      🎈 Balonku Ada Lima — Lagu anak Indonesia yang terkenal! Nyanyikan bersama-sama
-      dan belajar warna melalui balon-balon yang lucu. Merah, kuning, hijau, di dalam
-      keranjang... Mari bernyanyi bersama si kecil!
-    cicak: >
-      🦎 Cicak-cicak di Dinding — Lagu anak Indonesia klasik! Ikuti petualangan cicak
-      kecil yang berjalan di dinding. Anak-anak pasti suka bernyanyi dan bergerak!
-    naik_kereta: >
-      🚂 Naik Kereta Api — Yuk naik kereta api, tut tut tut! Lagu perjalanan yang
-      menyenangkan untuk anak-anak. Belajar sambil bernyanyi!
-    pelangi: >
-      🌈 Pelangi-Pelangi — Indahnya pelangi di langit yang cerah! Lagu anak Indonesia
-      yang indah tentang warna-warni pelangi. Belajar warna dengan cara yang menyenangkan!
-    dua_mata: >
-      👀 Dua Mata Saya — Belajar bagian tubuh dengan lagu yang lucu! Dua mata saya,
-      hidung saya satu, dua kaki saya... Aktivitas yang bagus untuk bayi dan balita!
-    kebunku: >
-      🌸 Kebunku — Lihat kebun bunga yang indah! Lagu tentang alam dan tumbuhan yang
-      mengajarkan anak-anak untuk mencintai lingkungan. Mawar merah, melati putih...
-
-  numbers:
-    animals: >
-      Belajar berhitung dari 1 sampai 10 bersama hewan-hewan kartun yang lucu!
-      Satu beruang, dua kelinci, tiga bebek... Mari hitung bersama!
-      Sempurna untuk bayi dan balita yang baru belajar angka pertama mereka.
-
-  colors:
-    animals: >
-      Belajar warna bersama hewan-hewan kartun lucu!
-      Merah, biru, kuning, hijau, oranye, ungu, merah muda, dan lainnya!
-      Video yang cerah dan berwarna-warni, sempurna untuk balita dan prasekolah.
-
-  sensory_loop:
-    default: >
-      Video sensori yang menenangkan untuk bayi usia 0-12 bulan. Loop visual yang
-      lembut dengan musik yang menenangkan. Dirancang khusus untuk stimulasi visual
-      awal dan waktu tidur siang yang nyaman.
+    - classical night relax
+    - classical music
+    - sleep music
+    - relaxation music
+    - focus music
+    - study music
+    - piano music
+    - peaceful music
+    - ambient classical
+    - music for sleep
+    - calm music
+    - classical music for sleep

@@ -1,0 +1,67 @@
+# Sleep Program: Chopin Nocturnes
+# ID: sleep_chopin_01  |  Track: calm_classics  |  Phase: 3
+# Scenario 1 from video_scenarios_v2.1.md
+
+id: sleep_chopin_01
+title_en: "Chopin Nocturnes for Sleep ✨ {duration} | Calm Classics"
+description_template: en  # see channel_metadata_cc.yaml
+video_type: sleep_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+
+visual_theme: moon_clouds       # SleepClassicalLoop Remotion component
+loop_duration_sec: 240          # RULE: all animation periods divide evenly into 240
+durations_hours: [1, 3, 8]     # generate 3 versions
+
+# Tracks in order (gentle → near-silence)
+# All recordings from licenses.yaml, license must be pd or cc0
+tracks:
+  - id: chopin_nocturne_op9_no2
+    composer: Frédéric Chopin
+    piece: "Nocturne in E-flat major, Op. 9 No. 2"
+    duration_sec: 268
+    mood: gentle_entry
+
+  - id: chopin_nocturne_op15_no1
+    composer: Frédéric Chopin
+    piece: "Nocturne in F major, Op. 15 No. 1"
+    duration_sec: 297
+    mood: flowing
+
+  - id: chopin_nocturne_op27_no2
+    composer: Frédéric Chopin
+    piece: "Nocturne in D-flat major, Op. 27 No. 2"
+    duration_sec: 390
+    mood: tender
+
+  - id: chopin_nocturne_op48_no1
+    composer: Frédéric Chopin
+    piece: "Nocturne in C minor, Op. 48 No. 1"
+    duration_sec: 380
+    mood: deeper
+
+  - id: chopin_nocturne_op9_no1
+    composer: Frédéric Chopin
+    piece: "Nocturne in B-flat minor, Op. 9 No. 1"
+    duration_sec: 330
+    mood: quieter
+
+  - id: chopin_nocturne_op32_no1
+    composer: Frédéric Chopin
+    piece: "Nocturne in B major, Op. 32 No. 1"
+    duration_sec: 265
+    mood: near_silence
+
+tags:
+  - chopin nocturnes
+  - sleep music
+  - classical music for sleep
+  - piano music for sleep
+  - nocturne
+  - calm music
+  - relaxation music
+  - 1 hour sleep music
+  - sleep aid
+  - classical piano
+  - calm classics
