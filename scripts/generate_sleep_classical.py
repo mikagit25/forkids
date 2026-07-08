@@ -300,7 +300,9 @@ def build_audio_track(program: dict, licenses_data: dict, out_dir: Path,
         cmd += ["-t", str(target_secs)]
     cmd.append(str(audio_out))
 
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+    # timeout scales with target: at least 1200s, or target/5 (e.g. 3h → 2160s, 8h → 5760s)
+    audio_timeout = max(1200, target_secs // 5) if target_secs > 0 else 1200
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=audio_timeout)
     if r.returncode != 0 or not audio_out.exists():
         log.error(f"  Audio concat failed: {r.stderr[:300]}")
         return None

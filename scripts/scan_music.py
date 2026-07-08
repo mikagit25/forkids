@@ -22,8 +22,8 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 
 # (keywords_in_lower_filename, composer_name, composer_slug)
 COMPOSER_HINTS = [
-    # "Nocturne in X" alone (without Op.) is almost always Chopin on Musopen
-    (["chopin", "nocturne op", "ballade op",
+    # Nocturne/Mazurka/Étude without explicit "Chopin" label = almost always Chopin on Musopen
+    (["chopin", "nocturne op", "ballade op", "mazurka", "etude op. 25", "étude op",
       "nocturne in e flat", "nocturne in b flat", "nocturne in c", "nocturne in d",
       "nocturne in f", "nocturne in g", "nocturne in a", "nocturne in b"],
                                                   "Frédéric Chopin",              "chopin"),
@@ -33,20 +33,25 @@ COMPOSER_HINTS = [
     (["beethoven", "moonlight", "symphony no. 5", "symphony no.5", "für elise"],
                                                    "Ludwig van Beethoven",          "beethoven"),
     (["tchaikovsky", "swan lake", "nutcracker"],   "Pyotr Ilyich Tchaikovsky",      "tchaikovsky"),
-    (["debussy", "clair de lune", "arabesques"],   "Claude Debussy",                "debussy"),
-    (["satie", "gymnop"],                          "Erik Satie",                    "satie"),
+    # Arabesque and Fantaisie Op.79 are Debussy; "arabesques" plural also
+    (["debussy", "clair de lune", "arabesques", "arabesque", "fantaisie, op. 79",
+      "reverie", "rêverie", "syrinx"],             "Claude Debussy",                "debussy"),
+    (["satie", "gymnop", "gnossienne"],            "Erik Satie",                    "satie"),
     (["brahms"],                                   "Johannes Brahms",               "brahms"),
     (["schubert"],                                 "Franz Schubert",                "schubert"),
     (["verdi", "la traviata", "aida"],             "Giuseppe Verdi",                "verdi"),
     (["vaughan williams", "tallis", "fantasia on a theme by thomas"],
                                                    "Ralph Vaughan Williams",        "vwilliams"),
-    (["handel"],                                   "George Frideric Handel",        "handel"),
-    (["vivaldi"],                                  "Antonio Vivaldi",               "vivaldi"),
+    # HWV = Handel catalogue number
+    (["handel", "hwv"],                            "George Frideric Handel",        "handel"),
+    # RV = Ryom-Verzeichnis (Vivaldi catalogue)
+    (["vivaldi", "rv "],                           "Antonio Vivaldi",               "vivaldi"),
     (["liszt"],                                    "Franz Liszt",                   "liszt"),
     (["grieg", "peer gynt"],                       "Edvard Grieg",                  "grieg"),
     (["dvorak", "dvořák"],                         "Antonín Dvořák",                "dvorak"),
     (["mendelssohn"],                              "Felix Mendelssohn",             "mendelssohn"),
     (["saint-saens", "saint-saëns", "carnival"],  "Camille Saint-Saëns",           "saintsaens"),
+    (["granados", "valses poeticos", "goyescas"],  "Enrique Granados",              "granados"),
 ]
 
 
