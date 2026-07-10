@@ -168,7 +168,8 @@ export const NatureCalm: React.FC<NatureCalmProps> = ({
   const { fps, width, height } = useVideoConfig();
   const t = frame / fps;
   const cfg = THEMES[theme];
-  const music = musicFile ?? cfg.musicDefault;
+  // "" = explicitly no music; undefined = use theme default
+  const music = musicFile === "" ? "" : (musicFile ?? cfg.musicDefault);
 
   const fadeIn = interpolate(frame, [0, fps * 1.5], [0, 1], { extrapolateRight: "clamp" });
 

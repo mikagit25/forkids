@@ -197,21 +197,18 @@ def generate_thumbnail(out_path: Path, lang: str) -> bool:
         f"twinkling gold and white stars, soft dreamy light, deep dark blue background, "
         f"children's educational YouTube thumbnail, Pixar 3D style, vibrant colors{notext}"
     )
-    import urllib.request
     try:
-        payload = json.dumps({
-            "model": TOGETHER_MODEL, "prompt": prompt,
-            "width": 1280, "height": 720, "steps": 4, "n": 1,
-        }).encode()
-        req = urllib.request.Request(
-            TOGETHER_URL, data=payload,
-            headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-        )
-        with urllib.request.urlopen(req, timeout=90) as resp:
-            data = json.loads(resp.read())
-        out_path.write_bytes(base64.b64decode(data["data"][0]["b64_json"]))
-        print(f"    ✓ thumb → {out_path.name}")
-        return True
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("gat", ROOT / "scripts" / "generate_ai_thumbs.py")
+        gat = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(gat)
+        img = gat.together_generate_image(prompt, key)
+        if img:
+            out_path.write_bytes(gat.resize_to_720p(img))
+            print(f"    ✓ thumb → {out_path.name}")
+            return True
+        print(f"    ! thumb failed: API returned no image")
+        return False
     except Exception as e:
         print(f"    ! thumb failed: {e}")
         return False
@@ -224,11 +221,15 @@ def main():
     parser.add_argument("--dry-run",    action="store_true")
     parser.add_argument("--force",      action="store_true")
     parser.add_argument("--regen-meta", action="store_true")
+    parser.add_argument("--queues",     nargs="+", choices=["en", "ar", "id"],
+                        default=["en", "ar", "id"],
+                        help="Which channel queues to render/distribute (default: all)")
     args = parser.parse_args()
 
     slug     = f"stars_bubbles_{DATE_STR}"
     out_mp4  = QUEUE_EN / f"{slug}.mp4"
-    queues   = {"en": QUEUE_EN, "ar": QUEUE_AR, "id": QUEUE_ID}
+    all_queues = {"en": QUEUE_EN, "ar": QUEUE_AR, "id": QUEUE_ID}
+    queues   = {k: v for k, v in all_queues.items() if k in args.queues}
 
     print("=== Stars and Bubbles — 1 video × 3 channels ===\n")
 
@@ -265,7 +266,7 @@ def main():
     # ── Render AR + ID with different music ────────────────────────────────────
     en_music = PROPS["musicFile"]
     if not args.dry_run and not args.regen_meta:
-        for lang in ("ar", "id"):
+        for lang in [l for l in ("ar", "id") if l in queues]:
             q    = queues[lang]
             dest = q / f"{slug}_{lang}.mp4"
             q.mkdir(parents=True, exist_ok=True)

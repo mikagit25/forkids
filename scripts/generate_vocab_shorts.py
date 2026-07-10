@@ -48,7 +48,7 @@ LETTERS = {
     "I": {"word": "IGLOO",      "audio": "i__igloo__i_is_for_igloo.mp3",
           "sprite": None,                     "color": "#1565C0", "bg": "#E3F2FD"},
     "J": {"word": "JELLYFISH",  "audio": "j__jellyfish__j_is_for_jellyfish.mp3",
-          "sprite": None,                     "color": "#C2185B", "bg": "#FCE4EC"},
+          "sprite": "objects/jellyfish_glow.png", "color": "#C2185B", "bg": "#FCE4EC"},
     "K": {"word": "KOALA",      "audio": "k__koala__k_is_for_koala.mp3",
           "sprite": "animals/koala.png",      "color": "#546E7A", "bg": "#ECEFF1"},
     "L": {"word": "LION",       "audio": "l__lion__l_is_for_lion.mp3",
@@ -66,7 +66,7 @@ LETTERS = {
     "R": {"word": "RABBIT",     "audio": "r__rabbit__r_is_for_rabbit.mp3",
           "sprite": "animals/rabbit.png",     "color": "#AD1457", "bg": "#FCE4EC"},
     "S": {"word": "STAR",       "audio": "s__star__s_is_for_star.mp3",
-          "sprite": None,                     "color": "#F57F17", "bg": "#FFFDE7"},
+          "sprite": "objects/star_3d.png",   "color": "#F57F17", "bg": "#FFFDE7"},
     "T": {"word": "TIGER",      "audio": "t__tiger__t_is_for_tiger.mp3",
           "sprite": "animals/tiger.png",      "color": "#E65100", "bg": "#FFF3E0"},
     "U": {"word": "UMBRELLA",   "audio": "u__umbrella__u_is_for_umbrella.mp3",
@@ -86,13 +86,37 @@ LETTERS = {
 
 def make_meta(letter: str, word: str, out_path: Path):
     word_cap = word.capitalize()
+    description = (
+        f"🅰️ Letter {letter} — {letter} is for {word_cap}! 🐻\n\n"
+        f"Join Happy Bear Kids and learn the letter {letter} with a fun and colourful animation! "
+        f"In this short, we explore the letter {letter} and the word {word_cap}. "
+        f"Perfect for toddlers and preschoolers learning the alphabet for the first time.\n\n"
+        f"🌟 What you'll learn:\n"
+        f"• The letter {letter} — uppercase and lowercase\n"
+        f"• The word {word_cap} and how it starts with {letter}\n"
+        f"• Letter sounds and phonics for beginners\n"
+        f"• Alphabet recognition for preschool children\n\n"
+        f"👶 Perfect for:\n"
+        f"• Toddlers aged 2-5 learning their ABCs\n"
+        f"• Preschool and kindergarten letter practice\n"
+        f"• Parents looking for short, focused learning videos\n"
+        f"• Early childhood educators in the classroom\n\n"
+        f"🎵 Gentle background music keeps children engaged without overstimulation. "
+        f"Each video is short and focused — just the right length for little attention spans!\n\n"
+        f"Subscribe to Happy Bear Kids for the full A-Z alphabet series and many more fun learning videos. "
+        f"New videos every week! 🐻\n\n"
+        f"#HappyBearKids #ABCforkids #Letter{letter} #{word_cap} #AlphabetForKids "
+        f"#LearnABC #Preschool #ToddlerLearning #KidsEducation #PhonicsForKids"
+    )
     meta = {
         "title":            f"Letter {letter} | {letter} is for {word_cap} | ABC for Kids | Happy Bear Kids #shorts",
+        "description":      description,
         "video_type":       "short_vocab",
         "theme":            "abc",
         "language":         "en",
         "duration_minutes": 1,
         "is_short":         True,
+        "made_for_kids":    True,
         "tags":             [
             "abc", "alphabet", f"letter {letter.lower()}", word.lower(),
             f"{letter} is for {word_cap}", "kids learning", "abc for kids",

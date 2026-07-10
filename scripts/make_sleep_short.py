@@ -2,7 +2,7 @@
 """
 Generate 45-second vertical Shorts from SleepClassicalLoop shared loop files.
 Format: 1080×1920, center-cropped with black bars, fade in/out.
-Output goes to queue_id (Calm Classics) as video_type: sleep_short.
+Output goes to queue_id (Classical Night Relax) as video_type: sleep_short.
 
 Usage:
   python3 scripts/make_sleep_short.py --all
@@ -27,28 +27,28 @@ FADE_SECS      = 2   # fade in + fade out duration
 
 THEME_META = {
     "moon_clouds": {
-        "title":   "🌙 Peaceful Night Sky | Classical Music Shorts | Calm Classics #shorts",
-        "desc":    "45 seconds of peaceful classical music under a moonlit night sky. Perfect for a moment of calm. Subscribe for full sleep programs ▶ @calmclassics\n\n#ClassicalMusic #SleepMusic #CalmClassics #Shorts #RelaxationMusic",
+        "title":   "🌙 Peaceful Night Sky | Classical Music Shorts | Classical Night Relax #shorts",
+        "desc":    "45 seconds of peaceful classical music under a moonlit night sky. Perfect for a moment of calm. Subscribe for full sleep programs ▶ @ClassicalNightRelax\n\n#ClassicalMusic #SleepMusic #ClassicalNightRelax #Shorts #RelaxationMusic",
         "thumb_prompt": "peaceful night sky with full moon and stars, classical music relaxation, dark blue, cinematic, no text",
-        "tags":    ["sleep music shorts", "classical music", "calm classics", "night sky", "moon", "relaxation shorts", "shorts"],
+        "tags":    ["sleep music shorts", "classical music", "classical night relax", "night sky", "moon", "relaxation shorts", "shorts"],
     },
     "night_bear":  {
-        "title":   "🐻 Sleeping Bear & Fireflies | Classical Lullaby Shorts | Calm Classics #shorts",
-        "desc":    "A sleeping bear under a starlit sky with gentle fireflies. Soothing classical lullaby. Subscribe for full sleep programs ▶ @calmclassics\n\n#LullabyShorts #ClassicalMusic #SleepingBear #CalmClassics #Shorts",
+        "title":   "🐻 Sleeping Bear & Fireflies | Classical Lullaby Shorts | Classical Night Relax #shorts",
+        "desc":    "A sleeping bear under a starlit sky with gentle fireflies. Soothing classical lullaby. Subscribe for full sleep programs ▶ @ClassicalNightRelax\n\n#LullabyShorts #ClassicalMusic #SleepingBear #ClassicalNightRelax #Shorts",
         "thumb_prompt": "sleeping bear silhouette with fireflies under moonlit night, classical lullaby, peaceful, dark forest, no text",
-        "tags":    ["lullaby shorts", "sleeping bear", "fireflies", "classical lullaby", "calm classics", "shorts"],
+        "tags":    ["lullaby shorts", "sleeping bear", "fireflies", "classical lullaby", "classical night relax", "shorts"],
     },
     "warm_waves":  {
-        "title":   "🌊 Ocean Waves at Dusk | Classical Music Shorts | Calm Classics #shorts",
-        "desc":    "Warm ocean waves at sunset with classical music. 45 seconds of pure relaxation. Subscribe ▶ @calmclassics\n\n#OceanShorts #ClassicalMusic #RelaxationShorts #CalmClassics #Shorts",
+        "title":   "🌊 Ocean Waves at Dusk | Classical Music Shorts | Classical Night Relax #shorts",
+        "desc":    "Warm ocean waves at sunset with classical music. 45 seconds of pure relaxation. Subscribe ▶ @ClassicalNightRelax\n\n#OceanShorts #ClassicalMusic #RelaxationShorts #ClassicalNightRelax #Shorts",
         "thumb_prompt": "ocean waves at dusk with warm amber sunset glow, classical music, peaceful, cinematic, no text",
-        "tags":    ["ocean shorts", "waves", "sunset", "classical music", "calm classics", "relaxation shorts", "shorts"],
+        "tags":    ["ocean shorts", "waves", "sunset", "classical music", "classical night relax", "relaxation shorts", "shorts"],
     },
     "rain_window": {
-        "title":   "🌧️ Rainy Window & Classical Music Shorts | Calm Classics #shorts",
-        "desc":    "Rain on a window with warm candlelight inside. Perfect study or sleep ambiance. Subscribe ▶ @calmclassics\n\n#RainShorts #ClassicalMusic #StudyShorts #CalmClassics #Shorts",
+        "title":   "🌧️ Rainy Window & Classical Music Shorts | Classical Night Relax #shorts",
+        "desc":    "Rain on a window with warm candlelight inside. Perfect study or sleep ambiance. Subscribe ▶ @ClassicalNightRelax\n\n#RainShorts #ClassicalMusic #StudyShorts #ClassicalNightRelax #Shorts",
         "thumb_prompt": "rainy window with warm candlelight interior, cozy, classical music study, atmospheric, no text",
-        "tags":    ["rain shorts", "rainy window", "cozy", "classical music", "study shorts", "calm classics", "shorts"],
+        "tags":    ["rain shorts", "rainy window", "cozy", "classical music", "study shorts", "classical night relax", "shorts"],
     },
 }
 

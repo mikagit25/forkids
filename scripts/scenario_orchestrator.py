@@ -10,11 +10,12 @@ Actual columns (A–M):
 
 Statuses: pending → rendering → rendered → failed
 lang values:
-  en   — English only    → output/queue/
-  ar   — Arabic only     → output/queue_ar/
-  id   — Indonesian only → output/queue_id/
-  both — EN + AR + ID    → expand_langs() returns ['en','ar','id']
-  all  — EN + AR + ID    → same as both (1 render shared, or 3 separate renders)
+  en   — English only              → output/queue/
+  ar   — Arabic only               → output/queue_ar/
+  id   — Classical Night Relax     → output/queue_id/  (ADULT channel, NOT kids)
+  kids — EN + AR only              → expand_langs() returns ['en','ar'] (never queue_id)
+  both — EN + AR + ID              → expand_langs() returns ['en','ar','id']
+  all  — EN + AR + ID              → same as both (only for CNRelax-approved content)
 
 NOTE: Scripts that generate no-text content handle all 3 queues internally —
       dispatch functions for those scripts do NOT pass --lang.
@@ -153,15 +154,24 @@ def any_render_running() -> bool:
 LANG_QUEUE = {
     'en':   ROOT / 'output' / 'queue',
     'ar':   ROOT / 'output' / 'queue_ar',
-    'id':   ROOT / 'output' / 'queue_id',
-    'both': ROOT / 'output' / 'queue',   # EN+AR — videos WITH voice/text (2 renders)
-    'all':  ROOT / 'output' / 'queue',   # EN+AR+ID — videos WITHOUT text (shape_learn: 1 render → 3 queues)
+    'id':   ROOT / 'output' / 'queue_id',    # CNRelax only — adult sleep/focus
+    'kids': ROOT / 'output' / 'queue',        # EN+AR kids only, NEVER CNRelax
+    'both': ROOT / 'output' / 'queue',        # EN+AR — videos WITH voice/text (2 renders)
+    'all':  ROOT / 'output' / 'queue',        # EN+AR+ID — ONLY for content valid on CNRelax
 }
 
+# CNRelax (queue_id) allowed content types — adult sleep/focus only
+CNR_ALLOWED = {'sleep_program', 'focus_program', 'sleep_short', 'visual_theme', 'nature_calm'}
+
 def expand_langs(lang: str) -> list[str]:
-    """Expand lang shorthand to list of language codes."""
+    """Expand lang shorthand to list of language codes.
+    'kids' = EN+AR only (never CNRelax).
+    'both'/'all' = EN+AR+ID — only for content approved for CNRelax.
+    """
     if lang in ('both', 'all'):
         return ['en', 'ar', 'id']
+    if lang == 'kids':
+        return ['en', 'ar']
     return [lang]
 
 
@@ -259,8 +269,8 @@ def dispatch_sensory_loop(row: dict) -> bool:
 
 
 def dispatch_stars_bubbles(row: dict) -> bool:
-    """Render stars and bubbles abstract video. No text → all 3 channels."""
-    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_stars_bubbles.py')]
+    """Render stars and bubbles abstract video. Kids channels only (EN+AR), NOT CNRelax."""
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_stars_bubbles.py'), '--queues', 'en', 'ar']
     log(f"  Running: {' '.join(cmd)}")
     r = subprocess.run(cmd, capture_output=False, timeout=21600)
     return r.returncode == 0
@@ -346,18 +356,34 @@ def dispatch_learn_to_talk(row: dict) -> bool:
 
 
 def dispatch_emotions_ocean(row: dict) -> bool:
-    """Render Roundy character series. All 3 channels."""
+    """Render emotions/ocean/transport/professions series. Kids channels only (EN+AR), NOT CNRelax.
+    key='emotions_4series' → pilot mode: 1 video per series (4 pilots).
+    key='e_happy' etc. → run that specific video only.
+    """
     key = row['key']
-    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_emotions_ocean.py'), '--key', key]
+    if key == 'emotions_4series':
+        videos = ['e_happy', 'o_whale', 't_balloon', 'p_doctor']
+    else:
+        videos = [key]
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_emotions_ocean.py'),
+           '--videos'] + videos + ['--queues', 'en', 'ar']
     log(f"  Running: {' '.join(cmd)}")
     r = subprocess.run(cmd, capture_output=False, timeout=86400)
     return r.returncode == 0
 
 
 def dispatch_special_mechanics(row: dict) -> bool:
-    """Render special mechanics game videos. All 3 channels."""
+    """Render special mechanics game videos. Kids channels only (EN+AR), NOT CNRelax.
+    key='special_mech_8series' → pilot: episode 7 (Hide & Seek).
+    key='7' etc. → run that specific episode.
+    """
     key = row['key']
-    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_special_mechanics.py'), '--key', key]
+    if key == 'special_mech_8series':
+        videos = ['7']
+    else:
+        videos = [key]
+    cmd = [sys.executable, str(ROOT / 'scripts' / 'generate_special_mechanics.py'),
+           '--videos'] + videos + ['--queues', 'en', 'ar']
     log(f"  Running: {' '.join(cmd)}")
     r = subprocess.run(cmd, capture_output=False, timeout=86400)
     return r.returncode == 0

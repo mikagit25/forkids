@@ -681,19 +681,21 @@ def generate_thumbnail(video_id: str, out_path: Path, lang: str) -> bool:
         return False
     notext = "" if lang in ("en", "id") else ", no text, no letters, no words, no numbers"
     prompt = PROMPTS.get(video_id, "baby animation colorful characters") + f", YouTube thumbnail{notext}"
-    import urllib.request
     try:
-        payload = json.dumps({"model": TOGETHER_MODEL, "prompt": prompt,
-                              "width": 1280, "height": 720, "steps": 4, "n": 1}).encode()
-        req = urllib.request.Request(TOGETHER_URL, data=payload,
-            headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=90) as resp:
-            data = json.loads(resp.read())
-        out_path.write_bytes(base64.b64decode(data["data"][0]["b64_json"]))
-        print(f"    ✓ thumb → {out_path.name}")
-        return True
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("gat", ROOT / "scripts" / "generate_ai_thumbs.py")
+        gat = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(gat)
+        img = gat.together_generate_image(prompt, key)
+        if img:
+            out_path.write_bytes(gat.resize_to_720p(img))
+            print(f"    ✓ thumb → {out_path.name}")
+            return True
+        print(f"    ! thumb failed: API returned no image")
+        return False
     except Exception as e:
-        print(f"    ! thumb failed: {e}"); return False
+        print(f"    ! thumb failed: {e}")
+        return False
 
 
 def render_video(video_id: str, lang: str, ep_idx: int, force: bool, dry_run: bool) -> Path | None:
@@ -721,8 +723,10 @@ def render_video(video_id: str, lang: str, ep_idx: int, force: bool, dry_run: bo
     print(f"    ✗ FAILED: {r.stderr[-400:]}"); return None
 
 
-def distribute(video_id: str, ep_idx: int, force: bool, dry_run: bool):
-    for lang, q in [("en", QUEUE_EN), ("ar", QUEUE_AR), ("id", QUEUE_ID)]:
+def distribute(video_id: str, ep_idx: int, force: bool, dry_run: bool,
+               allowed_langs: list[str] | None = None):
+    all_langs = [("en", QUEUE_EN), ("ar", QUEUE_AR), ("id", QUEUE_ID)]
+    for lang, q in [(l, q) for l, q in all_langs if allowed_langs is None or l in allowed_langs]:
         stem  = f"eo_{video_id}_{DATE_STR}" if lang == "en" else f"eo_{video_id}_{DATE_STR}_{lang}"
         mp4   = q / f"{stem}.mp4"
         if not mp4.exists() or force:
@@ -750,6 +754,9 @@ def main():
     parser.add_argument("--dry-run",    action="store_true")
     parser.add_argument("--force",      action="store_true")
     parser.add_argument("--regen-meta", action="store_true")
+    parser.add_argument("--queues",     nargs="+", choices=["en", "ar", "id"],
+                        default=["en", "ar", "id"],
+                        help="Which channel queues to render/distribute (default: all)")
     args = parser.parse_args()
 
     if args.list:
@@ -775,7 +782,7 @@ def main():
     for ep_idx, vid in enumerate(ids):
         v = VIDEOS[vid]
         print(f"[{vid}] {v['name_en']}  ({v['series']})")
-        distribute(vid, ep_idx, args.force, args.dry_run)
+        distribute(vid, ep_idx, args.force, args.dry_run, args.queues)
 
     print("\n=== Done ===")
 

@@ -553,6 +553,13 @@ def make_meta_id(video_num: int) -> dict:
     }
 
 
+def _load_gat():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("gat", ROOT / "scripts" / "generate_ai_thumbs.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
 def generate_thumbnail(video_num: int, out_path: Path) -> bool:
     if out_path.exists():
         return True
@@ -569,25 +576,15 @@ def generate_thumbnail(video_num: int, out_path: Path) -> bool:
         f"vivid neon colors on dark background, glowing geometric shapes, "
         f"smooth colorful animation, no text, no letters, no words, 1280x720"
     )
-
     try:
-        import urllib.request
-        payload = json.dumps({
-            "model": TOGETHER_MODEL,
-            "prompt": prompt,
-            "width": 1280, "height": 720, "steps": 4, "n": 1,
-        }).encode()
-        req = urllib.request.Request(
-            TOGETHER_URL,
-            data=payload,
-            headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-        )
-        with urllib.request.urlopen(req, timeout=90) as resp:
-            data = json.loads(resp.read())
-        b64 = data["data"][0]["b64_json"]
-        out_path.write_bytes(base64.b64decode(b64))
-        print(f"    ✓ thumb → {out_path.name}")
-        return True
+        gat = _load_gat()
+        img = gat.together_generate_image(prompt, key)
+        if img:
+            out_path.write_bytes(gat.resize_to_720p(img))
+            print(f"    ✓ thumb → {out_path.name}")
+            return True
+        print(f"    ! thumb failed: API returned no image")
+        return False
     except Exception as e:
         print(f"    ! thumb failed: {e}")
         return False

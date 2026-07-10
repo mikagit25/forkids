@@ -25,6 +25,7 @@ import { PuzzleAssembly, PuzzleAssemblyProps } from "./PuzzleAssembly";
 import { PeekABooEggs, PeekABooEggsProps, EggItem } from "./PeekABooEggs";
 import { NeonCarWash, NeonCarWashProps, VehicleItem } from "./NeonCarWash";
 import { DinoBuild, DinoBuildProps, DinoCfg } from "./DinoBuild";
+import { SleepClassicalLoop, SleepClassicalLoopProps } from "./SleepClassicalLoop";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const C = Composition as React.ComponentType<any>;
@@ -608,6 +609,37 @@ export const Root: React.FC = () => {
           shapes: ["circle", "square", "triangle", "star"],
           colors: ["#FF4444", "#27AE60", "#2980B9", "#F9A825"],
         }}
+      />
+
+      {/* ── SleepClassicalLoop — Calm Classics (4-min seamless loop) ─────────── */}
+      <C
+        id="SleepClassicalLoop"
+        component={SleepClassicalLoop}
+        durationInFrames={FPS * 240}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          theme: "moon_clouds",
+          musicFile: "",
+          loopSecs: 240,
+          phaseOffset: 0,
+        } satisfies SleepClassicalLoopProps}
+      />
+      {/* night_bear uses 300s loop */}
+      <C
+        id="SleepClassicalLoopNightBear"
+        component={SleepClassicalLoop}
+        durationInFrames={FPS * 300}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          theme: "night_bear",
+          musicFile: "",
+          loopSecs: 300,
+          phaseOffset: 0,
+        } satisfies SleepClassicalLoopProps}
       />
     </>
   );

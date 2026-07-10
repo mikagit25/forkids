@@ -176,19 +176,16 @@ def generate_thumbnail(out: Path, prompt: str, lang: str) -> bool:
     if lang == "ar":
         prompt += ", no text, no letters, no words, no numbers"
     try:
-        resp = requests.post(TOGETHER_URL, headers={
-            "Authorization": f"Bearer {api_key}", "Content-Type": "application/json"
-        }, json={
-            "model": "black-forest-labs/FLUX.1-schnell-Free",
-            "prompt": prompt, "width": 720, "height": 1280,
-            "steps": 4, "n": 1, "response_format": "b64_json",
-        }, timeout=60)
-        if resp.status_code != 200:
-            return False
-        data = resp.json()["data"][0]["b64_json"]
-        thumb_path.write_bytes(base64.b64decode(data))
-        print(f"  thumb → {thumb_path.name}")
-        return True
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("gat", ROOT / "scripts" / "generate_ai_thumbs.py")
+        gat = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(gat)
+        img = gat.together_generate_image(prompt, api_key)
+        if img:
+            thumb_path.write_bytes(gat.resize_to_720p(img))
+            print(f"  thumb → {thumb_path.name}")
+            return True
+        return False
     except Exception:
         return False
 

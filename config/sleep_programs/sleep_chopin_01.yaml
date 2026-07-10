@@ -3,7 +3,7 @@
 # Scenario 1 from video_scenarios_v2.1.md
 
 id: sleep_chopin_01
-title_en: "Chopin Nocturnes for Sleep ✨ {duration} | Calm Classics"
+title_en: "Chopin Nocturnes for Sleep ✨ {duration} | Classical Night Relax"
 description_template: en  # see channel_metadata_cc.yaml
 video_type: sleep_program
 track: calm_classics

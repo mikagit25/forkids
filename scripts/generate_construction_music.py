@@ -215,7 +215,7 @@ def generate_thumbnail(ep_key, ep, queue, out_name, lang):
         resp = requests.post(TOGETHER_URL, headers={
             "Authorization": f"Bearer {api_key}", "Content-Type": "application/json"
         }, json={
-            "model": "black-forest-labs/FLUX.1-schnell-Free",
+            "model": "black-forest-labs/FLUX.1-schnell",
             "prompt": prompt, "width": 1280, "height": 720,
             "steps": 4, "n": 1, "response_format": "b64_json",
         }, timeout=60)

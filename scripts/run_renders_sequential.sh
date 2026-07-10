@@ -663,11 +663,24 @@ fi
 
 # ── Step 48: final thumbnails sweep ───────────────────────────────────────────
 if [[ $FROM_STEP -le 48 ]]; then
-    log "[48/51] final thumbnails sweep (all queues)..."
+    log "[48] final thumbnails sweep (all queues)..."
     python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
     python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
     python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
-    log "[48/51] final thumbnails done."
+    log "[48] final thumbnails done."
+fi
+
+# ── Dynamic render queue (config/render_queue.yaml) ───────────────────────────
+# New scenarios are added here automatically — no manual script editing needed.
+# To add: python3 scripts/queue_render.py --add "CMD" --desc "description"
+if python3 scripts/queue_render.py --has-pending 2>/dev/null; then
+    log "[queue] Processing dynamic render queue..."
+    python3 -u scripts/queue_render.py --run-all 2>&1 | tee -a logs/render_queue.log
+    log "[queue] Dynamic queue done."
+    # Sweep thumbnails again after new renders
+    python3 -u scripts/generate_ai_thumbs.py --queue en --backend together >> logs/thumbs_en.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue ar --backend together >> logs/thumbs_ar.log 2>&1
+    python3 -u scripts/generate_ai_thumbs.py --queue id --backend together >> logs/thumbs_id.log 2>&1
 fi
 
 # ── Итог ──────────────────────────────────────────────────────────────────────

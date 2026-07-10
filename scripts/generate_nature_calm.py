@@ -18,7 +18,7 @@ ROOT     = Path(__file__).resolve().parent.parent
 REMOTION = ROOT / "remotion"
 QUEUE_EN = ROOT / "output" / "queue"
 QUEUE_AR = ROOT / "output" / "queue_ar"
-QUEUE_ID = ROOT / "output" / "queue_id"
+QUEUE_ID = ROOT / "output" / "queue_id"   # Classical Night Relax (@ClassicalNightRelax)
 TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 TOGETHER_URL      = "https://api.together.xyz/v1/images/generations"
 DATE_STR = datetime.now().strftime("%Y%m%d")
@@ -94,22 +94,22 @@ EPISODES = {
 TITLES = {
     "ocean":     {"en": "🌊 Calm Ocean for Babies | 30 Minutes | Happy Bear Kids",
                   "ar": "🌊 محيط هادئ للأطفال | ٣٠ دقيقة | Happy Bear Kids",
-                  "id": "🌊 Laut Tenang untuk Bayi | 30 Menit | Happy Bear Kids"},
+                  "id": "🌊 Calm Ocean Ambience | 30 Minutes | Classical Night Relax"},
     "forest":    {"en": "🌿 Enchanted Forest Calm | 30 Minutes | Happy Bear Kids",
                   "ar": "🌿 غابة ساحرة هادئة | ٣٠ دقيقة | Happy Bear Kids",
-                  "id": "🌿 Hutan Ajaib yang Tenang | 30 Menit | Happy Bear Kids"},
+                  "id": "🌿 Enchanted Forest Ambience | 30 Minutes | Classical Night Relax"},
     "night_sky": {"en": "⭐ Starry Night Sky | 30 Minutes | Happy Bear Kids",
                   "ar": "⭐ سماء ليلية مرصّعة بالنجوم | ٣٠ دقيقة | Happy Bear Kids",
-                  "id": "⭐ Langit Malam Berbintang | 30 Menit | Happy Bear Kids"},
+                  "id": "⭐ Starry Night Sky Ambience | 30 Minutes | Classical Night Relax"},
     "meadow":    {"en": "🌸 Peaceful Meadow | 30 Minutes | Happy Bear Kids",
                   "ar": "🌸 مرج هادئ للأطفال | ٣٠ دقيقة | Happy Bear Kids",
-                  "id": "🌸 Padang Rumput Damai | 30 Menit | Happy Bear Kids"},
+                  "id": "🌸 Peaceful Meadow Ambience | 30 Minutes | Classical Night Relax"},
     "rain":      {"en": "🌧️ Gentle Rain Calm | 30 Minutes | Happy Bear Kids",
                   "ar": "🌧️ مطر هادئ للأطفال | ٣٠ دقيقة | Happy Bear Kids",
-                  "id": "🌧️ Hujan Lembut yang Menenangkan | 30 Menit | Happy Bear Kids"},
+                  "id": "🌧️ Gentle Rain Ambience | 30 Minutes | Classical Night Relax"},
     "sunset":    {"en": "🌅 Sunset Calm for Babies | 30 Minutes | Happy Bear Kids",
                   "ar": "🌅 غروب هادئ للأطفال | ٣٠ دقيقة | Happy Bear Kids",
-                  "id": "🌅 Senja Tenang untuk Bayi | 30 Menit | Happy Bear Kids"},
+                  "id": "🌅 Sunset Ambience | 30 Minutes | Classical Night Relax"},
 }
 
 DESC = {
@@ -172,26 +172,32 @@ DESC = {
         "#HappyBearKids #هدوء_الطبيعة #تهدئة_الطفل #فيديو_أطفال_هادئ #رضيع"
     ),
     "id": (
-        "Selamat datang di Happy Bear Kids! 🐻\n\n"
-        "30 menit visual abstrak yang menenangkan terinspirasi dari keajaiban alam. "
-        "Bentuk-bentuk lembut bergerak perlahan dengan warna-warna alam mengapung dengan damai "
-        "diiringi musik tenang — sempurna untuk menenangkan bayi dan balita yang rewel.\n\n"
-        "Seri Alam Tenang kami menghadirkan ketenangan alam ke rumah Anda melalui visual "
-        "abstrak yang sederhana dan elegan. Tidak ada karakter, tidak ada gerakan tiba-tiba "
-        "— hanya bentuk dan warna lembut yang menenangkan dan menyenangkan.\n\n"
-        "🌟 Fitur utama:\n"
-        "• Bentuk lembut dengan palet warna terinspirasi alam\n"
-        "• Musik BPM sangat rendah dipilih khusus untuk ketenangan\n"
-        "• Tidak ada kilatan cahaya atau perubahan mendadak\n"
-        "• Tanpa kata-kata atau suara\n"
-        "• 30 menit penuh pengalaman visual tenang\n\n"
-        "👶 Sempurna untuk:\n"
-        "• Menenangkan bayi atau balita yang rewel atau kelelahan\n"
-        "• Latar belakang saat bersiap tidur siang\n"
-        "• Waktu layar lembut yang tidak merangsang berlebihan\n\n"
-        "🎵 Musik oleh Kevin MacLeod (incompetech.com) — CC Attribution 4.0\n"
-        "© Happy Bear Kids 2026 | Subscribe ▶ @happybearkidsin\n\n"
-        "#HappyBearKids #TenangAlam #VideoTenangBayi #BalitaTenang #AnimasiLembut"
+        "Welcome to Classical Night Relax 🌿\n\n"
+        "30 minutes of beautiful, slow-moving nature-inspired abstract visuals — designed "
+        "for adults who need a calm, screen-based backdrop for sleep, meditation, study, or "
+        "unwinding after a long day.\n\n"
+        "Soft geometric shapes drift gently across nature-inspired colour palettes to peaceful "
+        "low-BPM music. No sudden movements, no flashes, no voices — just pure, uninterrupted "
+        "visual tranquillity.\n\n"
+        "🌟 Perfect for:\n"
+        "• Sleep preparation and winding down at night\n"
+        "• Meditation and mindfulness sessions\n"
+        "• Background ambience while working or studying\n"
+        "• Stress relief and mental reset\n"
+        "• Screen-based relaxation without overstimulation\n\n"
+        "✨ Features:\n"
+        "• Slow, gentle abstract shapes in calming nature colour palettes\n"
+        "• Very low BPM ambient music — non-intrusive and soothing\n"
+        "• No bright flashes or sudden changes\n"
+        "• No words or voices — pure visual experience\n"
+        "• 30 full minutes of uninterrupted calm\n\n"
+        "🎵 Music by Kevin MacLeod (incompetech.com)\n"
+        "Licensed under Creative Commons: By Attribution 4.0 License\n"
+        "http://creativecommons.org/licenses/by/4.0/\n\n"
+        "New ambient videos every week. Subscribe ▶ @ClassicalNightRelax\n"
+        "© Classical Night Relax 2026 — All rights reserved\n\n"
+        "#ClassicalNightRelax #NatureAmbience #RelaxingVisuals #SleepAid "
+        "#MeditationBackground #AmbientVideo #CalmVisuals #StudyBackground #Relaxation"
     ),
 }
 
@@ -207,29 +213,39 @@ def generate_thumbnail(ep_key, ep, queue, out_name, lang):
     if lang == "ar":
         prompt += ", no text, no letters, no words, no numbers"
     try:
-        resp = requests.post(TOGETHER_URL, headers={
-            "Authorization": f"Bearer {api_key}", "Content-Type": "application/json"
-        }, json={"model": "black-forest-labs/FLUX.1-schnell",
-                 "prompt": prompt, "width": 1280, "height": 720,
-                 "steps": 4, "n": 1, "response_format": "b64_json"}, timeout=60)
-        if resp.status_code != 200:
-            print(f"  thumb error {resp.status_code}")
-            return False
-        thumb_path.write_bytes(__import__("base64").b64decode(resp.json()["data"][0]["b64_json"]))
-        print(f"  thumb → {thumb_path.name}")
-        return True
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("gat", ROOT / "scripts" / "generate_ai_thumbs.py")
+        gat = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(gat)
+        img = gat.together_generate_image(prompt, api_key)
+        if img:
+            thumb_path.write_bytes(gat.resize_to_720p(img))
+            print(f"  thumb → {thumb_path.name}")
+            return True
+        print(f"  thumb error: API returned no image")
+        return False
     except Exception as e:
         print(f"  thumb error: {e}")
         return False
 
 
 def make_meta(ep_key, lang, queue, out_name):
+    if lang == "id":
+        tags = ["nature ambience", "relaxing visuals", "classical night relax",
+                "ambient video", "sleep aid", "meditation background",
+                "calm visuals", "study background", "30 minutes",
+                ep_key.replace("_", " "), "nature"]
+        made_for_kids = False
+    else:
+        tags = ["nature calm", "baby calm", "soothing", "toddler relax", "happy bear kids",
+                "30 minutes", "calm shapes", "baby video", "nature", ep_key.replace("_", " ")]
+        made_for_kids = True
     meta = {
         "title": TITLES[ep_key][lang], "description": DESC[lang],
         "video_type": "nature_calm", "theme": ep_key, "language": lang,
         "duration_minutes": 30, "is_short": False, "status": "public",
-        "tags": ["nature calm", "baby calm", "soothing", "toddler relax", "happy bear kids",
-                 "30 minutes", "calm shapes", "baby video", "nature", ep_key.replace("_", " ")],
+        "made_for_kids": made_for_kids,
+        "tags": tags,
     }
     meta_path = queue / f"meta_{Path(out_name).stem}.yaml"
     with open(meta_path, "w", encoding="utf-8") as f:

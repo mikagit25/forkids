@@ -9,13 +9,14 @@ ROOT = Path(__file__).resolve().parent.parent
 ALL_VEGETABLES = [
     "carrot", "broccoli", "corn", "eggplant", "tomato",
     "cucumber", "potato", "mushroom", "onion", "pepper",
+    "pumpkin",
 ]
 
 VEGETABLE_NAMES = {
     "carrot": "Carrot", "broccoli": "Broccoli", "corn": "Corn",
     "eggplant": "Eggplant", "tomato": "Tomato", "cucumber": "Cucumber",
     "potato": "Potato", "mushroom": "Mushroom", "onion": "Onion",
-    "pepper": "Pepper",
+    "pepper": "Pepper", "pumpkin": "Pumpkin",
 }
 
 BG_COLORS = [

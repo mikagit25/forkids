@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate Calm Classics sleep/focus program videos.
+Generate Classical Night Relax (@ClassicalNightRelax) sleep/focus program videos.
 
 Pipeline:
   Phase A — Render shared loops (SleepClassicalLoop, ~4-5 min, no audio)
@@ -23,7 +23,7 @@ REMOTION   = ROOT / "remotion"
 PROGRAMS   = ROOT / "config" / "sleep_programs"
 MUSIC_DIR  = ROOT / "assets" / "music" / "classical"
 LICENSES   = ROOT / "assets" / "music" / "classical" / "licenses.yaml"
-QUEUE_CC   = ROOT / "output" / "queue_id"    # Calm Classics queue
+QUEUE_CC   = ROOT / "output" / "queue_id"    # Classical Night Relax queue (@ClassicalNightRelax)
 QUEUE_EN   = ROOT / "output" / "queue"       # EN kids queue (for kids_sleep track)
 LOOPS_DIR  = ROOT / "output" / "_sleep_loops"
 TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
@@ -49,18 +49,26 @@ THEME_COMPOSITION = {
 HOURS_TO_LABEL = {1: "1 Hour", 3: "3 Hours", 8: "8 Hours"}
 
 TITLES = {
-    "sleep_chopin_01":      "Chopin Nocturnes for Sleep ✨ {dur} | Calm Classics",
-    "sleep_debussy_01":     "Debussy & Satie for Sleep ✨ {dur} | Calm Classics",
-    "sleep_swan_lake_01":   "Tchaikovsky Swan Lake for Sleep 🦢 {dur} | Calm Classics",
-    "focus_bach_01":        "Bach for Focus & Study 🎵 {dur} | Calm Classics",
-    "focus_mozart_01":      "Mozart for Focus & Study 🎵 {dur} | Calm Classics",
-    "focus_beethoven_01":   "Beethoven for Focus & Study 🎵 {dur} | Calm Classics",
-    "sleep_lullaby_01":     "Classical Lullabies for Sleep 🌙 {dur} | Happy Bear Kids",
+    "sleep_chopin_01":          "Chopin Nocturnes for Sleep ✨ {dur} | Classical Night Relax",
+    "sleep_chopin_02":          "Chopin Complete — Nocturnes, Mazurkas & Études 🌙 {dur} | Classical Night Relax",
+    "sleep_debussy_01":         "Debussy for Sleep ✨ {dur} | Classical Night Relax",
+    "sleep_swan_lake_01":       "Tchaikovsky Swan Lake for Sleep 🦢 {dur} | Classical Night Relax",
+    "sleep_swan_lake_02":       "Swan Lake Act III & IV 🦢 {dur} | Tchaikovsky | Classical Night Relax",
+    "sleep_romantic_night_01":  "Romantic Classics for Sleep 🌙 {dur} | Classical Night Relax",
+    "sleep_flute_01":           "Flute & Piano for Sleep 🎵 {dur} | Classical Night Relax",
+    "sleep_baroque_01":         "Baroque Classics for Sleep 🎻 {dur} | Classical Night Relax",
+    "sleep_grand_night_01":     "Grand Night — Orchestral Classics for Sleep 🎻 {dur} | Classical Night Relax",
+    "focus_bach_01":            "Bach for Focus & Study 🎵 {dur} | Classical Night Relax",
+    "focus_beethoven_01":       "Beethoven for Focus & Study 🎵 {dur} | Classical Night Relax",
+    "focus_beethoven_02":       "Beethoven Symphony No. 5 — Complete 🎻 {dur} | Classical Night Relax",
+    "focus_mozart_01":          "Mozart for Focus & Study 🎵 {dur} | Classical Night Relax",
+    "focus_drama_01":           "Dramatic Classics for Focus 🎻 {dur} | Classical Night Relax",
+    "sleep_lullaby_01":         "Classical Lullabies for Sleep 🌙 {dur} | Happy Bear Kids",
 }
 
 DESC_TEMPLATES = {
     "calm_classics": """\
-Welcome to Calm Classics — beautiful classical music for sleep, focus and relaxation.
+Welcome to Classical Night Relax — beautiful classical music for sleep, focus and relaxation.
 
 {program_desc}
 
@@ -81,10 +89,10 @@ Full attribution and license details in the description below.
 {attribution}
 
 No ads during playback. New programs every week.
-Subscribe ▶ @calmclassics
+Subscribe ▶ @ClassicalNightRelax
 
-© Calm Classics 2026 — All rights reserved
-#CalmClassics #SleepMusic #ClassicalMusic #StudyMusic #{composer_tag}Sleep
+© Classical Night Relax 2026 — All rights reserved
+#ClassicalNightRelax #SleepMusic #ClassicalMusic #StudyMusic #{composer_tag}Sleep
 """,
     "kids_sleep": """\
 Welcome to Happy Bear Kids! 🌙 Gentle classical lullabies to help babies and toddlers sleep.
@@ -316,6 +324,10 @@ def assemble_video(loop_mp4: Path, audio_mp3: Path | None,
                    target_hours: int, out_mp4: Path) -> bool:
     """Loop visual to fill target duration, overlay audio, write output."""
     target_secs = target_hours * 3600
+    # Use faster preset for long videos: slow→fast saves hours on 8h renders.
+    preset = "slow" if target_hours <= 1 else ("medium" if target_hours <= 3 else "fast")
+    # Timeout scales: 1h→3600s, 3h→10800s, 8h→28800s plus 20% margin.
+    video_timeout = int(target_secs * 1.2) + 3600
 
     if audio_mp3:
         cmd = [
@@ -323,7 +335,7 @@ def assemble_video(loop_mp4: Path, audio_mp3: Path | None,
             "-stream_loop", "-1", "-i", str(loop_mp4),   # infinite loop visual
             "-i", str(audio_mp3),
             "-t", str(target_secs),
-            "-c:v", "libx264", "-preset", "slow", "-crf", "20",
+            "-c:v", "libx264", "-preset", preset, "-crf", "20",
             "-c:a", "aac", "-b:a", "192k",
             "-movflags", "+faststart",
             str(out_mp4),
@@ -334,14 +346,14 @@ def assemble_video(loop_mp4: Path, audio_mp3: Path | None,
             "ffmpeg", "-y",
             "-stream_loop", "-1", "-i", str(loop_mp4),
             "-t", str(target_secs),
-            "-c:v", "libx264", "-preset", "slow", "-crf", "20",
+            "-c:v", "libx264", "-preset", preset, "-crf", "20",
             "-an",
             "-movflags", "+faststart",
             str(out_mp4),
         ]
 
-    log.info(f"  Assembling {target_hours}h video → {out_mp4.name}…")
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=7200)
+    log.info(f"  Assembling {target_hours}h video (preset={preset}) → {out_mp4.name}…")
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=video_timeout)
     if r.returncode != 0 or not out_mp4.exists():
         log.error(f"  Assembly failed: {r.stderr[:300]}")
         return False
@@ -374,7 +386,7 @@ def write_meta(program: dict, hours: int, queue: Path, out_name: str):
     prog_id  = program["id"]
     track    = program.get("track", "calm_classics")
     dur_label = HOURS_TO_LABEL.get(hours, f"{hours} Hours")
-    title_tpl = TITLES.get(prog_id, "Classical Music for Sleep ✨ {dur} | Calm Classics")
+    title_tpl = TITLES.get(prog_id, "Classical Music for Sleep ✨ {dur} | Classical Night Relax")
     title    = title_tpl.format(dur=dur_label)
 
     composer_names = set(t.get("composer", "").split()[0] for t in program.get("tracks", []))
@@ -389,7 +401,7 @@ def write_meta(program: dict, hours: int, queue: Path, out_name: str):
     )
 
     tags = (program.get("tags", []) +
-            [dur_label.lower(), f"{hours} hour music", "calm classics",
+            [dur_label.lower(), f"{hours} hour music", "classical night relax",
              "classical music", "sleep music", "relaxation"])[:40]
 
     meta = {
@@ -516,7 +528,7 @@ def cmd_generate_program(program_id: str, durations: list[int] | None,
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate Calm Classics sleep programs")
+    parser = argparse.ArgumentParser(description="Generate Classical Night Relax sleep programs")
     parser.add_argument("--render-loops-only", action="store_true",
                         help="Only render the 4 shared loop MP4s (no audio, no assembly)")
     parser.add_argument("--program",    help="Program ID (e.g. sleep_chopin_01)")

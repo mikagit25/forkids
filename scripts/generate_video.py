@@ -108,22 +108,27 @@ def load_animated_sprites(theme: str, config: dict = None) -> List[Tuple[str, Li
     sprites_new = ROOT / sprites_dir_name
     sprites_old = ROOT / "assets" / "sprites"
 
-    # 1. Try spritesheets/ first (pre-generated semantic frames)
-    for theme_key in (theme, "animals", "fruits", "vegetables"):
-        sheet_dir = sheets_dir / theme_key
-        if not sheet_dir.exists():
-            continue
-        pngs = sorted(sheet_dir.glob("*.png"))
-        if not pngs:
-            continue
-        sprites = []
-        for p in pngs:
-            frames = _load_spritesheet(p, frame_size=512)
-            if frames:
-                sprites.append((p.stem, frames))
-        if sprites:
-            log.info(f"Loaded {len(sprites)} spritesheets from {sheet_dir} (8 semantic frames)")
-            return sprites
+    # 1. Check if 3D sprites exist in sprites_new — if so, skip spritesheets (which are old flat)
+    sprites_3d_dir = sprites_new / theme
+    has_3d = sprites_3d_dir.exists() and bool(list(sprites_3d_dir.glob("*_3d.png")))
+
+    # 1. Try spritesheets/ first (pre-generated semantic frames) — ONLY when no 3D sprites available
+    if not has_3d:
+        for theme_key in (theme, "animals", "fruits", "vegetables"):
+            sheet_dir = sheets_dir / theme_key
+            if not sheet_dir.exists():
+                continue
+            pngs = sorted(sheet_dir.glob("*.png"))
+            if not pngs:
+                continue
+            sprites = []
+            for p in pngs:
+                frames = _load_spritesheet(p, frame_size=512)
+                if frames:
+                    sprites.append((p.stem, frames))
+            if sprites:
+                log.info(f"Loaded {len(sprites)} spritesheets from {sheet_dir} (8 semantic frames)")
+                return sprites
 
     # 2. Fall back to sprites_new / sprites (generate bounce frames)
     for sprites_root in (sprites_new, sprites_old):
@@ -138,7 +143,9 @@ def load_animated_sprites(theme: str, config: dict = None) -> List[Tuple[str, Li
             if d.exists() and d not in candidate_dirs:
                 candidate_dirs.append(d)
         for d in candidate_dirs:
-            pngs = sorted(d.glob("*.png"))
+            pngs_3d = sorted(d.glob("*_3d.png"))
+            pngs_all = sorted(d.glob("*.png"))
+            pngs = pngs_3d if pngs_3d else pngs_all  # prefer Pixar 3D sprites
             if not pngs:
                 continue
             sprites = []
@@ -146,7 +153,7 @@ def load_animated_sprites(theme: str, config: dict = None) -> List[Tuple[str, Li
                 img = Image.open(p).convert("RGBA")
                 frames = _make_bounce_frames(img, n_frames=30)
                 sprites.append((p.stem, frames))
-            log.info(f"Loaded {len(sprites)} sprites from {d} (bounce frames)")
+            log.info(f"Loaded {len(sprites)} sprites from {d} ({'3D' if pngs_3d else 'flat'}, bounce frames)")
             return sprites
 
     raise FileNotFoundError(

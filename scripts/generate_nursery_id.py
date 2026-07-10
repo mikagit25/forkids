@@ -278,32 +278,31 @@ def build_props(cfg: dict, segments_raw: list[dict], audio_dir: Path) -> dict:
 
 # ── Make meta sidecar ─────────────────────────────────────────────────────────
 
+def _load_gat():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("gat", ROOT / "scripts" / "generate_ai_thumbs.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
 def generate_thumbnail(cfg: dict, out_path: Path) -> bool:
     if not TOGETHER_KEY_FILE.exists():
         print("    no Together.ai key — skip thumbnail")
         return False
     try:
-        import urllib.request as req
         key = TOGETHER_KEY_FILE.read_text().strip()
         prompt = cfg.get("thumb_prompt",
             f"cute cartoon character for Indonesian nursery rhyme {cfg['title_english']}, "
             f"children's YouTube thumbnail, bright vivid colors, no text, no letters, no words, no numbers, 1280x720"
         )
-        body = json.dumps({
-            "model": "black-forest-labs/FLUX.1-schnell-Free",
-            "prompt": prompt,
-            "width": 1280, "height": 720,
-            "steps": 4, "n": 1,
-            "response_format": "b64_json",
-        }).encode()
-        request = req.Request(TOGETHER_URL, data=body,
-            headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"})
-        with req.urlopen(request, timeout=60) as r:
-            data = json.loads(r.read())
-        img_b64 = data["data"][0]["b64_json"]
-        out_path.write_bytes(base64.b64decode(img_b64))
-        print(f"    thumb → {out_path.name} ({out_path.stat().st_size // 1024}KB)")
-        return True
+        gat = _load_gat()
+        img = gat.together_generate_image(prompt, key)
+        if img:
+            out_path.write_bytes(gat.resize_to_720p(img))
+            print(f"    thumb → {out_path.name} ({out_path.stat().st_size // 1024}KB)")
+            return True
+        print(f"    thumbnail failed: API returned no image")
+        return False
     except Exception as e:
         print(f"    thumbnail failed: {e}")
         return False

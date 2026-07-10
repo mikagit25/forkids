@@ -14,6 +14,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { noise2D } from "@remotion/noise";
 
 export interface LullabyLoopProps {
   theme: "stars" | "ocean" | "garden" | "train" | "rain" | "forest";
@@ -46,7 +47,7 @@ const StarField: React.FC<{
         const sz = 1 + r(i * 3) * 2.5;
         const tw = 0.6 + r(i * 5) * 0.8;
         const ph = r(i * 13) * Math.PI * 2;
-        const op = (0.12 + r(i * 17) * 0.35) * (0.7 + 0.3 * Math.sin(t * tw + ph));
+        const op = (0.12 + r(i * 17) * 0.35) * (0.7 + 0.3 * noise2D("star_op", i, t * 0.3));
         return (
           <div key={i} style={{
             position: "absolute",
@@ -143,7 +144,7 @@ const DriftingJellyfish: React.FC<{
 
   // Y: mid-screen with gentle vertical drift
   const yBase   = h * 0.2 + r(seed * 31) * h * 0.55;
-  const cy      = yBase + Math.sin(t * (0.18 + r(seed * 37) * 0.1) + r(seed * 43) * Math.PI * 2) * 35;
+  const cy      = yBase + noise2D("jelly_y", seed, t * 0.12) * 38;
 
   // Pulse (jellyfish breathing)
   const pulse   = 1 + 0.12 * Math.sin(t * (1.2 + r(seed * 5) * 0.4) + r(seed * 11) * Math.PI * 2);
@@ -189,7 +190,7 @@ const RisingBubble: React.FC<{
   const yNorm      = ((t / period + initPhase) % 1 + 1) % 1;
   const cy         = h + sz - yNorm * (h + sz * 2); // bottom→top
   const cx         = r(seed * 23) * w * 0.9 + w * 0.05;
-  const sway       = Math.sin(t * (0.9 + r(seed * 31) * 0.4) + r(seed * 37) * 6) * 18;
+  const sway       = noise2D("bubble_sway", seed, t * 0.28) * 20;
   const opacity    = (0.3 + r(seed * 41) * 0.4) * (0.7 + 0.3 * Math.sin(t * 1.5 + r(seed * 43) * 6));
   return (
     <div style={{

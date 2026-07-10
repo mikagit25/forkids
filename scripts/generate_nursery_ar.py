@@ -48,29 +48,27 @@ NURSERY_CONFIGS = {
         "doc_id":         "1qaEqvUkGgKdXZup6KlwHGa4-IMgRbTdS_KHUFUkZRZ8",
         "title_arabic":   "يا مطر",
         "title_english":  "Ya Matar — The Rain Song",
-        "sprite":         "objects_flux/rain_cloud.png",
-        "bg_top":         "#546E7A",   # stormy grey
+        "sprite":         "objects/cloud_3d.png",
+        "bg_top":         "#546E7A",
         "bg_bottom":      "#78909C",
         "accent":         "#80DEEA",
         "music":          "Crinoline Dreams.mp3",
         "tts_voice":      "ar-EG-SalmaNeural",
         "duration_min":   22,
-        "fallback_sprite": "animals_flux/duck.png",
         "thumb_prompt":   "cute cartoon rain cloud with smile, colorful raindrops falling, children's animation style, bright sky, no text, no letters, no words, no numbers, 1280x720",
     },
     "dajaja": {
         "doc_id":         "1PmbQnBPFcJ8HBUnVbiOMw9x-cTD4R_rFql3cxv9keI4",
         "title_arabic":   "دجاجة",
         "title_english":  "Dajaja — The Chicken Song",
-        "sprite":         "objects_flux/chicken.png",
+        "sprite":         "animals_flux/parrot.png",
         "bg_top":         "#FFF9C4",
         "bg_bottom":      "#A5D6A7",
         "accent":         "#FF8F00",
         "music":          "Carefree.mp3",
         "tts_voice":      "ar-EG-SalmaNeural",
         "duration_min":   22,
-        "fallback_sprite": "animals_flux/duck.png",
-        "thumb_prompt":   "cute cartoon chicken on a sunny farm, colorful grass and sunshine, happy Arabic children's song animation style, no text, no letters, no words, no numbers, 1280x720",
+        "thumb_prompt":   "cute cartoon colorful bird on a sunny farm, colorful grass and sunshine, happy Arabic children's song animation style, no text, no letters, no words, no numbers, 1280x720",
     },
 }
 
@@ -86,83 +84,69 @@ def fetch_doc(doc_id: str) -> str:
 
 # ── Parse doc into segments ───────────────────────────────────────────────────
 
-def parse_doc(text: str) -> list[dict]:
+def parse_doc(text: str, target_minutes: int = 22) -> list[dict]:
     """
-    Extract lyric segments from doc.
-    Looks for patterns:
-      Arabic (vocals): <arabic text>
-      English subtitles: <english text>
-    Also extracts structured segments from STRUCTURE or line-by-line sections.
-    Returns: [{arabic, english, animation, duration_sec}]
+    Extract lyric phrase pairs from doc, then expand to fill target_minutes.
+
+    Strategy 1 (preferred): find explicit "* Arabic text: X / * English subtitle: Y"
+    pairs from the per-Line sections of the scenario doc.
+
+    Strategy 2 (fallback): core "Arabic (vocals):" block split by Arabic punctuation.
+
+    Returns: [{arabic, english, animation, duration_sec, _unique_idx}]
+    The _unique_idx field identifies which TTS audio file to use (reused across rounds).
     """
-    segments = []
+    # Strategy 1 — explicit bullet pairs inside Line X: sections
+    pairs = re.findall(
+        r'\*\s*Arabic text:\s*([^\n]+)\n\s*\*\s*English subtitle[s]?:\s*([^\n]+)',
+        text
+    )
+    if pairs:
+        pairs = [(a.strip(), e.strip()) for a, e in pairs if a.strip()]
 
-    # Extract core song lyrics block
-    core_ar = re.search(r'Arabic \(vocals\):\s*\n(.*?)\n(?:English|___)', text, re.DOTALL)
-    core_en = re.search(r'English subtitles:\s*\n(.*?)\n(?:___|\n\n)', text, re.DOTALL)
+    # Strategy 2 — core lyrics block, split by Arabic sentence markers
+    if not pairs:
+        core_ar = re.search(r'Arabic \(vocals\):\s*\n(.*?)\n(?:English|___)', text, re.DOTALL)
+        core_en = re.search(r'English subtitles:\s*\n(.*?)\n(?:___|\n\n)', text, re.DOTALL)
+        if core_ar:
+            ar_text = core_ar.group(1).strip()
+            en_text = core_en.group(1).strip() if core_en else ""
+            ar_parts = [p.strip() for p in re.split(r'(?<=[؟!])\s+', ar_text) if p.strip()]
+            en_parts = [p.strip() for p in re.split(r'(?<=[?!])\s+', en_text) if p.strip()]
+            pairs = list(zip(ar_parts, en_parts or [""] * len(ar_parts)))
 
-    if not core_ar:
-        print("  WARNING: Could not find Arabic lyrics block, using full text scan")
+    if not pairs:
+        print("  WARNING: Could not extract phrase pairs, using full-text scan")
         return _fallback_parse(text)
 
-    arabic_full = core_ar.group(1).strip()
-    english_full = core_en.group(1).strip() if core_en else ""
+    n = len(pairs)
+    print(f"  Extracted {n} unique lyric phrases")
 
-    # Split into lines
-    ar_lines = [l.strip() for l in arabic_full.split('\n') if l.strip()]
-    en_lines = [l.strip() for l in english_full.split('\n') if l.strip()]
+    # How many rounds to fill target_minutes
+    seg_dur = 8       # seconds per phrase
+    bridge_dur = 15   # seconds between rounds
+    round_dur = n * seg_dur + bridge_dur
+    n_rounds = max(4, round(target_minutes * 60 / round_dur))
 
-    # Build segment list — repeat lyrics across the full video duration
-    # Each line ~8 seconds, 4 rounds + bridges
-    animations = ["bounce", "swim", "walk", "bounce", "wave", "bounce", "swim", "bounce"]
-
-    for i, ar_line in enumerate(ar_lines):
-        en_line = en_lines[i] if i < len(en_lines) else ""
-        anim = animations[i % len(animations)]
-        segments.append({
-            "arabic":     ar_line,
-            "english":    en_line,
-            "animation":  anim,
-            "duration_sec": 8,
-        })
-
-    # Also parse structured sections (Line 1:, Line 2: etc.)
-    line_blocks = re.findall(
-        r'Line \d+:.*?\n(.*?)\nAnimation:(.*?)\nSinging:(.*?)(?=\n___|Line \d+:|$)',
-        text, re.DOTALL
-    )
-    if line_blocks:
-        segments = []  # replace with detailed parse
-        for ar_header, anim_desc, singing in line_blocks:
-            ar_match = re.search(r'[؀-ۿ][^،\n]{3,}', ar_header + singing)
-            en_match = re.search(r'English subtitle[s]?:\s*(.*)', ar_header + singing)
-            if ar_match:
-                segments.append({
-                    "arabic":     ar_match.group(0).strip(),
-                    "english":    en_match.group(1).strip() if en_match else "",
-                    "animation":  "swim" if "swim" in anim_desc.lower() else
-                                  "walk" if "walk" in anim_desc.lower() else "bounce",
-                    "duration_sec": 10,
-                })
-
-    # Expand into full 22-min video: 4 rounds of lyrics + bridges
-    if segments:
-        full = []
-        for round_num in range(4):
-            anim_cycle = ["bounce", "swim", "bounce", "walk"][round_num % 4]
-            for seg in segments:
-                new_seg = dict(seg)
-                new_seg["animation"] = anim_cycle
-                new_seg["duration_sec"] = 8 if round_num < 2 else 6
-                full.append(new_seg)
-            # Bridge: silent pause segment
-            full.append({
-                "arabic":     "",
-                "english":    "",
-                "animation":  "swim",
-                "duration_sec": 15,
+    animations = ["bounce", "swim", "walk", "wave", "bounce", "swim", "walk", "wave"]
+    segments = []
+    for round_num in range(n_rounds):
+        dur = 8 if round_num < n_rounds * 0.6 else 6
+        for idx, (ar, en) in enumerate(pairs):
+            segments.append({
+                "arabic":       ar,
+                "english":      en,
+                "animation":    animations[(round_num + idx) % len(animations)],
+                "duration_sec": dur,
+                "_unique_idx":  idx,   # index into the TTS audio file set
             })
-        segments = full
+        segments.append({
+            "arabic":       "",
+            "english":      "",
+            "animation":    "idle",
+            "duration_sec": bridge_dur,
+            "_unique_idx":  None,
+        })
 
     return segments
 
@@ -178,6 +162,7 @@ def _fallback_parse(text: str) -> list[dict]:
                 "english": "",
                 "animation": "bounce",
                 "duration_sec": 8,
+                "_unique_idx": len(segments),
             })
     return segments
 
@@ -221,27 +206,34 @@ def build_props(cfg: dict, segments_raw: list[dict], audio_dir: Path) -> dict:
     remotion_segments = []
     current_frame = fps * 2  # 2s intro before lyrics
 
-    for i, seg in enumerate(segments_raw):
-        audio_file = None
-        audio_path = audio_dir / f"seg_{i:03d}.mp3"
+    # Cache audio durations per unique phrase index (avoid ffprobe on every repeated segment)
+    dur_cache: dict[int, float] = {}
 
-        if audio_path.exists() and seg.get("arabic"):
-            dur_sec = max(get_audio_duration(audio_path), seg["duration_sec"])
+    for seg in segments_raw:
+        uid = seg.get("_unique_idx")
+        audio_file = None
+
+        if uid is not None:
+            audio_path = audio_dir / f"seg_{uid:03d}.mp3"
+            if audio_path.exists():
+                if uid not in dur_cache:
+                    dur_cache[uid] = get_audio_duration(audio_path)
+                dur_sec = max(dur_cache[uid], seg["duration_sec"])
+                audio_file = f"seg_{uid:03d}.mp3"
+            else:
+                dur_sec = seg["duration_sec"]
         else:
             dur_sec = seg["duration_sec"]
 
         dur_frames = round(dur_sec * fps)
 
-        if audio_path.exists() and seg.get("arabic"):
-            audio_file = f"seg_{i:03d}.mp3"
-
         remotion_segments.append({
-            "arabic":       seg["arabic"],
-            "english":      seg["english"],
-            "startFrame":   current_frame,
+            "arabic":         seg["arabic"],
+            "english":        seg["english"],
+            "startFrame":     current_frame,
             "durationFrames": dur_frames,
-            "audioFile":    audio_file,
-            "animation":    seg["animation"],
+            "audioFile":      audio_file,
+            "animation":      seg["animation"],
         })
         current_frame += dur_frames
 
@@ -270,32 +262,31 @@ def build_props(cfg: dict, segments_raw: list[dict], audio_dir: Path) -> dict:
 
 # ── Make meta sidecar ─────────────────────────────────────────────────────────
 
+def _load_gat():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("gat", ROOT / "scripts" / "generate_ai_thumbs.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
 def generate_thumbnail(cfg: dict, out_path: Path) -> bool:
     if not TOGETHER_KEY_FILE.exists():
         print("    no Together.ai key — skip thumbnail")
         return False
     try:
-        import urllib.request as req
         key = TOGETHER_KEY_FILE.read_text().strip()
         prompt = cfg.get("thumb_prompt",
             f"cute cartoon character for Arabic nursery rhyme {cfg['title_english']}, "
             f"children's YouTube thumbnail, bright vivid colors, no text, no letters, no words, no numbers, 1280x720"
         )
-        body = json.dumps({
-            "model": "black-forest-labs/FLUX.1-schnell-Free",
-            "prompt": prompt,
-            "width": 1280, "height": 720,
-            "steps": 4, "n": 1,
-            "response_format": "b64_json",
-        }).encode()
-        request = req.Request(TOGETHER_URL, data=body,
-            headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"})
-        with req.urlopen(request, timeout=60) as r:
-            data = json.loads(r.read())
-        img_b64 = data["data"][0]["b64_json"]
-        out_path.write_bytes(base64.b64decode(img_b64))
-        print(f"    thumb → {out_path.name} ({out_path.stat().st_size // 1024}KB)")
-        return True
+        gat = _load_gat()
+        img = gat.together_generate_image(prompt, key)
+        if img:
+            out_path.write_bytes(gat.resize_to_720p(img))
+            print(f"    thumb → {out_path.name} ({out_path.stat().st_size // 1024}KB)")
+            return True
+        print(f"    thumbnail failed: API returned no image")
+        return False
     except Exception as e:
         print(f"    thumbnail failed: {e}")
         return False
@@ -447,20 +438,25 @@ def main():
     # 2. Generate TTS for each segment
     if not args.skip_tts:
         print(f"  Generating TTS ({cfg['tts_voice']})...")
-        for i, seg in enumerate(segments):
-            if not seg.get("arabic"):
+        # Only generate TTS for unique phrases (indexed by _unique_idx)
+        seen = set()
+        for seg in segments:
+            uid = seg.get("_unique_idx")
+            if uid is None or not seg.get("arabic") or uid in seen:
                 continue
-            out_path = audio_dir / f"seg_{i:03d}.mp3"
+            seen.add(uid)
+            out_path = audio_dir / f"seg_{uid:03d}.mp3"
             if out_path.exists():
+                print(f"    [{uid:03d}] cached  {seg['arabic'][:35]}")
                 continue
             if not args.dry_run:
                 ok = asyncio.run(generate_tts_segment(seg["arabic"], cfg["tts_voice"], out_path))
                 if ok:
-                    print(f"    [{i:03d}] ✓ {seg['arabic'][:30]}")
+                    print(f"    [{uid:03d}] ✓ {seg['arabic'][:35]}")
                 else:
-                    print(f"    [{i:03d}] ✗ failed: {seg['arabic'][:30]}")
+                    print(f"    [{uid:03d}] ✗ failed: {seg['arabic'][:35]}")
             else:
-                print(f"    [{i:03d}] [DRY RUN] {seg['arabic'][:30]}")
+                print(f"    [{uid:03d}] [DRY RUN] {seg['arabic'][:35]}")
     else:
         print("  Skipping TTS (--skip-tts)")
 

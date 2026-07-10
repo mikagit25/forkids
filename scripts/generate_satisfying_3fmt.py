@@ -172,17 +172,17 @@ def generate_thumbnail(ep_key, ep, queue, out_name, lang):
     if lang == "ar":
         prompt += ", no text, no letters, no words, no numbers"
     try:
-        resp = requests.post(TOGETHER_URL, headers={
-            "Authorization": f"Bearer {api_key}", "Content-Type": "application/json"
-        }, json={"model": "black-forest-labs/FLUX.1-schnell",
-                 "prompt": prompt, "width": 1280, "height": 720,
-                 "steps": 4, "n": 1, "response_format": "b64_json"}, timeout=60)
-        if resp.status_code != 200:
-            print(f"  thumb error {resp.status_code}")
-            return False
-        thumb_path.write_bytes(__import__("base64").b64decode(resp.json()["data"][0]["b64_json"]))
-        print(f"  thumb → {thumb_path.name}")
-        return True
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("gat", ROOT / "scripts" / "generate_ai_thumbs.py")
+        gat = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(gat)
+        img = gat.together_generate_image(prompt, api_key)
+        if img:
+            thumb_path.write_bytes(gat.resize_to_720p(img))
+            print(f"  thumb → {thumb_path.name}")
+            return True
+        print(f"  thumb error: API returned no image")
+        return False
     except Exception as e:
         print(f"  thumb: {e}")
         return False

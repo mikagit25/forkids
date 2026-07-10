@@ -1,0 +1,212 @@
+# render_queue.yaml v2.1 (2026-07-08)
+# Статусы: done | pending | frozen | new_v2
+jobs:
+
+# DONE
+- {id: dance_animals_3d_20260630, status: done, desc: dance_animals 3D done}
+- {id: dance_fruits_3d_20260630, status: done, desc: dance_fruits 3D done}
+- {id: dance_vegetables_3d_20260630, status: done, desc: dance_vegetables 3D done}
+
+# FROZEN (v1, не запускать)
+- {id: generate_classical_visualizer_20260630, status: frozen, desc: '[FROZEN] Classical visualizer v1'}
+- {id: generate_classical_nature_20260630, status: frozen, desc: '[FROZEN] Classical in Nature v1'}
+- {id: generate_dance_shape_20260705, status: frozen, desc: '[FROZEN] Dance Shapes'}
+- {id: generate_shape_learn_20260705, status: frozen, desc: '[FROZEN] Shape Learn'}
+- {id: generate_ocd_vehicles_20260705, status: frozen, desc: '[FROZEN] OCD Vehicles'}
+- {id: generate_shape_roundelay_20260705, status: frozen, desc: '[FROZEN] Shape Roundelay'}
+- {id: generate_transform_block_1_20260705, status: frozen, desc: '[FROZEN] Transform Block 1'}
+- {id: generate_transform_block_2_20260705, status: frozen, desc: '[FROZEN] Transform Block 2'}
+- {id: generate_transform_block_3_20260705, status: frozen, desc: '[FROZEN] Transform Block 3'}
+- {id: generate_transform_block_4_20260705, status: frozen, desc: '[FROZEN] Transform Block 4'}
+- {id: generate_transform_block_5_20260705, status: frozen, desc: '[FROZEN] Transform Block 5'}
+- {id: generate_dance_pet_20260705, status: frozen, desc: '[FROZEN] Dance Pet 33 videos'}
+- {id: generate_dance_item_20260705, status: frozen, desc: '[FROZEN] Dance Item 25 videos'}
+- {id: generate_dance_fruits_group_20260705, status: frozen, desc: '[FROZEN] Dance Fruits Group'}
+- {id: generate_dance_fruits_2stage_20260705, status: frozen, desc: '[FROZEN] Dance Fruits 2-stage'}
+- {id: generate_satisfying_3fmt_20260705, status: frozen, desc: '[FROZEN] Satisfying 3-format'}
+- {id: generate_construction_music_20260705, status: frozen, desc: '[FROZEN] Construction Music'}
+- {id: generate_emotional_values_20260705, status: frozen, desc: '[FROZEN] Emotional Values'}
+- {id: generate_edu_entertain_20260705, status: frozen, desc: '[FROZEN] Edu-Entertain'}
+- {id: generate_nursery_id_20260705, status: frozen, desc: '[FROZEN] Nursery ID - до Phase 3-4'}
+- {id: generate_bubble_series_20260630, status: frozen, desc: '[FROZEN] Bubble series'}
+
+# PENDING (активные)
+- id: generate_shadow_puppet_animals_20260630
+  cmd: python3 scripts/generate_shadow_puppet.py --themes animals
+  log: logs/shadow_puppet.log
+  desc: 'Shadow Puppet: animals EN+AR'
+  added: '2026-06-30'
+  status: pending
+  track: kids_quality
+
+- id: generate_shadow_puppet_fruits_20260630
+  cmd: python3 scripts/generate_shadow_puppet.py --themes fruits
+  log: logs/shadow_puppet.log
+  desc: 'Shadow Puppet: fruits EN+AR'
+  added: '2026-06-30'
+  status: pending
+  track: kids_quality
+
+- id: generate_shadow_puppet_mixed_20260630
+  cmd: python3 scripts/generate_shadow_puppet.py --themes mixed
+  log: logs/shadow_puppet.log
+  desc: 'Shadow Puppet: mixed EN+AR'
+  added: '2026-06-30'
+  status: pending
+  track: kids_quality
+
+- id: generate_ocean_creatures_ocean_20260705
+  cmd: python3 scripts/generate_ocean_creatures.py --series ocean
+  log: logs/ocean_creatures.log
+  desc: 'Ocean World: 5 эп x EN+AR (emotions_ocean пилот)'
+  added: '2026-07-05'
+  status: pending
+  track: kids_quality
+
+- id: generate_ocean_creatures_sky_20260705
+  cmd: python3 scripts/generate_ocean_creatures.py --series sky
+  log: logs/ocean_creatures.log
+  desc: 'Sky & Nature: 4 эп x EN+AR'
+  added: '2026-07-05'
+  status: pending
+  track: kids_quality
+
+- id: generate_ocean_creatures_vehicles_20260705
+  cmd: python3 scripts/generate_ocean_creatures.py --series vehicles
+  log: logs/ocean_creatures.log
+  desc: 'Vehicles: 2 эп x EN+AR'
+  added: '2026-07-05'
+  status: pending
+  track: kids_quality
+
+- id: generate_nursery_ar_20260705
+  cmd: python3 scripts/generate_nursery_ar.py
+  log: logs/nursery_ar.log
+  desc: 'Nursery AR: Batta Batta/Ya Matar/Dajaja'
+  added: '2026-07-05'
+  status: pending
+  track: ar_kids
+
+- id: generate_nature_calm_20260705
+  cmd: python3 scripts/generate_nature_calm.py
+  log: logs/nature_calm.log
+  desc: 'Nature Calm: EN+AR (база для Calm Classics визуалов)'
+  added: '2026-07-05'
+  status: pending
+  track: reuse_now
+
+- id: generate_stars_bubbles_20260705
+  cmd: python3 scripts/generate_stars_bubbles.py
+  log: logs/stars_bubbles.log
+  desc: 'Stars & Bubbles: EN only — POP-звук'
+  added: '2026-07-05'
+  status: pending
+  track: kids_quality
+
+- id: generate_shorts_funnel_20260705
+  cmd: python3 scripts/generate_shorts_funnel.py --queue en
+  log: logs/shorts_funnel.log
+  desc: 'Shorts Funnel: нарезка из длинных EN+AR'
+  added: '2026-07-05'
+  status: pending
+  track: shorts
+
+# NEW v2 — Calm Classics (по фазам)
+- id: phase1_musopen_library_20260708
+  cmd: python3 scripts/download_musopen.py --limit 50
+  log: logs/musopen_download.log
+  desc: 'Phase 1: 30-50 записей Musopen → assets/music/classical/ + licenses.yaml'
+  added: '2026-07-08'
+  status: pending
+  track: calm_classics
+  phase: 1
+
+- id: phase2_sleep_classical_loop_20260708
+  cmd: python3 scripts/generate_sleep_classical.py --render-loops-only
+  log: logs/sleep_classical.log
+  desc: 'Phase 2: SleepClassicalLoop Remotion — night_bear/moon_clouds/warm_waves/rain_window'
+  added: '2026-07-08'
+  status: pending
+  track: calm_classics
+  phase: 2
+
+- id: phase3_sleep_chopin_01_20260708
+  cmd: python3 scripts/generate_sleep_classical.py --program sleep_chopin_01
+  log: logs/sleep_classical.log
+  desc: 'Phase 3: Шопен ноктюрны — moon_clouds, 1h+3h+8h'
+  added: '2026-07-08'
+  status: pending
+  track: calm_classics
+  phase: 3
+
+- id: phase3_sleep_debussy_01_20260708
+  cmd: python3 scripts/generate_sleep_classical.py --program sleep_debussy_01
+  log: logs/sleep_classical.log
+  desc: 'Phase 3: Дебюсси/Сати — warm_waves'
+  added: '2026-07-08'
+  status: pending
+  track: calm_classics
+  phase: 3
+
+- id: phase3_focus_bach_01_20260708
+  cmd: python3 scripts/generate_sleep_classical.py --program focus_bach_01
+  log: logs/sleep_classical.log
+  desc: 'Phase 3: Бах — rain_window, фокус'
+  added: '2026-07-08'
+  status: pending
+  track: calm_classics
+  phase: 3
+
+- id: phase3_focus_mozart_01_20260708
+  cmd: python3 scripts/generate_sleep_classical.py --program focus_mozart_01
+  log: logs/sleep_classical.log
+  desc: 'Phase 3: Моцарт — медленные части, фокус'
+  added: '2026-07-08'
+  status: pending
+  track: calm_classics
+  phase: 3
+
+- id: phase3_sleep_lullaby_01_20260708
+  cmd: python3 scripts/generate_sleep_classical.py --program sleep_lullaby_01
+  log: logs/sleep_classical.log
+  desc: 'Phase 3: Детская колыбельная (Brahms/Schubert/Satie/Bach) — night_bear → EN'
+  added: '2026-07-08'
+  status: pending
+  track: kids_sleep
+  phase: 3
+
+- id: phase3_sleep_shorts_20260708
+  cmd: python3 scripts/make_sleep_short.py --all
+  log: logs/sleep_shorts.log
+  desc: 'Phase 3: 45с шортсы из лупов Calm Classics'
+  added: '2026-07-08'
+  status: pending
+  track: shorts
+  phase: 3
+
+- id: phase3_analytics_20260708
+  cmd: python3 scripts/analytics_report.py
+  log: logs/analytics.log
+  desc: 'Phase 3: Еженедельный аналитический отчёт'
+  added: '2026-07-08'
+  status: pending
+  track: infra
+  phase: 3
+
+- id: phase5_song_suno_20260708
+  cmd: python3 scripts/generate_song_suno.py --song goodnight_little_bear
+  log: logs/suno.log
+  desc: 'Phase 5: Suno Goodnight Little Bear — 65 BPM, F major'
+  added: '2026-07-08'
+  status: pending
+  track: kids_song
+  phase: 5
+
+- id: phase5_bubble_pop_song_20260708
+  cmd: python3 scripts/generate_bubble_pop_song.py
+  log: logs/bubble_pop.log
+  desc: 'Phase 5: bubble_pop_song — фирменная песня EN'
+  added: '2026-07-08'
+  status: pending
+  track: kids_song
+  phase: 5

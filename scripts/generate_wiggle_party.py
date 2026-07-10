@@ -224,18 +224,22 @@ def make_desc(lang: str, title: str, theme_key: str) -> str:
     )
 
 # ── Thumbnail ──────────────────────────────────────────────────────────────────
+def _load_gat():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("gat", ROOT / "scripts" / "generate_ai_thumbs.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
 def generate_thumb(prompt: str, out_path: Path) -> bool:
     try:
-        resp = requests.post(
-            TOGETHER_URL,
-            headers={"Authorization": f"Bearer {TOGETHER_KEY}", "Content-Type": "application/json"},
-            json={"model": "black-forest-labs/FLUX.1-schnell", "prompt": prompt,
-                  "width": 1280, "height": 720, "steps": 4, "n": 1},
-            timeout=60,
-        )
-        resp.raise_for_status()
-        out_path.write_bytes(base64.b64decode(resp.json()["data"][0]["b64_json"]))
-        return True
+        gat = _load_gat()
+        img = gat.together_generate_image(prompt, TOGETHER_KEY)
+        if img:
+            out_path.write_bytes(gat.resize_to_720p(img))
+            return True
+        print(f"  Thumb error: API returned no image")
+        return False
     except Exception as e:
         print(f"  Thumb error: {e}")
         return False

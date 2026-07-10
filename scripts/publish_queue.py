@@ -29,7 +29,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 QUEUE_DIR    = ROOT / "output" / "queue"
 QUEUE_AR_DIR = ROOT / "output" / "queue_ar"
-QUEUE_ID_DIR = ROOT / "output" / "queue_id"
+QUEUE_ID_DIR = ROOT / "output" / "queue_id"   # Classical Night Relax (@ClassicalNightRelax)
 UPLOADED_DIR = ROOT / "uploaded"
 PLAN_PATH    = ROOT / "config" / "weekly_plan.yaml"
 
@@ -233,7 +233,7 @@ def main():
     parser.add_argument("--no-schedule", action="store_true", default=False,
                         help="Upload as public immediately (default: use upload_day/time from meta)")
     parser.add_argument("--queue", choices=["en", "ar", "id"], default="en",
-                        help="Queue: en=output/queue/, ar=output/queue_ar/, id=output/queue_id/")
+                        help="Queue: en=output/queue/, ar=output/queue_ar/, id=output/queue_id/ (Classical Night Relax)")
     args = parser.parse_args()
 
     active_queue_dir = QUEUE_DIRS[args.queue]

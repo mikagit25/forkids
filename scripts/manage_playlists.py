@@ -176,17 +176,20 @@ def add_to_playlists(youtube, video_id: str, video_type: str,
 
 
 def cmd_create_all(youtube):
+    """Create EN-only playlists (no language tag). AR/ID playlists use --create-ar / --create-id."""
     playlists = load_playlists()
     created = 0
     for pl in playlists:
-        if pl.get("id"):
+        if pl.get("language") in ("ar", "id"):
+            continue  # AR/ID playlists must be created on their own channel
+        if pl.get("id") and not pl["id"].startswith("PLACEHOLDER"):
             log.info(f"  '{pl['name']}' already exists: {pl['id']}")
             continue
         playlist_id = create_playlist(youtube, pl["name"], pl["description"].strip())
         pl["id"] = playlist_id
         created += 1
     save_playlists(playlists)
-    log.info(f"Created {created} new playlists, saved to {PLAYLISTS_PATH}")
+    log.info(f"Created {created} new EN playlists, saved to {PLAYLISTS_PATH}")
 
 
 def cmd_list(youtube):
@@ -224,10 +227,11 @@ def cmd_create_ar(youtube, force: bool = False):
     for pl in playlists:
         if pl.get("language") != "ar":
             continue
-        if pl.get("id") and not force:
-            log.info(f"  '{pl['name']}' already exists: {pl['id']}  (use --force to recreate)")
+        existing_id = pl.get("id", "")
+        if existing_id and not existing_id.startswith("PLACEHOLDER") and not force:
+            log.info(f"  '{pl['name']}' already exists: {existing_id}  (use --force to recreate)")
             continue
-        playlist_id = create_playlist(youtube, pl["name"], pl["description"].strip())
+        playlist_id = create_playlist(youtube, pl["name"], pl.get("description", "").strip())
         pl["id"] = playlist_id
         created += 1
     save_playlists(playlists)
@@ -292,8 +296,9 @@ def cmd_create_id(youtube, force: bool = False):
     for pl in playlists:
         if pl.get("language") != "id":
             continue
-        if pl.get("id") and not force:
-            log.info(f"  '{pl['name']}' already exists: {pl['id']}  (use --force to recreate)")
+        existing_id = pl.get("id", "")
+        if existing_id and not existing_id.startswith("PLACEHOLDER") and not force:
+            log.info(f"  '{pl['name']}' already exists: {existing_id}  (use --force to recreate)")
             continue
         playlist_id = create_playlist(youtube, pl["name"], pl.get("description", "").strip())
         pl["id"] = playlist_id

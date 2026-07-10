@@ -154,6 +154,27 @@ def make_meta(block_key, vid_key, lang):
         }
 
 
+def generate_thumbnail(prompt: str, out_path: Path) -> bool:
+    if out_path.exists():
+        return True
+    try:
+        import importlib.util
+        key = TOGETHER_KEY_FILE.read_text().strip()
+        spec = importlib.util.spec_from_file_location("gat", ROOT / "scripts" / "generate_ai_thumbs.py")
+        gat = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(gat)
+        img = gat.together_generate_image(prompt, key)
+        if img:
+            out_path.write_bytes(gat.resize_to_720p(img))
+            print(f"  ✓ thumb → {out_path.name}")
+            return True
+        print(f"  ! thumb failed: API returned no image")
+        return False
+    except Exception as e:
+        print(f"  ! thumb failed: {e}")
+        return False
+
+
 def process_video(block_key, vid_key, ep_idx, dry_run, regen_meta):
     vid  = BLOCKS[block_key]["videos"][vid_key]
     name = f"transform_{vid_key}_{DATE_STR}.mp4"
@@ -185,6 +206,17 @@ def process_video(block_key, vid_key, ep_idx, dry_run, regen_meta):
                 with open(mp, 'w', encoding='utf-8') as f:
                     yaml.dump(meta, f, allow_unicode=True)
             print(f"  Meta ({lang}): {mp.name}")
+
+        tp = queue / f"thumb_{Path(name).stem}.png"
+        no_text = ", no text, no letters, no words, no numbers" if lang == "ar" else ""
+        thumb_prompt = (
+            f"abstract baby animation: {vid['name_en'].lower()}, colorful glowing shapes, "
+            f"dark background, accent color {vid['accent']}, smooth motion, "
+            f"children's YouTube thumbnail{no_text}"
+        )
+        if not dry_run:
+            generate_thumbnail(thumb_prompt, tp)
+            time.sleep(1)
 
     return ok
 

@@ -1,0 +1,14 @@
+id: sleep_swan_lake_02
+title_en: "Swan Lake — Act III & IV 🦢 {duration} | Tchaikovsky | Classical Night Relax"
+video_type: sleep_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: moon_clouds
+loop_duration_sec: 240
+durations_hours: [1, 3, 8]
+tracks:
+  - {id: tchaikovsky_swan_lake_op_20_act_iii_pt_1,            composer: "Pyotr Ilyich Tchaikovsky", piece: "Swan Lake Op.20 — Act III Pt.1",              duration_sec: 903,  mood: dramatic}
+  - {id: tchaikovsky_swan_lake_op_20_act_iii_concl_allegro,   composer: "Pyotr Ilyich Tchaikovsky", piece: "Swan Lake Op.20 — Act III Concl, Allegro",   duration_sec: 1432, mood: triumphant}
+  - {id: tchaikovsky_swan_lake_op_20_act_iv_intro,            composer: "Pyotr Ilyich Tchaikovsky", piece: "Swan Lake Op.20 — Act IV Intro",              duration_sec: 1262, mood: solemn}
+tags: [tchaikovsky, swan lake, ballet music, sleep music, classical music, calm classics, orchestral, romantic era]

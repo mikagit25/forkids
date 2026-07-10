@@ -214,17 +214,18 @@ def generate_thumbnail(video_id: str, out_path: Path, lang: str) -> bool:
         return False
     notext = "" if lang in ("en", "id") else ", no text, no letters, no words, no numbers"
     prompt = PROMPTS.get(video_id, "abstract baby animation") + f", Pixar 3D style, YouTube thumbnail{notext}"
-    import urllib.request
     try:
-        payload = json.dumps({"model": TOGETHER_MODEL, "prompt": prompt,
-                              "width": 1280, "height": 720, "steps": 4, "n": 1}).encode()
-        req = urllib.request.Request(TOGETHER_URL, data=payload,
-            headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=90) as resp:
-            data = json.loads(resp.read())
-        out_path.write_bytes(base64.b64decode(data["data"][0]["b64_json"]))
-        print(f"    ✓ thumb → {out_path.name}")
-        return True
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("gat", ROOT / "scripts" / "generate_ai_thumbs.py")
+        gat = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(gat)
+        img = gat.together_generate_image(prompt, key)
+        if img:
+            out_path.write_bytes(gat.resize_to_720p(img))
+            print(f"    ✓ thumb → {out_path.name}")
+            return True
+        print(f"    ! thumb failed: API returned no image")
+        return False
     except Exception as e:
         print(f"    ! thumb failed: {e}"); return False
 

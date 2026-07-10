@@ -178,6 +178,151 @@ playlists:
   video_types:
   - dance_id
   id: PL_M_mng9IOADOQWtePPjtudG3Cd5LAAr-
+- key: classical_en
+  name: 🎻 Classical Music for Babies — 1 Hour | Happy Bear Kids
+  description: '1-hour classical music videos for babies and toddlers. Bach, Chopin,
+    Mozart,
+
+    Beethoven and Tchaikovsky with beautiful animated visuals.
+
+    Perfect for sleep, focus, and relaxation. #ClassicalMusic #BabySleep
+
+    '
+  video_types:
+  - classical_visualizer
+  - lullaby_long
+  id: PLS03DgaW_KeU
+- key: classical_ar
+  name: 🎻 موسيقى كلاسيكية للأطفال | هابي بير كيدز
+  language: ar
+  description: 'ساعة كاملة من الموسيقى الكلاسيكية للرضع والأطفال. موتسارت وبيتهوفن
+    وباخ مع مشاهد بصرية رائعة.
+
+    مثالية للنوم والتركيز والاسترخاء. #موسيقى_كلاسيكية #نوم_الرضع
+
+    '
+  video_types:
+  - classical_visualizer_ar
+  - lullaby_long_ar
+  id: PLUiWI8pHTGJA
+- key: classical_id
+  name: 🎻 Musik Klasik untuk Bayi | Happy Bear Kids Indonesia
+  language: id
+  description: '1 jam musik klasik untuk bayi dan balita. Mozart, Bach, Beethoven
+    dengan visual animasi indah.
+
+    Sempurna untuk tidur dan relaksasi. #MusikKlasik #TidurBayi
+
+    '
+  video_types:
+  - classical_visualizer_id
+  - lullaby_long_id
+  id: PLDQHWlZZxx1w
+- key: nature_en
+  name: 🌿 Classical in Nature — Baby Relaxation | Happy Bear Kids
+  description: 'Classical music paired with beautiful nature scenes. Bach in a forest,
+    Chopin under the moon.
+
+    Peaceful baby relaxation. #ClassicalNature #BabyRelax
+
+    '
+  video_types:
+  - nature_classical
+  - nature_calm
+  id: PLNpwmF9uRD6c
+- key: nature_ar
+  name: 🌿 الطبيعة الهادئة للأطفال | هابي بير كيدز
+  language: ar
+  description: 'موسيقى كلاسيكية مع مشاهد طبيعة جميلة. باخ في الغابة، شوبان تحت ضوء
+    القمر. #طبيعة_هادئة
+
+    '
+  video_types:
+  - nature_classical_ar
+  - nature_calm_ar
+  id: PLGh0OyOIEJ1s
+- key: nature_id
+  name: 🌿 Alam Tenang untuk Bayi | Happy Bear Kids Indonesia
+  language: id
+  description: 'Musik klasik dengan pemandangan alam yang indah. Sempurna untuk relaksasi
+    bayi. #AlamTenang
+
+    '
+  video_types:
+  - nature_classical_id
+  - nature_calm_id
+  id: PLG7eJ7j5R_PA
+- key: special_en
+  name: 🌟 Special Videos — Baby Sensory | Happy Bear Kids
+  description: 'Shadow puppet, ocean creatures, transform blocks and more.
+
+    Unique sensory videos for babies and toddlers. #BabySensory #SpecialVideos
+
+    '
+  video_types:
+  - shadow_puppet
+  - stars_bubbles
+  - transform_block
+  - special_mechanics
+  - ocd_vehicles
+  - dance_shape
+  - shape_roundelay
+  - satisfying_loop
+  - shapes_long
+  - character_dialogue
+  id: PLBeEAbmEQRTA
+- key: special_ar
+  name: 🌟 فيديوهات خاصة للأطفال | هابي بير كيدز
+  language: ar
+  description: 'دمى ظل وشخصيات المحيط وتحولات بصرية رائعة للرضع. #تحفيز_حسي #فيديوهات_خاصة
+
+    '
+  video_types:
+  - shadow_puppet_ar
+  - transform_block_ar
+  - special_mechanics_ar
+  - dance_shape_ar
+  - satisfying_loop
+  - shapes_long
+  - character_dialogue
+  id: PLCUTQbnf2v6o
+- key: special_id
+  name: 🌟 Video Spesial untuk Bayi | Happy Bear Kids Indonesia
+  language: id
+  description: 'Wayang bayangan, makhluk laut, dan transformasi visual untuk bayi.
+    #SensorisBayi
+
+    '
+  video_types:
+  - shadow_puppet_id
+  - transform_block_id
+  - special_mechanics_id
+  - satisfying_loop
+  - shapes_long
+  - character_dialogue
+  id: PLQ-fFlrtYXeQ
+- key: nursery_id_pl
+  name: 🎵 Lagu Anak Indonesia | Happy Bear Kids
+  language: id
+  description: 'Lagu anak-anak Indonesia populer — Balonku, Cicak, Naik Kereta, Pelangi
+    dan lainnya.
+
+    Animasi lucu untuk bayi dan balita. #LaguAnak #NurseryRhyme
+
+    '
+  video_types:
+  - nursery_id
+  id: PLeKiyD7Qxpzg
+- key: nursery_ar_pl
+  name: 🎵 أغاني الأطفال العربية | هابي بير كيدز
+  language: ar
+  description: 'أغاني أطفال عربية شهيرة — بطة بطة، يا مطر والمزيد. رسوم متحركة للرضع.
+    #أغاني_أطفال
+
+    '
+  video_types:
+  - nursery_ar
+  id: PLGJT21e5MfFs
 - key: shorts
   name: 🐻 Happy Bear Shorts — 60 Second Fun
   description: 'Quick 60-second educational videos for babies and toddlers!

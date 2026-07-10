@@ -9,10 +9,10 @@ THEME ROTATION approach:
   cannot detect duplicate content across videos.
 
   Shared Remotion loop files (12 total: 4 themes × 3 channels) are
-  rendered once and reused for all 7 classical pieces — only FFmpeg
+  rendered once and reused for all 18 classical pieces — only FFmpeg
   assembly differs per piece.
 
-7 pieces × 3 channels = 21 videos total.
+18 pieces × 3 channels = 54 videos total.
 
 Usage:
   python3 scripts/generate_classical_visualizer.py
@@ -38,7 +38,8 @@ QUEUE_EN  = ROOT / "output" / "queue"
 QUEUE_AR  = ROOT / "output" / "queue_ar"
 QUEUE_ID  = ROOT / "output" / "queue_id"
 TMP_DIR   = ROOT / "output" / "tmp_classical"
-MUSIC_DIR = ROOT / "assets" / "music" / "mozart"
+MUSIC_DIR  = ROOT / "assets" / "music" / "mozart"
+MUSIC_DIR2 = ROOT / "assets" / "music" / "classical" / "Music"
 
 TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 TOGETHER_URL      = "https://api.together.xyz/v1/images/generations"
@@ -61,13 +62,26 @@ THEME_COLORS = {
 # Base offset into THEME_ORDER for the first visual segment of each piece (EN channel).
 # AR shifts by +1, ID shifts by +2 — so each channel sees a different theme first.
 PIECE_BASE = {
-    "fantasia":      0,   # en: stars  ar: ocean  id: garden
-    "mozart_romance": 1,  # en: ocean  ar: garden id: forest
-    "mozart_minuet":  2,  # en: garden ar: forest id: stars
-    "mozart_rondo":   3,  # en: forest ar: stars  id: ocean
-    "beethoven_5":   0,   # en: stars  ar: ocean  id: garden
-    "verdi_traviata": 1,  # en: ocean  ar: garden id: forest
-    "flute_fantaisie": 2, # en: garden ar: forest id: stars
+    # original 7
+    "fantasia":           0,   # en: stars  ar: ocean  id: garden
+    "mozart_romance":     1,   # en: ocean  ar: garden id: forest
+    "mozart_minuet":      2,   # en: garden ar: forest id: stars
+    "mozart_rondo":       3,   # en: forest ar: stars  id: ocean
+    "beethoven_5":        0,   # en: stars  ar: ocean  id: garden
+    "verdi_traviata":     1,   # en: ocean  ar: garden id: forest
+    "flute_fantaisie":    2,   # en: garden ar: forest id: stars
+    # new 11
+    "bach_cello_suite":       3,   # en: forest
+    "chopin_nocturne_1":      0,   # en: stars
+    "chopin_nocturne_2":      1,   # en: ocean
+    "beethoven_moonlight":    2,   # en: garden
+    "flute_etude_3":          3,   # en: forest
+    "flute_etude_6":          0,   # en: stars
+    "swan_lake_act2_pt1":     1,   # en: ocean  (blue water fits)
+    "swan_lake_act2_concl":   2,   # en: garden
+    "swan_lake_act3_pt1":     1,   # en: ocean
+    "swan_lake_act3_concl":   3,   # en: forest
+    "swan_lake_act4_intro":   1,   # en: ocean
 }
 
 LANG_SHIFT = {"en": 0, "ar": 1, "id": 2}
@@ -356,9 +370,498 @@ VIDEOS = {
             "dengan benang ketenangan yang tak terputus."
         ),
     },
+
+    # ── New pieces from Google Drive ─────────────────────────────────────────
+
+    "bach_cello_suite": {
+        "music_file":  "Cello Suite no. 1 - Prelude in G, BWV 1007.mp3",
+        "duration_min": 60,
+        "composer_en": "Johann Sebastian Bach",
+        "work_en":     "Cello Suite No. 1 in G major, BWV 1007 — Prélude",
+        "work_ar":     "جناح التشيللو رقم 1 في صول الكبير، BWV 1007 — البريلود",
+        "work_id":     "Suite Cello No. 1 dalam G mayor, BWV 1007 — Prélude",
+        "year":        "1720",
+        "license_en":  "Public Domain (c.1720) — open source cello recording",
+        "license_ar":  "ملكية عامة (حوالي 1720) — تسجيل تشيللو مفتوح المصدر",
+        "license_id":  "Domain Publik (c.1720) — rekaman cello sumber terbuka",
+        "intro_en": (
+            "Johann Sebastian Bach's Cello Suite No. 1 Prélude is one of the most "
+            "recognised and beloved pieces ever written for a solo instrument. "
+            "Composed around 1720, this single unbroken stream of arpeggios unfolds "
+            "like a meditation — each note flowing naturally into the next without pause. "
+            "Its gentle rocking motion and pure, unaccompanied cello tone have made it "
+            "a favourite for quiet reflection, study, and deep sleep. "
+            "In this one-hour version the Prélude repeats in a seamless loop, "
+            "turning two minutes of genius into an hour-long sonic sanctuary."
+        ),
+        "intro_ar": (
+            "بريلود جناح التشيللو رقم 1 لباخ هو أحد أكثر الأعمال شهرةً وعمقًا "
+            "في تاريخ الموسيقى المكتوبة لآلة منفردة. "
+            "أُلِّف حوالي عام 1720، وهذا التدفق المتواصل من الأرپيجيات "
+            "يتكشّف كأنه تأمل عميق — كل نغمة تسيل إلى التالية دون توقف. "
+            "حركته الهادئة المتأرجحة ونقاء صوت التشيللو المنفرد جعلاه مفضلًا "
+            "للتأمل والدراسة والنوم العميق. "
+            "في هذا الإصدار الذي يمتد ساعة كاملة يتكرر البريلود في حلقة سلسة."
+        ),
+        "intro_id": (
+            "Prélude dari Cello Suite No. 1 Bach adalah salah satu karya yang paling "
+            "dikenal dan dicintai yang pernah ditulis untuk instrumen solo. "
+            "Digubah sekitar tahun 1720, aliran arpeggio yang tak terputus ini "
+            "terbuka seperti meditasi — setiap not mengalir alami ke not berikutnya tanpa jeda. "
+            "Gerakan mengayun lembut dan nada cello murni tanpa iringan menjadikannya "
+            "favorit untuk refleksi tenang, belajar, dan tidur mendalam. "
+            "Dalam versi satu jam ini Prélude berulang dalam putaran mulus."
+        ),
+    },
+
+    "chopin_nocturne_1": {
+        "music_file":  "Nocturne in B flat minor, Op. 9 no. 1.mp3",
+        "duration_min": 60,
+        "composer_en": "Frédéric Chopin",
+        "work_en":     "Nocturne in B♭ minor, Op. 9 No. 1",
+        "work_ar":     "نوكتورن في سي♭ الصغير، أوبوس 9 رقم 1",
+        "work_id":     "Nocturne dalam B♭ minor, Op. 9 No. 1",
+        "year":        "1830",
+        "license_en":  "Public Domain (1830) — open source piano recording",
+        "license_ar":  "ملكية عامة (1830) — تسجيل بيانو مفتوح المصدر",
+        "license_id":  "Domain Publik (1830) — rekaman piano sumber terbuka",
+        "intro_en": (
+            "Frédéric Chopin (1810–1849) revolutionised piano music with his Nocturnes — "
+            "short, introspective pieces written for the night. "
+            "The Nocturne in B♭ minor, Op. 9 No. 1 is one of his earliest and most hauntingly "
+            "beautiful: a long, flowing melody over a gently rocking left-hand accompaniment. "
+            "Its melancholic lyricism touches something deep and universal — "
+            "a quiet ache, a night reverie, a tender farewell. "
+            "In this one-hour version it plays on a continuous loop, "
+            "creating an unbroken atmosphere of moonlit calm — perfect for sleep, "
+            "meditation, or late-night study."
+        ),
+        "intro_ar": (
+            "أحدث فريدريك شوبان (1810–1849) ثورة في موسيقى البيانو بنوكتورناته "
+            "— مقطوعات قصيرة تأملية كُتبت لأجواء الليل. "
+            "نوكتورن سي♭ الصغير أوبوس 9 رقم 1 من أجمل ما كتبه وأعمقه: "
+            "لحن متدفق طويل فوق مصاحبة يسرى تتأرجح بهدوء. "
+            "غنائيته الحزينة تلمس شيئًا عميقًا وإنسانيًا — "
+            "ألم هادئ، حلم ليلي، وداع رقيق. "
+            "في هذا الإصدار يتكرر على مدى ساعة كاملة "
+            "في هدوء ضوء القمر — مثالي للنوم أو التأمل أو الدراسة الليلية."
+        ),
+        "intro_id": (
+            "Frédéric Chopin (1810–1849) merevolusi musik piano dengan Noturnnya "
+            "— karya-karya pendek dan introspektif yang ditulis untuk malam hari. "
+            "Nocturne dalam B♭ minor, Op. 9 No. 1 adalah salah satu yang paling "
+            "awal dan paling memesona: melodi panjang mengalir di atas iringan tangan kiri "
+            "yang berayun lembut. "
+            "Lirisisme melankolisnya menyentuh sesuatu yang dalam dan universal — "
+            "kerinduan diam, lamunan malam, perpisahan lembut. "
+            "Dalam versi satu jam ini dimainkan dalam putaran terus-menerus, "
+            "menciptakan suasana tenang cahaya bulan yang tak terputus."
+        ),
+    },
+
+    "chopin_nocturne_2": {
+        "music_file":  "Nocturne in E flat major, Op. 9 no. 2.mp3",
+        "duration_min": 60,
+        "composer_en": "Frédéric Chopin",
+        "work_en":     "Nocturne in E♭ major, Op. 9 No. 2",
+        "work_ar":     "نوكتورن في مي♭ الكبير، أوبوس 9 رقم 2",
+        "work_id":     "Nocturne dalam E♭ mayor, Op. 9 No. 2",
+        "year":        "1830",
+        "license_en":  "Public Domain (1830) — open source piano recording",
+        "license_ar":  "ملكية عامة (1830) — تسجيل بيانو مفتوح المصدر",
+        "license_id":  "Domain Publik (1830) — rekaman piano sumber terbuka",
+        "intro_en": (
+            "Chopin's Nocturne in E♭ major, Op. 9 No. 2 is perhaps the most famous "
+            "Nocturne ever written — its opening melody instantly recognisable to "
+            "millions of listeners around the world. "
+            "Composed in 1830, this piece unfolds with an almost vocal quality, "
+            "the piano singing a long-breathed, ornate melody of extraordinary tenderness. "
+            "It is gentle, luminous, and deeply comforting — one of the best pieces "
+            "in all of music for easing a busy mind into stillness. "
+            "In this one-hour looped version it fills the space with a continuous "
+            "thread of warmth, ideal for sleep, relaxation, or peaceful background music."
+        ),
+        "intro_ar": (
+            "نوكتورن شوبان في مي♭ الكبير أوبوس 9 رقم 2 ربما هو أشهر نوكتورن "
+            "كُتب على الإطلاق — لحنه الافتتاحي يُعرِّفه الملايين حول العالم فورًا. "
+            "أُلِّف عام 1830، وتتكشّف هذه المقطوعة بجودة صوتية شبه غنائية، "
+            "البيانو يُغني لحنًا طويل النَّفَس مزيّنًا برقة استثنائية. "
+            "هادئ، مُضيء، ومريح في أعماقه — من أجمل ما كُتب في تاريخ الموسيقى "
+            "لتهدئة العقل المشغول. "
+            "في هذا الإصدار الذي يمتد ساعة كاملة يملأ المكان بخيط متواصل من الدفء."
+        ),
+        "intro_id": (
+            "Nocturne Chopin dalam E♭ mayor, Op. 9 No. 2 mungkin adalah Nocturne "
+            "paling terkenal yang pernah ditulis — melodinya yang pembuka langsung "
+            "dikenali jutaan pendengar di seluruh dunia. "
+            "Digubah tahun 1830, karya ini terbuka dengan kualitas hampir vokal, "
+            "piano menyanyikan melodi panjang berhias dengan kelembutan luar biasa. "
+            "Lembut, bercahaya, dan sangat menghibur — salah satu karya terbaik "
+            "dalam seluruh musik untuk menenangkan pikiran yang sibuk. "
+            "Dalam versi satu jam ini mengisi ruang dengan benang kehangatan yang tak terputus."
+        ),
+    },
+
+    "beethoven_moonlight": {
+        "music_file":  "Piano Sonata no. 14 in C#m 'Moonlight', Op. 27 no. 2 - I. Adagio sostenuto.mp3",
+        "duration_min": 60,
+        "composer_en": "Ludwig van Beethoven",
+        "work_en":     "Piano Sonata No. 14 «Moonlight» in C♯ minor, Op. 27 No. 2 — I. Adagio sostenuto",
+        "work_ar":     "سوناتا البيانو رقم 14 «ضوء القمر» في دو♯ الصغير، أوبوس 27 رقم 2 — الأداجيو",
+        "work_id":     "Sonata Piano No. 14 «Moonlight» dalam C♯ minor, Op. 27 No. 2 — I. Adagio sostenuto",
+        "year":        "1801",
+        "license_en":  "Public Domain (1801) — open source piano recording",
+        "license_ar":  "ملكية عامة (1801) — تسجيل بيانو مفتوح المصدر",
+        "license_id":  "Domain Publik (1801) — rekaman piano sumber terbuka",
+        "intro_en": (
+            "Beethoven's «Moonlight» Sonata (1801) is one of the most iconic piano pieces "
+            "ever written. Its first movement — Adagio sostenuto — opens with three notes "
+            "repeating in a hypnotic triplet pattern beneath a singing melody, "
+            "evoking moonlight rippling across still water. "
+            "Beethoven himself described the sonata as a work of profound personal expression, "
+            "and listeners have felt that intimacy for over two centuries. "
+            "The Adagio sostenuto alone runs just over five minutes, "
+            "making it perfect for looping: in this one-hour version "
+            "that quiet, moonlit world plays on without interruption — "
+            "ideal for falling asleep, deep focus, or late-night reflection."
+        ),
+        "intro_ar": (
+            "«سوناتا ضوء القمر» لبيتهوفن (1801) هي واحدة من أكثر مقطوعات البيانو "
+            "شهرةً في التاريخ. تفتتح حركتها الأولى — أداجيو سوستينوتو — "
+            "بثلاث نغمات تتكرر في نمط ثلاثي تنويمي تحت لحن غنائي رائع، "
+            "مستحضرةً ضوء القمر يتموّج فوق مياه ساكنة. "
+            "الحركة الأولى تمتد قليلًا فوق خمس دقائق مما يجعلها مثالية للتكرار: "
+            "في هذا الإصدار الذي يمتد ساعة كاملة "
+            "يستمر ذلك العالم الهادئ المضاء بالقمر دون انقطاع."
+        ),
+        "intro_id": (
+            "Sonata «Moonlight» Beethoven (1801) adalah salah satu karya piano "
+            "paling ikonik yang pernah ditulis. Gerakan pertamanya — Adagio sostenuto — "
+            "dibuka dengan tiga not yang berulang dalam pola triplet hipnotis "
+            "di bawah melodi menyanyi, membangkitkan cahaya bulan beriak di atas air tenang. "
+            "Adagio sostenuto saja berdurasi sedikit lebih dari lima menit, "
+            "membuatnya sempurna untuk diputar berulang: dalam versi satu jam ini "
+            "dunia sunyi berlumur cahaya bulan itu bermain tanpa gangguan — "
+            "ideal untuk tertidur, fokus mendalam, atau refleksi larut malam."
+        ),
+    },
+
+    "flute_etude_3": {
+        "music_file":  "24 Etudes for Flute, Op. 15 - III. Allegro con brio in G major.mp3",
+        "duration_min": 60,
+        "composer_en": "Ernesto Köhler",
+        "work_en":     "24 Etudes for Flute, Op. 15 — No. 3 in G major, Allegro con brio",
+        "work_ar":     "24 تمريناً للناي، أوبوس 15 — رقم 3 في صول الكبير، أليغرو كون بريو",
+        "work_id":     "24 Etudes untuk Seruling, Op. 15 — No. 3 dalam G mayor, Allegro con brio",
+        "year":        "1890",
+        "license_en":  "Public Domain (c.1890) — open source flute recording",
+        "license_ar":  "ملكية عامة (حوالي 1890) — تسجيل ناي مفتوح المصدر",
+        "license_id":  "Domain Publik (c.1890) — rekaman seruling sumber terbuka",
+        "intro_en": (
+            "Ernesto Köhler (1849–1907) was a virtuoso flutist and the principal flutist "
+            "of the Imperial Opera in St. Petersburg, and his 24 Etudes for Flute, Op. 15 "
+            "are among the most beloved and widely performed flute studies ever written. "
+            "Etude No. 3 in G major is marked Allegro con brio — with spirit and brilliance — "
+            "a bright, running cascade of notes that dances through the upper registers "
+            "of the flute with joyful lightness. "
+            "At just over three minutes long, it loops beautifully: "
+            "in this one-hour version, the clear singing tone of the solo flute "
+            "creates a gentle, bright atmosphere perfect for babies, focused play, "
+            "or light, refreshing background music."
+        ),
+        "intro_ar": (
+            "إرنستو كولر (1849–1907) كان عازف ناي بارعًا ورئيس الناي "
+            "في أوبرا الإمبراطورية في سانت بطرسبورغ، "
+            "وتمارينه الأربعة والعشرون للناي أوبوس 15 من أكثر دراسات الناي "
+            "شهرةً وانتشارًا في العالم. "
+            "التمرين الثالث في صول الكبير موصوف بـ أليغرو كون بريو — بروح وإشراق — "
+            "سيل لامع من النغمات يرقص عبر النطاقات العليا للناي بخفة مبهجة. "
+            "في هذا الإصدار الذي يمتد ساعة كاملة "
+            "يخلق نبرة الناي المنفرد الصافية أجواءً مشرقة رقيقة."
+        ),
+        "intro_id": (
+            "Ernesto Köhler (1849–1907) adalah pemain suling virtuoso dan pemain suling utama "
+            "Opera Kekaisaran di St. Petersburg, dan 24 Etudes untuk Serulingnya, Op. 15 "
+            "adalah di antara studi seruling yang paling dicintai dan banyak dimainkan. "
+            "Etude No. 3 dalam G mayor ditandai Allegro con brio — dengan semangat dan kecemerlangan — "
+            "deretan not yang cerah dan mengalir menari melalui register atas seruling "
+            "dengan keceriaan ringan. "
+            "Dalam versi satu jam ini nada menyanyi jernih dari seruling solo "
+            "menciptakan suasana cerah lembut yang sempurna untuk bayi, bermain fokus, "
+            "atau musik latar yang menyegarkan."
+        ),
+    },
+
+    "flute_etude_6": {
+        "music_file":  "24 Etudes for Flute, Op. 15 - VI. Moderato in B minor.mp3",
+        "duration_min": 60,
+        "composer_en": "Ernesto Köhler",
+        "work_en":     "24 Etudes for Flute, Op. 15 — No. 6 in B minor, Moderato",
+        "work_ar":     "24 تمريناً للناي، أوبوس 15 — رقم 6 في سي الصغير، موديراتو",
+        "work_id":     "24 Etudes untuk Seruling, Op. 15 — No. 6 dalam B minor, Moderato",
+        "year":        "1890",
+        "license_en":  "Public Domain (c.1890) — open source flute recording",
+        "license_ar":  "ملكية عامة (حوالي 1890) — تسجيل ناي مفتوح المصدر",
+        "license_id":  "Domain Publik (c.1890) — rekaman seruling sumber terbuka",
+        "intro_en": (
+            "Köhler's Etude No. 6 in B minor, Moderato is one of the most lyrical "
+            "and expressive studies in the entire Op. 15 collection. "
+            "Where the third etude dances with brightness, No. 6 sings with a quiet, "
+            "searching beauty in the minor mode — a more introspective, contemplative mood "
+            "that feels like a gentle conversation with the flute's singing voice. "
+            "Its five-minute span makes it ideal for seamless looping: "
+            "in this one-hour version the intimate, meditative quality of the solo flute "
+            "fills the space with calm depth — beautiful for winding down, "
+            "soft background music, or guiding little ones toward sleep."
+        ),
+        "intro_ar": (
+            "التمرين السادس لكولر في سي الصغير — موديراتو — هو من أكثر الدراسات "
+            "غنائيةً وتعبيرًا في مجموعة أوبوس 15 بأسرها. "
+            "يُغني بجمال هادئ باحث في النغم الصغير — "
+            "مزاج أكثر تأملًا واستبطانًا يشبه محادثة رقيقة مع صوت الناي الغنائي. "
+            "في هذا الإصدار الذي يمتد ساعة كاملة "
+            "تملأ الجودة التأملية الحميمة للناي المنفرد المكان بهدوء عميق."
+        ),
+        "intro_id": (
+            "Etude No. 6 Köhler dalam B minor, Moderato adalah salah satu studi "
+            "yang paling liris dan ekspresif dalam seluruh koleksi Op. 15. "
+            "Jika etude ketiga menari dengan keceriaan, No. 6 bernyanyi dengan keindahan "
+            "tenang yang mencari dalam mode minor — suasana lebih introspektif dan kontemplatif "
+            "yang terasa seperti percakapan lembut dengan suara nyanyian seruling. "
+            "Dalam versi satu jam ini kualitas meditatif intim dari seruling solo "
+            "mengisi ruang dengan kedalaman tenang — indah untuk bersantai "
+            "atau mengantar anak-anak kecil menuju tidur."
+        ),
+    },
+
+    "swan_lake_act2_pt1": {
+        "music_file":  "Swan Lake Op.20 - Act II Pt.1.mp3",
+        "duration_min": 60,
+        "composer_en": "Pyotr Ilyich Tchaikovsky",
+        "work_en":     "Swan Lake, Op. 20 — Act II, Part 1 (White Swan Scene)",
+        "work_ar":     "بحيرة البجعة، أوبوس 20 — الفصل الثاني، الجزء الأول (مشهد البجعة البيضاء)",
+        "work_id":     "Swan Lake, Op. 20 — Babak II, Bagian 1 (Adegan Angsa Putih)",
+        "year":        "1876",
+        "license_en":  "Public Domain (1876) — open source orchestral recording",
+        "license_ar":  "ملكية عامة (1876) — تسجيل أوركسترالي مفتوح المصدر",
+        "license_id":  "Domain Publik (1876) — rekaman orkestra sumber terbuka",
+        "intro_en": (
+            "Tchaikovsky's Swan Lake (1876) is one of the greatest ballets ever written, "
+            "and Act II contains some of the most ethereally beautiful music in all of classical art. "
+            "The famous White Swan theme — introduced by a solo oboe, then taken up by the full orchestra "
+            "— is a melody of heart-breaking tenderness, representing the cursed Princess Odette "
+            "and her flock of enchanted swans. "
+            "Part 1 of Act II sets the nocturnal moonlit lake scene with shimmering strings, "
+            "dark winds, and that unforgettable oboe melody. "
+            "In this one-hour version it plays on continuous loop — "
+            "a magical soundscape perfect for sleep, relaxation, or quiet creative work."
+        ),
+        "intro_ar": (
+            "بحيرة البجعة لتشايكوفسكي (1876) هي واحدة من أعظم الباليهات التي كُتبت على الإطلاق، "
+            "والفصل الثاني يحتوي على بعض أكثر الموسيقى سموًا في كل الفن الكلاسيكي. "
+            "الموضوع الشهير للبجعة البيضاء — يقدمه الأوبوا المنفرد ثم تتسلمه الأوركسترا بأسرها "
+            "— لحن من الرقة الجارحة للقلب، يمثّل الأميرة أوديت الملعونة وقطيعها من البجعات المسحورة. "
+            "الجزء الأول من الفصل الثاني يرسم مشهد البحيرة الليلي المضاء بالقمر "
+            "بأوتار متلألئة ورياح داكنة وذلك اللحن المنسي للأوبوا. "
+            "في هذا الإصدار يتكرر في حلقة متواصلة لمدة ساعة كاملة."
+        ),
+        "intro_id": (
+            "Swan Lake Tchaikovsky (1876) adalah salah satu balet terhebat yang pernah ditulis, "
+            "dan Babak II mengandung beberapa musik paling eteris-indah dalam seluruh seni klasik. "
+            "Tema Angsa Putih yang terkenal — diperkenalkan oleh oboe solo kemudian diambil alih "
+            "oleh seluruh orkestra — adalah melodi dengan kelembutan yang memilukan hati, "
+            "mewakili Putri Odette yang terkutuk dan kawanan angsa pesonanya. "
+            "Bagian 1 Babak II mengatur adegan danau berlumur cahaya bulan nokturnal "
+            "dengan dawai berkilauan, angin gelap, dan melodi oboe yang tak terlupakan. "
+            "Dalam versi satu jam ini dimainkan dalam putaran terus-menerus."
+        ),
+    },
+
+    "swan_lake_act2_concl": {
+        "music_file":  "Swan Lake Op.20 - Act II Concl.mp3",
+        "duration_min": 60,
+        "composer_en": "Pyotr Ilyich Tchaikovsky",
+        "work_en":     "Swan Lake, Op. 20 — Act II, Conclusion (White Swan Adagio)",
+        "work_ar":     "بحيرة البجعة، أوبوس 20 — الفصل الثاني، الخاتمة (أداجيو البجعة البيضاء)",
+        "work_id":     "Swan Lake, Op. 20 — Babak II, Penutup (Adagio Angsa Putih)",
+        "year":        "1876",
+        "license_en":  "Public Domain (1876) — open source orchestral recording",
+        "license_ar":  "ملكية عامة (1876) — تسجيل أوركسترالي مفتوح المصدر",
+        "license_id":  "Domain Publik (1876) — rekaman orkestra sumber terbuka",
+        "intro_en": (
+            "The conclusion of Act II of Swan Lake is one of the most poignant and beautiful "
+            "passages in all of Tchaikovsky's output. "
+            "After the famous White Swan Adagio — in which Prince Siegfried and Odette dance "
+            "their first, moonlit pas de deux — the music broadens into a sublime farewell "
+            "as dawn breaks and the swans must return to the lake. "
+            "Shimmering strings, tender woodwind solos, and a sense of bittersweet longing "
+            "pervade every bar. "
+            "In this one-hour version this extraordinarily emotional music plays on loop, "
+            "filling the room with beauty and calm — perfect for sleep, "
+            "emotional healing, or quiet contemplation."
+        ),
+        "intro_ar": (
+            "خاتمة الفصل الثاني من بحيرة البجعة هي أحد أجمل المقاطع وأكثرها مؤثّرًا "
+            "في كل إنتاج تشايكوفسكي. "
+            "بعد أداجيو البجعة البيضاء الشهير — حيث يرقص الأمير سيغفريد وأوديت "
+            "ثنائيهما الأول في ضوء القمر — تتسع الموسيقى إلى وداع سامٍ "
+            "مع بزوغ الفجر وعودة البجعات إلى البحيرة. "
+            "في هذا الإصدار الذي يمتد ساعة كاملة "
+            "تتكرر هذه الموسيقى البالغة العاطفة في حلقة متواصلة."
+        ),
+        "intro_id": (
+            "Penutup Babak II dari Swan Lake adalah salah satu bagian paling menyentuh "
+            "dan indah dalam seluruh karya Tchaikovsky. "
+            "Setelah Adagio Angsa Putih yang terkenal — di mana Pangeran Siegfried dan Odette "
+            "menari pas de deux pertama mereka yang berlumur cahaya bulan — "
+            "musik melebar menjadi perpisahan yang agung saat fajar menyingsing "
+            "dan para angsa harus kembali ke danau. "
+            "Dalam versi satu jam ini musik yang luar biasa emosional ini berputar dalam loop, "
+            "mengisi ruangan dengan keindahan dan ketenangan."
+        ),
+    },
+
+    "swan_lake_act3_pt1": {
+        "music_file":  "Swan Lake Op.20 - Act III Pt.1.mp3",
+        "duration_min": 60,
+        "composer_en": "Pyotr Ilyich Tchaikovsky",
+        "work_en":     "Swan Lake, Op. 20 — Act III, Part 1 (Grand Ball)",
+        "work_ar":     "بحيرة البجعة، أوبوس 20 — الفصل الثالث، الجزء الأول (الحفل الكبير)",
+        "work_id":     "Swan Lake, Op. 20 — Babak III, Bagian 1 (Pesta Besar)",
+        "year":        "1876",
+        "license_en":  "Public Domain (1876) — open source orchestral recording",
+        "license_ar":  "ملكية عامة (1876) — تسجيل أوركسترالي مفتوح المصدر",
+        "license_id":  "Domain Publik (1876) — rekaman orkestra sumber terbuka",
+        "intro_en": (
+            "Act III of Swan Lake transforms the nocturnal magic of Act II into a glittering, "
+            "festive grand ball — one of the most dramatically varied and exciting sections "
+            "of the ballet. "
+            "Part 1 of Act III includes the brilliant national character dances "
+            "(Spanish, Neapolitan, Hungarian, Mazurka) that bring the ballroom to life, "
+            "as well as the fateful introduction of Odile, the Black Swan, "
+            "who bewitches the Prince with her dazzling virtuosity. "
+            "Tchaikovsky's orchestration here is at its most inventive and theatrical. "
+            "In this one-hour version the music plays on continuous loop — "
+            "vivid, exciting classical music perfect for creative play and active listening."
+        ),
+        "intro_ar": (
+            "يحوّل الفصل الثالث من بحيرة البجعة السحر الليلي للفصل الثاني "
+            "إلى حفل راقص كبير براق — أحد أكثر أقسام الباليه تنوعًا ديناميكيًا وإثارةً. "
+            "يتضمن الجزء الأول من الفصل الثالث رقصات الشخصيات القومية الرائعة "
+            "(الإسبانية والنابولية والهنغارية والمازوركا) التي تُحيي قاعة الرقص، "
+            "فضلًا عن مقدمة أوديل المصيرية، البجعة السوداء. "
+            "في هذا الإصدار الذي يمتد ساعة كاملة تتكرر الموسيقى في حلقة متواصلة."
+        ),
+        "intro_id": (
+            "Babak III dari Swan Lake mengubah keajaiban nokturnal Babak II "
+            "menjadi pesta besar yang berkilau — salah satu bagian balet yang paling "
+            "beragam secara dramatis dan menggembirakan. "
+            "Bagian 1 Babak III mencakup tarian karakter nasional yang brilian "
+            "(Spanyol, Napoli, Hungaria, Mazurka) yang menghidupkan ruang dansa, "
+            "serta perkenalan fatal Odile, Angsa Hitam. "
+            "Dalam versi satu jam ini musik dimainkan dalam putaran terus-menerus — "
+            "musik klasik yang hidup dan menggembirakan untuk bermain kreatif."
+        ),
+    },
+
+    "swan_lake_act3_concl": {
+        "music_file":  "Swan Lake Op.20 - Act III Concl, Allegro.mp3",
+        "duration_min": 60,
+        "composer_en": "Pyotr Ilyich Tchaikovsky",
+        "work_en":     "Swan Lake, Op. 20 — Act III, Conclusion (Black Swan Coda)",
+        "work_ar":     "بحيرة البجعة، أوبوس 20 — الفصل الثالث، الخاتمة (كودا البجعة السوداء)",
+        "work_id":     "Swan Lake, Op. 20 — Babak III, Penutup (Koda Angsa Hitam)",
+        "year":        "1876",
+        "license_en":  "Public Domain (1876) — open source orchestral recording",
+        "license_ar":  "ملكية عامة (1876) — تسجيل أوركسترالي مفتوح المصدر",
+        "license_id":  "Domain Publik (1876) — rekaman orkestra sumber terbuka",
+        "intro_en": (
+            "The conclusion of Act III — the Black Swan Coda — is one of the most "
+            "breathtaking finales in all of classical music. "
+            "After Odile, the Black Swan, has tricked the Prince into pledging his love "
+            "and breaking his vow to Odette, the music explodes in a triumphant, racing Allegro. "
+            "Tchaikovsky's orchestration surges with dark energy, brass fanfares, "
+            "and swirling strings as von Rothbart reveals his deception "
+            "and the Act ends in catastrophe. "
+            "This is thrillingly dramatic classical music — in its one-hour looped form "
+            "it makes for an extraordinary listening experience, "
+            "equally powerful for dramatic background during creative work or active play."
+        ),
+        "intro_ar": (
+            "خاتمة الفصل الثالث — كودا البجعة السوداء — هي واحدة من أكثر النهايات "
+            "إبهارًا في تاريخ الموسيقى الكلاسيكية بأسره. "
+            "بعد أن خدعت أوديل، البجعة السوداء، الأمير لكي يُقسم بحبه ويخون عهده لأوديت، "
+            "تنفجر الموسيقى في أليغرو متسابق منتصر. "
+            "في هذا الإصدار الذي يمتد ساعة كاملة تتكرر هذه الموسيقى الدرامية في حلقة متواصلة."
+        ),
+        "intro_id": (
+            "Penutup Babak III — Koda Angsa Hitam — adalah salah satu finale paling "
+            "memukau dalam seluruh musik klasik. "
+            "Setelah Odile, Angsa Hitam, mengelabui Pangeran agar bersumpah cintanya "
+            "dan mengkhianati janjinya pada Odette, musik meledak dalam Allegro yang berlomba-lomba triumfan. "
+            "Ini adalah musik klasik yang dramatis menggembirakan — dalam bentuk putaran satu jam "
+            "menjadi pengalaman mendengarkan yang luar biasa."
+        ),
+    },
+
+    "swan_lake_act4_intro": {
+        "music_file":  "Swan Lake Op.20 - Act IV Intro.mp3",
+        "duration_min": 60,
+        "composer_en": "Pyotr Ilyich Tchaikovsky",
+        "work_en":     "Swan Lake, Op. 20 — Act IV, Introduction (The Lake's Tragedy)",
+        "work_ar":     "بحيرة البجعة، أوبوس 20 — الفصل الرابع، المقدمة (مأساة البحيرة)",
+        "work_id":     "Swan Lake, Op. 20 — Babak IV, Intro (Tragedi Danau)",
+        "year":        "1876",
+        "license_en":  "Public Domain (1876) — open source orchestral recording",
+        "license_ar":  "ملكية عامة (1876) — تسجيل أوركسترالي مفتوح المصدر",
+        "license_id":  "Domain Publik (1876) — rekaman orkestra sumber terbuka",
+        "intro_en": (
+            "Act IV of Swan Lake is the most emotionally devastating section of the entire ballet — "
+            "the tragic finale in which Odette, having learned of the Prince's betrayal, "
+            "prepares to take her own life to break the spell. "
+            "The Introduction to Act IV returns to the moonlit lake, "
+            "but now everything is suffused with grief, a dark storm gathering on the horizon. "
+            "Tchaikovsky's writing here is of shattering emotional depth: "
+            "the White Swan theme returns, now transformed into something heartbreaking. "
+            "In this one-hour version this music of extraordinary emotional power "
+            "plays on continuous loop — deeply moving for quiet listening, "
+            "meditation, or any moment when you need music to match the depth of human feeling."
+        ),
+        "intro_ar": (
+            "الفصل الرابع من بحيرة البجعة هو الأكثر مأساوية عاطفيًا في الباليه بأسره — "
+            "الخاتمة المأساوية التي تعلم فيها أوديت بخيانة الأمير "
+            "وتستعد لتضحية بنفسها كسرًا للسحر. "
+            "مقدمة الفصل الرابع تعود إلى البحيرة المضاءة بالقمر، "
+            "لكن الآن كل شيء متشرّب بالحزن وعاصفة داكنة تتجمع في الأفق. "
+            "كتابة تشايكوفسكي هنا من عمق عاطفي مروّع: "
+            "موضوع البجعة البيضاء يعود، متحوّلًا الآن إلى شيء مؤلم. "
+            "في هذا الإصدار تتكرر هذه الموسيقى في حلقة متواصلة لمدة ساعة كاملة."
+        ),
+        "intro_id": (
+            "Babak IV Swan Lake adalah bagian paling menghancurkan secara emosional "
+            "dari seluruh balet — finale tragis di mana Odette, setelah mengetahui pengkhianatan Sang Pangeran, "
+            "bersiap mengorbankan dirinya untuk memecahkan mantra. "
+            "Intro Babak IV kembali ke danau berlumur cahaya bulan, "
+            "tetapi kini semuanya diliputi kesedihan, badai gelap berkumpul di cakrawala. "
+            "Penulisan Tchaikovsky di sini memiliki kedalaman emosional yang menghancurkan. "
+            "Dalam versi satu jam ini musik dengan kekuatan emosional luar biasa ini "
+            "dimainkan dalam putaran terus-menerus — sangat mengharukan untuk mendengarkan dalam ketenangan."
+        ),
+    },
 }
 
 # ─── helpers ─────────────────────────────────────────────────────────────────
+
+def find_music_file(filename: str) -> Path:
+    """Search MUSIC_DIR first, then MUSIC_DIR2; return first match."""
+    p1 = MUSIC_DIR / filename
+    if p1.exists():
+        return p1
+    p2 = MUSIC_DIR2 / filename
+    if p2.exists():
+        return p2
+    return p1  # caller gets a clear "not found" on the original path
+
 
 def get_theme_sequence(key: str, lang: str) -> list:
     """Return ordered list of 4 themes for this piece-lang combo."""
@@ -375,21 +878,32 @@ def get_thumb_prompt(key: str, lang: str) -> str:
     v = VIDEOS[key]
     composer = v["composer_en"]
 
-    # Theme-based scene descriptions
-    scene = {
-        "stars":  "deep night sky, softly glowing stars and galaxies, floating golden musical notes, rich purple and gold, cinematic digital art",
-        "ocean":  "deep glowing ocean at night, luminescent jellyfish floating, bioluminescent blue tones, peaceful underwater scene",
-        "garden": "moonlit garden at night, glowing fireflies and soft flowers, golden light, romantic dreamy atmosphere",
-        "forest": "moonlit forest at night, glowing fireflies drifting, misty ancient trees, silver moonbeams, magical forest scene",
-    }[first]
+    # Swan Lake pieces get a special moonlit-lake scene override
+    if key.startswith("swan_lake"):
+        scene = (
+            "moonlit lake at night, white swans gliding on silver water, "
+            "mist rising from the surface, ethereal blue and silver tones, "
+            "magical fairy-tale atmosphere, cinematic digital art"
+        )
+    else:
+        scene = {
+            "stars":  "deep night sky, softly glowing stars and galaxies, floating golden musical notes, rich purple and gold, cinematic digital art",
+            "ocean":  "deep glowing ocean at night, luminescent jellyfish floating, bioluminescent blue tones, peaceful underwater scene",
+            "garden": "moonlit garden at night, glowing fireflies and soft flowers, golden light, romantic dreamy atmosphere",
+            "forest": "moonlit forest at night, glowing fireflies drifting, misty ancient trees, silver moonbeams, magical forest scene",
+        }[first]
 
     # Composer mood hint
     mood = {
-        "Ralph Vaughan Williams": "orchestral grandeur, serene and transcendent",
-        "Wolfgang Amadeus Mozart": "elegant classical, graceful and light",
-        "Ludwig van Beethoven":    "powerful and triumphant, dramatic depth",
-        "Giuseppe Verdi":          "romantic opera atmosphere, wistful and passionate",
-        "Georg Philipp Telemann":  "baroque lightness, airy and introspective",
+        "Ralph Vaughan Williams":     "orchestral grandeur, serene and transcendent",
+        "Wolfgang Amadeus Mozart":     "elegant classical, graceful and light",
+        "Ludwig van Beethoven":        "powerful and triumphant, dramatic depth",
+        "Giuseppe Verdi":              "romantic opera atmosphere, wistful and passionate",
+        "Georg Philipp Telemann":      "baroque lightness, airy and introspective",
+        "Johann Sebastian Bach":       "baroque depth, pure and meditative",
+        "Frédéric Chopin":             "romantic piano, dreamy and introspective",
+        "Pyotr Ilyich Tchaikovsky":    "romantic ballet, dramatic and lyrical",
+        "Ernesto Köhler":              "elegant flute, bright and expressive",
     }.get(composer, "classical music atmosphere")
 
     suffix = "no text, no letters, no numbers, no words" if lang == "ar" else "no text"
@@ -409,20 +923,34 @@ def make_description(key: str, lang: str) -> str:
     themes = get_theme_sequence(key, lang)
 
     if lang == "en":
-        is_mozart = "Mozart" in composer
-        is_beethoven = "Beethoven" in composer
-        is_vw = "Vaughan" in composer
-        is_verdi = "Verdi" in composer
-        is_telemann = "Telemann" in composer
+        is_mozart      = "Mozart" in composer
+        is_beethoven   = "Beethoven" in composer
+        is_vw          = "Vaughan" in composer
+        is_verdi       = "Verdi" in composer
+        is_telemann    = "Telemann" in composer
+        is_bach        = "Bach" in composer
+        is_chopin      = "Chopin" in composer
+        is_tchaikovsky = "Tchaikovsky" in composer
+        is_kohler      = "Köhler" in composer
 
         if is_mozart:
             search_tags = "#ClassicalMusic #Mozart #EineKleineNachtmusik #MozartForSleep"
+        elif is_beethoven and "Moonlight" in v["work_en"]:
+            search_tags = "#ClassicalMusic #Beethoven #MoonlightSonata #BeethovenForSleep"
         elif is_beethoven:
             search_tags = "#ClassicalMusic #Beethoven #Symphony5 #BeethovenForSleep"
         elif is_vw:
             search_tags = "#ClassicalMusic #VaughanWilliams #Fantasia #ThomasTallis"
         elif is_verdi:
             search_tags = "#ClassicalMusic #Verdi #LaTraviata #OperaMusic"
+        elif is_bach:
+            search_tags = "#ClassicalMusic #Bach #CelloSuite #BWV1007"
+        elif is_chopin:
+            search_tags = "#ClassicalMusic #Chopin #Nocturne #ChopinForSleep"
+        elif is_tchaikovsky:
+            search_tags = "#ClassicalMusic #Tchaikovsky #SwanLake #Ballet"
+        elif is_kohler:
+            search_tags = "#ClassicalMusic #Köhler #FluteEtude #SoloFlute"
         else:
             search_tags = "#ClassicalMusic #Telemann #BaroqueFlute #SoloFlute"
 
@@ -506,10 +1034,14 @@ def make_description(key: str, lang: str) -> str:
 def make_meta(key: str, lang: str) -> dict:
     v = VIDEOS[key]
     composer = v["composer_en"]
-    is_mozart = "Mozart" in composer
-    is_beethoven = "Beethoven" in composer
-    is_vw = "Vaughan" in composer
-    is_verdi = "Verdi" in composer
+    is_mozart      = "Mozart" in composer
+    is_beethoven   = "Beethoven" in composer
+    is_vw          = "Vaughan" in composer
+    is_verdi       = "Verdi" in composer
+    is_bach        = "Bach" in composer
+    is_chopin      = "Chopin" in composer
+    is_tchaikovsky = "Tchaikovsky" in composer
+    is_kohler      = "Köhler" in composer
 
     if lang == "en":
         base_tags = [
@@ -521,12 +1053,22 @@ def make_meta(key: str, lang: str) -> dict:
         ]
         if is_mozart:
             base_tags += ["mozart", "eine kleine nachtmusik", "mozart for babies", "mozart serenade"]
+        elif is_beethoven and "Moonlight" in v["work_en"]:
+            base_tags += ["beethoven", "moonlight sonata", "piano sonata", "beethoven for sleep"]
         elif is_beethoven:
             base_tags += ["beethoven", "symphony no 5", "beethoven symphony", "beethoven for sleep"]
         elif is_vw:
             base_tags += ["vaughan williams", "fantasia", "thomas tallis", "orchestral sleep"]
         elif is_verdi:
             base_tags += ["verdi", "la traviata", "opera music", "opera for sleep"]
+        elif is_bach:
+            base_tags += ["bach", "cello suite", "bwv 1007", "baroque music"]
+        elif is_chopin:
+            base_tags += ["chopin", "nocturne", "chopin nocturne", "piano music for sleep"]
+        elif is_tchaikovsky:
+            base_tags += ["tchaikovsky", "swan lake", "ballet music", "tchaikovsky for sleep"]
+        elif is_kohler:
+            base_tags += ["kohler", "flute etude", "solo flute", "flute music"]
         else:
             base_tags += ["telemann", "baroque flute", "solo flute", "baroque music"]
     elif lang == "ar":
@@ -552,7 +1094,7 @@ def make_meta(key: str, lang: str) -> dict:
         "title":       titles[lang],
         "description": make_description(key, lang),
         "tags":        base_tags,
-        "video_type":  "lullaby_long",
+        "video_type":  "classical_visualizer",
         "language":    lang,
         "is_short":    False,
         "status":      "public",
@@ -561,6 +1103,13 @@ def make_meta(key: str, lang: str) -> dict:
 
 # ─── thumbnail ───────────────────────────────────────────────────────────────
 
+def _load_gat():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("gat", ROOT / "scripts" / "generate_ai_thumbs.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
 def generate_thumbnail(key: str, lang: str, out_path: Path) -> bool:
     if not TOGETHER_KEY_FILE.exists():
         print("  No Together.ai key — skip thumbnail")
@@ -568,17 +1117,14 @@ def generate_thumbnail(key: str, lang: str, out_path: Path) -> bool:
     api_key = TOGETHER_KEY_FILE.read_text().strip()
     prompt = get_thumb_prompt(key, lang)
     try:
-        r = requests.post(TOGETHER_URL, json={
-            "model": "black-forest-labs/FLUX.1-schnell",
-            "prompt": prompt,
-            "width": 1280, "height": 720,
-            "steps": 4, "n": 1,
-            "response_format": "b64_json",
-        }, headers={"Authorization": f"Bearer {api_key}"}, timeout=60)
-        r.raise_for_status()
-        out_path.write_bytes(base64.b64decode(r.json()["data"][0]["b64_json"]))
-        print(f"  Thumbnail ({lang}): {out_path.name} ({out_path.stat().st_size // 1024}KB)")
-        return True
+        gat = _load_gat()
+        img = gat.together_generate_image(prompt, api_key)
+        if img:
+            out_path.write_bytes(gat.resize_to_720p(img))
+            print(f"  Thumbnail ({lang}): {out_path.name} ({out_path.stat().st_size // 1024}KB)")
+            return True
+        print(f"  Thumbnail error ({lang}): API returned no image")
+        return False
     except Exception as e:
         print(f"  Thumbnail error ({lang}): {e}")
         return False
@@ -598,6 +1144,7 @@ def render_shared_loop(theme: str, lang: str, out_path: Path, dry_run: bool) -> 
         "equalizerColor": colors["eq"],
         "showEqualizer":  True,
         "phaseOffset":    phase,
+        "musicFile":      "",   # no audio in shared loop — classical music added via FFmpeg
     }
     cmd = [
         "npx", "remotion", "render", "LullabyLoop",
@@ -673,7 +1220,7 @@ def assemble_rotated_video(key: str, lang: str, shared: dict,
 def process_key(key: str, shared: dict, dry_run: bool, regen_meta: bool) -> bool:
     v = VIDEOS[key]
     TMP_DIR.mkdir(parents=True, exist_ok=True)
-    music_mp3 = MUSIC_DIR / v["music_file"]
+    music_mp3 = find_music_file(v["music_file"])
 
     print(f"\n{'='*72}")
     print(f"  [{key.upper()}] {v['composer_en']} — {v['work_en'][:55]}")
@@ -734,7 +1281,8 @@ def main():
 
     keys = args.keys or list(VIDEOS.keys())
     n = len(keys)
-    print(f"Classical visualizer — {n} piece(s) × 3 channels = {n*3} videos")
+    total = len(VIDEOS)
+    print(f"Classical visualizer — {n}/{total} piece(s) × 3 channels = {n*3} videos")
     print(f"  dry_run={args.dry_run}  regen_meta={args.regen_meta}  loops_only={args.render_loops_only}")
     print(f"  Shared loops: 4 themes × 3 channels = 12 Remotion renders")
 

@@ -15,16 +15,19 @@ ALL_ANIMALS = [
     "panda", "koala", "fox", "rabbit", "cow",
     "duck", "pig", "elephant", "monkey", "dog",
     "cat", "owl", "unicorn", "dino", "parrot",
+    "blue_whale", "crow", "flamingo", "polar_bear",
 ]
 
 ANIMAL_NAMES = {
-    "bear": "Bear",       "tiger": "Tiger",    "frog": "Frog",
-    "penguin": "Penguin", "lion": "Lion",       "panda": "Panda",
-    "koala": "Koala",     "fox": "Fox",         "rabbit": "Rabbit",
-    "cow": "Cow",         "duck": "Duck",       "pig": "Pig",
-    "elephant": "Elephant","monkey": "Monkey",  "dog": "Dog",
-    "cat": "Cat",         "owl": "Owl",         "unicorn": "Unicorn",
-    "dino": "Dino",       "parrot": "Parrot",
+    "bear": "Bear",         "tiger": "Tiger",      "frog": "Frog",
+    "penguin": "Penguin",   "lion": "Lion",         "panda": "Panda",
+    "koala": "Koala",       "fox": "Fox",           "rabbit": "Rabbit",
+    "cow": "Cow",           "duck": "Duck",         "pig": "Pig",
+    "elephant": "Elephant", "monkey": "Monkey",     "dog": "Dog",
+    "cat": "Cat",           "owl": "Owl",           "unicorn": "Unicorn",
+    "dino": "Dino",         "parrot": "Parrot",
+    "blue_whale": "Whale",  "crow": "Crow",         "flamingo": "Flamingo",
+    "polar_bear": "Polar Bear",
 }
 
 # Light pastel backgrounds — one per animal slot

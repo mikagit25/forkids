@@ -386,20 +386,17 @@ def generate_thumbnail(animal: str, vtype: str, out_path: Path) -> bool:
         f"bright colors, no text, no letters, no words, 1280x720"
     )
     try:
-        import urllib.request
-        payload = json.dumps({
-            "model": TOGETHER_MODEL, "prompt": prompt,
-            "width": 1280, "height": 720, "steps": 4, "n": 1,
-        }).encode()
-        req = urllib.request.Request(
-            TOGETHER_URL, data=payload,
-            headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"},
-        )
-        with urllib.request.urlopen(req, timeout=90) as resp:
-            data = json.loads(resp.read())
-        out_path.write_bytes(base64.b64decode(data["data"][0]["b64_json"]))
-        print(f"    ✓ thumb → {out_path.name}")
-        return True
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("gat", ROOT / "scripts" / "generate_ai_thumbs.py")
+        gat = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(gat)
+        img = gat.together_generate_image(prompt, key)
+        if img:
+            out_path.write_bytes(gat.resize_to_720p(img))
+            print(f"    ✓ thumb → {out_path.name}")
+            return True
+        print(f"    ! thumb failed: API returned no image")
+        return False
     except Exception as e:
         print(f"    ! thumb failed: {e}")
         return False

@@ -13,6 +13,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { noise2D } from "@remotion/noise";
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -26,12 +27,16 @@ export interface StarsBubblesSegment {
   bgColor?: string;       // optional per-segment bg override
 }
 
+export type BubbleMotion = "float_up" | "drift" | "rain" | "swirl";
+
 export interface StarsBubblesLongProps {
   bgColor: string;
   musicFile: string;
   volume?: number;
   segments: StarsBubblesSegment[];
   seed?: number;
+  bubbleColors?: RGB[];    // override default mixed colors for single-color episodes
+  bubbleMotion?: BubbleMotion;  // movement pattern (default float_up)
 }
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -110,13 +115,14 @@ interface ShootEvent {
 
 // ── Builders ──────────────────────────────────────────────────────────────────
 
-function buildBubbles(seed: number): BubbleSlot[] {
+function buildBubbles(seed: number, colors?: RGB[]): BubbleSlot[] {
+  const palette = colors ?? BUBBLE_RGB;
   return Array.from({ length: N_BUBBLE }, (_, i) => {
     const r = lcgN(seed * 41 + i * 997, 11);
     return {
       baseX:        0.04 + r[0] * 0.92,
       radius:       22   + r[1] * 58,
-      rgb:          BUBBLE_RGB[Math.floor(r[5] * BUBBLE_RGB.length)],
+      rgb:          palette[Math.floor(r[5] * palette.length)],
       swayAmp:      12   + r[2] * 42,
       swayPeriod:   3    + r[3] * 5,
       riseDuration: 9    + r[4] * 8,
@@ -223,12 +229,14 @@ export const StarsBubblesLong: React.FC<StarsBubblesLongProps> = ({
   volume = 0.18,
   segments,
   seed = 42,
+  bubbleColors,
+  bubbleMotion = "float_up",
 }) => {
   const frame = useCurrentFrame();
   const { fps, durationInFrames, width, height } = useVideoConfig();
   const fSec = frame / fps;
 
-  const bubbleSlots = useMemo(() => buildBubbles(seed), [seed]);
+  const bubbleSlots = useMemo(() => buildBubbles(seed, bubbleColors), [seed, bubbleColors]);
   const starSlots   = useMemo(() => buildStars(seed), [seed]);
   const shootEvents = useMemo(() => buildShootEvents(seed, segments), [seed, segments]);
 
@@ -274,11 +282,33 @@ export const StarsBubblesLong: React.FC<StarsBubblesLongProps> = ({
     const ringActive   = !visible && timeSincePop >= 0 && timeSincePop < 0.60;
     const ringT        = timeSincePop; // 0..0.60 s
 
-    // Position
-    const riseY = 1.08 - progress * 1.18;   // bottom off-screen → top off-screen
-    const sway  = Math.sin((fSec / slot.swayPeriod) * Math.PI * 2 + i * 0.73) * slot.swayAmp;
-    const cx    = slot.baseX * width + sway;
-    const cy    = riseY * height;
+    // Noise-based sway (more organic than sine)
+    const sway  = noise2D("bubble_sway", i, fSec / slot.swayPeriod) * slot.swayAmp;
+
+    // Position — varies by motion mode
+    let cx: number, cy: number;
+    if (bubbleMotion === "rain") {
+      // fall top → bottom (inverted rise)
+      const fallY = progress * 1.18 - 0.08;
+      cy = fallY * height;
+      cx = slot.baseX * width + sway;
+    } else if (bubbleMotion === "drift") {
+      // horizontal drift, baseX used as Y fraction
+      const driftNorm = ((fSec / slot.riseDuration + slot.phaseShift) % 1 + 1) % 1;
+      cx = driftNorm * (width + slot.radius * 4) - slot.radius * 2;
+      cy = slot.baseX * height + sway;
+    } else if (bubbleMotion === "swirl") {
+      // orbital swirl around center
+      const angle   = (fSec / slot.riseDuration + slot.phaseShift) * Math.PI * 2;
+      const orbitR  = height * 0.18 + slot.baseX * height * 0.22;
+      cx = width  * 0.5 + Math.cos(angle) * orbitR;
+      cy = height * 0.5 + Math.sin(angle) * orbitR * 0.55 + sway * 0.4;
+    } else {
+      // default float_up
+      const riseY = 1.08 - progress * 1.18;
+      cy = riseY * height;
+      cx = slot.baseX * width + sway;
+    }
     const r     = slot.radius;
     const [rr, gg, bb] = slot.rgb;
 
@@ -349,9 +379,7 @@ export const StarsBubblesLong: React.FC<StarsBubblesLongProps> = ({
       extrapolateLeft: "clamp", extrapolateRight: "clamp",
     });
     if (starOp <= 0.01) return null;
-    const tw = 0.38 + 0.62 * (0.5 + 0.5 * Math.sin(
-      (fSec / star.period) * Math.PI * 2 + star.phase,
-    ));
+    const tw = 0.38 + 0.62 * (0.5 + 0.5 * noise2D("star_tw", i, fSec / star.period));
     return (
       <path
         key={i}

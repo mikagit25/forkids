@@ -13,6 +13,7 @@ ROOT = Path(__file__).resolve().parent.parent
 ALL_FRUITS = [
     "apple", "banana", "strawberry", "grapes", "watermelon", "orange",
     "pineapple", "cherry", "peach", "lemon", "pear", "melon",
+    "blueberry", "plum",
 ]
 
 FRUIT_NAMES = {
@@ -20,6 +21,7 @@ FRUIT_NAMES = {
     "grapes": "Grapes", "watermelon": "Watermelon", "orange": "Orange",
     "pineapple": "Pineapple", "cherry": "Cherry", "peach": "Peach",
     "lemon": "Lemon", "pear": "Pear", "melon": "Melon",
+    "blueberry": "Blueberry", "plum": "Plum",
 }
 
 BG_COLORS = [
