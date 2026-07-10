@@ -210,3 +210,20 @@ jobs:
   status: pending
   track: kids_song
   phase: 5
+
+# CNR: Beethoven Cello Sonatas (новые треки от 2026-07-10)
+- id: cnr_sleep_beethoven_cello_01_20260710
+  cmd: python3 scripts/generate_sleep_classical.py --program sleep_beethoven_cello_01 --durations 1 3
+  log: logs/rerender_8h.log
+  desc: 'CNR sleep: Beethoven Cello Sonatas — 1h + 3h (in run_rerender_8h.sh queue)'
+  added: '2026-07-10'
+  status: pending
+  track: calm_classics
+
+- id: cnr_focus_beethoven_cello_01_20260710
+  cmd: python3 scripts/generate_sleep_classical.py --program focus_beethoven_cello_01 --durations 1 3
+  log: logs/rerender_8h.log
+  desc: 'CNR focus: Beethoven Cello Sonatas for Focus — 1h + 3h (in run_rerender_8h.sh queue)'
+  added: '2026-07-10'
+  status: pending
+  track: calm_classics

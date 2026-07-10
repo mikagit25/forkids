@@ -1,0 +1,15 @@
+id: sleep_beethoven_cello_01
+title_en: "Beethoven Cello Sonatas for Sleep 🎻 {duration} | Classical Night Relax"
+video_type: sleep_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: warm_waves
+loop_duration_sec: 240
+durations_hours: [1, 3]
+tracks:
+  - {id: beethoven_cello_sonata_no1_complete,        composer: "Ludwig van Beethoven", piece: "Cello Sonata No. 1 in F major, Op. 5 No. 1 — Complete",                        duration_sec: 1489, mood: tender}
+  - {id: beethoven_cello_sonata_op5_no2_i_adagio,    composer: "Ludwig van Beethoven", piece: "Cello Sonata No. 2 in G minor, Op. 5 No. 2 — I. Adagio sostenuto ed espressivo", duration_sec: 268,  mood: introspective}
+  - {id: beethoven_cello_sonata_op5_no2_iii_rondo,   composer: "Ludwig van Beethoven", piece: "Cello Sonata No. 2 in G minor, Op. 5 No. 2 — III. Rondo - Allegro",             duration_sec: 523,  mood: flowing}
+  - {id: beethoven_cello_sonata_no4_op102_no1_mov1,  composer: "Ludwig van Beethoven", piece: "Cello Sonata No. 4 in C major, Op. 102 No. 1 — I. Andante",                    duration_sec: 391,  mood: serene}
+tags: [beethoven, cello sonata, chamber music, sleep music, classical music, cello, piano, romantic, study music]

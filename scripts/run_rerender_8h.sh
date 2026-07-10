@@ -28,6 +28,12 @@ run sleep_grand_night_01 8
 run sleep_swan_lake_02   1 3 8
 run focus_beethoven_02   1 3
 
+# ────────────────────────────────────────────────────────────
+# New programs: Beethoven Cello Sonatas (added 2026-07-10)
+# ────────────────────────────────────────────────────────────
+run sleep_beethoven_cello_01  1 3
+run focus_beethoven_cello_01  1 3
+
 echo ""
 echo "════════════════════════════════════════════════════════════"
 echo "  8h Re-render DONE — $(date '+%Y-%m-%d %H:%M:%S')"

@@ -63,6 +63,8 @@ TITLES = {
     "focus_beethoven_02":       "Beethoven Symphony No. 5 — Complete 🎻 {dur} | Classical Night Relax",
     "focus_mozart_01":          "Mozart for Focus & Study 🎵 {dur} | Classical Night Relax",
     "focus_drama_01":           "Dramatic Classics for Focus 🎻 {dur} | Classical Night Relax",
+    "sleep_beethoven_cello_01": "Beethoven Cello Sonatas for Sleep 🎻 {dur} | Classical Night Relax",
+    "focus_beethoven_cello_01": "Beethoven Cello Sonatas for Focus & Study 🎻 {dur} | Classical Night Relax",
     "sleep_lullaby_01":         "Classical Lullabies for Sleep 🌙 {dur} | Happy Bear Kids",
 }
 
