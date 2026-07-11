@@ -226,12 +226,17 @@ def upload_video(
 
     log.info(f"Uploaded: https://youtu.be/{video_id}")
 
-    if thumbnail_path and Path(thumbnail_path).exists():
-        youtube.thumbnails().set(
-            videoId=video_id,
-            media_body=MediaFileUpload(thumbnail_path, mimetype="image/png"),
-        ).execute()
-        log.info("Thumbnail set.")
+    if thumbnail_path and Path(thumbnail_path).exists() and Path(thumbnail_path).stat().st_size > 0:
+        try:
+            youtube.thumbnails().set(
+                videoId=video_id,
+                media_body=MediaFileUpload(thumbnail_path, mimetype="image/png"),
+            ).execute()
+            log.info("Thumbnail set.")
+        except Exception as thumb_exc:
+            log.warning(f"Thumbnail upload failed (video already uploaded): {thumb_exc}")
+    elif thumbnail_path and Path(thumbnail_path).exists() and Path(thumbnail_path).stat().st_size == 0:
+        log.warning(f"Thumbnail is 0 bytes, skipping: {thumbnail_path}")
 
     # Add to playlists
     try:
