@@ -310,6 +310,14 @@ def render_episode(ep_key, ep, ep_idx, dry_run, regen_meta):
         out_mp4  = queue / out_name
         loop_mp4 = LOOPS_DIR / f"nature_loop_{ep_key}_{lang}.mp4"
 
+        # CNR (id) must NEVER receive ShapeDanceLong fallback — geometric shapes
+        # are not acceptable as "nature ambience" for adult audience.
+        # Forest/rain for CNR → use make_visual_theme.py instead.
+        if lang == "id" and nc_theme is None:
+            print(f"  SKIP {ep_key} ({lang}): ShapeDanceLong fallback blocked for CNR. "
+                  f"Use make_visual_theme.py --theme {ep_key} instead.")
+            continue
+
         if not out_mp4.exists() and not regen_meta and not dry_run:
             if nc_theme:
                 # Step 1: render 5-min loop (once per lang for different phaseOffset)
@@ -327,7 +335,7 @@ def render_episode(ep_key, ep, ep_idx, dry_run, regen_meta):
                     ok = False
                     continue
             else:
-                # ShapeDanceLong renders 30 min directly
+                # ShapeDanceLong fallback — only EN and AR kids channels
                 loop_mp4_30 = LOOPS_DIR / f"nature_loop_{ep_key}_{lang}_30.mp4"
                 lang_music = alt_music(ep["music"], ep_idx, lang)
                 ep_lang = dict(ep, music=lang_music)
