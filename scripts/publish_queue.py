@@ -109,7 +109,7 @@ def calc_publish_at(upload_day: str, upload_time: str) -> str | None:
 
 
 def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
-                 dry_run: bool = False) -> bool:
+                 dry_run: bool = False, channel: str = "en") -> bool:
     title       = metadata.get("title", mp4_path.stem)
     theme       = metadata.get("theme", "animals")
     video_type  = metadata.get("video_type", "dance")
@@ -145,6 +145,7 @@ def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
         "--theme",      theme,
         "--status",     "private" if publish_at else metadata.get("status", "public"),
         "--language",   language,
+        "--channel",    channel,
     ]
 
     if tags_str:
@@ -218,6 +219,8 @@ def is_ready(mp4_path: Path) -> tuple[bool, str]:
         return False, "empty description"
     if not thumb_path.exists():
         return False, "no thumbnail"
+    if thumb_path.stat().st_size == 0:
+        return False, "thumbnail is 0 bytes"
 
     return True, "ok"
 
@@ -304,6 +307,7 @@ def main():
             mp4_path, metadata,
             schedule=not args.no_schedule,
             dry_run=args.dry_run,
+            channel=args.queue,
         )
 
         if success:
