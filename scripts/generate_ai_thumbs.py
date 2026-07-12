@@ -838,6 +838,8 @@ def main():
                         help="Also process uploaded/ directory (for already-published videos)")
     parser.add_argument("--shorts", action="store_true",
                         help="Process shorts (short_* files) instead of long videos")
+    parser.add_argument("--all-types", action="store_true",
+                        help="Process both long videos AND shorts (default cron mode)")
     args = parser.parse_args()
 
     gemini_key   = load_key()
@@ -885,7 +887,8 @@ def main():
                 print("Generation failed — model may need billing enabled")
         return
 
-    long_only = not args.shorts
+    # --all-types or --shorts both disable long_only filter
+    long_only = not (args.shorts or args.all_types)
 
     if args.queue in ("en", "both", "all"):
         process_queue(QUEUE, key, args.force, args.dry_run, "EN", backend, long_only=long_only)
