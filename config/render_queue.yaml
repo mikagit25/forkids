@@ -236,3 +236,32 @@ jobs:
   added: '2026-07-12'
   status: done
   track: shorts
+
+# Silent re-render batch (аудио-фикс: -map 0:v:0 -map 1:a:0)
+- id: cnr_rerender_silent_20260712
+  cmd: bash scripts/rerender_silent_programs.sh
+  log: logs/rerender_silent.log
+  desc: 'CNR: перерендер 21 видео с фиксом звука (-91 dB → нормальный)'
+  added: '2026-07-12'
+  status: in_progress
+  track: calm_classics
+  note: 'running in background after chopin/beethoven/swan_lake 1h complete'
+
+# Visual Themes — AI images + Ken Burns (Calm Classics)
+- id: cnr_visual_themes_batch_20260712
+  cmd: bash scripts/run_visual_themes.sh
+  log: logs/visual_themes.log
+  desc: 'CNR Visual Themes: 8 тем × (1h+3h) = 16 видео → queue_id (после rerender_silent)'
+  added: '2026-07-12'
+  status: queued
+  track: calm_classics
+  note: 'starts after cnr_rerender_silent_20260712 completes (~3-4h)'
+  themes:
+    - aurora_borealis
+    - cherry_blossoms
+    - fireplace_cabin
+    - lavender_fields
+    - autumn_forest
+    - mountain_snow
+    - deep_space
+    - zen_garden
