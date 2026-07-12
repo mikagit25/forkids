@@ -37,6 +37,8 @@ GOOD_SOURCE_TYPES = {
     "number_learn", "color_learn", "shape_learn", "shape_roundelay",
     "lullaby", "ocd_vehicles", "construction_music", "nature_calm",
     "satisfying_3fmt", "emotional_values", "sensory_loop", "dance",
+    "stars_bubbles", "special_mechanics", "emotions_ocean", "ocean_creatures",
+    "nursery_ar", "shadow_puppet",
 }
 
 # Start time offsets to use (cycle through these per source video)
@@ -161,6 +163,7 @@ def make_short_meta(source_meta: dict, lang: str, title_override: str | None = N
         "duration_minutes": 1,
         "is_short":         True,
         "status":           "public",
+        "made_for_kids":    lang != "id",   # false only for CNR adult channel
         "tags":             list(dict.fromkeys(tags))[:40],
         "source_video":     str(source_meta.get("title", "")),
     }

@@ -182,11 +182,21 @@ def _fix_ar_symlinks(old_path: Path, new_path: Path):
             pass
 
 
-SHORT_PREFIXES = ("short_", "ar_short_", "sleep_short_")
+SHORT_PREFIXES = ("short_", "ar_short_", "sleep_short_", "funnel_")
 
 
 def is_short(path: Path) -> bool:
-    return path.name.startswith(SHORT_PREFIXES)
+    if path.name.startswith(SHORT_PREFIXES):
+        return True
+    # Fallback: check meta is_short field (covers any naming scheme)
+    meta_path = path.parent / f"meta_{path.stem}.yaml"
+    if meta_path.exists():
+        try:
+            m = yaml.safe_load(open(meta_path)) or {}
+            return bool(m.get("is_short", False))
+        except Exception:
+            pass
+    return False
 
 
 def is_long(path: Path) -> bool:
