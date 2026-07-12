@@ -227,3 +227,12 @@ jobs:
   added: '2026-07-10'
   status: pending
   track: calm_classics
+
+# CNR Shorts batch (пополнять раз в месяц когда очередь < 10)
+- id: cnr_shorts_batch_20260712
+  cmd: python3 scripts/make_sleep_short.py --batch
+  log: logs/sleep_shorts.log
+  desc: 'CNR Shorts: 20 шортсов (4 темы × 5 офсетов) → queue_id'
+  added: '2026-07-12'
+  status: done
+  track: shorts

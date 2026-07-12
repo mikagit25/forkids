@@ -137,7 +137,7 @@ def process_theme(theme: str, start: float = 30.0, dry_run: bool = False, force:
         log.warning(f"  Loop not found: {loop_mp4} — run generate_sleep_classical.py --render-loops-only first")
         return False
 
-    out_name = f"sleep_short_{theme}_{DATE_STR}.mp4"
+    out_name = f"sleep_short_{theme}_t{int(start)}_{DATE_STR}.mp4"
     out_mp4  = QUEUE_CC / out_name
 
     if out_mp4.exists() and not force:
@@ -162,9 +162,13 @@ def process_theme(theme: str, start: float = 30.0, dry_run: bool = False, force:
     return True
 
 
+BATCH_OFFSETS = [0, 45, 90, 135, 180]   # 5 batches × 4 themes = 20 shorts
+
+
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--all",      action="store_true", help="Generate shorts for all 4 themes")
+    parser.add_argument("--all",      action="store_true", help="Generate one short per theme at --start offset")
+    parser.add_argument("--batch",    action="store_true", help="Generate all BATCH_OFFSETS × all themes (up to 20 shorts)")
     parser.add_argument("--theme",    choices=list(THEME_META.keys()), help="Specific theme")
     parser.add_argument("--start",    type=float, default=30.0, help="Start time in loop (sec)")
     parser.add_argument("--dry-run",  action="store_true")
@@ -173,18 +177,31 @@ def main():
 
     QUEUE_CC.mkdir(parents=True, exist_ok=True)
 
-    themes = list(THEME_META.keys()) if args.all else ([args.theme] if args.theme else [])
-    if not themes:
+    # Determine theme list
+    if args.theme:
+        themes = [args.theme]
+    else:
+        themes = list(THEME_META.keys())
+
+    if not args.all and not args.batch and not args.theme:
         parser.print_help()
         return
 
-    done = 0
-    for theme in themes:
-        log.info(f"\n[{theme}]")
-        if process_theme(theme, start=args.start, dry_run=args.dry_run, force=args.force):
-            done += 1
+    # Determine offset list
+    if args.batch:
+        offsets = BATCH_OFFSETS
+    else:
+        offsets = [args.start]
 
-    log.info(f"\nDone: {done}/{len(themes)} shorts")
+    done = 0
+    total = len(themes) * len(offsets)
+    for offset in offsets:
+        for theme in themes:
+            log.info(f"\n[{theme} t={int(offset)}s]")
+            if process_theme(theme, start=offset, dry_run=args.dry_run, force=args.force):
+                done += 1
+
+    log.info(f"\nDone: {done}/{total} shorts")
 
 
 if __name__ == "__main__":
