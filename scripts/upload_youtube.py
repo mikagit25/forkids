@@ -170,6 +170,7 @@ def upload_video(
     config: dict = None,
     language: str = "en",
     channel: str = "en",
+    made_for_kids: bool = True,
 ) -> str:
     if config is None:
         config = load_config()
@@ -177,8 +178,8 @@ def upload_video(
     youtube = get_youtube_service(config, channel=channel)
 
     video_status: dict = {
-        "madeForKids": True,
-        "selfDeclaredMadeForKids": True,
+        "madeForKids": made_for_kids,
+        "selfDeclaredMadeForKids": made_for_kids,
     }
     if publish_at:
         # Scheduled: private until publishAt
@@ -272,6 +273,8 @@ def main():
                         help="Target YouTube channel. Defaults to matching --language (ar→ar, id→id, else en).")
     parser.add_argument("--meta-path", default=None,
                         help="Path to meta YAML sidecar — video ID will be written back after upload")
+    parser.add_argument("--made-for-kids", default=None, choices=["true", "false"],
+                        help="Override madeForKids flag (default: true for EN/AR, false for id/CNR)")
     args = parser.parse_args()
 
     config   = load_config()
@@ -294,6 +297,12 @@ def main():
     extra_tags = [t.strip() for t in args.tags.split(",")] if args.tags else []
     tags = build_tags(args.video_type, args.theme, extra_tags, meta)
 
+    # Determine made_for_kids: explicit flag > channel default (CNR=false, kids=true)
+    if args.made_for_kids is not None:
+        made_for_kids = args.made_for_kids == "true"
+    else:
+        made_for_kids = ch != "id"   # CNR (id) = adult channel → false
+
     video_id = upload_video(
         file_path=args.file,
         title=title,
@@ -306,6 +315,7 @@ def main():
         config=config,
         language=args.language,
         channel=ch,
+        made_for_kids=made_for_kids,
     )
 
     if args.meta_path and video_id:

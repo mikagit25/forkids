@@ -136,16 +136,18 @@ def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
 
     language = metadata.get("language", "en")
 
+    made_for_kids = metadata.get("made_for_kids", channel != "id")
     cmd = [
         sys.executable,
         str(ROOT / "scripts" / "upload_youtube.py"),
-        "--file",       str(mp4_path),
-        "--title",      title,
-        "--video-type", video_type,
-        "--theme",      theme,
-        "--status",     "private" if publish_at else metadata.get("status", "public"),
-        "--language",   language,
-        "--channel",    channel,
+        "--file",         str(mp4_path),
+        "--title",        title,
+        "--video-type",   video_type,
+        "--theme",        theme,
+        "--status",       "private" if publish_at else metadata.get("status", "public"),
+        "--language",     language,
+        "--channel",      channel,
+        "--made-for-kids", "true" if made_for_kids else "false",
     ]
 
     if tags_str:

@@ -337,6 +337,8 @@ def assemble_video(loop_mp4: Path, audio_mp3: Path | None,
             "-stream_loop", "-1", "-i", str(loop_mp4),   # infinite loop visual
             "-i", str(audio_mp3),
             "-t", str(target_secs),
+            "-map", "0:v:0",            # video from loop
+            "-map", "1:a:0",            # audio from music MP3, NOT from silent loop
             "-c:v", "libx264", "-preset", preset, "-crf", "20",
             "-c:a", "aac", "-b:a", "192k",
             "-movflags", "+faststart",
