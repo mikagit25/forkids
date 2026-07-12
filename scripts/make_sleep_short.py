@@ -25,6 +25,16 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 SHORT_DURATION = 45  # seconds
 FADE_SECS      = 2   # fade in + fade out duration
 
+MUSIC_DIR = ROOT / "assets" / "music" / "classical" / "Music"
+
+# Default ambient music per theme (overlaid on silent loop clip)
+THEME_MUSIC = {
+    "moon_clouds": "Nocturne in E flat major, Op. 9 no. 2.mp3",
+    "night_bear":  "Fantaisie, Op. 79 - Andantino.mp3",
+    "warm_waves":  "Arabesque No. 1. Andantino con moto.mp3",
+    "rain_window": "Cello Suite no. 1 - Prelude in G, BWV 1007.mp3",
+}
+
 THEME_META = {
     "moon_clouds": {
         "title":   "🌙 Peaceful Night Sky | Classical Music Shorts | Classical Night Relax #shorts",
@@ -53,10 +63,11 @@ THEME_META = {
 }
 
 
-def make_vertical_short(loop_mp4: Path, start: float, out_mp4: Path) -> bool:
+def make_vertical_short(loop_mp4: Path, start: float, out_mp4: Path,
+                         music_mp3: Path | None = None) -> bool:
     """
     Extract 45s from loop, convert to 1080x1920, add fade in/out.
-    Strategy: scale to fit 1080w, pad to 1920h with black bars.
+    Overlays music_mp3 if provided (loops have silent audio from Remotion).
     """
     vf = (
         f"scale=1080:-2:force_original_aspect_ratio=decrease,"
@@ -64,17 +75,32 @@ def make_vertical_short(loop_mp4: Path, start: float, out_mp4: Path) -> bool:
         f"fade=t=in:st=0:d={FADE_SECS},"
         f"fade=t=out:st={SHORT_DURATION - FADE_SECS}:d={FADE_SECS}"
     )
-    cmd = [
-        "ffmpeg", "-y",
-        "-ss", str(start),
-        "-i", str(loop_mp4),
-        "-t", str(SHORT_DURATION),
-        "-vf", vf,
-        "-c:v", "libx264", "-preset", "fast", "-crf", "22",
-        "-an",                     # no audio in shared loop
-        "-movflags", "+faststart",
-        str(out_mp4),
-    ]
+    af = f"afade=t=in:st=0:d={FADE_SECS},afade=t=out:st={SHORT_DURATION - FADE_SECS}:d={FADE_SECS}"
+
+    if music_mp3 and music_mp3.exists():
+        cmd = [
+            "ffmpeg", "-y",
+            "-ss", str(start), "-i", str(loop_mp4),
+            "-i", str(music_mp3),
+            "-t", str(SHORT_DURATION),
+            "-map", "0:v:0", "-map", "1:a:0",
+            "-vf", vf, "-af", af,
+            "-c:v", "libx264", "-preset", "fast", "-crf", "22",
+            "-c:a", "aac", "-b:a", "192k",
+            "-movflags", "+faststart",
+            str(out_mp4),
+        ]
+    else:
+        cmd = [
+            "ffmpeg", "-y",
+            "-ss", str(start), "-i", str(loop_mp4),
+            "-t", str(SHORT_DURATION),
+            "-vf", vf,
+            "-c:v", "libx264", "-preset", "fast", "-crf", "22",
+            "-an",
+            "-movflags", "+faststart",
+            str(out_mp4),
+        ]
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=300)
     if r.returncode != 0 or not out_mp4.exists():
         log.error(f"ffmpeg failed: {r.stderr[:200]}")
@@ -150,7 +176,15 @@ def process_theme(theme: str, start: float = 30.0, dry_run: bool = False, force:
     if dry_run:
         return True
 
-    ok = make_vertical_short(loop_mp4, start, out_mp4)
+    music_file = THEME_MUSIC.get(theme, "")
+    music_mp3  = (MUSIC_DIR / music_file) if music_file else None
+    if music_mp3 and not music_mp3.exists():
+        log.warning(f"  Music not found: {music_mp3.name} — generating without audio")
+        music_mp3 = None
+    elif music_mp3:
+        log.info(f"  Music: {music_mp3.name}")
+
+    ok = make_vertical_short(loop_mp4, start, out_mp4, music_mp3=music_mp3)
     if not ok:
         return False
 
