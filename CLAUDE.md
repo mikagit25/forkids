@@ -222,6 +222,31 @@ python3 scripts/generate_ai_thumbs.py --queue all --backend together
 python3 scripts/manage_playlists.py --list
 ```
 
+## МУЛЬТИЯЗЫЧНЫЕ ЗАГОЛОВКИ (YouTube Localizations)
+
+Одно видео на EN канале — YouTube показывает локализованный заголовок/описание по региону зрителя.  
+Языки: **es** (испанский), **fr** (французский), **pt** (португальский/Бразилия), **id** (индонезийский).  
+Перевод через Together.ai LLM (Llama-3.3-70B). Теги не переводятся (YouTube не поддерживает per-lang теги).
+
+```bash
+# Одно видео по ID
+python3 scripts/localize_video.py --video-id VIDEO_ID_HERE
+
+# Видео из meta-файла (нужен youtube_id внутри)
+python3 scripts/localize_video.py --meta output/queue/meta_myfile.yaml
+
+# Только некоторые языки
+python3 scripts/localize_video.py --meta output/queue/meta_myfile.yaml --langs es,fr
+
+# Все видео в очереди с youtube_id (пакетная обработка)
+python3 scripts/localize_video.py --queue
+
+# Проверка без реальной загрузки
+python3 scripts/localize_video.py --queue --dry-run
+```
+
+После успешной локализации в meta YAML добавляется поле `localized_langs: [es, fr, pt, id]` — повторный запуск пропустит уже обработанные видео.
+
 ## Ассеты
 
 - Спрайты: `assets/sprites_new/{animals,fruits,vegetables}/` (OpenMoji CC0)

@@ -37,7 +37,7 @@ SCOPES = [
 CHANNEL_CFG = {
     "en": {"name": "Happy Bear Kids 🐻 EN", "state": "kids"},
     "ar": {"name": "Happy Bear Kids 🐻 AR", "state": "kids_ar"},
-    "id": {"name": "Happy Bear Kids 🐻 ID", "state": "kids_id"},
+    "id": {"name": "Calm Classics 🎵 ID",   "state": "kids_id"},
 }
 
 
