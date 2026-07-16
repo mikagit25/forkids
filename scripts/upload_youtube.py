@@ -321,12 +321,17 @@ def main():
     if args.meta_path and video_id:
         meta_path = Path(args.meta_path)
         if meta_path.exists():
-            with open(meta_path) as f:
-                m = yaml.safe_load(f) or {}
-            m["youtube_id"] = video_id
-            with open(meta_path, "w") as f:
-                yaml.dump(m, f, allow_unicode=True, default_flow_style=False)
-            log.info(f"Saved youtube_id={video_id} → {meta_path.name}")
+            try:
+                with open(meta_path) as f:
+                    m = yaml.safe_load(f) or {}
+                m["youtube_id"] = video_id
+                tmp = meta_path.with_suffix(".yaml.tmp")
+                with open(tmp, "w") as f:
+                    yaml.dump(m, f, allow_unicode=True, default_flow_style=False)
+                tmp.replace(meta_path)
+                log.info(f"Saved youtube_id={video_id} → {meta_path.name}")
+            except Exception as e:
+                log.warning(f"Failed to save youtube_id to meta: {e}")
 
 
 # Fix missing import for Optional

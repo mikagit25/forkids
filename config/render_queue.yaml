@@ -196,16 +196,17 @@ jobs:
 - id: phase5_song_suno_20260708
   cmd: python3 scripts/generate_song_suno.py --song goodnight_little_bear
   log: logs/suno.log
-  desc: 'Phase 5: Suno Goodnight Little Bear — 65 BPM, F major'
+  desc: 'Phase 5: Suno Goodnight Little Bear — 65 BPM, F major, night_bear, 1h+2h → queue/'
   added: '2026-07-08'
-  status: pending
+  status: ready  # ждёт credentials/suno_session.txt
   track: kids_song
   phase: 5
+  note: 'запустить вручную после сохранения suno_session.txt'
 
 - id: phase5_bubble_pop_song_20260708
-  cmd: python3 scripts/generate_bubble_pop_song.py
+  cmd: python3 scripts/generate_song_suno.py --song bubble_pop_song
   log: logs/bubble_pop.log
-  desc: 'Phase 5: bubble_pop_song — фирменная песня EN'
+  desc: 'Phase 5: bubble_pop_song — фирменная песня EN через Suno'
   added: '2026-07-08'
   status: pending
   track: kids_song
@@ -265,3 +266,21 @@ jobs:
     - mountain_snow
     - deep_space
     - zen_garden
+
+# Missing classical programs — all music available in licenses.yaml
+- id: cnr_missing_programs_20260712
+  cmd: bash scripts/run_missing_programs.sh
+  log: logs/missing_programs.log
+  desc: 'CNR: 4 недостающих программы — Swan Lake 02 (1h+3h+8h), Beethoven Sym5 (1h+3h), Cello Focus (1h+3h), Cello Sleep (1h+3h) = 11 видео'
+  added: '2026-07-12'
+  status: queued
+  track: calm_classics
+  note: 'watcher PID 1480422 — starts after cnr_visual_themes_batch_20260712 completes'
+  programs:
+    - {id: sleep_swan_lake_02, durations: [1, 3, 8], theme: moon_clouds, music: Tchaikovsky Swan Lake Act III+IV}
+    - {id: focus_beethoven_02, durations: [1, 3], theme: rain_window, music: Beethoven Symphony No. 5 complete}
+    - {id: focus_beethoven_cello_01, durations: [1, 3], theme: rain_window, music: Beethoven Cello Sonata Op.5 No.2 + Op.102}
+    - {id: sleep_beethoven_cello_01, durations: [1, 3], theme: warm_waves, music: Beethoven Cello Sonata No.1 + Op.5}
+  blocked_programs:
+    - {id: focus_bach_01, reason: needs Musopen API key — BWV 846/772/988/147/999/1068}
+    - {id: sleep_lullaby_01, reason: needs Musopen API key — Brahms/Schubert/Satie/Bach lullabies}

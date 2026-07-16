@@ -14,7 +14,7 @@ Usage:
   python3 scripts/generate_sleep_classical.py --list-programs
   python3 scripts/generate_sleep_classical.py --regen-meta --program sleep_chopin_01
 """
-import argparse, json, logging, re, subprocess, yaml
+import argparse, base64, json, logging, re, subprocess, time, yaml
 from datetime import datetime
 from pathlib import Path
 
@@ -31,6 +31,34 @@ DATE_STR   = datetime.now().strftime("%Y%m%d")
 
 log = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
+
+# ── Ken Burns visual loops — AI image per program ─────────────────────────────
+KB_N_IMAGES  = 6    # images per program (×30s clips = ~3 min loop)
+KB_CLIP_DUR  = 30   # seconds per clip
+KB_XFADE_DUR = 3    # crossfade between clips
+KB_FADE_SECS = 2    # fade in at start
+KB_FPS       = 25
+KB_MOTIONS   = ["zoom_in", "pan_right", "zoom_out", "pan_left", "pan_up", "pan_down"]
+
+# Cinematic prompts per program — used for both Ken Burns loop images and thumbnail
+PROGRAM_KB_PROMPTS: dict[str, str] = {
+    "sleep_chopin_01":          "candlelit grand piano in dark Parisian salon, moonlight through tall windows, romantic atmosphere, cinematic 4K",
+    "sleep_chopin_02":          "Romantic era salon with soft candlelight, old gold picture frames, moonlit Parisian interior, warm amber glow",
+    "sleep_swan_lake_01":       "moonlit lake at night, white swans gliding on still water, full moon reflection, misty forest background, ethereal blue",
+    "sleep_swan_lake_02":       "swan lake at dusk, water surface reflecting stars, mist rising over dark water, dreamlike blue and silver tones",
+    "sleep_debussy_01":         "impressionist lily pond at dawn, water reflections, soft morning mist, Monet-inspired, gentle pastel colors",
+    "sleep_romantic_night_01":  "candlelit grand library at night, violin resting on velvet, moonlight through arched windows, warm amber fireplace glow",
+    "sleep_flute_01":           "misty morning forest, golden rays through ancient trees, dew on leaves, peaceful woodland atmosphere at dawn",
+    "sleep_baroque_01":         "baroque palace interior at night, ornate chandeliers, gold architecture, candlelight reflecting on marble floors",
+    "sleep_grand_night_01":     "grand concert hall at night, ornate ceiling, dramatic spotlights over empty seats, majestic orchestral atmosphere",
+    "focus_beethoven_01":       "dramatic storm clouds over hilltop, lightning in distance, powerful Romantic landscape, dark cinematic 4K",
+    "focus_beethoven_02":       "Beethoven-era Vienna concert hall, dramatic lighting, symphony orchestra silhouettes, intense passionate atmosphere",
+    "focus_mozart_01":          "Viennese baroque palace ballroom, crystal chandeliers, elegant 18th century interior, golden afternoon sunlight",
+    "focus_drama_01":           "dramatic opera house interior, red velvet curtains, ornate gilded balconies, theatrical spotlight, deep shadows",
+    "sleep_beethoven_cello_01": "cello leaning against window at dusk, autumn leaves outside, warm lamplight, cozy evening room ambiance",
+    "focus_beethoven_cello_01": "cello and piano in sunlit studio, warm afternoon light on wooden floor, sheet music, serene focus atmosphere",
+    "sleep_lullaby_01":         "cozy nursery at night, moonlight through curtains, soft mobile above crib, warm amber nightlight, peaceful",
+}
 
 THEME_LOOP_SECS = {
     "moon_clouds": 240,
@@ -245,6 +273,156 @@ def render_shared_loop(theme: str, phase_offset: float = 0.0, force: bool = Fals
     return out_mp4
 
 
+def _kb_motion_vf(motion: str) -> str:
+    """FFmpeg Ken Burns zoompan filter string."""
+    frames = KB_CLIP_DUR * KB_FPS
+    scale  = "scale=2688:1536"
+    if motion == "zoom_in":
+        z, x, y = "min(zoom+0.0006,1.5)", "iw/2-(iw/zoom/2)", "ih/2-(ih/zoom/2)"
+    elif motion == "zoom_out":
+        z, x, y = "if(eq(on,0),1.5,max(zoom-0.0006,1.0))", "iw/2-(iw/zoom/2)", "ih/2-(ih/zoom/2)"
+    elif motion == "pan_right":
+        z, x, y = "1.4", f"min(on*(iw-iw/zoom)/{frames-1},iw-iw/zoom)", "ih/2-(ih/zoom/2)"
+    elif motion == "pan_left":
+        z, x, y = "1.4", f"max((iw-iw/zoom)-on*(iw-iw/zoom)/{frames-1},0)", "ih/2-(ih/zoom/2)"
+    elif motion == "pan_up":
+        z, x, y = "1.4", "iw/2-(iw/zoom/2)", f"max((ih-ih/zoom)-on*(ih-ih/zoom)/{frames-1},0)"
+    else:  # pan_down
+        z, x, y = "1.4", "iw/2-(iw/zoom/2)", f"min(on*(ih-ih/zoom)/{frames-1},ih-ih/zoom)"
+    zp = f"zoompan=z='{z}':x='{x}':y='{y}':d={frames}:s=1920x1080:fps={KB_FPS}"
+    return f"{scale},{zp}"
+
+
+def _kb_make_clip(img: Path, out: Path, motion: str) -> bool:
+    r = subprocess.run(
+        ["ffmpeg", "-y", "-loop", "1", "-i", str(img),
+         "-t", str(KB_CLIP_DUR), "-vf", _kb_motion_vf(motion),
+         "-c:v", "libx264", "-preset", "fast", "-crf", "22",
+         "-pix_fmt", "yuv420p", "-an", str(out)],
+        capture_output=True, text=True, timeout=300
+    )
+    return r.returncode == 0 and out.exists()
+
+
+def _kb_concat(clips: list[Path], out: Path) -> bool:
+    """Xfade-concatenate Ken Burns clips into a seamless visual loop."""
+    n = len(clips)
+    if n == 1:
+        import shutil; shutil.copy(clips[0], out); return True
+
+    inputs = []
+    for p in clips:
+        inputs += ["-i", str(p)]
+
+    step  = KB_CLIP_DUR - KB_XFADE_DUR
+    total = n * KB_CLIP_DUR - (n - 1) * KB_XFADE_DUR
+    fc    = (f"[0:v]fade=t=in:st=0:d={KB_FADE_SECS}[f0];"
+             f"[f0][1:v]xfade=transition=fade:duration={KB_XFADE_DUR}:offset={step}[v01]")
+    for i in range(2, n):
+        offset = i * step
+        prev   = f"[v{i-1:02d}]"
+        nxt    = f"[v{i:02d}]" if i < n - 1 else "[vpre]"
+        fc    += f";{prev}[{i}:v]xfade=transition=fade:duration={KB_XFADE_DUR}:offset={offset}{nxt}"
+    if n > 2:
+        fc += f";[vpre]fade=t=out:st={total - KB_FADE_SECS}:d={KB_FADE_SECS}[vout]"
+    else:
+        fc += f";[v01]fade=t=out:st={total - KB_FADE_SECS}:d={KB_FADE_SECS}[vout]"
+
+    r = subprocess.run(
+        ["ffmpeg", "-y"] + inputs + [
+            "-filter_complex", fc, "-map", "[vout]",
+            "-c:v", "libx264", "-preset", "fast", "-crf", "20",
+            "-pix_fmt", "yuv420p", "-an", str(out)],
+        capture_output=True, text=True, timeout=600
+    )
+    if r.returncode != 0 or not out.exists():
+        log.error(f"  xfade concat failed: {r.stderr[-300:]}")
+        return False
+    return True
+
+
+def render_kenburns_loop(program_id: str, force: bool = False) -> Path | None:
+    """Generate FLUX AI images + Ken Burns loop for a program. Returns loop MP4 or None."""
+    prompt = PROGRAM_KB_PROMPTS.get(program_id)
+    if not prompt:
+        return None
+    if not TOGETHER_KEY_FILE.exists():
+        log.warning("  No Together API key — falling back to CSS loop")
+        return None
+
+    loop_path = LOOPS_DIR / f"loop_kenburns_{program_id}.mp4"
+    if loop_path.exists() and not force:
+        log.info(f"  Ken Burns loop cached: {loop_path.name}")
+        return loop_path
+
+    api_key  = TOGETHER_KEY_FILE.read_text().strip()
+    imgs_dir = LOOPS_DIR / f"imgs_{program_id}"
+    imgs_dir.mkdir(parents=True, exist_ok=True)
+
+    lighting_variants = ["moonlit", "candlelit", "dawn light", "golden hour", "dusk", "twilight"]
+
+    # Step 1: Generate FLUX images
+    images: list[Path] = []
+    for i in range(KB_N_IMAGES):
+        img_path = imgs_dir / f"img_{i:02d}.jpg"
+        if img_path.exists() and not force:
+            images.append(img_path)
+            log.info(f"  Image cached: {img_path.name}")
+            continue
+        varied = f"{prompt}, {lighting_variants[i % len(lighting_variants)]} atmosphere"
+        log.info(f"  Generating image {i+1}/{KB_N_IMAGES} via FLUX…")
+        try:
+            import requests as req
+            resp = req.post(
+                "https://api.together.xyz/v1/images/generations",
+                headers={"Authorization": f"Bearer {api_key}"},
+                json={"model": "black-forest-labs/FLUX.1-schnell",
+                      "prompt": varied, "width": 1344, "height": 768,
+                      "steps": 4, "n": 1, "response_format": "b64_json"},
+                timeout=90
+            )
+            resp.raise_for_status()
+            img_path.write_bytes(base64.b64decode(resp.json()["data"][0]["b64_json"]))
+            images.append(img_path)
+            time.sleep(2)
+        except Exception as e:
+            log.warning(f"  Image {i+1} failed: {e}")
+
+    if len(images) < 2:
+        log.error(f"  Only {len(images)} images generated — skipping Ken Burns")
+        return None
+
+    # Step 2: Ken Burns clips
+    clips_dir = LOOPS_DIR / f"clips_{program_id}"
+    clips_dir.mkdir(exist_ok=True)
+    clips: list[Path] = []
+    for i, img in enumerate(images):
+        clip = clips_dir / f"clip_{i:02d}.mp4"
+        if clip.exists() and not force:
+            clips.append(clip)
+            continue
+        motion = KB_MOTIONS[i % len(KB_MOTIONS)]
+        log.info(f"  Ken Burns clip {i+1}/{len(images)}: {motion}")
+        if _kb_make_clip(img, clip, motion):
+            clips.append(clip)
+        else:
+            log.warning(f"  Clip {i+1} failed — skipping")
+
+    if not clips:
+        log.error("  No clips created — falling back to CSS loop")
+        return None
+
+    # Step 3: Xfade concat → loop
+    log.info(f"  Concat {len(clips)} clips → {loop_path.name}")
+    LOOPS_DIR.mkdir(parents=True, exist_ok=True)
+    if _kb_concat(clips, loop_path):
+        log.info(f"  ✓ Ken Burns loop: {loop_path.name} ({loop_path.stat().st_size / 1024**2:.0f}MB)")
+        return loop_path
+
+    log.error("  Loop concat failed — falling back to CSS loop")
+    return None
+
+
 def _get_mp3_duration(path: Path) -> float:
     """Return duration in seconds via ffprobe."""
     import json as _json
@@ -430,45 +608,77 @@ def write_meta(program: dict, hours: int, queue: Path, out_name: str):
 
 
 def generate_thumbnail(out_mp4: Path, program: dict, hours: int) -> bool:
-    if not TOGETHER_KEY_FILE.exists():
-        return False
-    theme = program.get("visual_theme", "moon_clouds")
-    prompt_map = {
-        "moon_clouds":  "peaceful night sky with full moon and drifting clouds, classical music, sleep relaxation, dark blue aesthetic",
-        "night_bear":   "sleeping bear silhouette under moonlit night sky with fireflies, classical lullaby, cozy peaceful",
-        "warm_waves":   "ocean waves at dusk with warm amber sunset glow, classical music relaxation, peaceful",
-        "rain_window":  "rainy window with warm interior candle glow, classical music study focus, cozy atmospheric",
-    }
-    prompt = prompt_map.get(theme, "peaceful classical music ambiance, sleep and relaxation")
-    composers = set(t.get("composer", "").split()[0] for t in program.get("tracks", []))
-    prompt += f", {', '.join(sorted(composers))}, {HOURS_TO_LABEL.get(hours, '')}"
-
     thumb_path = out_mp4.parent / f"thumb_{out_mp4.stem}.png"
     if thumb_path.exists():
         return True
 
-    try:
-        import importlib.util
-        spec = importlib.util.spec_from_file_location("gat", ROOT / "scripts" / "generate_ai_thumbs.py")
-        gat  = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(gat)
-        img = gat.together_generate_image(prompt, TOGETHER_KEY_FILE.read_text().strip())
-        if img:
-            thumb_path.write_bytes(gat.resize_to_720p(img))
-            log.info(f"  Thumb → {thumb_path.name}")
+    prog_id = program.get("id", "")
+
+    # Prefer a cached KB image (already generated for the loop)
+    kb_img = LOOPS_DIR / f"imgs_{prog_id}" / "img_00.jpg"
+    if kb_img.exists():
+        try:
+            import importlib.util
+            spec = importlib.util.spec_from_file_location("gat", ROOT / "scripts" / "generate_ai_thumbs.py")
+            gat  = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(gat)
+            thumb_path.write_bytes(gat.resize_to_720p(kb_img.read_bytes()))
+            log.info(f"  Thumb from KB image → {thumb_path.name}")
             return True
+        except Exception as e:
+            log.warning(f"  KB thumb resize failed: {e}")
+
+    # Fall back: generate new FLUX image from prompt
+    if not TOGETHER_KEY_FILE.exists():
         return False
+    prompt = PROGRAM_KB_PROMPTS.get(prog_id)
+    if not prompt:
+        theme = program.get("visual_theme", "moon_clouds")
+        prompt_map = {
+            "moon_clouds": "peaceful moonlit night with classical music ambiance, sleep relaxation, dark blue",
+            "night_bear":  "sleeping bear silhouette under moonlit sky with fireflies, cozy peaceful",
+            "warm_waves":  "ocean waves at dusk with amber sunset glow, classical music relaxation",
+            "rain_window": "rainy window with warm candle glow inside, classical music study, cozy",
+        }
+        prompt = prompt_map.get(theme, "peaceful classical music ambiance, sleep and relaxation")
+    composers = set(t.get("composer", "").split()[0] for t in program.get("tracks", []))
+    prompt += f", {', '.join(sorted(composers))}"
+
+    try:
+        import requests as req
+        api_key = TOGETHER_KEY_FILE.read_text().strip()
+        resp = req.post(
+            "https://api.together.xyz/v1/images/generations",
+            headers={"Authorization": f"Bearer {api_key}"},
+            json={"model": "black-forest-labs/FLUX.1-schnell",
+                  "prompt": prompt, "width": 1280, "height": 720,
+                  "steps": 4, "n": 1, "response_format": "b64_json"},
+            timeout=60
+        )
+        resp.raise_for_status()
+        thumb_path.write_bytes(base64.b64decode(resp.json()["data"][0]["b64_json"]))
+        log.info(f"  Thumb → {thumb_path.name}")
+        return True
     except Exception as e:
         log.warning(f"  Thumbnail skipped: {e}")
         return False
 
 
 def cmd_render_loops_only(force: bool = False):
-    """Render all 4 shared loops without audio."""
+    """Render all 4 shared CSS loops without audio."""
     log.info("=== Rendering shared SleepClassicalLoop files ===")
     for theme in THEME_LOOP_SECS:
         render_shared_loop(theme, phase_offset=0.0, force=force)
     log.info("Done.")
+
+
+def cmd_gen_visuals(force: bool = False):
+    """Generate Ken Burns visual loops for all programs that have a prompt."""
+    log.info("=== Generating Ken Burns visual loops ===")
+    for prog_id in PROGRAM_KB_PROMPTS:
+        log.info(f"\n--- {prog_id} ---")
+        render_kenburns_loop(prog_id, force=force)
+    log.info("\nDone — all Ken Burns loops generated.")
 
 
 def cmd_generate_program(program_id: str, durations: list[int] | None,
@@ -487,7 +697,10 @@ def cmd_generate_program(program_id: str, durations: list[int] | None,
     audio_mp3 = None
 
     if not regen_meta and not dry_run:
-        loop_mp4 = render_shared_loop(theme, force=force)
+        # Prefer AI image + Ken Burns loop; fall back to CSS Remotion animation
+        loop_mp4 = render_kenburns_loop(program_id, force=force)
+        if loop_mp4 is None:
+            loop_mp4 = render_shared_loop(theme, force=force)
 
         # Build audio long enough for the longest requested duration
         max_hours = max(hours_list) if hours_list else 1
@@ -534,7 +747,9 @@ def cmd_generate_program(program_id: str, durations: list[int] | None,
 def main():
     parser = argparse.ArgumentParser(description="Generate Classical Night Relax sleep programs")
     parser.add_argument("--render-loops-only", action="store_true",
-                        help="Only render the 4 shared loop MP4s (no audio, no assembly)")
+                        help="Only render the 4 shared CSS loop MP4s (no audio, no assembly)")
+    parser.add_argument("--gen-visuals", action="store_true",
+                        help="Generate Ken Burns visual loops for all programs (FLUX images + FFmpeg)")
     parser.add_argument("--program",    help="Program ID (e.g. sleep_chopin_01)")
     parser.add_argument("--durations",  type=int, nargs="+",
                         help="Hours to generate (e.g. --durations 1 3). Default: from config")
@@ -553,6 +768,10 @@ def main():
 
     if args.render_loops_only:
         cmd_render_loops_only(force=args.force)
+        return
+
+    if args.gen_visuals:
+        cmd_gen_visuals(force=args.force)
         return
 
     if args.program:
