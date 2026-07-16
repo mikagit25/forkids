@@ -222,3 +222,51 @@ python3 scripts/manage_playlists.py --list
 - `credentials/youtube_token_id.json` — Calm Classics канал
 - `credentials/youtube_client.json` — OAuth (в .gitignore, не коммитить!)
 - `credentials/together_api_key.txt` — Together.ai для thumbnails
+
+---
+
+## ВИЗУАЛЬНЫЕ ПРАВИЛА (накоплены из git-истории)
+
+Эти правила применяются ко ВСЕМ Remotion-компонентам и генераторам. Нарушение = регрессия.
+
+### Rule 3 — Элементы всегда видимы
+Минимальная opacity любого элемента ≥ 0.50 в любой момент времени.  
+Частицы/светлячки: size ≥ 14px (не 6px). Нельзя делать элементы "почти невидимыми".
+
+### Rule 4 — Только 3D спрайты
+Использовать `_3d.png` Pixar-стиль спрайты из `remotion/public/sprites/`.  
+CSS flat shapes и SVG — запрещены для основного контента.
+
+### Rule 6 — Большие размеры спрайтов
+Главный спрайт: **440–460px** (не 200-300px). Вторичные спрайты: **140–210px**.  
+При изменении существующих размеров: увеличить на **+15%** от текущих.  
+ColorLearnLong: 556px main, 484px song, 506px review, 414px outro, 210px intro.
+
+### Rule 7 — Wobble (PIP/BWW) на всех спрайтах
+Каждый блок motion должен иметь `"wobble": True`.  
+В DanceSpriteLong: добавлять к каждому блоку в `blocks[]`.  
+В DanceShapeLong: аналогично через `block.wobble`.  
+Wobble = multi-frequency outline breathing, уникальный per-seed.
+
+### Rule 8 — Независимые фазы движения
+Каждый спрайт должен иметь уникальный `seed` (1, 2, 3, 4, 5...).  
+Никакие два спрайта не должны двигаться синхронно.  
+Для per-language вариаций: использовать `phaseOffset`.
+
+### Rule 9 — Idle float всегда активен
+Спрайты никогда не стоят на месте, даже в блоке NONE/default.  
+Минимальное idle движение: `cx ±18px` sin-волна, `cy ±14px`, scale breathing `±4%`.  
+В DanceSpriteLong это встроено в default case computeSpriteTransform().
+
+### Применение правил при написании новых генераторов
+```python
+# Правильный шаблон для DanceSpriteLong:
+"sprites": [
+    {"path": "characters/bear_happy_3d.png", "size": 460, "posX": 0.50, "posY": 0.44, "seed": 1},  # Rule 4, 6
+    {"path": "objects/star_3d.png",          "size": 165, "posX": 0.18, "posY": 0.28, "seed": 2},  # Rule 6, 8
+],
+"blocks": [
+    {"startSec": 0,   "endSec": 200, "motion": "FADEIN", "amplitude": 60, "wobble": True},  # Rule 7
+    {"startSec": 200, "endSec": 700, "motion": "BOB",    "period": 3.5,  "amplitude": 45, "wobble": True},
+    {"startSec": 700, "endSec": 1500,"motion": "WAVE",   "period": 4.0,  "amplitude": 55, "waveDelay": 0.5, "wobble": True},
+]

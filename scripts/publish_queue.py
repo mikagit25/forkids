@@ -223,6 +223,8 @@ def is_ready(mp4_path: Path) -> tuple[bool, str]:
 
     if not meta_path.exists():
         return False, "no meta file"
+    if meta_path.stat().st_size == 0:
+        return False, "meta file is 0 bytes"
 
     meta = yaml.safe_load(open(meta_path)) or {}
     if not meta.get("title", "").strip():
