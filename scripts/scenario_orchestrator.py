@@ -513,6 +513,21 @@ def dispatch_character_dialogue(row: dict) -> bool:
     return True
 
 
+def dispatch_song_compilation(row: dict) -> bool:
+    """Generate 25-min song compilation from Suno AI tracks.
+    key = 'upbeat' | 'lullaby'
+    lang = 'en' | 'ar' | 'both'
+    Output goes to output/queue/ (EN) and output/queue_ar/ (AR).
+    """
+    ptype = row.get('key', 'upbeat')
+    lang  = row.get('lang', 'en')
+    cmd   = [sys.executable, str(ROOT / 'scripts' / 'generate_song_compilation.py'),
+             '--type', ptype, '--lang', lang]
+    log(f"  Running: {' '.join(cmd)}")
+    r = subprocess.run(cmd, capture_output=False, timeout=7200)
+    return r.returncode == 0
+
+
 DISPATCHERS = {
     'color_learn':        dispatch_color_learn,
     'number_learn':       dispatch_number_learn,
@@ -544,6 +559,7 @@ DISPATCHERS = {
     'edu_entertain':      dispatch_edu_entertain,
     'character_dialogue': dispatch_character_dialogue,
     'wiggle_party':       dispatch_wiggle_party,
+    'song_compilation':   dispatch_song_compilation,
 }
 
 

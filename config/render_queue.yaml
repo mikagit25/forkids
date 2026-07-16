@@ -284,3 +284,32 @@ jobs:
   blocked_programs:
     - {id: focus_bach_01, reason: needs Musopen API key — BWV 846/772/988/147/999/1068}
     - {id: sleep_lullaby_01, reason: needs Musopen API key — Brahms/Schubert/Satie/Bach lullabies}
+
+# SONG COMPILATIONS — Suno AI tracks (18 EN / 7 AR songs, 25 min each)
+# Cron: 1-го числа каждого месяца; повторная генерация → новый файл с датой
+- id: song_compilation_upbeat_en_20260716
+  cmd: python3 scripts/generate_song_compilation.py --type upbeat --lang en
+  log: logs/song_compilation.log
+  desc: 'EN: 18 Suno upbeat songs → 25 min compilation → output/queue/'
+  added: '2026-07-16'
+  status: pending
+  track: kids_song
+  note: 'Cron: 1-го числа каждого месяца 02:00. Публикация через обычную EN-очередь 18:00'
+
+- id: song_compilation_lullaby_en_20260716
+  cmd: python3 scripts/generate_song_compilation.py --type lullaby --lang en
+  log: logs/song_compilation.log
+  desc: 'EN: 17 Suno lullabies → 25 min compilation → output/queue/'
+  added: '2026-07-16'
+  status: pending
+  track: kids_song
+  note: 'Cron: 8-го числа каждого месяца 02:00'
+
+- id: song_compilation_upbeat_ar_20260716
+  cmd: python3 scripts/generate_song_compilation.py --type upbeat --lang ar
+  log: logs/song_compilation.log
+  desc: 'AR: 7 Suno songs → 25 min compilation → output/queue_ar/'
+  added: '2026-07-16'
+  status: pending
+  track: kids_song
+  note: 'Cron: 15-го числа каждого месяца 02:00. Публикация через AR-очередь 19:00'
