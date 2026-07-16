@@ -30,12 +30,14 @@ TOGETHER_MODEL = "black-forest-labs/FLUX.1-schnell"
 DATE_STR  = datetime.now().strftime("%Y%m%d")
 
 # All available tracks — for picking per-language alternates (avoids YT duplicate fingerprinting)
+# All available Suno instrumental tracks — for per-language alternates
 _ALL_TRACKS = [
-    "Carefree.mp3", "Circus of Freaks.mp3", "Crinoline Dreams.mp3", "Fluffing a Duck.mp3",
-    "George Street Shuffle.mp3", "Gymnopedie No 1.mp3", "Happy Happy Game Show.mp3",
-    "Heartwarming.mp3", "Hyperfun.mp3", "Life of Riley.mp3", "Merry Go.mp3",
-    "Monkeys Spinning Monkeys.mp3", "Overworld.mp3", "Pinball Spring.mp3", "Pixelland.mp3",
-    "Quirky Dog.mp3", "Salty Ditty.mp3", "Sneaky Snitch.mp3", "Walking Along.mp3", "Wholesome.mp3",
+    "Afternoon in F v2.mp3", "Rain Etude in C Minor v2.mp3", "Spring Waltz v2.mp3",
+    "Spring Waltz.mp3", "Morning Trail v2.mp3", "Morning Trail.mp3",
+    "The Glass Forest v2.mp3", "Rainbow Lantern v2.mp3", "Rainbow Lantern.mp3",
+    "Tide and Piano v2.mp3", "Tide and Piano.mp3", "Moonlight Waltz.mp3",
+    "Dreamy Arpeggios v2.mp3", "Moonlight on the Cradle v2.mp3",
+    "The Golden Meadow v2.mp3", "The Golden Meadow.mp3", "Moonlight on the Piano v2.mp3",
 ]
 
 def alt_music(en_music: str, ep_idx: int, lang: str) -> str:
@@ -59,7 +61,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#1A1000", "bgColorEnd": "#0A0800",
             "accentColor": "#FFD700",
-            "musicFile": "Happy Happy Game Show.mp3", "volume": 0.20,
+            "musicFile": "Afternoon in F v2.mp3", "volume": 0.20,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "emotions/happy_3d.png", "size": 380, "posX": 0.50, "posY": 0.44, "seed": 1},
@@ -79,7 +81,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#020510", "bgColorEnd": "#010408",
             "accentColor": "#64B5F6",
-            "musicFile": "Gymnopedie No 1.mp3", "volume": 0.16,
+            "musicFile": "Rain Etude in C Minor v2.mp3", "volume": 0.14,
             "bgEffect": "none",
             "sprites": [
                 {"path": "emotions/sad_3d.png", "size": 360, "posX": 0.50, "posY": 0.46, "seed": 1},
@@ -98,7 +100,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#0A0515", "bgColorEnd": "#050210",
             "accentColor": "#AB47BC",
-            "musicFile": "Quirky Dog.mp3", "volume": 0.18,
+            "musicFile": "Spring Waltz v2.mp3", "volume": 0.18,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "emotions/surprised_3d.png", "size": 370, "posX": 0.50, "posY": 0.44, "seed": 1},
@@ -118,7 +120,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#120200", "bgColorEnd": "#0A0100",
             "accentColor": "#EF5350",
-            "musicFile": "Carefree.mp3", "volume": 0.18,
+            "musicFile": "Morning Trail v2.mp3", "volume": 0.17,
             "bgEffect": "none",
             "sprites": [
                 {"path": "emotions/angry_3d.png", "size": 370, "posX": 0.50, "posY": 0.44, "seed": 1},
@@ -138,7 +140,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#010508", "bgColorEnd": "#010305",
             "accentColor": "#78909C",
-            "musicFile": "Crinoline Dreams.mp3", "volume": 0.15,
+            "musicFile": "The Glass Forest v2.mp3", "volume": 0.14,
             "bgEffect": "none",
             "sprites": [
                 {"path": "emotions/scared_3d.png", "size": 360, "posX": 0.50, "posY": 0.44, "seed": 1},
@@ -157,7 +159,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#120010", "bgColorEnd": "#0A000A",
             "accentColor": "#E91E63",
-            "musicFile": "Wholesome.mp3", "volume": 0.18,
+            "musicFile": "Rainbow Lantern v2.mp3", "volume": 0.16,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "emotions/love_3d.png",  "size": 340, "posX": 0.38, "posY": 0.44, "seed": 1},
@@ -179,7 +181,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#010810", "bgColorEnd": "#010608",
             "accentColor": "#29B6F6",
-            "musicFile": "Life of Riley.mp3", "volume": 0.16,
+            "musicFile": "Tide and Piano v2.mp3", "volume": 0.16,
             "bgEffect": "bubbles",
             "sprites": [
                 {"path": "animals_3d/whale.png", "size": 480, "posX": 0.50, "posY": 0.46, "seed": 1},
@@ -198,7 +200,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#020306", "bgColorEnd": "#010205",
             "accentColor": "#7E57C2",
-            "musicFile": "Crinoline Dreams.mp3", "volume": 0.16,
+            "musicFile": "Moonlight Waltz.mp3", "volume": 0.15,
             "bgEffect": "bubbles",
             "sprites": [
                 {"path": "objects/octopus_3d.png", "size": 400, "posX": 0.50, "posY": 0.46, "seed": 1},
@@ -217,7 +219,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#010A12", "bgColorEnd": "#010810",
             "accentColor": "#4FC3F7",
-            "musicFile": "Wholesome.mp3", "volume": 0.16,
+            "musicFile": "Dreamy Arpeggios v2.mp3", "volume": 0.15,
             "bgEffect": "bubbles",
             "sprites": [
                 {"path": "animals_3d/fish.png", "size": 280, "posX": 0.25, "posY": 0.40, "seed": 1},
@@ -237,7 +239,7 @@ VIDEOS = {
         "series": "ocean", "comp": "DanceShapeLong", "dur_label": "25 min",
         "props": {
             "bgColor": "#011020",
-            "musicFile": "Pinball Spring.mp3", "volume": 0.18,
+            "musicFile": "Morning Trail v2.mp3", "volume": 0.18,
             "shapes": [
                 {"shape": "oval",    "color": "#5C9ED9", "size": 280, "posX": 0.30, "posY": 0.42, "seed": 1},
                 {"shape": "oval",    "color": "#4A8EC4", "size": 250, "posX": 0.65, "posY": 0.46, "seed": 2},
@@ -257,7 +259,7 @@ VIDEOS = {
         "series": "ocean", "comp": "DanceShapeLong", "dur_label": "25 min",
         "props": {
             "bgColor": "#010508",
-            "musicFile": "Gymnopedie No 1.mp3", "volume": 0.15,
+            "musicFile": "Dreamy Arpeggios v2.mp3", "volume": 0.14,
             "shapes": [
                 {"shape": "circle",  "color": "#80DEEA", "size": 240, "posX": 0.30, "posY": 0.36, "seed": 1, "colorOffset": 0.00},
                 {"shape": "circle",  "color": "#CE93D8", "size": 210, "posX": 0.65, "posY": 0.34, "seed": 2, "colorOffset": 0.33},
@@ -278,7 +280,7 @@ VIDEOS = {
         "series": "ocean", "comp": "DanceShapeLong", "dur_label": "25 min",
         "props": {
             "bgColor": "#040A08",
-            "musicFile": "Crinoline Dreams.mp3", "volume": 0.15,
+            "musicFile": "Moonlight on the Cradle v2.mp3", "volume": 0.14,
             "shapes": [
                 {"shape": "star",   "color": "#FF7043", "size": 280, "posX": 0.50, "posY": 0.44, "seed": 1},
                 {"shape": "star",   "color": "#FF8A65", "size": 160, "posX": 0.20, "posY": 0.60, "seed": 2},
@@ -299,7 +301,7 @@ VIDEOS = {
         "series": "transport", "comp": "DanceShapeLong", "dur_label": "25 min",
         "props": {
             "bgColor": "#040A18",
-            "musicFile": "Carefree.mp3", "volume": 0.18,
+            "musicFile": "Morning Trail.mp3", "volume": 0.18,
             "shapes": [
                 {"shape": "diamond", "color": "#E8EEF5", "size": 260, "posX": 0.50, "posY": 0.40, "seed": 1},
                 {"shape": "diamond", "color": "#CFD8DC", "size": 180, "posX": 0.30, "posY": 0.44, "seed": 2},
@@ -320,7 +322,7 @@ VIDEOS = {
         "series": "transport", "comp": "DanceShapeLong", "dur_label": "25 min",
         "props": {
             "bgColor": "#06100C",
-            "musicFile": "Quirky Dog.mp3", "volume": 0.18,
+            "musicFile": "Afternoon in F v2.mp3", "volume": 0.18,
             "shapes": [
                 {"shape": "circle",  "color": "#FFB300", "size": 200, "posX": 0.50, "posY": 0.46, "seed": 1},
                 {"shape": "diamond", "color": "#FDD835", "size": 160, "posX": 0.32, "posY": 0.30, "seed": 2},
@@ -340,7 +342,7 @@ VIDEOS = {
         "series": "transport", "comp": "DanceShapeLong", "dur_label": "25 min",
         "props": {
             "bgColor": "#010812",
-            "musicFile": "Life of Riley.mp3", "volume": 0.17,
+            "musicFile": "Tide and Piano.mp3", "volume": 0.16,
             "shapes": [
                 {"shape": "hexagon", "color": "#37474F", "size": 280, "posX": 0.50, "posY": 0.56, "seed": 1},
                 {"shape": "square",  "color": "#546E7A", "size": 140, "posX": 0.50, "posY": 0.36, "seed": 2},
@@ -360,7 +362,7 @@ VIDEOS = {
         "series": "transport", "comp": "DanceShapeLong", "dur_label": "25 min",
         "props": {
             "bgColor": "#0A1408",
-            "musicFile": "Carefree.mp3", "volume": 0.18,
+            "musicFile": "Spring Waltz.mp3", "volume": 0.18,
             "shapes": [
                 {"shape": "oval",    "color": "#795548", "size": 200, "posX": 0.50, "posY": 0.58, "seed": 1},
                 {"shape": "triangle","color": "#ECEFF1", "size": 180, "posX": 0.50, "posY": 0.36, "seed": 2},
@@ -381,7 +383,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#060C18", "bgColorEnd": "#040810",
             "accentColor": "#FF7043",
-            "musicFile": "Wholesome.mp3", "volume": 0.18,
+            "musicFile": "Rainbow Lantern.mp3", "volume": 0.18,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "objects/balloon_3d.png", "size": 380, "posX": 0.50, "posY": 0.42, "seed": 1},
@@ -404,7 +406,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#150800", "bgColorEnd": "#0A0400",
             "accentColor": "#FFB74D",
-            "musicFile": "Happy Happy Game Show.mp3", "volume": 0.20,
+            "musicFile": "Afternoon in F v2.mp3", "volume": 0.20,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "characters/bear_talking_3d.png", "size": 440, "posX": 0.50, "posY": 0.44, "seed": 1},
@@ -427,7 +429,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#040C15", "bgColorEnd": "#020810",
             "accentColor": "#29B6F6",
-            "musicFile": "Carefree.mp3", "volume": 0.18,
+            "musicFile": "Morning Trail v2.mp3", "volume": 0.17,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "characters/bear_talking_3d.png", "size": 460, "posX": 0.50, "posY": 0.44, "seed": 1},
@@ -450,7 +452,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#100200", "bgColorEnd": "#080100",
             "accentColor": "#FF5722",
-            "musicFile": "Pinball Spring.mp3", "volume": 0.20,
+            "musicFile": "The Golden Meadow v2.mp3", "volume": 0.18,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "characters/bear_celebrate_3d.png", "size": 460, "posX": 0.50, "posY": 0.44, "seed": 1},
@@ -473,7 +475,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#050A00", "bgColorEnd": "#030600",
             "accentColor": "#66BB6A",
-            "musicFile": "Carefree.mp3", "volume": 0.18,
+            "musicFile": "Morning Trail.mp3", "volume": 0.17,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "characters/bear_wave_3d.png", "size": 460, "posX": 0.50, "posY": 0.44, "seed": 1},
@@ -496,7 +498,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#05000F", "bgColorEnd": "#030008",
             "accentColor": "#CE93D8",
-            "musicFile": "Wholesome.mp3", "volume": 0.22,
+            "musicFile": "Moonlight on the Piano v2.mp3", "volume": 0.20,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "characters/bear_happy_3d.png", "size": 460, "posX": 0.50, "posY": 0.44, "seed": 1},
@@ -519,7 +521,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#031008", "bgColorEnd": "#020A05",
             "accentColor": "#66BB6A",
-            "musicFile": "Life of Riley.mp3", "volume": 0.18,
+            "musicFile": "The Golden Meadow.mp3", "volume": 0.17,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "characters/bear_happy_3d.png",  "size": 450, "posX": 0.50, "posY": 0.44, "seed": 1},
@@ -542,7 +544,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#0A0800", "bgColorEnd": "#060500",
             "accentColor": "#FF8F00",
-            "musicFile": "Pinball Spring.mp3", "volume": 0.18,
+            "musicFile": "Spring Waltz v2.mp3", "volume": 0.18,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "characters/bear_celebrate_3d.png", "size": 460, "posX": 0.50, "posY": 0.44, "seed": 1},
@@ -565,7 +567,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#020810", "bgColorEnd": "#010508",
             "accentColor": "#4FC3F7",
-            "musicFile": "Life of Riley.mp3", "volume": 0.17,
+            "musicFile": "Tide and Piano v2.mp3", "volume": 0.16,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "characters/bear_wave_3d.png", "size": 460, "posX": 0.50, "posY": 0.44, "seed": 1},

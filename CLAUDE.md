@@ -112,7 +112,23 @@ bash scripts/run_renders_sequential.sh   # правильно
 - `license: rejected` → файл НЕ использовать
 - Content ID споры → решить в течение 48 часов
 
-### 7. Suno (AI-музыка)
+### 7. Музыкальные треки — ТОЛЬКО СОБСТВЕННЫЕ (с июля 2026)
+
+**Kevin MacLeod ЗАПРЕЩЁН** — больше не используем ни в видео, ни в описаниях.
+
+| Контент | Музыка |
+|---------|--------|
+| Детские видео (EN/AR) | Suno AI-треки из `assets/audio/suno/` |
+| Классика / Calm Classics | Musopen PD/CC0 из `assets/music/classical/Music/` |
+
+- Треки для Remotion: `remotion/public/music/` (туда копируются нужные файлы)
+- Instr. треки (фон для DanceSpriteLong): `Afternoon in F v2`, `Tide and Piano v2`, `Morning Trail v2` и т.д.
+- Сборники песен: `scripts/generate_song_compilation.py` (18 EN-песен / 7 AR-песен, 25 мин)
+- В мета-описании: `🎵 Original music by Happy Bear Kids (AI-generated, © 2026)` (EN)
+  или `🎵 موسيقى أصلية من هابي بير كيدز` (AR)
+- **НИКОГДА** не писать "Kevin MacLeod", "incompetech", "CC Attribution" в описаниях
+
+### 8. Suno (AI-музыка)
 - Требует активной платной подписки + документация промпта
 - Нельзя упоминать известных артистов по имени
 - В мета: `ai_generated: true`
