@@ -35,16 +35,16 @@ DATE_STR  = datetime.now().strftime("%Y%m%d")
 
 RAINBOW = ["#E53935","#FF9800","#FDD835","#43A047","#1E88E5","#9C27B0","#E91E63","#E53935"]
 
-# Different music per language → unique audio fingerprint per channel (avoids YT duplicate detection)
+# Suno AI tracks — unique per episode+lang for distinct YT audio fingerprint
 LANG_MUSIC = {
-    "7":  {"en": "Quirky Dog.mp3",          "ar": "Fluffing a Duck.mp3",       "id": "Sneaky Snitch.mp3"},
-    "8":  {"en": "Crinoline Dreams.mp3",    "ar": "Salty Ditty.mp3",           "id": "George Street Shuffle.mp3"},
-    "9":  {"en": "Wholesome.mp3",           "ar": "Heartwarming.mp3",          "id": "Life of Riley.mp3"},
-    "10": {"en": "Gymnopedie No 1.mp3",     "ar": "Pixelland.mp3",             "id": "Overworld.mp3"},
-    "11": {"en": "Carefree.mp3",            "ar": "Merry Go.mp3",              "id": "Circus of Freaks.mp3"},
-    "12": {"en": "Happy Happy Game Show.mp3","ar": "Monkeys Spinning Monkeys.mp3","id": "Hyperfun.mp3"},
-    "13": {"en": "Pinball Spring.mp3",      "ar": "Walking Along.mp3",         "id": "Heartwarming.mp3"},
-    "14": {"en": "Gymnopedie No 1.mp3",     "ar": "Crinoline Dreams.mp3",      "id": "Salty Ditty.mp3"},
+    "7":  {"en": "Spring Waltz v2.mp3",          "ar": "Afternoon in F v2.mp3",      "id": "Morning Trail.mp3"},
+    "8":  {"en": "The Glass Forest v2.mp3",       "ar": "Rain Etude in C Minor v2.mp3","id": "Moonlight Waltz.mp3"},
+    "9":  {"en": "Dreamy Arpeggios v2.mp3",       "ar": "Rainbow Lantern v2.mp3",     "id": "Rainbow Lantern.mp3"},
+    "10": {"en": "Moonlight Waltz.mp3",           "ar": "Tide and Piano v2.mp3",      "id": "Tide and Piano.mp3"},
+    "11": {"en": "Afternoon in F v2.mp3",         "ar": "Morning Trail v2.mp3",       "id": "Spring Waltz v2.mp3"},
+    "12": {"en": "Rainbow Lantern v2.mp3",        "ar": "Rainbow Lantern.mp3",        "id": "Morning Trail v2.mp3"},
+    "13": {"en": "Spring Waltz.mp3",              "ar": "The Golden Meadow v2.mp3",   "id": "Afternoon in F v2.mp3"},
+    "14": {"en": "Moonlight on the Cradle v2.mp3","ar": "Dreamy Arpeggios v2.mp3",   "id": "Moonlight on the Piano v2.mp3"},
 }
 
 SERIES_EN = "Special Mechanics"
@@ -62,23 +62,21 @@ VIDEOS = {
             "bgColor": "#0A1A08",
             "bgColorEnd": "#05100A",
             "accentColor": "#66BB6A",
-            "musicFile": "Quirky Dog.mp3",
+            "musicFile": "Spring Waltz v2.mp3",
             "volume": 0.18,
-            "bgEffect": "none",
+            "bgEffect": "sparkles",
             "sprites": [
-                {"path": "animals/rabbit.png", "size": 260, "posX": 0.22, "posY": 0.45, "seed": 1},
-                {"path": "animals/cat.png",    "size": 245, "posX": 0.50, "posY": 0.45, "seed": 2},
-                {"path": "animals/dog.png",    "size": 250, "posX": 0.78, "posY": 0.45, "seed": 3},
+                {"path": "animals/rabbit_3d.png", "size": 450, "posX": 0.50, "posY": 0.44, "seed": 1},
+                {"path": "animals/cat_3d.png",    "size": 190, "posX": 0.20, "posY": 0.52, "seed": 2},
+                {"path": "animals/dog_3d.png",    "size": 180, "posX": 0.80, "posY": 0.52, "seed": 3},
             ],
             "blocks": [
-                {"startSec": 0,    "endSec": 120,  "motion": "FADEIN",  "amplitude": 60},
-                {"startSec": 120,  "endSec": 420,  "motion": "BOB",     "period": 3.0,  "amplitude": 35},
-                {"startSec": 420,  "endSec": 540,  "motion": "FADEOUT"},
-                {"startSec": 540,  "endSec": 620,  "motion": "FADEIN",  "amplitude": 60},
-                {"startSec": 620,  "endSec": 900,  "motion": "BOUNCE",  "period": 2.5,  "amplitude": 80},
-                {"startSec": 900,  "endSec": 1200, "motion": "SWAY",    "period": 4.0,  "amplitude": 55},
-                {"startSec": 1200, "endSec": 1350, "motion": "FADEOUT"},
-                {"startSec": 1350, "endSec": 1500, "motion": "BOB",     "period": 5.0,  "amplitude": 25},
+                {"startSec": 0,    "endSec": 120,  "motion": "FADEIN",  "amplitude": 60, "wobble": True},
+                {"startSec": 120,  "endSec": 420,  "motion": "BOB",     "period": 3.0,  "amplitude": 40, "wobble": True},
+                {"startSec": 420,  "endSec": 700,  "motion": "SWAY",    "period": 5.0,  "amplitude": 55, "wobble": True},
+                {"startSec": 700,  "endSec": 1000, "motion": "BOUNCE",  "period": 2.5,  "amplitude": 80, "wobble": True},
+                {"startSec": 1000, "endSec": 1300, "motion": "WAVE",    "period": 4.0,  "amplitude": 60, "waveDelay": 0.4, "wobble": True},
+                {"startSec": 1300, "endSec": 1500, "motion": "BOB",     "period": 5.0,  "amplitude": 30, "wobble": True},
             ],
         },
     },
@@ -90,7 +88,7 @@ VIDEOS = {
         "dur_label": "25 min",
         "props": {
             "bgColor": "#F5EFE0",
-            "musicFile": "Crinoline Dreams.mp3",
+            "musicFile": "The Glass Forest v2.mp3",
             "volume": 0.18,
             "shapes": [
                 # Upper bright shapes (the objects)
@@ -103,10 +101,10 @@ VIDEOS = {
                 {"shape": "hexagon", "color": "#4E342E", "size": 190, "posX": 0.77, "posY": 0.68, "seed": 6},
             ],
             "blocks": [
-                {"startSec": 0,    "endSec": 120,  "motion": "FADEIN", "amplitude": 60},
-                {"startSec": 120,  "endSec": 600,  "motion": "SWAY",   "period": 4.0, "amplitude": 50},
-                {"startSec": 600,  "endSec": 1000, "motion": "BOB",    "period": 5.0, "amplitude": 30},
-                {"startSec": 1000, "endSec": 1500, "motion": "DRIFT",  "period": 12,  "amplitude": 110},
+                {"startSec": 0,    "endSec": 120,  "motion": "FADEIN", "amplitude": 60, "wobble": True},
+                {"startSec": 120,  "endSec": 600,  "motion": "SWAY",   "period": 4.0, "amplitude": 50, "wobble": True},
+                {"startSec": 600,  "endSec": 1000, "motion": "BOB",    "period": 5.0, "amplitude": 30, "wobble": True},
+                {"startSec": 1000, "endSec": 1500, "motion": "DRIFT",  "period": 12,  "amplitude": 110, "wobble": True},
             ],
         },
     },
@@ -118,7 +116,7 @@ VIDEOS = {
         "dur_label": "22 min",
         "props": {
             "bgColor": "#030814",
-            "musicFile": "Wholesome.mp3",
+            "musicFile": "Dreamy Arpeggios v2.mp3",
             "volume": 0.18,
             "seed": 99,
             "segments": [
@@ -141,7 +139,7 @@ VIDEOS = {
         "dur_label": "25 min",
         "props": {
             "bgColor": "#020A10",
-            "musicFile": "Gymnopedie No 1.mp3",
+            "musicFile": "Moonlight Waltz.mp3",
             "volume": 0.18,
             "shapes": [
                 # Left column
@@ -154,10 +152,10 @@ VIDEOS = {
                 {"shape": "diamond", "color": "#B0BEC5", "size": 175, "posX": 0.78, "posY": 0.68, "seed": 6},
             ],
             "blocks": [
-                {"startSec": 0,    "endSec": 200,  "motion": "FADEIN", "amplitude": 60},
-                {"startSec": 200,  "endSec": 600,  "motion": "BOB",    "period": 4.0, "amplitude": 30},
-                {"startSec": 600,  "endSec": 1000, "motion": "SWAY",   "period": 5.0, "amplitude": 55},
-                {"startSec": 1000, "endSec": 1500, "motion": "DRIFT",  "period": 15,  "amplitude": 100},
+                {"startSec": 0,    "endSec": 200,  "motion": "FADEIN", "amplitude": 60, "wobble": True},
+                {"startSec": 200,  "endSec": 600,  "motion": "BOB",    "period": 4.0, "amplitude": 30, "wobble": True},
+                {"startSec": 600,  "endSec": 1000, "motion": "SWAY",   "period": 5.0, "amplitude": 55, "wobble": True},
+                {"startSec": 1000, "endSec": 1500, "motion": "DRIFT",  "period": 15,  "amplitude": 100, "wobble": True},
             ],
         },
     },
@@ -169,7 +167,7 @@ VIDEOS = {
         "dur_label": "25 min",
         "props": {
             "bgColor": "#0A0A05",
-            "musicFile": "Carefree.mp3",
+            "musicFile": "Afternoon in F v2.mp3",
             "volume": 0.18,
             "shapes": [
                 # Row 1: circles 1–5
@@ -189,10 +187,10 @@ VIDEOS = {
                 {"shape": "star", "color": "#FFF176", "size": 155, "posX": 0.70, "posY": 0.18, "seed": 12},
             ],
             "blocks": [
-                {"startSec": 0,    "endSec": 600,  "motion": "FADEIN",  "amplitude": 60},
-                {"startSec": 600,  "endSec": 1000, "motion": "BOUNCE",  "period": 2.5, "amplitude": 70},
-                {"startSec": 1000, "endSec": 1300, "motion": "WAVE",    "period": 3.0, "amplitude": 60, "waveDelay": 0.45},
-                {"startSec": 1300, "endSec": 1500, "motion": "DRIFT",   "period": 10,  "amplitude": 90},
+                {"startSec": 0,    "endSec": 600,  "motion": "FADEIN",  "amplitude": 60, "wobble": True},
+                {"startSec": 600,  "endSec": 1000, "motion": "BOUNCE",  "period": 2.5, "amplitude": 70, "wobble": True},
+                {"startSec": 1000, "endSec": 1300, "motion": "WAVE",    "period": 3.0, "amplitude": 60, "waveDelay": 0.45, "wobble": True},
+                {"startSec": 1300, "endSec": 1500, "motion": "DRIFT",   "period": 10,  "amplitude": 90, "wobble": True},
             ],
         },
     },
@@ -204,7 +202,7 @@ VIDEOS = {
         "dur_label": "25 min",
         "props": {
             "bgColor": "#0A0510",
-            "musicFile": "Happy Happy Game Show.mp3",
+            "musicFile": "Rainbow Lantern v2.mp3",
             "volume": 0.22,
             "shapes": [
                 {"shape": "star",   "color": "#E53935", "size": 220, "posX": 0.50, "posY": 0.30, "seed": 1},
@@ -216,15 +214,15 @@ VIDEOS = {
                 {"shape": "circle", "color": "#E91E63", "size": 155, "posX": 0.62, "posY": 0.62, "seed": 7},
             ],
             "blocks": [
-                {"startSec": 0,    "endSec": 100,  "motion": "FADEIN",  "amplitude": 60},
+                {"startSec": 0,    "endSec": 100,  "motion": "FADEIN",  "amplitude": 60, "wobble": True},
                 {"startSec": 100,  "endSec": 450,  "motion": "BOUNCE",  "period": 2.0,  "amplitude": 90,
-                 "colorPalette": RAINBOW, "colorCycleSec": 40},
+                 "colorPalette": RAINBOW, "colorCycleSec": 40, "wobble": True},
                 {"startSec": 450,  "endSec": 750,  "motion": "PULSE",   "period": 3.0,  "amplitude": 20,
-                 "colorPalette": RAINBOW, "colorCycleSec": 35},
+                 "colorPalette": RAINBOW, "colorCycleSec": 35, "wobble": True},
                 {"startSec": 750,  "endSec": 1100, "motion": "MARCH",   "period": 3.5,
-                 "colorPalette": RAINBOW, "colorCycleSec": 45},
+                 "colorPalette": RAINBOW, "colorCycleSec": 45, "wobble": True},
                 {"startSec": 1100, "endSec": 1500, "motion": "BOUNCE",  "period": 2.5,  "amplitude": 80,
-                 "colorPalette": RAINBOW, "colorCycleSec": 40},
+                 "colorPalette": RAINBOW, "colorCycleSec": 40, "wobble": True},
             ],
         },
     },
@@ -238,21 +236,21 @@ VIDEOS = {
             "bgColor": "#050508",
             "bgColorEnd": "#020205",
             "accentColor": "#CE93D8",
-            "musicFile": "Pinball Spring.mp3",
+            "musicFile": "Spring Waltz.mp3",
             "volume": 0.18,
             "bgEffect": "sparkles",
             "sprites": [
-                {"path": "animals/bear.png", "size": 240, "posX": 0.28, "posY": 0.44, "seed": 1, "flipX": False},
-                {"path": "animals/bear.png", "size": 240, "posX": 0.72, "posY": 0.44, "seed": 2, "flipX": True},
-                {"path": "animals/cat.png",  "size": 220, "posX": 0.42, "posY": 0.46, "seed": 3, "flipX": False},
-                {"path": "animals/cat.png",  "size": 220, "posX": 0.58, "posY": 0.46, "seed": 4, "flipX": True},
+                {"path": "characters/bear_happy_3d.png", "size": 445, "posX": 0.25, "posY": 0.44, "seed": 1, "flipX": False},
+                {"path": "characters/bear_happy_3d.png", "size": 445, "posX": 0.75, "posY": 0.44, "seed": 2, "flipX": True},
+                {"path": "animals/cat_3d.png",           "size": 195, "posX": 0.40, "posY": 0.52, "seed": 3, "flipX": False},
+                {"path": "animals/cat_3d.png",           "size": 185, "posX": 0.60, "posY": 0.52, "seed": 4, "flipX": True},
             ],
             "blocks": [
-                {"startSec": 0,    "endSec": 200,  "motion": "FADEIN",  "amplitude": 60},
-                {"startSec": 200,  "endSec": 600,  "motion": "SWAY",    "period": 4.0,  "amplitude": 60},
-                {"startSec": 600,  "endSec": 900,  "motion": "BOB",     "period": 3.0,  "amplitude": 40},
-                {"startSec": 900,  "endSec": 1200, "motion": "BOUNCE",  "period": 2.5,  "amplitude": 85},
-                {"startSec": 1200, "endSec": 1500, "motion": "DRIFT",   "period": 12,   "amplitude": 100},
+                {"startSec": 0,    "endSec": 200,  "motion": "FADEIN",  "amplitude": 60, "wobble": True},
+                {"startSec": 200,  "endSec": 600,  "motion": "SWAY",    "period": 4.0,  "amplitude": 60, "wobble": True},
+                {"startSec": 600,  "endSec": 900,  "motion": "BOB",     "period": 3.0,  "amplitude": 40, "wobble": True},
+                {"startSec": 900,  "endSec": 1200, "motion": "BOUNCE",  "period": 2.5,  "amplitude": 85, "wobble": True},
+                {"startSec": 1200, "endSec": 1500, "motion": "DRIFT",   "period": 12,   "amplitude": 100, "wobble": True},
             ],
         },
     },
@@ -264,7 +262,7 @@ VIDEOS = {
         "dur_label": "30 min",
         "props": {
             "bgColor": "#010208",
-            "musicFile": "Gymnopedie No 1.mp3",
+            "musicFile": "Moonlight on the Cradle v2.mp3",
             "volume": 0.14,
             "nightMode": True,
             "shapes": [
@@ -280,10 +278,10 @@ VIDEOS = {
                 {"shape": "star",   "color": "#FFF9C4", "size": 130, "posX": 0.50, "posY": 0.68, "seed": 8},
             ],
             "blocks": [
-                {"startSec": 0,    "endSec": 300,  "motion": "FADEIN", "amplitude": 40},
-                {"startSec": 300,  "endSec": 900,  "motion": "PULSE",  "period": 5.0, "amplitude": 8},
-                {"startSec": 900,  "endSec": 1500, "motion": "DRIFT",  "period": 15,  "amplitude": 60},
-                {"startSec": 1500, "endSec": 1800, "motion": "PULSE",  "period": 7.0, "amplitude": 5},
+                {"startSec": 0,    "endSec": 300,  "motion": "FADEIN", "amplitude": 40, "wobble": True},
+                {"startSec": 300,  "endSec": 900,  "motion": "PULSE",  "period": 5.0, "amplitude": 8, "wobble": True},
+                {"startSec": 900,  "endSec": 1500, "motion": "DRIFT",  "period": 15,  "amplitude": 60, "wobble": True},
+                {"startSec": 1500, "endSec": 1800, "motion": "PULSE",  "period": 7.0, "amplitude": 5, "wobble": True},
             ],
         },
     },
@@ -320,7 +318,7 @@ def make_meta(video_id: str, lang: str) -> dict:
             f"👶 Age: 0–3 years | 📺 {dur} continuous\n"
             f"🌈 No language barriers — universal for any culture\n\n"
             f"🔔 Subscribe → {ch['en']}\n"
-            f"🎵 Kevin MacLeod (incompetech.com) — CC Attribution 4.0\n\n"
+            f"🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             f"#{name.replace(' ','')} #HappyBearKids #BabyAnimation "
             f"#SpecialMechanics #VisualStimulation #ToddlerTV #BabySensory"
             f"\n© Happy Bear Kids 2026"
@@ -340,7 +338,7 @@ def make_meta(video_id: str, lang: str) -> dict:
             f"🎯 مثالي لـ: التحفيز البصري، التنمية الحسية، التشغيل في الخلفية\n"
             f"👶 العمر: 0–3 سنوات | 📺 {dur}\n\n"
             f"🔔 اشتركوا → {ch['ar']}\n"
-            f"🎵 Kevin MacLeod — CC Attribution 4.0\n\n"
+            f"🎵 موسيقى أصلية من هابي بير كيدز\n\n"
             f"#{name.replace(' ','_')} #هابي_بير_كيدز #رسوم_أطفال "
             f"#تحفيز_بصري #ميكانيكا_خاصة\n© هابي بير كيدز 2026"
         )
@@ -359,7 +357,7 @@ def make_meta(video_id: str, lang: str) -> dict:
             f"🎯 Sempurna untuk: stimulasi visual, perkembangan sensorik, tayangan latar\n"
             f"👶 Usia: 0–3 tahun | 📺 {dur}\n\n"
             f"🔔 Subscribe → {ch['id']}\n"
-            f"🎵 Kevin MacLeod (incompetech.com) — CC Attribution 4.0\n\n"
+            f"🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             f"#{name.replace(' ','')} #HappyBearKids #AnimasiBayi "
             f"#StimulasiVisual #MekanikaKhusus\n© Happy Bear Kids Indonesia 2026"
         )
