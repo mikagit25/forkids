@@ -48,7 +48,7 @@ def make_meta(key, lang, name_en, name_ar, name_id):
             f"{name} — educational and entertaining video for babies and toddlers (0-3 years).\n\n"
             f"Safe, calming content with gentle music and colorful visuals.\n\n"
             f"Subscribe → {channels[lang]}\n"
-            f"Music: Kevin MacLeod (incompetech.com) — CC Attribution 4.0\n"
+            f"🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n"
             f"© Happy Bear Kids 2026"
         ),
         "tags": [name.lower(), "bubble_pop_song", "kids video", "happy bear kids",

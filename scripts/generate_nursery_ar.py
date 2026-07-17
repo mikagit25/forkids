@@ -39,7 +39,7 @@ NURSERY_CONFIGS = {
         "bg_top":         "#87CEEB",
         "bg_bottom":      "#4FC3F7",
         "accent":         "#FFD700",
-        "music":          "Fluffing a Duck.mp3",
+        "music":          "Moonlight Waltz.mp3",
         "tts_voice":      "ar-EG-SalmaNeural",
         "duration_min":   22,
         "thumb_prompt":   "cute cartoon yellow duck splashing in blue water, happy Arabic children's song, bright cheerful animation style, no text, no letters, no words, no numbers, 1280x720",
@@ -52,7 +52,7 @@ NURSERY_CONFIGS = {
         "bg_top":         "#546E7A",
         "bg_bottom":      "#78909C",
         "accent":         "#80DEEA",
-        "music":          "Crinoline Dreams.mp3",
+        "music":          "Rain Etude in C Minor v2.mp3",
         "tts_voice":      "ar-EG-SalmaNeural",
         "duration_min":   22,
         "thumb_prompt":   "cute cartoon rain cloud with smile, colorful raindrops falling, children's animation style, bright sky, no text, no letters, no words, no numbers, 1280x720",
@@ -65,7 +65,7 @@ NURSERY_CONFIGS = {
         "bg_top":         "#FFF9C4",
         "bg_bottom":      "#A5D6A7",
         "accent":         "#FF8F00",
-        "music":          "Carefree.mp3",
+        "music":          "Morning Trail v2.mp3",
         "tts_voice":      "ar-EG-SalmaNeural",
         "duration_min":   22,
         "thumb_prompt":   "cute cartoon colorful bird on a sunny farm, colorful grass and sunshine, happy Arabic children's song animation style, no text, no letters, no words, no numbers, 1280x720",
@@ -322,9 +322,7 @@ def make_meta(cfg: dict, out_path: Path, lang: str) -> Path:
             f'• ما قبل المدرسة (3–5 سنوات) لتعلم العربية\n\n'
             f'🔔 اشتركوا في هابي بير كيدز العربية → @happybearkidsar\n'
             f'فيديوهات تعليمية جديدة كل أسبوع!\n\n'
-            f'🎵 الموسيقى الخلفية: Kevin MacLeod (incompetech.com)\n'
-            f'رخصة Creative Commons Attribution 4.0\n'
-            f'http://creativecommons.org/licenses/by/4.0/\n\n'
+            f'🎵 موسيقى أصلية من هابي بير كيدز\n\n'
             f'#أناشيد_أطفال #هابي_بير_كيدز #{t_ar.replace(" ", "_")} '
             f'#تعليم_أطفال #أغاني_عربية #رياض_أطفال #لغة_عربية\n\n'
             f'© هابي بير كيدز 2026'
@@ -353,9 +351,7 @@ def make_meta(cfg: dict, out_path: Path, lang: str) -> Path:
             f'• Preschoolers (3–5 years) — learning Arabic\n\n'
             f'🔔 Subscribe to Happy Bear Kids → @HappyBearKids1\n'
             f'New educational videos every week!\n\n'
-            f'🎵 Background Music: Kevin MacLeod (incompetech.com)\n'
-            f'Licensed under Creative Commons Attribution 4.0\n'
-            f'http://creativecommons.org/licenses/by/4.0/\n\n'
+            f'🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n'
             f'#ArabicNurseryRhyme #HappyBearKids #KidsSongs #BabySongs '
             f'#ArabicForKids #ToddlerLearning #PreschoolSongs\n\n'
             f'© Happy Bear Kids 2026'

@@ -195,7 +195,7 @@ def make_meta(ep_key: str, lang: str) -> dict:
             f"👶 Age: 0–3 years | 📺 30 minutes continuous\n"
             f"🌈 No language barriers — universal for any culture\n\n"
             f"🔔 Subscribe → {ch['en']}\n"
-            f"🎵 Kevin MacLeod (incompetech.com) — CC Attribution 4.0\n\n"
+            f"🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             f"#MagicEggs #{name.replace(' ','')} #HappyBearKids #BabyAnimation "
             f"#EggHatching #ToddlerTV #BabySensory\n© Happy Bear Kids 2026"
         )
@@ -211,7 +211,7 @@ def make_meta(ep_key: str, lang: str) -> dict:
             f"🎯 مثالي لـ: تعلم السبب والنتيجة، التعلم بالمفاجأة، لعبة الاختباء\n"
             f"👶 العمر: 0–3 سنوات | 📺 30 دقيقة متواصلة\n\n"
             f"🔔 اشتركوا → {ch['ar']}\n"
-            f"🎵 Kevin MacLeod — CC Attribution 4.0\n\n"
+            f"🎵 موسيقى أصلية من هابي بير كيدز\n\n"
             f"#{name.replace(' ','_')} #هابي_بير_كيدز #رسوم_أطفال "
             f"#بيضات_سحرية #تحفيز_بصري\n© هابي بير كيدز 2026"
         )
@@ -226,7 +226,7 @@ def make_meta(ep_key: str, lang: str) -> dict:
             f"🎯 Sempurna untuk: belajar sebab-akibat, belajar kejutan, ciluk ba\n"
             f"👶 Usia: 0–3 tahun | 📺 30 menit\n\n"
             f"🔔 Subscribe → {ch['id']}\n"
-            f"🎵 Kevin MacLeod (incompetech.com) — CC Attribution 4.0\n\n"
+            f"🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             f"#{name.replace(' ','')} #HappyBearKids #AnimasiBayi "
             f"#TelurAjaib #StimulasiVisual\n© Happy Bear Kids Indonesia 2026"
         )

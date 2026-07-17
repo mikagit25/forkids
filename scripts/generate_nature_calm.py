@@ -143,9 +143,7 @@ DESC = {
         "No loud sounds, no surprises, no talking — just 30 minutes of pure, soothing, "
         "nature-inspired visual calm. Your baby will love quietly watching as the shapes "
         "slowly float, glow and drift across the screen.\n\n"
-        "🎵 Music by Kevin MacLeod (incompetech.com)\n"
-        "Licensed under Creative Commons: By Attribution 4.0 License\n"
-        "http://creativecommons.org/licenses/by/4.0/\n\n"
+        "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
         "© Happy Bear Kids 2026 — All rights reserved\n"
         "New videos every week! Subscribe ▶ @HappyBearKids1\n\n"
         "#HappyBearKids #CalmBabyVideo #NatureCalm #SoothingBaby #BabyCalm "
@@ -167,7 +165,7 @@ DESC = {
         "• تهدئة الطفل المتعب أو المتهيّج\n"
         "• خلفية هادئة أثناء الاستعداد للنوم\n"
         "• وقت شاشة لطيف لا يفرط في التحفيز\n\n"
-        "🎵 موسيقى Kevin MacLeod (incompetech.com) — Creative Commons 4.0\n"
+        "🎵 موسيقى أصلية من هابي بير كيدز\n"
         "© Happy Bear Kids 2026 | اشترك ▶ @happybearkidsar\n\n"
         "#HappyBearKids #هدوء_الطبيعة #تهدئة_الطفل #فيديو_أطفال_هادئ #رضيع"
     ),
@@ -191,9 +189,7 @@ DESC = {
         "• No bright flashes or sudden changes\n"
         "• No words or voices — pure visual experience\n"
         "• 30 full minutes of uninterrupted calm\n\n"
-        "🎵 Music by Kevin MacLeod (incompetech.com)\n"
-        "Licensed under Creative Commons: By Attribution 4.0 License\n"
-        "http://creativecommons.org/licenses/by/4.0/\n\n"
+        "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
         "New ambient videos every week. Subscribe ▶ @ClassicalNightRelax\n"
         "© Classical Night Relax 2026 — All rights reserved\n\n"
         "#ClassicalNightRelax #NatureAmbience #RelaxingVisuals #SleepAid "
@@ -310,12 +306,12 @@ def render_episode(ep_key, ep, ep_idx, dry_run, regen_meta):
         out_mp4  = queue / out_name
         loop_mp4 = LOOPS_DIR / f"nature_loop_{ep_key}_{lang}.mp4"
 
-        # CNR (id) must NEVER receive nature_calm content — all tracks use Kevin MacLeod
-        # (kids music), not classical recordings. CNR = Chopin/Debussy/Bach only.
+        # CNR (id) must NEVER receive nature_calm content — it uses kids music (Suno),
+        # not classical recordings. CNR = Chopin/Debussy/Bach only.
         # nature_calm → EN/AR kids channels only.
         # For CNR nature visuals → use make_visual_theme.py (AI images + classical Musopen).
         if lang == "id":
-            print(f"  SKIP {ep_key} (id): nature_calm uses Kevin MacLeod — blocked for CNR. "
+            print(f"  SKIP {ep_key} (id): nature_calm is kids content — blocked for CNR. "
                   f"Use make_visual_theme.py for CNR nature visuals.")
             continue
 

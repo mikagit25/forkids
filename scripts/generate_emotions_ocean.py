@@ -642,7 +642,7 @@ def make_meta(video_id: str, lang: str) -> dict:
             f"👶 Age: 0–3 years | 📺 {dur} continuous\n"
             f"🌈 Universal — works for any culture or language\n\n"
             f"🔔 Subscribe → {ch['en']}\n"
-            f"🎵 Kevin MacLeod (incompetech.com) — CC Attribution 4.0\n\n"
+            f"🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             f"#{name.replace(' ','')} #{series_name.replace(' ','')} "
             f"#HappyBearKids #BabyAnimation #VisualStimulation #ToddlerTV"
             f"\n© Happy Bear Kids 2026"
@@ -660,7 +660,7 @@ def make_meta(video_id: str, lang: str) -> dict:
             f"من خلال رواية بصرية بدون حواجز لغوية.\n\n"
             f"👶 العمر: 0–3 سنوات | 📺 {dur}\n\n"
             f"🔔 اشتركوا → {ch['ar']}\n"
-            f"🎵 Kevin MacLeod — CC Attribution 4.0\n\n"
+            f"🎵 موسيقى أصلية من هابي بير كيدز\n\n"
             f"#{name.replace(' ','_')} #هابي_بير_كيدز #رسوم_أطفال #تحفيز_بصري"
             f"\n© هابي بير كيدز 2026"
         )
@@ -677,7 +677,7 @@ def make_meta(video_id: str, lang: str) -> dict:
             f"yang memperkenalkan konsep melalui cerita visual tanpa hambatan bahasa.\n\n"
             f"👶 Usia: 0–3 tahun | 📺 {dur}\n\n"
             f"🔔 Subscribe → {ch['id']}\n"
-            f"🎵 Kevin MacLeod (incompetech.com) — CC Attribution 4.0\n\n"
+            f"🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             f"#{name.replace(' ','')} #HappyBearKids #AnimasiBayi #StimulasiVisual"
             f"\n© Happy Bear Kids Indonesia 2026"
         )

@@ -113,7 +113,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#000A14", "bgColorEnd": "#000810",
             "accentColor": "#00BCD4",
-            "musicFile": "Sneaky Snitch.mp3", "volume": 0.15,
+            "musicFile": "Morning Trail v2.mp3", "volume": 0.15,
             "bgEffect": "bubbles",
             "sprites": [
                 {"path": "objects/fish_deep.png",   "size": 340, "posX": 0.50, "posY": 0.44, "seed": 1},
@@ -137,7 +137,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#010C18", "bgColorEnd": "#010810",
             "accentColor": "#E3F2FD",
-            "musicFile": "Crinoline Dreams.mp3", "volume": 0.16,
+            "musicFile": "Moonlight on the Piano v2.mp3", "volume": 0.16,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "animals/penguin_3d.png", "size": 360, "posX": 0.50, "posY": 0.44, "seed": 1},
@@ -161,7 +161,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#050800", "bgColorEnd": "#030500",
             "accentColor": "#FDD835",
-            "musicFile": "Happy Happy Game Show.mp3", "volume": 0.18,
+            "musicFile": "Spring Waltz v2.mp3", "volume": 0.18,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "objects/sun_3d.png",      "size": 400, "posX": 0.50, "posY": 0.42, "seed": 1},
@@ -183,7 +183,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#020510", "bgColorEnd": "#010408",
             "accentColor": "#FF7043",
-            "musicFile": "Carefree.mp3", "volume": 0.17,
+            "musicFile": "Rainbow Lantern v2.mp3", "volume": 0.17,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "objects/rainbow_3d.png",  "size": 440, "posX": 0.50, "posY": 0.38, "seed": 1},
@@ -206,7 +206,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#030A04", "bgColorEnd": "#020804",
             "accentColor": "#80CBC4",
-            "musicFile": "Wholesome.mp3", "volume": 0.16,
+            "musicFile": "Afternoon in F v2.mp3", "volume": 0.16,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "objects/butterfly_3d.png","size": 360, "posX": 0.50, "posY": 0.42, "seed": 1},
@@ -253,7 +253,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#0A0200", "bgColorEnd": "#080100",
             "accentColor": "#EF5350",
-            "musicFile": "Quirky Dog.mp3", "volume": 0.17,
+            "musicFile": "Morning Trail.mp3", "volume": 0.17,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "objects/car_3d.png",      "size": 400, "posX": 0.50, "posY": 0.46, "seed": 1},
@@ -276,7 +276,7 @@ VIDEOS = {
         "props": {
             "bgColor": "#020510", "bgColorEnd": "#010408",
             "accentColor": "#FF9800",
-            "musicFile": "Carefree.mp3", "volume": 0.17,
+            "musicFile": "The Golden Meadow v2.mp3", "volume": 0.17,
             "bgEffect": "sparkles",
             "sprites": [
                 {"path": "objects/balloon_3d.png",  "size": 380, "posX": 0.50, "posY": 0.40, "seed": 1},
@@ -342,9 +342,7 @@ Part of the {series_en} series — carefully designed content that engages young
 
 No text, no voices, no sudden changes — just pure visual joy for your little one.
 
-🎵 Music by Kevin MacLeod (incompetech.com)
-Licensed under Creative Commons: By Attribution 4.0 License
-http://creativecommons.org/licenses/by/4.0/
+🎵 Original music by Happy Bear Kids (AI-generated, © 2026)
 
 © Happy Bear Kids 2026 — All rights reserved
 New videos every week! Subscribe → @HappyBearKids1
@@ -392,8 +390,7 @@ New videos every week! Subscribe → @HappyBearKids1
 
 Tidak ada teks, tidak ada suara, tidak ada perubahan mendadak — hanya kesenangan visual murni untuk si kecil.
 
-🎵 Musik oleh Kevin MacLeod (incompetech.com)
-Dilisensikan di bawah Creative Commons: By Attribution 4.0 License
+🎵 Original music by Happy Bear Kids (AI-generated, © 2026)
 
 © Happy Bear Kids 2026 — Semua hak dilindungi
 Berlangganan → @happybearkidsin

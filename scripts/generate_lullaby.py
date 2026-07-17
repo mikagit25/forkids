@@ -41,17 +41,16 @@ TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 TOGETHER_URL      = "https://api.together.xyz/v1/images/generations"
 TOGETHER_MODEL    = "black-forest-labs/FLUX.1-schnell"
 
-# Calm tracks only — suitable for sleep/lullaby content
-# Used for AR and ID to avoid rhythmic/upbeat Kevin MacLeod tracks
+# Calm tracks only — suitable for sleep/lullaby content (Suno AI-generated)
 _CALM_TRACKS = [
-    "Gymnopedie No 1.mp3",     # Satie — perfect for sleep
-    "Crinoline Dreams.mp3",    # gentle/dreamy
-    "Heartwarming.mp3",        # warm/tender
-    "Carefree.mp3",            # gentle/light
-    "Wholesome.mp3",           # calm/warm
-    "Life of Riley.mp3",       # gentle jazz
-    "Merry Go.mp3",            # slow waltz
-    "Fluffing a Duck.mp3",     # gentle/playful-slow
+    "Gymnopedie No 1.mp3",          # Satie — perfect for sleep (classical)
+    "Moonlight on the Cradle v2.mp3",  # warm/tender
+    "Dreamy Arpeggios v2.mp3",      # gentle/dreamy
+    "The Glass Forest v2.mp3",      # serene/atmospheric
+    "Afternoon in F v2.mp3",        # gentle/light
+    "Tide and Piano v2.mp3",        # slow/rhythmic
+    "Rain Etude in C Minor v2.mp3", # calm/rainy
+    "Moonlight on the Piano v2.mp3",# soft piano
 ]
 
 def alt_music(en_music: str, ep_idx: int, lang: str) -> str:
@@ -114,7 +113,7 @@ VIDEOS = {
         "bg_top":   "#040810",
         "bg_bottom":"#060C18",
         "accent":   "#DDAA55",
-        "music":    "Walking Along.mp3",   # rhythmic stride matches train clickety-clack
+        "music":    "Tide and Piano v2.mp3",  # rhythmic stride matches train clickety-clack
         "bpm":      50,
         "theme":    "train",
     },
@@ -126,7 +125,7 @@ VIDEOS = {
         "bg_top":   "#080C14",
         "bg_bottom":"#0A1020",
         "accent":   "#6688AA",
-        "music":    "Carefree.mp3",
+        "music":    "Rain Etude in C Minor v2.mp3",
         "bpm":      52,
         "theme":    "rain",
     },
@@ -138,7 +137,7 @@ VIDEOS = {
         "bg_top":   "#030A06",
         "bg_bottom":"#041008",
         "accent":   "#44AA66",
-        "music":    "Carefree.mp3",
+        "music":    "The Glass Forest v2.mp3",
         "bpm":      50,
         "theme":    "forest",
     },
@@ -161,9 +160,7 @@ def make_meta(key: str, lang: str) -> dict:
             extra_tags = "#ClassicalMusic #ClassicForBabies #MozartForBabies #ClassicalLullaby "
         else:
             music_line = (
-                f"🎵 Music: Kevin MacLeod (incompetech.com)\n"
-                f"Licensed under Creative Commons Attribution 4.0\n"
-                f"http://creativecommons.org/licenses/by/4.0/\n"
+                f"🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n"
             )
             extra_tags = ""
         desc = (
@@ -219,8 +216,7 @@ def make_meta(key: str, lang: str) -> dict:
             f"• لا وجوه أو عيون بعد 15 دقيقة\n"
             f"• صفر تغييرات مفاجئة في الصوت أو الضوء\n\n"
             f"🔔 اشتركوا → @happybearkidsar لمزيد من محتوى النوم!\n\n"
-            f"🎵 الموسيقى: Kevin MacLeod\n"
-            f"رخصة Creative Commons Attribution 4.0\n\n"
+            f"🎵 موسيقى أصلية من هابي بير كيدز\n\n"
             f"#نوم_الرضع #{name.replace(' ', '_')} #روتين_النوم #موسيقى_النوم "
             f"#هابي_بير_كيدز #أطفال #نوم_أطفال #تهدئة\n\n"
             f"© هابي بير كيدز 2026"
@@ -251,8 +247,7 @@ def make_meta(key: str, lang: str) -> dict:
             f"• Tidak ada wajah setelah 15 menit\n"
             f"• Nol perubahan mendadak dalam suara atau cahaya\n\n"
             f"🔔 Subscribe → @happybearkidsin untuk konten tidur lainnya!\n\n"
-            f"🎵 Musik: Kevin MacLeod (incompetech.com)\n"
-            f"Berlisensi Creative Commons Attribution 4.0\n\n"
+            f"🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             f"#VideoTidurBayi #{name.replace(' ', '')} #RutinasTidur #MusikTidur "
             f"#HappyBearKids #TidurBayi #NinaboboModern #VideoMalamBayi\n\n"
             f"© Happy Bear Kids Indonesia 2026"
