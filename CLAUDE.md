@@ -231,21 +231,26 @@ python3 scripts/manage_playlists.py --list
 ```bash
 # Одно видео по ID
 python3 scripts/localize_video.py --video-id VIDEO_ID_HERE
+python3 scripts/localize_video.py --video-id VIDEO_ID_HERE --channel id  # Calm Classics
 
 # Видео из meta-файла (нужен youtube_id внутри)
 python3 scripts/localize_video.py --meta output/queue/meta_myfile.yaml
+python3 scripts/localize_video.py --meta output/queue_id/meta_myfile.yaml --channel id
 
 # Только некоторые языки
 python3 scripts/localize_video.py --meta output/queue/meta_myfile.yaml --langs es,fr
 
 # Все видео в очереди с youtube_id (пакетная обработка)
-python3 scripts/localize_video.py --queue
+python3 scripts/localize_video.py --queue              # EN kids (output/queue/)
+python3 scripts/localize_video.py --queue --channel id # Calm Classics (output/queue_id/)
 
 # Проверка без реальной загрузки
 python3 scripts/localize_video.py --queue --dry-run
+python3 scripts/localize_video.py --queue --channel id --dry-run
 ```
 
-После успешной локализации в meta YAML добавляется поле `localized_langs: [es, fr, pt, id]` — повторный запуск пропустит уже обработанные видео.
+После успешной локализации в meta YAML добавляется поле `localized_langs: [es, fr, pt, id]` — повторный запуск пропустит уже обработанные видео.  
+Для Calm Classics промпт перевода адаптирован под взрослый контент (классика / сон / фокус), не детский.
 
 ## Ассеты
 

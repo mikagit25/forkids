@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Add YouTube localizations to already-published EN videos.
+Add YouTube localizations to already-published videos (EN kids or Calm Classics).
 
 Translates title + description to ES, FR, PT, ID using Together.ai LLM,
 then calls YouTube Data API videos.update with the 'localizations' part.
@@ -9,9 +9,12 @@ Note: YouTube localizations do NOT support per-language tags — tags stay globa
 
 Usage:
     python3 scripts/localize_video.py --video-id VIDEO_ID_HERE
+    python3 scripts/localize_video.py --video-id VIDEO_ID_HERE --channel id
     python3 scripts/localize_video.py --meta output/queue/meta_myfile.yaml
+    python3 scripts/localize_video.py --meta output/queue_id/meta_myfile.yaml --channel id
     python3 scripts/localize_video.py --meta output/queue/meta_myfile.yaml --langs es,fr
-    python3 scripts/localize_video.py --queue          # all meta in output/queue/ with youtube_id set
+    python3 scripts/localize_video.py --queue             # EN kids channel
+    python3 scripts/localize_video.py --queue --channel id  # Calm Classics
     python3 scripts/localize_video.py --queue --dry-run
 """
 
@@ -39,7 +42,23 @@ LANG_MAP = {
 }
 ALL_LANGS = list(LANG_MAP.keys())
 
-QUEUE_DIR = ROOT / "output" / "queue"
+# Per-channel config: token paths and queue directory
+CHANNEL_CONFIG = {
+    "en": {
+        "json":       ROOT / "credentials" / "youtube_token.json",
+        "pickle":     ROOT / "credentials" / "token.pickle",
+        "queue_dir":  ROOT / "output" / "queue",
+        "type":       "kids",    # used to pick translation prompt style
+        "reauth":     "--channel en",
+    },
+    "id": {
+        "json":       ROOT / "credentials" / "youtube_token_id.json",
+        "pickle":     ROOT / "credentials" / "token_id.pickle",
+        "queue_dir":  ROOT / "output" / "queue_id",
+        "type":       "adult",
+        "reauth":     "--channel id",
+    },
+}
 
 
 # ── Together.ai text API ──────────────────────────────────────────────────────
@@ -48,21 +67,37 @@ def _together_key() -> str:
     return TOGETHER_KEY_FILE.read_text().strip()
 
 
-def translate_field(text: str, target_lang: str, field: str, api_key: str) -> str:
+def translate_field(text: str, target_lang: str, field: str,
+                    api_key: str, channel_type: str = "kids") -> str:
     lang_name = LANG_MAP[target_lang]
     if field == "title":
-        instruction = (
-            f"Translate this YouTube video title for toddlers into {lang_name}. "
-            "Keep it short (under 100 chars), fun, and child-friendly. "
-            "Keep emojis as-is. Return only the translated title, no quotes, no explanation."
-        )
+        if channel_type == "adult":
+            instruction = (
+                f"Translate this YouTube video title for an adult sleep/focus/relaxation channel into {lang_name}. "
+                "Keep it concise (under 100 chars), calm and elegant. "
+                "Keep emojis as-is. Return only the translated title, no quotes, no explanation."
+            )
+        else:
+            instruction = (
+                f"Translate this YouTube video title for a toddler/baby channel into {lang_name}. "
+                "Keep it short (under 100 chars), fun, and child-friendly. "
+                "Keep emojis as-is. Return only the translated title, no quotes, no explanation."
+            )
     else:
-        instruction = (
-            f"Translate this YouTube video description for a toddler/baby channel into {lang_name}. "
-            "Keep the same structure, tone, and emojis. Keep hashtags in English at the end. "
-            "Keep channel handles (@ symbols) unchanged. "
-            "Return only the translated description, no extra commentary."
-        )
+        if channel_type == "adult":
+            instruction = (
+                f"Translate this YouTube video description for an adult classical music / sleep / relaxation channel into {lang_name}. "
+                "Keep the same structure, tone, track listings, composer attributions, and emojis. "
+                "Keep hashtags in English at the end. Keep channel handles (@ symbols) unchanged. "
+                "Return only the translated description, no extra commentary."
+            )
+        else:
+            instruction = (
+                f"Translate this YouTube video description for a toddler/baby channel into {lang_name}. "
+                "Keep the same structure, tone, and emojis. Keep hashtags in English at the end. "
+                "Keep channel handles (@ symbols) unchanged. "
+                "Return only the translated description, no extra commentary."
+            )
 
     payload = json.dumps({
         "model": TOGETHER_TEXT_MODEL,
@@ -71,7 +106,7 @@ def translate_field(text: str, target_lang: str, field: str, api_key: str) -> st
             {"role": "user",   "content": text},
         ],
         "temperature": 0.3,
-        "max_tokens": 1024,
+        "max_tokens": 1500,
     }).encode()
 
     req = urllib.request.Request(
@@ -89,13 +124,14 @@ def translate_field(text: str, target_lang: str, field: str, api_key: str) -> st
     return data["choices"][0]["message"]["content"].strip()
 
 
-def translate_meta(title: str, description: str, langs: list[str], api_key: str) -> dict:
+def translate_meta(title: str, description: str, langs: list[str],
+                   api_key: str, channel_type: str = "kids") -> dict:
     """Return {lang_code: {title, description}} for all requested langs."""
     result = {}
     for lang in langs:
         print(f"  Translating → {lang} ({LANG_MAP[lang]})...")
-        t_title = translate_field(title, lang, "title", api_key)
-        t_desc  = translate_field(description, lang, "description", api_key)
+        t_title = translate_field(title, lang, "title", api_key, channel_type)
+        t_desc  = translate_field(description, lang, "description", api_key, channel_type)
         result[lang] = {"title": t_title, "description": t_desc}
         print(f"    Title: {t_title[:60]}...")
     return result
@@ -103,7 +139,7 @@ def translate_meta(title: str, description: str, langs: list[str], api_key: str)
 
 # ── YouTube API ───────────────────────────────────────────────────────────────
 
-def _get_youtube_service():
+def _get_youtube_service(channel: str = "en"):
     import pickle
     import datetime as _dt
     from google.oauth2.credentials import Credentials
@@ -114,8 +150,9 @@ def _get_youtube_service():
         "https://www.googleapis.com/auth/youtube",
         "https://www.googleapis.com/auth/youtube.force-ssl",
     ]
-    json_path   = ROOT / "credentials" / "youtube_token.json"
-    pickle_path = ROOT / "credentials" / "token.pickle"
+    cfg         = CHANNEL_CONFIG[channel]
+    json_path   = cfg["json"]
+    pickle_path = cfg["pickle"]
 
     creds = None
     if json_path.exists():
@@ -135,7 +172,7 @@ def _get_youtube_service():
                 if expires_at:
                     creds.expiry = _dt.datetime.utcfromtimestamp(float(expires_at))
         except Exception as e:
-            print(f"  Warning: JSON token load failed: {e}")
+            print(f"  Warning: JSON token load failed [{channel}]: {e}")
             creds = None
 
     if creds is None and pickle_path.exists():
@@ -144,7 +181,8 @@ def _get_youtube_service():
 
     if not creds:
         raise RuntimeError(
-            "No EN token found. Run:\n  python3 scripts/reauth_youtube.py --channel en"
+            f"No token for channel '{channel}'. Run:\n"
+            f"  python3 scripts/reauth_youtube.py {cfg['reauth']}"
         )
     if creds.expired and creds.refresh_token:
         creds.refresh(Request())
@@ -152,24 +190,21 @@ def _get_youtube_service():
     return build("youtube", "v3", credentials=creds)
 
 
-def push_localizations(video_id: str, localizations: dict, dry_run: bool = False):
+def push_localizations(video_id: str, localizations: dict,
+                       channel: str = "en", dry_run: bool = False):
     """Upload localizations dict {lang: {title, description}} to YouTube."""
     if dry_run:
-        print(f"  [dry-run] Would update video {video_id} with localizations:")
+        print(f"  [dry-run] Would update video {video_id} [{channel}] with localizations:")
         for lang, vals in localizations.items():
             print(f"    {lang}: {vals['title'][:60]}...")
         return
 
-    youtube = _get_youtube_service()
-    body = {
-        "id": video_id,
-        "localizations": localizations,
-    }
+    youtube = _get_youtube_service(channel)
     response = youtube.videos().update(
         part="localizations",
-        body=body,
+        body={"id": video_id, "localizations": localizations},
     ).execute()
-    print(f"  ✓ Updated video {video_id} — localizations set for: {list(localizations.keys())}")
+    print(f"  ✓ Updated video {video_id} — localizations: {list(localizations.keys())}")
     return response
 
 
@@ -181,7 +216,7 @@ def load_meta(path: Path) -> dict:
 
 
 def save_localized_langs(meta_path: Path, langs: list[str]):
-    """Write 'localized_langs' list back to meta YAML so we don't re-translate."""
+    """Append langs to 'localized_langs' in meta YAML to skip on next run."""
     meta = load_meta(meta_path)
     existing = set(meta.get("localized_langs", []))
     meta["localized_langs"] = sorted(existing | set(langs))
@@ -204,13 +239,14 @@ def find_queue_metas_with_id(queue_dir: Path) -> list[Path]:
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def process_one(video_id: str, title: str, description: str,
-                langs: list[str], api_key: str,
+                langs: list[str], api_key: str, channel: str,
                 dry_run: bool, meta_path: Path = None):
-    print(f"\nVideo: {video_id}")
+    channel_type = CHANNEL_CONFIG[channel]["type"]
+    print(f"\nVideo: {video_id}  [{channel} / {channel_type}]")
     print(f"Title: {title[:70]}")
 
-    localizations = translate_meta(title, description, langs, api_key)
-    push_localizations(video_id, localizations, dry_run=dry_run)
+    localizations = translate_meta(title, description, langs, api_key, channel_type)
+    push_localizations(video_id, localizations, channel=channel, dry_run=dry_run)
 
     if meta_path and not dry_run:
         save_localized_langs(meta_path, langs)
@@ -218,15 +254,19 @@ def process_one(video_id: str, title: str, description: str,
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Add YouTube localizations to EN videos")
+    parser = argparse.ArgumentParser(
+        description="Add YouTube localizations to published videos (EN kids or Calm Classics)"
+    )
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--video-id", help="YouTube video ID to localize")
     group.add_argument("--meta",     help="Path to meta YAML (reads title/description/youtube_id)")
     group.add_argument("--queue",    action="store_true",
-                       help="Process all meta files in output/queue/ that have youtube_id set")
+                       help="Process all meta files in channel queue with youtube_id set")
 
+    parser.add_argument("--channel", choices=list(CHANNEL_CONFIG.keys()), default="en",
+                        help="Channel: en=Happy Bear Kids, id=Calm Classics (default: en)")
     parser.add_argument("--langs", default=",".join(ALL_LANGS),
-                        help=f"Comma-separated language codes. Default: {','.join(ALL_LANGS)}")
+                        help=f"Comma-separated BCP-47 codes. Default: {','.join(ALL_LANGS)}")
     parser.add_argument("--title",       help="Title override (only with --video-id)")
     parser.add_argument("--description", help="Description override (only with --video-id)")
     parser.add_argument("--dry-run", action="store_true",
@@ -242,14 +282,15 @@ def main():
         print(f"Error: {TOGETHER_KEY_FILE} not found")
         sys.exit(1)
     api_key = _together_key()
+    channel = args.channel
 
     if args.video_id:
-        title = args.title or "Happy Bear Kids Video"
+        title = args.title or ""
         desc  = args.description or ""
         if not title or not desc:
             print("Error: --title and --description are required with --video-id")
             sys.exit(1)
-        process_one(args.video_id, title, desc, langs, api_key, args.dry_run)
+        process_one(args.video_id, title, desc, langs, api_key, channel, args.dry_run)
 
     elif args.meta:
         meta_path = Path(args.meta)
@@ -264,11 +305,12 @@ def main():
             print(f"All requested langs already localized: {langs}")
             return
         process_one(video_id, meta["title"], meta["description"],
-                    todo, api_key, args.dry_run, meta_path)
+                    todo, api_key, channel, args.dry_run, meta_path)
 
     else:  # --queue
-        metas = find_queue_metas_with_id(QUEUE_DIR)
-        print(f"Found {len(metas)} meta files with youtube_id in {QUEUE_DIR}")
+        queue_dir = CHANNEL_CONFIG[channel]["queue_dir"]
+        metas = find_queue_metas_with_id(queue_dir)
+        print(f"Found {len(metas)} meta files with youtube_id in {queue_dir.name} [{channel}]")
         ok = err = skip = 0
         for meta_path in metas:
             meta = load_meta(meta_path)
@@ -279,7 +321,7 @@ def main():
                 continue
             try:
                 process_one(meta["youtube_id"], meta["title"], meta["description"],
-                            todo, api_key, args.dry_run, meta_path)
+                            todo, api_key, channel, args.dry_run, meta_path)
                 ok += 1
             except Exception as e:
                 print(f"  ERROR {meta_path.name}: {e}")
