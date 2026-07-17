@@ -120,6 +120,8 @@ def main():
                         help="Include shorts (overrides --long-only)")
     parser.add_argument("--thumb-only", action="store_true",
                         help="Only update thumbnail, skip snippet/description update")
+    parser.add_argument("--skip-thumb", action="store_true",
+                        help="Skip thumbnail update, only update snippet/description")
     args = parser.parse_args()
 
     config  = load_config()
@@ -174,7 +176,7 @@ def main():
                 yt = youtube_cache[channel]
                 thumb = UPLOADED_DIR / f"thumb_{stem}.png"
                 ok = update_video(yt, video_id, meta,
-                                  thumb if thumb.exists() else None,
+                                  None if args.skip_thumb else (thumb if thumb.exists() else None),
                                   dry_run=args.dry_run,
                                   thumb_only=args.thumb_only)
                 if ok:
