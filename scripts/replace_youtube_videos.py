@@ -28,14 +28,25 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
 
-def get_youtube():
+CHANNEL_TOKENS = {
+    "en": {"json": ROOT / "credentials" / "youtube_token.json",
+           "pickle": ROOT / "credentials" / "token.pickle"},
+    "ar": {"json": ROOT / "credentials" / "youtube_token_ar.json",
+           "pickle": ROOT / "credentials" / "token_ar.pickle"},
+    "id": {"json": ROOT / "credentials" / "youtube_token_id.json",
+           "pickle": ROOT / "credentials" / "token_id.pickle"},
+}
+
+
+def get_youtube(channel: str = "en"):
     import json as _j
     from google.oauth2.credentials import Credentials
     from googleapiclient.discovery import build
     import google.auth.transport.requests
 
-    json_path   = ROOT / "credentials" / "youtube_token.json"
-    pickle_path = ROOT / "credentials" / "token.pickle"
+    tok = CHANNEL_TOKENS.get(channel, CHANNEL_TOKENS["en"])
+    json_path   = tok["json"]
+    pickle_path = tok["pickle"]
 
     creds = None
     if json_path.exists():
@@ -180,6 +191,8 @@ def main():
                         help="Set video(s) to private (hides from viewers, preserves ID/views)")
     parser.add_argument("--upload",      nargs="+", metavar="MP4",
                         help="Upload new video(s) immediately")
+    parser.add_argument("--channel", choices=["en", "ar", "id"], default="en",
+                        help="YouTube channel to operate on (default: en)")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args()
 
@@ -191,7 +204,7 @@ def main():
         parser.print_help()
         return
 
-    youtube = get_youtube()
+    youtube = get_youtube(args.channel)
 
     if args.set_private:
         print(f"\nSetting {len(args.set_private)} video(s) to private:")
