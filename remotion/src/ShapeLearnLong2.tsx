@@ -42,7 +42,7 @@ export interface ShapeLearnLong2Props {
   shapeColor: string;    // canonical hex for backgrounds / watermark
   bgColor: string;       // main background colour
   bgColorEnd?: string;   // optional: lerp bg toward this over video
-  musicFile: string;     // first track (Kevin MacLeod)
+  musicFile: string;
   musicFile2?: string;   // second track — crossfades in at 15 min
   accentColor?: string;  // bubble colour (default white)
 }

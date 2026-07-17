@@ -26,7 +26,7 @@ export interface ShapeLearnLongProps {
   shapeName: ShapeName;
   shapeColor: string;   // canonical hex color for this shape
   bgColor: string;      // base background color
-  musicFile: string;    // Kevin MacLeod track filename
+  musicFile: string;
   accentColor?: string; // optional second accent (defaults to shapeColor darker)
 }
 
