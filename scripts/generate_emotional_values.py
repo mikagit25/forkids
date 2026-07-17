@@ -23,13 +23,12 @@ TOGETHER_URL      = "https://api.together.xyz/v1/images/generations"
 DATE_STR  = datetime.now().strftime("%Y%m%d")
 
 _ALL_TRACKS = [
-    "Carefree.mp3", "Crinoline Dreams.mp3", "Gymnopedie No 1.mp3",
-    "Happy Happy Game Show.mp3", "Heartwarming.mp3", "Hyperfun.mp3",
-    "Life of Riley.mp3", "Merry Go.mp3", "Monkeys Spinning Monkeys.mp3",
-    "Overworld.mp3", "Pinball Spring.mp3", "Pixelland.mp3",
-    "Quirky Dog.mp3", "Salty Ditty.mp3", "Sneaky Snitch.mp3",
-    "Wholesome.mp3", "Fluffing a Duck.mp3", "Walking Along.mp3",
-    "George Street Shuffle.mp3", "Circus of Freaks.mp3",
+    "Spring Waltz v2.mp3", "Rainbow Lantern v2.mp3", "Moonlight Waltz.mp3",
+    "Morning Trail v2.mp3", "The Golden Meadow v2.mp3", "Afternoon in F v2.mp3",
+    "Dreamy Arpeggios v2.mp3", "Spring Waltz.mp3", "Tide and Piano v2.mp3",
+    "The Glass Forest v2.mp3", "Moonlight on the Piano v2.mp3", "Rain Etude in C Minor v2.mp3",
+    "Rainbow Lantern.mp3", "Morning Trail.mp3", "Moonlight on the Cradle v2.mp3",
+    "The Golden Meadow.mp3", "Tide and Piano.mp3", "Gymnopedie No 1.mp3",
 ]
 
 def alt_music(en_music: str, ep_idx: int, lang: str) -> str:
@@ -87,10 +86,10 @@ EPISODES = {
 }
 
 MUSIC_MAP = {
-    "happy": "Happy Happy Game Show.mp3", "love": "Wholesome.mp3",
-    "calm": "Heartwarming.mp3", "brave": "Hyperfun.mp3",
-    "surprised": "Quirky Dog.mp3", "all_emotions": "Merry Go.mp3",
-    "gentle": "Carefree.mp3", "joy": "Monkeys Spinning Monkeys.mp3",
+    "happy": "Spring Waltz v2.mp3", "love": "Rainbow Lantern v2.mp3",
+    "calm": "Moonlight Waltz.mp3", "brave": "Morning Trail v2.mp3",
+    "surprised": "The Golden Meadow v2.mp3", "all_emotions": "Afternoon in F v2.mp3",
+    "gentle": "Dreamy Arpeggios v2.mp3", "joy": "Spring Waltz.mp3",
 }
 
 DESC = {
@@ -123,9 +122,7 @@ DESC = {
         "The adorable emotion characters move and dance in rhythm, expressing each feeling "
         "through their unique animation style. No narration needed — the visual language of "
         "emotion speaks to every child, in every language!\n\n"
-        "🎵 Music by Kevin MacLeod (incompetech.com)\n"
-        "Licensed under Creative Commons: By Attribution 4.0 License\n"
-        "http://creativecommons.org/licenses/by/4.0/\n\n"
+        "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
         "© Happy Bear Kids 2026 — All rights reserved\n"
         "New videos every week! Subscribe ▶ @HappyBearKids1\n\n"
         "#HappyBearKids #EmotionsForKids #BabyEmotions #ToddlerEmotions "
@@ -141,7 +138,7 @@ DESC = {
         "• شخصيات مشاعر ثلاثية الأبعاد على طراز Pixar\n"
         "• ٢٠ دقيقة من الرقص والحركة المستمرة\n"
         "• بدون كلمات على الشاشة — تعبير بصري عاطفي خالص\n\n"
-        "🎵 موسيقى Kevin MacLeod — Creative Commons 4.0\n"
+        "🎵 موسيقى أصلية من هابي بير كيدز\n"
         "© Happy Bear Kids 2026 | @happybearkidsar\n"
         "#HappyBearKids #مشاعر_الأطفال #تعلم_المشاعر #فيديو_أطفال #رقص_المشاعر"
     ),
@@ -157,7 +154,7 @@ DESC = {
         "• Karakter emosi 3D bergaya Pixar yang menggemaskan\n"
         "• 20 menit menari dan bergerak terus-menerus\n"
         "• Tanpa kata-kata di layar — ekspresi emosi visual murni\n\n"
-        "🎵 Musik oleh Kevin MacLeod — CC Attribution 4.0\n"
+        "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n"
         "© Happy Bear Kids 2026 | @happybearkidsin\n"
         "#HappyBearKids #EmosiAnak #BelajarEmosi #AnimasiEmosi #VideoBalita"
     ),

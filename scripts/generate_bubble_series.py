@@ -217,11 +217,10 @@ def make_meta(ep_key: str, lang: str) -> dict:
             f"• Winding down before nap or bedtime\n\n"
             f"No words, no text, no faces — universal visual content.\n\n"
             f"🔔 Subscribe for daily baby animations → {ch['en']}\n"
-            f"🎵 Music: Kevin MacLeod (incompetech.com) — "
-            f"Licensed under Creative Commons Attribution 4.0 (CC BY 4.0)\n\n"
+            f"🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             f"#{cname.replace(' ', '')}Bubbles #HappyBearKids #BabyColors #SensoryVideo "
             f"#ColorLearning #BabyVisual #BubblesPop #CalmBaby #NewbornVisual "
-            f"#ToddlerTV #VisualStimulation #KevinMacLeod"
+            f"#ToddlerTV #VisualStimulation"
         )
         tags = [
             f"{cname.lower()} bubbles", "color learning", "baby colors", "sensory video",
@@ -247,7 +246,7 @@ def make_meta(ep_key: str, lang: str) -> dict:
             f"• خلفية بصرية هادئة\n\n"
             f"بدون كلمات أو نصوص — محتوى عالمي.\n\n"
             f"🔔 اشترك → {ch['ar']}\n"
-            f"🎵 الموسيقى: Kevin MacLeod — CC Attribution 4.0\n\n"
+            f"🎵 موسيقى أصلية من هابي بير كيدز\n\n"
             f"#فقاعات_{cname.replace(' ', '_')} #HappyBearKids #تعلم_الألوان "
             f"#فيديو_الأطفال #تحفيز_حسي"
         )
@@ -278,9 +277,9 @@ def make_meta(ep_key: str, lang: str) -> dict:
             f"• Latar belakang visual\n\n"
             f"Tanpa kata-kata, teks, atau wajah — konten universal.\n\n"
             f"🔔 Subscribe → {ch['id']}\n"
-            f"🎵 Musik: Kevin MacLeod (incompetech.com) — CC Attribution 4.0\n\n"
+            f"🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             f"#Gelembung{cname.replace(' ', '')} #HappyBearKids #BelajarWarna "
-            f"#VideoBalita #StimulasiSensorik #KevinMacLeod"
+            f"#VideoBalita #StimulasiSensorik"
         )
         tags = [
             f"gelembung {cname.lower()}", "belajar warna", "video bayi", "stimulasi sensorik",

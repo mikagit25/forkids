@@ -110,11 +110,10 @@ def make_meta(lang: str) -> dict:
             f"• Winding down before nap or bedtime\n\n"
             f"No words, no text, no characters — universal visual language.\n\n"
             f"🔔 Subscribe for daily baby animations → {ch['en']}\n"
-            f"🎵 Music: Kevin MacLeod (incompetech.com) — "
-            f"Licensed under Creative Commons Attribution 4.0 (CC BY 4.0)\n\n"
+            f"🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             f"#StarsAndBubbles #HappyBearKids #SensoryVideo #BabyVisual "
             f"#BubblesPop #CalmBaby #NewbornVisual #ToddlerTV #BabyBackground "
-            f"#NightSky #TwinklingStars #VisualStimulation #KevinMacLeod"
+            f"#NightSky #TwinklingStars #VisualStimulation"
         )
         tags = [
             "stars and bubbles", "sensory video", "baby visual", "bubbles pop",
@@ -133,7 +132,7 @@ def make_meta(lang: str) -> dict:
             f"نجوم ساقطة تعبر الشاشة بذيول مضيئة.\n\n"
             f"بدون كلمات، بدون نصوص — لغة بصرية عالمية.\n\n"
             f"🔔 اشتركوا للمزيد من رسوم الأطفال اليومية → {ch['ar']}\n"
-            f"🎵 الموسيقى: Kevin MacLeod — Creative Commons Attribution 4.0\n\n"
+            f"🎵 موسيقى أصلية من هابي بير كيدز\n\n"
             f"#النجوم_والفقاعات #هابي_بير_كيدز #فيديو_حسي #تحفيز_بصري "
             f"#رسوم_أطفال #بدون_كلام #رضيع #سماء_الليل"
         )
@@ -156,7 +155,7 @@ def make_meta(lang: str) -> dict:
             f"di langit malam. Bintang jatuh melintasi layar dengan jejak bercahaya.\n\n"
             f"Tanpa kata-kata, tanpa teks — bahasa visual universal.\n\n"
             f"🔔 Subscribe untuk animasi bayi harian → {ch['id']}\n"
-            f"🎵 Musik: Kevin MacLeod — Creative Commons Attribution 4.0\n\n"
+            f"🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             f"#BintangDanGelembung #HappyBearKids #VideoSensorik #StimulasiBayi "
             f"#AnimasiAnak #TanpaSuara #BayiBalita #LangitMalam"
         )

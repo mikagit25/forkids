@@ -103,8 +103,7 @@ META_DESCRIPTIONS: dict[str, dict[str, str]] = {
             "and early learning through engaging Pixar-style animation and "
             "warm character dialogue.\n\n"
             "Subscribe for more learning videos with Roundy!\n\n"
-            "Music: Kevin MacLeod (incompetech.com) — Licensed under Creative Commons: "
-            "By Attribution 4.0 License http://creativecommons.org/licenses/by/4.0/\n\n"
+            "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             "#feelings #emotions #toddlerlearning #babyvideo #preschool "
             "#happybearkids #roundythebear #emotionallearning #kidslearning "
             "#educationalvideo #toddler #babies #learningforkids"
@@ -123,7 +122,7 @@ META_DESCRIPTIONS: dict[str, dict[str, str]] = {
             "✓ مندهش — إثارة اللحظات غير المتوقعة\n\n"
             "🐻 هابي بير كيدز يصنع محتوى تعليمياً للأطفال من 0-4 سنوات.\n\n"
             "اشترك للمزيد من مقاطع التعلم مع راوندي!\n\n"
-            "الموسيقى: Kevin MacLeod — Creative Commons BY 4.0\n\n"
+            "🎵 موسيقى أصلية من هابي بير كيدز\n\n"
             "#مشاعر #تعليم_اطفال #هابي_بير_كيدز #راوندي #اطفال #تعلم"
         ),
         "id": (
@@ -140,7 +139,7 @@ META_DESCRIPTIONS: dict[str, dict[str, str]] = {
             "✓ TERKEJUT — kegembiraan dari momen yang tidak terduga\n\n"
             "🐻 Happy Bear Kids membuat konten edukasi untuk bayi dan balita usia 0-4 tahun.\n\n"
             "Berlangganan untuk video belajar lebih banyak bersama Roundy!\n\n"
-            "Musik: Kevin MacLeod — Creative Commons BY 4.0\n\n"
+            "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             "#perasaan #emosi #belajarbalita #happybearkids #roundy #anakbelajar"
         ),
     },
@@ -154,7 +153,7 @@ META_DESCRIPTIONS: dict[str, dict[str, str]] = {
             "Perfect for toddlers aged 1-4 years learning color recognition!\n\n"
             "🐻 Happy Bear Kids — educational videos for babies and toddlers.\n\n"
             "Subscribe for more learning with Roundy!\n\n"
-            "Music: Kevin MacLeod — Creative Commons BY 4.0\n\n"
+            "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             "#colors #learncolors #toddler #preschool #happybearkids #roundy "
             "#colorlearning #babyvideo #educationalvideo #kidslearning"
         ),
@@ -164,7 +163,7 @@ META_DESCRIPTIONS: dict[str, dict[str, str]] = {
             "راوندي يعلم الأحمر والأزرق والأصفر والأخضر من خلال حوار تفاعلي ممتع.\n\n"
             "🐻 هابي بير كيدز — مقاطع تعليمية للأطفال.\n\n"
             "اشترك للمزيد مع راوندي!\n\n"
-            "الموسيقى: Kevin MacLeod — Creative Commons BY 4.0\n\n"
+            "🎵 موسيقى أصلية من هابي بير كيدز\n\n"
             "#الوان #تعلم_الالوان #اطفال #تعليم #هابي_بير_كيدز #راوندي"
         ),
         "id": (
@@ -173,7 +172,7 @@ META_DESCRIPTIONS: dict[str, dict[str, str]] = {
             "Roundy mengajarkan MERAH, BIRU, KUNING, dan HIJAU melalui dialog interaktif.\n\n"
             "🐻 Happy Bear Kids — video edukasi untuk bayi dan balita.\n\n"
             "Berlangganan untuk belajar lebih banyak bersama Roundy!\n\n"
-            "Musik: Kevin MacLeod — Creative Commons BY 4.0\n\n"
+            "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             "#warna #belajarwarna #balita #prasekolah #happybearkids #roundy"
         ),
     },
@@ -186,7 +185,7 @@ META_DESCRIPTIONS: dict[str, dict[str, str]] = {
             "Perfect for toddlers aged 1-4 years learning to count!\n\n"
             "🐻 Happy Bear Kids — educational videos for babies and toddlers.\n\n"
             "Subscribe for more learning with Roundy!\n\n"
-            "Music: Kevin MacLeod — Creative Commons BY 4.0\n\n"
+            "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             "#numbers #counting #toddler #preschool #happybearkids #roundy "
             "#learntocount #kidslearning #educationalvideo"
         ),
@@ -195,7 +194,7 @@ META_DESCRIPTIONS: dict[str, dict[str, str]] = {
             "في مغامرة عد ممتعة لمدة 20 دقيقة!\n\n"
             "راوندي يعد مع طفلك ويطلب منه رفع أصابعه!\n\n"
             "🐻 هابي بير كيدز — مقاطع تعليمية للأطفال.\n\n"
-            "الموسيقى: Kevin MacLeod — Creative Commons BY 4.0\n\n"
+            "🎵 موسيقى أصلية من هابي بير كيدز\n\n"
             "#ارقام #عد #اطفال #تعليم #هابي_بير_كيدز #راوندي"
         ),
         "id": (
@@ -203,7 +202,7 @@ META_DESCRIPTIONS: dict[str, dict[str, str]] = {
             "dalam petualangan menghitung yang menyenangkan selama 20 menit!\n\n"
             "Roundy menghitung bersama anakmu dan meminta mereka mengangkat jari!\n\n"
             "🐻 Happy Bear Kids — video edukasi untuk bayi dan balita.\n\n"
-            "Musik: Kevin MacLeod — Creative Commons BY 4.0\n\n"
+            "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             "#angka #menghitung #balita #prasekolah #happybearkids #roundy"
         ),
     },
@@ -216,7 +215,7 @@ META_DESCRIPTIONS: dict[str, dict[str, str]] = {
             "Perfect for toddlers aged 1-4 years!\n\n"
             "🐻 Happy Bear Kids — educational videos for babies and toddlers.\n\n"
             "Subscribe for more learning with Roundy!\n\n"
-            "Music: Kevin MacLeod — Creative Commons BY 4.0\n\n"
+            "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             "#animals #animalsforkids #toddler #preschool #happybearkids #roundy "
             "#learnanimals #kidslearning #educationalvideo"
         ),
@@ -224,14 +223,14 @@ META_DESCRIPTIONS: dict[str, dict[str, str]] = {
             "تعلم الحيوانات مع راوندي الدب! تعرف على حيوانات لطيفة — "
             "بطة وقط وضفدع وفيل — في مغامرة تعلم ممتعة لمدة 20 دقيقة!\n\n"
             "🐻 هابي بير كيدز — مقاطع تعليمية للأطفال.\n\n"
-            "الموسيقى: Kevin MacLeod — Creative Commons BY 4.0\n\n"
+            "🎵 موسيقى أصلية من هابي بير كيدز\n\n"
             "#حيوانات #تعلم_الحيوانات #اطفال #تعليم #هابي_بير_كيدز"
         ),
         "id": (
             "Belajar HEWAN bersama Roundy si Beruang! Temui hewan-hewan lucu — "
             "Bebek, Kucing, Katak, dan Gajah — dalam petualangan belajar 20 menit!\n\n"
             "🐻 Happy Bear Kids — video edukasi untuk bayi dan balita.\n\n"
-            "Musik: Kevin MacLeod — Creative Commons BY 4.0\n\n"
+            "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
             "#hewan #belajarhewan #balita #prasekolah #happybearkids #roundy"
         ),
     },

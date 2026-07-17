@@ -2,7 +2,7 @@
 """
 Enrich video descriptions in all meta_*.yaml files.
 Generates full-length YouTube descriptions with welcome text,
-key features, music credits (Kevin MacLeod CC0), and copyright.
+key features, music credits (Suno AI), and copyright.
 
 Usage:
   python3 scripts/enrich_descriptions.py              # both queues
@@ -24,18 +24,9 @@ CHANNEL_EN = "Happy Bear Kids"
 CHANNEL_AR = "هابي بير كيدز"
 CHANNEL_URL = "@HappyBearKids1"
 
-# Kevin MacLeod CC license block (used once per description)
-KM_LICENSE = (
-    "🎵 Music by Kevin MacLeod (incompetech.com)\n"
-    "Licensed under Creative Commons: By Attribution 4.0 License\n"
-    "http://creativecommons.org/licenses/by/4.0/"
-)
+KM_LICENSE = "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)"
 
-KM_LICENSE_AR = (
-    "🎵 الموسيقى: Kevin MacLeod (incompetech.com)\n"
-    "مرخصة بموجب Creative Commons: رخصة النسب 4.0\n"
-    "http://creativecommons.org/licenses/by/4.0/"
-)
+KM_LICENSE_AR = "🎵 موسيقى أصلية من هابي بير كيدز"
 
 # ── English description templates ─────────────────────────────────────────────
 
