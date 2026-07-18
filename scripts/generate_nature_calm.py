@@ -1,129 +1,137 @@
 #!/usr/bin/env python3
 """
 Generate Nature Calm series — 6 soothing nature videos, 30 min, no text.
-Uses NatureCalm Remotion composition (parallax sky/hills/grass + organic motion).
-For themes without NatureCalm equiv (forest, rain), uses ShapeDanceLong as fallback.
-No text → EN+AR+ID (1 render, 3 queues).
+Uses DanceSpriteLong with 3D Pixar-style sprites (Rule 4 — no CSS shapes).
+No text → EN+AR queues only. CNR nature visuals → use make_visual_theme.py.
 
 Usage:
-  python3 scripts/generate_nature_calm.py --key nature_calm_cat2
+  python3 scripts/generate_nature_calm.py
+  python3 scripts/generate_nature_calm.py --ep forest
   python3 scripts/generate_nature_calm.py --regen-meta
+  python3 scripts/generate_nature_calm.py --dry-run
 """
-import argparse, base64, json, subprocess, yaml
+import argparse, json, shutil, subprocess, yaml
 from datetime import datetime
 from pathlib import Path
-import requests
 
 ROOT     = Path(__file__).resolve().parent.parent
 REMOTION = ROOT / "remotion"
 QUEUE_EN = ROOT / "output" / "queue"
 QUEUE_AR = ROOT / "output" / "queue_ar"
-QUEUE_ID = ROOT / "output" / "queue_id"   # Classical Night Relax (@ClassicalNightRelax)
 TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
-TOGETHER_URL      = "https://api.together.xyz/v1/images/generations"
 DATE_STR = datetime.now().strftime("%Y%m%d")
 
-# Map episode keys to NatureCalm Remotion themes (None = use ShapeDanceLong fallback)
-NATURE_CALM_THEME = {
-    "ocean":     "underwater",
-    "forest":    None,          # no NatureCalm equivalent — ShapeDanceLong fallback
-    "night_sky": "night",
-    "meadow":    "meadow",
-    "rain":      None,          # ShapeDanceLong fallback
-    "sunset":    "sunset",
-}
-
-LOOPS_DIR = ROOT / "output" / "_nature_loops"
-
-_ALL_TRACKS = [
-    "Carefree.mp3", "Crinoline Dreams.mp3", "Gymnopedie No 1.mp3",
-    "Happy Happy Game Show.mp3", "Heartwarming.mp3", "Hyperfun.mp3",
-    "Life of Riley.mp3", "Merry Go.mp3", "Monkeys Spinning Monkeys.mp3",
-    "Overworld.mp3", "Pinball Spring.mp3", "Pixelland.mp3",
-    "Quirky Dog.mp3", "Salty Ditty.mp3", "Sneaky Snitch.mp3",
-    "Wholesome.mp3", "Fluffing a Duck.mp3", "Walking Along.mp3",
-    "George Street Shuffle.mp3", "Circus of Freaks.mp3",
+# 30 min = 1800s — calm, slow motion blocks for all themes (Rule 7: wobble on every block)
+_CALM_BLOCKS = [
+    {"startSec": 0,    "endSec": 60,   "motion": "FADEIN", "amplitude": 30,                              "wobble": True},
+    {"startSec": 60,   "endSec": 660,  "motion": "BOB",    "period": 5.5,  "amplitude": 28,             "wobble": True},
+    {"startSec": 660,  "endSec": 1260, "motion": "WAVE",   "period": 6.0,  "amplitude": 24, "waveDelay": 0.9, "wobble": True},
+    {"startSec": 1260, "endSec": 1800, "motion": "BOB",    "period": 5.0,  "amplitude": 26,             "wobble": True},
 ]
 
-def alt_music(en_music: str, ep_idx: int, lang: str) -> str:
-    if lang == "en":
-        return en_music
-    offset = 7 if lang == "ar" else 14
-    pool = [t for t in _ALL_TRACKS if t != en_music]
-    return pool[(ep_idx + offset) % len(pool)]
-
+# All Suno AI tracks — Kevin MacLeod FORBIDDEN
 EPISODES = {
-    "ocean": {
-        "shapes": ["circle", "oval"],
-        "colors": ["#006994", "#0099CC", "#48CAE4", "#90E0EF"],
-        "bgColor": "#010810", "bpm": 50, "music": "Gymnopedie No 1.mp3",
-        "thumb_prompt": "deep blue calm ocean scene, glowing blue bubbles floating slowly, serene underwater atmosphere, soothing baby video",
-    },
     "forest": {
-        "shapes": ["hexagon", "circle", "oval"],
-        "colors": ["#1B4332", "#2D6A4F", "#52B788", "#95D5B2"],
-        "bgColor": "#010A04", "bpm": 45, "music": "Crinoline Dreams.mp3",
-        "thumb_prompt": "magical dark green enchanted forest night, soft glowing green hexagons floating, fireflies, calming baby animation",
+        # Rule 4: 3D sprites only. Rule 6: main 450px, secondary 130-175px. Rule 8: unique seeds.
+        "sprites": [
+            {"path": "animals/owl_3d.png",       "size": 450, "posX": 0.50, "posY": 0.44, "seed": 1},
+            {"path": "animals/frog_3d.png",       "size": 175, "posX": 0.22, "posY": 0.65, "seed": 2},
+            {"path": "objects/butterfly_3d.png",  "size": 155, "posX": 0.75, "posY": 0.32, "seed": 3},
+            {"path": "objects/orb_amber.png",     "size": 140, "posX": 0.15, "posY": 0.28, "seed": 4},
+            {"path": "objects/star_sleep.png",    "size": 130, "posX": 0.82, "posY": 0.68, "seed": 5},
+        ],
+        "music": "The Glass Forest v2.mp3",
+        "bgColor": "#020D06", "bgColorEnd": "#030F08",
+        "thumb_prompt": "magical enchanted forest at night, glowing amber fireflies, cute Pixar 3D owl perched on branch, friendly 3D frog on mossy log, soft green forest glow, calming baby video, 3D render style",
+    },
+    "ocean": {
+        "sprites": [
+            {"path": "objects/jellyfish_glow.png", "size": 450, "posX": 0.50, "posY": 0.42, "seed": 1},
+            {"path": "objects/fish_deep.png",      "size": 185, "posX": 0.20, "posY": 0.65, "seed": 2},
+            {"path": "objects/octopus_3d.png",     "size": 165, "posX": 0.78, "posY": 0.65, "seed": 3},
+            {"path": "objects/star_3d.png",        "size": 140, "posX": 0.15, "posY": 0.30, "seed": 4},
+            {"path": "objects/orb_amber.png",      "size": 130, "posX": 0.85, "posY": 0.28, "seed": 5},
+        ],
+        "music": "Tide and Piano v2.mp3",
+        "bgColor": "#010810", "bgColorEnd": "#010C16",
+        "thumb_prompt": "serene deep ocean, glowing jellyfish floating gently, colorful deep-sea fish, cute Pixar 3D octopus, bioluminescent underwater scene, calming baby video, 3D render style",
     },
     "night_sky": {
-        "shapes": ["circle", "star"],
-        "colors": ["#FFD700", "#FFF8DC", "#C0C0C0", "#87CEEB"],
-        "bgColor": "#010108", "bpm": 40, "music": "Heartwarming.mp3",
-        "thumb_prompt": "calm deep blue starry night sky, golden stars and circles drifting slowly, dark background, soothing baby video",
+        "sprites": [
+            {"path": "objects/star_sleep.png",  "size": 450, "posX": 0.50, "posY": 0.44, "seed": 1},
+            {"path": "objects/star_3d.png",     "size": 185, "posX": 0.18, "posY": 0.25, "seed": 2},
+            {"path": "objects/star_silver.png", "size": 165, "posX": 0.80, "posY": 0.28, "seed": 3},
+            {"path": "objects/orb_amber.png",   "size": 140, "posX": 0.15, "posY": 0.65, "seed": 4},
+            {"path": "objects/star_3d.png",     "size": 130, "posX": 0.85, "posY": 0.68, "seed": 5},
+        ],
+        "music": "Moonlight on the Piano v2.mp3",
+        "bgColor": "#010108", "bgColorEnd": "#02020C",
+        "thumb_prompt": "beautiful starry night sky, large glowing golden sleepy star, silver stars twinkling, glowing amber orb, deep dark blue sky, calming baby video, Pixar 3D render style",
     },
     "meadow": {
-        "shapes": ["heart", "oval", "circle"],
-        "colors": ["#90EE90", "#ADFF2F", "#FFD700", "#FFC0CB"],
-        "bgColor": "#030A01", "bpm": 55, "music": "Life of Riley.mp3",
-        "thumb_prompt": "peaceful meadow sunrise, soft green yellow pink shapes floating gently, calm toddler video, nature colors",
+        "sprites": [
+            {"path": "objects/butterfly_3d.png", "size": 450, "posX": 0.50, "posY": 0.42, "seed": 1},
+            {"path": "animals/duck_3d.png",      "size": 180, "posX": 0.22, "posY": 0.68, "seed": 2},
+            {"path": "animals/unicorn_3d.png",   "size": 165, "posX": 0.78, "posY": 0.65, "seed": 3},
+            {"path": "objects/cloud_3d.png",     "size": 145, "posX": 0.15, "posY": 0.25, "seed": 4},
+            {"path": "objects/butterfly_3d.png", "size": 135, "posX": 0.82, "posY": 0.25, "seed": 5},
+        ],
+        "music": "The Golden Meadow v2.mp3",
+        "bgColor": "#060C02", "bgColorEnd": "#081002",
+        "thumb_prompt": "peaceful sunny meadow, large colorful Pixar 3D butterfly, cute 3D yellow duck, friendly 3D unicorn, fluffy white cloud, golden sunlight, calming baby video, 3D render style",
     },
     "rain": {
-        "shapes": ["circle", "oval"],
-        "colors": ["#B0C4DE", "#778899", "#4682B4", "#87CEEB"],
-        "bgColor": "#020508", "bpm": 48, "music": "Wholesome.mp3",
-        "thumb_prompt": "gentle rain drops falling on dark background, soft blue grey circles, soothing calm rain for babies",
+        "sprites": [
+            {"path": "objects/cloud_3d.png",  "size": 450, "posX": 0.50, "posY": 0.38, "seed": 1},
+            {"path": "animals/frog_3d.png",   "size": 180, "posX": 0.25, "posY": 0.68, "seed": 2},
+            {"path": "animals/duck_3d.png",   "size": 165, "posX": 0.75, "posY": 0.65, "seed": 3},
+            {"path": "objects/cloud_3d.png",  "size": 145, "posX": 0.18, "posY": 0.25, "seed": 4},
+            {"path": "objects/cloud_3d.png",  "size": 135, "posX": 0.82, "posY": 0.22, "seed": 5},
+        ],
+        "music": "Rain Etude in C Minor v2.mp3",
+        "bgColor": "#030508", "bgColorEnd": "#040610",
+        "thumb_prompt": "gentle rain scene, big fluffy 3D cloud, cute Pixar 3D frog smiling in rain, friendly 3D duck with raindrops, soft blue-grey sky, calming baby video, 3D render style",
     },
     "sunset": {
-        "shapes": ["circle", "heart", "oval"],
-        "colors": ["#FF7043", "#FF8A65", "#FFAB91", "#CE93D8"],
-        "bgColor": "#0A0205", "bpm": 52, "music": "Carefree.mp3",
-        "thumb_prompt": "beautiful sunset orange purple sky, glowing circles and hearts floating, golden hour calming baby video",
+        "sprites": [
+            {"path": "animals/flamingo_3d.png",  "size": 450, "posX": 0.50, "posY": 0.44, "seed": 1},
+            {"path": "animals/parrot_3d.png",    "size": 185, "posX": 0.20, "posY": 0.32, "seed": 2},
+            {"path": "objects/butterfly_3d.png", "size": 155, "posX": 0.78, "posY": 0.30, "seed": 3},
+            {"path": "objects/butterfly_3d.png", "size": 145, "posX": 0.15, "posY": 0.65, "seed": 4},
+            {"path": "objects/orb_amber.png",    "size": 135, "posX": 0.85, "posY": 0.65, "seed": 5},
+        ],
+        "music": "Afternoon in F v2.mp3",
+        "bgColor": "#0A0205", "bgColorEnd": "#120308",
+        "thumb_prompt": "beautiful golden sunset, elegant pink Pixar 3D flamingo, colorful 3D parrot, butterflies floating in warm orange-purple sky, calming baby video, 3D render style",
     },
 }
 
 TITLES = {
     "ocean":     {"en": "🌊 Calm Ocean for Babies | 30 Minutes | Happy Bear Kids",
-                  "ar": "🌊 محيط هادئ للأطفال | ٣٠ دقيقة | Happy Bear Kids",
-                  "id": "🌊 Calm Ocean Ambience | 30 Minutes | Classical Night Relax"},
+                  "ar": "🌊 محيط هادئ للأطفال | ٣٠ دقيقة | Happy Bear Kids"},
     "forest":    {"en": "🌿 Enchanted Forest Calm | 30 Minutes | Happy Bear Kids",
-                  "ar": "🌿 غابة ساحرة هادئة | ٣٠ دقيقة | Happy Bear Kids",
-                  "id": "🌿 Enchanted Forest Ambience | 30 Minutes | Classical Night Relax"},
+                  "ar": "🌿 غابة ساحرة هادئة | ٣٠ دقيقة | Happy Bear Kids"},
     "night_sky": {"en": "⭐ Starry Night Sky | 30 Minutes | Happy Bear Kids",
-                  "ar": "⭐ سماء ليلية مرصّعة بالنجوم | ٣٠ دقيقة | Happy Bear Kids",
-                  "id": "⭐ Starry Night Sky Ambience | 30 Minutes | Classical Night Relax"},
+                  "ar": "⭐ سماء ليلية مرصّعة بالنجوم | ٣٠ دقيقة | Happy Bear Kids"},
     "meadow":    {"en": "🌸 Peaceful Meadow | 30 Minutes | Happy Bear Kids",
-                  "ar": "🌸 مرج هادئ للأطفال | ٣٠ دقيقة | Happy Bear Kids",
-                  "id": "🌸 Peaceful Meadow Ambience | 30 Minutes | Classical Night Relax"},
+                  "ar": "🌸 مرج هادئ للأطفال | ٣٠ دقيقة | Happy Bear Kids"},
     "rain":      {"en": "🌧️ Gentle Rain Calm | 30 Minutes | Happy Bear Kids",
-                  "ar": "🌧️ مطر هادئ للأطفال | ٣٠ دقيقة | Happy Bear Kids",
-                  "id": "🌧️ Gentle Rain Ambience | 30 Minutes | Classical Night Relax"},
+                  "ar": "🌧️ مطر هادئ للأطفال | ٣٠ دقيقة | Happy Bear Kids"},
     "sunset":    {"en": "🌅 Sunset Calm for Babies | 30 Minutes | Happy Bear Kids",
-                  "ar": "🌅 غروب هادئ للأطفال | ٣٠ دقيقة | Happy Bear Kids",
-                  "id": "🌅 Sunset Ambience | 30 Minutes | Classical Night Relax"},
+                  "ar": "🌅 غروب هادئ للأطفال | ٣٠ دقيقة | Happy Bear Kids"},
 }
 
 DESC = {
     "en": (
         "Welcome to Happy Bear Kids! 🐻\n\n"
-        "30 minutes of beautiful, calming abstract visuals inspired by the wonders of nature. "
-        "Soft, slow-moving shapes in nature-inspired colours gently drift and float to peaceful "
-        "music — perfect for calming babies, helping toddlers relax, and creating a soothing "
-        "screen-time experience.\n\n"
+        "30 minutes of beautiful, calming nature-inspired visuals with adorable 3D characters. "
+        "Cute animals and nature friends gently float and bob to peaceful music — perfect for "
+        "calming babies, helping toddlers relax, and creating a soothing screen-time experience.\n\n"
         "Our Nature Calm series brings the tranquillity of the natural world into your home "
-        "through simple, elegant abstract visuals. No characters, no sudden movements, no "
-        "surprises — just gentle, flowing shapes and colours that soothe and delight.\n\n"
+        "through charming, soft-moving 3D characters in nature settings. No sudden movements, no "
+        "surprises — just gentle, floating friends that soothe and delight.\n\n"
         "🌟 Key features:\n"
-        "• Soft, slow-moving shapes in nature-inspired colour palettes\n"
+        "• Adorable 3D Pixar-style nature characters floating gently\n"
         "• Very low BPM music chosen specifically for calm and relaxation\n"
         "• No bright flashes or sudden changes — gentle transitions only\n"
         "• No words or voices — universally enjoyable for every child\n"
@@ -135,14 +143,13 @@ DESC = {
         "• Visual tracking practice for infants aged 0-6 months\n"
         "• Winding down after a busy or stimulating day\n\n"
         "🎯 Educational and developmental value:\n"
-        "• Colour recognition through nature-inspired hues and gradients\n"
-        "• Visual tracking as shapes drift slowly and predictably across the screen\n"
-        "• Sensory regulation — gentle colours help reduce visual stress in infants\n"
+        "• Colour recognition through nature-inspired 3D characters\n"
+        "• Visual tracking as characters drift slowly and predictably across the screen\n"
+        "• Sensory regulation — gentle movement helps reduce visual stress in infants\n"
         "• Rhythm awareness through soft, slow music that supports brain development\n"
         "• Attention and focus development through simple, predictable movement patterns\n\n"
-        "No loud sounds, no surprises, no talking — just 30 minutes of pure, soothing, "
-        "nature-inspired visual calm. Your baby will love quietly watching as the shapes "
-        "slowly float, glow and drift across the screen.\n\n"
+        "No loud sounds, no surprises, no talking — just 30 minutes of pure, soothing "
+        "nature friends floating peacefully on screen.\n\n"
         "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
         "© Happy Bear Kids 2026 — All rights reserved\n"
         "New videos every week! Subscribe ▶ @HappyBearKids1\n\n"
@@ -151,12 +158,12 @@ DESC = {
     ),
     "ar": (
         "أهلاً بكم في Happy Bear Kids! 🐻\n\n"
-        "٣٠ دقيقة من المرئيات الهادئة المستوحاة من الطبيعة. أشكال ناعمة تتحرك ببطء بألوان "
-        "طبيعية مريحة تطفو بهدوء على موسيقى سلمية — مثالية لتهدئة الأطفال الرضّع والصغار.\n\n"
-        "سلسلة الطبيعة الهادئة تجلب سكينة الطبيعة إلى منزلكم من خلال مرئيات بسيطة وأنيقة. "
-        "لا شخصيات، لا حركات مفاجئة، لا مفاجآت — فقط أشكال وألوان ناعمة تهدّئ وتُسعد.\n\n"
+        "٣٠ دقيقة من المرئيات الطبيعية الهادئة مع شخصيات ثلاثية الأبعاد لطيفة. "
+        "حيوانات وأصدقاء الطبيعة يطفون بلطف على موسيقى سلمية — مثالية لتهدئة الأطفال الرضّع والصغار.\n\n"
+        "سلسلة الطبيعة الهادئة تجلب سكينة الطبيعة إلى منزلكم من خلال شخصيات ثلاثية الأبعاد ناعمة الحركة. "
+        "لا حركات مفاجئة، لا مفاجآت — فقط أصدقاء هادئون يطفون ويُسعدون.\n\n"
         "🌟 المميزات الرئيسية:\n"
-        "• أشكال ناعمة بألوان طبيعية هادئة\n"
+        "• شخصيات طبيعة ثلاثية الأبعاد تطفو بلطف\n"
         "• موسيقى منخفضة الإيقاع مختارة خصيصاً للاسترخاء\n"
         "• لا وميض أو تغييرات مفاجئة\n"
         "• بدون كلمات أو أصوات\n"
@@ -168,32 +175,6 @@ DESC = {
         "🎵 موسيقى أصلية من هابي بير كيدز\n"
         "© Happy Bear Kids 2026 | اشترك ▶ @happybearkidsar\n\n"
         "#HappyBearKids #هدوء_الطبيعة #تهدئة_الطفل #فيديو_أطفال_هادئ #رضيع"
-    ),
-    "id": (
-        "Welcome to Classical Night Relax 🌿\n\n"
-        "30 minutes of beautiful, slow-moving nature-inspired abstract visuals — designed "
-        "for adults who need a calm, screen-based backdrop for sleep, meditation, study, or "
-        "unwinding after a long day.\n\n"
-        "Soft geometric shapes drift gently across nature-inspired colour palettes to peaceful "
-        "low-BPM music. No sudden movements, no flashes, no voices — just pure, uninterrupted "
-        "visual tranquillity.\n\n"
-        "🌟 Perfect for:\n"
-        "• Sleep preparation and winding down at night\n"
-        "• Meditation and mindfulness sessions\n"
-        "• Background ambience while working or studying\n"
-        "• Stress relief and mental reset\n"
-        "• Screen-based relaxation without overstimulation\n\n"
-        "✨ Features:\n"
-        "• Slow, gentle abstract shapes in calming nature colour palettes\n"
-        "• Very low BPM ambient music — non-intrusive and soothing\n"
-        "• No bright flashes or sudden changes\n"
-        "• No words or voices — pure visual experience\n"
-        "• 30 full minutes of uninterrupted calm\n\n"
-        "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n\n"
-        "New ambient videos every week. Subscribe ▶ @ClassicalNightRelax\n"
-        "© Classical Night Relax 2026 — All rights reserved\n\n"
-        "#ClassicalNightRelax #NatureAmbience #RelaxingVisuals #SleepAid "
-        "#MeditationBackground #AmbientVideo #CalmVisuals #StudyBackground #Relaxation"
     ),
 }
 
@@ -226,21 +207,18 @@ def generate_thumbnail(ep_key, ep, queue, out_name, lang):
 
 
 def make_meta(ep_key, lang, queue, out_name):
-    if lang == "id":
-        tags = ["nature ambience", "relaxing visuals", "classical night relax",
-                "ambient video", "sleep aid", "meditation background",
-                "calm visuals", "study background", "30 minutes",
-                ep_key.replace("_", " "), "nature"]
-        made_for_kids = False
-    else:
-        tags = ["nature calm", "baby calm", "soothing", "toddler relax", "happy bear kids",
-                "30 minutes", "calm shapes", "baby video", "nature", ep_key.replace("_", " ")]
-        made_for_kids = True
+    tags = ["nature calm", "baby calm", "soothing", "toddler relax", "happy bear kids",
+            "30 minutes", "baby video", "nature", ep_key.replace("_", " "), "3d animals"]
     meta = {
-        "title": TITLES[ep_key][lang], "description": DESC[lang],
-        "video_type": "nature_calm", "theme": ep_key, "language": lang,
-        "duration_minutes": 30, "is_short": False, "status": "public",
-        "made_for_kids": made_for_kids,
+        "title": TITLES[ep_key][lang],
+        "description": DESC[lang],
+        "video_type": "nature_calm",
+        "theme": ep_key,
+        "language": lang,
+        "duration_minutes": 30,
+        "is_short": False,
+        "status": "public",
+        "made_for_kids": True,
         "tags": tags,
     }
     meta_path = queue / f"meta_{Path(out_name).stem}.yaml"
@@ -248,130 +226,87 @@ def make_meta(ep_key, lang, queue, out_name):
         yaml.dump(meta, f, allow_unicode=True, default_flow_style=False, sort_keys=False)
 
 
-def _render_nature_calm_loop(ep_key, ep, lang, loop_path, dry_run) -> bool:
-    """Render 5-min NatureCalm loop or fall back to 30-min ShapeDanceLong."""
-    nc_theme = NATURE_CALM_THEME.get(ep_key)
-    if nc_theme:
-        props = json.dumps({
-            "theme": nc_theme,
-            "musicFile": ep["music"],
-            "phaseOffset": {"en": 0.0, "ar": 0.37, "id": 0.68}.get(lang, 0.0),
-        })
-        cmd = ["npx", "remotion", "render", "NatureCalm", str(loop_path),
-               "--props", props, "--log", "error"]
-    else:
-        # fallback: ShapeDanceLong renders the full 30 min directly
-        props = json.dumps({
-            "shapes": ep["shapes"], "colors": ep["colors"],
-            "bgColor": ep["bgColor"], "bpm": ep["bpm"],
-            "showLabels": False, "musicFile": ep["music"],
-        })
-        cmd = ["npx", "remotion", "render", "ShapeDanceLong", str(loop_path),
-               "--props", props, "--log", "error"]
+def _render_episode(ep_key: str, ep: dict, out_path: Path, dry_run: bool) -> bool:
+    props = json.dumps({
+        "sprites": ep["sprites"],
+        "blocks": _CALM_BLOCKS,
+        "bgColor": ep["bgColor"],
+        "bgColorEnd": ep.get("bgColorEnd", ep["bgColor"]),
+        "musicFile": ep["music"],
+        "wobble": True,
+    })
+    cmd = ["npx", "remotion", "render", "DanceSpriteLong", str(out_path),
+           "--props", props, "--log", "error"]
     if dry_run:
-        print(f"    [DRY RUN] {' '.join(cmd[:4])}")
+        print(f"    [DRY RUN] DanceSpriteLong {ep_key} → {out_path.name}")
         return True
-    loop_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     r = subprocess.run(cmd, cwd=str(REMOTION), timeout=86400)
     return r.returncode == 0
 
 
-def _extend_to_30min(loop_path: Path, out_path: Path, dry_run: bool) -> bool:
-    """Tile 5-min loop 6× to make 30 min. For ShapeDanceLong, loop is already 30 min → just copy."""
-    import shutil
-    if loop_path.stat().st_size > 2_000_000_000 if not dry_run else False:
-        # Already 30 min (ShapeDanceLong), just copy
-        shutil.copy2(str(loop_path), str(out_path))
-        return True
-    concat = out_path.parent / f"_concat_{out_path.stem}.txt"
-    concat.write_text("\n".join([f"file '{loop_path.resolve()}'"] * 6))
-    cmd = ["ffmpeg", "-y", "-f", "concat", "-safe", "0",
-           "-i", str(concat), "-c", "copy", str(out_path)]
-    if dry_run:
-        print(f"    [DRY RUN] ffmpeg concat 6× → {out_path.name}")
-        concat.unlink(missing_ok=True)
-        return True
-    r = subprocess.run(cmd, timeout=600)
-    concat.unlink(missing_ok=True)
-    return r.returncode == 0
-
-
-def render_episode(ep_key, ep, ep_idx, dry_run, regen_meta):
+def render_episode(ep_key: str, ep: dict, dry_run: bool, regen_meta: bool) -> bool:
     out_name = f"nature_calm_{ep_key}_{DATE_STR}.mp4"
-    nc_theme = NATURE_CALM_THEME.get(ep_key)
-    ok = True
-    LOOPS_DIR.mkdir(parents=True, exist_ok=True)
+    en_mp4   = QUEUE_EN / out_name
+    ar_mp4   = QUEUE_AR / out_name
 
-    for lang, queue in [("en", QUEUE_EN), ("ar", QUEUE_AR), ("id", QUEUE_ID)]:
-        out_mp4  = queue / out_name
-        loop_mp4 = LOOPS_DIR / f"nature_loop_{ep_key}_{lang}.mp4"
+    # nature_calm is kids content — ID/CNR queue blocked per CLAUDE.md
+    # For CNR nature visuals → use make_visual_theme.py (AI images + Musopen classical)
 
-        # CNR (id) must NEVER receive nature_calm content — it uses kids music (Suno),
-        # not classical recordings. CNR = Chopin/Debussy/Bach only.
-        # nature_calm → EN/AR kids channels only.
-        # For CNR nature visuals → use make_visual_theme.py (AI images + classical Musopen).
-        if lang == "id":
-            print(f"  SKIP {ep_key} (id): nature_calm is kids content — blocked for CNR. "
-                  f"Use make_visual_theme.py for CNR nature visuals.")
-            continue
+    # Render once (no text/voice difference between EN and AR)
+    if not en_mp4.exists() and not regen_meta:
+        print(f"  DanceSpriteLong render [{ep_key}]...", flush=True)
+        if not _render_episode(ep_key, ep, en_mp4, dry_run):
+            print(f"  FAILED: {ep_key}")
+            return False
+        if en_mp4.exists():
+            print(f"  ✓ {out_name} ({en_mp4.stat().st_size / 1024 / 1024:.1f} MB)")
+    else:
+        if en_mp4.exists():
+            print(f"  EXISTS {ep_key} (en)")
 
-        if not out_mp4.exists() and not regen_meta and not dry_run:
-            if nc_theme:
-                # Step 1: render 5-min loop (once per lang for different phaseOffset)
-                if not loop_mp4.exists():
-                    print(f"  NatureCalm render {ep_key}/{nc_theme} ({lang})...", flush=True)
-                    ok2 = _render_nature_calm_loop(ep_key, ep, lang, loop_mp4, dry_run)
-                    if not ok2:
-                        print(f"  FAILED: {ep_key} ({lang})")
-                        ok = False
-                        continue
-                # Step 2: extend 5 min × 6 = 30 min
-                print(f"  Extending 6× → {out_name}", flush=True)
-                ok2 = _extend_to_30min(loop_mp4, out_mp4, dry_run)
-                if not ok2:
-                    ok = False
-                    continue
-            else:
-                # ShapeDanceLong fallback — only EN and AR kids channels
-                loop_mp4_30 = LOOPS_DIR / f"nature_loop_{ep_key}_{lang}_30.mp4"
-                lang_music = alt_music(ep["music"], ep_idx, lang)
-                ep_lang = dict(ep, music=lang_music)
-                print(f"  ShapeDanceLong render {ep_key} ({lang})...", flush=True)
-                ok2 = _render_nature_calm_loop(ep_key, ep_lang, lang, loop_mp4_30, dry_run)
-                if not ok2:
-                    ok = False
-                    continue
-                import shutil
-                shutil.copy2(str(loop_mp4_30), str(out_mp4))
+    # Copy to AR queue (identical video, no language difference for no-text content)
+    if (en_mp4.exists() or dry_run) and not ar_mp4.exists():
+        if not dry_run:
+            shutil.copy2(str(en_mp4), str(ar_mp4))
+            print(f"  ✓ copied → queue_ar/{out_name}")
+        else:
+            print(f"    [DRY RUN] copy → queue_ar/{out_name}")
+    elif ar_mp4.exists():
+        print(f"  EXISTS {ep_key} (ar)")
 
-            if out_mp4.exists():
-                print(f"  ✓ {out_name} ({out_mp4.stat().st_size/1024/1024:.1f}MB)")
-
-        elif out_mp4.exists():
-            print(f"  EXISTS {ep_key} ({lang})")
-
-        if out_mp4.exists() or dry_run:
+    # Meta + thumbnails per language
+    for lang, queue, mp4 in [("en", QUEUE_EN, en_mp4), ("ar", QUEUE_AR, ar_mp4)]:
+        if mp4.exists() or dry_run or regen_meta:
             make_meta(ep_key, lang, queue, out_name)
             generate_thumbnail(ep_key, ep, queue, out_name, lang)
 
-    return ok
+    return True
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--key",        default="nature_calm_cat2")
-    parser.add_argument("--regen-meta", action="store_true")
+    parser.add_argument("--ep",       default=None, help="Render only this episode key (e.g. forest)")
+    parser.add_argument("--regen-meta", action="store_true", help="Regenerate meta+thumbnails only")
     parser.add_argument("--dry-run",    action="store_true")
     args = parser.parse_args()
-    for d in (QUEUE_EN, QUEUE_AR, QUEUE_ID):
+
+    for d in (QUEUE_EN, QUEUE_AR):
         d.mkdir(parents=True, exist_ok=True)
-    print(f"\n=== Nature Calm: {len(EPISODES)} episodes → EN+AR+ID ===\n")
+
+    episodes = {k: v for k, v in EPISODES.items() if not args.ep or k == args.ep}
+    if args.ep and not episodes:
+        print(f"Unknown episode key '{args.ep}'. Valid: {', '.join(EPISODES)}")
+        return
+
+    print(f"\n=== Nature Calm: {len(episodes)} episode(s) → EN + AR ===\n")
     ok = 0
-    for ep_idx, (ep_key, ep) in enumerate(EPISODES.items()):
+    for ep_key, ep in episodes.items():
         print(f"[{ep_key}]")
-        if render_episode(ep_key, ep, ep_idx, args.dry_run, args.regen_meta):
+        if render_episode(ep_key, ep, args.dry_run, args.regen_meta):
             ok += 1
-    print(f"\nDone: {ok}/{len(EPISODES)}")
+    print(f"\nDone: {ok}/{len(episodes)}")
+
 
 if __name__ == "__main__":
     main()
