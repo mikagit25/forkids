@@ -1,0 +1,47 @@
+id: goodnight_little_bear
+title_en: "Goodnight, Little Bear 🌙 | Lullaby for Babies & Toddlers | Happy Bear Kids"
+video_type: lullaby_long
+track: kids_sleep
+made_for_kids: true
+queue: output/queue
+ai_generated: true
+language: en
+
+suno:
+  style: "gentle lullaby, soft piano, music box, female vocal, 65 BPM, F major, bedtime, calm, dreamy"
+  bpm: 65
+  key: F major
+  duration_target_sec: 180  # ~3 minutes per clip, generate 2 clips
+
+lyrics: |
+  [Verse 1]
+  Close your little eyes now, it's time to sleep
+  Little bear is cozy, dreaming sweet and deep
+  Stars are shining softly in the velvet sky
+  Goodnight little bear, let the moon say hi
+
+  [Chorus]
+  Goodnight, goodnight, little bear
+  Mama's here, she'll always care
+  Dream of honey fields and streams
+  Little bear, drift off to sweet dreams
+
+  [Verse 2]
+  The forest is so quiet, the owls gently hoot
+  Little bear is snuggled in his warm little suit
+  The river sings a lullaby, the breeze is cool and light
+  Goodnight little bear, stars will guide you through the night
+
+  [Chorus]
+  Goodnight, goodnight, little bear
+  Papa's here, he'll always care
+  Dream of sunny days and flowers
+  Little bear, sleep through the hours
+
+  [Outro]
+  Goodnight... goodnight...
+  Goodnight little bear...
+
+durations_hours: [1, 2]
+visual_theme: night_bear
+loop_duration_sec: 300

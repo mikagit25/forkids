@@ -1,0 +1,53 @@
+id: bubble_pop_song
+title_en: "Bubble Pop Song 🎈 | Fun Kids Song | Happy Bear Kids"
+video_type: bubble_pop_song
+track: kids_song
+made_for_kids: true
+queue: output/queue
+ai_generated: true
+language: en
+
+suno:
+  style: "upbeat children's song, ukulele, clapping, fun, cheerful, playful, 120 BPM, C major, kindergarten, educational"
+  bpm: 120
+  key: C major
+  duration_target_sec: 150
+
+lyrics: |
+  [Intro]
+  Pop! Pop! Pop! Pop!
+  Happy Bear Kids!
+
+  [Verse 1]
+  Little bubbles floating up so high
+  Red and blue and yellow in the sky
+  Pop one here and pop one there
+  Bubbles bubbles everywhere!
+
+  [Chorus]
+  Bubble pop, bubble pop, pop pop pop!
+  Bubble pop, bubble pop, don't you stop!
+  Round and shiny, floating free
+  Bubble pop song — sing with me!
+
+  [Verse 2]
+  Make a bubble, blow it big and round
+  Watch it floating gently to the ground
+  Chase it fast and catch it if you can
+  Pop it with your finger — here's the plan!
+
+  [Chorus]
+  Bubble pop, bubble pop, pop pop pop!
+  Bubble pop, bubble pop, don't you stop!
+  Round and shiny, floating free
+  Bubble pop song — sing with me!
+
+  [Bridge]
+  One bubble, two bubbles, three bubbles more
+  Four bubbles, five bubbles, six on the floor
+  Seven, eight, nine, ten — pop them all!
+  Now make more bubbles — watch them fall!
+
+  [Outro]
+  Pop! Pop! Pop! Pop!
+  Happy Bear Kids!
