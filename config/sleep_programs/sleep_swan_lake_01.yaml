@@ -41,6 +41,12 @@ tracks:
     duration_sec: 1432
     mood: grand_finale
 
+  - id: tchaikovsky_swan_lake_op_20_act_iii_concl_allegro_1
+    composer: Pyotr Ilyich Tchaikovsky
+    piece: "Swan Lake Op.20 — Act III Conclusion (alt. recording)"
+    duration_sec: 1432
+    mood: extended
+
 tags:
   - tchaikovsky
   - swan lake
