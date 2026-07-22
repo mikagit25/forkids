@@ -60,6 +60,9 @@ PROGRAM_KB_PROMPTS: dict[str, str] = {
     "sleep_lullaby_01":         "cozy nursery at night, moonlight through curtains, soft mobile above crib, warm amber nightlight, peaceful",
     "sleep_moonlight_01":       "moonlit grand piano in dark Parisian salon, silver moonlight through tall arched windows, Chopin nocturne atmosphere, romantic night, cinematic 4K",
     "focus_classical_miniatures_01": "elegant study room on rainy afternoon, open books and sheet music, warm desk lamp, misty garden through tall French window, intellectual focus, classical music atmosphere",
+    "sleep_grand_orchestral_01":    "moonlit concert hall exterior at night, grand dome illuminated against dark sky, Tchaikovsky era Vienna opera house, majestic and serene, cinematic photography",
+    "sleep_complete_romantic_01":   "candlelit cello resting against grand piano in intimate salon, moonlight through silk curtains, romantic 19th century interior, Chopin and Beethoven atmosphere",
+    "focus_baroque_chamber_01":     "baroque library at golden afternoon, sunlight through tall windows onto musical manuscripts and violin, Bach era study room, scholarly and peaceful",
 }
 
 THEME_LOOP_SECS = {
@@ -98,6 +101,9 @@ TITLES = {
     "sleep_lullaby_01":         "Classical Lullabies for Sleep 🌙 {dur} | Happy Bear Kids",
     "sleep_moonlight_01":       "Moonlight Sonata & Nocturnes 🌙 {dur} | Beethoven · Chopin | Classical Night Relax",
     "focus_classical_miniatures_01": "Classical Miniatures for Focus 🎼 {dur} | Debussy · Chopin · Bach | Classical Night Relax",
+    "sleep_grand_orchestral_01":    "Grand Orchestral Night 🎻 {dur} | Tchaikovsky · Beethoven · Verdi | Classical Night Relax",
+    "sleep_complete_romantic_01":   "Complete Romantic Night 🌙 {dur} | Beethoven · Chopin · Debussy | Classical Night Relax",
+    "focus_baroque_chamber_01":     "Baroque & Chamber Music for Focus 🎻 {dur} | Bach · Vivaldi · Mozart · Beethoven | Classical Night Relax",
 }
 
 DESC_TEMPLATES = {
