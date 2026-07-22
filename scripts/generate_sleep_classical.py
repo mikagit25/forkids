@@ -58,6 +58,8 @@ PROGRAM_KB_PROMPTS: dict[str, str] = {
     "sleep_beethoven_cello_01": "cello leaning against window at dusk, autumn leaves outside, warm lamplight, cozy evening room ambiance",
     "focus_beethoven_cello_01": "cello and piano in sunlit studio, warm afternoon light on wooden floor, sheet music, serene focus atmosphere",
     "sleep_lullaby_01":         "cozy nursery at night, moonlight through curtains, soft mobile above crib, warm amber nightlight, peaceful",
+    "sleep_moonlight_01":       "moonlit grand piano in dark Parisian salon, silver moonlight through tall arched windows, Chopin nocturne atmosphere, romantic night, cinematic 4K",
+    "focus_classical_miniatures_01": "elegant study room on rainy afternoon, open books and sheet music, warm desk lamp, misty garden through tall French window, intellectual focus, classical music atmosphere",
 }
 
 THEME_LOOP_SECS = {
@@ -94,6 +96,8 @@ TITLES = {
     "sleep_beethoven_cello_01": "Beethoven Cello Sonatas for Sleep 🎻 {dur} | Classical Night Relax",
     "focus_beethoven_cello_01": "Beethoven Cello Sonatas for Focus & Study 🎻 {dur} | Classical Night Relax",
     "sleep_lullaby_01":         "Classical Lullabies for Sleep 🌙 {dur} | Happy Bear Kids",
+    "sleep_moonlight_01":       "Moonlight Sonata & Nocturnes 🌙 {dur} | Beethoven · Chopin | Classical Night Relax",
+    "focus_classical_miniatures_01": "Classical Miniatures for Focus 🎼 {dur} | Debussy · Chopin · Bach | Classical Night Relax",
 }
 
 DESC_TEMPLATES = {
