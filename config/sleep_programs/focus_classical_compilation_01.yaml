@@ -1,0 +1,119 @@
+id: focus_classical_compilation_01
+title_en: "Classical Focus — Beethoven & Tchaikovsky 🎻 {duration} | Classical Night Relax"
+video_type: focus_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: rain_window
+loop_duration_sec: 240
+durations_hours: [1, 2, 3]
+
+# Multi-composer compilation: Beethoven (94 min) + Tchaikovsky Swan Lake (70 min) = 164 min
+# 1h = no repeat, 2h = <1.3 loops, 3h = ~1.1 loops. Minimal repetition across all formats.
+tracks:
+  # Beethoven — Piano & Orchestra
+  - id: beethoven_piano_sonata_no_14_in_c_m_moonlight_op_27_no_2_i_adagio_so
+    composer: Ludwig van Beethoven
+    piece: "Piano Sonata No. 14 'Moonlight' — I. Adagio sostenuto"
+    duration_sec: 276
+    mood: gentle_open
+
+  - id: beethoven_symphony_no_5_in_cm_op_67_i_allegro_con_brio
+    composer: Ludwig van Beethoven
+    piece: "Symphony No. 5 — I. Allegro con brio"
+    duration_sec: 474
+    mood: energetic
+
+  - id: beethoven_symphony_no_5_in_cm_op_67_ii_andante_con_moto
+    composer: Ludwig van Beethoven
+    piece: "Symphony No. 5 — II. Andante con moto"
+    duration_sec: 682
+    mood: lyrical
+
+  - id: beethoven_symphony_no_5_in_cm_op_67_iii_allegro
+    composer: Ludwig van Beethoven
+    piece: "Symphony No. 5 — III. Allegro"
+    duration_sec: 337
+    mood: mysterious
+
+  - id: beethoven_symphony_no_5_in_cm_op_67_iv_allegro
+    composer: Ludwig van Beethoven
+    piece: "Symphony No. 5 — IV. Allegro"
+    duration_sec: 687
+    mood: triumphant
+
+  # Beethoven — Cello (transition to richer texture)
+  - id: beethoven_cello_sonata_no1_complete
+    composer: Ludwig van Beethoven
+    piece: "Cello Sonata No. 1 in F major, Op. 5 No. 1 — Complete"
+    duration_sec: 1489
+    mood: meditative
+
+  - id: beethoven_cello_sonata_op5_no2_i_adagio
+    composer: Ludwig van Beethoven
+    piece: "Cello Sonata No. 2 — I. Adagio sostenuto"
+    duration_sec: 268
+    mood: introspective
+
+  - id: beethoven_cello_sonata_op5_no2_ii_allegro
+    composer: Ludwig van Beethoven
+    piece: "Cello Sonata No. 2 — II. Allegro molto"
+    duration_sec: 524
+    mood: driven
+
+  - id: beethoven_cello_sonata_op5_no2_iii_rondo
+    composer: Ludwig van Beethoven
+    piece: "Cello Sonata No. 2 — III. Rondo"
+    duration_sec: 523
+    mood: resolve
+
+  - id: beethoven_cello_sonata_no4_op102_no1_mov1
+    composer: Ludwig van Beethoven
+    piece: "Cello Sonata No. 4 — I. Andante"
+    duration_sec: 391
+    mood: contemplative
+
+  # Tchaikovsky — Swan Lake (seamless stylistic bridge via Romantic orchestral)
+  - id: tchaikovsky_swan_lake_op_20_act_ii_pt_1
+    composer: Pyotr Ilyich Tchaikovsky
+    piece: "Swan Lake, Op. 20 — Act II Pt. 1"
+    duration_sec: 250
+    mood: graceful
+
+  - id: tchaikovsky_swan_lake_op_20_act_ii_concl
+    composer: Pyotr Ilyich Tchaikovsky
+    piece: "Swan Lake, Op. 20 — Act II Conclusion"
+    duration_sec: 369
+    mood: tender
+
+  - id: tchaikovsky_swan_lake_op_20_act_iii_pt_1
+    composer: Pyotr Ilyich Tchaikovsky
+    piece: "Swan Lake, Op. 20 — Act III Pt. 1"
+    duration_sec: 903
+    mood: dramatic
+
+  - id: tchaikovsky_swan_lake_op_20_act_iii_concl_allegro
+    composer: Pyotr Ilyich Tchaikovsky
+    piece: "Swan Lake, Op. 20 — Act III Conclusion"
+    duration_sec: 1432
+    mood: sweeping
+
+  - id: tchaikovsky_swan_lake_op_20_act_iv_intro
+    composer: Pyotr Ilyich Tchaikovsky
+    piece: "Swan Lake, Op. 20 — Act IV Introduction"
+    duration_sec: 1262
+    mood: elegiac_close
+
+tags:
+  - beethoven
+  - tchaikovsky
+  - swan lake
+  - symphony no 5
+  - classical focus music
+  - study music
+  - concentration music
+  - romantic classical
+  - calm classics
+  - work music
+  - orchestral music
+  - instrumental focus

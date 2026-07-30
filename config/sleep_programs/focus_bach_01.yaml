@@ -6,7 +6,7 @@ made_for_kids: false
 queue: output/queue_id
 visual_theme: rain_window
 loop_duration_sec: 240
-durations_hours: [1, 3]
+durations_hours: [1]
 tracks:
   - {id: bach_prelude_c_major, composer: J.S. Bach, piece: "Prelude in C major, BWV 846 (Well-Tempered Clavier)", duration_sec: 130, mood: clear}
   - {id: bach_invention_1, composer: J.S. Bach, piece: "Invention No. 1 in C major, BWV 772", duration_sec: 80, mood: focused}
