@@ -41,7 +41,7 @@ EPISODES = {
             {"path": "objects/star_sleep.png",    "size": 130, "posX": 0.82, "posY": 0.68, "seed": 5},
         ],
         "music": "The Glass Forest v2.mp3",
-        "bgColor": "#020D06", "bgColorEnd": "#030F08",
+        "bgColor": "#0A2410", "bgColorEnd": "#0D2E14",
         "thumb_prompt": "magical enchanted forest at night, glowing amber fireflies, cute Pixar 3D owl perched on branch, friendly 3D frog on mossy log, soft green forest glow, calming baby video, 3D render style",
     },
     "ocean": {
@@ -53,7 +53,7 @@ EPISODES = {
             {"path": "objects/orb_amber.png",      "size": 130, "posX": 0.85, "posY": 0.28, "seed": 5},
         ],
         "music": "Tide and Piano v2.mp3",
-        "bgColor": "#010810", "bgColorEnd": "#010C16",
+        "bgColor": "#061628", "bgColorEnd": "#082030",
         "thumb_prompt": "serene deep ocean, glowing jellyfish floating gently, colorful deep-sea fish, cute Pixar 3D octopus, bioluminescent underwater scene, calming baby video, 3D render style",
     },
     "night_sky": {
@@ -65,7 +65,7 @@ EPISODES = {
             {"path": "objects/star_3d.png",     "size": 130, "posX": 0.85, "posY": 0.68, "seed": 5},
         ],
         "music": "Moonlight on the Piano v2.mp3",
-        "bgColor": "#010108", "bgColorEnd": "#02020C",
+        "bgColor": "#080818", "bgColorEnd": "#0A0C22",
         "thumb_prompt": "beautiful starry night sky, large glowing golden sleepy star, silver stars twinkling, glowing amber orb, deep dark blue sky, calming baby video, Pixar 3D render style",
     },
     "meadow": {
@@ -77,7 +77,7 @@ EPISODES = {
             {"path": "objects/butterfly_3d.png", "size": 135, "posX": 0.82, "posY": 0.25, "seed": 5},
         ],
         "music": "The Golden Meadow v2.mp3",
-        "bgColor": "#060C02", "bgColorEnd": "#081002",
+        "bgColor": "#183808", "bgColorEnd": "#1E4A0A",
         "thumb_prompt": "peaceful sunny meadow, large colorful Pixar 3D butterfly, cute 3D yellow duck, friendly 3D unicorn, fluffy white cloud, golden sunlight, calming baby video, 3D render style",
     },
     "rain": {
@@ -89,7 +89,7 @@ EPISODES = {
             {"path": "objects/cloud_3d.png",  "size": 135, "posX": 0.82, "posY": 0.22, "seed": 5},
         ],
         "music": "Rain Etude in C Minor v2.mp3",
-        "bgColor": "#030508", "bgColorEnd": "#040610",
+        "bgColor": "#0E1828", "bgColorEnd": "#121E30",
         "thumb_prompt": "gentle rain scene, big fluffy 3D cloud, cute Pixar 3D frog smiling in rain, friendly 3D duck with raindrops, soft blue-grey sky, calming baby video, 3D render style",
     },
     "sunset": {
@@ -101,7 +101,7 @@ EPISODES = {
             {"path": "objects/orb_amber.png",    "size": 135, "posX": 0.85, "posY": 0.65, "seed": 5},
         ],
         "music": "Afternoon in F v2.mp3",
-        "bgColor": "#0A0205", "bgColorEnd": "#120308",
+        "bgColor": "#28100A", "bgColorEnd": "#341408",
         "thumb_prompt": "beautiful golden sunset, elegant pink Pixar 3D flamingo, colorful 3D parrot, butterflies floating in warm orange-purple sky, calming baby video, 3D render style",
     },
 }

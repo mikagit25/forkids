@@ -17,6 +17,16 @@ Usage:
   python3 scripts/generate_shorts_funnel.py --queue en --max-per-run 3
   python3 scripts/generate_shorts_funnel.py --dry-run
 """
+import sys
+# BLOCKED: funnel_short is not an active track in strategy v2.1.
+# Previously produced letterboxed shorts with broken FFmpeg filter and
+# extracted from banned CSS source videos (nature_calm CSS, shape CSS).
+# Re-enable only after: fixing FFmpeg split filter + restricting GOOD_SOURCE_TYPES
+# to only DanceSpriteLong sources + verifying output quality manually.
+print("ERROR: generate_shorts_funnel.py is BLOCKED (strategy v2.1).")
+print("funnel_short type is not in active tracks. Use DanceSpriteShort for kids shorts.")
+sys.exit(1)
+
 import argparse, base64, re, shutil, subprocess, yaml
 from datetime import datetime
 from pathlib import Path

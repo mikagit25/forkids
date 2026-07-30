@@ -234,13 +234,17 @@ def compile_audio(songs: list[str], lang: str, out_path: Path, dry_run: bool) ->
     ], capture_output=True)
 
     # Build concat list (N passes)
+    # FFmpeg concat format: escape single quotes inside single-quoted paths as '\''
+    def ffmpeg_path(p: Path) -> str:
+        return "file '" + str(p.resolve()).replace("'", "'\\''") + "'"
+
     playlist_txt = TMP_DIR / f"concat_{lang}.txt"
     lines = []
     for _ in range(passes_needed):
         for i, song in enumerate(available):
-            lines.append(f"file '{(SUNO_DIR / song).resolve()}'")
+            lines.append(ffmpeg_path(SUNO_DIR / song))
             if i < len(available) - 1:
-                lines.append(f"file '{silence_path.resolve()}'")
+                lines.append(ffmpeg_path(silence_path))
     playlist_txt.write_text("\n".join(lines))
 
     # FFmpeg concat + trim + fade out
@@ -273,6 +277,8 @@ def render_video(ptype: str, lang: str, music_file: str, out_mp4: Path, dry_run:
         "npx", "remotion", "render", "DanceSpriteLong",
         f"--props={json.dumps(props)}",
         f"--output={str(out_mp4)}",
+        "--concurrency", "1",
+        "--log", "error",
     ]
     print(f"  Render: {out_mp4.name}")
     if dry_run:
