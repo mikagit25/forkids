@@ -1,0 +1,596 @@
+recordings:
+- id: bach_cello_suite_no_1_prelude_in_g_bwv_1007
+  composer: Johann Sebastian Bach
+  piece: Cello Suite no. 1 - Prelude in G, BWV 1007
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 150
+  file: Music/Cello Suite no. 1 - Prelude in G, BWV 1007.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: vwilliams_fantasia_on_a_theme_by_thomas_tallis
+  composer: Ralph Vaughan Williams
+  piece: Fantasia on a Theme by Thomas Tallis
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 894
+  file: Music/Fantasia on a Theme by Thomas Tallis.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: verdi_giuseppe_verdi_la_traviata_i
+  composer: Giuseppe Verdi
+  piece: Giuseppe Verdi - La Traviata - I
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 1358
+  file: Music/Giuseppe Verdi - La Traviata - I.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: mozart_mozart_serenade_in_g_major_i_romance
+  composer: Wolfgang Amadeus Mozart
+  piece: Mozart - Serenade in G Major - I. Romance
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 266
+  file: Music/Mozart - Serenade in G Major - I. Romance.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: mozart_mozart_serenade_in_g_major_ii_minuet
+  composer: Wolfgang Amadeus Mozart
+  piece: Mozart - Serenade in G Major - II. Minuet
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 123
+  file: Music/Mozart - Serenade in G Major - II. Minuet.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: mozart_mozart_serenade_in_g_major_iii_rondo
+  composer: Wolfgang Amadeus Mozart
+  piece: Mozart - Serenade in G Major - III. Rondo
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 194
+  file: Music/Mozart - Serenade in G Major - III. Rondo.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: chopin_nocturne_in_b_flat_minor_op_9_no_1
+  composer: Frédéric Chopin
+  piece: Nocturne in B flat minor, Op. 9 no. 1
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 337
+  file: Music/Nocturne in B flat minor, Op. 9 no. 1.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: chopin_nocturne_in_e_flat_major_op_9_no_2
+  composer: Frédéric Chopin
+  piece: Nocturne in E flat major, Op. 9 no. 2
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 277
+  file: Music/Nocturne in E flat major, Op. 9 no. 2.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: beethoven_piano_sonata_no_14_in_c_m_moonlight_op_27_no_2_i_adagio_so
+  composer: Ludwig van Beethoven
+  piece: Piano Sonata no. 14 in C#m 'Moonlight', Op. 27 no. 2 - I. Adagio sostenuto
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 276
+  file: Music/Piano Sonata no. 14 in C#m 'Moonlight', Op. 27 no. 2 - I. Adagio sostenuto.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: tchaikovsky_swan_lake_op_20_act_ii_concl
+  composer: Pyotr Ilyich Tchaikovsky
+  piece: Swan Lake Op.20 - Act II Concl
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 369
+  file: Music/Swan Lake Op.20 - Act II Concl.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: tchaikovsky_swan_lake_op_20_act_ii_pt_1
+  composer: Pyotr Ilyich Tchaikovsky
+  piece: Swan Lake Op.20 - Act II Pt.1
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 250
+  file: Music/Swan Lake Op.20 - Act II Pt.1.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: tchaikovsky_swan_lake_op_20_act_iii_concl_allegro_1
+  composer: Pyotr Ilyich Tchaikovsky
+  piece: Swan Lake Op.20 - Act III Concl, Allegro (1)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 1432
+  file: Music/Swan Lake Op.20 - Act III Concl, Allegro (1).mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: tchaikovsky_swan_lake_op_20_act_iii_concl_allegro
+  composer: Pyotr Ilyich Tchaikovsky
+  piece: Swan Lake Op.20 - Act III Concl, Allegro
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 1432
+  file: Music/Swan Lake Op.20 - Act III Concl, Allegro.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: tchaikovsky_swan_lake_op_20_act_iii_pt_1
+  composer: Pyotr Ilyich Tchaikovsky
+  piece: Swan Lake Op.20 - Act III Pt.1
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 903
+  file: Music/Swan Lake Op.20 - Act III Pt.1.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: tchaikovsky_swan_lake_op_20_act_iv_intro
+  composer: Pyotr Ilyich Tchaikovsky
+  piece: Swan Lake Op.20 - Act IV Intro
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 1262
+  file: Music/Swan Lake Op.20 - Act IV Intro.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: beethoven_symphony_no_5_in_cm_op_67_i_allegro_con_brio
+  composer: Ludwig van Beethoven
+  piece: Symphony no. 5 in Cm, Op. 67 - I. Allegro con brio
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 474
+  file: Music/Symphony no. 5 in Cm, Op. 67 - I. Allegro con brio.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: beethoven_symphony_no_5_in_cm_op_67_ii_andante_con_moto
+  composer: Ludwig van Beethoven
+  piece: Symphony no. 5 in Cm, Op. 67 - II. Andante con moto
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 682
+  file: Music/Symphony no. 5 in Cm, Op. 67 - II. Andante con moto.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: beethoven_symphony_no_5_in_cm_op_67_iii_allegro
+  composer: Ludwig van Beethoven
+  piece: Symphony no. 5 in Cm, Op. 67 - III. Allegro
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 337
+  file: Music/Symphony no. 5 in Cm, Op. 67 - III. Allegro.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: beethoven_symphony_no_5_in_cm_op_67_iv_allegro
+  composer: Ludwig van Beethoven
+  piece: Symphony no. 5 in Cm, Op. 67 - IV. Allegro
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 687
+  file: Music/Symphony no. 5 in Cm, Op. 67 - IV. Allegro.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: bach_violin_partita_no_2_bwv_1004
+  composer: Johann Sebastian Bach
+  piece: Violin Partita no. 2, BWV 1004
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 523
+  file: Music/Violin Partita no. 2, BWV 1004.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: unknown_24_etudes_for_flute_op_15_iii_allegro_con_brio_in_g_major
+  composer: Unknown
+  piece: 24 Etudes for Flute, Op. 15 - III. Allegro con brio in G major
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 152
+  file: Music/24 Etudes for Flute, Op. 15 - III. Allegro con brio in G major.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: unknown_24_etudes_for_flute_op_15_vi_moderato_in_b_minor
+  composer: Unknown
+  piece: 24 Etudes for Flute, Op. 15 - VI. Moderato in B minor
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 330
+  file: Music/24 Etudes for Flute, Op. 15 - VI. Moderato in B minor.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: unknown_3_fantaisies_for_solo_flute_op_38_fantaisie_no_1_1
+  composer: Unknown
+  piece: 3 Fantaisies for Solo Flute, Op. 38 - Fantaisie no. 1 (1)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 656
+  file: Music/3 Fantaisies for Solo Flute, Op. 38 - Fantaisie no. 1 (1).mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: unknown_3_fantaisies_for_solo_flute_op_38_fantaisie_no_1
+  composer: Unknown
+  piece: 3 Fantaisies for Solo Flute, Op. 38 - Fantaisie no. 1
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 656
+  file: Music/3 Fantaisies for Solo Flute, Op. 38 - Fantaisie no. 1.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: granados_8_valses_poeticos_8_presto_guitar_arr_lopes
+  composer: Enrique Granados
+  piece: 8 Valses poeticos - 8. Presto (Guitar arr. - Lopes)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 138
+  file: Music/8 Valses poeticos - 8. Presto (Guitar arr. - Lopes).mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: unknown_8_schnell_und_spielend
+  composer: Unknown
+  piece: 8. Schnell und spielend
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 217
+  file: Music/8. Schnell und spielend.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: debussy_arabesque_no_1_andantino_con_moto
+  composer: Claude Debussy
+  piece: Arabesque No. 1. Andantino con moto
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 274
+  file: Music/Arabesque No. 1. Andantino con moto.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: debussy_arabesque_no_1_string_quartet_arr
+  composer: Claude Debussy
+  piece: Arabesque no. 1 (string quartet arr.)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 262
+  file: Music/Arabesque no. 1 (string quartet arr.).mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: chopin_etude_op_25_no_12_in_c_minor_ocean
+  composer: Frédéric Chopin
+  piece: Etude Op. 25 no. 12 in C minor - 'Ocean'
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 172
+  file: Music/Etude Op. 25 no. 12 in C minor - 'Ocean'.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: chopin_etude_op_25_no_8_in_d_flat_major_sixths
+  composer: Frédéric Chopin
+  piece: Etude Op. 25 no. 8 in D flat major - 'Sixths'
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 65
+  file: Music/Etude Op. 25 no. 8 in D flat major - 'Sixths'.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: debussy_fantaisie_op_79_allegro
+  composer: Claude Debussy
+  piece: Fantaisie, Op. 79  - Allegro
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 192
+  file: Music/Fantaisie, Op. 79  - Allegro.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: debussy_fantaisie_op_79_andantino
+  composer: Claude Debussy
+  piece: Fantaisie, Op. 79 - Andantino
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 119
+  file: Music/Fantaisie, Op. 79 - Andantino.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: chopin_mazurka_in_a_flat_major_b_85
+  composer: Frédéric Chopin
+  piece: Mazurka in A flat major, B. 85
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 89
+  file: Music/Mazurka in A flat major, B. 85.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: chopin_mazurka_in_c_sharp_minor_op_6_no_2
+  composer: Frédéric Chopin
+  piece: Mazurka in C sharp minor, Op. 6 no. 2
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 139
+  file: Music/Mazurka in C sharp minor, Op. 6 no. 2.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: chopin_mazurka_in_e_flat_minor_op_6_no_4
+  composer: Frédéric Chopin
+  piece: Mazurka in E flat minor, Op. 6 no. 4
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 44
+  file: Music/Mazurka in E flat minor, Op. 6 no. 4.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: chopin_mazurka_in_e_major_op_6_no_3
+  composer: Frédéric Chopin
+  piece: Mazurka in E major, Op. 6 no. 3
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 113
+  file: Music/Mazurka in E major, Op. 6 no. 3.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: chopin_mazurka_in_f_sharp_minor_op_6_no_1
+  composer: Frédéric Chopin
+  piece: Mazurka in F sharp minor, Op. 6 no. 1
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 167
+  file: Music/Mazurka in F sharp minor, Op. 6 no. 1.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: chopin_mazurka_in_g_sharp_minor_op_33_no_1
+  composer: Frédéric Chopin
+  piece: Mazurka in G sharp minor, Op. 33 no. 1
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 103
+  file: Music/Mazurka in G sharp minor, Op. 33 no. 1.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: vivaldi_violin_concerto_in_f_major_rv_293_autumn_complete_concerto
+  composer: Antonio Vivaldi
+  piece: Violin Concerto in F major, RV 293 'Autumn' - Complete Concerto
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 704
+  file: Music/Violin Concerto in F major, RV 293 'Autumn' - Complete Concerto.mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: handel_violin_sonata_in_f_major_hwv_370_iii_largo_for_trumpet_and
+  composer: George Frideric Handel
+  piece: Violin Sonata in F major, HWV 370 - III. Largo (For Trumpet and Organ - Rondeau)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 217
+  file: Music/Violin Sonata in F major, HWV 370 - III. Largo (For Trumpet and Organ
+    - Rondeau).mp3
+  programs: []
+  notes: Local file — verify PD status from Musopen download history
+- id: beethoven_cello_sonata_op5_no2_i_adagio
+  composer: Ludwig van Beethoven
+  piece: Cello Sonata No. 2 in G minor, Op. 5 No. 2 — I. Adagio sostenuto ed espressivo
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 268
+  file: Music/Op.5, No.2 - I. Adagio sostenute ed expressivo.mp3
+  programs: []
+  notes: ''
+- id: beethoven_cello_sonata_op5_no2_ii_allegro
+  composer: Ludwig van Beethoven
+  piece: Cello Sonata No. 2 in G minor, Op. 5 No. 2 — II. Allegro molto più tosto presto
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 524
+  file: Music/Op.5, No.2 - II. Allegro molto piu tosto presto.mp3
+  programs: []
+  notes: ''
+- id: beethoven_cello_sonata_op5_no2_iii_rondo
+  composer: Ludwig van Beethoven
+  piece: Cello Sonata No. 2 in G minor, Op. 5 No. 2 — III. Rondo - Allegro
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 523
+  file: Music/Op.5, No.2 - III. Rondo - Allegro.mp3
+  programs: []
+  notes: ''
+- id: beethoven_cello_sonata_no4_op102_no1_mov1
+  composer: Ludwig van Beethoven
+  piece: Cello Sonata No. 4 in C major, Op. 102 No. 1 — I. Andante
+  performer: Ben Larsen, Ava Nazar
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 391
+  file: Music/Cello Sonata No. 4, mov. 1 - Ben Larsen, Ava Nazar.mp3
+  programs: []
+  notes: ''
+- id: beethoven_cello_sonata_no1_complete
+  composer: Ludwig van Beethoven
+  piece: Cello Sonata No. 1 in F major, Op. 5 No. 1 — Complete
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 1489
+  file: Music/Sonata 1 Cello.mp3
+  programs: []
+  notes: Full sonata (~25 min); verify exact identification
+- id: musopen_lp_00546_side_a
+  composer: Unknown
+  piece: Record lp-00546 Side A
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 1193
+  file: Music/lp-00546_BeG-record_1_side_A_64kb.mp3
+  programs: []
+  notes: 'QUALITY WARNING: 64kbps vinyl digitization — do NOT use in programs until identified and quality verified'
+- id: musopen_lp_00546_side_b
+  composer: Unknown
+  piece: Record lp-00546 Side B
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 997
+  file: Music/lp-00546_BeG-record_1_side_B_64kb.mp3
+  programs: []
+  notes: 'QUALITY WARNING: 64kbps vinyl digitization — do NOT use in programs until identified and quality verified'
+- id: bach_goldberg_variations_bwv988_part1
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 — Part 1 (Aria + Variations 1–15)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 1535
+  file: Music/Goldberg Variations, BWV 988 - Part 1.mp3
+  programs: []
+  notes: ''
+- id: bach_goldberg_variations_bwv988_part2
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 — Part 2 (Variations 16–30 + Aria da Capo)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 1387
+  file: Music/Goldberg Variations, BWV 988 - Part 2.mp3
+  programs: []
+  notes: ''
+- id: bach_violin_partita_no2_bwv1004_sarabande
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 2, BWV 1004 — III. Sarabande
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 170
+  file: Music/Violin Partita no. 2, BWV 1004 - 3. Sarabande.mp3
+  programs: []
+  notes: ''
+- id: bach_violin_partita_no2_bwv1004_giga_guitar
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 2, BWV 1004 — IV. Giga (Guitar arrangement)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 330
+  file: Music/Violin Partita no. 2, BWV 1004 - 4. Giga [Guitar arrangement].mp3
+  programs: []
+  notes: ''
+- id: bach_violin_partita_no2_bwv1004_chaconne_cello
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 2, BWV 1004 — V. Chaconne (Violoncello arrangement)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 872
+  file: Music/Violin Partita no. 2, BWV 1004 - 5. Chaconne [Violoncello arrangement].mp3
+  programs: []
+  notes: ''
+- id: suno_starlight_lullaby_v2
+  composer: Happy Bear Kids
+  piece: Starlight Lullaby v2
+  performer: AI-generated (Suno)
+  year: 2026
+  source: suno.ai
+  license: suno_commercial
+  duration_sec: 259
+  file: Music/Starlight Lullaby v2.mp3
+  programs: []
+  notes: 'Suno AI track — for kids lullaby programs only (EN/AR channels)'
+- id: suno_starlight_lullaby
+  composer: Happy Bear Kids
+  piece: Starlight Lullaby
+  performer: AI-generated (Suno)
+  year: 2026
+  source: suno.ai
+  license: suno_commercial
+  duration_sec: 231
+  file: Music/Starlight Lullaby.mp3
+  programs: []
+  notes: 'Suno AI track — for kids lullaby programs only (EN/AR channels)'

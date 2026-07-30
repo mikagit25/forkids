@@ -6,12 +6,21 @@ made_for_kids: false
 queue: output/queue_id
 visual_theme: rain_window
 loop_duration_sec: 240
-durations_hours: [1]
+durations_hours: [1, 2]
+
+# Bach all tracks: Preludes + Inventions + Air + Goldberg Variations (Part 1+2) + Partita + Chaconne
+# Total: ~69 min. 1h = <1 loop, 2h = ~1.7 loops.
 tracks:
-  - {id: bach_prelude_c_major, composer: J.S. Bach, piece: "Prelude in C major, BWV 846 (Well-Tempered Clavier)", duration_sec: 130, mood: clear}
-  - {id: bach_invention_1, composer: J.S. Bach, piece: "Invention No. 1 in C major, BWV 772", duration_sec: 80, mood: focused}
-  - {id: bach_air_g_string, composer: J.S. Bach, piece: "Air on the G String (Suite No. 3, BWV 1068)", duration_sec: 330, mood: flowing}
-  - {id: bach_jesu_joy, composer: J.S. Bach, piece: "Jesu, Joy of Man's Desiring (Cantata BWV 147)", duration_sec: 215, mood: uplifting}
-  - {id: bach_prelude_bwv_999, composer: J.S. Bach, piece: "Prelude in C minor, BWV 999", duration_sec: 115, mood: focused}
-  - {id: bach_goldberg_aria, composer: J.S. Bach, piece: "Goldberg Variations: Aria, BWV 988", duration_sec: 195, mood: meditative}
-tags: [bach, focus music, study music, classical music, concentration, rain sounds, calm classics]
+  - {id: bach_prelude_c_major,              composer: "J.S. Bach", piece: "Prelude in C major, BWV 846",              duration_sec: 130,  mood: clear_open}
+  - {id: bach_invention_1,                  composer: "J.S. Bach", piece: "Invention No. 1 in C major, BWV 772",      duration_sec: 80,   mood: precise}
+  - {id: bach_air_g_string,                 composer: "J.S. Bach", piece: "Air on the G String, BWV 1068",            duration_sec: 330,  mood: flowing}
+  - {id: bach_jesu_joy,                     composer: "J.S. Bach", piece: "Jesu, Joy of Man's Desiring, BWV 147",     duration_sec: 215,  mood: uplifting}
+  - {id: bach_cello_suite_no_1_prelude_in_g_bwv_1007, composer: "J.S. Bach", piece: "Cello Suite No. 1 — Prelude in G, BWV 1007", duration_sec: 149, mood: meditative}
+  - {id: bach_violin_partita_no2_bwv1004_sarabande,   composer: "J.S. Bach", piece: "Violin Partita No. 2 — III. Sarabande, BWV 1004",  duration_sec: 170,  mood: tender}
+  - {id: bach_violin_partita_no2_bwv1004_giga_guitar, composer: "J.S. Bach", piece: "Violin Partita No. 2 — IV. Giga (guitar arr.)",    duration_sec: 330,  mood: spirited}
+  - {id: bach_violin_partita_no2_bwv1004_chaconne_cello, composer: "J.S. Bach", piece: "Violin Partita No. 2 — V. Chaconne (cello arr.), BWV 1004", duration_sec: 872, mood: profound}
+  - {id: bach_prelude_bwv_999,              composer: "J.S. Bach", piece: "Prelude in C minor, BWV 999",              duration_sec: 115,  mood: introspective}
+  - {id: bach_goldberg_variations_bwv988_part1, composer: "J.S. Bach", piece: "Goldberg Variations, BWV 988 — Part 1 (Aria + Var. 1–15)", duration_sec: 1535, mood: contemplative}
+  - {id: bach_goldberg_variations_bwv988_part2, composer: "J.S. Bach", piece: "Goldberg Variations, BWV 988 — Part 2 (Var. 16–30 + Aria da Capo)", duration_sec: 1387, mood: resolution}
+
+tags: [bach, goldberg variations, focus music, study music, classical music, concentration, baroque, calm classics, work music]
