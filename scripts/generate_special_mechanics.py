@@ -35,6 +35,10 @@ DATE_STR  = datetime.now().strftime("%Y%m%d")
 
 RAINBOW = ["#E53935","#FF9800","#FDD835","#43A047","#1E88E5","#9C27B0","#E91E63","#E53935"]
 
+# Episodes using DanceShapeLong (CSS geometric shapes) — BANNED per visual rules
+# These must be re-implemented with DanceSpriteLong before they can be generated
+BANNED_EPISODES = {"8", "10", "11", "12", "14"}
+
 # Suno AI tracks — unique per episode+lang for distinct YT audio fingerprint
 LANG_MUSIC = {
     "7":  {"en": "Spring Waltz v2.mp3",          "ar": "Afternoon in F v2.mp3",      "id": "Morning Trail.mp3"},
@@ -460,6 +464,13 @@ def main():
         return
 
     ids = list(VIDEOS) if not args.videos or args.videos == ["all"] else args.videos
+    # Remove banned episodes (DanceShapeLong — CSS geometric shapes forbidden)
+    banned_requested = [v for v in ids if v in BANNED_EPISODES]
+    if banned_requested:
+        print(f"ERROR: Episodes {banned_requested} use DanceShapeLong (CSS geometric shapes — BANNED).")
+        print(f"  Only episodes 7 and 13 are allowed (DanceSpriteLong with 3D sprites).")
+        print(f"  Episodes 8, 10, 11, 12, 14 must be redesigned with DanceSpriteLong before use.")
+        sys.exit(1)
     bad = [v for v in ids if v not in VIDEOS]
     if bad:
         print(f"Unknown episode IDs: {bad}"); sys.exit(1)

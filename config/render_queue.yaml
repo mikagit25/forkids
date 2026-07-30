@@ -287,29 +287,29 @@ jobs:
 
 # SONG COMPILATIONS — Suno AI tracks (18 EN / 7 AR songs, 25 min each)
 # Cron: 1-го числа каждого месяца; повторная генерация → новый файл с датой
-- id: song_compilation_upbeat_en_20260716
+- id: song_compilation_upbeat_en_20260730
   cmd: python3 scripts/generate_song_compilation.py --type upbeat --lang en
   log: logs/song_compilation.log
-  desc: 'EN: 18 Suno upbeat songs → 25 min compilation → output/queue/'
-  added: '2026-07-16'
+  desc: 'EN: 18 Suno upbeat songs → 25 min DanceSpriteLong → output/queue/'
+  added: '2026-07-30'
   status: pending
   track: kids_song
-  note: 'Cron: 1-го числа каждого месяца 02:00. Публикация через обычную EN-очередь 18:00'
+  note: 'Run now — July 13 batch deleted. DanceSpriteLong with 3D sprites.'
 
-- id: song_compilation_lullaby_en_20260716
+- id: song_compilation_lullaby_en_20260730
   cmd: python3 scripts/generate_song_compilation.py --type lullaby --lang en
   log: logs/song_compilation.log
-  desc: 'EN: 17 Suno lullabies → 25 min compilation → output/queue/'
-  added: '2026-07-16'
+  desc: 'EN: 17 Suno lullabies → 25 min DanceSpriteLong → output/queue/'
+  added: '2026-07-30'
   status: pending
   track: kids_song
-  note: 'Cron: 8-го числа каждого месяца 02:00'
+  note: 'Run now — July 13 batch deleted. DanceSpriteLong with 3D sprites.'
 
-- id: song_compilation_upbeat_ar_20260716
+- id: song_compilation_upbeat_ar_20260730
   cmd: python3 scripts/generate_song_compilation.py --type upbeat --lang ar
   log: logs/song_compilation.log
-  desc: 'AR: 7 Suno songs → 25 min compilation → output/queue_ar/'
-  added: '2026-07-16'
+  desc: 'AR: 7 Suno songs → 25 min DanceSpriteLong → output/queue_ar/'
+  added: '2026-07-30'
   status: pending
   track: kids_song
-  note: 'Cron: 15-го числа каждого месяца 02:00. Публикация через AR-очередь 19:00'
+  note: 'Run now — July 13 batch deleted. DanceSpriteLong with 3D sprites.'

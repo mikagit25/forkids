@@ -72,14 +72,26 @@ def main():
 
     print(f"=== Bubble Pop Song: {args.key} ({', '.join(langs)}) ===")
 
-    # Default render props (ShapeDanceLong as placeholder)
+    # DanceSpriteLong props — 3D sprites only (no CSS geometric shapes)
     props = {
-        "shapes": ["circle", "star", "square"],
-        "colors": ["#FF4499", "#44AAFF", "#FFCC00"],
-        "bgColor": "#0A1020",
-        "bpm": 80,
-        "showLabels": False,
+        "bgColor": "#050A1E",
+        "bgColorEnd": "#020510",
+        "accentColor": "#FFD700",
         "musicFile": "Happy Happy Game Show.mp3",
+        "volume": 0.90,
+        "bgEffect": "sparkles",
+        "sprites": [
+            {"path": "characters/bear_happy_3d.png", "size": 460, "posX": 0.50, "posY": 0.44, "seed": 1},
+            {"path": "objects/star_3d.png",           "size": 175, "posX": 0.18, "posY": 0.28, "seed": 2},
+            {"path": "objects/sun_3d.png",            "size": 185, "posX": 0.82, "posY": 0.30, "seed": 3},
+            {"path": "objects/star_3d.png",           "size": 150, "posX": 0.22, "posY": 0.68, "seed": 4},
+        ],
+        "blocks": [
+            {"startSec": 0,    "endSec": 120,  "motion": "FADEIN",  "amplitude": 60, "wobble": True},
+            {"startSec": 120,  "endSec": 600,  "motion": "BOB",     "period": 3.0,   "amplitude": 50, "wobble": True},
+            {"startSec": 600,  "endSec": 1100, "motion": "BOUNCE",  "period": 2.5,   "amplitude": 70, "wobble": True},
+            {"startSec": 1100, "endSec": 1500, "motion": "SWAY",    "period": 4.0,   "amplitude": 45, "wobble": True},
+        ],
     }
 
     # Check for scenario-specific doc
@@ -90,29 +102,20 @@ def main():
     is_no_text = True  # set False if this type has language-specific text
 
     if is_no_text:
-        # Render once, copy to all queues
-        out_mp4 = QUEUE_EN / f"bubble_pop_song_{args.key}_{DATE_STR}.mp4"
-        if not out_mp4.exists() and not args.dry_run and not args.regen_meta:
-            cmd = ["npx", "remotion", "render", "NurseryRhymeLong",
-                   f"--props={json.dumps(props)}", f"--output={str(out_mp4)}"]
-            r = subprocess.run(cmd, cwd=str(REMOTION), timeout=86400)
-            if r.returncode != 0:
-                print(f"  FAILED")
-                return
-        if out_mp4.exists() and not args.dry_run:
-            en_music = props["musicFile"]
-            for lg in langs:
-                if lg != 'en':
-                    dest = queues[lg] / out_mp4.name
-                    if not dest.exists():
-                        lang_music  = alt_music(en_music, 0, lg)
-                        props_lang  = dict(props)
-                        props_lang["musicFile"] = lang_music
-                        cmd_lg = ["npx", "remotion", "render", "ShapeDanceLong",
-                                  f"--props={json.dumps(props_lang)}", f"--output={str(dest)}"]
-                        r = subprocess.run(cmd_lg, cwd=str(REMOTION), timeout=86400)
-                        if r.returncode != 0:
-                            print(f"  FAILED ({lg})")
+        # Render per language with DanceSpriteLong (3D sprites — no CSS shapes allowed)
+        en_music = props["musicFile"]
+        for lg in langs:
+            dest = queues[lg] / f"bubble_pop_song_{args.key}_{DATE_STR}.mp4"
+            out_mp4 = dest  # track EN path for meta loop
+            if not dest.exists() and not args.dry_run and not args.regen_meta:
+                lang_music = alt_music(en_music, 0, lg)
+                props_lang = dict(props)
+                props_lang["musicFile"] = lang_music
+                cmd = ["npx", "remotion", "render", "DanceSpriteLong",
+                       f"--props={json.dumps(props_lang)}", f"--output={str(dest)}"]
+                r = subprocess.run(cmd, cwd=str(REMOTION), timeout=86400)
+                if r.returncode != 0:
+                    print(f"  FAILED ({lg})")
         for lg in langs:
             q = queues[lg]
             mp4_name = out_mp4.name
