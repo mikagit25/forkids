@@ -594,3 +594,740 @@ recordings:
   file: Music/Starlight Lullaby.mp3
   programs: []
   notes: 'Suno AI track — for kids lullaby programs only (EN/AR channels)'
+- id: goldberg_variations_bwv_988_01_aria
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 01 - Aria
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 299
+  file: Music/Goldberg Variations, BWV 988 - 01 - Aria.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_02_variatio_1_a_1_clav_1
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 02 - Variatio 1 a 1 Clav. (1)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 115
+  file: Music/Goldberg Variations, BWV 988 - 02 - Variatio 1 a 1 Clav. (1).mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_02_variatio_1_a_1_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 02 - Variatio 1 a 1 Clav.
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 115
+  file: Music/Goldberg Variations, BWV 988 - 02 - Variatio 1 a 1 Clav..mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_03_variatio_2_a_1_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 03 - Variatio 2 a 1 Clav.
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 123
+  file: Music/Goldberg Variations, BWV 988 - 03 - Variatio 2 a 1 Clav..mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_04_variatio_3_a_1_clav_canone_all_unisuono
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 04 - Variatio 3 a 1 Clav. Canone all Unisuono
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 116
+  file: Music/Goldberg Variations, BWV 988 - 04 - Variatio 3 a 1 Clav. Canone all Unisuono.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_05_variatio_4_a_1_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 05 - Variatio 4 a 1 Clav.
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 68
+  file: Music/Goldberg Variations, BWV 988 - 05 - Variatio 4 a 1 Clav..mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_06_variatio_5_a_1_ovvero_2_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 06 - Variatio 5 a 1 ovvero 2 Clav.
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 94
+  file: Music/Goldberg Variations, BWV 988 - 06 - Variatio 5 a 1 ovvero 2 Clav..mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_07_variatio_6_a_1_clav_canone_alla_seconda
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 07 - Variatio 6 a 1 Clav. Canone alla Seconda
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 98
+  file: Music/Goldberg Variations, BWV 988 - 07 - Variatio 6 a 1 Clav. Canone alla Seconda.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_08_variatio_7_a_1_ovvero_2_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 08 - Variatio 7 a 1 ovvero 2 Clav.
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 132
+  file: Music/Goldberg Variations, BWV 988 - 08 - Variatio 7 a 1 ovvero 2 Clav..mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_09_variatio_8_a_2_clav_1
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 09 - Variatio 8 a 2 Clav. (1)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 116
+  file: Music/Goldberg Variations, BWV 988 - 09 - Variatio 8 a 2 Clav. (1).mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_09_variatio_8_a_2_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 09 - Variatio 8 a 2 Clav.
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 116
+  file: Music/Goldberg Variations, BWV 988 - 09 - Variatio 8 a 2 Clav..mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_10_variatio_9_a_1_clav_canone_alla_terza
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 10 - Variatio 9 a 1 Clav. Canone alla Terza
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 126
+  file: Music/Goldberg Variations, BWV 988 - 10 - Variatio 9 a 1 Clav. Canone alla Terza.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_11_variatio_10_a_1_clav_fughetta
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 11 - Variatio 10 a 1 Clav. Fughetta
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 105
+  file: Music/Goldberg Variations, BWV 988 - 11 - Variatio 10 a 1 Clav. Fughetta.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_12_variatio_11_a_2_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 12 - Variatio 11 a 2 Clav.
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 129
+  file: Music/Goldberg Variations, BWV 988 - 12 - Variatio 11 a 2 Clav..mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_13_variatio_12_canone_alla_quarta
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 13 - Variatio 12 Canone alla Quarta
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 135
+  file: Music/Goldberg Variations, BWV 988 - 13 - Variatio 12 Canone alla Quarta.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_14_variatio_13_a_2_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 14 - Variatio 13 a 2 Clav.
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 254
+  file: Music/Goldberg Variations, BWV 988 - 14 - Variatio 13 a 2 Clav..mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_15_variatio_14_a_2_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 15 - Variatio 14 a 2 Clav.
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 136
+  file: Music/Goldberg Variations, BWV 988 - 15 - Variatio 14 a 2 Clav..mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_16_variatio_15_a_1_clav_canone_alla_quinta
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 16 - Variatio 15 a 1 Clav. Canone alla Quinta
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 272
+  file: Music/Goldberg Variations, BWV 988 - 16 - Variatio 15 a 1 Clav. Canone alla Quinta.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_17_variatio_16_a_1_clav_ouverture
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 17 - Variatio 16 a 1 Clav. Ouverture
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 188
+  file: Music/Goldberg Variations, BWV 988 - 17 - Variatio 16 a 1 Clav. Ouverture.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_19_variatio_18_a_1_clav_canone_alla_sexta
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 19 - Variatio 18 a 1 Clav. Canone alla Sexta
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 109
+  file: Music/Goldberg Variations, BWV 988 - 19 - Variatio 18 a 1 Clav. Canone alla Sexta.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_20_variatio_19_a_1_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 20 - Variatio 19 a 1 Clav.
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 85
+  file: Music/Goldberg Variations, BWV 988 - 20 - Variatio 19 a 1 Clav..mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_21_variatio_20_a_2_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 21 - Variatio 20 a 2 Clav.
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 125
+  file: Music/Goldberg Variations, BWV 988 - 21 - Variatio 20 a 2 Clav..mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_22_variatio_21_canone_alla_settima
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 22 - Variatio 21 Canone alla Settima
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 234
+  file: Music/Goldberg Variations, BWV 988 - 22 - Variatio 21 Canone alla Settima.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_23_variatio_22_a_1_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 23 - Variatio 22 a 1 Clav
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 92
+  file: Music/Goldberg Variations, BWV 988 - 23 - Variatio 22 a 1 Clav.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_24_variatio_23_a_2_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 24 - Variatio 23 a 2 Clav.
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 139
+  file: Music/Goldberg Variations, BWV 988 - 24 - Variatio 23 a 2 Clav..mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_25_variatio_24_a_1_clav_canone_all_ottava
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 25 - Variatio 24 a 1 Clav. Canone all Ottava
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 165
+  file: Music/Goldberg Variations, BWV 988 - 25 - Variatio 24 a 1 Clav. Canone all Ottava.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_27_variatio_26_a_2_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 27 - Variatio 26 a 2 Clav.
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 122
+  file: Music/Goldberg Variations, BWV 988 - 27 - Variatio 26 a 2 Clav..mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_28_variatio_27_a_2_clav_canone_alla_nona
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 28 - Variatio 27 a 2 Clav. Canone alla Nona
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 111
+  file: Music/Goldberg Variations, BWV 988 - 28 - Variatio 27 a 2 Clav. Canone alla Nona.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_29_variatio_28_a_2_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 29 - Variatio 28 a 2 Clav.
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 146
+  file: Music/Goldberg Variations, BWV 988 - 29 - Variatio 28 a 2 Clav..mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_30_variatio_29_a_1_ovvero_2_clav
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 30 - Variatio 29 a 1 ovvero 2 Clav.
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 129
+  file: Music/Goldberg Variations, BWV 988 - 30 - Variatio 29 a 1 ovvero 2 Clav..mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_31_variatio_30_a_1_clav_quodlibet
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 31 - Variatio 30 a 1 Clav. Quodlibet
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 121
+  file: Music/Goldberg Variations, BWV 988 - 31 - Variatio 30 a 1 Clav. Quodlibet.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_32_aria_da_capo_e_fine
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - 32 - Aria da Capo è Fine
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 170
+  file: Music/Goldberg Variations, BWV 988 - 32 - Aria da Capo è Fine.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_aria_da_capo
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - Aria Da Capo
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 340
+  file: Music/Goldberg Variations, BWV 988 - Aria Da Capo.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_aria_variations_1_15
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - Aria, Variations 1 - 15
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 1448
+  file: Music/Goldberg Variations, BWV 988 - Aria, Variations 1 - 15.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_aria_variations_16_30
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV 988 - Aria, Variations 16 - 30
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 1671
+  file: Music/Goldberg Variations, BWV 988 - Aria, Variations 16 - 30.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_1
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 1
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 114
+  file: Music/Goldberg Variations, BWV. 988 - Variation 1.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_10_fughetta
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 10. Fughetta
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 86
+  file: Music/Goldberg Variations, BWV. 988 - Variation 10. Fughetta.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_11
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 11
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 94
+  file: Music/Goldberg Variations, BWV. 988 - Variation 11.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_12_canon_on_the_fourth
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 12. Canon on the fourth
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 153
+  file: Music/Goldberg Variations, BWV. 988 - Variation 12. Canon on the fourth.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_13
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 13
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 338
+  file: Music/Goldberg Variations, BWV. 988 - Variation 13.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_14
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 14
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 121
+  file: Music/Goldberg Variations, BWV. 988 - Variation 14.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_15_canon_on_the_fifth
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 15. Canon on the fifth
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 286
+  file: Music/Goldberg Variations, BWV. 988 - Variation 15. Canon on the fifth.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_16_overture
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 16. Overture
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 106
+  file: Music/Goldberg Variations, BWV. 988 - Variation 16. Overture.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_17
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 17
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 95
+  file: Music/Goldberg Variations, BWV. 988 - Variation 17.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_18_canon_on_the_sixth
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 18. Canon on the sixth
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 88
+  file: Music/Goldberg Variations, BWV. 988 - Variation 18. Canon on the sixth.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_19
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 19
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 71
+  file: Music/Goldberg Variations, BWV. 988 - Variation 19.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_2
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 2
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 87
+  file: Music/Goldberg Variations, BWV. 988 - Variation 2.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_20
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 20
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 106
+  file: Music/Goldberg Variations, BWV. 988 - Variation 20.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_21_canon_on_the_seventh
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 21. Canon on the seventh
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 97
+  file: Music/Goldberg Variations, BWV. 988 - Variation 21. Canon on the seventh.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_22
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 22
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 137
+  file: Music/Goldberg Variations, BWV. 988 - Variation 22.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_23
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 23
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 125
+  file: Music/Goldberg Variations, BWV. 988 - Variation 23.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_24_canon_on_the_octave
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 24. Canon on the octave
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 165
+  file: Music/Goldberg Variations, BWV. 988 - Variation 24. Canon on the octave.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_25
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 25
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 410
+  file: Music/Goldberg Variations, BWV. 988 - Variation 25.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_26
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 26
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 110
+  file: Music/Goldberg Variations, BWV. 988 - Variation 26.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_27_canon_on_the_ninth
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 27. Canon on the ninth
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 93
+  file: Music/Goldberg Variations, BWV. 988 - Variation 27. Canon on the ninth.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_28
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 28
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 136
+  file: Music/Goldberg Variations, BWV. 988 - Variation 28.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_29
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 29
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 118
+  file: Music/Goldberg Variations, BWV. 988 - Variation 29.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_3_canon_on_the_unison
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 3. Canon on the unison
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 113
+  file: Music/Goldberg Variations, BWV. 988 - Variation 3. Canon on the unison.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_30_quodlibet
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 30. Quodlibet
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 102
+  file: Music/Goldberg Variations, BWV. 988 - Variation 30. Quodlibet.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_4
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 4
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 53
+  file: Music/Goldberg Variations, BWV. 988 - Variation 4.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_5
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 5
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 77
+  file: Music/Goldberg Variations, BWV. 988 - Variation 5.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_6_canon_on_the_second
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 6. Canon on the second
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 62
+  file: Music/Goldberg Variations, BWV. 988 - Variation 6. Canon on the second.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_7
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 7
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 174
+  file: Music/Goldberg Variations, BWV. 988 - Variation 7.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_8
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 8
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 103
+  file: Music/Goldberg Variations, BWV. 988 - Variation 8.mp3
+  programs: []
+  notes: ''
+- id: goldberg_variations_bwv_988_variation_9_canon_on_the_third
+  composer: Johann Sebastian Bach
+  piece: Goldberg Variations, BWV. 988 - Variation 9. Canon on the third
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 99
+  file: Music/Goldberg Variations, BWV. 988 - Variation 9. Canon on the third.mp3
+  programs: []
+  notes: ''
+- id: violin_partita_no_2_bwv_1004_5_chaconne_cello_arr
+  composer: Johann Sebastian Bach
+  piece: Violin Partita no. 2, BWV 1004 - 5. Chaconne (cello arr.)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 872
+  file: Music/Violin Partita no. 2, BWV 1004 - 5. Chaconne (cello arr.).mp3
+  programs: []
+  notes: ''
+- id: violin_sonata_in_f_major_hwv_370_iii_largo_for_trumpet_and_organ_rondeau
+  composer: Unknown
+  piece: Violin Sonata in F major, HWV 370 - III. Largo (For Trumpet and Organ - Rondeau)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 216
+  file: Music/Violin Sonata in F major, HWV 370 - III. Largo (For Trumpet and Organ - Rondeau).mp3
+  programs: []
+  notes: ''
