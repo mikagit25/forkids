@@ -283,7 +283,7 @@ def render_video(ptype: str, lang: str, music_file: str, out_mp4: Path, dry_run:
     print(f"  Render: {out_mp4.name}")
     if dry_run:
         print(f"  [DRY RUN] would render DanceSpriteLong"); return True
-    result = subprocess.run(cmd, cwd=str(REMOTION), capture_output=False, timeout=3600)
+    result = subprocess.run(cmd, cwd=str(REMOTION), capture_output=False, timeout=10800)
     return result.returncode == 0
 
 
