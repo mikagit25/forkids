@@ -236,7 +236,7 @@ def _render_episode(ep_key: str, ep: dict, out_path: Path, dry_run: bool) -> boo
         "wobble": True,
     })
     cmd = ["npx", "remotion", "render", "DanceSpriteLong", str(out_path),
-           "--props", props, "--log", "error"]
+           "--props", props, "--concurrency", "1", "--log", "error"]
     if dry_run:
         print(f"    [DRY RUN] DanceSpriteLong {ep_key} → {out_path.name}")
         return True

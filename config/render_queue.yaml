@@ -286,42 +286,61 @@ jobs:
     - {id: focus_bach_01, reason: needs Musopen API key — BWV 846/772/988/147/999/1068}
     - {id: sleep_lullaby_01, reason: needs Musopen API key — Brahms/Schubert/Satie/Bach lullabies}
 
-# SONG COMPILATIONS — Suno AI tracks (18 EN / 7 AR songs, 25 min each)
+# SONG COMPILATIONS — Suno AI tracks (24 EN upbeat / 27 EN lullaby / 9 AR songs)
 # Cron: 1-го числа каждого месяца; повторная генерация → новый файл с датой
 - id: song_compilation_upbeat_en_20260730
   cmd: python3 scripts/generate_song_compilation.py --type upbeat --lang en
   log: logs/song_compilation.log
-  desc: 'EN: 18 Suno upbeat songs → 25 min DanceSpriteLong → output/queue/'
+  desc: 'EN: 24 Suno upbeat songs → 25 min DanceSpriteLong → output/queue/'
   added: '2026-07-30'
-  status: pending
+  status: done
   track: kids_song
-  note: 'Run now — July 13 batch deleted. DanceSpriteLong with 3D sprites.'
+  note: '20260801 + 20260802 both done (18 songs each — pre-update playlists). Next run will have 24.'
 
 - id: song_compilation_lullaby_en_20260730
   cmd: python3 scripts/generate_song_compilation.py --type lullaby --lang en
   log: logs/song_compilation.log
-  desc: 'EN: 17 Suno lullabies → 25 min DanceSpriteLong → output/queue/'
+  desc: 'EN: 27 Suno lullabies → 25 min DanceSpriteLong → output/queue/'
   added: '2026-07-30'
-  status: pending
+  status: done
   track: kids_song
-  note: 'Run now — July 13 batch deleted. DanceSpriteLong with 3D sprites.'
+  note: '20260802 done (17 songs — pre-update playlist). Next run will have 27.'
 
 - id: song_compilation_upbeat_ar_20260730
   cmd: python3 scripts/generate_song_compilation.py --type upbeat --lang ar
   log: logs/song_compilation.log
-  desc: 'AR: 7 Suno songs → 25 min DanceSpriteLong → output/queue_ar/'
+  desc: 'AR: 9 Suno songs → 25 min DanceSpriteLong → output/queue_ar/'
   added: '2026-07-30'
-  status: pending
+  status: done
   track: kids_song
-  note: 'Run now — July 13 batch deleted. DanceSpriteLong with 3D sprites.'
+  note: '20260802 done (9 songs). Thumb pending — Together.ai Cloudflare block.'
+
+# KIDS QUALITY v2 — новые серии с depth/parallax/ZFLOAT (DanceSpriteLong v2)
+- id: generate_animal_groups_20260802
+  cmd: python3 scripts/generate_animal_groups.py
+  log: logs/animal_groups.log
+  desc: 'Animal Groups: 5 эп (farm/jungle/arctic/forest/savanna) × EN+AR — depth parallax'
+  added: '2026-08-02'
+  status: done
+  track: kids_quality
+  note: 'Done 2026-08-03 18:15. 5/5 episodes EN+AR rendered. Depth/parallax/ZFLOAT applied.'
+
+- id: generate_lullaby_animals_20260802
+  cmd: python3 scripts/generate_lullaby_animals.py
+  log: logs/lullaby_animals.log
+  desc: 'Lullaby Animals: 4 эп (bear_night/bunny_dream/forest_lullaby/ocean_dream) × EN+AR — ZFLOAT sleep'
+  added: '2026-08-02'
+  status: in_progress
+  track: kids_sleep
+  note: 'Started 2026-08-03 18:15. bear_night рендерится. Est. done ~02:30.'
 
 # REGEN: nature_calm AR — old mp4 deleted (near-black bgColor), regen with fixed colors
-# Run AFTER current EN upbeat compilation finishes (sequential, 1 render at a time)
+# Run AFTER AR upbeat compilation finishes (sequential, 1 render at a time)
 - id: nature_calm_ar_regen_20260730
-  cmd: python3 scripts/generate_nature_calm.py --force
+  cmd: python3 scripts/generate_nature_calm.py
   log: logs/nature_calm.log
   desc: 'AR: перегенерация 6 nature_calm видео с исправленным bgColor (forest/ocean/night_sky/meadow/rain/sunset)'
   added: '2026-07-30'
-  status: pending
+  status: done
   track: ar_kids
-  note: 'bgColor fix: #020D06→#0A2410, #010810→#061628, #010108→#080818, etc. Sequential with EN render.'
+  note: 'Done 2026-08-03. All 6 episodes EN+AR in queue. --concurrency 1 fix applied.'

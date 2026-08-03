@@ -8,6 +8,11 @@
  *
  * Shares motion types with DanceShapeLong (BOB/SWAY/SPIN/DRIFT/PULSE/WAVE/ORBIT/BOUNCE/MARCH).
  * Sprites are rendered as <Img> with squash-stretch on bounce moves.
+ *
+ * 3D depth simulation (v2):
+ *  - sprite.depth (0–1): 0=far background, 1=close foreground
+ *  - depth drives parallax multiplier, drop-shadow intensity
+ *  - New motions: ZFLOAT (Z-axis zoom breathing), YFLIP (Y-axis turn simulation)
  */
 import React from "react";
 import {
@@ -28,6 +33,7 @@ export interface SpriteItem {
   posX: number;        // 0–1 of width
   posY: number;        // 0–1 of height
   seed: number;
+  depth?: number;      // 0=far background, 1=close foreground (default 0.5)
   orbitRadius?: number;
   orbitPeriodSec?: number;
   orbitCcw?: boolean;
@@ -37,6 +43,7 @@ export interface SpriteItem {
 export type SpriteMotionType =
   | "BOB" | "SWAY" | "SPIN" | "DRIFT" | "PULSE"
   | "WAVE" | "ORBIT" | "BOUNCE" | "MARCH"
+  | "ZFLOAT" | "YFLIP"
   | "FADEIN" | "FADEOUT" | "NONE";
 
 export interface SpriteMotionBlock {
@@ -112,6 +119,9 @@ interface SpriteTransform {
   cx: number; cy: number;
   rotation: number; scaleX: number; scaleY: number;
   opacity: number;
+  shadowY: number;
+  shadowBlur: number;
+  shadowOpacity: number;
 }
 
 function computeSpriteTransform(
@@ -124,7 +134,7 @@ function computeSpriteTransform(
   height: number,
   globalWobble: boolean,
 ): SpriteTransform {
-  const t       = fSec - block.startSec;
+  const t        = fSec - block.startSec;
   const blockDur = block.endSec - block.startSec;
   const period   = block.period   ?? 3;
   const amplitude = block.amplitude ?? 40;
@@ -132,6 +142,16 @@ function computeSpriteTransform(
 
   const baseX = sprite.posX * width;
   const baseY = sprite.posY * height;
+
+  // Depth-based parallax: depth=0 → mult=0.6 (sluggish), depth=1 → mult=1.4 (lively)
+  // Default depth=0.5 → mult=1.0 (no change from v1 behaviour)
+  const depth        = sprite.depth ?? 0.5;
+  const parallaxMult = 0.6 + depth * 0.8;
+
+  // Depth-based drop shadow: closer sprites cast a stronger, lower shadow
+  const shadowY      = 4  + depth * 12;   // 4–16 px
+  const shadowBlur   = 8  + depth * 16;   // 8–24 px
+  const shadowOpacity = 0.10 + depth * 0.22; // 0.10–0.32
 
   let cx = baseX, cy = baseY, rotation = 0;
   let scaleX = 1, scaleY = 1, opacity = 1;
@@ -141,15 +161,14 @@ function computeSpriteTransform(
   switch (block.motion) {
     case "BOB": {
       const phase = (t / period) * tau;
-      cy = baseY + Math.sin(phase) * amplitude;
-      // Squash at bottom, stretch at top
-      const norm = Math.sin(phase); // -1 to 1
+      cy = baseY + Math.sin(phase) * amplitude * parallaxMult;
+      const norm = Math.sin(phase);
       scaleX = 1 - norm * 0.06;
       scaleY = 1 + norm * 0.06;
       break;
     }
     case "SWAY":
-      cx = baseX + Math.sin((t / period) * tau) * amplitude;
+      cx = baseX + Math.sin((t / period) * tau) * amplitude * parallaxMult;
       rotation = Math.sin((t / period) * tau) * 8;
       break;
 
@@ -159,22 +178,22 @@ function computeSpriteTransform(
 
     case "DRIFT": {
       const ph = sprite.seed * 2.1;
-      cx = baseX + Math.sin(t * (tau / (period * 1.618)) + ph) * amplitude;
-      cy = baseY + Math.sin(t * (tau / period) + ph + 1.3) * (amplitude * 0.6);
+      cx = baseX + Math.sin(t * (tau / (period * 1.618)) + ph) * amplitude * parallaxMult;
+      cy = baseY + Math.sin(t * (tau / period) + ph + 1.3) * (amplitude * 0.6) * parallaxMult;
       rotation = Math.sin(t * 0.4 + sprite.seed) * 12;
       break;
     }
     case "PULSE": {
-      const pct = (amplitude) / 100;
+      const pct = amplitude / 100;
       const ps = 1 + Math.sin((t / period) * tau) * pct;
       scaleX = ps;
       scaleY = ps;
-      cy = baseY + Math.sin((t / period) * tau + 0.3) * 10;
+      cy = baseY + Math.sin((t / period) * tau + 0.3) * 10 * parallaxMult;
       break;
     }
     case "WAVE": {
       const td = t - shapeIdx * phaseDelay;
-      cy = baseY + Math.sin((td / period) * tau) * amplitude;
+      cy = baseY + Math.sin((td / period) * tau) * amplitude * parallaxMult;
       break;
     }
     case "ORBIT": {
@@ -196,11 +215,10 @@ function computeSpriteTransform(
     }
     case "BOUNCE": {
       const phase = (t / period) * tau;
-      cy = baseY - Math.abs(Math.sin(phase)) * amplitude;
-      // Squash at landing
+      cy = baseY - Math.abs(Math.sin(phase)) * amplitude * parallaxMult;
       const norm = Math.abs(Math.sin(phase));
-      scaleX = 1 + (1 - norm) * 0.10;
-      scaleY = 1 - (1 - norm) * 0.08;
+      scaleX = 1 + (1 - norm) * 0.12;
+      scaleY = 1 - (1 - norm) * 0.10;
       break;
     }
     case "MARCH": {
@@ -212,9 +230,33 @@ function computeSpriteTransform(
       const bobAmp = block.bobAmplitude ?? 18;
       cy = baseY - Math.abs(Math.sin((t / (period / numSprites)) * tau)) * bobAmp;
       rotation = Math.sin((t / period) * tau * numSprites + shapeIdx) * 6;
-      // Flip direction based on movement
       break;
     }
+
+    // ── NEW: ZFLOAT — slow zoom breathing (Z-axis approach/recede) ──────────
+    case "ZFLOAT": {
+      // Each sprite gets unique phase so they breathe independently
+      const zPhase = (t / (period * 1.5)) * tau + sprite.seed;
+      const zScale = 1 + Math.sin(zPhase) * 0.09;
+      scaleX = zScale;
+      scaleY = zScale;
+      // Gentle lateral drift as it "floats" closer/further
+      cx = baseX + Math.sin(t * 0.28 + sprite.seed) * amplitude * 0.35 * parallaxMult;
+      cy = baseY + Math.cos(t * 0.22 + sprite.seed * 1.3) * amplitude * 0.25 * parallaxMult;
+      break;
+    }
+
+    // ── NEW: YFLIP — Y-axis turn simulation (scaleX: 1→0→−1→0→1) ──────────
+    case "YFLIP": {
+      const flipPhase = (t / period) * tau + sprite.seed * 0.5;
+      // cos goes 1→0→-1→0→1: simulates a 360° Y-axis rotation
+      scaleX = Math.cos(flipPhase);
+      // Gentle bob while flipping
+      cy = baseY + Math.sin(flipPhase * 0.5) * amplitude * 0.25 * parallaxMult;
+      cx = baseX + Math.sin(t * 0.18 + sprite.seed) * amplitude * 0.18 * parallaxMult;
+      break;
+    }
+
     case "FADEIN": {
       const perSprite = blockDur / numSprites;
       const appearAt  = block.startSec + shapeIdx * perSprite;
@@ -222,8 +264,8 @@ function computeSpriteTransform(
         extrapolateLeft: "clamp", extrapolateRight: "clamp",
       });
       const ph = sprite.seed * 2.1;
-      cx = baseX + Math.sin(t * 0.22 + ph) * 60;
-      cy = baseY + Math.sin(t * 0.16 + ph + 1) * 35;
+      cx = baseX + Math.sin(t * 0.22 + ph) * 60 * parallaxMult;
+      cy = baseY + Math.sin(t * 0.16 + ph + 1) * 35 * parallaxMult;
       break;
     }
     case "FADEOUT": {
@@ -233,15 +275,15 @@ function computeSpriteTransform(
         extrapolateLeft: "clamp", extrapolateRight: "clamp",
       });
       const ph = sprite.seed * 2.1;
-      cx = baseX + Math.sin(t * 0.22 + ph) * 60;
-      cy = baseY + Math.sin(t * 0.16 + ph + 1) * 35;
+      cx = baseX + Math.sin(t * 0.22 + ph) * 60 * parallaxMult;
+      cy = baseY + Math.sin(t * 0.16 + ph + 1) * 35 * parallaxMult;
       break;
     }
     case "NONE":
     default:
       // Gentle idle float — never fully static
-      cx = baseX + Math.sin(t * 0.55 + sprite.seed) * 18;
-      cy = baseY + Math.sin(t * 0.42 + sprite.seed * 1.4) * 14;
+      cx = baseX + Math.sin(t * 0.55 + sprite.seed) * 18 * parallaxMult;
+      cy = baseY + Math.sin(t * 0.42 + sprite.seed * 1.4) * 14 * parallaxMult;
       scaleX = 1 + Math.sin(t * 0.9 + sprite.seed * 0.7) * 0.04;
       scaleY = scaleX;
       break;
@@ -253,11 +295,11 @@ function computeSpriteTransform(
     scaleX *= 1 + Math.sin(t * (8.3 + s * 0.7)) * 0.038 + Math.sin(t * (5.1 + s * 0.4)) * 0.020;
     scaleY *= 1 + Math.sin(t * (7.7 + s * 0.9)) * 0.038 + Math.cos(t * (4.2 + s * 1.1)) * 0.020;
     rotation += Math.sin(t * (6.5 + s * 0.5)) * 1.4;
-    cx += Math.sin(t * (9.1 + s * 0.8)) * 2.8;
-    cy += Math.cos(t * (7.3 + s * 0.6)) * 2.8;
+    cx += Math.sin(t * (9.1 + s * 0.8)) * 2.8 * parallaxMult;
+    cy += Math.cos(t * (7.3 + s * 0.6)) * 2.8 * parallaxMult;
   }
 
-  return { cx, cy, rotation, scaleX, scaleY, opacity };
+  return { cx, cy, rotation, scaleX, scaleY, opacity, shadowY, shadowBlur, shadowOpacity };
 }
 
 // ── Main composition ──────────────────────────────────────────────────────────
@@ -314,6 +356,10 @@ export const DanceSpriteLong: React.FC<DanceSpriteLongProps> = ({
         [currentBlock.startSec, currentBlock.startSec + 1.5], [0, 1],
         { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
+  // Sort sprites by depth so background sprites render first (painter's algorithm)
+  const sortedSprites = [...sprites].map((s, i) => ({ sprite: s, origIdx: i }))
+    .sort((a, b) => (a.sprite.depth ?? 0.5) - (b.sprite.depth ?? 0.5));
+
   return (
     <AbsoluteFill style={{ backgroundColor: currentBg, overflow: "hidden" }}>
       <Audio src={staticFile(`music/${musicFile}`)} volume={volume} loop />
@@ -326,17 +372,19 @@ export const DanceSpriteLong: React.FC<DanceSpriteLongProps> = ({
           />
         ))}
 
-        {/* Sprites */}
-        {sprites.map((sprite, i) => {
-          const { cx, cy, rotation, scaleX, scaleY, opacity } = computeSpriteTransform(
-            currentBlock, sprite, i, sprites.length, fSec, width, height, wobble,
-          );
+        {/* Sprites — sorted back-to-front by depth */}
+        {sortedSprites.map(({ sprite, origIdx }) => {
+          const { cx, cy, rotation, scaleX, scaleY, opacity, shadowY, shadowBlur, shadowOpacity } =
+            computeSpriteTransform(
+              currentBlock, sprite, origIdx, sprites.length, fSec, width, height, wobble,
+            );
           const size = sprite.size;
           const flipX = sprite.flipX ? -1 : 1;
+          const shadow = `drop-shadow(0px ${shadowY}px ${shadowBlur}px rgba(0,0,0,${shadowOpacity.toFixed(2)}))`;
 
           return (
             <div
-              key={i}
+              key={origIdx}
               style={{
                 position: "absolute",
                 left: cx - size / 2,
@@ -346,6 +394,7 @@ export const DanceSpriteLong: React.FC<DanceSpriteLongProps> = ({
                 transform: `scaleX(${scaleX * flipX}) scaleY(${scaleY}) rotate(${rotation}deg)`,
                 transformOrigin: "center center",
                 opacity,
+                filter: shadow,
               }}
             >
               <Img

@@ -304,6 +304,19 @@ Wobble = multi-frequency outline breathing, уникальный per-seed.
 Минимальное idle движение: `cx ±18px` sin-волна, `cy ±14px`, scale breathing `±4%`.  
 В DanceSpriteLong это встроено в default case computeSpriteTransform().
 
+### Rule 10 — 3D depth simulation (DanceSpriteLong v2)
+Каждый спрайт может иметь `depth: 0–1` (0=дальний фон, 1=передний план, дефолт 0.5).  
+Depth влияет на:  
+- **Parallax**: `parallaxMult = 0.6 + depth * 0.8` (0.6–1.4) — ближние двигаются активнее  
+- **Drop shadow**: глубина тени растёт с depth (4–16px offset, 8–24px blur, 10–32% opacity)  
+- **Z-порядок**: спрайты рендерятся back-to-front по depth (painter's algorithm)
+
+Новые типы движения (добавлены в v2):
+- `ZFLOAT` — медленное breathing zoom (scale ±9%), имитирует подлёт к зрителю и отлёт  
+- `YFLIP` — поворот по Y-оси через `scaleX = cos(phase)` (1→0→−1→0→1)
+
+**Обратная совместимость**: `depth` опционально, дефолт 0.5 → `parallaxMult=1.0` → поведение идентично v1.
+
 ### Применение правил при написании новых генераторов
 ```python
 # Правильный шаблон для DanceSpriteLong:
