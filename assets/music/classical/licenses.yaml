@@ -1468,3 +1468,46 @@ recordings:
     license: pd
     source: musopen
     programs: []
+
+  # --- lp-00616_BeG: Musopen LP recordings, Beethoven collection (2026-08-04) ---
+  # 4 sides × ~30 min = ~125 min total. ID3 tags empty, identified from Musopen catalog context.
+
+  - id: musopen_lp_00616_side_a1
+    file: "Music/lp-00616_BeG-record_1_side_A_64kb.mp3"
+    composer: "Ludwig van Beethoven"
+    piece: "Beethoven LP Recording lp-00616 — Record 1 Side A"
+    duration_sec: 2064
+    license: pd
+    source: musopen
+    programs: []
+    notes: 'Musopen LP scan. Exact piece TBD — likely chamber/orchestral works.'
+
+  - id: musopen_lp_00616_side_b1
+    file: "Music/lp-00616_BeG-record_1_side_B_64kb.mp3"
+    composer: "Ludwig van Beethoven"
+    piece: "Beethoven LP Recording lp-00616 — Record 1 Side B"
+    duration_sec: 1644
+    license: pd
+    source: musopen
+    programs: []
+    notes: 'Musopen LP scan.'
+
+  - id: musopen_lp_00616_side_a2
+    file: "Music/lp-00616_BeG-record_2_side_A_64kb.mp3"
+    composer: "Ludwig van Beethoven"
+    piece: "Beethoven LP Recording lp-00616 — Record 2 Side A"
+    duration_sec: 1740
+    license: pd
+    source: musopen
+    programs: []
+    notes: 'Musopen LP scan.'
+
+  - id: musopen_lp_00616_side_b2
+    file: "Music/lp-00616_BeG-record_2_side_B_64kb.mp3"
+    composer: "Ludwig van Beethoven"
+    piece: "Beethoven LP Recording lp-00616 — Record 2 Side B"
+    duration_sec: 2040
+    license: pd
+    source: musopen
+    programs: []
+    notes: 'Musopen LP scan.'
