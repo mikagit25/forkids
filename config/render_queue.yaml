@@ -330,9 +330,9 @@ jobs:
   log: logs/lullaby_animals.log
   desc: 'Lullaby Animals: 4 эп (bear_night/bunny_dream/forest_lullaby/ocean_dream) × EN+AR — ZFLOAT sleep'
   added: '2026-08-02'
-  status: in_progress
+  status: done
   track: kids_sleep
-  note: 'Started 2026-08-03 18:15. bear_night рендерится. Est. done ~02:30.'
+  note: 'Done 2026-08-04. All 4 episodes EN+AR rendered. ZFLOAT nightMode applied.'
 
 # REGEN: nature_calm AR — old mp4 deleted (near-black bgColor), regen with fixed colors
 # Run AFTER AR upbeat compilation finishes (sequential, 1 render at a time)
