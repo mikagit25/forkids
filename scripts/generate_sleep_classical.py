@@ -14,7 +14,7 @@ Usage:
   python3 scripts/generate_sleep_classical.py --list-programs
   python3 scripts/generate_sleep_classical.py --regen-meta --program sleep_chopin_01
 """
-import argparse, base64, json, logging, re, subprocess, time, yaml
+import argparse, base64, json, logging, random, re, subprocess, time, yaml
 from datetime import datetime
 from pathlib import Path
 
@@ -473,13 +473,26 @@ def build_audio_track(program: dict, licenses_data: dict, out_dir: Path,
         log.warning("  No track files found — will generate visual-only (no audio)")
         return None
 
+    shuffle = program.get("shuffle", False)
+    if shuffle:
+        random.shuffle(found)
+
     # Loop the playlist until we cover target_secs
     total_dur = sum(d for _, d in found)
     if target_secs > 0 and total_dur < target_secs:
         reps = int(target_secs / total_dur) + 2
         log.info(f"  Audio {total_dur/60:.1f}min < {target_secs/3600:.0f}h target "
-                 f"— repeating playlist ×{reps}")
-        found = found * reps
+                 f"— {'shuffle-' if shuffle else ''}repeating playlist ×{reps}")
+        if shuffle:
+            # Each repeat cycle re-shuffled — no identical loop seam
+            extended = list(found)
+            while sum(d for _, d in extended) < target_secs + total_dur:
+                cycle = list(found)
+                random.shuffle(cycle)
+                extended.extend(cycle)
+            found = extended
+        else:
+            found = found * reps
 
     concat_list = out_dir / "concat_tracks.txt"
     with open(concat_list, "w") as f:
@@ -515,9 +528,10 @@ def assemble_video(loop_mp4: Path, audio_mp3: Path | None,
     """Loop visual to fill target duration, overlay audio, write output."""
     target_secs = target_hours * 3600
     # Use faster preset for long videos: slow→fast saves hours on 8h renders.
-    preset = "slow" if target_hours <= 1 else ("medium" if target_hours <= 3 else "fast")
-    # Timeout scales: 1h→3600s, 3h→10800s, 8h→28800s plus 20% margin.
-    video_timeout = int(target_secs * 1.2) + 3600
+    # fast for all durations — slow takes 6h+ for 1h video on this server (OOM/timeout risk)
+    preset = "fast"
+    # Generous timeout: 4× video length + 2h buffer (medium/slow can take 4x real-time on this server)
+    video_timeout = int(target_secs * 4) + 7200
 
     if audio_mp3:
         cmd = [

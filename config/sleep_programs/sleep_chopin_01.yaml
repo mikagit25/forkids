@@ -13,6 +13,7 @@ queue: output/queue_id
 visual_theme: moon_clouds       # SleepClassicalLoop Remotion component
 loop_duration_sec: 240          # RULE: all animation periods divide evenly into 240
 durations_hours: [1, 3]
+shuffle: true
 
 # Tracks in order (gentle → near-silence)
 # All recordings from licenses.yaml, license must be pd or cc0

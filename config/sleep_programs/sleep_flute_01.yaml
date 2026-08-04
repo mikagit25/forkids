@@ -7,6 +7,7 @@ queue: output/queue_id
 visual_theme: warm_waves
 loop_duration_sec: 240
 durations_hours: [1, 3]
+shuffle: true
 tracks:
   - {id: unknown_3_fantaisies_for_solo_flute_op_38_fantaisie_no_1,          composer: "Unknown",                 piece: "3 Fantaisies for Solo Flute, Op. 38 — No. 1",  duration_sec: 656, mood: airy}
   - {id: mozart_mozart_serenade_in_g_major_i_romance,                       composer: "Wolfgang Amadeus Mozart", piece: "Serenade in G major — I. Romance",              duration_sec: 266, mood: gentle}

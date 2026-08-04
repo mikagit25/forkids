@@ -7,6 +7,7 @@ queue: output/queue_id
 visual_theme: warm_waves
 loop_duration_sec: 240
 durations_hours: [1, 3]
+shuffle: true
 tracks:
   - {id: debussy_arabesque_no_1_andantino_con_moto,   composer: "Claude Debussy", piece: "Arabesque No. 1 — Andantino con moto",   duration_sec: 274, mood: tender}
   - {id: debussy_fantaisie_op_79_andantino,            composer: "Claude Debussy", piece: "Fantaisie, Op. 79 — Andantino",          duration_sec: 119, mood: dreamy}

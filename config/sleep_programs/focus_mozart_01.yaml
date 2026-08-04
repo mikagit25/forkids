@@ -7,6 +7,7 @@ queue: output/queue_id
 visual_theme: rain_window
 loop_duration_sec: 240
 durations_hours: [1]
+shuffle: true
 tracks:
   - {id: mozart_mozart_serenade_in_g_major_i_romance,    composer: "Wolfgang Amadeus Mozart", piece: "Serenade in G major — I. Romance",  duration_sec: 266, mood: gentle}
   - {id: mozart_mozart_serenade_in_g_major_ii_minuet,   composer: "Wolfgang Amadeus Mozart", piece: "Serenade in G major — II. Minuet", duration_sec: 123, mood: clear}

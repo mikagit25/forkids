@@ -7,6 +7,7 @@ queue: output/queue_id
 visual_theme: rain_window
 loop_duration_sec: 240
 durations_hours: [1, 2]
+shuffle: true
 
 # Bach all tracks: Preludes + Inventions + Air + Goldberg Variations (Part 1+2) + Partita + Chaconne
 # Total: ~69 min. 1h = <1 loop, 2h = ~1.7 loops.

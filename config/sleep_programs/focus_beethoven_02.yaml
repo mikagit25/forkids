@@ -7,6 +7,7 @@ queue: output/queue_id
 visual_theme: rain_window
 loop_duration_sec: 240
 durations_hours: [1]
+shuffle: true
 tracks:
   - {id: beethoven_symphony_no_5_in_cm_op_67_i_allegro_con_brio,  composer: "Ludwig van Beethoven", piece: "Symphony No. 5 in C minor — I. Allegro con brio",  duration_sec: 474, mood: powerful}
   - {id: beethoven_symphony_no_5_in_cm_op_67_ii_andante_con_moto, composer: "Ludwig van Beethoven", piece: "Symphony No. 5 in C minor — II. Andante con moto", duration_sec: 682, mood: lyrical}

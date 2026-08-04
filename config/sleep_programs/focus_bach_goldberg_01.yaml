@@ -7,6 +7,7 @@ queue: output/queue_id
 visual_theme: rain_window
 loop_duration_sec: 240
 durations_hours: [1, 2]
+shuffle: true
 
 # Goldberg Variations BWV 988 — complete recording in two parts
 # Part 1: Aria + Variations 1–15 (25:35), Part 2: Variations 16–30 + Aria da Capo (23:07)

@@ -334,6 +334,31 @@ jobs:
   track: kids_sleep
   note: 'Done 2026-08-04. All 4 episodes EN+AR rendered. ZFLOAT nightMode applied.'
 
+# CNR MEGA COMPILATIONS — shuffle + 3h unique content (2026-08-04)
+- id: cnr_sleep_grand_all_01_20260804
+  cmd: python3 scripts/generate_sleep_classical.py --program sleep_grand_all_01 --durations 1 3
+  log: logs/sleep_classical.log
+  desc: 'CNR: Grand All Composers night — 185min unique, shuffle, 1h+3h → queue_id'
+  added: '2026-08-04'
+  status: pending
+  track: calm_classics
+
+- id: cnr_sleep_baroque_romantics_01_20260804
+  cmd: python3 scripts/generate_sleep_classical.py --program sleep_baroque_romantics_01 --durations 1 3
+  log: logs/sleep_classical.log
+  desc: 'CNR: Baroque→Romantic sleep journey — 152min unique, shuffle, 1h+3h → queue_id'
+  added: '2026-08-04'
+  status: pending
+  track: calm_classics
+
+- id: cnr_focus_bach_goldberg_complete_01_20260804
+  cmd: python3 scripts/generate_sleep_classical.py --program focus_bach_goldberg_complete_01 --durations 1 3
+  log: logs/sleep_classical.log
+  desc: 'CNR: Bach Goldberg Complete focus — 74min, ordered (no shuffle), 1h+3h → queue_id'
+  added: '2026-08-04'
+  status: pending
+  track: calm_classics
+
 # REGEN: nature_calm AR — old mp4 deleted (near-black bgColor), regen with fixed colors
 # Run AFTER AR upbeat compilation finishes (sequential, 1 render at a time)
 - id: nature_calm_ar_regen_20260730
