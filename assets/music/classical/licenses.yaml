@@ -1332,182 +1332,182 @@ recordings:
   programs: []
   notes: ''
 
-  # --- Новые треки с Google Drive (2026-08-04) ---
+# --- Новые треки с Google Drive (2026-08-04) ---
 
-  - id: bach_violin_partita_no1_bwv1002_allemanda
-    file: "Music/I. Allemanda.mp3"
-    composer: "Johann Sebastian Bach"
-    piece: "Violin Partita No. 1, BWV 1002 — I. Allemanda"
-    duration_sec: 209
-    license: pd
-    source: musopen
-    programs: []
+- id: bach_violin_partita_no1_bwv1002_allemanda
+  file: "Music/I. Allemanda.mp3"
+  composer: "Johann Sebastian Bach"
+  piece: "Violin Partita No. 1, BWV 1002 — I. Allemanda"
+  duration_sec: 209
+  license: pd
+  source: musopen
+  programs: []
 
-  - id: bach_violin_partita_no1_bwv1002_double_ii
-    file: "Music/II. Double.mp3"
-    composer: "Johann Sebastian Bach"
-    piece: "Violin Partita No. 1, BWV 1002 — II. Double"
-    duration_sec: 191
-    license: pd
-    source: musopen
-    programs: []
+- id: bach_violin_partita_no1_bwv1002_double_ii
+  file: "Music/II. Double.mp3"
+  composer: "Johann Sebastian Bach"
+  piece: "Violin Partita No. 1, BWV 1002 — II. Double"
+  duration_sec: 191
+  license: pd
+  source: musopen
+  programs: []
 
-  - id: bach_violin_partita_no1_bwv1002_corrente
-    file: "Music/III. Corrente.mp3"
-    composer: "Johann Sebastian Bach"
-    piece: "Violin Partita No. 1, BWV 1002 — III. Corrente"
-    duration_sec: 203
-    license: pd
-    source: musopen
-    programs: []
+- id: bach_violin_partita_no1_bwv1002_corrente
+  file: "Music/III. Corrente.mp3"
+  composer: "Johann Sebastian Bach"
+  piece: "Violin Partita No. 1, BWV 1002 — III. Corrente"
+  duration_sec: 203
+  license: pd
+  source: musopen
+  programs: []
 
-  - id: bach_violin_partita_no1_bwv1002_double_presto
-    file: "Music/IV. Double Presto.mp3"
-    composer: "Johann Sebastian Bach"
-    piece: "Violin Partita No. 1, BWV 1002 — IV. Double (Presto)"
-    duration_sec: 141
-    license: pd
-    source: musopen
-    programs: []
+- id: bach_violin_partita_no1_bwv1002_double_presto
+  file: "Music/IV. Double Presto.mp3"
+  composer: "Johann Sebastian Bach"
+  piece: "Violin Partita No. 1, BWV 1002 — IV. Double (Presto)"
+  duration_sec: 141
+  license: pd
+  source: musopen
+  programs: []
 
-  - id: bach_violin_partita_no1_bwv1002_sarabande
-    file: "Music/V. Sarabande.mp3"
-    composer: "Johann Sebastian Bach"
-    piece: "Violin Partita No. 1, BWV 1002 — V. Sarabande"
-    duration_sec: 129
-    license: pd
-    source: musopen
-    programs: []
+- id: bach_violin_partita_no1_bwv1002_sarabande
+  file: "Music/V. Sarabande.mp3"
+  composer: "Johann Sebastian Bach"
+  piece: "Violin Partita No. 1, BWV 1002 — V. Sarabande"
+  duration_sec: 129
+  license: pd
+  source: musopen
+  programs: []
 
-  - id: bach_violin_partita_no1_bwv1002_double_vi
-    file: "Music/VI. Double.mp3"
-    composer: "Johann Sebastian Bach"
-    piece: "Violin Partita No. 1, BWV 1002 — VI. Double"
-    duration_sec: 108
-    license: pd
-    source: musopen
-    programs: []
+- id: bach_violin_partita_no1_bwv1002_double_vi
+  file: "Music/VI. Double.mp3"
+  composer: "Johann Sebastian Bach"
+  piece: "Violin Partita No. 1, BWV 1002 — VI. Double"
+  duration_sec: 108
+  license: pd
+  source: musopen
+  programs: []
 
-  - id: bach_violin_partita_no1_bwv1002_tempo_di_borea
-    file: "Music/VII. Tempo di Borea.mp3"
-    composer: "Johann Sebastian Bach"
-    piece: "Violin Partita No. 1, BWV 1002 — VII. Tempo di Borea"
-    duration_sec: 143
-    license: pd
-    source: musopen
-    programs: []
+- id: bach_violin_partita_no1_bwv1002_tempo_di_borea
+  file: "Music/VII. Tempo di Borea.mp3"
+  composer: "Johann Sebastian Bach"
+  piece: "Violin Partita No. 1, BWV 1002 — VII. Tempo di Borea"
+  duration_sec: 143
+  license: pd
+  source: musopen
+  programs: []
 
-  - id: bach_violin_partita_no1_bwv1002_double_viii
-    file: "Music/VIII. Double.mp3"
-    composer: "Johann Sebastian Bach"
-    piece: "Violin Partita No. 1, BWV 1002 — VIII. Double"
-    duration_sec: 140
-    license: pd
-    source: musopen
-    programs: []
+- id: bach_violin_partita_no1_bwv1002_double_viii
+  file: "Music/VIII. Double.mp3"
+  composer: "Johann Sebastian Bach"
+  piece: "Violin Partita No. 1, BWV 1002 — VIII. Double"
+  duration_sec: 140
+  license: pd
+  source: musopen
+  programs: []
 
-  - id: beethoven_violin_concerto_op61_i_allegro_v1
-    file: "Music/Violin Concerto in D major, Op. 61 - I. Allegro ma non troppo.mp3"
-    composer: "Ludwig van Beethoven"
-    piece: "Violin Concerto in D major, Op. 61 — I. Allegro ma non troppo (v1)"
-    duration_sec: 1469
-    license: pd
-    source: musopen
-    programs: []
+- id: beethoven_violin_concerto_op61_i_allegro_v1
+  file: "Music/Violin Concerto in D major, Op. 61 - I. Allegro ma non troppo.mp3"
+  composer: "Ludwig van Beethoven"
+  piece: "Violin Concerto in D major, Op. 61 — I. Allegro ma non troppo (v1)"
+  duration_sec: 1469
+  license: pd
+  source: musopen
+  programs: []
 
-  - id: beethoven_violin_concerto_op61_iii_rondo_v1
-    file: "Music/Violin Concerto in D major, Op. 61 - III. Rondo_ Allegro.mp3"
-    composer: "Ludwig van Beethoven"
-    piece: "Violin Concerto in D major, Op. 61 — III. Rondo (Allegro) (v1)"
-    duration_sec: 623
-    license: pd
-    source: musopen
-    programs: []
+- id: beethoven_violin_concerto_op61_iii_rondo_v1
+  file: "Music/Violin Concerto in D major, Op. 61 - III. Rondo_ Allegro.mp3"
+  composer: "Ludwig van Beethoven"
+  piece: "Violin Concerto in D major, Op. 61 — III. Rondo (Allegro) (v1)"
+  duration_sec: 623
+  license: pd
+  source: musopen
+  programs: []
 
-  - id: beethoven_violin_concerto_op61_i_allegro_v2
-    file: "Music/Violin Concerto in D, Op. 61 - I. Allegro ma non troppo.mp3"
-    composer: "Ludwig van Beethoven"
-    piece: "Violin Concerto in D major, Op. 61 — I. Allegro ma non troppo (v2)"
-    duration_sec: 1324
-    license: pd
-    source: musopen
-    programs: []
+- id: beethoven_violin_concerto_op61_i_allegro_v2
+  file: "Music/Violin Concerto in D, Op. 61 - I. Allegro ma non troppo.mp3"
+  composer: "Ludwig van Beethoven"
+  piece: "Violin Concerto in D major, Op. 61 — I. Allegro ma non troppo (v2)"
+  duration_sec: 1324
+  license: pd
+  source: musopen
+  programs: []
 
-  - id: beethoven_violin_concerto_op61_ii_larghetto_iii_rondo
-    file: "Music/Violin Concerto in D, Op. 61 - II. Larghetto III. Rondo (Allegro).mp3"
-    composer: "Ludwig van Beethoven"
-    piece: "Violin Concerto in D, Op. 61 — II. Larghetto + III. Rondo"
-    duration_sec: 1196
-    license: pd
-    source: musopen
-    programs: []
+- id: beethoven_violin_concerto_op61_ii_larghetto_iii_rondo
+  file: "Music/Violin Concerto in D, Op. 61 - II. Larghetto III. Rondo (Allegro).mp3"
+  composer: "Ludwig van Beethoven"
+  piece: "Violin Concerto in D, Op. 61 — II. Larghetto + III. Rondo"
+  duration_sec: 1196
+  license: pd
+  source: musopen
+  programs: []
 
-  - id: beethoven_violin_concerto_op61_ii_larghetto
-    file: "Music/Violin Concerto in D, Op. 61 - II. Larghetto.mp3"
-    composer: "Ludwig van Beethoven"
-    piece: "Violin Concerto in D, Op. 61 — II. Larghetto"
-    duration_sec: 602
-    license: pd
-    source: musopen
-    programs: []
+- id: beethoven_violin_concerto_op61_ii_larghetto
+  file: "Music/Violin Concerto in D, Op. 61 - II. Larghetto.mp3"
+  composer: "Ludwig van Beethoven"
+  piece: "Violin Concerto in D, Op. 61 — II. Larghetto"
+  duration_sec: 602
+  license: pd
+  source: musopen
+  programs: []
 
-  - id: mozart_violin_sonata_k304_i_allegro
-    file: "Music/Violin Sonata no. 21, K. 304 - I. Allegro.mp3"
-    composer: "Wolfgang Amadeus Mozart"
-    piece: "Violin Sonata No. 21 in E minor, K. 304 — I. Allegro"
-    duration_sec: 378
-    license: pd
-    source: musopen
-    programs: []
+- id: mozart_violin_sonata_k304_i_allegro
+  file: "Music/Violin Sonata no. 21, K. 304 - I. Allegro.mp3"
+  composer: "Wolfgang Amadeus Mozart"
+  piece: "Violin Sonata No. 21 in E minor, K. 304 — I. Allegro"
+  duration_sec: 378
+  license: pd
+  source: musopen
+  programs: []
 
-  - id: mozart_violin_sonata_k304_ii_menuetto
-    file: "Music/Violin Sonata no. 21, K. 304 - II. - Tempo di Menuetto.mp3"
-    composer: "Wolfgang Amadeus Mozart"
-    piece: "Violin Sonata No. 21 in E minor, K. 304 — II. Tempo di Menuetto"
-    duration_sec: 333
-    license: pd
-    source: musopen
-    programs: []
+- id: mozart_violin_sonata_k304_ii_menuetto
+  file: "Music/Violin Sonata no. 21, K. 304 - II. - Tempo di Menuetto.mp3"
+  composer: "Wolfgang Amadeus Mozart"
+  piece: "Violin Sonata No. 21 in E minor, K. 304 — II. Tempo di Menuetto"
+  duration_sec: 333
+  license: pd
+  source: musopen
+  programs: []
 
-  # --- lp-00616_BeG: Musopen LP recordings, Beethoven collection (2026-08-04) ---
-  # 4 sides × ~30 min = ~125 min total. ID3 tags empty, identified from Musopen catalog context.
+# --- lp-00616_BeG: Musopen LP recordings, Beethoven collection (2026-08-04) ---
+# 4 sides × ~30 min = ~125 min total. ID3 tags empty, identified from Musopen catalog context.
 
-  - id: musopen_lp_00616_side_a1
-    file: "Music/lp-00616_BeG-record_1_side_A_64kb.mp3"
-    composer: "Ludwig van Beethoven"
-    piece: "Beethoven LP Recording lp-00616 — Record 1 Side A"
-    duration_sec: 2064
-    license: pd
-    source: musopen
-    programs: []
-    notes: 'Musopen LP scan. Exact piece TBD — likely chamber/orchestral works.'
+- id: musopen_lp_00616_side_a1
+  file: "Music/lp-00616_BeG-record_1_side_A_64kb.mp3"
+  composer: "Ludwig van Beethoven"
+  piece: "Beethoven LP Recording lp-00616 — Record 1 Side A"
+  duration_sec: 2064
+  license: pd
+  source: musopen
+  programs: []
+  notes: 'Musopen LP scan. Exact piece TBD — likely chamber/orchestral works.'
 
-  - id: musopen_lp_00616_side_b1
-    file: "Music/lp-00616_BeG-record_1_side_B_64kb.mp3"
-    composer: "Ludwig van Beethoven"
-    piece: "Beethoven LP Recording lp-00616 — Record 1 Side B"
-    duration_sec: 1644
-    license: pd
-    source: musopen
-    programs: []
-    notes: 'Musopen LP scan.'
+- id: musopen_lp_00616_side_b1
+  file: "Music/lp-00616_BeG-record_1_side_B_64kb.mp3"
+  composer: "Ludwig van Beethoven"
+  piece: "Beethoven LP Recording lp-00616 — Record 1 Side B"
+  duration_sec: 1644
+  license: pd
+  source: musopen
+  programs: []
+  notes: 'Musopen LP scan.'
 
-  - id: musopen_lp_00616_side_a2
-    file: "Music/lp-00616_BeG-record_2_side_A_64kb.mp3"
-    composer: "Ludwig van Beethoven"
-    piece: "Beethoven LP Recording lp-00616 — Record 2 Side A"
-    duration_sec: 1740
-    license: pd
-    source: musopen
-    programs: []
-    notes: 'Musopen LP scan.'
+- id: musopen_lp_00616_side_a2
+  file: "Music/lp-00616_BeG-record_2_side_A_64kb.mp3"
+  composer: "Ludwig van Beethoven"
+  piece: "Beethoven LP Recording lp-00616 — Record 2 Side A"
+  duration_sec: 1740
+  license: pd
+  source: musopen
+  programs: []
+  notes: 'Musopen LP scan.'
 
-  - id: musopen_lp_00616_side_b2
-    file: "Music/lp-00616_BeG-record_2_side_B_64kb.mp3"
-    composer: "Ludwig van Beethoven"
-    piece: "Beethoven LP Recording lp-00616 — Record 2 Side B"
-    duration_sec: 2040
-    license: pd
-    source: musopen
-    programs: []
-    notes: 'Musopen LP scan.'
+- id: musopen_lp_00616_side_b2
+  file: "Music/lp-00616_BeG-record_2_side_B_64kb.mp3"
+  composer: "Ludwig van Beethoven"
+  piece: "Beethoven LP Recording lp-00616 — Record 2 Side B"
+  duration_sec: 2040
+  license: pd
+  source: musopen
+  programs: []
+  notes: 'Musopen LP scan.'
