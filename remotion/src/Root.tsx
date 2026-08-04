@@ -17,7 +17,6 @@ import { StarsBubblesLong, StarsBubblesLongProps } from "./StarsBubblesLong";
 import { TransformLong, TransformLongProps } from "./TransformLong";
 import { ShapeLearnLong2, ShapeLearnLong2Props } from "./ShapeLearnLong2";
 import { SensoryLoop, SensoryLoopProps } from "./SensoryLoop";
-import { NatureCalm, NatureCalmProps } from "./NatureCalm";
 import { OCDVehicles, OCDVehiclesProps } from "./OCDVehicles";
 import { PeekABoo, PeekABooProps } from "./PeekABoo";
 import { FactoryTransform, FactoryTransformProps } from "./FactoryTransform";
@@ -448,20 +447,9 @@ export const Root: React.FC = () => {
         } as SensoryLoopProps}
       />
 
-      {/* NatureCalm — 5-min calm nature loop (meadow/sunset/night/underwater) */}
-      <C
-        id="NatureCalm"
-        component={NatureCalm}
-        durationInFrames={FPS * 300}
-        fps={FPS}
-        width={1920}
-        height={1080}
-        defaultProps={{
-          theme: "meadow",
-          musicFile: "Gymnopedie No 1.mp3",
-          phaseOffset: 0,
-        } as NatureCalmProps}
-      />
+      {/* NatureCalm CSS composition REMOVED — CSS geometric shapes, DO NOT RE-ADD.
+          All nature_calm content uses DanceSpriteLong with 3D PNG sprites.
+          See generate_nature_calm.py and CLAUDE.md Rule 4. */}
 
       {/* OCDVehicles — satisfying vehicles parade, no text, universal */}
       <C

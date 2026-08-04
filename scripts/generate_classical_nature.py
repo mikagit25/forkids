@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+# FROZEN — DO NOT RUN. Uses NatureCalm CSS composition (geometric shapes, not 3D sprites).
+# NatureCalm composition has been REMOVED from Root.tsx. This script will fail at render.
+# For classical visuals use: make_visual_theme.py (AI FLUX images + Ken Burns).
+import sys
+sys.exit("BLOCKED: generate_classical_nature.py uses CSS NatureCalm (geometric shapes). "
+         "NatureCalm composition removed from Root.tsx. Use make_visual_theme.py instead.")
+
 """
 generate_classical_nature.py — Classical music + NatureCalm nature backgrounds.
 
