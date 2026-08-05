@@ -1,36 +1,81 @@
 id: focus_bach_violin_partita_01
-title_en: "Bach Violin Partitas Complete 🎻 {duration} | Focus & Study | Classical Night Relax"
+title_en: Bach Violin Partitas Complete 🎻 {duration} | Focus & Study | Classical Night Relax
 video_type: sleep_program
 track: calm_classics
 made_for_kids: false
 queue: output/queue_id
 visual_theme: rain_window
 loop_duration_sec: 240
-durations_hours: [1, 3]
-shuffle: false  # Partitas played in movement order
-
-# ~60 min — Violin Partita No. 1 (BWV 1002) complete + No. 2 + Chaconne
+durations_hours:
+- 1
+shuffle: false
 tracks:
-  - {id: bach_violin_partita_no1_bwv1002_allemanda,   composer: "Johann Sebastian Bach", piece: "Violin Partita No. 1, BWV 1002 — I. Allemanda",       duration_sec: 209, mood: opening}
-  - {id: bach_violin_partita_no1_bwv1002_double_ii,   composer: "Johann Sebastian Bach", piece: "Violin Partita No. 1, BWV 1002 — II. Double",          duration_sec: 191, mood: flowing}
-  - {id: bach_violin_partita_no1_bwv1002_corrente,    composer: "Johann Sebastian Bach", piece: "Violin Partita No. 1, BWV 1002 — III. Corrente",       duration_sec: 203, mood: dancing}
-  - {id: bach_violin_partita_no1_bwv1002_double_presto,composer: "Johann Sebastian Bach","piece": "Violin Partita No. 1, BWV 1002 — IV. Double (Presto)", duration_sec: 141, mood: bright}
-  - {id: bach_violin_partita_no1_bwv1002_sarabande,   composer: "Johann Sebastian Bach", piece: "Violin Partita No. 1, BWV 1002 — V. Sarabande",        duration_sec: 129, mood: contemplative}
-  - {id: bach_violin_partita_no1_bwv1002_double_vi,   composer: "Johann Sebastian Bach", piece: "Violin Partita No. 1, BWV 1002 — VI. Double",          duration_sec: 108, mood: lyrical}
-  - {id: bach_violin_partita_no1_bwv1002_tempo_di_borea,composer: "Johann Sebastian Bach","piece": "Violin Partita No. 1, BWV 1002 — VII. Tempo di Borea", duration_sec: 143, mood: lively}
-  - {id: bach_violin_partita_no1_bwv1002_double_viii, composer: "Johann Sebastian Bach", piece: "Violin Partita No. 1, BWV 1002 — VIII. Double",        duration_sec: 140, mood: closing}
-  - {id: bach_violin_partita_no_2_bwv_1004,           composer: "Johann Sebastian Bach", piece: "Violin Partita No. 2, BWV 1004 — Complete",            duration_sec: 523, mood: expressive}
-  - {id: bach_violin_partita_no2_bwv1004_chaconne_cello, composer: "Johann Sebastian Bach", piece: "Chaconne from Partita No. 2 (cello arr.)",           duration_sec: 872, mood: profound}
-  - {id: bach_cello_suite_no_1_prelude_in_g_bwv_1007, composer: "Johann Sebastian Bach", piece: "Cello Suite No. 1 — Prelude in G, BWV 1007",           duration_sec: 150, mood: bright_close}
-
+- id: bach_violin_partita_no1_bwv1002_allemanda
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — I. Allemanda
+  duration_sec: 209
+  mood: opening
+- id: bach_violin_partita_no1_bwv1002_double_ii
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — II. Double
+  duration_sec: 191
+  mood: flowing
+- id: bach_violin_partita_no1_bwv1002_corrente
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — III. Corrente
+  duration_sec: 203
+  mood: dancing
+- id: bach_violin_partita_no1_bwv1002_double_presto
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — IV. Double (Presto)
+  duration_sec: 141
+  mood: bright
+- id: bach_violin_partita_no1_bwv1002_sarabande
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — V. Sarabande
+  duration_sec: 129
+  mood: contemplative
+- id: bach_violin_partita_no1_bwv1002_double_vi
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — VI. Double
+  duration_sec: 108
+  mood: lyrical
+- id: bach_violin_partita_no1_bwv1002_tempo_di_borea
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — VII. Tempo di Borea
+  duration_sec: 143
+  mood: lively
+- id: bach_violin_partita_no1_bwv1002_double_viii
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — VIII. Double
+  duration_sec: 140
+  mood: closing
+- id: bach_violin_partita_no_2_bwv_1004
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 2, BWV 1004 — Complete
+  duration_sec: 523
+  mood: expressive
+- id: bach_violin_partita_no2_bwv1004_chaconne_cello
+  composer: Johann Sebastian Bach
+  piece: Chaconne from Partita No. 2 (cello arr.)
+  duration_sec: 872
+  mood: profound
+- id: bach_cello_suite_no_1_prelude_in_g_bwv_1007
+  composer: Johann Sebastian Bach
+  piece: Cello Suite No. 1 — Prelude in G, BWV 1007
+  duration_sec: 150
+  mood: bright_close
 tags:
-  - bach violin partita
-  - bach chaconne
-  - bach cello suite
-  - bach solo violin
-  - classical study music
-  - deep focus music
-  - baroque violin
-  - classical night relax
-  - bach focus
-  - violin music for study
+- bach violin partita
+- bach chaconne
+- bach cello suite
+- bach solo violin
+- classical study music
+- deep focus music
+- baroque violin
+- classical night relax
+- bach focus
+- violin music for study
+max_repeat: 2.0
+pad_from:
+- focus_classical_compilation_01

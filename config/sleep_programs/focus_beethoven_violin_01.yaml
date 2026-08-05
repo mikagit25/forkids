@@ -1,31 +1,54 @@
 id: focus_beethoven_violin_01
-title_en: "Beethoven Violin Concerto & Cello Sonatas 🎻 {duration} | Focus & Study | Classical Night Relax"
+title_en: Beethoven Violin Concerto & Cello Sonatas 🎻 {duration} | Focus & Study | Classical Night Relax
 video_type: sleep_program
 track: calm_classics
 made_for_kids: false
 queue: output/queue_id
 visual_theme: rain_window
 loop_duration_sec: 240
-durations_hours: [1, 3]
+durations_hours:
+- 1
 shuffle: true
-
-# ~122 min unique — Beethoven complete violin + cello works
 tracks:
-  - {id: beethoven_violin_concerto_op61_i_allegro_v1,          composer: "Ludwig van Beethoven", piece: "Violin Concerto Op. 61 — I. Allegro ma non troppo",      duration_sec: 1469, mood: grand}
-  - {id: beethoven_violin_concerto_op61_iii_rondo_v1,          composer: "Ludwig van Beethoven", piece: "Violin Concerto Op. 61 — III. Rondo (Allegro)",          duration_sec: 623,  mood: bright}
-  - {id: beethoven_violin_concerto_op61_ii_larghetto,          composer: "Ludwig van Beethoven", piece: "Violin Concerto Op. 61 — II. Larghetto",                 duration_sec: 602,  mood: lyrical}
-  - {id: beethoven_cello_sonata_no1_complete,                   composer: "Ludwig van Beethoven", piece: "Cello Sonata No. 1 in F major, Op. 5 No. 1 — Complete",  duration_sec: 1489, mood: intimate}
-  - {id: beethoven_piano_sonata_no_14_in_c_m_moonlight_op_27_no_2_i_adagio_so, composer: "Ludwig van Beethoven", piece: "Moonlight Sonata — I. Adagio sostenuto", duration_sec: 276, mood: nocturnal}
-  - {id: beethoven_symphony_no_5_in_cm_op_67_ii_andante_con_moto, composer: "Ludwig van Beethoven", piece: "Symphony No. 5 — II. Andante con moto",              duration_sec: 682,  mood: serene}
-
+- id: beethoven_violin_concerto_op61_i_allegro_v1
+  composer: Ludwig van Beethoven
+  piece: Violin Concerto Op. 61 — I. Allegro ma non troppo
+  duration_sec: 1469
+  mood: grand
+- id: beethoven_violin_concerto_op61_iii_rondo_v1
+  composer: Ludwig van Beethoven
+  piece: Violin Concerto Op. 61 — III. Rondo (Allegro)
+  duration_sec: 623
+  mood: bright
+- id: beethoven_violin_concerto_op61_ii_larghetto
+  composer: Ludwig van Beethoven
+  piece: Violin Concerto Op. 61 — II. Larghetto
+  duration_sec: 602
+  mood: lyrical
+- id: beethoven_cello_sonata_no1_complete
+  composer: Ludwig van Beethoven
+  piece: Cello Sonata No. 1 in F major, Op. 5 No. 1 — Complete
+  duration_sec: 1489
+  mood: intimate
+- id: beethoven_piano_sonata_no_14_in_c_m_moonlight_op_27_no_2_i_adagio_so
+  composer: Ludwig van Beethoven
+  piece: Moonlight Sonata — I. Adagio sostenuto
+  duration_sec: 276
+  mood: nocturnal
+- id: beethoven_symphony_no_5_in_cm_op_67_ii_andante_con_moto
+  composer: Ludwig van Beethoven
+  piece: Symphony No. 5 — II. Andante con moto
+  duration_sec: 682
+  mood: serene
 tags:
-  - beethoven violin concerto
-  - beethoven cello sonata
-  - beethoven focus music
-  - classical study music
-  - violin concerto
-  - beethoven piano
-  - deep focus
-  - classical night relax
-  - 1 hour beethoven
-  - orchestral music for study
+- beethoven violin concerto
+- beethoven cello sonata
+- beethoven focus music
+- classical study music
+- violin concerto
+- beethoven piano
+- deep focus
+- classical night relax
+- 1 hour beethoven
+- orchestral music for study
+max_repeat: 2.0

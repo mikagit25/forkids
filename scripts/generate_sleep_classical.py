@@ -447,6 +447,82 @@ def _get_mp3_duration(path: Path) -> float:
     return 0.0
 
 
+def compute_unique_minutes(program: dict, licenses_data: dict) -> float:
+    """Return total unique audio minutes available for this program (found tracks only)."""
+    total = 0
+    for t in program.get("tracks", []):
+        f = find_track_file(t["id"], licenses_data,
+                            composer=t.get("composer", ""),
+                            piece=t.get("piece", ""))
+        if f:
+            total += t.get("duration_sec") or _get_mp3_duration(f)
+    return total / 60.0
+
+
+def select_durations(requested: list[int], unique_min: float,
+                     max_repeat: float, program_id: str) -> list[int]:
+    """
+    Filter requested durations to those where repetition ≤ max_repeat.
+    Logs a clear warning for each skipped duration with recommendation.
+    """
+    approved = []
+    for h in requested:
+        target_min = h * 60
+        repeat_factor = target_min / unique_min if unique_min > 0 else 999
+        if repeat_factor <= max_repeat:
+            approved.append(h)
+        else:
+            log.warning(
+                f"  ⚠ SKIP {h}h — unique content {unique_min:.0f}min would repeat "
+                f"×{repeat_factor:.1f} (max allowed ×{max_repeat}). "
+                f"Need {target_min - unique_min:.0f}min more tracks to enable {h}h."
+            )
+    if not approved:
+        # Always generate at least 1h regardless
+        approved = [1]
+        log.warning(f"  ⚠ Falling back to 1h only — add more tracks to {program_id}")
+    return approved
+
+
+def pad_tracks_from_pool(found: list, target_secs: int, licenses_data: dict,
+                         pad_programs: list[str]) -> list:
+    """
+    Supplement found tracks with tracks from other programs until target_secs is covered.
+    Avoids duplicating tracks already in found.
+    """
+    existing_paths = {fp for fp, _ in found}
+    total_dur = sum(d for _, d in found)
+
+    for prog_id in pad_programs:
+        if total_dur >= target_secs:
+            break
+        prog_path = PROGRAMS / f"{prog_id}.yaml"
+        if not prog_path.exists():
+            log.warning(f"  Pad source not found: {prog_id}")
+            continue
+        pad_prog = yaml.safe_load(prog_path.read_text())
+        pool = []
+        for t in pad_prog.get("tracks", []):
+            f = find_track_file(t["id"], licenses_data,
+                                composer=t.get("composer", ""),
+                                piece=t.get("piece", ""))
+            if f and str(f) not in existing_paths:
+                dur = t.get("duration_sec") or _get_mp3_duration(f)
+                pool.append((str(f), dur))
+                existing_paths.add(str(f))
+        random.shuffle(pool)
+        for item in pool:
+            if total_dur >= target_secs:
+                break
+            found.append(item)
+            total_dur += item[1]
+        added_min = sum(d for _, d in found) / 60 - (total_dur - sum(item[1] for item in pool)) / 60
+        if pool:
+            log.info(f"  Padded from {prog_id}: +{len(pool)} tracks "
+                     f"(total now {sum(d for _, d in found)/60:.0f}min)")
+    return found
+
+
 def build_audio_track(program: dict, licenses_data: dict, out_dir: Path,
                       target_secs: int = 0) -> Path | None:
     """
@@ -473,6 +549,13 @@ def build_audio_track(program: dict, licenses_data: dict, out_dir: Path,
         log.warning("  No track files found — will generate visual-only (no audio)")
         return None
 
+    # Pad from other programs if configured and content is still short
+    pad_from = program.get("pad_from", [])
+    total_dur = sum(d for _, d in found)
+    if pad_from and target_secs > 0 and total_dur < target_secs:
+        log.info(f"  Content {total_dur/60:.0f}min < target — padding from: {pad_from}")
+        found = pad_tracks_from_pool(found, target_secs, licenses_data, pad_from)
+
     shuffle = program.get("shuffle", False)
     if shuffle:
         random.shuffle(found)
@@ -480,9 +563,9 @@ def build_audio_track(program: dict, licenses_data: dict, out_dir: Path,
     # Loop the playlist until we cover target_secs
     total_dur = sum(d for _, d in found)
     if target_secs > 0 and total_dur < target_secs:
-        reps = int(target_secs / total_dur) + 2
+        repeat_factor = target_secs / total_dur
         log.info(f"  Audio {total_dur/60:.1f}min < {target_secs/3600:.0f}h target "
-                 f"— {'shuffle-' if shuffle else ''}repeating playlist ×{reps}")
+                 f"— {'shuffle-' if shuffle else ''}repeating ×{repeat_factor:.1f}")
         if shuffle:
             # Each repeat cycle re-shuffled — no identical loop seam
             extended = list(found)
@@ -492,6 +575,7 @@ def build_audio_track(program: dict, licenses_data: dict, out_dir: Path,
                 extended.extend(cycle)
             found = extended
         else:
+            reps = int(target_secs / total_dur) + 2
             found = found * reps
 
     concat_list = out_dir / "concat_tracks.txt"
@@ -713,9 +797,17 @@ def cmd_generate_program(program_id: str, durations: list[int] | None,
     theme       = program["visual_theme"]
     track_type  = program.get("track", "calm_classics")
     queue       = QUEUE_EN if track_type == "kids_sleep" else QUEUE_CC
-    hours_list  = durations or program.get("durations_hours", [1, 3, 8])
+    requested   = durations or program.get("durations_hours", [1, 3])
+
+    # Validate durations against unique content — skip those with too much repetition
+    licenses_data_check = load_licenses()
+    unique_min  = compute_unique_minutes(program, licenses_data_check)
+    max_repeat  = program.get("max_repeat", 2.0)
+    hours_list  = select_durations(requested, unique_min, max_repeat, program_id)
 
     log.info(f"=== Program: {program_id} | theme: {theme} | queue: {queue.name} ===")
+    log.info(f"  Unique content: {unique_min:.0f}min | max_repeat: ×{max_repeat} "
+             f"| durations: {hours_list}h")
 
     loop_mp4 = None
     audio_mp3 = None

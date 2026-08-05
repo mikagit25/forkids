@@ -1,40 +1,88 @@
 id: focus_classical_miniatures_01
-title_en: "Classical Miniatures for Focus 🎼 {duration} | Debussy · Chopin · Granados · Bach"
+title_en: Classical Miniatures for Focus 🎼 {duration} | Debussy · Chopin · Granados · Bach
 video_type: focus_program
 track: calm_classics
 made_for_kids: false
 queue: output/queue_id
 visual_theme: rain_window
 loop_duration_sec: 240
-durations_hours: [1]
+durations_hours:
+- 1
 shuffle: true
-
-# Short classical gems — perfect background for work, study, reading.
-# Each piece is 1–5 min: natural breaks without distraction.
 tracks:
-  - {id: debussy_arabesque_no_1_andantino_con_moto,           composer: "Claude Debussy",      piece: "Arabesque No. 1 — Andantino con moto",              duration_sec: 274, mood: gentle_open}
-  - {id: granados_8_valses_poeticos_8_presto_guitar_arr_lopes, composer: "Enrique Granados",    piece: "8 Valses Poéticos No. 8 — Presto (guitar arr.)",    duration_sec: 137, mood: spanish}
-  - {id: chopin_mazurka_in_f_sharp_minor_op_6_no_1,           composer: "Frédéric Chopin",     piece: "Mazurka in F♯ minor, Op. 6 No. 1",                 duration_sec: 167, mood: wistful}
-  - {id: bach_cello_suite_no_1_prelude_in_g_bwv_1007,         composer: "Johann Sebastian Bach", piece: "Cello Suite No. 1 — Prelude in G, BWV 1007",      duration_sec: 150, mood: meditative}
-  - {id: debussy_arabesque_no_1_string_quartet_arr,            composer: "Claude Debussy",      piece: "Arabesque No. 1 (string quartet arr.)",             duration_sec: 262, mood: warm}
-  - {id: chopin_mazurka_in_c_sharp_minor_op_6_no_2,           composer: "Frédéric Chopin",     piece: "Mazurka in C♯ minor, Op. 6 No. 2",                 duration_sec: 139, mood: introspective}
-  - {id: handel_violin_sonata_in_f_major_hwv_370_iii_largo_for_trumpet_and, composer: "George Frideric Handel", piece: "Violin Sonata HWV 370 — III. Largo", duration_sec: 217, mood: stately}
-  - {id: chopin_mazurka_in_e_major_op_6_no_3,                 composer: "Frédéric Chopin",     piece: "Mazurka in E major, Op. 6 No. 3",                  duration_sec: 113, mood: bright}
-  - {id: debussy_fantaisie_op_79_andantino,                    composer: "Claude Debussy",      piece: "Fantaisie, Op. 79 — Andantino",                    duration_sec: 119, mood: dreamy}
-  - {id: chopin_etude_op_25_no_8_in_d_flat_major_sixths,      composer: "Frédéric Chopin",     piece: "Étude Op. 25 No. 8 in D♭ major 'Sixths'",         duration_sec: 65,  mood: delicate}
-  - {id: chopin_mazurka_in_a_flat_major_b_85,                 composer: "Frédéric Chopin",     piece: "Mazurka in A♭ major, B. 85",                       duration_sec: 89,  mood: flowing}
-  - {id: granados_8_valses_poeticos_8_presto_guitar_arr_lopes, composer: "Enrique Granados",    piece: "8 Valses Poéticos No. 8 — Presto (reprise)",       duration_sec: 137, mood: closing}
-
+- id: debussy_arabesque_no_1_andantino_con_moto
+  composer: Claude Debussy
+  piece: Arabesque No. 1 — Andantino con moto
+  duration_sec: 274
+  mood: gentle_open
+- id: granados_8_valses_poeticos_8_presto_guitar_arr_lopes
+  composer: Enrique Granados
+  piece: 8 Valses Poéticos No. 8 — Presto (guitar arr.)
+  duration_sec: 137
+  mood: spanish
+- id: chopin_mazurka_in_f_sharp_minor_op_6_no_1
+  composer: Frédéric Chopin
+  piece: Mazurka in F♯ minor, Op. 6 No. 1
+  duration_sec: 167
+  mood: wistful
+- id: bach_cello_suite_no_1_prelude_in_g_bwv_1007
+  composer: Johann Sebastian Bach
+  piece: Cello Suite No. 1 — Prelude in G, BWV 1007
+  duration_sec: 150
+  mood: meditative
+- id: debussy_arabesque_no_1_string_quartet_arr
+  composer: Claude Debussy
+  piece: Arabesque No. 1 (string quartet arr.)
+  duration_sec: 262
+  mood: warm
+- id: chopin_mazurka_in_c_sharp_minor_op_6_no_2
+  composer: Frédéric Chopin
+  piece: Mazurka in C♯ minor, Op. 6 No. 2
+  duration_sec: 139
+  mood: introspective
+- id: handel_violin_sonata_in_f_major_hwv_370_iii_largo_for_trumpet_and
+  composer: George Frideric Handel
+  piece: Violin Sonata HWV 370 — III. Largo
+  duration_sec: 217
+  mood: stately
+- id: chopin_mazurka_in_e_major_op_6_no_3
+  composer: Frédéric Chopin
+  piece: Mazurka in E major, Op. 6 No. 3
+  duration_sec: 113
+  mood: bright
+- id: debussy_fantaisie_op_79_andantino
+  composer: Claude Debussy
+  piece: Fantaisie, Op. 79 — Andantino
+  duration_sec: 119
+  mood: dreamy
+- id: chopin_etude_op_25_no_8_in_d_flat_major_sixths
+  composer: Frédéric Chopin
+  piece: Étude Op. 25 No. 8 in D♭ major 'Sixths'
+  duration_sec: 65
+  mood: delicate
+- id: chopin_mazurka_in_a_flat_major_b_85
+  composer: Frédéric Chopin
+  piece: Mazurka in A♭ major, B. 85
+  duration_sec: 89
+  mood: flowing
+- id: granados_8_valses_poeticos_8_presto_guitar_arr_lopes
+  composer: Enrique Granados
+  piece: 8 Valses Poéticos No. 8 — Presto (reprise)
+  duration_sec: 137
+  mood: closing
 tags:
-  - debussy
-  - chopin
-  - granados
-  - bach
-  - classical miniatures
-  - focus music
-  - study music
-  - piano music
-  - work music
-  - concentration
-  - calm classics
-  - short classical pieces
+- debussy
+- chopin
+- granados
+- bach
+- classical miniatures
+- focus music
+- study music
+- piano music
+- work music
+- concentration
+- calm classics
+- short classical pieces
+max_repeat: 2.0
+pad_from:
+- focus_classical_compilation_01
