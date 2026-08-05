@@ -39,8 +39,23 @@ LANG_MAP = {
     "fr": "French",
     "pt": "Portuguese (Brazilian)",
     "id": "Indonesian (Bahasa)",
+    "de": "German",
+    "it": "Italian",
+    "ja": "Japanese",
+    "ru": "Russian",
+    "ko": "Korean",
+    "zh-Hans": "Chinese (Simplified)",
+    "ar": "Arabic (Modern Standard)",
 }
 ALL_LANGS = list(LANG_MAP.keys())
+
+# Default language sets per channel type
+# kids: global general audience
+# adult/CC: classical music markets — DE/IT/JA are the core, plus global ES/FR/PT/RU/AR
+LANGS_BY_CHANNEL = {
+    "en": ["es", "fr", "pt", "id"],
+    "id": ["de", "it", "ja", "ru", "es", "fr", "pt", "ko", "ar"],
+}
 
 # Per-channel config: token paths and queue directory
 CHANNEL_CONFIG = {
@@ -50,6 +65,7 @@ CHANNEL_CONFIG = {
         "queue_dir":  ROOT / "output" / "queue",
         "type":       "kids",    # used to pick translation prompt style
         "reauth":     "--channel en",
+        "default_langs": LANGS_BY_CHANNEL["en"],
     },
     "id": {
         "json":       ROOT / "credentials" / "youtube_token_id.json",
@@ -57,6 +73,7 @@ CHANNEL_CONFIG = {
         "queue_dir":  ROOT / "output" / "queue_id",
         "type":       "adult",
         "reauth":     "--channel id",
+        "default_langs": LANGS_BY_CHANNEL["id"],
     },
 }
 
@@ -70,33 +87,43 @@ def _together_key() -> str:
 def translate_field(text: str, target_lang: str, field: str,
                     api_key: str, channel_type: str = "kids") -> str:
     lang_name = LANG_MAP[target_lang]
+    is_arabic = target_lang == "ar"
+
     if field == "title":
         if channel_type == "adult":
             instruction = (
                 f"Translate this YouTube video title for an adult sleep/focus/relaxation channel into {lang_name}. "
                 "Keep it concise (under 100 chars), calm and elegant. "
-                "Keep emojis as-is. Return only the translated title, no quotes, no explanation."
+                "Keep emojis as-is. Keep composer names and piece titles in their original Latin-script form. "
+                + ("Use Modern Standard Arabic (فصحى). " if is_arabic else "")
+                + "Return only the translated title, no quotes, no explanation."
             )
         else:
             instruction = (
                 f"Translate this YouTube video title for a toddler/baby channel into {lang_name}. "
                 "Keep it short (under 100 chars), fun, and child-friendly. "
-                "Keep emojis as-is. Return only the translated title, no quotes, no explanation."
+                "Keep emojis as-is. "
+                + ("Use Modern Standard Arabic (فصحى). " if is_arabic else "")
+                + "Return only the translated title, no quotes, no explanation."
             )
     else:
         if channel_type == "adult":
             instruction = (
                 f"Translate this YouTube video description for an adult classical music / sleep / relaxation channel into {lang_name}. "
-                "Keep the same structure, tone, track listings, composer attributions, and emojis. "
-                "Keep hashtags in English at the end. Keep channel handles (@ symbols) unchanged. "
-                "Return only the translated description, no extra commentary."
+                "Keep the same structure, tone, and emojis. "
+                "Keep composer names, piece titles, and opus numbers in their original Latin-script form (e.g. 'Chopin', 'Nocturne Op. 9'). "
+                "Keep all hashtags in English at the end. Keep channel handles (@ symbols) unchanged. "
+                "Keep music attribution lines (🎵 Music: ...) accurate and untranslated for proper names. "
+                + ("Use Modern Standard Arabic (فصحى). The text direction will be handled by YouTube automatically. " if is_arabic else "")
+                + "Return only the translated description, no extra commentary."
             )
         else:
             instruction = (
                 f"Translate this YouTube video description for a toddler/baby channel into {lang_name}. "
                 "Keep the same structure, tone, and emojis. Keep hashtags in English at the end. "
                 "Keep channel handles (@ symbols) unchanged. "
-                "Return only the translated description, no extra commentary."
+                + ("Use Modern Standard Arabic (فصحى). " if is_arabic else "")
+                + "Return only the translated description, no extra commentary."
             )
 
     payload = json.dumps({
@@ -106,7 +133,7 @@ def translate_field(text: str, target_lang: str, field: str,
             {"role": "user",   "content": text},
         ],
         "temperature": 0.3,
-        "max_tokens": 1500,
+        "max_tokens": 2500,
     }).encode()
 
     req = urllib.request.Request(
@@ -115,6 +142,7 @@ def translate_field(text: str, target_lang: str, field: str,
         headers={
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
+            "User-Agent": "python-requests/2.31.0",
         },
         method="POST",
     )
@@ -265,15 +293,18 @@ def main():
 
     parser.add_argument("--channel", choices=list(CHANNEL_CONFIG.keys()), default="en",
                         help="Channel: en=Happy Bear Kids, id=Calm Classics (default: en)")
-    parser.add_argument("--langs", default=",".join(ALL_LANGS),
-                        help=f"Comma-separated BCP-47 codes. Default: {','.join(ALL_LANGS)}")
+    parser.add_argument("--langs", default=None,
+                        help="Comma-separated BCP-47 codes. Default: per-channel (kids=es,fr,pt,id; CC=de,it,ja,ru,es,fr,pt,ko)")
     parser.add_argument("--title",       help="Title override (only with --video-id)")
     parser.add_argument("--description", help="Description override (only with --video-id)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Show translations without updating YouTube")
     args = parser.parse_args()
 
-    langs = [l.strip() for l in args.langs.split(",") if l.strip() in LANG_MAP]
+    channel = args.channel
+    default_langs = CHANNEL_CONFIG[channel]["default_langs"]
+    raw_langs = args.langs if args.langs else ",".join(default_langs)
+    langs = [l.strip() for l in raw_langs.split(",") if l.strip() in LANG_MAP]
     if not langs:
         print(f"Error: no valid language codes. Choose from: {','.join(ALL_LANGS)}")
         sys.exit(1)
@@ -282,7 +313,6 @@ def main():
         print(f"Error: {TOGETHER_KEY_FILE} not found")
         sys.exit(1)
     api_key = _together_key()
-    channel = args.channel
 
     if args.video_id:
         title = args.title or ""

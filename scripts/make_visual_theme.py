@@ -34,6 +34,7 @@ QUEUE_ID         = ROOT / "output" / "queue_id"
 VISUAL_LOOPS_DIR = ROOT / "output" / "_visual_loops"
 ASSETS_DIR       = ROOT / "assets" / "visual_themes"
 MUSIC_DIR        = ROOT / "assets" / "music" / "classical" / "Music"
+MEDITATION_DIR   = ROOT / "assets" / "audio" / "suno_meditation" / "Meditation"
 TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 DATE_STR         = datetime.now().strftime("%Y%m%d")
 
@@ -59,19 +60,37 @@ THEMES: dict[str, dict] = {
         "title": "Aurora Borealis 🌌 {duration} | Classical Music for Sleep | Calm Classics",
         "desc": (
             "Drift into peaceful sleep beneath the dancing northern lights. "
-            "{duration} of stunning aurora borealis visuals paired with timeless classical music. "
-            "Let the vivid greens and purples of the aurora carry you into deep, restful sleep.\n\n"
-            "🎵 Music: Frédéric Chopin — Nocturnes | Ludwig van Beethoven — Moonlight Sonata\n"
+            "{duration} of stunning aurora borealis visuals paired with the most beloved classical piano music — "
+            "Chopin Nocturnes and Beethoven's Moonlight Sonata, performed from public domain recordings.\n\n"
+            "🎵 Music: Frédéric Chopin — Nocturnes Op. 9 | Ludwig van Beethoven — Moonlight Sonata "
+            "| Ralph Vaughan Williams — Fantasia on a Theme by Thomas Tallis\n"
             "🎨 Visuals: AI-generated aurora borealis scenes\n"
             "📜 All recordings: Public Domain (Musopen.org)\n\n"
-            "Perfect for: sleep, relaxation, meditation, stress relief, studying\n\n"
-            "Subscribe for nightly classical music programs → @ClassicalNightRelax\n\n"
+            "Whether you're looking for deep sleep music, calming classical music for the night, "
+            "or simply a beautiful visual experience to wind down after a long day — this video was "
+            "made for you. The soft piano melodies of Chopin have been used as sleep music for "
+            "generations, and paired with the mesmerising movement of the northern lights, they "
+            "create an atmosphere that quiets an anxious mind and slows the nervous system naturally.\n\n"
+            "Many viewers use this as background music for deep sleep, leaving it on all night. "
+            "The audio transitions smoothly and never startles — ideal classical music for sleeping "
+            "without interruption. Others use it as study music, meditation music, or simply as "
+            "relaxing background music while reading or unwinding.\n\n"
+            "Why classical music helps you sleep:\n"
+            "✦ Reduces heart rate and blood pressure within minutes\n"
+            "✦ Lowers cortisol — the body's primary stress hormone\n"
+            "✦ The predictable melodic structure signals safety to the brain\n"
+            "✦ No lyrics — no cognitive engagement, allowing the mind to rest\n\n"
+            "🔔 Subscribe for new classical music sleep programs every week → @ClassicalNightRelax\n\n"
             "#AuroraBorealis #NorthernLights #SleepMusic #ClassicalMusic #CalmClassics "
-            "#SleepingMusic #RelaxingMusic #MeditationMusic #StudyMusic #ClassicalNightRelax"
+            "#ClassicalMusicForSleeping #DeepSleepMusic #RelaxingClassicalMusic "
+            "#ChopinNocturnes #BeethovenMoonlightSonata #MeditationMusic #StudyMusic "
+            "#InsomniaCure #ClassicalNightRelax #SleepingMusic #CalmingMusic"
         ),
         "tags": ["aurora borealis", "northern lights", "sleep music", "classical music",
                  "calm classics", "relaxing music", "chopin", "beethoven", "moonlight sonata",
-                 "sleep aid", "study music", "meditation", "insomnia relief"],
+                 "sleep aid", "study music", "meditation", "insomnia relief",
+                 "sleep music for deep sleep", "classical music for sleeping",
+                 "music to sleep", "relaxing sleep music", "deep sleep music"],
         "thumb_prompt": (
             "aurora borealis vivid green and purple northern lights dancing above snow-covered "
             "pine forest, frozen lake reflection, stars, breathtaking nature photography, "
@@ -102,20 +121,34 @@ THEMES: dict[str, dict] = {
     "cherry_blossoms": {
         "title": "Cherry Blossoms 🌸 {duration} | Japanese Classical Music | Calm Classics",
         "desc": (
-            "Float beneath a canopy of cherry blossoms with {duration} of serene classical music. "
-            "AI-illustrated sakura scenes in full bloom, paired with gentle piano and chamber pieces "
-            "perfect for sleep, meditation, or quiet focus.\n\n"
-            "🎵 Music: Frédéric Chopin — Nocturnes | W.A. Mozart — Serenade in G Major\n"
-            "🎨 Visuals: AI-generated cherry blossom scenes\n"
+            "Float beneath a canopy of cherry blossoms with {duration} of serene, delicate classical music. "
+            "Sakura petals drift across AI-illustrated spring scenes while Chopin's most gentle Nocturnes "
+            "and Mozart's Serenade in G flow without interruption — the perfect companion for deep, "
+            "untroubled sleep.\n\n"
+            "🎵 Music: Frédéric Chopin — Nocturnes Op. 9 | W.A. Mozart — Serenade in G Major "
+            "| Claude Debussy — Arabesque No. 1\n"
+            "🎨 Visuals: AI-generated cherry blossom and sakura scenes\n"
             "📜 All recordings: Public Domain (Musopen.org)\n\n"
-            "Perfect for: sleep, relaxation, study, meditation, spring ambiance\n\n"
-            "Subscribe → @ClassicalNightRelax\n\n"
+            "The Japanese concept of 'mono no aware' — the bittersweet beauty of passing things — "
+            "runs through both the falling sakura petals and the soft, wistful quality of Chopin's "
+            "piano writing. Together they create one of the most effective sleep music environments "
+            "we know: visually calming, emotionally resolved, and completely free of jarring moments.\n\n"
+            "This video works as classical music for sleeping because the pieces are carefully chosen "
+            "for their soft dynamics and gentle tempo — nothing loud, nothing sudden. Perfect as "
+            "music to fall asleep to, as relaxing study music, or as meditation background.\n\n"
+            "✦ No ads mid-video — seamless listening all night\n"
+            "✦ Soft audio levels — safe to leave on while sleeping\n"
+            "✦ Looped visuals — screen-friendly for bedtime viewing\n\n"
+            "🔔 Subscribe → @ClassicalNightRelax\n\n"
             "#CherryBlossoms #Sakura #SleepMusic #ClassicalMusic #CalmClassics "
-            "#JapaneseAmbiance #RelaxingMusic #Chopin #Mozart #ClassicalNightRelax"
+            "#ClassicalMusicForSleeping #RelaxingClassicalMusic #ChopinNocturnes #Mozart "
+            "#DeepSleepMusic #MeditationMusic #StudyMusic #JapaneseAmbiance #ClassicalNightRelax"
         ),
         "tags": ["cherry blossoms", "sakura", "japanese", "sleep music", "classical music",
                  "calm classics", "chopin nocturnes", "mozart", "spring ambiance",
-                 "relaxing music", "meditation", "study music", "peaceful"],
+                 "relaxing music", "meditation", "study music", "peaceful",
+                 "sleep music for deep sleep", "classical music for sleeping",
+                 "music to sleep", "relaxing sleep music"],
         "thumb_prompt": (
             "Japanese cherry blossom sakura tree in full bloom, pink petals falling like snow, "
             "peaceful garden path, soft spring sunlight filtering through, dreamy atmosphere, "
@@ -146,20 +179,35 @@ THEMES: dict[str, dict] = {
     "mountain_snow": {
         "title": "Mountain Snow ⛰️ {duration} | Classical Music for Deep Sleep | Calm Classics",
         "desc": (
-            "Rest beside majestic snow-capped mountains with {duration} of grand classical music. "
-            "Breathtaking alpine landscapes rendered in stunning detail, perfectly matched with "
-            "orchestral masterpieces for the deepest, most restful sleep.\n\n"
-            "🎵 Music: Ralph Vaughan Williams — Fantasia on a Theme by Thomas Tallis | Chopin Nocturnes\n"
-            "🎨 Visuals: AI-generated alpine mountain scenes\n"
+            "Rest beside majestic snow-capped mountains with {duration} of grand, sweeping classical music — "
+            "the ideal deep sleep music for nights when your mind refuses to quiet down.\n\n"
+            "🎵 Music: Ralph Vaughan Williams — Fantasia on a Theme by Thomas Tallis "
+            "| Frédéric Chopin — Nocturnes Op. 9 | Ludwig van Beethoven — Moonlight Sonata\n"
+            "🎨 Visuals: AI-generated alpine and mountain snow scenes\n"
             "📜 All recordings: Public Domain (Musopen.org)\n\n"
-            "Perfect for: deep sleep, relaxation, meditation, stress relief\n\n"
-            "Subscribe → @ClassicalNightRelax\n\n"
+            "There is something about mountains that silences the noise inside us. "
+            "The sheer scale — glaciers, frozen summits, the infinite dark sky — makes our "
+            "daily worries feel appropriately small. Vaughan Williams' Fantasia on a Theme by "
+            "Thomas Tallis, one of the most profoundly calming pieces ever written, fills that "
+            "vast space perfectly. This is classical music for deep sleep in the truest sense: "
+            "music that doesn't just accompany sleep but actively induces it.\n\n"
+            "Researchers have consistently found that slow-tempo classical music — below 80 BPM — "
+            "synchronises with the body's resting heart rate and guides the listener toward "
+            "sleep. This video stays within that range throughout, making it reliable music "
+            "to fall asleep to, even for those who struggle with insomnia.\n\n"
+            "✦ Ideal for: deep sleep, insomnia relief, meditation, stress relief, relaxation\n"
+            "✦ No sudden loud passages — safe to leave on all night at low volume\n"
+            "✦ Works with headphones, speakers, or TV — the visual is calming either way\n\n"
+            "🔔 Subscribe → @ClassicalNightRelax\n\n"
             "#MountainSnow #AlpineLandscape #SleepMusic #ClassicalMusic #CalmClassics "
-            "#VaughanWilliams #DeepSleep #RelaxingMusic #ClassicalNightRelax"
+            "#DeepSleepMusic #ClassicalMusicForSleeping #VaughanWilliams #ChopinNocturnes "
+            "#RelaxingClassicalMusic #InsomniaCure #MeditationMusic #ClassicalNightRelax"
         ),
         "tags": ["mountain snow", "alpine", "winter landscape", "sleep music", "classical music",
                  "calm classics", "vaughan williams", "chopin", "deep sleep",
-                 "relaxing music", "meditation", "stress relief", "nature"],
+                 "relaxing music", "meditation", "stress relief", "nature",
+                 "sleep music for deep sleep", "classical music for sleeping",
+                 "deep sleep music", "relaxing sleep music"],
         "thumb_prompt": (
             "majestic snow-capped mountain peaks at sunrise, alpenglow pink and orange on glaciers, "
             "dark pine forest below, pristine alpine lake reflection, breathtaking, "
@@ -189,20 +237,36 @@ THEMES: dict[str, dict] = {
     "fireplace_cabin": {
         "title": "Cozy Fireplace 🔥 {duration} | Classical Music for Sleep | Calm Classics",
         "desc": (
-            "Settle in by a warm, crackling fireplace for {duration} of soothing classical music. "
-            "Cozy cabin interiors with glowing embers and soft candlelight — the perfect atmosphere "
-            "for winding down, reading, or drifting off to sleep.\n\n"
-            "🎵 Music: Frédéric Chopin — Nocturnes & Mazurkas | Debussy — Arabesque\n"
-            "🎨 Visuals: AI-generated cozy fireplace cabin scenes\n"
+            "Settle into the warmth of a winter cabin fireplace with {duration} of soft, "
+            "soothing classical music. Glowing embers, candlelight, snow falling quietly outside — "
+            "and Chopin's most intimate piano works accompanying every breath of warmth.\n\n"
+            "🎵 Music: Frédéric Chopin — Nocturnes & Mazurkas | Claude Debussy — Arabesque No. 1\n"
+            "🎨 Visuals: AI-generated cozy fireplace and cabin scenes\n"
             "📜 All recordings: Public Domain (Musopen.org)\n\n"
-            "Perfect for: sleep, reading, cozy evenings, winter ambiance, relaxation\n\n"
-            "Subscribe → @ClassicalNightRelax\n\n"
+            "The fireplace has always been the original sleep aid — the soft crackle, the warmth, "
+            "the contained living flame that asks nothing of you. Paired with Chopin's late-night "
+            "piano writing — music he composed by candlelight, in rooms not unlike the ones you see "
+            "here — this becomes one of the most natural and comfortable sleep environments you can "
+            "create on a screen.\n\n"
+            "This video works beautifully as relaxing classical music for evenings when you want "
+            "warmth and calm without silence. Whether you're reading, journaling, or simply "
+            "trying to let the day go, the combination of soft firelight and slow piano acts as "
+            "a gentle signal to the body that it's time to rest. Many viewers use it as "
+            "music to sleep to on winter nights — the visual warmth compensates for the "
+            "cold outside.\n\n"
+            "✦ Perfect for: sleep, cozy evenings, reading, winter ambiance, unwinding\n"
+            "✦ Consistent volume — no sudden loud passages, safe for nighttime listening\n"
+            "✦ Beautiful on any screen as a fireplace atmosphere substitute\n\n"
+            "🔔 Subscribe → @ClassicalNightRelax\n\n"
             "#Fireplace #CozyVibes #SleepMusic #ClassicalMusic #CalmClassics "
-            "#CozyCabin #WinterAmbiance #Chopin #RelaxingMusic #ClassicalNightRelax"
+            "#ClassicalMusicForSleeping #RelaxingClassicalMusic #ChopinNocturnes #Debussy "
+            "#CozyCabin #WinterAmbiance #DeepSleepMusic #MusicToSleep #ClassicalNightRelax"
         ),
         "tags": ["fireplace", "cozy cabin", "winter ambiance", "sleep music", "classical music",
                  "calm classics", "chopin", "debussy", "cozy vibes",
-                 "relaxing music", "reading ambiance", "hygge", "warm"],
+                 "relaxing music", "reading ambiance", "hygge", "warm",
+                 "sleep music for deep sleep", "classical music for sleeping",
+                 "music to sleep", "relaxing sleep music"],
         "thumb_prompt": (
             "cozy fireplace in rustic log cabin, crackling fire with warm amber glow, "
             "armchair with blanket nearby, snow falling outside window, warm and inviting, "
@@ -234,19 +298,37 @@ THEMES: dict[str, dict] = {
         "title": "Zen Garden 🪨 {duration} | Classical Music for Focus | Calm Classics",
         "desc": (
             "Find stillness in the timeless beauty of a Japanese zen garden. "
-            "{duration} of meditative classical music paired with raked sand, stone lanterns, "
-            "and bonsai — ideal for deep focus, meditation, or peaceful sleep.\n\n"
-            "🎵 Music: Johann Sebastian Bach — Cello Suite No. 1 | Debussy — Arabesque\n"
+            "{duration} of deeply meditative classical music paired with raked sand, stone lanterns, "
+            "and bonsai — among the finest classical music for focus and concentration available.\n\n"
+            "🎵 Music: Johann Sebastian Bach — Cello Suite No. 1, BWV 1007 "
+            "| Claude Debussy — Arabesque No. 1 | W.A. Mozart — Serenade in G Major "
+            "| Frédéric Chopin — Nocturne Op. 9 No. 2\n"
             "🎨 Visuals: AI-generated Japanese zen garden scenes\n"
             "📜 All recordings: Public Domain (Musopen.org)\n\n"
-            "Perfect for: focus, meditation, yoga, sleep, study\n\n"
-            "Subscribe → @ClassicalNightRelax\n\n"
+            "Bach's Cello Suite No. 1 is arguably the most studied piece in the classical "
+            "repertoire — and not by accident. Its mathematical clarity and unhurried forward "
+            "motion make it ideal classical music for studying: it occupies just enough of the "
+            "listening brain to suppress distraction, without demanding conscious attention. "
+            "Paired with the visual discipline of a zen garden — where every stone is placed "
+            "with intention — the result is a focused calm that's difficult to find anywhere else.\n\n"
+            "Students, writers, programmers, and designers regularly report that instrumental "
+            "classical music for concentration outperforms silence for sustained creative work. "
+            "This video is designed with exactly that in mind: no sudden changes in dynamics, "
+            "no dramatic passages, just a continuous meditative flow that supports deep work "
+            "or deep sleep equally well.\n\n"
+            "✦ Ideal for: deep focus, study sessions, meditation, yoga, writing, coding\n"
+            "✦ Also works as sleep music — the slow tempo suits both purposes\n"
+            "✦ Loop-friendly: designed for extended listening without interruption\n\n"
+            "🔔 Subscribe → @ClassicalNightRelax\n\n"
             "#ZenGarden #Japanese #FocusMusic #ClassicalMusic #CalmClassics "
-            "#Meditation #Bach #Debussy #StudyMusic #ClassicalNightRelax"
+            "#ClassicalMusicForStudying #ClassicalMusicForFocus #Bach #Debussy "
+            "#MeditationMusic #StudyMusic #DeepFocusMusic #ClassicalNightRelax #YogaMusic"
         ),
         "tags": ["zen garden", "japanese garden", "focus music", "classical music",
                  "calm classics", "bach", "debussy", "meditation",
-                 "study music", "yoga", "mindfulness", "peaceful"],
+                 "study music", "yoga", "mindfulness", "peaceful",
+                 "classical music for studying", "classical music for focus",
+                 "sleep music for deep sleep", "relaxing sleep music"],
         "thumb_prompt": (
             "Japanese zen garden with raked white sand patterns, large mossy stones, "
             "bamboo water fountain, stone lantern, soft morning mist, peaceful and serene, "
@@ -277,20 +359,37 @@ THEMES: dict[str, dict] = {
     "lavender_fields": {
         "title": "Lavender Fields 💜 {duration} | Classical Music for Sleep | Calm Classics",
         "desc": (
-            "Dream among endless rows of purple lavender stretching to the horizon. "
-            "{duration} of soothing classical music paired with the most tranquil Provence landscapes — "
-            "the perfect sleep companion.\n\n"
-            "🎵 Music: Frédéric Chopin — Nocturnes | W.A. Mozart — Serenade in G Major\n"
-            "🎨 Visuals: AI-generated lavender field scenes\n"
+            "Close your eyes and picture endless rows of purple lavender running to the horizon "
+            "under a warm Provence sunset. {duration} of the most quietly beautiful classical music — "
+            "Chopin Nocturnes and Mozart's Serenade — as the perfect sleep companion.\n\n"
+            "🎵 Music: Frédéric Chopin — Nocturnes Op. 9 | W.A. Mozart — Serenade in G Major "
+            "| Claude Debussy — Arabesque No. 1\n"
+            "🎨 Visuals: AI-generated Provence lavender field scenes\n"
             "📜 All recordings: Public Domain (Musopen.org)\n\n"
-            "Perfect for: sleep, relaxation, meditation, stress relief, nature ambiance\n\n"
-            "Subscribe → @ClassicalNightRelax\n\n"
+            "Lavender has been used as a natural sleep remedy for centuries — and there is real "
+            "science behind it. The scent activates the parasympathetic nervous system, slowing "
+            "heart rate and encouraging sleep. This video pairs that visual association with "
+            "classical music for sleeping that works along the same principles: slow, predictable, "
+            "emotionally warm, with no jarring transitions.\n\n"
+            "The Chopin Nocturnes were written as 'night pieces' — music literally intended for "
+            "the hours between dusk and dawn. They are among the most effective relaxing sleep "
+            "music ever composed, and in the context of sun-drenched lavender fields they feel "
+            "both intimate and expansive. This is music to fall asleep to that also rewards "
+            "conscious listening — equally at home in a meditation session or as soft background "
+            "music during an evening meal.\n\n"
+            "✦ Perfect for: sleep, relaxation, stress relief, meditation, nature ambiance\n"
+            "✦ Long-form — designed to play through the night without waking you\n"
+            "✦ No ads, no interruptions, no sudden changes in volume\n\n"
+            "🔔 Subscribe → @ClassicalNightRelax\n\n"
             "#LavenderFields #Provence #SleepMusic #ClassicalMusic #CalmClassics "
-            "#RelaxingMusic #NatureAmbiance #Chopin #ClassicalNightRelax"
+            "#ClassicalMusicForSleeping #ChopinNocturnes #Mozart #RelaxingClassicalMusic "
+            "#NatureAmbiance #DeepSleepMusic #MusicToFallAsleepTo #ClassicalNightRelax"
         ),
         "tags": ["lavender fields", "provence", "france", "sleep music", "classical music",
                  "calm classics", "chopin", "mozart", "purple", "nature ambiance",
-                 "relaxing music", "meditation", "spring", "flowers"],
+                 "relaxing music", "meditation", "spring", "flowers",
+                 "sleep music for deep sleep", "classical music for sleeping",
+                 "music to sleep", "relaxing sleep music"],
         "thumb_prompt": (
             "endless lavender fields in Provence France, purple rows to the horizon, "
             "old stone farmhouse in distance, golden sunset light, warm summer atmosphere, "
@@ -321,20 +420,37 @@ THEMES: dict[str, dict] = {
     "deep_space": {
         "title": "Deep Space 🌌 {duration} | Classical Music for Sleep | Calm Classics",
         "desc": (
-            "Float through the infinite cosmos with {duration} of transcendent classical music. "
-            "Stunning nebulae, star fields, and galaxies rendered in breathtaking detail — "
-            "the perfect backdrop for deep sleep or profound meditation.\n\n"
-            "🎵 Music: Ralph Vaughan Williams — Fantasia on a Theme by Thomas Tallis | Beethoven — Moonlight Sonata\n"
-            "🎨 Visuals: AI-generated deep space imagery\n"
+            "Float through the infinite cosmos with {duration} of transcendent, expansive classical music. "
+            "Vivid nebulae, spiral galaxies, and glittering star fields — paired with orchestral "
+            "masterpieces that feel as vast as the universe itself.\n\n"
+            "🎵 Music: Ralph Vaughan Williams — Fantasia on a Theme by Thomas Tallis "
+            "| Ludwig van Beethoven — Moonlight Sonata | Frédéric Chopin — Nocturne Op. 9 No. 1\n"
+            "🎨 Visuals: AI-generated deep space and nebula imagery\n"
             "📜 All recordings: Public Domain (Musopen.org)\n\n"
-            "Perfect for: deep sleep, meditation, relaxation, stress relief\n\n"
-            "Subscribe → @ClassicalNightRelax\n\n"
+            "There are few pieces of music that match the scale of looking at a nebula. "
+            "Vaughan Williams' Fantasia on a Theme by Thomas Tallis is one of them — a vast, "
+            "slow-moving string work that seems to expand outward like light from a distant star. "
+            "Alongside Beethoven's Moonlight Sonata, it creates deep sleep music of a particularly "
+            "meditative quality: music that asks you to let go of the human scale entirely and "
+            "simply drift in something enormous and calm.\n\n"
+            "This is one of our most requested videos from viewers who use classical music for "
+            "insomnia. The slow harmonic rhythm and minimal melodic movement in these pieces "
+            "prevents the brain from 'tracking' the music consciously, letting attention dissolve "
+            "into sleep naturally. Some also use it as meditation music for visualisation — "
+            "imagining floating through space is a well-established relaxation technique.\n\n"
+            "✦ Deep sleep, meditation, insomnia relief, relaxation, stress relief\n"
+            "✦ Particularly effective for overthinkers — the cosmic scale quiets rumination\n"
+            "✦ Perfect at low volume in a darkened room\n\n"
+            "🔔 Subscribe → @ClassicalNightRelax\n\n"
             "#DeepSpace #Nebula #SleepMusic #ClassicalMusic #CalmClassics "
-            "#Cosmos #VaughanWilliams #Beethoven #MeditationMusic #ClassicalNightRelax"
+            "#ClassicalMusicForSleeping #DeepSleepMusic #VaughanWilliams #BeethovenMoonlight "
+            "#MeditationMusic #InsomniaCure #RelaxingClassicalMusic #ClassicalNightRelax"
         ),
         "tags": ["deep space", "nebula", "cosmos", "sleep music", "classical music",
                  "calm classics", "vaughan williams", "beethoven", "meditation",
-                 "space ambiance", "stars", "galaxy", "relaxing"],
+                 "space ambiance", "stars", "galaxy", "relaxing",
+                 "sleep music for deep sleep", "classical music for sleeping",
+                 "deep sleep music", "space music for sleep"],
         "thumb_prompt": (
             "deep space nebula with vivid purple and blue gas clouds, thousands of stars, "
             "distant galaxies, cosmic scale and grandeur, hubble-style photography, no text"
@@ -363,20 +479,38 @@ THEMES: dict[str, dict] = {
     "autumn_forest": {
         "title": "Autumn Forest 🍂 {duration} | Classical Music for Sleep | Calm Classics",
         "desc": (
-            "Walk through a golden autumn forest with {duration} of warm, soothing classical music. "
-            "Amber and crimson leaves, misty forest paths, and the quiet magic of fall — "
-            "a perfect companion for winding down and drifting into peaceful sleep.\n\n"
-            "🎵 Music: Frédéric Chopin — Nocturnes | Pyotr Tchaikovsky — Swan Lake\n"
+            "Walk through a golden autumn forest with {duration} of warm, melancholic classical music — "
+            "amber leaves, misty forest paths, and the particular stillness that only autumn "
+            "afternoons carry. This is relaxing sleep music with soul.\n\n"
+            "🎵 Music: Frédéric Chopin — Nocturnes Op. 9 "
+            "| Pyotr Tchaikovsky — Swan Lake Act II\n"
             "🎨 Visuals: AI-generated autumn forest scenes\n"
             "📜 All recordings: Public Domain (Musopen.org)\n\n"
-            "Perfect for: sleep, relaxation, autumn ambiance, meditation, reading\n\n"
-            "Subscribe → @ClassicalNightRelax\n\n"
+            "Autumn is the season of letting go — of leaves, of warmth, of the long days. "
+            "The music in this video reflects exactly that. Chopin's Nocturnes have a quality "
+            "of beautiful sadness that never tips into distress — they feel like memories of "
+            "good things, which is precisely the emotional state most conducive to sleep. "
+            "Tchaikovsky's Swan Lake adds orchestral warmth and sweep, turning the forest walk "
+            "into something genuinely cinematic.\n\n"
+            "As classical music for sleeping, this video works particularly well for those "
+            "who find pure silence too empty, but need the music to stay out of the way. "
+            "Chopin's slow-tempo piano writing sits at around 60 BPM — matching the resting "
+            "heart rate — which is why classical music for deep sleep so often features his "
+            "Nocturnes. The forest visuals add a layer of natural calm that makes the whole "
+            "experience feel grounded rather than purely abstract.\n\n"
+            "✦ Perfect for: sleep, autumn evenings, meditation, reading, relaxation\n"
+            "✦ Warm, comforting mood — ideal for seasonal mood changes\n"
+            "✦ No ads — seamless audio through the night\n\n"
+            "🔔 Subscribe → @ClassicalNightRelax\n\n"
             "#AutumnForest #FallColors #SleepMusic #ClassicalMusic #CalmClassics "
-            "#AutumnVibes #Chopin #Tchaikovsky #RelaxingMusic #ClassicalNightRelax"
+            "#ClassicalMusicForSleeping #ChopinNocturnes #Tchaikovsky #AutumnVibes "
+            "#DeepSleepMusic #RelaxingClassicalMusic #NatureSoundsForSleep #ClassicalNightRelax"
         ),
         "tags": ["autumn forest", "fall colors", "forest", "sleep music", "classical music",
                  "calm classics", "chopin", "tchaikovsky", "autumn ambiance",
-                 "relaxing music", "nature", "meditation", "cozy"],
+                 "relaxing music", "nature", "meditation", "cozy",
+                 "sleep music for deep sleep", "classical music for sleeping",
+                 "nature sounds for sleep", "relaxing sleep music"],
         "thumb_prompt": (
             "golden autumn forest with sunlight rays through amber and red maple leaves, "
             "misty forest path with fallen leaves, warm fall colors, magical atmosphere, "
@@ -403,6 +537,308 @@ THEMES: dict[str, dict] = {
         "mood": "sleep",
         "video_type": "visual_theme",
     },
+
+    # ── Nature Soundscape series (Suno AI ambient) ─────────────────────────────
+
+    "distant_waterfall": {
+        "title": "Distant Waterfall 🌊 {duration} | Nature Sounds for Sleep & Meditation | Calm Classics",
+        "desc": (
+            "{duration} of the most soothing waterfall sounds ever recorded — a distant cascade echoing "
+            "through ancient stone, surrounded by birdsong and forest air. Let the gentle, unceasing flow "
+            "carry away your stress and guide you into deep, restorative sleep.\n\n"
+            "🌊 Nature sounds: AI-crafted waterfall ambience — distant cascade, mist, trickling streams\n"
+            "🎨 Visuals: AI-generated waterfall and river landscapes\n"
+            "🎵 Original ambient audio by Calm Classics (AI-generated, © 2026)\n\n"
+            "Perfect for: sleep, meditation, white noise, stress relief, study, focus, yoga, spa\n\n"
+            "Many viewers use waterfall sounds to:\n"
+            "✦ Fall asleep faster and stay asleep longer\n"
+            "✦ Mask unwanted background noise (traffic, neighbours)\n"
+            "✦ Reach deeper meditation states\n"
+            "✦ Focus during study or creative work\n"
+            "✦ Relieve anxiety and calm an overactive mind\n\n"
+            "Loop this video all night — the seamless audio never repeats awkwardly.\n\n"
+            "Subscribe → @ClassicalNightRelax\n\n"
+            "#WaterfallSounds #NatureSounds #SleepSounds #WhiteNoise #MeditationMusic "
+            "#WaterSounds #RelaxingNature #SleepAid #StudyMusic #CalmClassics "
+            "#AmbientMusic #StressRelief #DeepSleep #FocusMusic #NatureAmbience"
+        ),
+        "tags": ["waterfall sounds", "nature sounds", "sleep sounds", "white noise",
+                 "meditation music", "water sounds", "relaxing nature", "sleep aid",
+                 "study music", "calm classics", "ambient music", "stress relief",
+                 "deep sleep", "focus music", "nature ambience", "waterfall white noise",
+                 "rain sounds", "river sounds", "spa music", "yoga music"],
+        "thumb_prompt": (
+            "stunning tropical waterfall cascading into emerald pool, lush green jungle, "
+            "mist rising from water, golden sunlight rays, peaceful and majestic, "
+            "cinematic photography, no text"
+        ),
+        "thumb_text": "WATERFALL SOUNDS",
+        "flux_prompts": [
+            "powerful tropical waterfall cascading 30 meters into emerald pool, lush jungle surrounding, mist rising, golden sunlight through canopy, paradise nature, 16:9",
+            "serene mountain waterfall over mossy rocks, crystal clear stream, ancient ferns, dappled forest light, peaceful wilderness, 16:9",
+            "aerial view waterfall flowing from cliff into blue lagoon, white water foam, jungle canopy, remote tropical island, 16:9",
+            "waterfall at night with moonlight illuminating mist, long exposure photography, silvery cascade, dark forest, magical atmosphere, 16:9",
+            "small gentle waterfall over smooth river stones, clear stream, forest floor, autumn leaves floating, intimate nature scene, 16:9",
+            "Iceland waterfall in volcanic landscape, powerful cascade, black basalt rock, green moss, dramatic cloudy sky, 16:9",
+            "waterfall reflection in still forest pool, mirror image of falling water, lily pads, dragonfly, perfect symmetry, 16:9",
+            "close-up waterfall detail, water droplets spray, slow motion style, translucent white foam, soft focus background, 16:9",
+            "misty morning waterfall in bamboo forest, fog drifting, Japanese garden aesthetic, stone steps beside, serene, 16:9",
+            "secret waterfall behind curtain of water, cave entrance, glowing turquoise pool, magical hidden paradise, 16:9",
+        ],
+        "music_source": "meditation",
+        "music_glob": "Sound Design Distant Waterfall*.mp3",
+        "music_files": [],
+        "mood": "sleep",
+        "video_type": "visual_theme",
+    },
+
+    "rainforest_night": {
+        "title": "Rainforest at Night 🌿 {duration} | Jungle Night Sounds for Sleep | Calm Classics",
+        "desc": (
+            "Drift into the living world of the rainforest after dark — crickets, distant frogs, "
+            "rustling leaves, and the breathing of an ancient jungle ecosystem. {duration} of pure, "
+            "immersive rainforest night sounds to help you sleep deeply and naturally.\n\n"
+            "🌿 Nature sounds: AI-crafted tropical rainforest night ambience\n"
+            "🎨 Visuals: AI-generated rainforest and jungle landscapes\n"
+            "🎵 Original ambient audio by Calm Classics (AI-generated, © 2026)\n\n"
+            "Perfect for: sleep, meditation, relaxation, ASMR, white noise, stress relief\n\n"
+            "Why jungle night sounds work for sleep:\n"
+            "✦ Natural rhythmic patterns prime the brain for sleep\n"
+            "✦ Continuous sound masks sudden noise disturbances\n"
+            "✦ Evolutionary connection — humans evolved sleeping to nature sounds\n"
+            "✦ Reduces cortisol and activates the parasympathetic nervous system\n\n"
+            "Subscribe → @ClassicalNightRelax\n\n"
+            "#RainforestSounds #JungleSounds #NightSounds #SleepSounds #NatureSounds "
+            "#TropicalAmbience #MeditationMusic #WhiteNoise #CalmClassics "
+            "#AmbientMusic #DeepSleep #StressRelief #NatureAmbience #SleepAid"
+        ),
+        "tags": ["rainforest sounds", "jungle sounds", "night sounds", "sleep sounds",
+                 "nature sounds", "tropical ambience", "meditation music", "white noise",
+                 "calm classics", "ambient music", "deep sleep", "stress relief",
+                 "nature ambience", "sleep aid", "insect sounds", "frog sounds",
+                 "jungle night", "tropical forest", "rain forest", "ASMR nature"],
+        "thumb_prompt": (
+            "magical rainforest at night, bioluminescent plants glowing blue and green, "
+            "mist between ancient trees, moonlight filtering through dense canopy, "
+            "mystical jungle atmosphere, cinematic photography, no text"
+        ),
+        "thumb_text": "RAINFOREST SOUNDS",
+        "flux_prompts": [
+            "tropical rainforest at night, bioluminescent plants and fungi glowing electric blue, moonlight through dense canopy, ancient trees, mystical atmosphere, 16:9",
+            "jungle waterfall at dusk, last light on lush green foliage, exotic birds silhouetted, fireflies beginning to glow, 16:9",
+            "close-up rainforest floor at night, glowing mushrooms, wet leaves catching moonlight, insects on bark, macro jungle life, 16:9",
+            "aerial view tropical rainforest, moonlit canopy stretching to horizon, mist in valleys, river glinting below, vast wilderness, 16:9",
+            "rainforest stream at night, moonlight on water, fireflies above surface, frogs on rocks, tree roots, 16:9",
+            "Amazon jungle interior, shafts of moonlight through enormous leaves, spider monkeys sleeping, bromeliads, ancient vines, 16:9",
+            "tropical rain beginning to fall in jungle, large drops on giant leaves, steam rising, golden insects flying, 16:9",
+            "rainforest sunrise mist, sun rays piercing canopy, howler monkeys in trees, parrots flying, spectacular morning light, 16:9",
+            "jungle night sky through canopy gap, stars above ancient trees, southern cross visible, milky way, total wilderness, 16:9",
+            "rainforest waterfall grotto at night, bioluminescent blue pool, ferns and moss lit green, hidden paradise, 16:9",
+        ],
+        "music_source": "meditation",
+        "music_glob": "Sound Design Rainforest at Night*.mp3",
+        "music_files": [],
+        "mood": "sleep",
+        "video_type": "visual_theme",
+    },
+
+    "mountain_lake_dawn": {
+        "title": "Mountain Lake at Dawn 🏔️ {duration} | Nature Sounds for Sleep & Relaxation | Calm Classics",
+        "desc": (
+            "The stillness before sunrise — water so calm it mirrors the mountains perfectly. "
+            "{duration} of serene mountain lake ambience at dawn: gentle lapping water, distant "
+            "birdsong, the whisper of morning wind. Pure natural peace.\n\n"
+            "🏔️ Nature sounds: AI-crafted mountain lake dawn ambience\n"
+            "🎨 Visuals: AI-generated alpine lake and mountain landscapes\n"
+            "🎵 Original ambient audio by Calm Classics (AI-generated, © 2026)\n\n"
+            "Perfect for: sleep, morning meditation, yoga, study, relaxation, mindfulness\n\n"
+            "✦ Reduce anxiety and mental chatter\n"
+            "✦ Perfect background for morning meditation or journaling\n"
+            "✦ Create a peaceful home office atmosphere\n"
+            "✦ Use as gentle sleep induction — let the stillness slow your mind\n\n"
+            "Subscribe → @ClassicalNightRelax\n\n"
+            "#MountainLake #NatureSounds #DawnSounds #SleepSounds #MeditationMusic "
+            "#AlpineAmbience #MorningMeditation #CalmClassics #AmbientMusic "
+            "#WaterSounds #StressRelief #YogaMusic #MindfulnessMusic #Relaxation"
+        ),
+        "tags": ["mountain lake", "nature sounds", "dawn sounds", "sleep sounds",
+                 "meditation music", "alpine ambience", "morning meditation",
+                 "calm classics", "ambient music", "water sounds", "stress relief",
+                 "yoga music", "mindfulness music", "relaxation", "lake sounds",
+                 "bird sounds", "morning sounds", "peaceful nature", "alpine lake"],
+        "thumb_prompt": (
+            "perfect mirror reflection of snow-capped mountains in crystal clear alpine lake at dawn, "
+            "pink and orange sunrise colors, mist on water surface, pine forest shoreline, "
+            "breathtaking tranquil landscape, cinematic photography, no text"
+        ),
+        "thumb_text": "MOUNTAIN LAKE SOUNDS",
+        "flux_prompts": [
+            "perfect mirror reflection of snow-capped mountain peaks in crystal alpine lake at dawn, pink sunrise colors, mist rising from water, pine forest shore, breathtaking tranquility, 16:9",
+            "mountain lake at first light, lone wooden rowing boat, still water, golden horizon, single pine tree silhouette, utter silence implied, 16:9",
+            "alpine lake surrounded by wildflowers, purple lupines and yellow buttercups, turquoise water, mountain backdrop, summer morning, 16:9",
+            "mountain lake shoreline with smooth stones, crystal water revealing pebbles below, gentle ripples, mountains beyond, meditative, 16:9",
+            "fog dissolving over mountain lake at sunrise, ghostly trees emerging, warm light breaking through, spiritual dawn atmosphere, 16:9",
+            "mountain lake at golden hour, dramatic orange sky reflected, single eagle flying, vast alpine wilderness, cinematic, 16:9",
+            "close-up mountain lake water surface, ripple circles, underwater pebbles, reflections of blue sky and clouds, calming detail, 16:9",
+            "Norwegian fjord lake, dramatic cliffs dropping into still water, small village distant, misty mountain tops, peaceful grandeur, 16:9",
+            "Dolomites alpine lake turquoise, jagged rocky peaks dramatic, clouds casting shadow, remote beauty, Italian Alps, 16:9",
+            "mountain lake winter ice beginning to thaw, half frozen, spring light, reflections, geese arriving, seasonal renewal, 16:9",
+        ],
+        "music_source": "meditation",
+        "music_glob": "Sound Design Mountain Lake at Dawn*.mp3",
+        "music_files": [],
+        "mood": "sleep",
+        "video_type": "visual_theme",
+    },
+
+    "desert_night_wind": {
+        "title": "Desert Night Wind 🌙 {duration} | Desert Sounds for Sleep | Calm Classics",
+        "desc": (
+            "The Sahara after midnight — a world of infinite silence broken only by warm desert wind "
+            "moving across ancient dunes. {duration} of hypnotic desert night sounds: shifting sands, "
+            "distant wind, the vast breathing of the world's greatest desert.\n\n"
+            "🌙 Nature sounds: AI-crafted desert night ambience\n"
+            "🎨 Visuals: AI-generated desert and dune landscapes\n"
+            "🎵 Original ambient audio by Calm Classics (AI-generated, © 2026)\n\n"
+            "Perfect for: deep sleep, meditation, insomnia relief, focus, relaxation\n\n"
+            "Desert sounds are uniquely effective for sleep:\n"
+            "✦ The low-frequency wind creates a natural brown noise effect\n"
+            "✦ The sensation of vast empty space calms an anxious mind\n"
+            "✦ Shifts brain into deep theta wave states associated with meditation\n\n"
+            "Subscribe → @ClassicalNightRelax\n\n"
+            "#DesertSounds #NightSounds #SleepSounds #BrownNoise #MeditationMusic "
+            "#SaharaSounds #WindSounds #CalmClassics #AmbientMusic "
+            "#DeepSleep #InsomniaCure #RelaxingNature #NatureAmbience #Meditation"
+        ),
+        "tags": ["desert sounds", "night sounds", "sleep sounds", "brown noise",
+                 "meditation music", "sahara", "wind sounds", "calm classics",
+                 "ambient music", "deep sleep", "insomnia", "relaxing nature",
+                 "nature ambience", "meditation", "desert night", "sand dunes",
+                 "desert wind", "desert ambience", "sleep aid", "white noise"],
+        "thumb_prompt": (
+            "vast Sahara desert sand dunes at night under spectacular Milky Way, "
+            "warm golden sand reflecting starlight, single palm tree silhouette, "
+            "infinite star field, magical desert night, cinematic photography, no text"
+        ),
+        "thumb_text": "DESERT NIGHT SOUNDS",
+        "flux_prompts": [
+            "vast Sahara desert sand dunes at night, Milky Way galaxy overhead, warm golden sand glowing under starlight, infinite wilderness, magic and solitude, 16:9",
+            "desert dunes at twilight, last ember glow on horizon, first stars appearing, purple and orange sky, sand ripples, vast emptiness, 16:9",
+            "Wadi Rum Jordan desert at night, ancient red rock formations, full moon rising, bright stars, dramatic alien landscape, 16:9",
+            "desert campfire at night, embers glowing, camel sleeping nearby, dunes silhouetted against star field, Bedouin atmosphere, 16:9",
+            "aerial view desert dunes at dusk, perfect wave patterns in sand, shadow and light contrast, abstract beauty, 16:9",
+            "desert oasis at night, palm trees around small pool, reflection of stars in water, dry landscape surrounding, hidden paradise, 16:9",
+            "sand dune crest at sunrise, perfect crescent line, golden and purple shadow side, lone footprint trail, minimalist beauty, 16:9",
+            "desert rock canyon at night, narrow passage, stars framed above, ancient stone walls, mysterious and vast, 16:9",
+            "Namib desert coastal dunes meeting ocean at night, fog rolling in, stars above, unique world's edge landscape, 16:9",
+            "desert floor detail at golden hour, cracked earth, single desert flower, vast horizon, extreme minimalism, 16:9",
+        ],
+        "music_source": "meditation",
+        "music_glob": "Sound Design Desert Night Wind*.mp3",
+        "music_files": [],
+        "mood": "sleep",
+        "video_type": "visual_theme",
+    },
+
+    "winter_forest_silence": {
+        "title": "Winter Forest ❄️ {duration} | Snow Sounds for Sleep & Relaxation | Calm Classics",
+        "desc": (
+            "Step into the sacred silence of a snow-covered forest. {duration} of pure winter "
+            "forest ambience — the creak of frozen branches, a distant owl, the profound stillness "
+            "that only snow can create. One of the most requested sleep sounds.\n\n"
+            "❄️ Nature sounds: AI-crafted winter forest silence ambience\n"
+            "🎨 Visuals: AI-generated winter forest and snow landscapes\n"
+            "🎵 Original ambient audio by Calm Classics (AI-generated, © 2026)\n\n"
+            "Perfect for: sleep, deep meditation, reading, relaxation, cozy evenings\n\n"
+            "✦ Snow absorbs sound — mimicking this creates a profoundly calming effect\n"
+            "✦ The subtle forest sounds prevent total silence (which can be disturbing)\n"
+            "✦ Ideal for people who find rain sounds too stimulating\n"
+            "✦ Works perfectly combined with a blanket and warm drink\n\n"
+            "Subscribe → @ClassicalNightRelax\n\n"
+            "#WinterForest #SnowSounds #NatureSounds #SleepSounds #ForestSounds "
+            "#WinterAmbience #CozySounds #CalmClassics #AmbientMusic "
+            "#DeepSleep #MeditationMusic #Relaxation #NatureAmbience #WhiteNoise"
+        ),
+        "tags": ["winter forest", "snow sounds", "nature sounds", "sleep sounds",
+                 "forest sounds", "winter ambience", "cozy sounds", "calm classics",
+                 "ambient music", "deep sleep", "meditation music", "relaxation",
+                 "nature ambience", "white noise", "snowfall sounds", "winter sleep",
+                 "forest ambience", "peaceful winter", "sleep aid", "frozen forest"],
+        "thumb_prompt": (
+            "magical snow-covered pine forest at night, snowflakes falling gently, "
+            "moonlight illuminating white trees, deep blue shadows, ethereal winter silence, "
+            "breathtaking winter scenery, cinematic photography, no text"
+        ),
+        "thumb_text": "WINTER FOREST SOUNDS",
+        "flux_prompts": [
+            "magical snow-covered pine forest at night, large snowflakes falling, moonlight through trees casting blue shadows, pristine white silence, ethereal winter scene, 16:9",
+            "winter forest path, footprints in deep snow, ancient trees bowed with weight, soft grey overcast sky, peaceful solitude, 16:9",
+            "frozen stream in winter forest, ice formations on rocks, snow-covered banks, bare tree reflections in dark water, 16:9",
+            "winter forest at sunrise, golden light hitting snow-laden branches, steam from warming snow, morning birds, magical awakening, 16:9",
+            "owl perched on snow-covered pine branch at night, large eyes reflecting moonlight, silent predator, frozen forest, 16:9",
+            "looking up through winter forest canopy, snow-dusted branches against grey sky, geometric bare tree patterns, calming abstraction, 16:9",
+            "forest clearing in winter, perfect circle of snow, surrounded by dark pine trees, single deer tracks crossing, serene, 16:9",
+            "heavy snowfall in forest, fat flakes blurring distant trees, close branches sharp, hypnotic depth, 16:9",
+            "winter forest after ice storm, every branch coated in transparent ice, crystal world, dramatic low sun light, 16:9",
+            "deep winter forest at dusk, last purple light through trees, first stars, snow blue-grey, absolute stillness, 16:9",
+        ],
+        "music_source": "meditation",
+        "music_glob": "Sound Design Winter Forest Silence*.mp3",
+        "music_files": [],
+        "mood": "sleep",
+        "video_type": "visual_theme",
+    },
+
+    "ambient_meditation_mix": {
+        "title": "Ambient Meditation Mix 🎧 {duration} | Deep Relaxation & Sleep Sounds | Calm Classics",
+        "desc": (
+            "{duration} of carefully curated ambient meditation soundscapes — an ever-shifting "
+            "journey through ice caves, distant waterfalls, cosmic drones, and ethereal tones. "
+            "No single mood dominates; the mix breathes and evolves, keeping your mind just "
+            "engaged enough to stay out of anxious thought while drifting toward sleep.\n\n"
+            "🎧 Ambient mix: AI-crafted meditative soundscapes\n"
+            "🎨 Visuals: AI-generated abstract and natural meditation environments\n"
+            "🎵 Original ambient audio by Calm Classics (AI-generated, © 2026)\n\n"
+            "What's in the mix:\n"
+            "✦ Crystal ice cave resonance\n"
+            "✦ Deep ambient drones and pads\n"
+            "✦ Nature-infused textures\n"
+            "✦ Soft tonal meditative layers\n\n"
+            "Perfect for: sleep, deep meditation, float tank, yoga nidra, anxiety relief, study\n\n"
+            "Subscribe → @ClassicalNightRelax\n\n"
+            "#AmbientMusic #MeditationMusic #SleepSounds #DeepRelaxation #AmbientMix "
+            "#IceCave #CalmClassics #SoundHealing #YogaNidra #DeepSleep "
+            "#AnxietyRelief #AmbientMeditation #SleepAid #RelaxingMusic #MindfulMusic"
+        ),
+        "tags": ["ambient music", "meditation music", "sleep sounds", "deep relaxation",
+                 "ambient mix", "ice cave sounds", "calm classics", "sound healing",
+                 "yoga nidra", "deep sleep", "anxiety relief", "ambient meditation",
+                 "sleep aid", "relaxing music", "mindful music", "drone music",
+                 "space ambient", "crystal sounds", "meditation sounds", "sleep music"],
+        "thumb_prompt": (
+            "ethereal ice cave with blue glowing crystal formations, frozen stalactites, "
+            "mysterious blue light reflecting on ice walls, magical and otherworldly, "
+            "cinematic photography, no text"
+        ),
+        "thumb_text": "AMBIENT MIX",
+        "flux_prompts": [
+            "ethereal blue ice cave interior, frozen crystal stalactites, glowing turquoise light, ancient glacial formations, otherworldly and magical, 16:9",
+            "abstract cosmic nebula-like ice formations, electric blue and white, deep space aesthetic but earthly, abstract art, 16:9",
+            "glacial cave entrance at night, blue ice glow from inside, stars visible above frozen tundra, mysterious, 16:9",
+            "underwater ice formations, pale blue light, frozen sculptures, abstract natural geometry, serene alien world, 16:9",
+            "ice cave with frozen waterfall, blue stalactites, crystal floor, cold light, vast silent space, 16:9",
+            "abstract meditation space, floating geometric light forms, deep blue and purple, infinite depth, minimalist, 16:9",
+            "glacial lake inside ice cave, perfect reflection of blue ceiling, still water, absolute silence implied, 16:9",
+            "ice crystal macro, intricate fractal patterns, cold blue tones, natural mathematical beauty, 16:9",
+            "arctic night sky above frozen tundra, aurora borealis in soft blue and white, perfect silence, 16:9",
+            "deep underground crystal cave, white and blue mineral formations, single shaft of light, meditative depth, 16:9",
+        ],
+        "music_source": "meditation",
+        "music_glob": "Sound Design Glacier Ice Cave*.mp3",
+        "music_files": [],
+        "mood": "sleep",
+        "video_type": "visual_theme",
+    },
 }
 
 
@@ -423,7 +859,7 @@ def generate_image(prompt: str, api_key: str,
     try:
         r = _req.post(
             TOGETHER_URL,
-            headers={"Authorization": f"Bearer {api_key}"},
+            headers={"Authorization": f"Bearer {api_key}", "User-Agent": "python-requests/2.31.0"},
             json={"model": TOGETHER_MODEL, "prompt": prompt,
                   "width": width, "height": height, "steps": 4, "n": 1},
             timeout=120,
@@ -634,9 +1070,15 @@ def concat_with_xfade(clip_paths: list[Path], out_path: Path,
 
 # ── Long video assembly ────────────────────────────────────────────────────────
 
-def build_music_track(music_files: list[str], target_secs: int, tmp_dir: Path) -> Optional[Path]:
+def build_music_track(music_files: list[str], target_secs: int, tmp_dir: Path,
+                      music_dir: Optional[Path] = None,
+                      music_glob: Optional[str] = None) -> Optional[Path]:
     """Concatenate music files in a loop until target_secs is reached."""
-    available = [MUSIC_DIR / f for f in music_files if (MUSIC_DIR / f).exists()]
+    base_dir = music_dir or MUSIC_DIR
+    if music_glob:
+        available = sorted(base_dir.glob(music_glob))
+    else:
+        available = [base_dir / f for f in music_files if (base_dir / f).exists()]
     if not available:
         log.warning("  No music files found — video will be silent")
         return None
@@ -670,7 +1112,9 @@ def build_music_track(music_files: list[str], target_secs: int, tmp_dir: Path) -
 
 
 def assemble_long_video(loop_mp4: Path, music_files: list[str],
-                         duration_hours: int, out_mp4: Path) -> bool:
+                         duration_hours: int, out_mp4: Path,
+                         music_dir: Optional[Path] = None,
+                         music_glob: Optional[str] = None) -> bool:
     """Stream-loop the visual loop + overlay music → output video."""
     target_secs = duration_hours * 3600
     preset = "slow" if duration_hours <= 1 else ("medium" if duration_hours <= 3 else "fast")
@@ -678,7 +1122,8 @@ def assemble_long_video(loop_mp4: Path, music_files: list[str],
     tmp_dir = ROOT / "output" / "_tmp_visual_theme"
     tmp_dir.mkdir(parents=True, exist_ok=True)
 
-    audio_mp3 = build_music_track(music_files, target_secs, tmp_dir)
+    audio_mp3 = build_music_track(music_files, target_secs, tmp_dir,
+                                   music_dir=music_dir, music_glob=music_glob)
 
     if audio_mp3:
         cmd = [
@@ -739,7 +1184,60 @@ def write_meta(theme: str, theme_cfg: dict, out_mp4: Path, duration_hours: int):
     log.info(f"  Meta → {meta_path.name}")
 
 
-def generate_thumbnail(theme: str, theme_cfg: dict, out_mp4: Path, api_key: str) -> bool:
+THUMB_FONT_BOLD = "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"
+
+def _add_thumb_text(img, text: str, duration_hours: Optional[int] = None):
+    """Overlay bold text on thumbnail image (YouTube CTR style)."""
+    from PIL import ImageDraw, ImageFont
+    draw = ImageDraw.Draw(img)
+    W, H = img.size
+
+    # Main label (e.g. "WATERFALL SOUNDS") — large, upper area
+    try:
+        font_main = ImageFont.truetype(THUMB_FONT_BOLD, 88)
+        font_sub  = ImageFont.truetype(THUMB_FONT_BOLD, 52)
+    except Exception:
+        font_main = ImageFont.load_default()
+        font_sub  = font_main
+
+    lines = text.upper().split("\n")
+
+    # Semi-transparent dark strip at top
+    overlay = img.copy()
+    from PIL import Image as _PILImage
+    strip_h = 120 + len(lines) * 95
+    from PIL import ImageDraw as _ID
+    _ID.Draw(overlay).rectangle([(0, 0), (W, strip_h)], fill=(0, 0, 0))
+    img = _PILImage.blend(img, overlay, alpha=0.52)
+    draw = ImageDraw.Draw(img)
+
+    y = 18
+    for line in lines:
+        bbox = draw.textbbox((0, 0), line, font=font_main)
+        tw = bbox[2] - bbox[0]
+        x = (W - tw) // 2
+        # Black outline
+        for dx, dy in [(-3,-3),(3,-3),(-3,3),(3,3),(0,-3),(0,3),(-3,0),(3,0)]:
+            draw.text((x+dx, y+dy), line, font=font_main, fill=(0, 0, 0))
+        draw.text((x, y), line, font=font_main, fill=(255, 255, 255))
+        y += 95
+
+    # Duration badge bottom-right
+    if duration_hours:
+        badge = f"{duration_hours} HOUR{'S' if duration_hours > 1 else ''}"
+        bbox = draw.textbbox((0, 0), badge, font=font_sub)
+        bw = bbox[2] - bbox[0]
+        bh = bbox[3] - bbox[1]
+        pad = 14
+        bx, by = W - bw - pad*2 - 18, H - bh - pad*2 - 18
+        draw.rectangle([bx, by, bx+bw+pad*2, by+bh+pad*2], fill=(20, 20, 20, 200))
+        draw.text((bx+pad, by+pad), badge, font=font_sub, fill=(255, 215, 0))
+
+    return img
+
+
+def generate_thumbnail(theme: str, theme_cfg: dict, out_mp4: Path, api_key: str,
+                       duration_hours: Optional[int] = None) -> bool:
     thumb_path = out_mp4.parent / f"thumb_{out_mp4.stem}.png"
     if thumb_path.exists() and thumb_path.stat().st_size > 0:
         return True
@@ -752,16 +1250,18 @@ def generate_thumbnail(theme: str, theme_cfg: dict, out_mp4: Path, api_key: str)
     try:
         from PIL import Image
         import io
-        img = Image.open(io.BytesIO(data)).resize((1280, 720), Image.LANCZOS)
+        img = Image.open(io.BytesIO(data)).resize((1280, 720), Image.LANCZOS).convert("RGB")
+        thumb_text = theme_cfg.get("thumb_text")
+        if thumb_text:
+            img = _add_thumb_text(img, thumb_text, duration_hours)
         buf = io.BytesIO()
         img.save(buf, "PNG")
         thumb_path.write_bytes(buf.getvalue())
         log.info(f"  Thumb → {thumb_path.name}")
         return True
     except Exception as e:
-        # Pillow not available — save raw
+        log.warning(f"  Thumb error: {e} — saving raw")
         thumb_path.write_bytes(data)
-        log.info(f"  Thumb (raw) → {thumb_path.name}")
         return True
 
 
@@ -838,9 +1338,12 @@ def process_theme(theme: str, durations: list[int], api_key: str,
             done += 1
             continue
 
-        if assemble_long_video(loop_path, theme_cfg["music_files"], dur, out_mp4):
+        mdir  = MEDITATION_DIR if theme_cfg.get("music_source") == "meditation" else None
+        mglob = theme_cfg.get("music_glob")
+        if assemble_long_video(loop_path, theme_cfg.get("music_files", []), dur, out_mp4,
+                               music_dir=mdir, music_glob=mglob):
             write_meta(theme, theme_cfg, out_mp4, dur)
-            generate_thumbnail(theme, theme_cfg, out_mp4, api_key)
+            generate_thumbnail(theme, theme_cfg, out_mp4, api_key, duration_hours=dur)
             done += 1
 
     return done
