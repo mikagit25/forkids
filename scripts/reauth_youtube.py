@@ -23,7 +23,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-BOT_TOKEN    = "8657721269:AAEkhJ92vHR4K1CkA14nFcy0_bA95c38QZk"
+BOT_TOKEN    = "8931668276:AAHU58_vHoswhBnpOhc4wH3w0jimATkC7m8"
 CHAT_ID      = "209381269"
 WEB_SECRET   = ROOT / "credentials" / "client_secret_kids_web.json"
 CALLBACK_URL = "https://medmind.pro/api/v1/auth/youtube/callback"
