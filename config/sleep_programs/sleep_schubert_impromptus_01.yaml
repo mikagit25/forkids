@@ -1,0 +1,46 @@
+id: sleep_schubert_impromptus_01
+title_en: Schubert Impromptus for Sleep 🎹 {duration} | D. 899 & D. 935 | Classical Night Relax
+video_type: sleep_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: warm_waves
+loop_duration_sec: 240
+durations_hours:
+- 1
+shuffle: false
+tracks:
+- id: schubert_impromptu_no_1_in_c_minor_d_899
+  composer: Franz Schubert
+  piece: Impromptu No. 1 in C minor, D. 899
+  duration_sec: 537
+  mood: gentle_entry
+- id: schubert_impromptu_no_2_in_a_flat_major_d_935
+  composer: Franz Schubert
+  piece: Impromptu No. 2 in A-flat major, D. 935
+  duration_sec: 464
+  mood: flowing
+- id: schubert_impromptu_no_3_in_g_flat_major_d_899
+  composer: Franz Schubert
+  piece: Impromptu No. 3 in G-flat major, D. 899
+  duration_sec: 357
+  mood: tender
+- id: schubert_impromptu_no_4_in_a_flat_major_d_899
+  composer: Franz Schubert
+  piece: Impromptu No. 4 in A-flat major, D. 899
+  duration_sec: 468
+  mood: deeper
+tags:
+- schubert impromptus
+- schubert piano
+- sleep music
+- classical piano for sleep
+- romantic piano
+- classical night relax
+- schubert d899
+- d935 impromptu
+- piano music for sleep
+- calm classics
+max_repeat: 2.0
+pad_from:
+- sleep_schubert_01

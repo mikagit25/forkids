@@ -1,0 +1,66 @@
+id: sleep_chopin_ballades_01
+title_en: Chopin Ballades & Salon Pieces for Sleep 🌙 {duration} | Classical Night Relax
+video_type: sleep_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: warm_waves
+loop_duration_sec: 240
+durations_hours:
+- 1
+shuffle: false
+tracks:
+- id: chopin_ballade_no_3_in_a_flat_major_op_47
+  composer: Frédéric Chopin
+  piece: Ballade No. 3 in A-flat major, Op. 47
+  duration_sec: 444
+  mood: gentle_entry
+- id: chopin_berceuse_in_d_flat_major_op_57
+  composer: Frédéric Chopin
+  piece: Berceuse in D-flat major, Op. 57
+  duration_sec: 333
+  mood: tender
+- id: chopin_prelude_op_28_no_15_in_d_flat_major_raindrop
+  composer: Frédéric Chopin
+  piece: Prelude Op. 28 No. 15 in D-flat major 'Raindrop'
+  duration_sec: 316
+  mood: contemplative
+- id: chopin_waltz_in_a_minor_op_34_no_2
+  composer: Frédéric Chopin
+  piece: Waltz in A minor, Op. 34 No. 2
+  duration_sec: 303
+  mood: gentle_dance
+- id: chopin_prelude_op_28_no_17_in_a_flat_major_scene_on_th
+  composer: Frédéric Chopin
+  piece: Prelude Op. 28 No. 17 in A-flat major
+  duration_sec: 305
+  mood: floating
+- id: chopin_piano_concerto_no_1_in_e_minor_op_11_ii_roma
+  composer: Frédéric Chopin
+  piece: Piano Concerto No. 1 in E minor, Op. 11 — II. Romanze (Larghetto)
+  duration_sec: 571
+  mood: lyrical
+- id: chopin_ballade_no_4_in_f_minor_op_52
+  composer: Frédéric Chopin
+  piece: Ballade No. 4 in F minor, Op. 52
+  duration_sec: 762
+  mood: expressive
+- id: chopin_piano_concerto_no_2_in_f_minor_op_21_i_maest
+  composer: Frédéric Chopin
+  piece: Piano Concerto No. 2 in F minor, Op. 21 — I. Maestoso
+  duration_sec: 812
+  mood: grand_close
+tags:
+- chopin ballades
+- chopin sleep music
+- chopin piano
+- chopin berceuse
+- raindrop prelude
+- chopin concerto
+- romantic piano for sleep
+- classical night relax
+- classical piano music
+- calm classics
+max_repeat: 1.1
+pad_from:
+- sleep_chopin_01

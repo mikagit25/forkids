@@ -66,6 +66,10 @@ PROGRAM_KB_PROMPTS: dict[str, str] = {
     "sleep_schubert_01":            "moonlit Viennese salon at night, candlelit grand piano, pale blue moonlight through tall windows, Schubert era romantic interior, soft shadows and warm amber candle glow, no text, no letters",
     "focus_bach_violin_partita_01": "baroque violin resting on open score pages in sunlit studio, warm golden afternoon light, wooden music stand, Bach manuscript on desk, scholarly peaceful atmosphere, no text, no letters",
     "focus_beethoven_kreutzer_01":  "Beethoven-era concert hall, violinist and pianist on stage in dramatic spotlight, passionate performance, grand piano gleaming under warm stage lights, cinematic 4K, no text, no letters",
+    "sleep_schubert_impromptus_01": "candlelit upright piano in cozy Viennese parlour at night, warm amber lamplight on sheet music, soft snow outside frosted window, Schubert era intimate interior, no text, no letters",
+    "sleep_schubert_piano_01":      "moonlit grand piano in dark Romantic-era salon, silver moonlight streaming through tall arched window, Schubert D.960 atmosphere, blue-grey shadows and pale moonlight, no text, no letters",
+    "sleep_chopin_ballades_01":     "candlelit Romantic salon at midnight, grand piano with sheet music, moonlight through silk curtains, Chopin era Polish parlour, warm gold and cool silver tones, no text, no letters",
+    "sleep_schubert_chamber_01":    "Viennese chamber ensemble at night, cello and piano in intimate candlelit salon, warm amber glow on wooden floor, Schubert Winterreise atmosphere, soft shadows, no text, no letters",
 }
 
 THEME_LOOP_SECS = {
@@ -118,6 +122,10 @@ TITLES = {
     "sleep_grand_orchestral_01":    "Grand Orchestral Night 🎻 {dur} | Tchaikovsky · Beethoven · Verdi | Classical Night Relax",
     "sleep_complete_romantic_01":   "Complete Romantic Night 🌙 {dur} | Beethoven · Chopin · Debussy | Classical Night Relax",
     "focus_baroque_chamber_01":     "Baroque & Chamber Music for Focus 🎻 {dur} | Bach · Vivaldi · Mozart · Beethoven | Classical Night Relax",
+    "sleep_schubert_impromptus_01": "Schubert Impromptus for Sleep 🎹 {dur} | D. 899 & D. 935 | Classical Night Relax",
+    "sleep_schubert_piano_01":      "Schubert Piano Works for Deep Sleep 🌙 {dur} | D. 960 · D. 959 · Wanderer | Classical Night Relax",
+    "sleep_chopin_ballades_01":     "Chopin Ballades & Salon Pieces for Sleep 🌙 {dur} | Classical Night Relax",
+    "sleep_schubert_chamber_01":    "Schubert Chamber & Sacred Music for Sleep 🎻 {dur} | String Quintet · Piano Trio | Classical Night Relax",
 }
 
 DESC_TEMPLATES = {

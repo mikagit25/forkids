@@ -660,3 +660,39 @@ jobs:
     Запускать ПОСЛЕ завершения cnr_visual_themes_new_20260811 (FFmpeg, избежать OOM).
     Старое видео hw1IO2roixw (Jul14) удалится автоматически через replace_id в мета.
     После рендера добавить: replace_id: hw1IO2roixw в meta_visual_theme_mountain_snow_1h_*.yaml.
+
+# --- Новые программы из Google Drive (2026-08-21) ---
+# Schubert: Impromptus, Piano D.960, Chamber. Chopin: Ballades.
+# Все программы: >57min уникального контента → запускать с --natural (без повторов)
+
+- id: cnr_sleep_schubert_impromptus_01_20260821
+  cmd: python3 scripts/generate_sleep_classical.py --program sleep_schubert_impromptus_01 --natural
+  log: logs/sleep_classical.log
+  desc: 'CNR: Schubert Impromptus D.899+D.935 — ~30min natural → warm_waves'
+  added: '2026-08-21'
+  status: pending
+  track: calm_classics
+
+- id: cnr_sleep_schubert_piano_01_20260821
+  cmd: python3 scripts/generate_sleep_classical.py --program sleep_schubert_piano_01 --natural
+  log: logs/sleep_classical.log
+  desc: 'CNR: Schubert Piano Works D.960+D.959+Wanderer — ~67min natural → moon_clouds'
+  added: '2026-08-21'
+  status: pending
+  track: calm_classics
+
+- id: cnr_sleep_chopin_ballades_01_20260821
+  cmd: python3 scripts/generate_sleep_classical.py --program sleep_chopin_ballades_01 --natural
+  log: logs/sleep_classical.log
+  desc: 'CNR: Chopin Ballades+Berceuse+Concertos — ~64min natural → warm_waves'
+  added: '2026-08-21'
+  status: pending
+  track: calm_classics
+
+- id: cnr_sleep_schubert_chamber_01_20260821
+  cmd: python3 scripts/generate_sleep_classical.py --program sleep_schubert_chamber_01 --natural
+  log: logs/sleep_classical.log
+  desc: 'CNR: Schubert String Quintet+Trio+Mass — ~57min natural → night_bear'
+  added: '2026-08-21'
+  status: pending
+  track: calm_classics

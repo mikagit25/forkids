@@ -1,0 +1,64 @@
+id: sleep_schubert_piano_01
+title_en: Schubert Piano Works for Deep Sleep 🌙 {duration} | D. 960 · D. 959 · Wanderer | Classical Night Relax
+video_type: sleep_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: moon_clouds
+loop_duration_sec: 240
+durations_hours:
+- 1
+shuffle: false
+tracks:
+- id: schubert_piano_sonata_in_b_flat_major_d_960_i_molto_mo
+  composer: Franz Schubert
+  piece: Piano Sonata in B-flat major, D. 960 — I. Molto moderato
+  duration_sec: 895
+  mood: gentle_opening
+- id: schubert_piano_sonata_in_b_flat_major_d_960_ii_andante
+  composer: Franz Schubert
+  piece: Piano Sonata in B-flat major, D. 960 — II. Andante sostenuto
+  duration_sec: 482
+  mood: deep_calm
+- id: schubert_piano_sonata_no_20_in_a_major_d_959_ii_andan
+  composer: Franz Schubert
+  piece: Piano Sonata No. 20 in A major, D. 959 — II. Andantino
+  duration_sec: 546
+  mood: tender
+- id: schubert_piano_sonata_in_a_major_d_664_i_allegro_moder
+  composer: Franz Schubert
+  piece: Piano Sonata in A major, D. 664 — I. Allegro moderato
+  duration_sec: 466
+  mood: flowing
+- id: schubert_wanderer_fantasy_in_c_major_op_15_d_760_ii
+  composer: Franz Schubert
+  piece: Wanderer Fantasy in C major, Op. 15, D. 760 — II. Adagio
+  duration_sec: 429
+  mood: introspective
+- id: schubert_six_musical_moments_d_780_ii_andantino_in_a_f
+  composer: Franz Schubert
+  piece: Six Musical Moments, D. 780 — II. Andantino in A-flat major
+  duration_sec: 374
+  mood: gentle
+- id: schubert_piano_quintet_in_a_major_the_trout_d_667_ii
+  composer: Franz Schubert
+  piece: Piano Quintet in A major 'The Trout', D. 667 — II. Andante
+  duration_sec: 447
+  mood: lyrical
+- id: schubert_piano_trio_no_1_in_b_flat_major_d_898_ii_and
+  composer: Franz Schubert
+  piece: Piano Trio No. 1 in B-flat major, D. 898 — II. Andante un poco mosso
+  duration_sec: 361
+  mood: closing
+tags:
+- schubert piano
+- schubert d960
+- schubert sonata
+- wanderer fantasy
+- classical piano for sleep
+- romantic piano music
+- schubert sleep music
+- classical night relax
+- piano music for deep sleep
+- calm classics
+max_repeat: 1.1
