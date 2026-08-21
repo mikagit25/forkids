@@ -8,7 +8,6 @@ visual_theme: night_bear
 loop_duration_sec: 300
 durations_hours:
 - 1
-- 3
 shuffle: true
 tracks:
 - id: beethoven_cello_sonata_no1_complete

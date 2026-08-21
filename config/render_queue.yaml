@@ -1,36 +1,76 @@
-# render_queue.yaml v2.1 (2026-07-08)
-# Статусы: done | pending | frozen | new_v2
 jobs:
-
-# DONE
-- {id: dance_animals_3d_20260630, status: done, desc: dance_animals 3D done}
-- {id: dance_fruits_3d_20260630, status: done, desc: dance_fruits 3D done}
-- {id: dance_vegetables_3d_20260630, status: done, desc: dance_vegetables 3D done}
-
-# FROZEN (v1, не запускать)
-- {id: generate_classical_visualizer_20260630, status: frozen, desc: '[FROZEN] Classical visualizer v1'}
-- {id: generate_classical_nature_20260630, status: frozen, desc: '[FROZEN] Classical in Nature v1'}
-- {id: generate_dance_shape_20260705, status: frozen, desc: '[FROZEN] Dance Shapes'}
-- {id: generate_shape_learn_20260705, status: frozen, desc: '[FROZEN] Shape Learn'}
-- {id: generate_ocd_vehicles_20260705, status: frozen, desc: '[FROZEN] OCD Vehicles'}
-- {id: generate_shape_roundelay_20260705, status: frozen, desc: '[FROZEN] Shape Roundelay'}
-- {id: generate_transform_block_1_20260705, status: frozen, desc: '[FROZEN] Transform Block 1'}
-- {id: generate_transform_block_2_20260705, status: frozen, desc: '[FROZEN] Transform Block 2'}
-- {id: generate_transform_block_3_20260705, status: frozen, desc: '[FROZEN] Transform Block 3'}
-- {id: generate_transform_block_4_20260705, status: frozen, desc: '[FROZEN] Transform Block 4'}
-- {id: generate_transform_block_5_20260705, status: frozen, desc: '[FROZEN] Transform Block 5'}
-- {id: generate_dance_pet_20260705, status: frozen, desc: '[FROZEN] Dance Pet 33 videos'}
-- {id: generate_dance_item_20260705, status: frozen, desc: '[FROZEN] Dance Item 25 videos'}
-- {id: generate_dance_fruits_group_20260705, status: frozen, desc: '[FROZEN] Dance Fruits Group'}
-- {id: generate_dance_fruits_2stage_20260705, status: frozen, desc: '[FROZEN] Dance Fruits 2-stage'}
-- {id: generate_satisfying_3fmt_20260705, status: frozen, desc: '[FROZEN] Satisfying 3-format'}
-- {id: generate_construction_music_20260705, status: frozen, desc: '[FROZEN] Construction Music'}
-- {id: generate_emotional_values_20260705, status: frozen, desc: '[FROZEN] Emotional Values'}
-- {id: generate_edu_entertain_20260705, status: frozen, desc: '[FROZEN] Edu-Entertain'}
-- {id: generate_nursery_id_20260705, status: frozen, desc: '[FROZEN] Nursery ID - до Phase 3-4'}
-- {id: generate_bubble_series_20260630, status: frozen, desc: '[FROZEN] Bubble series'}
-
-# PENDING (активные)
+- id: dance_animals_3d_20260630
+  status: done
+  desc: dance_animals 3D done
+- id: dance_fruits_3d_20260630
+  status: done
+  desc: dance_fruits 3D done
+- id: dance_vegetables_3d_20260630
+  status: done
+  desc: dance_vegetables 3D done
+- id: generate_classical_visualizer_20260630
+  status: frozen
+  desc: '[FROZEN] Classical visualizer v1'
+- id: generate_classical_nature_20260630
+  status: frozen
+  desc: '[FROZEN] Classical in Nature v1'
+- id: generate_dance_shape_20260705
+  status: frozen
+  desc: '[FROZEN] Dance Shapes'
+- id: generate_shape_learn_20260705
+  status: frozen
+  desc: '[FROZEN] Shape Learn'
+- id: generate_ocd_vehicles_20260705
+  status: frozen
+  desc: '[FROZEN] OCD Vehicles'
+- id: generate_shape_roundelay_20260705
+  status: frozen
+  desc: '[FROZEN] Shape Roundelay'
+- id: generate_transform_block_1_20260705
+  status: frozen
+  desc: '[FROZEN] Transform Block 1'
+- id: generate_transform_block_2_20260705
+  status: frozen
+  desc: '[FROZEN] Transform Block 2'
+- id: generate_transform_block_3_20260705
+  status: frozen
+  desc: '[FROZEN] Transform Block 3'
+- id: generate_transform_block_4_20260705
+  status: frozen
+  desc: '[FROZEN] Transform Block 4'
+- id: generate_transform_block_5_20260705
+  status: frozen
+  desc: '[FROZEN] Transform Block 5'
+- id: generate_dance_pet_20260705
+  status: frozen
+  desc: '[FROZEN] Dance Pet 33 videos'
+- id: generate_dance_item_20260705
+  status: frozen
+  desc: '[FROZEN] Dance Item 25 videos'
+- id: generate_dance_fruits_group_20260705
+  status: frozen
+  desc: '[FROZEN] Dance Fruits Group'
+- id: generate_dance_fruits_2stage_20260705
+  status: frozen
+  desc: '[FROZEN] Dance Fruits 2-stage'
+- id: generate_satisfying_3fmt_20260705
+  status: frozen
+  desc: '[FROZEN] Satisfying 3-format'
+- id: generate_construction_music_20260705
+  status: frozen
+  desc: '[FROZEN] Construction Music'
+- id: generate_emotional_values_20260705
+  status: frozen
+  desc: '[FROZEN] Emotional Values'
+- id: generate_edu_entertain_20260705
+  status: frozen
+  desc: '[FROZEN] Edu-Entertain'
+- id: generate_nursery_id_20260705
+  status: frozen
+  desc: '[FROZEN] Nursery ID - до Phase 3-4'
+- id: generate_bubble_series_20260630
+  status: frozen
+  desc: '[FROZEN] Bubble series'
 - id: generate_shadow_puppet_animals_20260630
   cmd: python3 scripts/generate_shadow_puppet.py --themes animals
   log: logs/shadow_puppet.log
@@ -38,7 +78,6 @@ jobs:
   added: '2026-06-30'
   status: pending
   track: kids_quality
-
 - id: generate_shadow_puppet_fruits_20260630
   cmd: python3 scripts/generate_shadow_puppet.py --themes fruits
   log: logs/shadow_puppet.log
@@ -46,7 +85,6 @@ jobs:
   added: '2026-06-30'
   status: pending
   track: kids_quality
-
 - id: generate_shadow_puppet_mixed_20260630
   cmd: python3 scripts/generate_shadow_puppet.py --themes mixed
   log: logs/shadow_puppet.log
@@ -54,7 +92,6 @@ jobs:
   added: '2026-06-30'
   status: pending
   track: kids_quality
-
 - id: generate_ocean_creatures_ocean_20260705
   cmd: python3 scripts/generate_ocean_creatures.py --series ocean
   log: logs/ocean_creatures.log
@@ -62,7 +99,6 @@ jobs:
   added: '2026-07-05'
   status: pending
   track: kids_quality
-
 - id: generate_ocean_creatures_sky_20260705
   cmd: python3 scripts/generate_ocean_creatures.py --series sky
   log: logs/ocean_creatures.log
@@ -70,7 +106,6 @@ jobs:
   added: '2026-07-05'
   status: pending
   track: kids_quality
-
 - id: generate_ocean_creatures_vehicles_20260705
   cmd: python3 scripts/generate_ocean_creatures.py --series vehicles
   log: logs/ocean_creatures.log
@@ -78,7 +113,6 @@ jobs:
   added: '2026-07-05'
   status: pending
   track: kids_quality
-
 - id: generate_nursery_ar_20260705
   cmd: python3 scripts/generate_nursery_ar.py
   log: logs/nursery_ar.log
@@ -86,7 +120,6 @@ jobs:
   added: '2026-07-05'
   status: pending
   track: ar_kids
-
 - id: generate_nature_calm_20260705
   cmd: python3 scripts/generate_nature_calm.py
   log: logs/nature_calm.log
@@ -94,7 +127,6 @@ jobs:
   added: '2026-07-05'
   status: pending
   track: reuse_now
-
 - id: generate_stars_bubbles_20260705
   cmd: python3 scripts/generate_stars_bubbles.py
   log: logs/stars_bubbles.log
@@ -102,7 +134,6 @@ jobs:
   added: '2026-07-05'
   status: pending
   track: kids_quality
-
 - id: generate_shorts_funnel_20260705
   cmd: python3 scripts/generate_shorts_funnel.py --queue en
   log: logs/shorts_funnel.log
@@ -110,9 +141,8 @@ jobs:
   added: '2026-07-05'
   status: blocked
   track: shorts
-  blocked_reason: 'BLOCKED v2.1 — letterboxing bug + CSS source videos. Script has exit guard.'
-
-# NEW v2 — Calm Classics (по фазам)
+  blocked_reason: BLOCKED v2.1 — letterboxing bug + CSS source videos. Script has
+    exit guard.
 - id: phase1_musopen_library_20260708
   cmd: python3 scripts/download_musopen.py --limit 50
   log: logs/musopen_download.log
@@ -121,7 +151,6 @@ jobs:
   status: pending
   track: calm_classics
   phase: 1
-
 - id: phase2_sleep_classical_loop_20260708
   cmd: python3 scripts/generate_sleep_classical.py --render-loops-only
   log: logs/sleep_classical.log
@@ -130,7 +159,6 @@ jobs:
   status: pending
   track: calm_classics
   phase: 2
-
 - id: phase3_sleep_chopin_01_20260708
   cmd: python3 scripts/generate_sleep_classical.py --program sleep_chopin_01
   log: logs/sleep_classical.log
@@ -139,7 +167,6 @@ jobs:
   status: pending
   track: calm_classics
   phase: 3
-
 - id: phase3_sleep_debussy_01_20260708
   cmd: python3 scripts/generate_sleep_classical.py --program sleep_debussy_01
   log: logs/sleep_classical.log
@@ -148,7 +175,6 @@ jobs:
   status: pending
   track: calm_classics
   phase: 3
-
 - id: phase3_focus_bach_01_20260708
   cmd: python3 scripts/generate_sleep_classical.py --program focus_bach_01
   log: logs/sleep_classical.log
@@ -157,7 +183,6 @@ jobs:
   status: pending
   track: calm_classics
   phase: 3
-
 - id: phase3_focus_mozart_01_20260708
   cmd: python3 scripts/generate_sleep_classical.py --program focus_mozart_01
   log: logs/sleep_classical.log
@@ -166,16 +191,15 @@ jobs:
   status: pending
   track: calm_classics
   phase: 3
-
 - id: phase3_sleep_lullaby_01_20260708
   cmd: python3 scripts/generate_sleep_classical.py --program sleep_lullaby_01
   log: logs/sleep_classical.log
-  desc: 'Phase 3: Детская колыбельная (Brahms/Schubert/Satie/Bach) — night_bear → EN'
+  desc: 'Phase 3: Детская колыбельная (Brahms/Schubert/Satie/Bach) — night_bear →
+    EN'
   added: '2026-07-08'
   status: pending
   track: kids_sleep
   phase: 3
-
 - id: phase3_sleep_shorts_20260708
   cmd: python3 scripts/make_sleep_short.py --all
   log: logs/sleep_shorts.log
@@ -184,7 +208,6 @@ jobs:
   status: pending
   track: shorts
   phase: 3
-
 - id: phase3_analytics_20260708
   cmd: python3 scripts/analytics_report.py
   log: logs/analytics.log
@@ -193,17 +216,16 @@ jobs:
   status: pending
   track: infra
   phase: 3
-
 - id: phase5_song_suno_20260708
   cmd: python3 scripts/generate_song_suno.py --song goodnight_little_bear
   log: logs/suno.log
-  desc: 'Phase 5: Suno Goodnight Little Bear — 65 BPM, F major, night_bear, 1h+2h → queue/'
+  desc: 'Phase 5: Suno Goodnight Little Bear — 65 BPM, F major, night_bear, 1h+2h
+    → queue/'
   added: '2026-07-08'
-  status: ready  # ждёт credentials/suno_session.txt
+  status: ready
   track: kids_song
   phase: 5
-  note: 'запустить вручную после сохранения suno_session.txt'
-
+  note: запустить вручную после сохранения suno_session.txt
 - id: phase5_bubble_pop_song_20260708
   cmd: python3 scripts/generate_song_suno.py --song bubble_pop_song
   log: logs/bubble_pop.log
@@ -212,25 +234,25 @@ jobs:
   status: pending
   track: kids_song
   phase: 5
-
-# CNR: Beethoven Cello Sonatas (новые треки от 2026-07-10)
 - id: cnr_sleep_beethoven_cello_01_20260710
-  cmd: python3 scripts/generate_sleep_classical.py --program sleep_beethoven_cello_01 --durations 1 3
+  cmd: python3 scripts/generate_sleep_classical.py --program sleep_beethoven_cello_01
+    --durations 1 3
   log: logs/rerender_8h.log
   desc: 'CNR sleep: Beethoven Cello Sonatas — 1h + 3h (in run_rerender_8h.sh queue)'
   added: '2026-07-10'
-  status: pending
+  status: done
   track: calm_classics
-
+  started: 2026-08-10 13:41
 - id: cnr_focus_beethoven_cello_01_20260710
-  cmd: python3 scripts/generate_sleep_classical.py --program focus_beethoven_cello_01 --durations 1 3
+  cmd: python3 scripts/generate_sleep_classical.py --program focus_beethoven_cello_01
+    --durations 1 3
   log: logs/rerender_8h.log
-  desc: 'CNR focus: Beethoven Cello Sonatas for Focus — 1h + 3h (in run_rerender_8h.sh queue)'
+  desc: 'CNR focus: Beethoven Cello Sonatas for Focus — 1h + 3h (in run_rerender_8h.sh
+    queue)'
   added: '2026-07-10'
-  status: pending
+  status: done
   track: calm_classics
-
-# CNR Shorts batch (пополнять раз в месяц когда очередь < 10)
+  started: 2026-08-10 13:41
 - id: cnr_shorts_batch_20260712
   cmd: python3 scripts/make_sleep_short.py --batch
   log: logs/sleep_shorts.log
@@ -238,8 +260,6 @@ jobs:
   added: '2026-07-12'
   status: done
   track: shorts
-
-# Silent re-render batch (аудио-фикс: -map 0:v:0 -map 1:a:0)
 - id: cnr_rerender_silent_20260712
   cmd: bash scripts/rerender_silent_programs.sh
   log: logs/rerender_silent.log
@@ -247,9 +267,7 @@ jobs:
   added: '2026-07-12'
   status: in_progress
   track: calm_classics
-  note: 'running in background after chopin/beethoven/swan_lake 1h complete'
-
-# Visual Themes — AI images + Ken Burns (Calm Classics)
+  note: running in background after chopin/beethoven/swan_lake 1h complete
 - id: cnr_visual_themes_batch_20260712
   cmd: bash scripts/run_visual_themes.sh
   log: logs/visual_themes.log
@@ -257,37 +275,51 @@ jobs:
   added: '2026-07-12'
   status: queued
   track: calm_classics
-  note: 'starts after cnr_rerender_silent_20260712 completes (~3-4h)'
+  note: starts after cnr_rerender_silent_20260712 completes (~3-4h)
   themes:
-    - aurora_borealis
-    - cherry_blossoms
-    - fireplace_cabin
-    - lavender_fields
-    - autumn_forest
-    - mountain_snow
-    - deep_space
-    - zen_garden
-
-# Missing classical programs — all music available in licenses.yaml
+  - aurora_borealis
+  - cherry_blossoms
+  - fireplace_cabin
+  - lavender_fields
+  - autumn_forest
+  - mountain_snow
+  - deep_space
+  - zen_garden
 - id: cnr_missing_programs_20260712
   cmd: bash scripts/run_missing_programs.sh
   log: logs/missing_programs.log
-  desc: 'CNR: 4 недостающих программы — Swan Lake 02 (1h+3h+8h), Beethoven Sym5 (1h+3h), Cello Focus (1h+3h), Cello Sleep (1h+3h) = 11 видео'
+  desc: 'CNR: 4 недостающих программы — Swan Lake 02 (1h+3h+8h), Beethoven Sym5 (1h+3h),
+    Cello Focus (1h+3h), Cello Sleep (1h+3h) = 11 видео'
   added: '2026-07-12'
   status: queued
   track: calm_classics
-  note: 'watcher PID 1480422 — starts after cnr_visual_themes_batch_20260712 completes'
+  note: watcher PID 1480422 — starts after cnr_visual_themes_batch_20260712 completes
   programs:
-    - {id: sleep_swan_lake_02, durations: [1, 3, 8], theme: moon_clouds, music: Tchaikovsky Swan Lake Act III+IV}
-    - {id: focus_beethoven_02, durations: [1, 3], theme: rain_window, music: Beethoven Symphony No. 5 complete}
-    - {id: focus_beethoven_cello_01, durations: [1, 3], theme: rain_window, music: Beethoven Cello Sonata Op.5 No.2 + Op.102}
-    - {id: sleep_beethoven_cello_01, durations: [1, 3], theme: warm_waves, music: Beethoven Cello Sonata No.1 + Op.5}
+  - id: sleep_swan_lake_02
+    durations:
+    - 1
+    theme: moon_clouds
+    music: Tchaikovsky Swan Lake Act III+IV
+  - id: focus_beethoven_02
+    durations:
+    - 1
+    theme: rain_window
+    music: Beethoven Symphony No. 5 complete
+  - id: focus_beethoven_cello_01
+    durations:
+    - 1
+    theme: rain_window
+    music: Beethoven Cello Sonata Op.5 No.2 + Op.102
+  - id: sleep_beethoven_cello_01
+    durations:
+    - 1
+    theme: warm_waves
+    music: Beethoven Cello Sonata No.1 + Op.5
   blocked_programs:
-    - {id: focus_bach_01, reason: needs Musopen API key — BWV 846/772/988/147/999/1068}
-    - {id: sleep_lullaby_01, reason: needs Musopen API key — Brahms/Schubert/Satie/Bach lullabies}
-
-# SONG COMPILATIONS — Suno AI tracks (24 EN upbeat / 27 EN lullaby / 9 AR songs)
-# Cron: 1-го числа каждого месяца; повторная генерация → новый файл с датой
+  - id: focus_bach_01
+    reason: needs Musopen API key — BWV 846/772/988/147/999/1068
+  - id: sleep_lullaby_01
+    reason: needs Musopen API key — Brahms/Schubert/Satie/Bach lullabies
 - id: song_compilation_upbeat_en_20260730
   cmd: python3 scripts/generate_song_compilation.py --type upbeat --lang en
   log: logs/song_compilation.log
@@ -295,8 +327,8 @@ jobs:
   added: '2026-07-30'
   status: done
   track: kids_song
-  note: '20260801 + 20260802 both done (18 songs each — pre-update playlists). Next run will have 24.'
-
+  note: 20260801 + 20260802 both done (18 songs each — pre-update playlists). Next
+    run will have 24.
 - id: song_compilation_lullaby_en_20260730
   cmd: python3 scripts/generate_song_compilation.py --type lullaby --lang en
   log: logs/song_compilation.log
@@ -304,8 +336,7 @@ jobs:
   added: '2026-07-30'
   status: done
   track: kids_song
-  note: '20260802 done (17 songs — pre-update playlist). Next run will have 27.'
-
+  note: 20260802 done (17 songs — pre-update playlist). Next run will have 27.
 - id: song_compilation_upbeat_ar_20260730
   cmd: python3 scripts/generate_song_compilation.py --type upbeat --lang ar
   log: logs/song_compilation.log
@@ -313,9 +344,7 @@ jobs:
   added: '2026-07-30'
   status: done
   track: kids_song
-  note: '20260802 done (9 songs). Thumb pending — Together.ai Cloudflare block.'
-
-# KIDS QUALITY v2 — новые серии с depth/parallax/ZFLOAT (DanceSpriteLong v2)
+  note: 20260802 done (9 songs). Thumb pending — Together.ai Cloudflare block.
 - id: generate_animal_groups_20260802
   cmd: python3 scripts/generate_animal_groups.py
   log: logs/animal_groups.log
@@ -323,60 +352,175 @@ jobs:
   added: '2026-08-02'
   status: done
   track: kids_quality
-  note: 'Done 2026-08-03 18:15. 5/5 episodes EN+AR rendered. Depth/parallax/ZFLOAT applied.'
-
+  note: Done 2026-08-03 18:15. 5/5 episodes EN+AR rendered. Depth/parallax/ZFLOAT
+    applied.
 - id: generate_lullaby_animals_20260802
   cmd: python3 scripts/generate_lullaby_animals.py
   log: logs/lullaby_animals.log
-  desc: 'Lullaby Animals: 4 эп (bear_night/bunny_dream/forest_lullaby/ocean_dream) × EN+AR — ZFLOAT sleep'
+  desc: 'Lullaby Animals: 4 эп (bear_night/bunny_dream/forest_lullaby/ocean_dream)
+    × EN+AR — ZFLOAT sleep'
   added: '2026-08-02'
   status: done
   track: kids_sleep
-  note: 'Done 2026-08-04. All 4 episodes EN+AR rendered. ZFLOAT nightMode applied.'
-
-# CNR MEGA COMPILATIONS — shuffle + 3h unique content (2026-08-04)
+  note: Done 2026-08-04. All 4 episodes EN+AR rendered. ZFLOAT nightMode applied.
 - id: cnr_sleep_grand_all_01_20260804
-  cmd: python3 scripts/generate_sleep_classical.py --program sleep_grand_all_01 --durations 1 3
+  cmd: python3 scripts/generate_sleep_classical.py --program sleep_grand_all_01 --durations
+    1 3
   log: logs/sleep_classical.log
   desc: 'CNR: Grand All Composers night — 185min unique, shuffle, 1h+3h → queue_id'
   added: '2026-08-04'
-  status: pending
+  status: done
   track: calm_classics
-
+  started: 2026-08-10 13:41
 - id: cnr_sleep_baroque_romantics_01_20260804
-  cmd: python3 scripts/generate_sleep_classical.py --program sleep_baroque_romantics_01 --durations 1 3
+  cmd: python3 scripts/generate_sleep_classical.py --program sleep_baroque_romantics_01
+    --durations 1 3
   log: logs/sleep_classical.log
   desc: 'CNR: Baroque→Romantic sleep journey — 152min unique, shuffle, 1h+3h → queue_id'
   added: '2026-08-04'
-  status: pending
+  status: done
   track: calm_classics
-
+  started: 2026-08-10 13:41
 - id: cnr_focus_bach_goldberg_complete_01_20260804
-  cmd: python3 scripts/generate_sleep_classical.py --program focus_bach_goldberg_complete_01 --durations 1 3
+  cmd: python3 scripts/generate_sleep_classical.py --program focus_bach_goldberg_complete_01
+    --durations 1 3
   log: logs/sleep_classical.log
-  desc: 'CNR: Bach Goldberg Complete focus — 74min, ordered (no shuffle), 1h+3h → queue_id'
+  desc: 'CNR: Bach Goldberg Complete focus — 74min, ordered (no shuffle), 1h+3h →
+    queue_id'
   added: '2026-08-04'
-  status: pending
+  status: done
   track: calm_classics
-
+  started: 2026-08-10 13:41
 - id: cnr_focus_beethoven_violin_01_20260804
-  cmd: python3 scripts/generate_sleep_classical.py --program focus_beethoven_violin_01 --durations 1 3
+  cmd: python3 scripts/generate_sleep_classical.py --program focus_beethoven_violin_01
+    --durations 1 3
   log: logs/sleep_classical.log
-  desc: 'CNR: Beethoven Violin Concerto + Cello Sonata — 122min, shuffle, 1h+3h → queue_id'
+  desc: 'CNR: Beethoven Violin Concerto + Cello Sonata — 122min, shuffle, 1h+3h →
+    queue_id'
   added: '2026-08-04'
-  status: pending
+  status: done
   track: calm_classics
-
+  started: 2026-08-10 13:41
 - id: cnr_focus_bach_violin_partita_01_20260804
-  cmd: python3 scripts/generate_sleep_classical.py --program focus_bach_violin_partita_01 --durations 1 3
+  cmd: python3 scripts/generate_sleep_classical.py --program focus_bach_violin_partita_01
+    --durations 1 3
   log: logs/sleep_classical.log
   desc: 'CNR: Bach Violin Partitas complete — 60min, ordered, 1h+3h → queue_id'
   added: '2026-08-04'
-  status: pending
+  status: done
   track: calm_classics
-
-# REGEN: nature_calm AR — old mp4 deleted (near-black bgColor), regen with fixed colors
-# Run AFTER AR upbeat compilation finishes (sequential, 1 render at a time)
+  started: 2026-08-10 13:41
+- id: peekaboo_mix_warm_s1_20260806
+  cmd: python3 scripts/generate_peekaboo_long.py --variant mix --theme warm --cycle
+    360 --shuffle 1
+  log: logs/peekaboo.log
+  desc: 'PeekABoo mix/warm: 88 sprites, 17.6 min → EN+AR'
+  added: '2026-08-06'
+  status: pending
+  track: kids_quality
+- id: peekaboo_animals_warm_s1_20260806
+  cmd: python3 scripts/generate_peekaboo_long.py --variant animals --theme warm --cycle
+    360 --shuffle 1
+  log: logs/peekaboo.log
+  desc: 'PeekABoo animals/warm: 53 sprites, 10.6 min → EN+AR'
+  added: '2026-08-06'
+  status: pending
+  track: kids_quality
+- id: peekaboo_fruits_veggies_warm_s1_20260806
+  cmd: python3 scripts/generate_peekaboo_long.py --variant fruits_veggies --theme
+    warm --cycle 360 --shuffle 1
+  log: logs/peekaboo.log
+  desc: 'PeekABoo fruits_veggies/warm: 29 sprites, 5.8 min → EN+AR'
+  added: '2026-08-06'
+  status: pending
+  track: kids_quality
+- id: peekaboo_mix_warm_s2_20260806
+  cmd: python3 scripts/generate_peekaboo_long.py --variant mix --theme warm --cycle
+    360 --shuffle 2
+  log: logs/peekaboo.log
+  desc: 'PeekABoo mix/warm shuffle#2: 88 sprites разный порядок → EN+AR'
+  added: '2026-08-06'
+  status: pending
+  track: kids_quality
+- id: peekaboo_mix_night_s1_20260806
+  cmd: python3 scripts/generate_peekaboo_long.py --variant mix --theme night --cycle
+    360 --shuffle 1
+  log: logs/peekaboo.log
+  desc: 'PeekABoo mix/night: тёмный фон, золотые коробки, 17.6 min → EN+AR'
+  added: '2026-08-06'
+  status: pending
+  track: kids_quality
+- id: peekaboo_animals_night_s1_20260806
+  cmd: python3 scripts/generate_peekaboo_long.py --variant animals --theme night --cycle
+    360 --shuffle 1
+  log: logs/peekaboo.log
+  desc: 'PeekABoo animals/night: ночной стиль, 10.6 min → EN+AR'
+  added: '2026-08-06'
+  status: pending
+  track: kids_quality
+- id: peekaboo_fruits_veggies_night_s1_20260806
+  cmd: python3 scripts/generate_peekaboo_long.py --variant fruits_veggies --theme
+    night --cycle 360 --shuffle 1
+  log: logs/peekaboo.log
+  desc: 'PeekABoo fruits_veggies/night: ночной стиль, 5.8 min → EN+AR'
+  added: '2026-08-06'
+  status: pending
+  track: kids_quality
+- id: peekaboo_mix_tropical_s1_20260806
+  cmd: python3 scripts/generate_peekaboo_long.py --variant mix --theme tropical --cycle
+    360 --shuffle 1
+  log: logs/peekaboo.log
+  desc: 'PeekABoo mix/tropical: тропический стиль, 17.6 min → EN+AR'
+  added: '2026-08-06'
+  status: pending
+  track: kids_quality
+- id: peekaboo_animals_tropical_s1_20260806
+  cmd: python3 scripts/generate_peekaboo_long.py --variant animals --theme tropical
+    --cycle 360 --shuffle 1
+  log: logs/peekaboo.log
+  desc: 'PeekABoo animals/tropical: тропический стиль, 10.6 min → EN+AR'
+  added: '2026-08-06'
+  status: pending
+  track: kids_quality
+- id: peekaboo_fruits_veggies_tropical_s1_20260806
+  cmd: python3 scripts/generate_peekaboo_long.py --variant fruits_veggies --theme
+    tropical --cycle 360 --shuffle 1
+  log: logs/peekaboo.log
+  desc: 'PeekABoo fruits_veggies/tropical: тропический стиль, 5.8 min → EN+AR'
+  added: '2026-08-06'
+  status: pending
+  track: kids_quality
+- id: peekaboo_mix_candy_s1_20260806
+  cmd: python3 scripts/generate_peekaboo_long.py --variant mix --theme candy --cycle
+    360 --shuffle 1
+  log: logs/peekaboo.log
+  desc: 'PeekABoo mix/candy: пастельный стиль, 17.6 min → EN+AR'
+  added: '2026-08-06'
+  status: pending
+  track: kids_quality
+- id: peekaboo_animals_candy_s1_20260806
+  cmd: python3 scripts/generate_peekaboo_long.py --variant animals --theme candy --cycle
+    360 --shuffle 1
+  log: logs/peekaboo.log
+  desc: 'PeekABoo animals/candy: пастельный стиль, 10.6 min → EN+AR'
+  added: '2026-08-06'
+  status: pending
+  track: kids_quality
+- id: sensory_blob_silent_20260806
+  cmd: python3 scripts/generate_sensory_blob.py --durations 30 60
+  log: logs/all_kids_queue.log
+  desc: 'SensoryBlob silent: 5-min render → FFmpeg 30+60 min → EN+AR'
+  added: '2026-08-06'
+  status: queued
+  track: kids_quality
+- id: sensory_blob_sound_20260806
+  cmd: python3 scripts/generate_sensory_blob.py --durations 30 60 --sound
+  log: logs/all_kids_queue.log
+  desc: 'SensoryBlob +sound (Dreamy Arpeggios v2): 5-min render → FFmpeg 30+60 min
+    → EN+AR'
+  added: '2026-08-06'
+  status: queued
+  track: kids_quality
 - id: nature_calm_ar_regen_20260730
   cmd: python3 scripts/generate_nature_calm.py
   log: logs/nature_calm.log
@@ -384,4 +528,135 @@ jobs:
   added: '2026-07-30'
   status: done
   track: ar_kids
-  note: 'Done 2026-08-03. All 6 episodes EN+AR in queue. --concurrency 1 fix applied.'
+  note: Done 2026-08-03. All 6 episodes EN+AR in queue. --concurrency 1 fix applied.
+
+# --- Новые задачи (2026-08-11) ---
+
+- id: cnr_visual_themes_new_20260811
+  cmd: bash scripts/run_visual_themes.sh
+  log: logs/visual_themes.log
+  desc: 'CNR Visual Themes: 10 тем (5 новых + night_rain + evening_piano + 3 с новой музыкой) × 1h+3h → queue_id'
+  added: '2026-08-11'
+  status: pending
+  track: calm_classics
+  note: >
+    Новые: aurora_borealis, cherry_blossoms, fireplace_cabin, lavender_fields, autumn_forest.
+    night_rain и evening_piano — впервые добавлены в run_visual_themes.sh.
+    mountain_snow/deep_space/zen_garden уже есть → пропустятся автоматически.
+    Все 10 тем теперь имеют новые треки в music_files (Albinoni, Rachmaninoff, BWV1043 Largo).
+
+- id: cnr_focus_bach_violin_partita_rerender_20260811
+  cmd: python3 scripts/generate_sleep_classical.py --program focus_bach_violin_partita_01
+    --durations 1 --force
+  log: logs/sleep_classical.log
+  desc: 'CNR: Bach Violin Partitas — re-render с 8 новыми треками (101min уник → 3.4h, был 47min)'
+  added: '2026-08-11'
+  status: pending
+  track: calm_classics
+  note: >
+    Добавлены: BWV 1043 (I+II+III), WTC Prelude 4/12/24, Accou Bourree/Sarabande.
+    Старый 3h был с max_repeat 3.8x (47min уник). Новый — max_repeat 1.8x (101min уник).
+    Запускать ПОСЛЕ cnr_visual_themes_new_20260811 (FFmpeg, не OOM).
+
+- id: cnr_focus_beethoven_cello_rerender_20260811
+  cmd: python3 scripts/generate_sleep_classical.py --program focus_beethoven_cello_01
+    --durations 1 --force
+  log: logs/sleep_classical.log
+  desc: 'CNR: Beethoven Cello Focus — re-render 1h с Cello Sonata No.1 + Tempest Adagio (был 28min уник, стало 60min)'
+  added: '2026-08-11'
+  status: pending
+  track: calm_classics
+  note: 3h пока недостаточно (60min × 2 = 2h). Только 1h. Добавить больше треков для 3h.
+
+- id: cnr_audio_fix_debussy_20260811
+  cmd: python3 scripts/generate_sleep_classical.py --program sleep_debussy_01 --durations 1 --force
+  log: logs/sleep_classical.log
+  desc: 'CNR: Debussy — FIX 89kbps→192kbps (mixed sample rate bug patched)'
+  added: '2026-08-11'
+  status: pending
+  track: calm_classics
+  note: >
+    Причина: Arabesque No.1.mp3 был 64kbps mono 22050Hz. concat demuxer деградировал
+    весь трек до 89kbps. Fix: aresample=async=1+aformat=44100:stereo в generate_sleep_classical.py.
+    Старые видео на удаление: FH_gxkPskQM, G0FIe0KliHk, d0BZlDwMNkA, xGKnjNFHiSY.
+    После рендера — загрузить в queue_id и удалить старые с канала.
+
+- id: cnr_audio_fix_mountain_snow_20260811
+  cmd: bash scripts/run_visual_themes.sh --single mountain_snow
+  log: logs/visual_themes.log
+  desc: 'CNR: Mountain Snow — FIX разрыв на 14:47 (track boundary gap patched)'
+  added: '2026-08-11'
+  status: pending
+  track: calm_classics
+  note: >
+    Разрыв на ~887 сек = конец Fantasia on a Theme by Thomas Tallis (894 сек).
+    Fix: aresample=async=1 в make_visual_theme.py build_music_track.
+    Старое видео на удаление: hw1IO2roixw (visual_theme_mountain_snow_1h_20260714).
+    Запускать ПОСЛЕ cnr_visual_themes_new_20260811 (избежать OOM).
+
+- id: cnr_delete_broken_videos_20260811
+  cmd: 'echo "MANUAL: delete via YouTube Studio — video IDs listed in note"'
+  desc: 'CNR: Удалить 7 видео с битым аудио (есть замены)'
+  added: '2026-08-11'
+  status: pending
+  track: calm_classics
+  note: >
+    Удалить — уже есть хорошие замены:
+      NH3UD1Iubiw = focus_beethoven 1h Jul8 (2274bps) → заменён Q_XSb9REvLQ + tB4fNMT_mec
+      bKumAueBsYw = sleep_chopin 1h Jul8 (2274bps) → заменён n2XH9jcTL10
+      _tj91-PYVoE = sleep_swan_lake 1h Jul8 (2274bps) → заменён CKg5oq_OM5U
+      hi1tuBsqDZM = moon_clouds short Jul8 (no audio) → заменён BrjRXSxjH5E
+      LDpZ54tQ1aY = night_bear short Jul8 (no audio) → заменён SY6QYLH2oSk
+    Удалить после перезаливки Debussy:
+      FH_gxkPskQM, G0FIe0KliHk = Debussy Jul12 (89kbps)
+      d0BZlDwMNkA, xGKnjNFHiSY = Debussy Jul23 (89kbps)
+      hw1IO2roixw = mountain_snow Jul14 (gap at 14:47)
+      dnOnhOiuC_Y, quxZ8K7HF60 = warm_waves short (89kbps)
+
+- id: cnr_debussy_3h_rerender_20260811
+  cmd: python3 scripts/generate_sleep_classical.py --program sleep_debussy_01 --durations 3 --force
+  log: logs/sleep_classical.log
+  desc: 'CNR: Debussy 3h — PAUSED (strategy: only 1h for now, resume when 3h makes sense)'
+  added: '2026-08-11'
+  status: paused_3h_strategy
+  track: calm_classics
+  note: >
+    Запускать ПОСЛЕ завершения cnr_audio_fix_debussy_20260811 (1h).
+    Новый конфиг: 14 треков (91min уник), durations=[1,3].
+    Старые 3h на удаление после заливки: G0FIe0KliHk (Jul12), xGKnjNFHiSY (Jul23).
+    replace_id в мета указать на xGKnjNFHiSY (Jul23 с локализациями).
+    Вручную удалить дубль Jul12: G0FIe0KliHk.
+
+- id: cnr_warm_waves_short_delete_dup_20260811
+  cmd: python3 scripts/delete_youtube_video.py --channel en dnOnhOiuC_Y
+  desc: 'CNR: Удалить warm_waves Jul12 short (дубль, 89kbps, без локализаций)'
+  added: '2026-08-11'
+  status: pending
+  track: calm_classics
+  note: >
+    Jul30 (quxZ8K7HF60) удалится автоматически через replace_id при заливке нового t30.
+    Jul12 (dnOnhOiuC_Y) — ручное удаление, без локализаций, залит через EN credentials.
+    Запускать ПОСЛЕ заливки нового warm_waves short.
+
+- id: cnr_debussy_1h_delete_dup_20260811
+  cmd: python3 scripts/delete_youtube_video.py --channel id FH_gxkPskQM
+  desc: 'CNR: Удалить Debussy 1h Jul12 (дубль 89kbps, не имеет локализаций)'
+  added: '2026-08-11'
+  status: pending
+  track: calm_classics
+  note: >
+    Jul23 (d0BZlDwMNkA) удалится автоматически через replace_id при заливке нового 1h.
+    Jul12 (FH_gxkPskQM) — ручное удаление дубля.
+    Запускать ПОСЛЕ заливки нового Debussy 1h.
+
+- id: cnr_mountain_snow_rerender_20260811
+  cmd: bash scripts/run_visual_themes.sh --single mountain_snow
+  log: logs/visual_themes.log
+  desc: 'CNR: Mountain Snow 1h — FIX разрыв на 14:47 (aresample patched)'
+  added: '2026-08-11'
+  status: pending
+  track: calm_classics
+  note: >
+    Запускать ПОСЛЕ завершения cnr_visual_themes_new_20260811 (FFmpeg, избежать OOM).
+    Старое видео hw1IO2roixw (Jul14) удалится автоматически через replace_id в мета.
+    После рендера добавить: replace_id: hw1IO2roixw в meta_visual_theme_mountain_snow_1h_*.yaml.

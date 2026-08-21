@@ -42,27 +42,30 @@ KB_MOTIONS   = ["zoom_in", "pan_right", "zoom_out", "pan_left", "pan_up", "pan_d
 
 # Cinematic prompts per program — used for both Ken Burns loop images and thumbnail
 PROGRAM_KB_PROMPTS: dict[str, str] = {
-    "sleep_chopin_01":          "candlelit grand piano in dark Parisian salon, moonlight through tall windows, romantic atmosphere, cinematic 4K",
-    "sleep_chopin_02":          "Romantic era salon with soft candlelight, old gold picture frames, moonlit Parisian interior, warm amber glow",
-    "sleep_swan_lake_01":       "moonlit lake at night, white swans gliding on still water, full moon reflection, misty forest background, ethereal blue",
-    "sleep_swan_lake_02":       "swan lake at dusk, water surface reflecting stars, mist rising over dark water, dreamlike blue and silver tones",
-    "sleep_debussy_01":         "impressionist lily pond at dawn, water reflections, soft morning mist, Monet-inspired, gentle pastel colors",
-    "sleep_romantic_night_01":  "candlelit grand library at night, violin resting on velvet, moonlight through arched windows, warm amber fireplace glow",
-    "sleep_flute_01":           "misty morning forest, golden rays through ancient trees, dew on leaves, peaceful woodland atmosphere at dawn",
-    "sleep_baroque_01":         "baroque palace interior at night, ornate chandeliers, gold architecture, candlelight reflecting on marble floors",
-    "sleep_grand_night_01":     "grand concert hall at night, ornate ceiling, dramatic spotlights over empty seats, majestic orchestral atmosphere",
-    "focus_beethoven_01":       "dramatic storm clouds over hilltop, lightning in distance, powerful Romantic landscape, dark cinematic 4K",
-    "focus_beethoven_02":       "Beethoven-era Vienna concert hall, dramatic lighting, symphony orchestra silhouettes, intense passionate atmosphere",
-    "focus_mozart_01":          "Viennese baroque palace ballroom, crystal chandeliers, elegant 18th century interior, golden afternoon sunlight",
-    "focus_drama_01":           "dramatic opera house interior, red velvet curtains, ornate gilded balconies, theatrical spotlight, deep shadows",
-    "sleep_beethoven_cello_01": "cello leaning against window at dusk, autumn leaves outside, warm lamplight, cozy evening room ambiance",
-    "focus_beethoven_cello_01": "cello and piano in sunlit studio, warm afternoon light on wooden floor, sheet music, serene focus atmosphere",
-    "sleep_lullaby_01":         "cozy nursery at night, moonlight through curtains, soft mobile above crib, warm amber nightlight, peaceful",
-    "sleep_moonlight_01":       "moonlit grand piano in dark Parisian salon, silver moonlight through tall arched windows, Chopin nocturne atmosphere, romantic night, cinematic 4K",
-    "focus_classical_miniatures_01": "elegant study room on rainy afternoon, open books and sheet music, warm desk lamp, misty garden through tall French window, intellectual focus, classical music atmosphere",
-    "sleep_grand_orchestral_01":    "moonlit concert hall exterior at night, grand dome illuminated against dark sky, Tchaikovsky era Vienna opera house, majestic and serene, cinematic photography",
-    "sleep_complete_romantic_01":   "candlelit cello resting against grand piano in intimate salon, moonlight through silk curtains, romantic 19th century interior, Chopin and Beethoven atmosphere",
-    "focus_baroque_chamber_01":     "baroque library at golden afternoon, sunlight through tall windows onto musical manuscripts and violin, Bach era study room, scholarly and peaceful",
+    "sleep_chopin_01":          "candlelit grand piano in dark Parisian salon, moonlight through tall windows, romantic atmosphere, cinematic 4K, no text, no letters",
+    "sleep_chopin_02":          "Romantic era salon with soft candlelight, old gold picture frames, moonlit Parisian interior, warm amber glow, no text, no letters",
+    "sleep_swan_lake_01":       "moonlit lake at night, white swans gliding on still water, full moon reflection, misty forest background, ethereal blue, no text, no letters",
+    "sleep_swan_lake_02":       "swan lake at dusk, water surface reflecting stars, mist rising over dark water, dreamlike blue and silver tones, no text, no letters",
+    "sleep_debussy_01":         "impressionist lily pond at dawn, water reflections, soft morning mist, Monet-inspired, gentle pastel colors, no text, no letters",
+    "sleep_romantic_night_01":  "candlelit grand library at night, violin resting on velvet, moonlight through arched windows, warm amber fireplace glow, no text, no letters",
+    "sleep_flute_01":           "misty morning forest, golden rays through ancient trees, dew on leaves, peaceful woodland atmosphere at dawn, no text, no letters",
+    "sleep_baroque_01":         "baroque palace interior at night, ornate chandeliers, gold architecture, candlelight reflecting on marble floors, no text, no letters",
+    "sleep_grand_night_01":     "grand concert hall at night, ornate ceiling, dramatic spotlights over empty seats, majestic orchestral atmosphere, no text, no letters",
+    "focus_beethoven_01":       "dramatic storm clouds over hilltop, lightning in distance, powerful Romantic landscape, dark cinematic 4K, no text, no letters",
+    "focus_beethoven_02":       "Beethoven-era Vienna concert hall, dramatic lighting, symphony orchestra silhouettes, intense passionate atmosphere, no text, no letters",
+    "focus_mozart_01":          "Viennese baroque palace ballroom, crystal chandeliers, elegant 18th century interior, golden afternoon sunlight, no text, no letters",
+    "focus_drama_01":           "dramatic opera house interior, red velvet curtains, ornate gilded balconies, theatrical spotlight, deep shadows, no text, no letters",
+    "sleep_beethoven_cello_01": "cello leaning against window at dusk, autumn leaves outside, warm lamplight, cozy evening room ambiance, no text, no letters",
+    "focus_beethoven_cello_01": "cello and piano in sunlit studio, warm afternoon light on wooden floor, sheet music, serene focus atmosphere, no text, no letters",
+    "sleep_lullaby_01":         "cozy nursery at night, moonlight through curtains, soft mobile above crib, warm amber nightlight, peaceful, no text, no letters",
+    "sleep_moonlight_01":       "moonlit grand piano in dark Parisian salon, silver moonlight through tall arched windows, Chopin nocturne atmosphere, romantic night, cinematic 4K, no text, no letters",
+    "focus_classical_miniatures_01": "elegant study room on rainy afternoon, open books and sheet music, warm desk lamp, misty garden through tall French window, intellectual focus, classical music atmosphere, no text, no letters",
+    "sleep_grand_orchestral_01":    "moonlit concert hall exterior at night, grand dome illuminated against dark sky, Tchaikovsky era Vienna opera house, majestic and serene, cinematic photography, no text, no letters",
+    "sleep_complete_romantic_01":   "candlelit cello resting against grand piano in intimate salon, moonlight through silk curtains, romantic 19th century interior, Chopin and Beethoven atmosphere, no text, no letters",
+    "focus_baroque_chamber_01":     "baroque library at golden afternoon, sunlight through tall windows onto musical manuscripts and violin, Bach era study room, scholarly and peaceful, no text, no letters",
+    "sleep_schubert_01":            "moonlit Viennese salon at night, candlelit grand piano, pale blue moonlight through tall windows, Schubert era romantic interior, soft shadows and warm amber candle glow, no text, no letters",
+    "focus_bach_violin_partita_01": "baroque violin resting on open score pages in sunlit studio, warm golden afternoon light, wooden music stand, Bach manuscript on desk, scholarly peaceful atmosphere, no text, no letters",
+    "focus_beethoven_kreutzer_01":  "Beethoven-era concert hall, violinist and pianist on stage in dramatic spotlight, passionate performance, grand piano gleaming under warm stage lights, cinematic 4K, no text, no letters",
 }
 
 THEME_LOOP_SECS = {
@@ -80,6 +83,17 @@ THEME_COMPOSITION = {
 }
 
 HOURS_TO_LABEL = {1: "1 Hour", 3: "3 Hours", 8: "8 Hours"}
+
+
+def _format_natural_duration(total_secs: float) -> str:
+    """Format total seconds as a human-readable duration label for titles/tags."""
+    h = int(total_secs // 3600)
+    m = int((total_secs % 3600) // 60)
+    if h > 0 and m > 0:
+        return f"{h}h {m}min"
+    elif h > 0:
+        return f"{h}h"
+    return f"{m} min"
 
 TITLES = {
     "sleep_chopin_01":          "Chopin Nocturnes for Sleep ✨ {dur} | Classical Night Relax",
@@ -589,6 +603,9 @@ def build_audio_track(program: dict, licenses_data: dict, out_dir: Path,
     cmd = [
         "ffmpeg", "-y", "-f", "concat", "-safe", "0",
         "-i", str(concat_list),
+        # Normalize to 44100 Hz stereo — fixes mixed-format sources degrading to 89 kbps.
+        # aresample=async=1 fills inter-track gaps that cause audible dropouts on some devices.
+        "-af", "aresample=async=1:min_hard_comp=0.1:first_pts=0,aformat=sample_rates=44100:channel_layouts=stereo",
         "-c:a", "libmp3lame", "-b:a", "192k",
     ]
     if target_secs > 0:
@@ -609,8 +626,17 @@ def build_audio_track(program: dict, licenses_data: dict, out_dir: Path,
 
 def assemble_video(loop_mp4: Path, audio_mp3: Path | None,
                    target_hours: int, out_mp4: Path) -> bool:
-    """Loop visual to fill target duration, overlay audio, write output."""
-    target_secs = target_hours * 3600
+    """Loop visual to fill target duration, overlay audio, write output.
+    target_hours=0 means natural length: use actual audio duration (no padding).
+    """
+    if target_hours == 0:
+        target_secs = int(_get_mp3_duration(audio_mp3)) if audio_mp3 else 3600
+        if target_secs == 0:
+            log.warning("  Natural mode: could not read audio duration — defaulting to 3600s")
+            target_secs = 3600
+        log.info(f"  Natural duration: {_format_natural_duration(target_secs)}")
+    else:
+        target_secs = target_hours * 3600
     # Use faster preset for long videos: slow→fast saves hours on 8h renders.
     # fast for all durations — slow takes 6h+ for 1h video on this server (OOM/timeout risk)
     preset = "fast"
@@ -675,7 +701,13 @@ def make_attribution(program: dict) -> str:
 def write_meta(program: dict, hours: int, queue: Path, out_name: str):
     prog_id  = program["id"]
     track    = program.get("track", "calm_classics")
-    dur_label = HOURS_TO_LABEL.get(hours, f"{hours} Hours")
+    if hours == 0:
+        # Natural mode: derive duration label from actual output file
+        out_path = queue / out_name
+        actual_secs = _get_mp3_duration(out_path) if out_path.exists() else 0
+        dur_label = _format_natural_duration(actual_secs) if actual_secs > 0 else "Complete"
+    else:
+        dur_label = HOURS_TO_LABEL.get(hours, f"{hours} Hours")
     title_tpl = TITLES.get(prog_id, "Classical Music for Sleep ✨ {dur} | Classical Night Relax")
     title    = title_tpl.format(dur=dur_label)
 
@@ -690,9 +722,13 @@ def write_meta(program: dict, hours: int, queue: Path, out_name: str):
         composer_tag=composer_tag,
     )
 
-    tags = (program.get("tags", []) +
-            [dur_label.lower(), f"{hours} hour music", "classical night relax",
-             "classical music", "sleep music", "relaxation"])[:40]
+    if hours == 0:
+        extra_tags = ["classical night relax", "classical music", "sleep music", "relaxation",
+                      "complete recording", dur_label.lower()]
+    else:
+        extra_tags = [dur_label.lower(), f"{hours} hour music", "classical night relax",
+                      "classical music", "sleep music", "relaxation"]
+    tags = (program.get("tags", []) + extra_tags)[:40]
 
     meta = {
         "title":          title,
@@ -715,6 +751,23 @@ def write_meta(program: dict, hours: int, queue: Path, out_name: str):
     log.info(f"  Meta → {meta_path.name}")
 
 
+def _apply_thumb_text(thumb_path: Path, program: dict, hours: int) -> None:
+    """Add text overlay (title + duration badge) to an existing thumbnail PNG."""
+    try:
+        import importlib.util, io
+        spec = importlib.util.spec_from_file_location("tt", ROOT / "scripts" / "thumb_text.py")
+        tt = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(tt)
+        from PIL import Image
+        img  = Image.open(thumb_path).convert("RGB")
+        text = tt.thumb_text_for_program(program)
+        img  = tt.add_thumb_text(img, text, duration_hours=hours)
+        img.save(str(thumb_path), "PNG")
+        log.info(f"  Thumb text overlay: {text!r} + {hours}h badge")
+    except Exception as e:
+        log.warning(f"  Thumb text overlay skipped: {e}")
+
+
 def generate_thumbnail(out_mp4: Path, program: dict, hours: int) -> bool:
     thumb_path = out_mp4.parent / f"thumb_{out_mp4.stem}.png"
     if thumb_path.exists():
@@ -732,6 +785,7 @@ def generate_thumbnail(out_mp4: Path, program: dict, hours: int) -> bool:
             spec.loader.exec_module(gat)
             thumb_path.write_bytes(gat.resize_to_720p(kb_img.read_bytes()))
             log.info(f"  Thumb from KB image → {thumb_path.name}")
+            _apply_thumb_text(thumb_path, program, hours)
             return True
         except Exception as e:
             log.warning(f"  KB thumb resize failed: {e}")
@@ -743,21 +797,24 @@ def generate_thumbnail(out_mp4: Path, program: dict, hours: int) -> bool:
     if not prompt:
         theme = program.get("visual_theme", "moon_clouds")
         prompt_map = {
-            "moon_clouds": "peaceful moonlit night with classical music ambiance, sleep relaxation, dark blue",
-            "night_bear":  "sleeping bear silhouette under moonlit sky with fireflies, cozy peaceful",
-            "warm_waves":  "ocean waves at dusk with amber sunset glow, classical music relaxation",
-            "rain_window": "rainy window with warm candle glow inside, classical music study, cozy",
+            "moon_clouds": "moonlit grand concert hall interior, ornate balconies, dramatic chandeliers, cinematic photography",
+            "warm_waves":  "ocean waves at dusk with amber sunset glow, classical music relaxation, cinematic",
+            "rain_window": "rainy window with warm candle glow inside, classical music study, cozy, cinematic",
         }
-        prompt = prompt_map.get(theme, "peaceful classical music ambiance, sleep and relaxation")
-    composers = set(t.get("composer", "").split()[0] for t in program.get("tracks", []))
-    prompt += f", {', '.join(sorted(composers))}"
+        prompt = prompt_map.get(theme, "elegant concert hall at night, classical music atmosphere, cinematic photography")
+    # Do NOT append composer names — FLUX renders them as visible text in the image,
+    # causing double text when _apply_thumb_text() adds the title overlay on top.
+    prompt += ", no text, no letters, no words, no numbers"
 
     try:
         import requests as req
         api_key = TOGETHER_KEY_FILE.read_text().strip()
         resp = req.post(
             "https://api.together.xyz/v1/images/generations",
-            headers={"Authorization": f"Bearer {api_key}"},
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "User-Agent": "python-requests/2.31.0",
+            },
             json={"model": "black-forest-labs/FLUX.1-schnell",
                   "prompt": prompt, "width": 1280, "height": 720,
                   "steps": 4, "n": 1, "response_format": "b64_json"},
@@ -766,6 +823,7 @@ def generate_thumbnail(out_mp4: Path, program: dict, hours: int) -> bool:
         resp.raise_for_status()
         thumb_path.write_bytes(base64.b64decode(resp.json()["data"][0]["b64_json"]))
         log.info(f"  Thumb → {thumb_path.name}")
+        _apply_thumb_text(thumb_path, program, hours)
         return True
     except Exception as e:
         log.warning(f"  Thumbnail skipped: {e}")
@@ -790,24 +848,30 @@ def cmd_gen_visuals(force: bool = False):
 
 
 def cmd_generate_program(program_id: str, durations: list[int] | None,
-                         regen_meta: bool, dry_run: bool, force: bool):
+                         regen_meta: bool, dry_run: bool, force: bool,
+                         natural: bool = False):
     program = load_program(program_id)
     licenses_data = load_licenses()
 
     theme       = program["visual_theme"]
     track_type  = program.get("track", "calm_classics")
     queue       = QUEUE_EN if track_type == "kids_sleep" else QUEUE_CC
-    requested   = durations or program.get("durations_hours", [1, 3])
 
-    # Validate durations against unique content — skip those with too much repetition
-    licenses_data_check = load_licenses()
-    unique_min  = compute_unique_minutes(program, licenses_data_check)
-    max_repeat  = program.get("max_repeat", 2.0)
-    hours_list  = select_durations(requested, unique_min, max_repeat, program_id)
-
-    log.info(f"=== Program: {program_id} | theme: {theme} | queue: {queue.name} ===")
-    log.info(f"  Unique content: {unique_min:.0f}min | max_repeat: ×{max_repeat} "
-             f"| durations: {hours_list}h")
+    if natural:
+        # Natural mode: output once at the actual total track duration (no repeating)
+        hours_list = [0]
+        unique_min = compute_unique_minutes(program, load_licenses())
+        log.info(f"=== Program: {program_id} | theme: {theme} | queue: {queue.name} ===")
+        log.info(f"  Natural mode: {unique_min:.0f}min unique content → single output, no repeat")
+    else:
+        requested   = durations or program.get("durations_hours", [1, 3])
+        licenses_data_check = load_licenses()
+        unique_min  = compute_unique_minutes(program, licenses_data_check)
+        max_repeat  = program.get("max_repeat", 2.0)
+        hours_list  = select_durations(requested, unique_min, max_repeat, program_id)
+        log.info(f"=== Program: {program_id} | theme: {theme} | queue: {queue.name} ===")
+        log.info(f"  Unique content: {unique_min:.0f}min | max_repeat: ×{max_repeat} "
+                 f"| durations: {hours_list}h")
 
     loop_mp4 = None
     audio_mp3 = None
@@ -818,8 +882,9 @@ def cmd_generate_program(program_id: str, durations: list[int] | None,
         if loop_mp4 is None:
             loop_mp4 = render_shared_loop(theme, force=force)
 
-        # Build audio long enough for the longest requested duration
-        max_hours = max(hours_list) if hours_list else 1
+        # Natural mode: build audio without target_secs (no truncation, no repeating)
+        # Standard mode: build audio long enough for the longest requested duration
+        max_hours = 0 if natural else (max(hours_list) if hours_list else 1)
         tmp_dir = ROOT / "output" / f"_tmp_{program_id}"
         tmp_dir.mkdir(parents=True, exist_ok=True)
         audio_mp3 = build_audio_track(program, licenses_data, tmp_dir,
@@ -839,7 +904,7 @@ def cmd_generate_program(program_id: str, durations: list[int] | None,
 
     for hours in hours_list:
         dur_label = HOURS_TO_LABEL.get(hours, f"{hours}h")
-        out_name  = f"{program_id}_{hours}h_{DATE_STR}.mp4"
+        out_name  = f"{program_id}_natural_{DATE_STR}.mp4" if hours == 0 else f"{program_id}_{hours}h_{DATE_STR}.mp4"
         out_mp4   = queue / out_name
 
         if not regen_meta and not dry_run and not out_mp4.exists():
@@ -873,6 +938,8 @@ def main():
     parser.add_argument("--regen-meta", action="store_true", help="Regenerate meta+thumb only")
     parser.add_argument("--dry-run",    action="store_true")
     parser.add_argument("--force",      action="store_true", help="Re-render even if exists")
+    parser.add_argument("--natural",    action="store_true",
+                        help="Output at natural track length — no padding, no repeating audio")
     args = parser.parse_args()
 
     if args.list_programs:
@@ -897,6 +964,7 @@ def main():
             regen_meta=args.regen_meta,
             dry_run=args.dry_run,
             force=args.force,
+            natural=args.natural,
         )
         return
 

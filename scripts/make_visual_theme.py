@@ -46,12 +46,16 @@ CLIP_DURATION  = 30    # seconds per Ken Burns clip
 XFADE_DURATION = 3     # seconds of crossfade between clips
 FADE_SECS      = 2     # global fade in at start of loop
 FPS            = 25
-N_IMAGES       = 10    # images per theme
+N_IMAGES       = 20    # images per theme (doubled for 3h variety)
 
 # Ken Burns motion sequence (cycles through N_IMAGES)
-MOTIONS = ["zoom_in", "pan_right", "zoom_out", "pan_left",
-           "zoom_in", "pan_up", "zoom_out", "pan_down",
-           "zoom_in", "pan_right"]
+MOTIONS = [
+    "zoom_in",  "pan_right", "zoom_out",  "pan_left",
+    "zoom_in",  "pan_up",    "zoom_out",  "pan_down",
+    "zoom_in",  "pan_right", "zoom_out",  "pan_left",
+    "pan_up",   "zoom_in",   "pan_down",  "zoom_out",
+    "pan_right","zoom_in",   "pan_left",  "zoom_out",
+]
 
 # ── Theme catalogue ────────────────────────────────────────────────────────────
 THEMES: dict[str, dict] = {
@@ -107,12 +111,35 @@ THEMES: dict[str, dict] = {
             "northern lights curtains above lonely wooden cabin in snowy Finnish forest, warm window light, chimney smoke, peaceful winter solitude, 16:9",
             "aurora borealis faint pink and green light above Scandinavian mountain range, full moon illuminating snow peaks, vast dark sky, 16:9",
             "northern lights exploding green aurora above frozen waterfall, ice formations glittering, remote wilderness, dramatic angle, 16:9",
+            # frame 10-19 (N_IMAGES=20)
+            "aurora borealis reflected in frozen tundra lake, ice cracking patterns in foreground, green sky curtain, total wilderness, 16:9",
+            "northern lights above Sami reindeer camp, tents glowing from inside, herd silhouetted, sub-zero magical night, 16:9",
+            "aurora borealis green and white streaks above arctic fox on snow, wildlife and northern lights, stunning nature, 16:9",
+            "northern lights seen from inside ice hotel, transparent ceiling, warm bed glow, green sky outside, magical stay, 16:9",
+            "aurora borealis corona overhead, looking straight up, spiral of green light centered above, fisheye perspective, 16:9",
+            "northern lights over Norwegian harbor, fishing boats reflected in calm fjord water, village lights, winter coast, 16:9",
+            "aurora borealis purple and green above ancient Viking stone circle, mystical historical site, dark sky, 16:9",
+            "midnight aurora train journey through Norway, light streaks outside snow-frosted window, warm interior light, travel magic, 16:9",
+            "northern lights above frozen Baltic Sea, ice sheets stretching to horizon, faint pink and green, vast emptiness, 16:9",
+            "aurora borealis double arc above snowy birch forest, moon also visible, blue and green contrast, perfect winter night, 16:9",
         ],
         "music_files": [
             "Nocturne in E flat major, Op. 9 no. 2.mp3",
             "Nocturne in B flat minor, Op. 9 no. 1.mp3",
             "Piano Sonata no. 14 in C#m 'Moonlight', Op. 27 no. 2 - I. Adagio sostenuto.mp3",
             "Fantasia on a Theme by Thomas Tallis.mp3",
+            "Fantaisie, Op. 79 - Andantino.mp3",
+            "Arabesque no. 1 (string quartet arr.).mp3",
+            "Violin Concerto in D, Op. 61 - II. Larghetto.mp3",
+            "Mozart - Serenade in G Major - I. Romance.mp3",
+            "Mazurka in A flat major, B. 85.mp3",
+            "Swan Lake Op.20 - Act IV Intro.mp3",
+            "Cello Sonata No. 4, mov. 1 - Ben Larsen, Ava Nazar.mp3",
+            "Adagio in G minor.mp3",
+            "Ballade no. 1 in G minor, Op. 23.mp3",
+            "Adagio for Organ & Strings in g minor.mp3",
+            "Concerto for 2 Violins in D minor, BWV 1043  - II. Largo ma non tanto.mp3",
+            "Piano Concerto No. 2 in C Minor, Op. 18 - II. Adagio sostenuto.mp3",
         ],
         "mood": "sleep",
         "video_type": "visual_theme",
@@ -165,12 +192,34 @@ THEMES: dict[str, dict] = {
             "Japanese tea house surrounded by sakura trees in full bloom, wooden veranda, paper screen doors, stone garden, tranquil, 16:9",
             "cherry blossoms at dawn over ancient Japanese bridge, mist rising from river below, warm pink and gold tones, watercolor-like atmosphere, 16:9",
             "sakura petal close-up detail, dewdrops on pink petals, soft bokeh spring background, macro nature photography, delicate, 16:9",
+            # frame 10-19 (N_IMAGES=20)
+            "cherry blossom petals falling on still Japanese garden stream, petals floating downstream, mossy stones, soft light, 16:9",
+            "sakura tree at full bloom night with moonlight, glowing pink petals, temple silhouette, lantern light, ethereal, 16:9",
+            "cherry blossom forest path at golden hour, sunlight turning petals gold, couple distant, romantic Japan spring, 16:9",
+            "weeping cherry blossom tree (shidarezakura) by pond, branches touching water, pink cascade, dreamy atmosphere, 16:9",
+            "sakura trees lining river canal in Tokyo, falling pink snow, people below small, spring overwhelm, 16:9",
+            "close-up cherry blossom bee, pollen dusted, macro photography, flower and insect detail, spring life, 16:9",
+            "Japanese castle Himeji surrounded by cherry blossoms, pink and white perfection, blue sky, iconic image, 16:9",
+            "sakura petals landing on dark water surface, ripple circles from each petal, reflection of pink above, 16:9",
+            "cherry blossom avenue at night with lanterns, pink blooms illuminated, magical tunnel of flowers, 16:9",
+            "sakura hillside in Japan, hundreds of trees in full bloom, small village below, aerial spring perfection, 16:9",
         ],
         "music_files": [
             "Nocturne in E flat major, Op. 9 no. 2.mp3",
             "Mozart - Serenade in G Major - I. Romance.mp3",
             "Mozart - Serenade in G Major - II. Minuet.mp3",
             "Arabesque No. 1. Andantino con moto.mp3",
+            "Nocturne in B flat minor, Op. 9 no. 1.mp3",
+            "Mozart - Serenade in G Major - III. Rondo.mp3",
+            "Mazurka in C sharp minor, Op. 6 no. 2.mp3",
+            "Mazurka in A flat major, B. 85.mp3",
+            "Fantaisie, Op. 79 - Andantino.mp3",
+            "Violin Concerto in D, Op. 61 - II. Larghetto.mp3",
+            "Cello Suite no. 1 - Prelude in G, BWV 1007.mp3",
+            "Adagio in G minor.mp3",
+            "Etude Op. 10, no. 6 in E flat minor - 'Lament'.mp3",
+            "Adagio for Organ & Strings in g minor.mp3",
+            "Concerto for 2 Violins in D minor, BWV 1043  - II. Largo ma non tanto.mp3",
         ],
         "mood": "sleep",
         "video_type": "visual_theme",
@@ -224,11 +273,35 @@ THEMES: dict[str, dict] = {
             "alpine meadow under fresh snow, high peaks surrounding, blue sky with wispy clouds, utter silence and stillness implied, 16:9",
             "mountain pass at dusk, snow glowing lavender and pink in last light, vast empty landscape, single winding road disappearing, 16:9",
             "close-up fresh snow crystals on pine needles, macro photography, mountainside background soft bokeh, pristine winter detail, 16:9",
+            # frame 10-19 (N_IMAGES=20)
+            "mountain climber silhouette on summit ridge at sunset, vast snowy panorama below, achievement and solitude, 16:9",
+            "Swiss Alps village covered in deep snow, church steeple, chalets with smoke, perfect winter postcard, 16:9",
+            "glacier crevasses close-up, deep blue ice walls, scale shown by tiny rope, ancient ice interior, 16:9",
+            "mountain ski resort at night, slope lights twinkling below dark peaks, stars above, magical cold night, 16:9",
+            "frozen mountain lake perfectly reflecting surrounding peaks, cracks in ice, blue transparency, winter perfection, 16:9",
+            "avalanche aftermath, massive snow debris field, morning light on devastation, mountains quiet after power, 16:9",
+            "high altitude monastery in Himalayas, snow peaks behind ancient stone, prayer flags, silence and devotion, 16:9",
+            "winter mountain sunrise, first orange light on snow cornices, purple shadows in valleys, dramatic alpenglow, 16:9",
+            "mountain wolf in deep snow, breath visible, forest edge, intense gaze, winter wilderness predator, 16:9",
+            "snowy Dolomites pink at sunset, Tre Cime silhouette, Italian Alps perfection, warm cold contrast, 16:9",
         ],
         "music_files": [
             "Fantasia on a Theme by Thomas Tallis.mp3",
             "Nocturne in B flat minor, Op. 9 no. 1.mp3",
             "Piano Sonata no. 14 in C#m 'Moonlight', Op. 27 no. 2 - I. Adagio sostenuto.mp3",
+            "Nocturne in E flat major, Op. 9 no. 2.mp3",
+            "Arabesque No. 1. Andantino con moto.mp3",
+            "Mozart - Serenade in G Major - I. Romance.mp3",
+            "Violin Concerto in D, Op. 61 - II. Larghetto.mp3",
+            "Swan Lake Op.20 - Act II Pt.1.mp3",
+            "Mazurka in A flat major, B. 85.mp3",
+            "Symphony no. 5 in Cm, Op. 67 - II. Andante con moto.mp3",
+            "Cello Suite no. 1 - Prelude in G, BWV 1007.mp3",
+            "Adagio in G minor.mp3",
+            "Sonata no. 17 in D minor 'The Tempest', Op. 31 no. 2 - II. Adagio.mp3",
+            "Adagio for Organ & Strings in g minor.mp3",
+            "Piano Concerto No. 2 in C Minor, Op. 18 - II. Adagio sostenuto.mp3",
+            "Concerto for 2 Violins in D minor, BWV 1043  - II. Largo ma non tanto.mp3",
         ],
         "mood": "sleep",
         "video_type": "visual_theme",
@@ -283,12 +356,34 @@ THEMES: dict[str, dict] = {
             "fireplace embers dying down late at night, soft orange glow, room in shadow, peaceful quietude, long exposure, 16:9",
             "Swedish farmhouse interior, white walls, birch logs fire, minimalist hygge aesthetic, candles, wool throw, calm winter evening, 16:9",
             "close-up crackling log fire, flames licking, embers pulsing, warmth implied through warm color palette, hypnotic and calming, 16:9",
+            # frame 10-19 (N_IMAGES=20)
+            "log cabin kitchen at night, cast iron pot on fire, copper pots, handmade everything, warm lamp light, 16:9",
+            "mountain hut exterior at dusk, smoke from chimney, lantern over door, pine forest, fresh snow fallen, 16:9",
+            "fireplace embers at 2am, room in shadow, cat curled sleeping nearby, quiet domestic night, 16:9",
+            "sauna cabin by frozen lake, steam from chimney, snow on roof, birch trees, Nordic winter ritual, 16:9",
+            "wood-burning stove in artist studio, canvases around, books stacked, warm light, creative winter retreat, 16:9",
+            "cabin living room morning after snowstorm, snow banked against windows, fire needed and ready, cozy siege, 16:9",
+            "fireplace mantle with candles, clock, family photos soft background, ordinary domestic warmth, evening light, 16:9",
+            "stone fireplace in medieval castle great hall, enormous logs burning, tapestries, historical grandeur, 16:9",
+            "camping fire in forest clearing, sparks rising to stars, friends' silhouettes, tent glow, summer night magic, 16:9",
+            "fire reflection in rain-wet cabin window, outside stormy, inside warm, contrast of safety and storm, 16:9",
         ],
         "music_files": [
             "Nocturne in E flat major, Op. 9 no. 2.mp3",
             "Nocturne in B flat minor, Op. 9 no. 1.mp3",
             "Arabesque No. 1. Andantino con moto.mp3",
             "Mazurka in A flat major, B. 85.mp3",
+            "Fantaisie, Op. 79 - Andantino.mp3",
+            "Mozart - Serenade in G Major - I. Romance.mp3",
+            "Cello Suite no. 1 - Prelude in G, BWV 1007.mp3",
+            "Violin Concerto in D, Op. 61 - II. Larghetto.mp3",
+            "Swan Lake Op.20 - Act II Pt.1.mp3",
+            "Symphony no. 5 in Cm, Op. 67 - II. Andante con moto.mp3",
+            "Mazurka in C sharp minor, Op. 6 no. 2.mp3",
+            "Adagio in G minor.mp3",
+            "Etude Op. 10, no. 6 in E flat minor - 'Lament'.mp3",
+            "Adagio for Organ & Strings in g minor.mp3",
+            "Piano Concerto No. 2 in C Minor, Op. 18 - II. Adagio sostenuto.mp3",
         ],
         "mood": "sleep",
         "video_type": "visual_theme",
@@ -345,12 +440,36 @@ THEMES: dict[str, dict] = {
             "moss covered stone garden path winding through ancient Japanese temple grounds, dawn mist, wooden torii gate distant, 16:9",
             "minimalist zen interior, tatami floor, single flower in vase, view into garden through open shoji door, evening light, 16:9",
             "Zen rock garden at sunset, long shadows across raked sand, few stones casting purple shadows, meditative emptiness, 16:9",
+            # frame 10-19 (N_IMAGES=20)
+            "Japanese temple meditation hall, monk silhouette, incense smoke rising, wooden floor, garden view outside, 16:9",
+            "dry stone wall garden, Ryoanji style, only 15 stones in raked gravel, pure minimalism, Kyoto, 16:9",
+            "zen garden bamboo fountain close-up, water flowing, dripping sound implied, stone bowl, moss, 16:9",
+            "kare-sansui stone garden at dawn, mist above gravel, first light on stones, temple eaves framing, 16:9",
+            "meditation cushion zafu on tatami, paper screen door open to garden, bird outside, simple practice space, 16:9",
+            "zen garden gate torii wooden, moss on stones, path leading into forest, silent invitation, 16:9",
+            "maple leaves fallen on zen garden sand, autumn disruption of order, accepted impermanence, wabi-sabi, 16:9",
+            "night zen garden, lantern light on gravel patterns, moon shadows of stones, quiet after dark, 16:9",
+            "modern zen garden rooftop Tokyo, city below, raked gravel and stones above, contrast of worlds, 16:9",
+            "Japanese ink painting style garden scene, monochrome mist, bamboo, mountain, bridge, timeless aesthetic, 16:9",
         ],
         "music_files": [
             "Cello Suite no. 1 - Prelude in G, BWV 1007.mp3",
             "Arabesque No. 1. Andantino con moto.mp3",
             "Mozart - Serenade in G Major - I. Romance.mp3",
             "Nocturne in E flat major, Op. 9 no. 2.mp3",
+            "Goldberg Variations, BWV 988 - 01 - Aria.mp3",
+            "Mozart - Serenade in G Major - II. Minuet.mp3",
+            "3 Fantaisies for Solo Flute, Op. 38 - Fantaisie no. 1.mp3",
+            "Fantaisie, Op. 79 - Andantino.mp3",
+            "Arabesque no. 1 (string quartet arr.).mp3",
+            "Mazurka in E major, Op. 6 no. 3.mp3",
+            "Sonata no. 17 in D minor 'The Tempest', Op. 31 no. 2 - II. Adagio.mp3",
+            "Violin Partita no. 2, BWV 1004 - 5. Chaconne [Piano arrangement - K.H. Pillney].mp3",
+            "Julia Florida.mp3",
+            "Prelude and Fugue No. 4 in C-sharp minor - Complete Performance.mp3",
+            "Prelude and Fugue No. 12 in F minor - Complete Performance.mp3",
+            "Prelude and Fugue No. 24 in B minor - Complete Performance.mp3",
+            "Concerto for 2 Violins in D minor, BWV 1043  - II. Largo ma non tanto.mp3",
         ],
         "mood": "focus",
         "video_type": "visual_theme",
@@ -406,12 +525,33 @@ THEMES: dict[str, dict] = {
             "stone path through lavender garden, old French village beyond, butterflies on blooms, summer afternoon, 16:9",
             "lavender field meeting sunflower field, purple and yellow side by side, blue Provence sky, warm contrast, 16:9",
             "Provence lavender market, bundles of dried lavender, old woman vendor, stone square, summer day, 16:9",
+            # frame 10-19 (N_IMAGES=20)
+            "lavender essential oil distillery in Provence, copper pot stills, steam, aromatic production, rustic, 16:9",
+            "bee on lavender close-up macro, wings spread, pollen yellow, purple flower spike, summer detail, 16:9",
+            "lavender field after rain, water drops on purple flowers, rainbow in background, Provence wet summer, 16:9",
+            "lavender pressing harvest, farmer with bundle, sunset behind field, end of summer tradition, 16:9",
+            "lavender fields from hot air balloon, purple rows far below, Alpes distant, summer morning flight, 16:9",
+            "old stone provence house with lavender garden, blue shutters, roses climbing wall, summer perfection, 16:9",
+            "lavender labyrinth garden, geometric pathways through purple blooms, aerial view, ornamental design, 16:9",
+            "moonlit lavender field, blue-silver light on flowers, no wind, stillness, one owl hunting, 16:9",
+            "lavender seeds in palm, close-up, small and grey-green, potential and harvest, minimal, 16:9",
+            "lavender field edge meeting wildflower meadow, purple and yellow and white mixing, summer abundance, 16:9",
         ],
         "music_files": [
             "Nocturne in E flat major, Op. 9 no. 2.mp3",
             "Mozart - Serenade in G Major - I. Romance.mp3",
             "Nocturne in B flat minor, Op. 9 no. 1.mp3",
             "Arabesque No. 1. Andantino con moto.mp3",
+            "Mozart - Serenade in G Major - II. Minuet.mp3",
+            "Mozart - Serenade in G Major - III. Rondo.mp3",
+            "Mazurka in A flat major, B. 85.mp3",
+            "Fantaisie, Op. 79 - Andantino.mp3",
+            "Violin Concerto in D, Op. 61 - II. Larghetto.mp3",
+            "Swan Lake Op.20 - Act IV Intro.mp3",
+            "Cello Suite no. 1 - Prelude in G, BWV 1007.mp3",
+            "Adagio for Organ & Strings in g minor.mp3",
+            "Piano Concerto No. 2 in C Minor, Op. 18 - II. Adagio sostenuto.mp3",
+            "Concerto for 2 Violins in D minor, BWV 1043  - II. Largo ma non tanto.mp3",
         ],
         "mood": "sleep",
         "video_type": "visual_theme",
@@ -466,11 +606,34 @@ THEMES: dict[str, dict] = {
             "twin stars binary system orbiting each other, plasma exchange arc between them, nebula background, dramatic space art, 16:9",
             "view from orbit above Earth at night, city lights below, aurora australis glowing green, stars above atmosphere, 16:9",
             "deep space black hole with accretion disk glowing, gravitational lensing effect, orange and white plasma ring, dramatic and awe-inspiring, 16:9",
+            # frame 10-19 (N_IMAGES=20)
+            "pulsar star rotating, energy beams sweeping space, magnetic field lines visible, cosmic lighthouse, 16:9",
+            "deep space ice giant planet with rings, blue and white stormy surface, ring system detail, Uranus style, 16:9",
+            "star birth nursery nebula, dense gas clouds, proto-stars forming, golden and rust, epic scale, 16:9",
+            "dark matter web simulation art, cosmic filaments connecting galaxy clusters, invisible universe made visible, 16:9",
+            "astronaut spacewalk, Earth below, infinite black above, silence and awe, ISS glimpse, 16:9",
+            "planet rise from moon surface, Earth-like world with clouds above stark grey moonscape, perspective shift, 16:9",
+            "deep space time-lapse star trails, concentric circles around celestial pole, desert observatory below, 16:9",
+            "cosmic collision two galaxies merging, tidal arms stretching, star formation explosion, 100 million year event, 16:9",
+            "intergalactic void, vast emptiness between galaxy clusters, a few distant smudges, the true scale of nothing, 16:9",
+            "neutron star surface simulation, extreme gravity curves, intense blue glow, atom-thick atmosphere, impossible, 16:9",
         ],
         "music_files": [
             "Fantasia on a Theme by Thomas Tallis.mp3",
             "Piano Sonata no. 14 in C#m 'Moonlight', Op. 27 no. 2 - I. Adagio sostenuto.mp3",
             "Nocturne in B flat minor, Op. 9 no. 1.mp3",
+            "Violin Concerto in D, Op. 61 - II. Larghetto.mp3",
+            "Symphony no. 5 in Cm, Op. 67 - II. Andante con moto.mp3",
+            "Swan Lake Op.20 - Act II Pt.1.mp3",
+            "Nocturne in E flat major, Op. 9 no. 2.mp3",
+            "Arabesque No. 1. Andantino con moto.mp3",
+            "Fantaisie, Op. 79 - Andantino.mp3",
+            "Swan Lake Op.20 - Act IV Intro.mp3",
+            "Adagio in G minor.mp3",
+            "Sonata no. 17 in D minor 'The Tempest', Op. 31 no. 2 - II. Adagio.mp3",
+            "Adagio for Organ & Strings in g minor.mp3",
+            "Piano Concerto No. 2 in C Minor, Op. 18 - II. Adagio sostenuto.mp3",
+            "Concerto for 2 Violins in D minor, BWV 1043  - II. Largo ma non tanto.mp3",
         ],
         "mood": "sleep",
         "video_type": "visual_theme",
@@ -527,12 +690,211 @@ THEMES: dict[str, dict] = {
             "beech forest in autumn, smooth grey trunks, golden yellow leaf carpet, shafts of afternoon light, 16:9",
             "autumn leaves macro close-up, veins visible, colors from yellow to deep red, moisture drops, 16:9",
             "misty autumn morning in deciduous forest, deer visible in distance, dew on spider webs between branches, ethereal atmosphere, 16:9",
+            # frame 10-19 (N_IMAGES=20)
+            "autumn forest floor, mushrooms on fallen log, leaf carpet, moisture and decay, close macro, 16:9",
+            "red maple forest Japan, momiji, corridor of crimson, wooden bridge, perfect reflection, 16:9",
+            "autumn forest waterfall, leaves floating past, brown orange yellow in water, seasonal rush, 16:9",
+            "forest at peak color from above, patchwork quilt of red orange gold, one silver river thread, 16:9",
+            "autumn birch grove, white trunks, yellow leaves backlit by sun, cathedral forest feeling, 16:9",
+            "old man walking with stick in autumn forest, mist ahead, leaves falling, peaceful life moment, 16:9",
+            "autumn leaves on glass surface, rain drops, backlit orange, abstract beauty, close-up, 16:9",
+            "harvest moon rising above autumn forest, huge orange moon, silhouette treeline, blue twilight sky, 16:9",
+            "apple orchard in autumn, heavy fruit, fallen apples, warm evening light, traditional farm, 16:9",
+            "winter approaching autumn forest, last leaves clinging, frost on ground, transition scene, 16:9",
         ],
         "music_files": [
             "Nocturne in B flat minor, Op. 9 no. 1.mp3",
             "Nocturne in E flat major, Op. 9 no. 2.mp3",
             "Swan Lake Op.20 - Act II Pt.1.mp3",
             "Swan Lake Op.20 - Act II Concl.mp3",
+            "Violin Concerto in D, Op. 61 - II. Larghetto.mp3",
+            "Mazurka in A flat major, B. 85.mp3",
+            "Mazurka in C sharp minor, Op. 6 no. 2.mp3",
+            "Fantaisie, Op. 79 - Andantino.mp3",
+            "Swan Lake Op.20 - Act III Pt.1.mp3",
+            "Swan Lake Op.20 - Act IV Intro.mp3",
+            "Symphony no. 5 in Cm, Op. 67 - II. Andante con moto.mp3",
+            "Ballade no. 1 in G minor, Op. 23.mp3",
+            "Etude Op. 10, no. 6 in E flat minor - 'Lament'.mp3",
+            "Adagio for Organ & Strings in g minor.mp3",
+            "Piano Concerto No. 2 in C Minor, Op. 18 - II. Adagio sostenuto.mp3",
+            "Concerto for 2 Violins in D minor, BWV 1043  - II. Largo ma non tanto.mp3",
+        ],
+        "mood": "sleep",
+        "video_type": "visual_theme",
+    },
+
+    # ── Keyword-targeted themes (popular YouTube search queries) ──────────────────
+
+    "night_rain": {
+        "title": "Night Rain & Piano 🌧️ {duration} | Soft Piano Music for Relaxation | Calm Classics",
+        "desc": (
+            "Lie back and let the night rain and soft piano carry you into deep, effortless sleep. "
+            "{duration} of the most calming rain and classical piano atmosphere — Chopin Nocturnes, "
+            "Debussy, Fauré and Bach, flowing gently beneath rain-washed images of windows, cobblestones "
+            "and candlelit rooms.\n\n"
+            "🎵 Music: Frédéric Chopin — Nocturnes | Claude Debussy — Arabesque No. 1 "
+            "| Gabriel Fauré — Fantaisie Op. 79 | J.S. Bach — Cello Suite No. 1\n"
+            "🎨 Visuals: AI-generated night rain, window and candlelight scenes\n"
+            "📜 All recordings: Public Domain (Musopen.org)\n\n"
+            "Rain sounds and piano music are among the most searched sleep aids on YouTube — and "
+            "for good reason. The white-noise masking effect of rain suppresses distracting sounds, "
+            "while slow-tempo piano music (under 70 BPM) synchronises with the resting heartbeat, "
+            "guiding the nervous system toward sleep. Chopin composed most of his Nocturnes late at "
+            "night, by candlelight — the same setting these visuals recreate. The result is one of "
+            "the most natural sleep environments you can create on a screen.\n\n"
+            "Whether you search for 'night rain sounds for sleeping', 'soft piano music for relaxation', "
+            "or 'relaxing music for stress relief' — this video is built for exactly that.\n\n"
+            "✦ Rain + piano: the perfect combination for sleep onset\n"
+            "✦ Consistent soft volume — safe to leave on all night\n"
+            "✦ No sudden loud passages or jarring transitions\n\n"
+            "🔔 Subscribe → @ClassicalNightRelax\n\n"
+            "#NightRainSoundsForSleeping #SoftPianoMusicForRelaxation #RainAndPiano "
+            "#SleepMusic #ClassicalMusic #CalmClassics #RelaxingMusicForStressRelief "
+            "#ChopinNocturnes #Debussy #SleepMeditationMusic #ClassicalNightRelax "
+            "#RainSoundsForSleep #SoftMusicForRelaxation #DeepSleepMusic #PianoSleep"
+        ),
+        "tags": ["night rain sounds for sleeping", "soft piano music for relaxation",
+                 "rain and piano", "sleep music", "classical music", "calm classics",
+                 "relaxing music for stress relief", "chopin", "debussy", "sleep meditation music",
+                 "soft music for relaxation", "rain sounds for sleep", "piano sleep music",
+                 "deep sleep music", "classical music for sleeping", "rain sleep music",
+                 "classical night relax", "piano relaxation", "bedtime music", "rain piano"],
+        "thumb_prompt": (
+            "rainy night window with candlelight inside, rain drops on glass, piano keys reflection, "
+            "dark blue exterior wet cobblestones, warm amber interior glow, cinematic, no text"
+        ),
+        "flux_prompts": [
+            "rainy night window interior, rain drops streaming on glass, candle flame reflection, cobblestone street wet below, soft piano implied, cinematic warmth, 16:9",
+            "grand piano by large window in dark room, night rain outside, single lamp, sheet music, intimate practice, 16:9",
+            "Paris street at night in heavy rain, golden reflections on wet pavement, umbrella person, cafe light, classic atmosphere, 16:9",
+            "raindrops falling on dark lake surface, concentric ripples everywhere, night, ambient light from shore, meditative rain, 16:9",
+            "rain on old cathedral stone, gargoyle with water streaming, lights below in wet plaza, gothic night atmosphere, 16:9",
+            "cozy apartment window at night, city lights blurred through rain on glass, warm bedroom interior, rain vs warmth, 16:9",
+            "train window with rain, countryside night blurred outside, warm carriage interior light, solitary journey, 16:9",
+            "garden at night in gentle rain, lantern flickering, water on roses and leaves, intimate outdoor night, 16:9",
+            "candlelit music room, cello leaning against chair, rain audible outside shuttered window, yellow warm light, 16:9",
+            "rain-soaked old European alley at night, cobblestones gleaming, lone lamppost, deep shadows, romantic solitude, 16:9",
+            # frame 10-19 (N_IMAGES=20)
+            "heavy rain on forest canopy at night, leaves shining wet, streams forming, darkness and water, 16:9",
+            "pianist's hands close-up on keys, rain on window behind, depth of field, focused practice in storm, 16:9",
+            "rain falling into courtyard garden at night, stone fountain overflowing, plants bowing, enclosed peace, 16:9",
+            "window condensation interior, handprint cleared, rain and streetlights outside, cold glass warm hands, 16:9",
+            "lighthouse in storm rain, beam sweeping dark sea, waves crashing, isolated warmth of light, 16:9",
+            "Japanese temple rain, stone lantern with water dripping, wet moss, grey sky, zen precipitation, 16:9",
+            "bedroom with open window, curtain billowing in rain wind, cool air entering warm room, sensory threshold, 16:9",
+            "river in rain at night, surface turbulent with drops, distant bridge lights blurred, urban rain, 16:9",
+            "mountain cabin at night in rain, thunder implied, lightning flash distant, shelter and storm, 16:9",
+            "dawn after rain, wet streets catching first light, birds returning, post-storm stillness and renewal, 16:9",
+        ],
+        "music_files": [
+            "Nocturne in E flat major, Op. 9 no. 2.mp3",
+            "Nocturne in B flat minor, Op. 9 no. 1.mp3",
+            "Arabesque No. 1. Andantino con moto.mp3",
+            "Cello Suite no. 1 - Prelude in G, BWV 1007.mp3",
+            "Fantaisie, Op. 79 - Andantino.mp3",
+            "Mozart - Serenade in G Major - I. Romance.mp3",
+            "Mazurka in A flat major, B. 85.mp3",
+            "Violin Concerto in D, Op. 61 - II. Larghetto.mp3",
+            "Arabesque no. 1 (string quartet arr.).mp3",
+            "Mazurka in C sharp minor, Op. 6 no. 2.mp3",
+            "Swan Lake Op.20 - Act II Pt.1.mp3",
+            "Adagio in G minor.mp3",
+            "Etude Op. 10, no. 6 in E flat minor - 'Lament'.mp3",
+            "Adagio for Organ & Strings in g minor.mp3",
+            "Piano Concerto No. 2 in C Minor, Op. 18 - II. Adagio sostenuto.mp3",
+            "Concerto for 2 Violins in D minor, BWV 1043  - II. Largo ma non tanto.mp3",
+        ],
+        "mood": "sleep",
+        "video_type": "visual_theme",
+    },
+
+    "evening_piano": {
+        "title": "Soft Piano Music for Relaxation 🎹 {duration} | Classical Piano | Calm Classics",
+        "desc": (
+            "{duration} of the most beautiful soft piano music for relaxation — Chopin Nocturnes, "
+            "Beethoven's Moonlight Sonata, Debussy's Arabesque, Mozart Serenade, and Fauré. "
+            "Filmed in candlelit concert halls, grand drawing rooms, and intimate music studios, "
+            "this is the definitive soft piano music for stress relief and sleep.\n\n"
+            "🎵 Music: Frédéric Chopin — Nocturnes Op. 9 & Mazurkas "
+            "| Ludwig van Beethoven — Moonlight Sonata "
+            "| Claude Debussy — Arabesque No. 1 "
+            "| W.A. Mozart — Serenade in G Major "
+            "| Gabriel Fauré — Fantaisie Op. 79\n"
+            "🎨 Visuals: AI-generated grand piano and concert hall scenes\n"
+            "📜 All recordings: Public Domain (Musopen.org)\n\n"
+            "Soft piano music has a unique neurological effect: the slow sustain of each note, "
+            "the predictable harmonic movement, and the absence of rhythm section instrumentation "
+            "all combine to reduce cortisol, lower heart rate, and prepare the brain for sleep. "
+            "This is why 'soft piano music for relaxation' is one of the most searched music "
+            "queries worldwide — people instinctively reach for it when they need to decompress.\n\n"
+            "This video brings together the greatest composers of soft piano music in Western "
+            "history: Chopin (the undisputed master of the piano nocturne), Debussy (whose "
+            "Arabesque is perhaps the most instantly calming piece ever written), Beethoven "
+            "(whose Moonlight Sonata remains the gold standard of sleep music), and Mozart.\n\n"
+            "✦ Perfect for: sleep, meditation, stress relief, reading, spa, yoga\n"
+            "✦ No drums, no bass, no rhythm section — pure piano calm\n"
+            "✦ Seamless transitions — no jolts, no abrupt changes\n\n"
+            "🔔 Subscribe → @ClassicalNightRelax\n\n"
+            "#SoftPianoMusicForRelaxation #SoftMusicForRelaxation #SleepMeditationMusic "
+            "#ClassicalPiano #CalmClassics #RelaxingMusicForStressRelief "
+            "#BestOfChopinNocturnes #BeethovenMoonlight #Debussy #Mozart "
+            "#PianoSleep #ClassicalMusicForSleeping #ClassicalNightRelax "
+            "#SleepMusic #PianoRelaxation #DeepSleepMusic #MeditationMusic"
+        ),
+        "tags": ["soft piano music for relaxation", "soft music for relaxation",
+                 "sleep meditation music", "relaxing music for stress relief",
+                 "best of chopin nocturnes", "classical piano", "calm classics",
+                 "beethoven moonlight sonata", "debussy arabesque", "mozart",
+                 "piano sleep music", "deep sleep music", "classical music for sleeping",
+                 "piano relaxation", "chopin nocturnes", "classical night relax",
+                 "meditation music", "stress relief music", "bedtime piano", "piano calm"],
+        "thumb_prompt": (
+            "grand concert piano in beautiful candlelit hall, single spotlight, dark wood and gold, "
+            "soft atmosphere, classical elegance, evening piano recital, no text"
+        ),
+        "flux_prompts": [
+            "grand Steinway piano in candlelit concert hall, single spotlight, dark wood panelling, gold chandelier glow, classical elegance, 16:9",
+            "hands playing piano close-up, elegant fingers on ivory keys, soft light from left, movement and music implied, 16:9",
+            "upright piano in old French drawing room, tall windows with evening light, vase of white flowers, Chopin era, 16:9",
+            "piano in conservatory, glass ceiling with stars, ivy on columns, romantic night recital, botanical garden setting, 16:9",
+            "grand piano on empty stage, single spotlight from above, all else in darkness, pure focus on instrument, 16:9",
+            "piano keys close-up extreme, black and white abstract, light from left, texture of ivory, minimalist, 16:9",
+            "piano in corner of library, books floor to ceiling, lamp lit, winter evening, intellectual cozy, 16:9",
+            "concert pianist bowing after performance, empty gilded hall, echoes of applause implied, solitary art, 16:9",
+            "old upright piano in abandoned mansion, faded grandeur, dust motes in light beam, keys yellowed, 16:9",
+            "child's hands on piano keys for first time, small fingers, parent's hands guiding, warm home evening, 16:9",
+            # frame 10-19 (N_IMAGES=20)
+            "piano in beach house at sunset, window open to sea, last light on keys, salty air and music, 16:9",
+            "sheet music on piano stand, Chopin nocturne pages, lamp illuminating notation, intimate practice, 16:9",
+            "piano in Paris apartment, balcony door open, Eiffel Tower distant, evening city and music, 16:9",
+            "antique fortepiano 1800s, period instrument, classical sitting room, candlelight, Mozart era, 16:9",
+            "piano lid open, strings visible inside, hammer mechanism exposed, instrument anatomy, beautiful engineering, 16:9",
+            "winter piano practice, frost on window, heating radiator, tea steam, student working alone, 16:9",
+            "outdoor piano in autumn garden, leaves falling on keys, unusual installation, nature and culture, 16:9",
+            "piano keyboard reflection in wine glass, candlelit restaurant, intimate dinner background music, 16:9",
+            "jazz club after hours empty, piano in spotlight, cigarette smoke and memory, noir atmosphere, 16:9",
+            "piano in monastery courtyard, stone arches, afternoon light, monk approaching, sacred and musical, 16:9",
+        ],
+        "music_files": [
+            "Nocturne in E flat major, Op. 9 no. 2.mp3",
+            "Nocturne in B flat minor, Op. 9 no. 1.mp3",
+            "Piano Sonata no. 14 in C#m 'Moonlight', Op. 27 no. 2 - I. Adagio sostenuto.mp3",
+            "Arabesque No. 1. Andantino con moto.mp3",
+            "Mozart - Serenade in G Major - I. Romance.mp3",
+            "Mozart - Serenade in G Major - II. Minuet.mp3",
+            "Mozart - Serenade in G Major - III. Rondo.mp3",
+            "Mazurka in A flat major, B. 85.mp3",
+            "Mazurka in C sharp minor, Op. 6 no. 2.mp3",
+            "Mazurka in E major, Op. 6 no. 3.mp3",
+            "Fantaisie, Op. 79 - Andantino.mp3",
+            "Cello Sonata No. 4, mov. 1 - Ben Larsen, Ava Nazar.mp3",
+            "Adagio in G minor.mp3",
+            "Etude Op. 10, no. 6 in E flat minor - 'Lament'.mp3",
+            "Ballade no. 1 in G minor, Op. 23.mp3",
+            "Adagio for Organ & Strings in g minor.mp3",
+            "Piano Concerto No. 2 in C Minor, Op. 18 - II. Adagio sostenuto.mp3",
+            "Julia Florida.mp3",
         ],
         "mood": "sleep",
         "video_type": "visual_theme",
@@ -1101,6 +1463,10 @@ def build_music_track(music_files: list[str], target_secs: int, tmp_dir: Path,
         "ffmpeg", "-y",
         "-f", "concat", "-safe", "0", "-i", str(concat_txt),
         "-t", str(target_secs),
+        # Normalize to 44100 Hz stereo before encoding — fixes mixed-format sources
+        # (e.g. 22050 Hz mono files degrading the whole concat to 89 kbps output).
+        # aresample=async=1 also fills tiny inter-track gaps that cause audible dropouts.
+        "-af", "aresample=async=1:min_hard_comp=0.1:first_pts=0,aformat=sample_rates=44100:channel_layouts=stereo",
         "-c:a", "libmp3lame", "-b:a", "192k",
         str(audio_out),
     ]
@@ -1162,6 +1528,28 @@ def assemble_long_video(loop_mp4: Path, music_files: list[str],
 
 # ── Meta + thumbnail ───────────────────────────────────────────────────────────
 
+def append_outro(main_mp4: Path, outro_mp4: Path, out_mp4: Path) -> bool:
+    """Concatenate main video + outro clip using FFmpeg concat demuxer."""
+    import tempfile as _tf
+    tmp_list = Path(_tf.mktemp(suffix=".txt"))
+    tmp_list.write_text(
+        f"file '{main_mp4.resolve()}'\nfile '{outro_mp4.resolve()}'\n"
+    )
+    cmd = [
+        "ffmpeg", "-y",
+        "-f", "concat", "-safe", "0", "-i", str(tmp_list),
+        "-c", "copy",
+        str(out_mp4),
+    ]
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=7200)
+    tmp_list.unlink(missing_ok=True)
+    if r.returncode != 0 or not out_mp4.exists():
+        log.error(f"  outro concat failed: {r.stderr[-300:]}")
+        return False
+    log.info(f"  ✓ outro appended → {out_mp4.name}")
+    return True
+
+
 def write_meta(theme: str, theme_cfg: dict, out_mp4: Path, duration_hours: int):
     dur_label = f"{duration_hours} Hour" if duration_hours == 1 else f"{duration_hours} Hours"
     title = theme_cfg["title"].format(duration=dur_label)
@@ -1187,53 +1575,12 @@ def write_meta(theme: str, theme_cfg: dict, out_mp4: Path, duration_hours: int):
 THUMB_FONT_BOLD = "/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf"
 
 def _add_thumb_text(img, text: str, duration_hours: Optional[int] = None):
-    """Overlay bold text on thumbnail image (YouTube CTR style)."""
-    from PIL import ImageDraw, ImageFont
-    draw = ImageDraw.Draw(img)
-    W, H = img.size
-
-    # Main label (e.g. "WATERFALL SOUNDS") — large, upper area
-    try:
-        font_main = ImageFont.truetype(THUMB_FONT_BOLD, 88)
-        font_sub  = ImageFont.truetype(THUMB_FONT_BOLD, 52)
-    except Exception:
-        font_main = ImageFont.load_default()
-        font_sub  = font_main
-
-    lines = text.upper().split("\n")
-
-    # Semi-transparent dark strip at top
-    overlay = img.copy()
-    from PIL import Image as _PILImage
-    strip_h = 120 + len(lines) * 95
-    from PIL import ImageDraw as _ID
-    _ID.Draw(overlay).rectangle([(0, 0), (W, strip_h)], fill=(0, 0, 0))
-    img = _PILImage.blend(img, overlay, alpha=0.52)
-    draw = ImageDraw.Draw(img)
-
-    y = 18
-    for line in lines:
-        bbox = draw.textbbox((0, 0), line, font=font_main)
-        tw = bbox[2] - bbox[0]
-        x = (W - tw) // 2
-        # Black outline
-        for dx, dy in [(-3,-3),(3,-3),(-3,3),(3,3),(0,-3),(0,3),(-3,0),(3,0)]:
-            draw.text((x+dx, y+dy), line, font=font_main, fill=(0, 0, 0))
-        draw.text((x, y), line, font=font_main, fill=(255, 255, 255))
-        y += 95
-
-    # Duration badge bottom-right
-    if duration_hours:
-        badge = f"{duration_hours} HOUR{'S' if duration_hours > 1 else ''}"
-        bbox = draw.textbbox((0, 0), badge, font=font_sub)
-        bw = bbox[2] - bbox[0]
-        bh = bbox[3] - bbox[1]
-        pad = 14
-        bx, by = W - bw - pad*2 - 18, H - bh - pad*2 - 18
-        draw.rectangle([bx, by, bx+bw+pad*2, by+bh+pad*2], fill=(20, 20, 20, 200))
-        draw.text((bx+pad, by+pad), badge, font=font_sub, fill=(255, 215, 0))
-
-    return img
+    """Overlay bold text on thumbnail image — delegates to shared thumb_text.py."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("tt", Path(__file__).resolve().parent / "thumb_text.py")
+    tt = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(tt)
+    return tt.add_thumb_text(img, text, duration_hours=duration_hours)
 
 
 def generate_thumbnail(theme: str, theme_cfg: dict, out_mp4: Path, api_key: str,
@@ -1269,7 +1616,8 @@ def generate_thumbnail(theme: str, theme_cfg: dict, out_mp4: Path, api_key: str,
 
 def process_theme(theme: str, durations: list[int], api_key: str,
                   force: bool = False, regen_images: bool = False,
-                  regen_loop: bool = False, dry_run: bool = False) -> int:
+                  regen_loop: bool = False, dry_run: bool = False,
+                  with_outro: str | None = None) -> int:
     theme_cfg = THEMES[theme]
     log.info(f"\n{'='*60}")
     log.info(f"Theme: {theme.upper()}  durations={durations}h")
@@ -1340,8 +1688,19 @@ def process_theme(theme: str, durations: list[int], api_key: str,
 
         mdir  = MEDITATION_DIR if theme_cfg.get("music_source") == "meditation" else None
         mglob = theme_cfg.get("music_glob")
-        if assemble_long_video(loop_path, theme_cfg.get("music_files", []), dur, out_mp4,
-                               music_dir=mdir, music_glob=mglob):
+        assembled = assemble_long_video(loop_path, theme_cfg.get("music_files", []), dur, out_mp4,
+                                        music_dir=mdir, music_glob=mglob)
+        if assembled:
+            # Optional: append outro clip
+            if with_outro:
+                outro_mp4 = Path(with_outro)
+                if outro_mp4.exists():
+                    out_with_outro = QUEUE_ID / f"visual_theme_{theme}_{dur}h_{DATE_STR}_outro.mp4"
+                    if append_outro(out_mp4, outro_mp4, out_with_outro):
+                        out_mp4.unlink()
+                        out_with_outro.rename(out_mp4)
+                else:
+                    log.warning(f"  --with-outro: file not found: {outro_mp4}")
             write_meta(theme, theme_cfg, out_mp4, dur)
             generate_thumbnail(theme, theme_cfg, out_mp4, api_key, duration_hours=dur)
             done += 1
@@ -1362,6 +1721,8 @@ def main():
     parser.add_argument("--regen-loop",  action="store_true", help="Re-generate visual loop only")
     parser.add_argument("--dry-run",     action="store_true")
     parser.add_argument("--list-themes", action="store_true", help="List available themes")
+    parser.add_argument("--with-outro",  metavar="OUTRO_MP4",
+                        help="Append outro clip to each assembled video (e.g. output/_outros/outro_cnr.mp4)")
     args = parser.parse_args()
 
     if args.list_themes:
@@ -1388,6 +1749,7 @@ def main():
             regen_images=args.regen_images,
             regen_loop=args.regen_loop,
             dry_run=args.dry_run,
+            with_outro=getattr(args, "with_outro", None),
         )
         total_done += done
 

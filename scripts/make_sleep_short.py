@@ -2,7 +2,10 @@
 """
 Generate 45-second vertical Shorts from SleepClassicalLoop shared loop files.
 Format: 1080×1920, center-cropped with black bars, fade in/out.
-Output goes to queue_id (Classical Night Relax) as video_type: sleep_short.
+
+⚠️  VISUAL OUTPUT IS CSS (Remotion SleepClassicalLoop — geometric shapes).
+    DO NOT publish to CNR (queue_id). CNR requires FLUX AI images + Ken Burns.
+    For CNR shorts use make_visual_shorts.py instead (visual_short_* files).
 
 Usage:
   python3 scripts/make_sleep_short.py --all
@@ -30,10 +33,10 @@ MUSIC_DIR = ROOT / "assets" / "music" / "classical" / "Music"
 # Default ambient music per theme (overlaid on silent loop clip)
 THEME_MUSIC = {
     "moon_clouds": "Nocturne in E flat major, Op. 9 no. 2.mp3",
-    "night_bear":  "Fantaisie, Op. 79 - Andantino.mp3",
-    "warm_waves":  "Arabesque No. 1. Andantino con moto.mp3",
+    "warm_waves":  "Arabesque no. 1 (string quartet arr.).mp3",  # 128kbps 44100Hz stereo; solo was 64kbps mono
     "rain_window": "Cello Suite no. 1 - Prelude in G, BWV 1007.mp3",
 }
+# night_bear BANNED from CNR — bear character = Happy Bear Kids brand, not adult content
 
 THEME_META = {
     "moon_clouds": {
@@ -41,12 +44,6 @@ THEME_META = {
         "desc":    "45 seconds of peaceful classical music under a moonlit night sky. Perfect for a moment of calm. Subscribe for full sleep programs ▶ @ClassicalNightRelax\n\n#ClassicalMusic #SleepMusic #ClassicalNightRelax #Shorts #RelaxationMusic",
         "thumb_prompt": "peaceful night sky with full moon and stars, classical music relaxation, dark blue, cinematic, no text",
         "tags":    ["sleep music shorts", "classical music", "classical night relax", "night sky", "moon", "relaxation shorts", "shorts"],
-    },
-    "night_bear":  {
-        "title":   "🐻 Sleeping Bear & Fireflies | Classical Lullaby Shorts | Classical Night Relax #shorts",
-        "desc":    "A sleeping bear under a starlit sky with gentle fireflies. Soothing classical lullaby. Subscribe for full sleep programs ▶ @ClassicalNightRelax\n\n#LullabyShorts #ClassicalMusic #SleepingBear #ClassicalNightRelax #Shorts",
-        "thumb_prompt": "sleeping bear silhouette with fireflies under moonlit night, classical lullaby, peaceful, dark forest, no text",
-        "tags":    ["lullaby shorts", "sleeping bear", "fireflies", "classical lullaby", "classical night relax", "shorts"],
     },
     "warm_waves":  {
         "title":   "🌊 Ocean Waves at Dusk | Classical Music Shorts | Classical Night Relax #shorts",
@@ -75,7 +72,8 @@ def make_vertical_short(loop_mp4: Path, start: float, out_mp4: Path,
         f"fade=t=in:st=0:d={FADE_SECS},"
         f"fade=t=out:st={SHORT_DURATION - FADE_SECS}:d={FADE_SECS}"
     )
-    af = f"afade=t=in:st=0:d={FADE_SECS},afade=t=out:st={SHORT_DURATION - FADE_SECS}:d={FADE_SECS}"
+    # aresample normalizes any source (e.g. 22050Hz mono) to 44100Hz stereo before AAC encode
+    af = f"aresample=44100,aformat=channel_layouts=stereo,afade=t=in:st=0:d={FADE_SECS},afade=t=out:st={SHORT_DURATION - FADE_SECS}:d={FADE_SECS}"
 
     if music_mp3 and music_mp3.exists():
         cmd = [

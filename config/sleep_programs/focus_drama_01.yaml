@@ -39,6 +39,16 @@ tracks:
   piece: Symphony No. 5 — IV. Allegro
   duration_sec: 687
   mood: triumphant
+- id: bach_toccata_fugue_dm_bwv565_organ
+  composer: Johann Sebastian Bach
+  piece: Toccata and Fugue in D minor, BWV 565 (Organ)
+  duration_sec: 543
+  mood: dramatic
+- id: bach_violin_partita_no2_bwv1004_chaconne_piano_arr
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 2 — Chaconne [Piano arrangement]
+  duration_sec: 924
+  mood: profound
 tags:
 - beethoven
 - verdi

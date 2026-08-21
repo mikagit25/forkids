@@ -8,7 +8,6 @@ visual_theme: rain_window
 loop_duration_sec: 240
 durations_hours:
 - 1
-- 3
 tracks:
 - id: beethoven_piano_sonata_no_14_in_c_m_moonlight_op_27_no_2_i_adagio_so
   composer: Ludwig van Beethoven

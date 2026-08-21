@@ -65,12 +65,15 @@ export interface DanceSpriteLongProps {
   blocks: SpriteMotionBlock[];
   bgColor: string;
   bgColorEnd?: string;
-  accentColor?: string;        // for background bubbles (default white)
+  accentColor?: string;        // for background bubbles / sparkle tint (default white)
   musicFile: string;
   volume?: number;
   bgEffect?: "bubbles" | "sparkles" | "none"; // default "bubbles"
   nightMode?: boolean;
   wobble?: boolean;            // global PIP/BWW wobble on all sprites (can override per block)
+  bgImage?: string;            // filename in remotion/public/backgrounds/ (e.g. "meadow.jpg")
+  bgDim?: number;              // 0–1, darken background image for sprite contrast (default 0.18)
+  bgImageMotion?: "zoom" | "pan" | "static"; // Ken Burns effect on bgImage (default "zoom")
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
@@ -101,7 +104,7 @@ const FloatingBubble: React.FC<{
   const baseX   = r(seed * 7)  * (width  - size);
   const baseY   = r(seed * 11) * (height - size);
   const speed   = 0.2 + r(seed * 13) * 0.3;
-  const opacity = 0.05 + r(seed * 5) * 0.08;
+  const opacity = 0.08 + r(seed * 5) * 0.12;
   const x = baseX + Math.sin((frame / 90) * speed + seed)      * 24;
   const y = baseY + Math.cos((frame / 110) * speed + seed * 2) * 18;
   return (
@@ -110,6 +113,61 @@ const FloatingBubble: React.FC<{
       width: size, height: size, borderRadius: "50%",
       backgroundColor: color, opacity, pointerEvents: "none",
     }} />
+  );
+};
+
+// ── Falling sparkles (gold stars) ─────────────────────────────────────────────
+const FallingSparkle: React.FC<{
+  seed: number; width: number; height: number;
+}> = ({ seed, width, height }) => {
+  const frame = useCurrentFrame();
+  const r = seededRand;
+
+  const startX   = r(seed * 3) * width;
+  const size     = 14 + r(seed * 7) * 14;          // 14–28 px
+  const fallPx   = 0.5 + r(seed * 11) * 0.8;       // px per frame (slow to medium)
+  const rotDir   = r(seed * 13) > 0.5 ? 1 : -1;
+  const rotRate  = rotDir * (0.8 + r(seed * 17) * 2.4); // deg/frame
+  const swingAmp = 20 + r(seed * 19) * 40;          // horizontal drift amplitude
+
+  const cycleFr  = Math.floor(height / fallPx) + 60;  // frames for one full fall
+  const offsetFr = Math.floor(r(seed * 5) * cycleFr);
+  const cf       = (frame + offsetFr) % cycleFr;
+
+  const x        = startX + Math.sin((cf * 0.04) + seed) * swingAmp;
+  const y        = cf * fallPx - size;
+  const rotation = cf * rotRate;
+
+  // Fade in first 20fr, fade out last 20fr of cycle
+  const fadeIn   = Math.min(1, cf / 20);
+  const fadeOut  = Math.min(1, (cycleFr - cf) / 20);
+  const baseOpacity = 0.40 + r(seed * 9) * 0.35;   // 0.40–0.75
+  const opacity  = baseOpacity * fadeIn * fadeOut;
+
+  // Alternate between ★ and ✦ for variety
+  const glyph = r(seed * 23) > 0.4 ? "★" : "✦";
+  // Gold to light-yellow color mix per seed
+  const hue   = 42 + Math.floor(r(seed * 29) * 18); // 42–60
+  const color = `hsl(${hue}, 100%, 60%)`;
+
+  return (
+    <div style={{
+      position: "absolute",
+      left: x - size / 2,
+      top: y,
+      width: size,
+      height: size,
+      fontSize: size,
+      lineHeight: 1,
+      textAlign: "center",
+      color,
+      opacity,
+      transform: `rotate(${rotation}deg)`,
+      pointerEvents: "none",
+      userSelect: "none",
+    }}>
+      {glyph}
+    </div>
   );
 };
 
@@ -315,6 +373,9 @@ export const DanceSpriteLong: React.FC<DanceSpriteLongProps> = ({
   bgEffect = "bubbles",
   nightMode = false,
   wobble = false,
+  bgImage,
+  bgDim = 0.18,
+  bgImageMotion = "zoom",
 }) => {
   const frame = useCurrentFrame();
   const { fps, durationInFrames, width, height } = useVideoConfig();
@@ -360,9 +421,43 @@ export const DanceSpriteLong: React.FC<DanceSpriteLongProps> = ({
   const sortedSprites = [...sprites].map((s, i) => ({ sprite: s, origIdx: i }))
     .sort((a, b) => (a.sprite.depth ?? 0.5) - (b.sprite.depth ?? 0.5));
 
+  // bgImage Ken Burns transform
+  const totalSec = durationInFrames / fps;
+  let bgTransform = "";
+  if (bgImage) {
+    if (bgImageMotion === "zoom") {
+      const scale = 1 + bgProgress * 0.08;
+      bgTransform = `scale(${scale})`;
+    } else if (bgImageMotion === "pan") {
+      // slow horizontal pan left-to-right
+      const panX = interpolate(fSec, [0, totalSec], [-4, 4], {
+        extrapolateLeft: "clamp", extrapolateRight: "clamp",
+      });
+      bgTransform = `scale(1.10) translateX(${panX}%)`;
+    }
+    // "static" → no transform
+  }
+
   return (
     <AbsoluteFill style={{ backgroundColor: currentBg, overflow: "hidden" }}>
       <Audio src={staticFile(`music/${musicFile}`)} volume={volume} loop />
+
+      {/* Background image with Ken Burns motion */}
+      {bgImage && (
+        <AbsoluteFill style={{ overflow: "hidden" }}>
+          <Img
+            src={staticFile(`backgrounds/${bgImage}`)}
+            style={{
+              width: "100%", height: "100%",
+              objectFit: "cover",
+              transform: bgTransform,
+              transformOrigin: "center center",
+            }}
+          />
+          {/* Dark veil so sprites pop against any background */}
+          <AbsoluteFill style={{ backgroundColor: `rgba(0,0,0,${bgDim})` }} />
+        </AbsoluteFill>
+      )}
 
       <AbsoluteFill style={{ opacity: fadeOut * nightDim * blockAlpha }}>
         {/* Background effect */}
@@ -370,6 +465,9 @@ export const DanceSpriteLong: React.FC<DanceSpriteLongProps> = ({
           <FloatingBubble
             key={i} seed={i + 1} width={width} height={height} color={accentColor}
           />
+        ))}
+        {bgEffect === "sparkles" && Array.from({ length: 22 }, (_, i) => (
+          <FallingSparkle key={i} seed={i + 1} width={width} height={height} />
         ))}
 
         {/* Sprites — sorted back-to-front by depth */}

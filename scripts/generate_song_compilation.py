@@ -52,6 +52,13 @@ EN_SONGS_UPBEAT = [
     "Wheels and Wings v2.mp3",
     "Clean Up Time v2.mp3",
     "Seven Days of Fun v2.mp3",
+    # New tracks added 2026-08-02
+    "Jungle Adventure Song v2.mp3",
+    "Good Morning Songv4.mp3",
+    "Baby Shark Family Songv2.mp3",
+    "Magic Colors Song v2.mp3",
+    "Fruit Salad Yummy (1).mp3",
+    "Sunny Ukulele Dance (1).mp3",
 ]
 
 EN_SONGS_LULLABY = [
@@ -72,6 +79,17 @@ EN_SONGS_LULLABY = [
     "Ocean Waves Lullaby v2.mp3",
     "Forest Rain Lullaby v2.mp3",
     "Spring Morning Lullaby.mp3",
+    # New tracks added 2026-08-02
+    "Gentle Piano Lullaby Suite v2.mp3",
+    "Sleepy Bear v2.mp3",
+    "Rainbow Lantern v2.mp3",
+    "Winter Lullaby v2.mp3",
+    "Forest Lullaby (1).mp3",
+    "Forest Creatures Lullabyv2.mp3",
+    "Night Waltz for Sleep v2.mp3",
+    "Crystal Rain Waltz v2.mp3",
+    "Autumn Leaves Are Falling (1).mp3",
+    "Nocturne Variations for Sleep v2.mp3",
 ]
 
 AR_SONGS_UPBEAT = [
@@ -81,6 +99,10 @@ AR_SONGS_UPBEAT = [
     "طريق الفرح الصغير.mp3",
     "نعدّ مع بعض.mp3",
     "القمر الجميل.mp3",
+    # New tracks added 2026-08-02
+    "أغنية الأرقام الكبيرة.mp3",
+    "ألوان الأطفال.mp3",
+    "نعدّ من واحد إلى عشرة.mp3",
 ]
 
 AR_SONGS_LULLABY = [
@@ -90,6 +112,9 @@ AR_SONGS_LULLABY = [
     "طريق الفرح الصغير.mp3",
     "نعدّ مع بعض.mp3",
     "ألوان الطبيعة.mp3",
+    # New tracks added 2026-08-02
+    "تهويدة النجوم.mp3",
+    "نامي يا صغيري.mp3",
 ]
 
 PLAYLISTS = {
@@ -98,10 +123,10 @@ PLAYLISTS = {
         "name":  {"en": "Happy Songs for Kids", "ar": "أغاني سعيدة للأطفال"},
         "desc_en": (
             "25 minutes of happy, upbeat songs for babies and toddlers! "
-            "18 fun educational songs about animals, numbers, colors, shapes, emotions, and more. "
+            "Fun educational songs about animals, numbers, colors, shapes, emotions, and more. "
             "Original AI-generated music, perfect for dancing, learning, and playtime.\n\n"
-            "Includes: Animal Parade, Count With Me, Dancing Bears, Dinosaur Stomp, "
-            "Rainbow Colors, Shapes Everywhere, and more!\n\n"
+            "Includes: Animal Parade, Jungle Adventure, Dancing Bears, Dinosaur Stomp, "
+            "Good Morning Song, Baby Shark, Magic Colors, Rainbow Colors, and more!\n\n"
             "Perfect for kids ages 1–5. No talking, just music and fun!\n\n"
             "🎵 Original music by Happy Bear Kids (AI-generated, © 2026)\n"
             "🔔 Subscribe → @HappyBearKids1\n\n"
@@ -148,10 +173,10 @@ PLAYLISTS = {
         "name":  {"en": "Lullaby Songs for Babies", "ar": "أغاني النوم للأطفال"},
         "desc_en": (
             "25 minutes of gentle lullabies and soothing songs to help your baby drift off to sleep. "
-            "17 original lullaby songs featuring soft melodies, gentle rhythms, and dreamy soundscapes. "
+            "Original lullaby songs featuring soft melodies, gentle rhythms, and dreamy soundscapes. "
             "Perfect for bedtime, nap time, and quiet moments.\n\n"
             "Includes: Baby Bear's Den, Dream On Little One, Moon and Stars, Rainbow Cradle, "
-            "Moonlit Paws, and more!\n\n"
+            "Forest Lullaby, Winter Lullaby, Crystal Rain Waltz, Moonlit Paws, and more!\n\n"
             "Designed for babies 0–3 years. Safe, gentle, and calming.\n\n"
             "🎵 Original lullabies by Happy Bear Kids (AI-generated, © 2026)\n"
             "🔔 Subscribe → @HappyBearKids1\n\n"

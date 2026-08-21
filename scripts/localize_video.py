@@ -252,15 +252,25 @@ def save_localized_langs(meta_path: Path, langs: list[str]):
         yaml.dump(meta, f, allow_unicode=True, sort_keys=False, default_flow_style=False)
 
 
-def find_queue_metas_with_id(queue_dir: Path) -> list[Path]:
+def find_queue_metas_with_id(dirs, extra_filter=None) -> list[Path]:
+    """Scan one or more directories for meta_*.yaml files that have youtube_id set.
+
+    extra_filter: optional callable(data) -> bool for additional filtering.
+    """
+    if isinstance(dirs, Path):
+        dirs = [dirs]
     metas = []
-    for p in sorted(queue_dir.glob("meta_*.yaml")):
-        try:
-            data = load_meta(p)
-            if data.get("youtube_id"):
-                metas.append(p)
-        except Exception:
-            pass
+    for d in dirs:
+        if not d.exists():
+            continue
+        for p in sorted(d.glob("meta_*.yaml")):
+            try:
+                data = load_meta(p)
+                if data.get("youtube_id"):
+                    if extra_filter is None or extra_filter(data):
+                        metas.append(p)
+            except Exception:
+                pass
     return metas
 
 
@@ -339,8 +349,15 @@ def main():
 
     else:  # --queue
         queue_dir = CHANNEL_CONFIG[channel]["queue_dir"]
-        metas = find_queue_metas_with_id(queue_dir)
-        print(f"Found {len(metas)} meta files with youtube_id in {queue_dir.name} [{channel}]")
+        uploaded_dir = ROOT / "uploaded"
+        # For id/CNR channel, uploaded/ contains ALL channels mixed together.
+        # Only take made_for_kids=False entries, which are exclusively CNR videos.
+        cnr_filter = (lambda d: d.get("made_for_kids") is False) if channel == "id" else None
+        metas_queue    = find_queue_metas_with_id([queue_dir])
+        metas_uploaded = find_queue_metas_with_id([uploaded_dir], extra_filter=cnr_filter)
+        metas = metas_queue + metas_uploaded
+        print(f"Found {len(metas)} meta files with youtube_id "
+              f"({len(metas_queue)} in {queue_dir.name}, {len(metas_uploaded)} in uploaded/) [{channel}]")
         ok = err = skip = 0
         for meta_path in metas:
             meta = load_meta(meta_path)

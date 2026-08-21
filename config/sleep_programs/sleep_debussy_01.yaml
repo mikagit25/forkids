@@ -35,6 +35,51 @@ tracks:
   piece: Fantasia on a Theme by Thomas Tallis
   duration_sec: 894
   mood: soaring
+- id: chopin_nocturne_in_b_flat_minor_op_9_no_1
+  composer: Frédéric Chopin
+  piece: Nocturne in B-flat minor, Op. 9 No. 1
+  duration_sec: 337
+  mood: tender
+- id: chopin_nocturne_in_e_flat_major_op_9_no_2
+  composer: Frédéric Chopin
+  piece: Nocturne in E-flat major, Op. 9 No. 2
+  duration_sec: 277
+  mood: lyrical
+- id: beethoven_moonlight_paul_pitman
+  composer: Ludwig van Beethoven
+  piece: Piano Sonata No. 14 'Moonlight', Op. 27 No. 2 — I. Adagio sostenuto
+  duration_sec: 335
+  mood: reflective
+- id: chopin_mazurka_in_a_flat_major_b_85
+  composer: Frédéric Chopin
+  piece: Mazurka in A-flat major, B. 85
+  duration_sec: 89
+  mood: gentle
+- id: chopin_ballade_no1_g_minor
+  composer: Frédéric Chopin
+  piece: Ballade No. 1 in G minor, Op. 23
+  duration_sec: 678
+  mood: expressive
+- id: albinoni_adagio_g_minor_short
+  composer: Tomaso Albinoni
+  piece: Adagio in G minor
+  duration_sec: 472
+  mood: serene
+- id: albinoni_adagio_organ_g_minor
+  composer: Tomaso Albinoni
+  piece: Adagio for Organ & Strings in G minor
+  duration_sec: 531
+  mood: soaring
+- id: beethoven_tempest_sonata_ii_adagio
+  composer: Ludwig van Beethoven
+  piece: Piano Sonata No. 17 'The Tempest', Op. 31 No. 2 — II. Adagio
+  duration_sec: 437
+  mood: lyrical
+- id: rachmaninoff_piano_concerto_no2_ii_adagio
+  composer: Sergei Rachmaninoff
+  piece: Piano Concerto No. 2 in C minor, Op. 18 — II. Adagio sostenuto
+  duration_sec: 615
+  mood: profound
 tags:
 - debussy
 - arabesque

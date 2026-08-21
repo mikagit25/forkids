@@ -8,7 +8,6 @@ visual_theme: moon_clouds
 loop_duration_sec: 240
 durations_hours:
 - 1
-- 3
 shuffle: true
 tracks:
 - id: beethoven_cello_sonata_no1_complete

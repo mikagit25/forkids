@@ -30,6 +30,16 @@ tracks:
   piece: Cello Sonata No. 2 in G minor, Op. 5 No. 2 — I. Adagio sostenuto ed espressivo
   duration_sec: 268
   mood: reflective
+- id: beethoven_cello_sonata_no1_complete
+  composer: Ludwig van Beethoven
+  piece: Cello Sonata No. 1 in F major, Op. 5 No. 1 — Complete
+  duration_sec: 1489
+  mood: expressive
+- id: beethoven_tempest_sonata_ii_adagio
+  composer: Ludwig van Beethoven
+  piece: Piano Sonata No. 17 'The Tempest', Op. 31 No. 2 — II. Adagio
+  duration_sec: 437
+  mood: lyrical
 tags:
 - beethoven
 - cello sonata

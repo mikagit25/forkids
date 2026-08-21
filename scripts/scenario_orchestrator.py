@@ -51,7 +51,7 @@ COL = {
     'youtube_id_id': 10, 'notes': 11, 'created': 12, 'updated': 13,
 }
 
-BOT_TOKEN = "8657721269:AAEkhJ92vHR4K1CkA14nFcy0_bA95c38QZk"
+BOT_TOKEN = "8931668276:AAHU58_vHoswhBnpOhc4wH3w0jimATkC7m8"
 CHAT_ID   = "209381269"
 
 # ── Helpers ───────────────────────────────────────────────────────────────────

@@ -40,6 +40,36 @@ tracks:
   piece: Nocturne in E♭ major, Op. 9 No. 2
   duration_sec: 277
   mood: flowing
+- id: mozart_fantasia_d_minor_k397
+  composer: Wolfgang Amadeus Mozart
+  piece: Fantasia in D minor, K. 397
+  duration_sec: 355
+  mood: introspective
+- id: mozart_piano_sonata_k330_ii_andante
+  composer: Wolfgang Amadeus Mozart
+  piece: Piano Sonata No. 10 in C major, K. 330 — II. Andante Cantabile
+  duration_sec: 415
+  mood: gentle
+- id: mozart_piano_sonata_k333_ii_andante
+  composer: Wolfgang Amadeus Mozart
+  piece: Piano Sonata No. 13 in B-flat major, K. 333 — II. Andante Cantabile
+  duration_sec: 375
+  mood: calm
+- id: mozart_adagio_c_major_k356_guitar
+  composer: Wolfgang Amadeus Mozart
+  piece: Adagio in C major, K. 356 [Solo Guitar arr.]
+  duration_sec: 215
+  mood: reflective
+- id: mozart_symphony_no40_iii_menuetto
+  composer: Wolfgang Amadeus Mozart
+  piece: Symphony No. 40 in G minor, K. 550 — III. Menuetto
+  duration_sec: 272
+  mood: structured
+- id: mozart_sonata_no27_k189d_i_adagio_allegro
+  composer: Wolfgang Amadeus Mozart
+  piece: Piano Sonata No. 27 in C major — I. Adagio - Allegro molto
+  duration_sec: 316
+  mood: focused
 tags:
 - mozart
 - focus music

@@ -14,7 +14,7 @@ mkdir -p logs
 run() {
     local theme=$1
     echo "[$(date '+%H:%M:%S')] Theme: $theme" | tee -a $LOG
-    python3 scripts/make_visual_theme.py --theme "$theme" --durations 1 3 \
+    python3 scripts/make_visual_theme.py --theme "$theme" --durations 1 \
         >> $LOG 2>&1 \
         && echo "  OK: $theme" | tee -a $LOG \
         || echo "  FAILED: $theme" | tee -a $LOG
@@ -38,5 +38,7 @@ run autumn_forest
 run mountain_snow
 run deep_space
 run zen_garden
+run night_rain
+run evening_piano
 
 echo "=== Visual themes batch complete $(date) ===" | tee -a $LOG

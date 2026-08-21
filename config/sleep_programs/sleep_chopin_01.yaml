@@ -41,6 +41,36 @@ tracks:
   piece: Nocturne in B major, Op. 32 No. 1
   duration_sec: 265
   mood: near_silence
+- id: chopin_nocturne_b_major_op9_no3
+  composer: Frédéric Chopin
+  piece: Nocturne in B major, Op. 9 No. 3
+  duration_sec: 417
+  mood: flowing
+- id: chopin_nocturne_csharp_minor_b49
+  composer: Frédéric Chopin
+  piece: Nocturne in C-sharp minor, B. 49 (Op. posth.)
+  duration_sec: 255
+  mood: tender
+- id: chopin_waltz_aflat_farewell_op69_no1
+  composer: Frédéric Chopin
+  piece: Waltz in A-flat major 'Farewell', Op. 69 No. 1
+  duration_sec: 248
+  mood: gentle
+- id: chopin_ballade_no1_g_minor_op23
+  composer: Frédéric Chopin
+  piece: Ballade No. 1 in G minor, Op. 23
+  duration_sec: 678
+  mood: expressive
+- id: chopin_etude_op10_no3_tristesse
+  composer: Frédéric Chopin
+  piece: Étude Op. 10 No. 3 in E major — 'Tristesse'
+  duration_sec: 275
+  mood: lyrical
+- id: chopin_etude_op25_no1_aeolian_harp
+  composer: Frédéric Chopin
+  piece: Étude Op. 25 No. 1 in A-flat major — 'Aeolian Harp'
+  duration_sec: 187
+  mood: floating
 tags:
 - chopin nocturnes
 - sleep music

@@ -436,8 +436,7 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 217
-  file: Music/Violin Sonata in F major, HWV 370 - III. Largo (For Trumpet and Organ
-    - Rondeau).mp3
+  file: Music/Violin Sonata in F major, HWV 370 - III. Largo (For Trumpet and Organ - Rondeau).mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: beethoven_cello_sonata_op5_no2_i_adagio
@@ -582,7 +581,7 @@ recordings:
   duration_sec: 259
   file: Music/Starlight Lullaby v2.mp3
   programs: []
-  notes: 'Suno AI track — for kids lullaby programs only (EN/AR channels)'
+  notes: Suno AI track — for kids lullaby programs only (EN/AR channels)
 - id: suno_starlight_lullaby
   composer: Happy Bear Kids
   piece: Starlight Lullaby
@@ -593,7 +592,7 @@ recordings:
   duration_sec: 231
   file: Music/Starlight Lullaby.mp3
   programs: []
-  notes: 'Suno AI track — for kids lullaby programs only (EN/AR channels)'
+  notes: Suno AI track — for kids lullaby programs only (EN/AR channels)
 - id: goldberg_variations_bwv_988_01_aria
   composer: Johann Sebastian Bach
   piece: Goldberg Variations, BWV 988 - 01 - Aria
@@ -1331,183 +1330,863 @@ recordings:
   file: Music/Violin Sonata in F major, HWV 370 - III. Largo (For Trumpet and Organ - Rondeau).mp3
   programs: []
   notes: ''
-
-# --- Новые треки с Google Drive (2026-08-04) ---
-
 - id: bach_violin_partita_no1_bwv1002_allemanda
-  file: "Music/I. Allemanda.mp3"
-  composer: "Johann Sebastian Bach"
-  piece: "Violin Partita No. 1, BWV 1002 — I. Allemanda"
+  file: Music/I. Allemanda.mp3
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — I. Allemanda
   duration_sec: 209
   license: pd
   source: musopen
   programs: []
-
 - id: bach_violin_partita_no1_bwv1002_double_ii
-  file: "Music/II. Double.mp3"
-  composer: "Johann Sebastian Bach"
-  piece: "Violin Partita No. 1, BWV 1002 — II. Double"
+  file: Music/II. Double.mp3
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — II. Double
   duration_sec: 191
   license: pd
   source: musopen
   programs: []
-
 - id: bach_violin_partita_no1_bwv1002_corrente
-  file: "Music/III. Corrente.mp3"
-  composer: "Johann Sebastian Bach"
-  piece: "Violin Partita No. 1, BWV 1002 — III. Corrente"
+  file: Music/III. Corrente.mp3
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — III. Corrente
   duration_sec: 203
   license: pd
   source: musopen
   programs: []
-
 - id: bach_violin_partita_no1_bwv1002_double_presto
-  file: "Music/IV. Double Presto.mp3"
-  composer: "Johann Sebastian Bach"
-  piece: "Violin Partita No. 1, BWV 1002 — IV. Double (Presto)"
+  file: Music/IV. Double Presto.mp3
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — IV. Double (Presto)
   duration_sec: 141
   license: pd
   source: musopen
   programs: []
-
 - id: bach_violin_partita_no1_bwv1002_sarabande
-  file: "Music/V. Sarabande.mp3"
-  composer: "Johann Sebastian Bach"
-  piece: "Violin Partita No. 1, BWV 1002 — V. Sarabande"
+  file: Music/V. Sarabande.mp3
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — V. Sarabande
   duration_sec: 129
   license: pd
   source: musopen
   programs: []
-
 - id: bach_violin_partita_no1_bwv1002_double_vi
-  file: "Music/VI. Double.mp3"
-  composer: "Johann Sebastian Bach"
-  piece: "Violin Partita No. 1, BWV 1002 — VI. Double"
+  file: Music/VI. Double.mp3
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — VI. Double
   duration_sec: 108
   license: pd
   source: musopen
   programs: []
-
 - id: bach_violin_partita_no1_bwv1002_tempo_di_borea
-  file: "Music/VII. Tempo di Borea.mp3"
-  composer: "Johann Sebastian Bach"
-  piece: "Violin Partita No. 1, BWV 1002 — VII. Tempo di Borea"
+  file: Music/VII. Tempo di Borea.mp3
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — VII. Tempo di Borea
   duration_sec: 143
   license: pd
   source: musopen
   programs: []
-
 - id: bach_violin_partita_no1_bwv1002_double_viii
-  file: "Music/VIII. Double.mp3"
-  composer: "Johann Sebastian Bach"
-  piece: "Violin Partita No. 1, BWV 1002 — VIII. Double"
+  file: Music/VIII. Double.mp3
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — VIII. Double
   duration_sec: 140
   license: pd
   source: musopen
   programs: []
-
 - id: beethoven_violin_concerto_op61_i_allegro_v1
-  file: "Music/Violin Concerto in D major, Op. 61 - I. Allegro ma non troppo.mp3"
-  composer: "Ludwig van Beethoven"
-  piece: "Violin Concerto in D major, Op. 61 — I. Allegro ma non troppo (v1)"
+  file: Music/Violin Concerto in D major, Op. 61 - I. Allegro ma non troppo.mp3
+  composer: Ludwig van Beethoven
+  piece: Violin Concerto in D major, Op. 61 — I. Allegro ma non troppo (v1)
   duration_sec: 1469
   license: pd
   source: musopen
   programs: []
-
 - id: beethoven_violin_concerto_op61_iii_rondo_v1
-  file: "Music/Violin Concerto in D major, Op. 61 - III. Rondo_ Allegro.mp3"
-  composer: "Ludwig van Beethoven"
-  piece: "Violin Concerto in D major, Op. 61 — III. Rondo (Allegro) (v1)"
+  file: Music/Violin Concerto in D major, Op. 61 - III. Rondo_ Allegro.mp3
+  composer: Ludwig van Beethoven
+  piece: Violin Concerto in D major, Op. 61 — III. Rondo (Allegro) (v1)
   duration_sec: 623
   license: pd
   source: musopen
   programs: []
-
 - id: beethoven_violin_concerto_op61_i_allegro_v2
-  file: "Music/Violin Concerto in D, Op. 61 - I. Allegro ma non troppo.mp3"
-  composer: "Ludwig van Beethoven"
-  piece: "Violin Concerto in D major, Op. 61 — I. Allegro ma non troppo (v2)"
+  file: Music/Violin Concerto in D, Op. 61 - I. Allegro ma non troppo.mp3
+  composer: Ludwig van Beethoven
+  piece: Violin Concerto in D major, Op. 61 — I. Allegro ma non troppo (v2)
   duration_sec: 1324
   license: pd
   source: musopen
   programs: []
-
 - id: beethoven_violin_concerto_op61_ii_larghetto_iii_rondo
-  file: "Music/Violin Concerto in D, Op. 61 - II. Larghetto III. Rondo (Allegro).mp3"
-  composer: "Ludwig van Beethoven"
-  piece: "Violin Concerto in D, Op. 61 — II. Larghetto + III. Rondo"
+  file: Music/Violin Concerto in D, Op. 61 - II. Larghetto III. Rondo (Allegro).mp3
+  composer: Ludwig van Beethoven
+  piece: Violin Concerto in D, Op. 61 — II. Larghetto + III. Rondo
   duration_sec: 1196
   license: pd
   source: musopen
   programs: []
-
 - id: beethoven_violin_concerto_op61_ii_larghetto
-  file: "Music/Violin Concerto in D, Op. 61 - II. Larghetto.mp3"
-  composer: "Ludwig van Beethoven"
-  piece: "Violin Concerto in D, Op. 61 — II. Larghetto"
+  file: Music/Violin Concerto in D, Op. 61 - II. Larghetto.mp3
+  composer: Ludwig van Beethoven
+  piece: Violin Concerto in D, Op. 61 — II. Larghetto
   duration_sec: 602
   license: pd
   source: musopen
   programs: []
-
 - id: mozart_violin_sonata_k304_i_allegro
-  file: "Music/Violin Sonata no. 21, K. 304 - I. Allegro.mp3"
-  composer: "Wolfgang Amadeus Mozart"
-  piece: "Violin Sonata No. 21 in E minor, K. 304 — I. Allegro"
+  file: Music/Violin Sonata no. 21, K. 304 - I. Allegro.mp3
+  composer: Wolfgang Amadeus Mozart
+  piece: Violin Sonata No. 21 in E minor, K. 304 — I. Allegro
   duration_sec: 378
   license: pd
   source: musopen
   programs: []
-
 - id: mozart_violin_sonata_k304_ii_menuetto
-  file: "Music/Violin Sonata no. 21, K. 304 - II. - Tempo di Menuetto.mp3"
-  composer: "Wolfgang Amadeus Mozart"
-  piece: "Violin Sonata No. 21 in E minor, K. 304 — II. Tempo di Menuetto"
+  file: Music/Violin Sonata no. 21, K. 304 - II. - Tempo di Menuetto.mp3
+  composer: Wolfgang Amadeus Mozart
+  piece: Violin Sonata No. 21 in E minor, K. 304 — II. Tempo di Menuetto
   duration_sec: 333
   license: pd
   source: musopen
   programs: []
-
-# --- lp-00616_BeG: Musopen LP recordings, Beethoven collection (2026-08-04) ---
-# 4 sides × ~30 min = ~125 min total. ID3 tags empty, identified from Musopen catalog context.
-
 - id: musopen_lp_00616_side_a1
-  file: "Music/lp-00616_BeG-record_1_side_A_64kb.mp3"
-  composer: "Ludwig van Beethoven"
-  piece: "Beethoven LP Recording lp-00616 — Record 1 Side A"
+  file: Music/lp-00616_BeG-record_1_side_A_64kb.mp3
+  composer: Ludwig van Beethoven
+  piece: Beethoven LP Recording lp-00616 — Record 1 Side A
   duration_sec: 2064
   license: pd
   source: musopen
   programs: []
-  notes: 'Musopen LP scan. Exact piece TBD — likely chamber/orchestral works.'
-
+  notes: Musopen LP scan. Exact piece TBD — likely chamber/orchestral works.
 - id: musopen_lp_00616_side_b1
-  file: "Music/lp-00616_BeG-record_1_side_B_64kb.mp3"
-  composer: "Ludwig van Beethoven"
-  piece: "Beethoven LP Recording lp-00616 — Record 1 Side B"
+  file: Music/lp-00616_BeG-record_1_side_B_64kb.mp3
+  composer: Ludwig van Beethoven
+  piece: Beethoven LP Recording lp-00616 — Record 1 Side B
   duration_sec: 1644
   license: pd
   source: musopen
   programs: []
-  notes: 'Musopen LP scan.'
-
+  notes: Musopen LP scan.
 - id: musopen_lp_00616_side_a2
-  file: "Music/lp-00616_BeG-record_2_side_A_64kb.mp3"
-  composer: "Ludwig van Beethoven"
-  piece: "Beethoven LP Recording lp-00616 — Record 2 Side A"
+  file: Music/lp-00616_BeG-record_2_side_A_64kb.mp3
+  composer: Ludwig van Beethoven
+  piece: Beethoven LP Recording lp-00616 — Record 2 Side A
   duration_sec: 1740
   license: pd
   source: musopen
   programs: []
-  notes: 'Musopen LP scan.'
-
+  notes: Musopen LP scan.
 - id: musopen_lp_00616_side_b2
-  file: "Music/lp-00616_BeG-record_2_side_B_64kb.mp3"
-  composer: "Ludwig van Beethoven"
-  piece: "Beethoven LP Recording lp-00616 — Record 2 Side B"
+  file: Music/lp-00616_BeG-record_2_side_B_64kb.mp3
+  composer: Ludwig van Beethoven
+  piece: Beethoven LP Recording lp-00616 — Record 2 Side B
   duration_sec: 2040
   license: pd
   source: musopen
   programs: []
-  notes: 'Musopen LP scan.'
+  notes: Musopen LP scan.
+- id: albinoni_adagio_organ_g_minor
+  composer: Tomaso Albinoni / Remo Giazotto (arr.)
+  piece: Adagio for Organ & Strings in G minor
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 531
+  file: Music/Adagio for Organ & Strings in g minor.mp3
+  programs: []
+  notes: Famous 'Albinoni Adagio'; Musopen PD recording. Excellent for sleep programs.
+- id: albinoni_adagio_g_minor_short
+  composer: Tomaso Albinoni / Remo Giazotto (arr.)
+  piece: Adagio in G minor
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 472
+  file: Music/Adagio in G minor.mp3
+  programs: []
+  notes: Alternate recording of Albinoni Adagio; already used in visual themes.
+- id: bach_concerto_2violins_bwv1043_i_vivace
+  composer: Johann Sebastian Bach
+  piece: Concerto for 2 Violins in D minor, BWV 1043 — I. Vivace
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 240
+  file: Music/Concerto for 2 Violins in D minor, BWV 1043 - I. Vivace.mp3
+  programs: []
+  notes: Upbeat opening movement. Good for focus/energy programs.
+- id: bach_concerto_2violins_bwv1043_ii_largo
+  composer: Johann Sebastian Bach
+  piece: Concerto for 2 Violins in D minor, BWV 1043 — II. Largo ma non tanto
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 383
+  file: Music/Concerto for 2 Violins in D minor, BWV 1043  - II. Largo ma non tanto.mp3
+  programs: []
+  notes: Slow, deeply calm. Excellent for sleep programs.
+- id: bach_concerto_2violins_bwv1043_iii_allegro
+  composer: Johann Sebastian Bach
+  piece: Concerto for 2 Violins in D minor, BWV 1043 — III. Allegro
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 292
+  file: Music/Concerto for 2 Violins in D minor, BWV 1043  - III. Allegro.mp3
+  programs: []
+  notes: Energetic closing movement. Focus programs.
+- id: liszt_hungarian_rhapsody_no2
+  composer: Franz Liszt
+  piece: Hungarian Rhapsody No. 2, S. 244/2
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 780
+  file: Music/Hungarian Rhapsody no. 2, S. 244-2.mp3
+  programs: []
+  notes: Very dramatic/energetic. NOT for sleep. Reserve for focus_drama or highlight compilations.
+- id: barrios_julia_florida
+  composer: Agustín Barrios Mangoré
+  piece: Julia Florida (Guitar)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 267
+  file: Music/Julia Florida.mp3
+  programs: []
+  notes: Gentle classical guitar. Perfect for zen_garden, evening_piano sleep themes.
+- id: rachmaninoff_piano_concerto_no2_ii_adagio
+  composer: Sergei Rachmaninoff
+  piece: Piano Concerto No. 2 in C minor, Op. 18 — II. Adagio sostenuto
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 615
+  file: Music/Piano Concerto No. 2 in C Minor, Op. 18 - II. Adagio sostenuto.mp3
+  programs: []
+  notes: Iconic, deeply moving. Excellent for sleep programs — aurora, lavender, deep_space.
+- id: bach_wtc_prelude_fugue_4_csharp_minor
+  composer: Johann Sebastian Bach
+  piece: Well-Tempered Clavier — Prelude and Fugue No. 4 in C-sharp minor
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 498
+  file: Music/Prelude and Fugue No. 4 in C-sharp minor - Complete Performance.mp3
+  programs: []
+  notes: Bach WTC Book 1. Meditative, focus-oriented.
+- id: bach_wtc_prelude_fugue_12_f_minor
+  composer: Johann Sebastian Bach
+  piece: Well-Tempered Clavier — Prelude and Fugue No. 12 in F minor
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 509
+  file: Music/Prelude and Fugue No. 12 in F minor - Complete Performance.mp3
+  programs: []
+  notes: Bach WTC. Contemplative, good for focus and zen programs.
+- id: bach_wtc_prelude_fugue_24_b_minor
+  composer: Johann Sebastian Bach
+  piece: Well-Tempered Clavier — Prelude and Fugue No. 24 in B minor
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 994
+  file: Music/Prelude and Fugue No. 24 in B minor - Complete Performance.mp3
+  programs: []
+  notes: Bach WTC. Long (16 min). Deeply introspective. Focus and sleep.
+- id: mozart_requiem_rex_tremendae
+  composer: Wolfgang Amadeus Mozart
+  piece: Requiem in D minor, K. 626 — III. Rex tremendae
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 97
+  file: Music/Requiem in D minor, K. 626 - III. Sequence - Rex tremendae (For Voices and Recorder Ensemble - Papalin).mp3
+  programs: []
+  notes: Choral/dramatic — NOT for sleep. Too short and intense for programs. Archive only.
+- id: beethoven_tempest_sonata_i_largo_allegro
+  composer: Ludwig van Beethoven
+  piece: Piano Sonata No. 17 'The Tempest', Op. 31 No. 2 — I. Largo, Allegro
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 473
+  file: Music/Sonata no. 17 in D minor 'The Tempest', Op. 31 no. 2 - I. Largo, allegro.mp3
+  programs: []
+  notes: Alternates slow and fast — too dramatic for sleep. Focus programs OK.
+- id: beethoven_tempest_sonata_ii_adagio
+  composer: Ludwig van Beethoven
+  piece: Piano Sonata No. 17 'The Tempest', Op. 31 No. 2 — II. Adagio
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 437
+  file: Music/Sonata no. 17 in D minor 'The Tempest', Op. 31 no. 2 - II. Adagio.mp3
+  programs: []
+  notes: Slow, lyrical — good for sleep and focus. Already in several visual themes.
+- id: beethoven_tempest_sonata_complete
+  composer: Ludwig van Beethoven
+  piece: Piano Sonata No. 17 'The Tempest', Op. 31 No. 2 — Complete Performance
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 1492
+  file: Music/Sonata no. 17 in D minor 'The Tempest', Op. 31 no. 2 - Complete Performance.mp3
+  programs: []
+  notes: Full sonata (~25 min). Mix of tempos. Best for focus programs, not pure sleep.
+- id: chopin_funeral_march_sonata_i_grave
+  composer: Frédéric Chopin
+  piece: Piano Sonata No. 2 in B-flat minor 'Funeral March', Op. 35 — I. Grave
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 468
+  file: Music/Sonata no. 2 in B flat minor 'Funeral march' - I. Grave, Doppio movimento.mp3
+  programs: []
+  notes: Dramatic and somber. NOT for sleep programs. Archive only.
+- id: bach_toccata_fugue_bwv565_organ
+  composer: Johann Sebastian Bach
+  piece: Toccata and Fugue in D minor, BWV 565 (Organ)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 518
+  file: Music/Toccata and Fugue in D minor, BWV 565.mp3
+  programs: []
+  notes: Iconic organ piece — too dramatic for sleep. NOT for programs. Archive only.
+- id: chopin_ballade_no1_g_minor
+  composer: Frédéric Chopin
+  piece: Ballade No. 1 in G minor, Op. 23
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 678
+  file: Music/Ballade no. 1 in G minor, Op. 23.mp3
+  programs: []
+  notes: Beautiful, sweeping — used in aurora_borealis, autumn_forest, evening_piano themes.
+- id: chopin_etude_lament_op10_no6
+  composer: Frédéric Chopin
+  piece: Étude Op. 10, No. 6 in E-flat minor — 'Lament'
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 252
+  file: Music/Etude Op. 10, no. 6 in E flat minor - 'Lament'.mp3
+  programs: []
+  notes: Slow, deeply poignant. Used in cherry_blossoms, fireplace_cabin, night_rain, autumn_forest.
+- id: beethoven_moonlight_paul_pitman
+  composer: Ludwig van Beethoven
+  piece: Piano Sonata No. 14 in C-sharp minor 'Moonlight', Op. 27 No. 2 — I. Adagio sostenuto (Paul Pitman)
+  performer: Paul Pitman
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 335
+  file: Music/Paul Pitman - Moonlight Sonata, Op. 27 No. 2 - I. Adagio sostenuto.mp3
+  programs: []
+  notes: Paul Pitman performance. Alternative to existing Moonlight recording. Sleep themes.
+- id: bach_accou_bourree_bwv1002
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — Bourree (Guitar arr. by Accou)
+  performer: Accou
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 209
+  file: Music/Accou - Bourree [I.S. Bach BWV 1002, Violin Partita No 1 in B minor].mp3
+  programs: []
+  notes: Guitar arrangement. Lively baroque dance. Focus programs.
+- id: bach_accou_sarabande_bwv1002
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — Sarabande (Guitar arr. by Accou)
+  performer: Accou
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 142
+  file: Music/Accou - Sarabande BWV 1002 (Partita No.1 for violin solo in B-minor).mp3
+  programs: []
+  notes: Guitar arrangement. Slow and lyrical.
+- id: chopin_ballade_no1_g_minor_op23
+  composer: Frédéric Chopin
+  piece: Ballade No. 1 in G minor, Op. 23
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 678
+  file: Music/Ballade no. 1 in G minor, Op. 23 (1).mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: chopin_etude_op10_no3_tristesse
+  composer: Frédéric Chopin
+  piece: Étude Op. 10 No. 3 in E major — 'Tristesse'
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 275
+  file: Music/Etude Op. 10, no. 3 in E major - 'Tristesse'.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: chopin_etude_op25_no1_aeolian_harp
+  composer: Frédéric Chopin
+  piece: Étude Op. 25 No. 1 in A-flat major — 'Aeolian Harp'
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 187
+  file: Music/Etude Op. 25 no. 1 in A flat major - 'Aeolian Harp _ Shepherd Boy'.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: chopin_etude_op25_no7_cello
+  composer: Frédéric Chopin
+  piece: Étude Op. 25 No. 7 in C-sharp minor — 'Cello'
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 367
+  file: Music/Etude Op. 25 no. 7 in C sharp minor- 'Cello'.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: chopin_etude_op25_no7_cello_v2
+  composer: Frédéric Chopin
+  piece: Étude Op. 25 No. 7 in C-sharp minor — 'Cello' (alt. performance)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 350
+  file: Music/Etude Op. 25 no. 7 in C sharp minor- 'Cello' (1).mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder — duplicate performance
+- id: chopin_nocturne_b_major_op9_no3
+  composer: Frédéric Chopin
+  piece: Nocturne in B major, Op. 9 No. 3
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 417
+  file: Music/Nocturne in B major, Op. 9 no. 3.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: chopin_nocturne_csharp_minor_b49
+  composer: Frédéric Chopin
+  piece: Nocturne in C-sharp minor, B. 49 (Op. posth.)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 255
+  file: Music/Nocturne in C sharp minor 'Lento con gran espressione', B. 49 (Op. posth.).mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: chopin_waltz_aflat_farewell_op69_no1
+  composer: Frédéric Chopin
+  piece: Waltz in A-flat major 'Farewell', Op. 69 No. 1
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 248
+  file: Music/Waltz in A flat major 'Farewell', Op. 69 no. 1.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: bach_double_violin_concerto_bwv1043_iii_allegro
+  composer: Johann Sebastian Bach
+  piece: Concerto for 2 Violins in D minor, BWV 1043 — III. Allegro
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 320
+  file: Music/Concerto for 2 Violins in D minor, BWV 1043  - III. Allegro (1).mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: bach_toccata_fugue_dm_bwv565_organ
+  composer: Johann Sebastian Bach
+  piece: Toccata and Fugue in D minor, BWV 565 (Organ)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 543
+  file: Music/Toccata and Fugue in D minor, BWV 565 (Organ).mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: bach_toccata_fugue_dm_bwv565_piano
+  composer: Johann Sebastian Bach
+  piece: Toccata and Fugue in D minor, BWV 565 (Piano transcription)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 541
+  file: Music/Toccata and Fugue in Dm, BWV 565.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: bach_violin_partita_no2_bwv1004_chaconne_piano_arr
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 2, BWV 1004 — 5. Chaconne [Piano arrangement]
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 924
+  file: Music/Violin Partita no. 2, BWV 1004 - 5. Chaconne [Piano arrangement].mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: bach_cello_suite_no1_prelude_sung_oribe
+  composer: Johann Sebastian Bach
+  piece: Prelude from Cello Suite No. 1 (Sung Oribe arrangement)
+  performer: Sung Oribe
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 184
+  file: Music/Sung Oribe - Prelude from Cello suite no. 1.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: beethoven_moonlight_sonata_op27_no2_ii_iii
+  composer: Ludwig van Beethoven
+  piece: Piano Sonata No. 14 'Moonlight', Op. 27 No. 2 — II. Allegretto & III. Presto agitato
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 521
+  file: Music/Piano Sonata no. 14 in C#m 'Moonlight', Op. 27 no. 2 - II + III (Allegretto - Presto).mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: beethoven_tempest_sonata_op31_no2_iii_allegretto
+  composer: Ludwig van Beethoven
+  piece: Piano Sonata No. 17 'The Tempest', Op. 31 No. 2 — III. Allegretto
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 322
+  file: Music/Sonata no. 17 in D minor 'The Tempest', Op. 31 no. 2 - III. Allegretto.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: mozart_adagio_c_major_k356_guitar
+  composer: Wolfgang Amadeus Mozart
+  piece: Adagio in C major, K. 356 [Solo Guitar arr. - Alink]
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 215
+  file: Music/Adagio in C major, K. 356 [Solo Guitar arr. - Alink].mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: mozart_fantasia_d_minor_k397
+  composer: Wolfgang Amadeus Mozart
+  piece: Fantasia in D minor, K. 397
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 355
+  file: Music/Fantasia in D minor, K. 397.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: mozart_piano_sonata_k330_ii_andante
+  composer: Wolfgang Amadeus Mozart
+  piece: Piano Sonata No. 10 in C major, K. 330 — II. Andante Cantabile
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 415
+  file: Music/Piano Sonata no. 10 in C major, K. 330 - II. Andante Cantabile.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: mozart_piano_sonata_k333_ii_andante
+  composer: Wolfgang Amadeus Mozart
+  piece: Piano Sonata No. 13 in B-flat major, K. 333 — II. Andante Cantabile
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 375
+  file: Music/Sonata No. 13 In B Flat Major, K.333 - II. Andante Cantabile.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: mozart_symphony_no40_iii_menuetto
+  composer: Wolfgang Amadeus Mozart
+  piece: Symphony No. 40 in G minor, K. 550 — III. Menuetto; Allegretto
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 272
+  file: Music/Symphony no. 40 in G minor, K. 550 - III. Menuetto; Allegretto.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: mozart_sonata_no27_k189d_i_adagio_allegro
+  composer: Wolfgang Amadeus Mozart
+  piece: Piano Sonata No. 27 in C major — I. Adagio - Allegro molto
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 316
+  file: Music/W.A Mozart - Sonata No.27 in C Major - I. Adagio - Allegro molto.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: mozart_requiem_k626_i_introitus_kyrie
+  composer: Wolfgang Amadeus Mozart
+  piece: Requiem in D minor, K. 626 — I. Introitus & II. Kyrie
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 381
+  file: Music/Requiem in D minor, K. 626 - I. Introitus and II. Kyrie (For Voices and Recorder Ensemble - Papalin).mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: mozart_requiem_k626_vi_benedictus
+  composer: Wolfgang Amadeus Mozart
+  piece: Requiem in D minor, K. 626 — VI. Benedictus
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 265
+  file: Music/Requiem in D minor, K. 626 - VI. Benedictus (For Voices and Recorder Ensemble - Papalin).mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: mozart_requiem_k626_viii_lux_aeterna
+  composer: Wolfgang Amadeus Mozart
+  piece: Requiem in D minor, K. 626 — VIII. Lux aeterna
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 299
+  file: Music/Requiem in D minor, K. 626 - VIII. Communio - Lux aeterna (For Voices and Recorder Ensemble - Papalin).mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: schubert_fantasie_c_major_d934
+  composer: Franz Schubert
+  piece: Fantasie in C major, D. 934
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 1251
+  file: Music/Fantasie in C major, D. 934.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: schubert_piano_trio_d898_i_allegro_moderato
+  composer: Franz Schubert
+  piece: Piano Trio No. 1 in B-flat major, D. 898 — I. Allegro moderato
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 632
+  file: Music/Piano Trio no. 1 in B flat major, D. 898 - Allegro moderato.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: schubert_piano_trio_d898_iv_rondo
+  composer: Franz Schubert
+  piece: Piano Trio No. 1 in B-flat major, D. 898 — IV. Rondo. Allegro vivace
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 490
+  file: Music/Piano Trio no. 1 in B flat major, D. 898 - Rondo. Allegro vivace.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: schubert_sonata_c_minor_d958_i_allegro
+  composer: Franz Schubert
+  piece: Piano Sonata in C minor, D. 958 — I. Allegro
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 710
+  file: Music/Sonata in C Minor, D. 958 - I. Allegro.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: schubert_sonata_c_minor_d958_ii_adagio
+  composer: Franz Schubert
+  piece: Piano Sonata in C minor, D. 958 — II. Adagio
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 468
+  file: Music/Sonata in C Minor, D. 958 - II. Adagio.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: schubert_sonata_c_minor_d958_iv_allegro
+  composer: Franz Schubert
+  piece: Piano Sonata in C minor, D. 958 — IV. Allegro
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 655
+  file: Music/Sonata in C Minor, D. 958 - IV. Allegro.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: schubert_piano_sonata_d894_iii_menuetto
+  composer: Franz Schubert
+  piece: 'Piano Sonata No. 18 in G major, D. 894 — III. Menuetto: Allegro moderato'
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 317
+  file: Music/Piano Sonata no. 18 in G major, D. 894 - III. Menuetto_ Allegro moderato.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: schubert_symphony_no5_d485_ii_andante
+  composer: Franz Schubert
+  piece: Symphony No. 5 in B-flat major, D. 485 — II. Andante con moto
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 491
+  file: Music/Symphony No.5 in Bb, D.485 - II. Andante con moto 1.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: schubert_symphony_no5_d485_iii_menuetto
+  composer: Franz Schubert
+  piece: Symphony No. 5 in B-flat major, D. 485 — III. Minuetto and Trio
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 248
+  file: Music/Symphony No.5 in Bb, D.485 - III. Minuetto and trio.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: unknown_i_allegro_large
+  composer: Unknown
+  piece: Unknown — I. Allegro (unidentified work)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 995
+  file: Music/I - Allegro.mp3
+  programs: []
+  notes: Unidentified work — verify composer before adding to programs
+- id: unknown_i_allegro_ma_non_troppo
+  composer: Unknown
+  piece: Unknown — I. Allegro ma non troppo
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 549
+  file: Music/I. Allegro ma non troppo.mp3
+  programs: []
+  notes: Unidentified work — verify composer before adding to programs
+- id: unknown_ii_andante
+  composer: Unknown
+  piece: Unknown — II. Andante
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 454
+  file: Music/II. Andante.mp3
+  programs: []
+  notes: Unidentified work — verify composer before adding to programs
+- id: unknown_iii_scherzo_presto
+  composer: Unknown
+  piece: Unknown — III. Scherzo, Presto
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 627
+  file: Music/III - Scherzo, Presto.mp3
+  programs: []
+  notes: Unidentified work — verify composer before adding to programs
+- id: unknown_iii_menuetto_allegretto
+  composer: Unknown
+  piece: Unknown — III. Minuetto Allegretto & Trio
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 405
+  file: Music/III. Minuetto Allegretto & trio.mp3
+  programs: []
+  notes: Unidentified work — verify composer before adding to programs
+- id: unknown_iv_allegro_moderato
+  composer: Unknown
+  piece: Unknown — IV. Allegro moderato
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 388
+  file: Music/IV. Allegro moderato.mp3
+  programs: []
+  notes: Unidentified work — verify composer before adding to programs
+- id: mozart_die_hochzeit_figaro_act2_iii
+  composer: Wolfgang Amadeus Mozart
+  piece: Le nozze di Figaro — Act II, Scene IIId
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 416
+  file: Music/Mozart - Die Hochzeit Des Firago - Act IIId.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: mozart_magic_flute_act2_queen_of_night
+  composer: Wolfgang Amadeus Mozart
+  piece: The Magic Flute, K. 620 — 'Der Hölle Rache' (Queen of the Night aria)
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 165
+  file: Music/The Magic Flute, K. 620 - Act 2. c. Der Holle Rache kocht in meinem Herzen.mp3
+  programs: []
+  notes: Downloaded from Google Drive Music folder
+- id: beethoven_violin_sonata_no9_kreutzer_op47
+  composer: Ludwig van Beethoven
+  piece: "Violin Sonata No. 9 in A major, Op. 47 'Kreutzer' — Complete"
+  performer: ''
+  year: 0
+  source: musopen.org
+  license: pd
+  duration_sec: 2093
+  file: "Music/Violin Sonata no. 9 'Kreutzer', Op. 47.mp3"
+  programs: []
+  notes: Downloaded from Google Drive Music folder

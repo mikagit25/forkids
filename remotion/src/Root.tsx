@@ -25,6 +25,9 @@ import { PeekABooEggs, PeekABooEggsProps, EggItem } from "./PeekABooEggs";
 import { NeonCarWash, NeonCarWashProps, VehicleItem } from "./NeonCarWash";
 import { DinoBuild, DinoBuildProps, DinoCfg } from "./DinoBuild";
 import { SleepClassicalLoop, SleepClassicalLoopProps } from "./SleepClassicalLoop";
+import { PeekABooLong, PeekABooLongProps } from "./PeekABooLong";
+import { SensoryBlobLoop, SensoryBlobLoopProps } from "./SensoryBlobLoop";
+import { SortFixLong, SortFixLongProps, SortFixRound } from "./SortFixLong";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const C = Composition as React.ComponentType<any>;
@@ -575,6 +578,40 @@ export const Root: React.FC = () => {
         } as DinoBuildProps}
       />
 
+      {/* PeekABooLong — all 3D sprites, 12s/cycle, ~18 min no-repeat (31 680f default) */}
+      <C
+        id="PeekABooLong"
+        component={PeekABooLong}
+        durationInFrames={88 * 360}  // 31 680f ≈ 17.6 min — overridden by --frames in render
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          cycleDuration: 360,
+          musicFile:     "Monkeys Spinning Monkeys.mp3",
+          musicVolume:   0.20,
+          bgColor:       "#FFF9C4",
+          bgColorEnd:    "#E1F5FE",
+        } as PeekABooLongProps}
+      />
+
+      {/* SensoryBlobLoop — 5-min goo/metaball loop → FFmpeg builds 30/60 min */}
+      <C
+        id="SensoryBlobLoop"
+        component={SensoryBlobLoop}
+        durationInFrames={9000}   // 5 min × 30fps; FFmpeg -stream_loop for 30/60 min
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          sound:        false,
+          musicFile:    "Dreamy Arpeggios v2.mp3",
+          musicVolume:  0.18,
+          hueSpeed:     750,
+          blurStrength: 18,
+        } as SensoryBlobLoopProps}
+      />
+
       {/* Long compositions (30 min, landscape) */}
       <C
         id="ShapeFloatLong"
@@ -614,6 +651,27 @@ export const Root: React.FC = () => {
           phaseOffset: 0,
         } satisfies SleepClassicalLoopProps}
       />
+      {/* ── SortFixLong — shape sorting game, no text, universal ──────────────── */}
+      <C
+        id="SortFixLong"
+        component={SortFixLong}
+        durationInFrames={4 * 150}  // 4 sample rounds; generator overrides via --frames
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          rounds: [
+            { slotShape: "star",     slotColor: "#FED766", wrongShape: "circle",   wrongColor: "#FF6B6B" },
+            { slotShape: "circle",   slotColor: "#4ECDC4", wrongShape: "triangle", wrongColor: "#9B59B6" },
+            { slotShape: "square",   slotColor: "#45B7D1", wrongShape: "star",     wrongColor: "#2ECC71" },
+            { slotShape: "triangle", slotColor: "#FF6B6B", wrongShape: "square",   wrongColor: "#FED766" },
+          ] as SortFixRound[],
+          musicFile:    "Monkeys Spinning Monkeys.mp3",
+          musicVolume:  0.20,
+          bgColor:      "#FFF8E1",
+        } as SortFixLongProps}
+      />
+
       {/* night_bear uses 300s loop */}
       <C
         id="SleepClassicalLoopNightBear"

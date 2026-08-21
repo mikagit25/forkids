@@ -173,6 +173,20 @@ def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
     return result.returncode == 0
 
 
+def _delete_youtube_video(video_id: str, channel: str = "id"):
+    """Delete a YouTube video by ID using the channel credentials. Logs result."""
+    import subprocess as _sp
+    r = _sp.run(
+        ["python3", str(ROOT / "scripts" / "delete_youtube_video.py"),
+         "--channel", channel, video_id],
+        capture_output=True, text=True,
+    )
+    if "Deleted:" in r.stdout:
+        print(f"  ✓ Deleted replaced video {video_id} from YouTube")
+    else:
+        print(f"  ⚠ Could not delete {video_id}: {r.stdout.strip() or r.stderr.strip()[:100]}")
+
+
 def _fix_ar_symlinks(old_path: Path, new_path: Path):
     """After an EN file moves to uploaded/, update any AR-queue symlinks that pointed to it."""
     for candidate in QUEUE_AR_DIR.glob("*.mp4"):
@@ -184,7 +198,7 @@ def _fix_ar_symlinks(old_path: Path, new_path: Path):
             pass
 
 
-SHORT_PREFIXES = ("short_", "ar_short_", "sleep_short_", "funnel_")
+SHORT_PREFIXES = ("short_", "ar_short_", "sleep_short_", "funnel_", "visual_short_", "kw_short_")
 
 
 def is_short(path: Path) -> bool:
@@ -335,6 +349,16 @@ def main():
                 # Fix any AR symlinks that pointed to this file — redirect to uploaded/
                 _fix_ar_symlinks(mp4_path, dest)
                 print(f"  → moved to uploaded/")
+                # Auto-delete replaced video if meta has replace_id
+                meta_dest = UPLOADED_DIR / f"meta_{mp4_path.stem}.yaml"
+                if meta_dest.exists():
+                    try:
+                        m = yaml.safe_load(open(meta_dest)) or {}
+                        old_id = m.get("replace_id")
+                        if old_id:
+                            _delete_youtube_video(old_id, channel=args.queue)
+                    except Exception as e:
+                        print(f"  ⚠ replace_id cleanup failed: {e}")
             uploaded += 1
         else:
             failed += 1

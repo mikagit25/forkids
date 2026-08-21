@@ -65,6 +65,51 @@ tracks:
   piece: Cello Suite No. 1 — Prelude in G, BWV 1007
   duration_sec: 150
   mood: bright_close
+- id: bach_concerto_2violins_bwv1043_i_vivace
+  composer: Johann Sebastian Bach
+  piece: Concerto for 2 Violins in D minor, BWV 1043 — I. Vivace
+  duration_sec: 240
+  mood: opening
+- id: bach_concerto_2violins_bwv1043_ii_largo
+  composer: Johann Sebastian Bach
+  piece: Concerto for 2 Violins in D minor, BWV 1043 — II. Largo ma non tanto
+  duration_sec: 383
+  mood: lyrical
+- id: bach_concerto_2violins_bwv1043_iii_allegro
+  composer: Johann Sebastian Bach
+  piece: Concerto for 2 Violins in D minor, BWV 1043 — III. Allegro
+  duration_sec: 292
+  mood: energetic
+- id: bach_wtc_prelude_fugue_4_csharp_minor
+  composer: Johann Sebastian Bach
+  piece: WTC — Prelude and Fugue No. 4 in C-sharp minor
+  duration_sec: 498
+  mood: contemplative
+- id: bach_wtc_prelude_fugue_12_f_minor
+  composer: Johann Sebastian Bach
+  piece: WTC — Prelude and Fugue No. 12 in F minor
+  duration_sec: 509
+  mood: introspective
+- id: bach_wtc_prelude_fugue_24_b_minor
+  composer: Johann Sebastian Bach
+  piece: WTC — Prelude and Fugue No. 24 in B minor
+  duration_sec: 994
+  mood: profound
+- id: bach_accou_bourree_bwv1002
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — Bourree (Guitar arr.)
+  duration_sec: 209
+  mood: lively
+- id: bach_accou_sarabande_bwv1002
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — Sarabande (Guitar arr.)
+  duration_sec: 142
+  mood: contemplative
+- id: bach_violin_partita_no2_bwv1004_chaconne_piano_arr
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 2, BWV 1004 — Chaconne [Piano arrangement]
+  duration_sec: 924
+  mood: profound
 tags:
 - bach violin partita
 - bach chaconne

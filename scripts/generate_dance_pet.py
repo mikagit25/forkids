@@ -25,6 +25,30 @@ import yaml
 from datetime import datetime
 from pathlib import Path
 
+# Background images (remotion/public/backgrounds/) mapped per animal
+_ANIMAL_BG = {
+    "cat":       "magical_forest.jpg",
+    "dog":       "meadow_sunny.jpg",
+    "rabbit":    "meadow_sunny.jpg",
+    "duck":      "tropical_beach.jpg",
+    "guinea_pig":"rainbow_sky.jpg",
+    "kitten":    "magical_forest.jpg",
+    "parrot":    "tropical_beach.jpg",
+    "hamster":   "candy_world.jpg",
+    "turtle":    "underwater_world.jpg",
+    "goldfish":  "underwater_world.jpg",
+}
+
+def _bg_for(animal: str, use_bg: bool) -> dict:
+    """Return bgImage/bgEffect props if background exists, else fall back to bubbles."""
+    if not use_bg:
+        return {"bgEffect": "bubbles"}
+    bg_file = _ANIMAL_BG.get(animal, "rainbow_sky.jpg")
+    bg_path = Path(__file__).resolve().parent.parent / "remotion" / "public" / "backgrounds" / bg_file
+    if bg_path.exists():
+        return {"bgImage": bg_file, "bgEffect": "sparkles", "bgDim": 0.20}
+    return {"bgEffect": "sparkles"}   # sparkles even without bg image
+
 ROOT     = Path(__file__).resolve().parent.parent
 REMOTION = ROOT / "remotion"
 QUEUE_EN = ROOT / "output" / "queue"
@@ -226,7 +250,7 @@ def make_props_A(animal: str) -> dict:
         "bgColor":    bg,
         "accentColor": acc,
         "musicFile":  music,
-        "bgEffect":   "bubbles",
+        **_bg_for(animal, use_bg=True),
         "sprites": [
             {"path": sprite, "size": 460, "posX": 0.5, "posY": 0.42, "seed": 1},
         ],
@@ -247,7 +271,7 @@ def make_props_B(animal: str) -> dict:
         "bgColor":     a["bg"],
         "accentColor": a["accent"],
         "musicFile":   a["music"],
-        "bgEffect":    "bubbles",
+        **_bg_for(animal, use_bg=True),
         "sprites": [
             {"path": a["sprite"],           "size": 380, "posX": 0.3, "posY": 0.42,
              "seed": 1, "orbitRadius": 0},
@@ -445,7 +469,8 @@ def publish_to_all_channels(en_mp4: Path, animal: str, vtype: str, ep_idx: int, 
     en_music = a["music"]
     stem     = en_mp4.stem
 
-    for lang, queue in [("en", QUEUE_EN), ("ar", QUEUE_AR), ("id", QUEUE_ID)]:
+    # Calm Classics (id) is adult-only; pet dance videos are children's content → EN + AR only
+    for lang, queue in [("en", QUEUE_EN), ("ar", QUEUE_AR)]:
         queue.mkdir(parents=True, exist_ok=True)
         target_stem = stem if lang == "en" else f"{stem}_{lang}"
         target      = queue / f"{target_stem}.mp4"
