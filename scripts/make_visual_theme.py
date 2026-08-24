@@ -934,7 +934,6 @@ THEMES: dict[str, dict] = {
             "mist rising from water, golden sunlight rays, peaceful and majestic, "
             "cinematic photography, no text"
         ),
-        "thumb_text": "WATERFALL SOUNDS",
         "flux_prompts": [
             "powerful tropical waterfall cascading 30 meters into emerald pool, lush jungle surrounding, mist rising, golden sunlight through canopy, paradise nature, 16:9",
             "serene mountain waterfall over mossy rocks, crystal clear stream, ancient ferns, dappled forest light, peaceful wilderness, 16:9",
@@ -984,7 +983,6 @@ THEMES: dict[str, dict] = {
             "mist between ancient trees, moonlight filtering through dense canopy, "
             "mystical jungle atmosphere, cinematic photography, no text"
         ),
-        "thumb_text": "RAINFOREST SOUNDS",
         "flux_prompts": [
             "tropical rainforest at night, bioluminescent plants and fungi glowing electric blue, moonlight through dense canopy, ancient trees, mystical atmosphere, 16:9",
             "jungle waterfall at dusk, last light on lush green foliage, exotic birds silhouetted, fireflies beginning to glow, 16:9",
@@ -1033,7 +1031,6 @@ THEMES: dict[str, dict] = {
             "pink and orange sunrise colors, mist on water surface, pine forest shoreline, "
             "breathtaking tranquil landscape, cinematic photography, no text"
         ),
-        "thumb_text": "MOUNTAIN LAKE SOUNDS",
         "flux_prompts": [
             "perfect mirror reflection of snow-capped mountain peaks in crystal alpine lake at dawn, pink sunrise colors, mist rising from water, pine forest shore, breathtaking tranquility, 16:9",
             "mountain lake at first light, lone wooden rowing boat, still water, golden horizon, single pine tree silhouette, utter silence implied, 16:9",
@@ -1082,7 +1079,6 @@ THEMES: dict[str, dict] = {
             "warm golden sand reflecting starlight, single palm tree silhouette, "
             "infinite star field, magical desert night, cinematic photography, no text"
         ),
-        "thumb_text": "DESERT NIGHT SOUNDS",
         "flux_prompts": [
             "vast Sahara desert sand dunes at night, Milky Way galaxy overhead, warm golden sand glowing under starlight, infinite wilderness, magic and solitude, 16:9",
             "desert dunes at twilight, last ember glow on horizon, first stars appearing, purple and orange sky, sand ripples, vast emptiness, 16:9",
@@ -1131,7 +1127,6 @@ THEMES: dict[str, dict] = {
             "moonlight illuminating white trees, deep blue shadows, ethereal winter silence, "
             "breathtaking winter scenery, cinematic photography, no text"
         ),
-        "thumb_text": "WINTER FOREST SOUNDS",
         "flux_prompts": [
             "magical snow-covered pine forest at night, large snowflakes falling, moonlight through trees casting blue shadows, pristine white silence, ethereal winter scene, 16:9",
             "winter forest path, footprints in deep snow, ancient trees bowed with weight, soft grey overcast sky, peaceful solitude, 16:9",
@@ -1182,7 +1177,6 @@ THEMES: dict[str, dict] = {
             "mysterious blue light reflecting on ice walls, magical and otherworldly, "
             "cinematic photography, no text"
         ),
-        "thumb_text": "AMBIENT MIX",
         "flux_prompts": [
             "ethereal blue ice cave interior, frozen crystal stalactites, glowing turquoise light, ancient glacial formations, otherworldly and magical, 16:9",
             "abstract cosmic nebula-like ice formations, electric blue and white, deep space aesthetic but earthly, abstract art, 16:9",
@@ -1598,9 +1592,7 @@ def generate_thumbnail(theme: str, theme_cfg: dict, out_mp4: Path, api_key: str,
         from PIL import Image
         import io
         img = Image.open(io.BytesIO(data)).resize((1280, 720), Image.LANCZOS).convert("RGB")
-        thumb_text = theme_cfg.get("thumb_text")
-        if thumb_text:
-            img = _add_thumb_text(img, thumb_text, duration_hours)
+        # thumb_text overlay removed — text duplication on YouTube (baked text + video title)
         buf = io.BytesIO()
         img.save(buf, "PNG")
         thumb_path.write_bytes(buf.getvalue())

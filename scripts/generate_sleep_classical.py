@@ -760,20 +760,8 @@ def write_meta(program: dict, hours: int, queue: Path, out_name: str):
 
 
 def _apply_thumb_text(thumb_path: Path, program: dict, hours: int) -> None:
-    """Add text overlay (title + duration badge) to an existing thumbnail PNG."""
-    try:
-        import importlib.util, io
-        spec = importlib.util.spec_from_file_location("tt", ROOT / "scripts" / "thumb_text.py")
-        tt = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(tt)
-        from PIL import Image
-        img  = Image.open(thumb_path).convert("RGB")
-        text = tt.thumb_text_for_program(program)
-        img  = tt.add_thumb_text(img, text, duration_hours=hours)
-        img.save(str(thumb_path), "PNG")
-        log.info(f"  Thumb text overlay: {text!r} + {hours}h badge")
-    except Exception as e:
-        log.warning(f"  Thumb text overlay skipped: {e}")
+    """Disabled — text overlay causes duplication with YouTube title."""
+    pass
 
 
 def generate_thumbnail(out_mp4: Path, program: dict, hours: int) -> bool:
@@ -793,7 +781,6 @@ def generate_thumbnail(out_mp4: Path, program: dict, hours: int) -> bool:
             spec.loader.exec_module(gat)
             thumb_path.write_bytes(gat.resize_to_720p(kb_img.read_bytes()))
             log.info(f"  Thumb from KB image → {thumb_path.name}")
-            _apply_thumb_text(thumb_path, program, hours)
             return True
         except Exception as e:
             log.warning(f"  KB thumb resize failed: {e}")
@@ -831,7 +818,6 @@ def generate_thumbnail(out_mp4: Path, program: dict, hours: int) -> bool:
         resp.raise_for_status()
         thumb_path.write_bytes(base64.b64decode(resp.json()["data"][0]["b64_json"]))
         log.info(f"  Thumb → {thumb_path.name}")
-        _apply_thumb_text(thumb_path, program, hours)
         return True
     except Exception as e:
         log.warning(f"  Thumbnail skipped: {e}")
