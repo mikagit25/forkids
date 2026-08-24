@@ -83,9 +83,15 @@ def build_description(video_type: str, theme: str, meta: dict) -> str:
 
 
 def build_tags(video_type: str, theme: str, extra_tags: list, meta: dict) -> list:
-    """Merge base tags + type-specific tags."""
+    """Merge base tags + video-specific tags, deduplicated, max 30 (YouTube limit)."""
     base = meta.get("video_defaults", {}).get("tags_base", [])
-    return base + extra_tags
+    seen: set = set()
+    result: list = []
+    for t in extra_tags + base:  # video tags take priority over base
+        if t and t not in seen:
+            seen.add(t)
+            result.append(t)
+    return result[:30]
 
 
 def load_playlists() -> dict:
@@ -193,7 +199,7 @@ def upload_video(
             "title": title[:100],
             "description": description[:5000],
             "tags": tags[:500],
-            "categoryId": "27",       # Education
+            "categoryId": "10" if channel == "id" else "27",
             "defaultLanguage": language,
             "defaultAudioLanguage": language,
         },
