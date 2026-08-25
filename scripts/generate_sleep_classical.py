@@ -760,8 +760,20 @@ def write_meta(program: dict, hours: int, queue: Path, out_name: str):
 
 
 def _apply_thumb_text(thumb_path: Path, program: dict, hours: int) -> None:
-    """Disabled — text overlay causes duplication with YouTube title."""
-    pass
+    """Apply beautiful text overlay (BebasNeue title + duration badge)."""
+    try:
+        import importlib.util, io
+        spec = importlib.util.spec_from_file_location("tt", ROOT / "scripts" / "thumb_text.py")
+        tt = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(tt)
+        from PIL import Image
+        img  = Image.open(thumb_path).convert("RGB")
+        text = tt.thumb_text_for_program(program)
+        img  = tt.add_thumb_text(img, text, duration_hours=hours)
+        img.save(str(thumb_path), "PNG")
+        log.info(f"  Thumb overlay: {text!r}")
+    except Exception as e:
+        log.warning(f"  Thumb overlay skipped: {e}")
 
 
 def generate_thumbnail(out_mp4: Path, program: dict, hours: int) -> bool:

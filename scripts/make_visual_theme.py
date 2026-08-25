@@ -1592,7 +1592,12 @@ def generate_thumbnail(theme: str, theme_cfg: dict, out_mp4: Path, api_key: str,
         from PIL import Image
         import io
         img = Image.open(io.BytesIO(data)).resize((1280, 720), Image.LANCZOS).convert("RGB")
-        # thumb_text overlay removed — text duplication on YouTube (baked text + video title)
+        # Derive display title from theme config title (strip emoji + duration placeholder)
+        import re as _re
+        raw_title = theme_cfg.get("title", theme.replace("_", " ").title())
+        thumb_label = _re.sub(r"\s*\{duration\}.*", "", raw_title).strip()
+        thumb_label = _re.sub(r"^[^\w]+", "", thumb_label).strip()  # strip leading emoji
+        img = _add_thumb_text(img, thumb_label, duration_hours=duration_hours)
         buf = io.BytesIO()
         img.save(buf, "PNG")
         thumb_path.write_bytes(buf.getvalue())
