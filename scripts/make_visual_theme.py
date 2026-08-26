@@ -1201,7 +1201,7 @@ THEMES: dict[str, dict] = {
 # ── Together.ai image generation ───────────────────────────────────────────────
 
 TOGETHER_URL   = "https://api.together.xyz/v1/images/generations"
-TOGETHER_MODEL = "black-forest-labs/FLUX.1-schnell"
+TOGETHER_MODEL = "black-forest-labs/FLUX.1.1-pro"
 
 
 def generate_image(prompt: str, api_key: str,
@@ -1584,7 +1584,7 @@ def generate_thumbnail(theme: str, theme_cfg: dict, out_mp4: Path, api_key: str,
         return True
 
     prompt = theme_cfg["thumb_prompt"]
-    data = generate_image(prompt, api_key, width=1280, height=720)
+    data = generate_image(prompt, api_key, width=1280, height=704)
     if not data:
         return False
 

@@ -27,7 +27,7 @@ TMP_DIR   = ROOT / "output" / "tmp_compilation"
 
 TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 TOGETHER_URL      = "https://api.together.xyz/v1/images/generations"
-TOGETHER_MODEL    = "black-forest-labs/FLUX.1-schnell"
+TOGETHER_MODEL    = "black-forest-labs/FLUX.1.1-pro"
 
 DATE_STR   = datetime.now().strftime("%Y%m%d")
 TARGET_SEC = 1500  # 25 minutes

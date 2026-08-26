@@ -42,7 +42,7 @@ GEMINI_API_BASE    = "https://generativelanguage.googleapis.com/v1beta/models"
 
 # Together.ai — FLUX.1-schnell, free $25 credit on signup, then ~$0.0003/image
 TOGETHER_IMAGE_URL = "https://api.together.xyz/v1/images/generations"
-TOGETHER_MODEL     = "black-forest-labs/FLUX.1-schnell"  # serverless, pay-per-use
+TOGETHER_MODEL     = "black-forest-labs/FLUX.1.1-pro"  # serverless, pay-per-use
 
 # ── Prompt templates ──────────────────────────────────────────────────────────
 
@@ -660,7 +660,7 @@ def together_generate_image(prompt: str, key: str) -> bytes | None:
             TOGETHER_IMAGE_URL,
             headers={"Authorization": f"Bearer {key}"},
             json={"model": TOGETHER_MODEL, "prompt": prompt,
-                  "width": 1280, "height": 720, "steps": 4, "n": 1},
+                  "width": 1280, "height": 704, "steps": 4, "n": 1},
             timeout=90)
         if r.status_code != 200:
             try:

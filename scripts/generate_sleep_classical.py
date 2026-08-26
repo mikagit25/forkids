@@ -408,7 +408,7 @@ def render_kenburns_loop(program_id: str, force: bool = False) -> Path | None:
             resp = req.post(
                 "https://api.together.xyz/v1/images/generations",
                 headers={"Authorization": f"Bearer {api_key}"},
-                json={"model": "black-forest-labs/FLUX.1-schnell",
+                json={"model": "black-forest-labs/FLUX.1.1-pro",
                       "prompt": varied, "width": 1344, "height": 768,
                       "steps": 4, "n": 1, "response_format": "b64_json"},
                 timeout=90
@@ -822,13 +822,19 @@ def generate_thumbnail(out_mp4: Path, program: dict, hours: int) -> bool:
                 "Authorization": f"Bearer {api_key}",
                 "User-Agent": "python-requests/2.31.0",
             },
-            json={"model": "black-forest-labs/FLUX.1-schnell",
-                  "prompt": prompt, "width": 1280, "height": 720,
+            json={"model": "black-forest-labs/FLUX.1.1-pro",
+                  "prompt": prompt, "width": 1280, "height": 704,
                   "steps": 4, "n": 1, "response_format": "b64_json"},
             timeout=60
         )
         resp.raise_for_status()
-        thumb_path.write_bytes(base64.b64decode(resp.json()["data"][0]["b64_json"]))
+        raw = base64.b64decode(resp.json()["data"][0]["b64_json"])
+        from PIL import Image as _PILImg
+        import io as _io
+        img_pil = _PILImg.open(_io.BytesIO(raw)).convert("RGB").resize((1280, 720), _PILImg.LANCZOS)
+        buf = _io.BytesIO()
+        img_pil.save(buf, "PNG", optimize=True)
+        thumb_path.write_bytes(buf.getvalue())
         log.info(f"  Thumb → {thumb_path.name}")
         return True
     except Exception as e:

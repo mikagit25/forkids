@@ -17,7 +17,7 @@ from PIL import Image
 ROOT     = Path(__file__).resolve().parent.parent
 KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 OUT_DIR  = ROOT / "remotion" / "public" / "sprites" / "objects"
-MODEL    = "black-forest-labs/FLUX.1-schnell"
+MODEL    = "black-forest-labs/FLUX.1.1-pro"
 
 SPRITES = [
     ("star.png",      "cute cartoon yellow star shape, bright golden yellow, friendly smile, white background, children's educational style, isolated, no text, simple clean design"),
