@@ -70,6 +70,10 @@ PROGRAM_KB_PROMPTS: dict[str, str] = {
     "sleep_schubert_piano_01":      "moonlit grand piano in dark Romantic-era salon, silver moonlight streaming through tall arched window, Schubert D.960 atmosphere, blue-grey shadows and pale moonlight, no text, no letters",
     "sleep_chopin_ballades_01":     "candlelit Romantic salon at midnight, grand piano with sheet music, moonlight through silk curtains, Chopin era Polish parlour, warm gold and cool silver tones, no text, no letters",
     "sleep_schubert_chamber_01":    "Viennese chamber ensemble at night, cello and piano in intimate candlelit salon, warm amber glow on wooden floor, Schubert Winterreise atmosphere, soft shadows, no text, no letters",
+    "sleep_baroque_romantics_01":   "baroque concert hall interior at night, ornate gilded arches, candlelight on marble, Vivaldi and Handel era atmosphere, golden chandeliers, no text, no letters",
+    "sleep_grand_all_01":           "grand concert hall interior at night, ornate ceiling with dramatic chandeliers, Tchaikovsky era Vienna opera house, golden light on empty seats, majestic and serene, no text, no letters",
+    "focus_bach_goldberg_complete_01": "baroque harpsichord in sunlit study, golden afternoon light through arched window, Bach manuscript pages open on music stand, scholarly peaceful atmosphere, no text, no letters",
+    "focus_beethoven_violin_01":    "violin and piano on concert stage in dramatic spotlight, passionate performance, grand piano gleaming under warm stage lights, Beethoven era concert hall, no text, no letters",
 }
 
 THEME_LOOP_SECS = {
@@ -126,6 +130,12 @@ TITLES = {
     "sleep_schubert_piano_01":      "Schubert Piano Works for Deep Sleep 🌙 {dur} | D. 960 · D. 959 · Wanderer | Classical Night Relax",
     "sleep_chopin_ballades_01":     "Chopin Ballades & Salon Pieces for Sleep 🌙 {dur} | Classical Night Relax",
     "sleep_schubert_chamber_01":    "Schubert Chamber & Sacred Music for Sleep 🎻 {dur} | String Quintet · Piano Trio | Classical Night Relax",
+    "sleep_schubert_01":            "Schubert for Deep Sleep 🌙 {dur} | Piano · Trio · Symphony | Classical Night Relax",
+    "sleep_baroque_romantics_01":   "Baroque to Romantic Sleep Journey 🌙 {dur} | Bach · Beethoven · Tchaikovsky | Classical Night Relax",
+    "sleep_grand_all_01":           "Grand Classical Night ✨ {dur} | Tchaikovsky · Beethoven · Bach · Chopin | Classical Night Relax",
+    "focus_bach_goldberg_complete_01": "Bach Goldberg Variations Complete 🎹 {dur} | Focus & Study | Classical Night Relax",
+    "focus_bach_violin_partita_01": "Bach Violin Partitas Complete 🎻 {dur} | Focus & Study | Classical Night Relax",
+    "focus_beethoven_violin_01":    "Beethoven Violin Concerto & Cello Sonatas 🎻 {dur} | Focus & Study | Classical Night Relax",
 }
 
 DESC_TEMPLATES = {
@@ -716,8 +726,10 @@ def write_meta(program: dict, hours: int, queue: Path, out_name: str):
         dur_label = _format_natural_duration(actual_secs) if actual_secs > 0 else "Complete"
     else:
         dur_label = HOURS_TO_LABEL.get(hours, f"{hours} Hours")
-    title_tpl = TITLES.get(prog_id, "Classical Music for Sleep ✨ {dur} | Classical Night Relax")
-    title    = title_tpl.format(dur=dur_label)
+    # Priority: TITLES dict → title_en from YAML config → generic fallback
+    _default_tpl = program.get("title_en", "Classical Music for Sleep ✨ {dur} | Classical Night Relax")
+    title_tpl = TITLES.get(prog_id, _default_tpl)
+    title    = title_tpl.replace("{duration}", dur_label).replace("{dur}", dur_label)
 
     composer_names = set(t.get("composer", "").split()[0] for t in program.get("tracks", []))
     composer_tag   = "".join(sorted(composer_names))
@@ -889,10 +901,11 @@ def cmd_generate_program(program_id: str, durations: list[int] | None,
     audio_mp3 = None
 
     if not regen_meta and not dry_run:
-        # Prefer AI image + Ken Burns loop; fall back to CSS Remotion animation
+        # AI image + Ken Burns loop — CSS fallback DISABLED (produces low-quality blobs)
         loop_mp4 = render_kenburns_loop(program_id, force=force)
         if loop_mp4 is None:
-            loop_mp4 = render_shared_loop(theme, force=force)
+            log.error(f"  No Ken Burns loop available for {program_id} — run --gen-visuals first. Aborting.")
+            return
 
         # Natural mode: build audio without target_secs (no truncation, no repeating)
         # Standard mode: build audio long enough for the longest requested duration
