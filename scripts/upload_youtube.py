@@ -42,12 +42,17 @@ CHANNEL_CREDS = {
         "json":   ROOT / "credentials" / "youtube_token_id.json",
         "pickle": ROOT / "credentials" / "token_id.pickle",
     },
+    "sd": {
+        "json":   ROOT / "credentials" / "youtube_token_ar.json",
+        "pickle": ROOT / "credentials" / "token_ar.pickle",
+    },
 }
 
 CHANNEL_METADATA = {
     "en": ROOT / "config" / "channel_metadata.yaml",
     "ar": ROOT / "config" / "channel_metadata_ar.yaml",
     "id": ROOT / "config" / "channel_metadata_id.yaml",
+    "sd": ROOT / "sacred_drift" / "config" / "channel_metadata_sd.yaml",
 }
 
 log = logging.getLogger(__name__)
@@ -83,15 +88,20 @@ def build_description(video_type: str, theme: str, meta: dict) -> str:
 
 
 def build_tags(video_type: str, theme: str, extra_tags: list, meta: dict) -> list:
-    """Merge base tags + video-specific tags, deduplicated, max 30 (YouTube limit)."""
+    """Merge base tags + video-specific tags, deduplicated.
+    YouTube limits: each tag ≤30 chars, ≤500 cumulative chars, ≤30 tags total."""
     base = meta.get("video_defaults", {}).get("tags_base", [])
     seen: set = set()
     result: list = []
+    total_chars = 0
     for t in extra_tags + base:  # video tags take priority over base
-        if t and t not in seen:
+        if t and t not in seen and len(t) <= 30:
+            if len(result) >= 30 or total_chars + len(t) > 500:
+                break
             seen.add(t)
             result.append(t)
-    return result[:30]
+            total_chars += len(t)
+    return result
 
 
 def load_playlists() -> dict:
@@ -150,8 +160,11 @@ def get_youtube_service(config: dict, channel: str = "en"):
                     t = _json.load(f)
                 t["access_token"] = creds.token
                 t["expires_at"] = creds.expiry.timestamp() if creds.expiry else 0
-                with open(json_path, "w") as f:
+                import os as _os
+                tmp = json_path.with_suffix(".tmp")
+                with open(tmp, "w") as f:
                     _json.dump(t, f, indent=2)
+                _os.replace(str(tmp), str(json_path))
             else:
                 with open(pickle_path, "wb") as f:
                     pickle.dump(creds, f)
@@ -275,7 +288,7 @@ def main():
     parser.add_argument("--language", default="en",
                         help="BCP-47 language code: en, ar, id, etc.")
     parser.add_argument("--channel", default=None,
-                        choices=["en", "ar", "id"],
+                        choices=["en", "ar", "id", "sd"],
                         help="Target YouTube channel. Defaults to matching --language (ar→ar, id→id, else en).")
     parser.add_argument("--meta-path", default=None,
                         help="Path to meta YAML sidecar — video ID will be written back after upload")
@@ -286,7 +299,7 @@ def main():
     config   = load_config()
 
     # Auto-detect channel from language if not specified
-    ch = args.channel or (args.language if args.language in ("ar", "id") else "en")
+    ch = args.channel or (args.language if args.language in ("ar", "id", "sd") else "en")
     meta_path_cfg = CHANNEL_METADATA.get(ch, CHANNEL_METADATA["en"])
     with open(meta_path_cfg) as _f:
         meta = yaml.safe_load(_f)
@@ -307,7 +320,7 @@ def main():
     if args.made_for_kids is not None:
         made_for_kids = args.made_for_kids == "true"
     else:
-        made_for_kids = ch != "id"   # CNR (id) = adult channel → false
+        made_for_kids = ch not in ("id", "sd")   # adult channels → false
 
     video_id = upload_video(
         file_path=args.file,

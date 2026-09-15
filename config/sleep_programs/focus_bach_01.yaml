@@ -10,26 +10,6 @@ durations_hours:
 - 1
 shuffle: true
 tracks:
-- id: bach_prelude_c_major
-  composer: J.S. Bach
-  piece: Prelude in C major, BWV 846
-  duration_sec: 130
-  mood: clear_open
-- id: bach_invention_1
-  composer: J.S. Bach
-  piece: Invention No. 1 in C major, BWV 772
-  duration_sec: 80
-  mood: precise
-- id: bach_air_g_string
-  composer: J.S. Bach
-  piece: Air on the G String, BWV 1068
-  duration_sec: 330
-  mood: flowing
-- id: bach_jesu_joy
-  composer: J.S. Bach
-  piece: Jesu, Joy of Man's Desiring, BWV 147
-  duration_sec: 215
-  mood: uplifting
 - id: bach_cello_suite_no_1_prelude_in_g_bwv_1007
   composer: J.S. Bach
   piece: Cello Suite No. 1 — Prelude in G, BWV 1007
@@ -50,11 +30,6 @@ tracks:
   piece: Violin Partita No. 2 — V. Chaconne (cello arr.), BWV 1004
   duration_sec: 872
   mood: profound
-- id: bach_prelude_bwv_999
-  composer: J.S. Bach
-  piece: Prelude in C minor, BWV 999
-  duration_sec: 115
-  mood: introspective
 - id: bach_goldberg_variations_bwv988_part1
   composer: J.S. Bach
   piece: Goldberg Variations, BWV 988 — Part 1 (Aria + Var. 1–15)

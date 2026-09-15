@@ -7,5 +7,13 @@ assets/sprites/
 assets/spritesheets/
 assets/sprites_gdrive/
 assets/audio/
+assets/thumbnails/
+assets/visual_themes/*/frame_*.png
+sacred_drift/
 __pycache__/
 *.pyc
+*.bak
+*.mp4
+.claude/
+remotion/public/backgrounds/
+remotion/public/music/

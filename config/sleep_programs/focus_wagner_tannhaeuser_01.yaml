@@ -1,0 +1,38 @@
+id: focus_wagner_tannhaeuser_01
+title: Wagner Tannhäuser 🎭 {dur} | Classical Music for Focus • No Ads | Calm Classics
+video_type: focus_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: rain_window
+loop_duration_sec: 240
+durations_hours:
+- 1
+shuffle: false
+tracks:
+- id: wagner_tannhaeuser_act1_conclusion
+  composer: Richard Wagner
+  piece: "Tannhäuser — Act I, Conclusion"
+  duration_sec: 1396
+  mood: dramatic_entry
+- id: wagner_tannhaeuser_act2_scenes12_p1
+  composer: Richard Wagner
+  piece: "Tannhäuser — Act II, Scenes 1 & 2, Part 1"
+  duration_sec: 1622
+  mood: grand
+tags:
+- wagner
+- tannhaeuser
+- tannhäuser
+- opera classical
+- classical music for focus
+- dramatic classical
+- wagner opera
+- calm classics
+- no ads
+- instrumental
+- study music
+max_repeat: 2.0
+
+disabled: true
+disabled_reason: "All tracks use unverified Google Drive recordings (license: unverified). Must re-verify or replace tracks before use."

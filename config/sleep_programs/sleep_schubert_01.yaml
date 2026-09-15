@@ -1,0 +1,57 @@
+id: sleep_schubert_01
+title_en: Schubert for Deep Sleep 🌙 {duration} | Piano · Trio · Symphony | Classical Night Relax
+description_template: en
+video_type: sleep_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: moon_clouds
+loop_duration_sec: 240
+durations_hours:
+- 1
+shuffle: false
+tracks:
+- id: schubert_symphony_no5_d485_ii_andante
+  composer: Franz Schubert
+  piece: Symphony No. 5 in B-flat major, D. 485 — II. Andante con moto
+  duration_sec: 491
+  mood: gentle_entry
+- id: schubert_piano_trio_d898_i_allegro_moderato
+  composer: Franz Schubert
+  piece: Piano Trio No. 1 in B-flat major, D. 898 — I. Allegro moderato
+  duration_sec: 632
+  mood: flowing
+- id: schubert_sonata_c_minor_d958_ii_adagio
+  composer: Franz Schubert
+  piece: Piano Sonata in C minor, D. 958 — II. Adagio
+  duration_sec: 468
+  mood: tender
+- id: schubert_fantasie_c_major_d934
+  composer: Franz Schubert
+  piece: Fantasie in C major, D. 934
+  duration_sec: 1251
+  mood: expressive
+- id: schubert_piano_sonata_d894_iii_menuetto
+  composer: Franz Schubert
+  piece: "Piano Sonata No. 18 in G major, D. 894 — III. Menuetto: Allegro moderato"
+  duration_sec: 317
+  mood: dancing
+- id: schubert_piano_trio_d898_iv_rondo
+  composer: Franz Schubert
+  piece: Piano Trio No. 1 in B-flat major, D. 898 — IV. Rondo. Allegro vivace
+  duration_sec: 490
+  mood: bright_close
+tags:
+- schubert
+- sleep music
+- classical music for sleep
+- piano trio
+- schubert fantasie
+- romantic classical
+- calm classics
+- deep sleep music
+- classical night relax
+- schubert symphony
+max_repeat: 2.0
+pad_from:
+- sleep_grand_all_01

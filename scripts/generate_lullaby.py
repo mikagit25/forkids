@@ -31,6 +31,8 @@ from datetime import datetime
 from pathlib import Path
 
 ROOT     = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from disk_guard import check_disk_space
 REMOTION = ROOT / "remotion"
 QUEUE_EN = ROOT / "output" / "queue"
 QUEUE_AR = ROOT / "output" / "queue_ar"
@@ -448,6 +450,7 @@ def process_key(key: str, ep_idx: int, dry_run: bool, regen_meta: bool):
 
 
 def main():
+    check_disk_space()
     parser = argparse.ArgumentParser()
     parser.add_argument("--keys",      nargs="*", default=None)
     parser.add_argument("--dry-run",   action="store_true")
@@ -469,6 +472,16 @@ def main():
         ep_idx = all_keys.index(k)
         print(f"\n[{k}] {v['name_en']} ({v['hours']}h)")
         process_key(k, ep_idx, args.dry_run, args.regen_meta)
+
+    if not args.dry_run:
+        print("\n→ Starting background pre-localization for queue=en...")
+        log_path = ROOT / "logs" / "prepare_queue.log"
+        subprocess.Popen(
+            ["python3", str(ROOT / "scripts" / "prepare_queue.py"),
+             "--queue", "en", "--limit", str(len(keys))],
+            stdout=open(log_path, "a"),
+            stderr=subprocess.STDOUT,
+        )
 
 
 if __name__ == "__main__":

@@ -1,0 +1,42 @@
+id: ar_song_seasons
+title_en: "Seasons Song 🌸 | أغنية الفصول | Happy Bear Kids"
+title_ar: "أغنية الفصول 🌸 | هابي بير كيدز"
+video_type: kids_song
+track: kids_song
+made_for_kids: true
+queue: output/queue_ar
+ai_generated: true
+language: ar
+
+suno:
+  style: "Arabic children's song, oud, piano, seasonal, gentle wonder, 82 BPM, nature, toddler, educational, melodic chorus"
+  bpm: 82
+  key: C major
+
+lyrics: |
+  [Verse 1]
+  الربيع جاء والزهور تفتح
+  والطيور تغني والقلب يفرح
+  الصيف دافي والشمس تضحك
+  نلعب في الماء ونفرح ونرقص
+
+  [Chorus]
+  أربعة فصول
+  في السنة الحلوة
+  ربيع وصيف
+  وخريف وشتوة
+
+  [Verse 2]
+  الخريف يجي والأوراق تتساقط
+  ألوان جميلة وريح خفيفة تناطط
+  الشتا ببرده والثلج ينزل
+  ونلبس الملابس الدافية ونجمل
+
+  [Chorus]
+  أربعة فصول
+  في السنة الحلوة
+  ربيع وصيف
+  وخريف وشتوة
+
+  [Outro]
+  أحب الفصول... كلها!

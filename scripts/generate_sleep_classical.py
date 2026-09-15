@@ -14,11 +14,13 @@ Usage:
   python3 scripts/generate_sleep_classical.py --list-programs
   python3 scripts/generate_sleep_classical.py --regen-meta --program sleep_chopin_01
 """
-import argparse, base64, json, logging, random, re, subprocess, time, yaml
+import argparse, base64, json, logging, random, re, subprocess, sys, time, yaml
 from datetime import datetime
 from pathlib import Path
 
 ROOT       = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from disk_guard import check_disk_space
 REMOTION   = ROOT / "remotion"
 PROGRAMS   = ROOT / "config" / "sleep_programs"
 MUSIC_DIR  = ROOT / "assets" / "music" / "classical"
@@ -27,6 +29,7 @@ QUEUE_CC   = ROOT / "output" / "queue_id"    # Classical Night Relax queue (@Cla
 QUEUE_EN   = ROOT / "output" / "queue"       # EN kids queue (for kids_sleep track)
 LOOPS_DIR  = ROOT / "output" / "_sleep_loops"
 TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
+PEXELS_KEY_FILE   = ROOT / "credentials" / "pexels_api_key.txt"
 DATE_STR   = datetime.now().strftime("%Y%m%d")
 
 log = logging.getLogger(__name__)
@@ -74,6 +77,39 @@ PROGRAM_KB_PROMPTS: dict[str, str] = {
     "sleep_grand_all_01":           "grand concert hall interior at night, ornate ceiling with dramatic chandeliers, Tchaikovsky era Vienna opera house, golden light on empty seats, majestic and serene, no text, no letters",
     "focus_bach_goldberg_complete_01": "baroque harpsichord in sunlit study, golden afternoon light through arched window, Bach manuscript pages open on music stand, scholarly peaceful atmosphere, no text, no letters",
     "focus_beethoven_violin_01":    "violin and piano on concert stage in dramatic spotlight, passionate performance, grand piano gleaming under warm stage lights, Beethoven era concert hall, no text, no letters",
+    "focus_beethoven_concertos_01": "Beethoven-era grand concert hall, majestic piano on stage in dramatic spotlight, ornate golden ceiling, romantic atmosphere, cinematic 4K, no text, no letters",
+    "sleep_beethoven_symphony9_01": "moonlit hilltop with dramatic clouds, moonlight breaking through storm over rolling hills, Beethoven Ninth Symphony atmosphere, majestic and serene, cinematic photography, no text, no letters",
+    "focus_wagner_tannhaeuser_01":  "19th century opera house interior at night, ornate red velvet curtains, dramatic golden stage lights, Wagner era grand theater atmosphere, cinematic 4K, no text, no letters",
+    "focus_franck_violin_01":       "violin and piano in sunlit French salon, warm afternoon light on wooden parquet, Romantic era chamber music atmosphere, sheet music on stand, no text, no letters",
+    "focus_beethoven_eroica_01":    "dramatic Alpine landscape at sunset, storm clouds over mountain peaks, heroic Beethoven Eroica atmosphere, cinematic wide angle, no text, no letters",
+    "sleep_romantic_orchestral_01": "moonlit lake at night, white swans on still water, full moon reflection, romantic orchestral atmosphere, Tchaikovsky era, ethereal blue tones, no text, no letters",
+    "sleep_beethoven_complete_3h_01": "moonlit grand concert hall, Beethoven era symphony orchestra silhouettes under dramatic chandeliers, majestic golden interior, cinematic 4K night atmosphere, no text, no letters",
+    "focus_wagner_complete_3h_01":    "19th century opera house at night, red velvet curtain with golden fringe, dramatic stage spotlights, Wagner era grand theater, atmospheric and cinematic, no text, no letters",
+    "sleep_romantic_orchestral_3h_01": "moonlit lake at night with swans, full moon reflecting on still water, ethereal mist, Tchaikovsky era romantic atmosphere, cinematic photography, no text, no letters",
+    # Kids sleep programs — Happy Bear Kids EN channel
+    "sleep_kids_moonlight_3h_01": "sleeping baby bear cub curled up under a glowing moon, cozy forest den with soft stars, magical watercolor dreamscape, warm pastels, gentle and peaceful children's illustration, no text, no letters",
+    "sleep_kids_stars_3h_01":     "baby animals sleeping together in an enchanted forest clearing under a canopy of shimmering stars, moonbeams through tall trees, Pixar-inspired dreamy illustration, soft pastel colors, no text, no letters",
+    "sleep_kids_piano_3h_01":     "cozy moonlit nursery with sleeping teddy bear beside a tiny piano, stars twinkling outside a round window, warm amber nightlight glow, soft magical children's book illustration style, no text, no letters",
+    "sleep_kids_mozart_3h_01":    "baby bunny and baby bear sleeping peacefully under a soft glowing moon, magical forest glade with floating musical notes and sparkling fireflies, pastel watercolor dreamy illustration, warm and gentle children's book style, no text, no letters",
+    "sleep_kids_beethoven_3h_01": "sleeping baby bear cub in a cozy moonlit den, moonbeam streaming through a round window casting silver light on a fluffy blanket, tiny piano in the corner, enchanted forest night scene, soft Pixar-inspired illustration, warm pastels, no text, no letters",
+    "sleep_kids_cello_3h_01":     "baby deer and baby rabbit curled together sleeping in an enchanted meadow, tiny golden cello floating among stars and soft glowing flowers, magical night sky with crescent moon, dreamy children's watercolor illustration, pastel blue and gold tones, no text, no letters",
+    "sleep_kids_lullaby_3h_01":   "cozy nursery at night with sleeping baby animals in a wooden crib, moonlight through lace curtains, soft mobile with stars and moons gently turning, warm amber nightlight, teddy bear on a rocking chair, gentle children's illustration style, no text, no letters",
+    "sleep_kids_dreams_3h_01":    "baby owl, baby fox and baby bunny sleeping together in a fluffy cloud nest high above a starlit forest, glowing moon nearby, soft golden dream bubbles floating upward, magical Pixar-style dreamscape, pastel lavender and gold tones, no text, no letters",
+}
+
+# Programs where real Pexels photography beats AI-generated images
+# (nature, landscapes, lakes, forests — real photos look more cinematic)
+PROGRAM_KB_PEXELS: dict[str, str] = {
+    "sleep_swan_lake_01":             "moonlit lake swans reflection misty night serene water nature",
+    "sleep_swan_lake_02":             "swan lake sunset water reflection peaceful nature birds",
+    "sleep_flute_01":                 "misty forest dawn golden light ancient trees peaceful morning",
+    "sleep_debussy_01":               "water lily pond reflection morning mist tranquil nature",
+    "sleep_beethoven_symphony9_01":   "dramatic storm clouds mountain peaks moonlight epic landscape",
+    "focus_beethoven_eroica_01":      "alpine mountains sunset dramatic heroic landscape clouds",
+    "sleep_romantic_orchestral_01":   "moonlit lake night reflection romantic ethereal mist nature",
+    "sleep_romantic_orchestral_3h_01":"moonlit lake swans night reflection ethereal romantic mist",
+    "sleep_baroque_romantics_01":     "ancient forest moonlight mystical trees night serene nature",
+    "sleep_grand_all_01":             "moonlit mountain lake reflection serene night starry sky",
 }
 
 THEME_LOOP_SECS = {
@@ -136,6 +172,24 @@ TITLES = {
     "focus_bach_goldberg_complete_01": "Bach Goldberg Variations Complete 🎹 {dur} | Focus & Study | Classical Night Relax",
     "focus_bach_violin_partita_01": "Bach Violin Partitas Complete 🎻 {dur} | Focus & Study | Classical Night Relax",
     "focus_beethoven_violin_01":    "Beethoven Violin Concerto & Cello Sonatas 🎻 {dur} | Focus & Study | Classical Night Relax",
+    "focus_beethoven_concertos_01": "Beethoven Piano Concertos 🎹 {dur} | Classical Music for Focus | Classical Night Relax",
+    "sleep_beethoven_symphony9_01": "Beethoven Symphony No. 9 🎶 {dur} | Classical Music for Sleep | Classical Night Relax",
+    "focus_wagner_tannhaeuser_01":  "Wagner Tannhäuser 🎭 {dur} | Classical Music for Focus | Classical Night Relax",
+    "focus_franck_violin_01":       "Franck & Beethoven Violin Sonatas 🎻 {dur} | Classical Music for Focus | Classical Night Relax",
+    "focus_beethoven_eroica_01":    "Beethoven Eroica & Pastoral 🏔️ {dur} | Classical Music for Focus | Classical Night Relax",
+    "sleep_romantic_orchestral_01": "Romantic Orchestral Classics 🌙 {dur} | Classical Music for Sleep | Classical Night Relax",
+    "sleep_beethoven_complete_3h_01": "Beethoven Complete — Symphony 9 & Piano Concertos 🎶 {dur} | Classical Sleep | Classical Night Relax",
+    "focus_wagner_complete_3h_01":    "Wagner Tannhäuser — Complete Opera 🎭 {dur} | Classical Focus | Classical Night Relax",
+    "sleep_romantic_orchestral_3h_01": "Romantic Orchestral Night 🌙 {dur} | Tchaikovsky · Rachmaninoff · Borodin | Classical Sleep | Classical Night Relax",
+    # Kids programs — Happy Bear Kids EN channel
+    "sleep_kids_moonlight_3h_01": "Classical Music for Baby Sleep 🌙 {dur} | Chopin & Schubert | Happy Bear Kids",
+    "sleep_kids_stars_3h_01":     "Baby Bedtime Classical Music ⭐ {dur} | Bach & Schubert | Happy Bear Kids",
+    "sleep_kids_piano_3h_01":     "Gentle Piano for Children's Sleep 🎹 {dur} | Bach & Mozart | Happy Bear Kids",
+    "sleep_kids_mozart_3h_01":    "Mozart for Babies 🎵 {dur} | Classical Baby Sleep Music | Happy Bear Kids",
+    "sleep_kids_beethoven_3h_01": "Beethoven for Babies 🌙 {dur} | Moonlight Sonata Baby Sleep | Happy Bear Kids",
+    "sleep_kids_cello_3h_01":     "Cello & Strings for Babies 🎻 {dur} | Gentle Classical Baby Sleep | Happy Bear Kids",
+    "sleep_kids_lullaby_3h_01":   "Classical Lullabies for Babies 🌙 {dur} | Baby Bedtime Music | Happy Bear Kids",
+    "sleep_kids_dreams_3h_01":    "Sweet Dreams for Babies 🌟 {dur} | Peaceful Classical Sleep Music | Happy Bear Kids",
 }
 
 DESC_TEMPLATES = {
@@ -167,9 +221,11 @@ Subscribe ▶ @ClassicalNightRelax
 #ClassicalNightRelax #SleepMusic #ClassicalMusic #StudyMusic #{composer_tag}Sleep
 """,
     "kids_sleep": """\
-Welcome to Happy Bear Kids! 🌙 Gentle classical lullabies to help babies and toddlers sleep.
+Welcome to Happy Bear Kids! 🌙 Gentle classical music to help babies and toddlers sleep deeply and peacefully.
 
 {program_desc}
+
+🎓 Did you know? Introducing children to classical music from an early age supports brain development, emotional intelligence, and creativity. Studies show that calm classical music helps babies sleep longer and more peacefully while stimulating healthy neural connections.
 
 🌙 Tracks in this program:
 {track_list}
@@ -179,15 +235,19 @@ Welcome to Happy Bear Kids! 🌙 Gentle classical lullabies to help babies and t
 • Nap time relaxation
 • Calming an overtired baby
 • Peaceful background for night feeds
+• Early childhood musical enrichment
+• Developing your child's love of classical music
 
 🎼 Music: Public domain recordings from Musopen (musopen.org)
 All composers passed away 200+ years ago — music is in the public domain.
+These timeless masterpieces have been enjoyed for centuries and are now shared freely for your child's benefit.
 
 {attribution}
 
-New videos every week! Subscribe ▶ @HappyBearKids1
+Nurture your child's musical journey from the very first lullaby. 🎵
+New programs every week! Subscribe ▶ @HappyBearKids1
 © Happy Bear Kids 2026
-#HappyBearKids #LullabyMusic #BabyLullaby #SleepMusic #ClassicalLullaby
+#HappyBearKids #ClassicalMusicForBabies #BabySleep #ClassicalLullaby #SleepMusic #BabyBedtime #ChildDevelopment #ClassicalMusic #ToddlerSleep #BabyMusic
 """,
 }
 
@@ -271,15 +331,9 @@ def find_track_file(track_id: str, licenses_data: dict,
                 log.info(f"    Keyword match (score={best_score}): {track_id!r} → {best_rec['id']}")
                 return p
 
-    # 4. Composer-only fallback
-    if composer:
-        c_low = composer.lower()
-        for rec in recs:
-            if c_low in rec.get("composer", "").lower():
-                p = _rec_to_path(rec)
-                if p:
-                    log.warning(f"    Composer fallback for {track_id!r} → {rec['id']}")
-                    return p
+    # Step 4 (composer-only fallback) REMOVED — it returned random large files
+    # causing natural-mode videos to balloon to 10-16h. Tracks not found via
+    # steps 1-3 are now skipped; the program runs with fewer tracks rather than wrong ones.
 
     return None
 
@@ -383,13 +437,55 @@ def _kb_concat(clips: list[Path], out: Path) -> bool:
     return True
 
 
+def _fetch_pexels_images(query: str, n_images: int, out_dir: Path, force: bool = False) -> list[Path]:
+    """Download landscape photos from Pexels API. Returns list of saved Paths."""
+    import urllib.request, urllib.parse, json as _json
+    if not PEXELS_KEY_FILE.exists():
+        return []
+    api_key = PEXELS_KEY_FILE.read_text().strip()
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    url = ("https://api.pexels.com/v1/search?"
+           + urllib.parse.urlencode({"query": query, "per_page": n_images * 2,
+                                     "orientation": "landscape"}))
+    try:
+        req = urllib.request.Request(url, headers={"Authorization": api_key})
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            data = _json.loads(resp.read())
+    except Exception as e:
+        log.warning(f"  Pexels search failed: {e}")
+        return []
+
+    photos = data.get("photos", [])
+    if not photos:
+        log.warning(f"  Pexels: no results for '{query}'")
+        return []
+
+    images: list[Path] = []
+    for i, photo in enumerate(photos[:n_images]):
+        img_path = out_dir / f"pexels_{i:02d}.jpg"
+        if img_path.exists() and not force:
+            images.append(img_path)
+            continue
+        src_url = photo.get("src", {}).get("large2x") or photo.get("src", {}).get("original")
+        if not src_url:
+            continue
+        try:
+            req2 = urllib.request.Request(src_url, headers={"User-Agent": "KidsChannel/1.0"})
+            with urllib.request.urlopen(req2, timeout=60) as resp:
+                img_path.write_bytes(resp.read())
+            images.append(img_path)
+            log.info(f"  Pexels photo {i+1}: saved ({img_path.stat().st_size // 1024}KB)")
+        except Exception as e:
+            log.warning(f"  Pexels photo {i+1} download failed: {e}")
+
+    return images
+
+
 def render_kenburns_loop(program_id: str, force: bool = False) -> Path | None:
-    """Generate FLUX AI images + Ken Burns loop for a program. Returns loop MP4 or None."""
+    """Generate Ken Burns loop — Pexels photos first (natural landscape), FLUX AI fallback."""
     prompt = PROGRAM_KB_PROMPTS.get(program_id)
     if not prompt:
-        return None
-    if not TOGETHER_KEY_FILE.exists():
-        log.warning("  No Together API key — falling back to CSS loop")
         return None
 
     loop_path = LOOPS_DIR / f"loop_kenburns_{program_id}.mp4"
@@ -397,15 +493,29 @@ def render_kenburns_loop(program_id: str, force: bool = False) -> Path | None:
         log.info(f"  Ken Burns loop cached: {loop_path.name}")
         return loop_path
 
-    api_key  = TOGETHER_KEY_FILE.read_text().strip()
     imgs_dir = LOOPS_DIR / f"imgs_{program_id}"
     imgs_dir.mkdir(parents=True, exist_ok=True)
 
-    lighting_variants = ["moonlit", "candlelit", "dawn light", "golden hour", "dusk", "twilight"]
-
-    # Step 1: Generate FLUX images
+    # Step 1: Try Pexels photos if this program has a nature/landscape query
     images: list[Path] = []
-    for i in range(KB_N_IMAGES):
+    pexels_query = PROGRAM_KB_PEXELS.get(program_id)
+    if pexels_query:
+        log.info(f"  Fetching Pexels photos: '{pexels_query}'")
+        images = _fetch_pexels_images(pexels_query, KB_N_IMAGES, imgs_dir, force)
+        if images:
+            log.info(f"  Using {len(images)} Pexels photos for Ken Burns")
+
+    # Step 2: Fall back to FLUX AI generation if no Pexels images
+    if not images:
+        if not TOGETHER_KEY_FILE.exists():
+            log.warning("  No Together API key — aborting Ken Burns")
+            return None
+        api_key  = TOGETHER_KEY_FILE.read_text().strip()
+        lighting_variants = ["moonlit", "candlelit", "dawn light", "golden hour", "dusk", "twilight"]
+
+    if not images:
+        log.info(f"  Generating {KB_N_IMAGES} FLUX images…")
+    for i in range(KB_N_IMAGES if not images else 0):
         img_path = imgs_dir / f"img_{i:02d}.jpg"
         if img_path.exists() and not force:
             images.append(img_path)
@@ -431,10 +541,10 @@ def render_kenburns_loop(program_id: str, force: bool = False) -> Path | None:
             log.warning(f"  Image {i+1} failed: {e}")
 
     if len(images) < 2:
-        log.error(f"  Only {len(images)} images generated — skipping Ken Burns")
+        log.error(f"  Only {len(images)} images — skipping Ken Burns loop")
         return None
 
-    # Step 2: Ken Burns clips
+    # Step 3: Ken Burns clips
     clips_dir = LOOPS_DIR / f"clips_{program_id}"
     clips_dir.mkdir(exist_ok=True)
     clips: list[Path] = []
@@ -451,17 +561,17 @@ def render_kenburns_loop(program_id: str, force: bool = False) -> Path | None:
             log.warning(f"  Clip {i+1} failed — skipping")
 
     if not clips:
-        log.error("  No clips created — falling back to CSS loop")
+        log.error("  No clips created — aborting")
         return None
 
-    # Step 3: Xfade concat → loop
+    # Step 4: Xfade concat → loop
     log.info(f"  Concat {len(clips)} clips → {loop_path.name}")
     LOOPS_DIR.mkdir(parents=True, exist_ok=True)
     if _kb_concat(clips, loop_path):
         log.info(f"  ✓ Ken Burns loop: {loop_path.name} ({loop_path.stat().st_size / 1024**2:.0f}MB)")
         return loop_path
 
-    log.error("  Loop concat failed — falling back to CSS loop")
+    log.error("  Loop concat failed — aborting")
     return None
 
 
@@ -572,8 +682,18 @@ def build_audio_track(program: dict, licenses_data: dict, out_dir: Path,
                             composer=t.get("composer", ""),
                             piece=t.get("piece", ""))
         if f:
-            dur = t.get("duration_sec") or _get_mp3_duration(f)
-            found.append((str(f), dur))
+            # Use actual file duration, not YAML-declared value.
+            # YAML duration_sec may not match the actual Musopen file found via fallback,
+            # causing natural-mode videos to become 10-16h instead of 1-2h.
+            actual_dur = _get_mp3_duration(f)
+            if actual_dur < 1:
+                log.warning(f"  Track unreadable/silent: {t['id']} ({f.name}) — skipped")
+                continue
+            yaml_dur = t.get("duration_sec", 0)
+            if yaml_dur and actual_dur > yaml_dur * 3:
+                log.warning(f"  Track {t['id']}: actual {actual_dur/60:.0f}min >> declared {yaml_dur/60:.0f}min "
+                            f"— file may be wrong match: {f.name}")
+            found.append((str(f), actual_dur))
         else:
             log.warning(f"  Track not found: {t['id']} ({t.get('piece','?')}) — skipped")
 
@@ -621,17 +741,19 @@ def build_audio_track(program: dict, licenses_data: dict, out_dir: Path,
     cmd = [
         "ffmpeg", "-y", "-f", "concat", "-safe", "0",
         "-i", str(concat_list),
-        # Normalize to 44100 Hz stereo — fixes mixed-format sources degrading to 89 kbps.
-        # aresample=async=1 fills inter-track gaps that cause audible dropouts on some devices.
-        "-af", "aresample=async=1:min_hard_comp=0.1:first_pts=0,aformat=sample_rates=44100:channel_layouts=stereo",
+        # Normalize to 44100 Hz stereo — fixes mixed-format sources (22050/48000 Hz, mono).
+        # Do NOT use aresample=async: it pads silence to fill VBR-header estimated gaps,
+        # producing output with 40-70% silence when individual track headers overestimate.
+        "-ar", "44100", "-ac", "2",
         "-c:a", "libmp3lame", "-b:a", "192k",
     ]
     if target_secs > 0:
         cmd += ["-t", str(target_secs)]
     cmd.append(str(audio_out))
 
-    # timeout scales with target: at least 1200s, or target/5 (e.g. 3h → 2160s, 8h → 5760s)
-    audio_timeout = max(1200, target_secs // 5) if target_secs > 0 else 1200
+    # Generous timeout: format conversion (mono→stereo, 22050/48000→44100) can be slow.
+    # At least 2h for any file; for large targets give full target duration as budget.
+    audio_timeout = max(7200, target_secs) if target_secs > 0 else 7200
     r = subprocess.run(cmd, capture_output=True, text=True, timeout=audio_timeout)
     if r.returncode != 0 or not audio_out.exists():
         log.error(f"  Audio concat failed: {r.stderr[:300]}")
@@ -652,6 +774,14 @@ def assemble_video(loop_mp4: Path, audio_mp3: Path | None,
         if target_secs == 0:
             log.warning("  Natural mode: could not read audio duration — defaulting to 3600s")
             target_secs = 3600
+        max_natural_secs = 6 * 3600  # safety cap: natural videos must not exceed 6h
+        if target_secs > max_natural_secs:
+            log.error(
+                f"  Natural mode ABORTED: audio is {target_secs/3600:.1f}h > 6h cap. "
+                f"This likely means find_track_file returned wrong (oversized) recordings. "
+                f"Fix track IDs in the program YAML to match actual Musopen filenames."
+            )
+            return False
         log.info(f"  Natural duration: {_format_natural_duration(target_secs)}")
     else:
         target_secs = target_hours * 3600
@@ -662,13 +792,19 @@ def assemble_video(loop_mp4: Path, audio_mp3: Path | None,
     video_timeout = int(target_secs * 4) + 7200
 
     if audio_mp3:
+        # Natural mode (target_hours=0): rely on -shortest alone — ffprobe duration
+        # estimate for concatenated VBR MP3 is unreliable, so don't use -t to cap.
+        # Fixed mode: -t is the primary duration control; -shortest guards against
+        # silence if the audio track ends fractionally before target.
+        duration_args = [] if target_hours == 0 else ["-t", str(target_secs)]
         cmd = [
             "ffmpeg", "-y",
             "-stream_loop", "-1", "-i", str(loop_mp4),   # infinite loop visual
             "-i", str(audio_mp3),
-            "-t", str(target_secs),
+            *duration_args,
             "-map", "0:v:0",            # video from loop
             "-map", "1:a:0",            # audio from music MP3, NOT from silent loop
+            "-shortest",                # stop at actual audio end (prevents silent tail)
             "-c:v", "libx264", "-preset", preset, "-crf", "20",
             "-c:a", "aac", "-b:a", "192k",
             "-movflags", "+faststart",
@@ -949,8 +1085,30 @@ def cmd_generate_program(program_id: str, durations: list[int] | None,
 
     log.info(f"Done: {generated}/{len(hours_list)} for {program_id}")
 
+    if generated > 0 and not dry_run:
+        queue_key = "id" if queue == QUEUE_CC else "en"
+        log.info(f"  → Starting background pre-localization for queue={queue_key}...")
+        log_path = ROOT / "logs" / "prepare_queue.log"
+        subprocess.Popen(
+            ["python3", str(ROOT / "scripts" / "prepare_queue.py"),
+             "--queue", queue_key, "--limit", str(generated)],
+            stdout=open(log_path, "a"),
+            stderr=subprocess.STDOUT,
+        )
+
+
+MAX_QUEUE_LONG = 10   # skip generation if queue_id has this many long videos
+
+
+def _queue_long_count() -> int:
+    return len([
+        p for p in QUEUE_CC.glob("*.mp4")
+        if not any(x in p.name for x in ("_short_", "kw_short", "visual_short"))
+    ])
+
 
 def main():
+    check_disk_space()
     parser = argparse.ArgumentParser(description="Generate Classical Night Relax sleep programs")
     parser.add_argument("--render-loops-only", action="store_true",
                         help="Only render the 4 shared CSS loop MP4s (no audio, no assembly)")
@@ -979,6 +1137,11 @@ def main():
         return
 
     if args.gen_visuals:
+        if not args.force:
+            count = _queue_long_count()
+            if count >= MAX_QUEUE_LONG:
+                print(f"Queue has {count} long videos (≥{MAX_QUEUE_LONG}) — skipping generation to save disk space.")
+                return
         cmd_gen_visuals(force=args.force)
         return
 

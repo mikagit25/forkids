@@ -1,0 +1,42 @@
+id: ar_song_playground
+title_en: "Playground Song 🛝 | أغنية الملعب | Happy Bear Kids"
+title_ar: "أغنية الملعب 🛝 | هابي بير كيدز"
+video_type: kids_song
+track: kids_song
+made_for_kids: true
+queue: output/queue_ar
+ai_generated: true
+language: ar
+
+suno:
+  style: "Arabic children's song, oud, darbuka, energetic, playful, 96 BPM, outdoor fun, toddler, bouncy rhythm, group chorus"
+  bpm: 96
+  key: A major
+
+lyrics: |
+  [Verse 1]
+  يلا نلعب في الملعب سوا
+  على الزحليقة والأرجوحة هوا
+  نجري ونقفز ونضحك معاً
+  الملعب حلو بينادينا
+
+  [Chorus]
+  ملعب ملعب
+  يلا نلعب
+  اركض واقفز
+  وارجح معي
+
+  [Verse 2]
+  الرمل ناعم والدحروجة تدور
+  كرتنا تطير والفرح يفور
+  أصحابي معي في كل مكان
+  نلعب سوا بكل الألوان
+
+  [Chorus]
+  ملعب ملعب
+  يلا نلعب
+  اركض واقفز
+  وارجح معي
+
+  [Outro]
+  يلا نلعب... مرة ثانية!

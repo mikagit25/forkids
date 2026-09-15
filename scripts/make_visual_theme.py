@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Generate AI-illustrated visual theme sleep videos for Calm Classics.
+Generate AI-illustrated visual theme sleep videos for Classical Night Relax.
 
 Pipeline:
   1. Generate 10 FLUX images per theme (Together.ai, 2048×1152)
@@ -22,6 +22,7 @@ import argparse
 import base64
 import logging
 import subprocess
+import sys
 import time
 from datetime import datetime
 from pathlib import Path
@@ -30,6 +31,8 @@ from typing import Optional
 import yaml
 
 ROOT             = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from disk_guard import check_disk_space
 QUEUE_ID         = ROOT / "output" / "queue_id"
 VISUAL_LOOPS_DIR = ROOT / "output" / "_visual_loops"
 ASSETS_DIR       = ROOT / "assets" / "visual_themes"
@@ -61,7 +64,7 @@ MOTIONS = [
 THEMES: dict[str, dict] = {
 
     "aurora_borealis": {
-        "title": "Aurora Borealis 🌌 {duration} | Classical Music for Sleep | Calm Classics",
+        "title": "Aurora Borealis 🌌 {duration} | Classical Music for Sleep | Classical Night Relax",
         "desc": (
             "Drift into peaceful sleep beneath the dancing northern lights. "
             "{duration} of stunning aurora borealis visuals paired with the most beloved classical piano music — "
@@ -91,7 +94,7 @@ THEMES: dict[str, dict] = {
             "#InsomniaCure #ClassicalNightRelax #SleepingMusic #CalmingMusic"
         ),
         "tags": ["aurora borealis", "northern lights", "sleep music", "classical music",
-                 "calm classics", "relaxing music", "chopin", "beethoven", "moonlight sonata",
+                 "classical night relax", "relaxing music", "chopin", "beethoven", "moonlight sonata",
                  "sleep aid", "study music", "meditation", "insomnia relief",
                  "sleep music for deep sleep", "classical music for sleeping",
                  "music to sleep", "relaxing sleep music", "deep sleep music"],
@@ -146,7 +149,7 @@ THEMES: dict[str, dict] = {
     },
 
     "cherry_blossoms": {
-        "title": "Cherry Blossoms 🌸 {duration} | Japanese Classical Music | Calm Classics",
+        "title": "Cherry Blossoms 🌸 {duration} | Japanese Classical Music | Classical Night Relax",
         "desc": (
             "Float beneath a canopy of cherry blossoms with {duration} of serene, delicate classical music. "
             "Sakura petals drift across AI-illustrated spring scenes while Chopin's most gentle Nocturnes "
@@ -172,7 +175,7 @@ THEMES: dict[str, dict] = {
             "#DeepSleepMusic #MeditationMusic #StudyMusic #JapaneseAmbiance #ClassicalNightRelax"
         ),
         "tags": ["cherry blossoms", "sakura", "japanese", "sleep music", "classical music",
-                 "calm classics", "chopin nocturnes", "mozart", "spring ambiance",
+                 "classical night relax", "chopin nocturnes", "mozart", "spring ambiance",
                  "relaxing music", "meditation", "study music", "peaceful",
                  "sleep music for deep sleep", "classical music for sleeping",
                  "music to sleep", "relaxing sleep music"],
@@ -226,7 +229,7 @@ THEMES: dict[str, dict] = {
     },
 
     "mountain_snow": {
-        "title": "Mountain Snow ⛰️ {duration} | Classical Music for Deep Sleep | Calm Classics",
+        "title": "Mountain Snow ⛰️ {duration} | Classical Music for Deep Sleep | Classical Night Relax",
         "desc": (
             "Rest beside majestic snow-capped mountains with {duration} of grand, sweeping classical music — "
             "the ideal deep sleep music for nights when your mind refuses to quiet down.\n\n"
@@ -253,7 +256,7 @@ THEMES: dict[str, dict] = {
             "#RelaxingClassicalMusic #InsomniaCure #MeditationMusic #ClassicalNightRelax"
         ),
         "tags": ["mountain snow", "alpine", "winter landscape", "sleep music", "classical music",
-                 "calm classics", "vaughan williams", "chopin", "deep sleep",
+                 "classical night relax", "vaughan williams", "chopin", "deep sleep",
                  "relaxing music", "meditation", "stress relief", "nature",
                  "sleep music for deep sleep", "classical music for sleeping",
                  "deep sleep music", "relaxing sleep music"],
@@ -308,7 +311,7 @@ THEMES: dict[str, dict] = {
     },
 
     "fireplace_cabin": {
-        "title": "Cozy Fireplace 🔥 {duration} | Classical Music for Sleep | Calm Classics",
+        "title": "Cozy Fireplace 🔥 {duration} | Classical Music for Sleep | Classical Night Relax",
         "desc": (
             "Settle into the warmth of a winter cabin fireplace with {duration} of soft, "
             "soothing classical music. Glowing embers, candlelight, snow falling quietly outside — "
@@ -336,7 +339,7 @@ THEMES: dict[str, dict] = {
             "#CozyCabin #WinterAmbiance #DeepSleepMusic #MusicToSleep #ClassicalNightRelax"
         ),
         "tags": ["fireplace", "cozy cabin", "winter ambiance", "sleep music", "classical music",
-                 "calm classics", "chopin", "debussy", "cozy vibes",
+                 "classical night relax", "chopin", "debussy", "cozy vibes",
                  "relaxing music", "reading ambiance", "hygge", "warm",
                  "sleep music for deep sleep", "classical music for sleeping",
                  "music to sleep", "relaxing sleep music"],
@@ -390,7 +393,7 @@ THEMES: dict[str, dict] = {
     },
 
     "zen_garden": {
-        "title": "Zen Garden 🪨 {duration} | Classical Music for Focus | Calm Classics",
+        "title": "Zen Garden 🪨 {duration} | Classical Music for Focus | Classical Night Relax",
         "desc": (
             "Find stillness in the timeless beauty of a Japanese zen garden. "
             "{duration} of deeply meditative classical music paired with raked sand, stone lanterns, "
@@ -420,7 +423,7 @@ THEMES: dict[str, dict] = {
             "#MeditationMusic #StudyMusic #DeepFocusMusic #ClassicalNightRelax #YogaMusic"
         ),
         "tags": ["zen garden", "japanese garden", "focus music", "classical music",
-                 "calm classics", "bach", "debussy", "meditation",
+                 "classical night relax", "bach", "debussy", "meditation",
                  "study music", "yoga", "mindfulness", "peaceful",
                  "classical music for studying", "classical music for focus",
                  "sleep music for deep sleep", "relaxing sleep music"],
@@ -476,7 +479,7 @@ THEMES: dict[str, dict] = {
     },
 
     "lavender_fields": {
-        "title": "Lavender Fields 💜 {duration} | Classical Music for Sleep | Calm Classics",
+        "title": "Lavender Fields 💜 {duration} | Classical Music for Sleep | Classical Night Relax",
         "desc": (
             "Close your eyes and picture endless rows of purple lavender running to the horizon "
             "under a warm Provence sunset. {duration} of the most quietly beautiful classical music — "
@@ -505,7 +508,7 @@ THEMES: dict[str, dict] = {
             "#NatureAmbiance #DeepSleepMusic #MusicToFallAsleepTo #ClassicalNightRelax"
         ),
         "tags": ["lavender fields", "provence", "france", "sleep music", "classical music",
-                 "calm classics", "chopin", "mozart", "purple", "nature ambiance",
+                 "classical night relax", "chopin", "mozart", "purple", "nature ambiance",
                  "relaxing music", "meditation", "spring", "flowers",
                  "sleep music for deep sleep", "classical music for sleeping",
                  "music to sleep", "relaxing sleep music"],
@@ -558,7 +561,7 @@ THEMES: dict[str, dict] = {
     },
 
     "deep_space": {
-        "title": "Deep Space 🌌 {duration} | Classical Music for Sleep | Calm Classics",
+        "title": "Deep Space 🌌 {duration} | Classical Music for Sleep | Classical Night Relax",
         "desc": (
             "Float through the infinite cosmos with {duration} of transcendent, expansive classical music. "
             "Vivid nebulae, spiral galaxies, and glittering star fields — paired with orchestral "
@@ -587,7 +590,7 @@ THEMES: dict[str, dict] = {
             "#MeditationMusic #InsomniaCure #RelaxingClassicalMusic #ClassicalNightRelax"
         ),
         "tags": ["deep space", "nebula", "cosmos", "sleep music", "classical music",
-                 "calm classics", "vaughan williams", "beethoven", "meditation",
+                 "classical night relax", "vaughan williams", "beethoven", "meditation",
                  "space ambiance", "stars", "galaxy", "relaxing",
                  "sleep music for deep sleep", "classical music for sleeping",
                  "deep sleep music", "space music for sleep"],
@@ -640,7 +643,7 @@ THEMES: dict[str, dict] = {
     },
 
     "autumn_forest": {
-        "title": "Autumn Forest 🍂 {duration} | Classical Music for Sleep | Calm Classics",
+        "title": "Autumn Forest 🍂 {duration} | Classical Music for Sleep | Classical Night Relax",
         "desc": (
             "Walk through a golden autumn forest with {duration} of warm, melancholic classical music — "
             "amber leaves, misty forest paths, and the particular stillness that only autumn "
@@ -670,7 +673,7 @@ THEMES: dict[str, dict] = {
             "#DeepSleepMusic #RelaxingClassicalMusic #NatureSoundsForSleep #ClassicalNightRelax"
         ),
         "tags": ["autumn forest", "fall colors", "forest", "sleep music", "classical music",
-                 "calm classics", "chopin", "tchaikovsky", "autumn ambiance",
+                 "classical night relax", "chopin", "tchaikovsky", "autumn ambiance",
                  "relaxing music", "nature", "meditation", "cozy",
                  "sleep music for deep sleep", "classical music for sleeping",
                  "nature sounds for sleep", "relaxing sleep music"],
@@ -727,7 +730,7 @@ THEMES: dict[str, dict] = {
     # ── Keyword-targeted themes (popular YouTube search queries) ──────────────────
 
     "night_rain": {
-        "title": "Night Rain & Piano 🌧️ {duration} | Soft Piano Music for Relaxation | Calm Classics",
+        "title": "Night Rain & Piano 🌧️ {duration} | Soft Piano Music for Relaxation | Classical Night Relax",
         "desc": (
             "Lie back and let the night rain and soft piano carry you into deep, effortless sleep. "
             "{duration} of the most calming rain and classical piano atmosphere — Chopin Nocturnes, "
@@ -755,7 +758,7 @@ THEMES: dict[str, dict] = {
             "#RainSoundsForSleep #SoftMusicForRelaxation #DeepSleepMusic #PianoSleep"
         ),
         "tags": ["night rain sounds for sleeping", "soft piano music for relaxation",
-                 "rain and piano", "sleep music", "classical music", "calm classics",
+                 "rain and piano", "sleep music", "classical music", "classical night relax",
                  "relaxing music for stress relief", "chopin", "debussy", "sleep meditation music",
                  "soft music for relaxation", "rain sounds for sleep", "piano sleep music",
                  "deep sleep music", "classical music for sleeping", "rain sleep music",
@@ -810,7 +813,7 @@ THEMES: dict[str, dict] = {
     },
 
     "evening_piano": {
-        "title": "Soft Piano Music for Relaxation 🎹 {duration} | Classical Piano | Calm Classics",
+        "title": "Soft Piano Music for Relaxation 🎹 {duration} | Classical Piano | Classical Night Relax",
         "desc": (
             "{duration} of the most beautiful soft piano music for relaxation — Chopin Nocturnes, "
             "Beethoven's Moonlight Sonata, Debussy's Arabesque, Mozart Serenade, and Fauré. "
@@ -844,7 +847,7 @@ THEMES: dict[str, dict] = {
         ),
         "tags": ["soft piano music for relaxation", "soft music for relaxation",
                  "sleep meditation music", "relaxing music for stress relief",
-                 "best of chopin nocturnes", "classical piano", "calm classics",
+                 "best of chopin nocturnes", "classical piano", "classical night relax",
                  "beethoven moonlight sonata", "debussy arabesque", "mozart",
                  "piano sleep music", "deep sleep music", "classical music for sleeping",
                  "piano relaxation", "chopin nocturnes", "classical night relax",
@@ -903,14 +906,14 @@ THEMES: dict[str, dict] = {
     # ── Nature Soundscape series (Suno AI ambient) ─────────────────────────────
 
     "distant_waterfall": {
-        "title": "Distant Waterfall 🌊 {duration} | Nature Sounds for Sleep & Meditation | Calm Classics",
+        "title": "Distant Waterfall 🌊 {duration} | Nature Sounds for Sleep & Meditation | Classical Night Relax",
         "desc": (
             "{duration} of the most soothing waterfall sounds ever recorded — a distant cascade echoing "
             "through ancient stone, surrounded by birdsong and forest air. Let the gentle, unceasing flow "
             "carry away your stress and guide you into deep, restorative sleep.\n\n"
             "🌊 Nature sounds: AI-crafted waterfall ambience — distant cascade, mist, trickling streams\n"
             "🎨 Visuals: AI-generated waterfall and river landscapes\n"
-            "🎵 Original ambient audio by Calm Classics (AI-generated, © 2026)\n\n"
+            "🎵 Original ambient audio by Classical Night Relax (AI-generated, © 2026)\n\n"
             "Perfect for: sleep, meditation, white noise, stress relief, study, focus, yoga, spa\n\n"
             "Many viewers use waterfall sounds to:\n"
             "✦ Fall asleep faster and stay asleep longer\n"
@@ -926,7 +929,7 @@ THEMES: dict[str, dict] = {
         ),
         "tags": ["waterfall sounds", "nature sounds", "sleep sounds", "white noise",
                  "meditation music", "water sounds", "relaxing nature", "sleep aid",
-                 "study music", "calm classics", "ambient music", "stress relief",
+                 "study music", "classical night relax", "ambient music", "stress relief",
                  "deep sleep", "focus music", "nature ambience", "waterfall white noise",
                  "rain sounds", "river sounds", "spa music", "yoga music"],
         "thumb_prompt": (
@@ -954,14 +957,14 @@ THEMES: dict[str, dict] = {
     },
 
     "rainforest_night": {
-        "title": "Rainforest at Night 🌿 {duration} | Jungle Night Sounds for Sleep | Calm Classics",
+        "title": "Rainforest at Night 🌿 {duration} | Jungle Night Sounds for Sleep | Classical Night Relax",
         "desc": (
             "Drift into the living world of the rainforest after dark — crickets, distant frogs, "
             "rustling leaves, and the breathing of an ancient jungle ecosystem. {duration} of pure, "
             "immersive rainforest night sounds to help you sleep deeply and naturally.\n\n"
             "🌿 Nature sounds: AI-crafted tropical rainforest night ambience\n"
             "🎨 Visuals: AI-generated rainforest and jungle landscapes\n"
-            "🎵 Original ambient audio by Calm Classics (AI-generated, © 2026)\n\n"
+            "🎵 Original ambient audio by Classical Night Relax (AI-generated, © 2026)\n\n"
             "Perfect for: sleep, meditation, relaxation, ASMR, white noise, stress relief\n\n"
             "Why jungle night sounds work for sleep:\n"
             "✦ Natural rhythmic patterns prime the brain for sleep\n"
@@ -975,7 +978,7 @@ THEMES: dict[str, dict] = {
         ),
         "tags": ["rainforest sounds", "jungle sounds", "night sounds", "sleep sounds",
                  "nature sounds", "tropical ambience", "meditation music", "white noise",
-                 "calm classics", "ambient music", "deep sleep", "stress relief",
+                 "classical night relax", "ambient music", "deep sleep", "stress relief",
                  "nature ambience", "sleep aid", "insect sounds", "frog sounds",
                  "jungle night", "tropical forest", "rain forest", "ASMR nature"],
         "thumb_prompt": (
@@ -1003,14 +1006,14 @@ THEMES: dict[str, dict] = {
     },
 
     "mountain_lake_dawn": {
-        "title": "Mountain Lake at Dawn 🏔️ {duration} | Nature Sounds for Sleep & Relaxation | Calm Classics",
+        "title": "Mountain Lake at Dawn 🏔️ {duration} | Nature Sounds for Sleep & Relaxation | Classical Night Relax",
         "desc": (
             "The stillness before sunrise — water so calm it mirrors the mountains perfectly. "
             "{duration} of serene mountain lake ambience at dawn: gentle lapping water, distant "
             "birdsong, the whisper of morning wind. Pure natural peace.\n\n"
             "🏔️ Nature sounds: AI-crafted mountain lake dawn ambience\n"
             "🎨 Visuals: AI-generated alpine lake and mountain landscapes\n"
-            "🎵 Original ambient audio by Calm Classics (AI-generated, © 2026)\n\n"
+            "🎵 Original ambient audio by Classical Night Relax (AI-generated, © 2026)\n\n"
             "Perfect for: sleep, morning meditation, yoga, study, relaxation, mindfulness\n\n"
             "✦ Reduce anxiety and mental chatter\n"
             "✦ Perfect background for morning meditation or journaling\n"
@@ -1023,7 +1026,7 @@ THEMES: dict[str, dict] = {
         ),
         "tags": ["mountain lake", "nature sounds", "dawn sounds", "sleep sounds",
                  "meditation music", "alpine ambience", "morning meditation",
-                 "calm classics", "ambient music", "water sounds", "stress relief",
+                 "classical night relax", "ambient music", "water sounds", "stress relief",
                  "yoga music", "mindfulness music", "relaxation", "lake sounds",
                  "bird sounds", "morning sounds", "peaceful nature", "alpine lake"],
         "thumb_prompt": (
@@ -1051,14 +1054,14 @@ THEMES: dict[str, dict] = {
     },
 
     "desert_night_wind": {
-        "title": "Desert Night Wind 🌙 {duration} | Desert Sounds for Sleep | Calm Classics",
+        "title": "Desert Night Wind 🌙 {duration} | Desert Sounds for Sleep | Classical Night Relax",
         "desc": (
             "The Sahara after midnight — a world of infinite silence broken only by warm desert wind "
             "moving across ancient dunes. {duration} of hypnotic desert night sounds: shifting sands, "
             "distant wind, the vast breathing of the world's greatest desert.\n\n"
             "🌙 Nature sounds: AI-crafted desert night ambience\n"
             "🎨 Visuals: AI-generated desert and dune landscapes\n"
-            "🎵 Original ambient audio by Calm Classics (AI-generated, © 2026)\n\n"
+            "🎵 Original ambient audio by Classical Night Relax (AI-generated, © 2026)\n\n"
             "Perfect for: deep sleep, meditation, insomnia relief, focus, relaxation\n\n"
             "Desert sounds are uniquely effective for sleep:\n"
             "✦ The low-frequency wind creates a natural brown noise effect\n"
@@ -1070,7 +1073,7 @@ THEMES: dict[str, dict] = {
             "#DeepSleep #InsomniaCure #RelaxingNature #NatureAmbience #Meditation"
         ),
         "tags": ["desert sounds", "night sounds", "sleep sounds", "brown noise",
-                 "meditation music", "sahara", "wind sounds", "calm classics",
+                 "meditation music", "sahara", "wind sounds", "classical night relax",
                  "ambient music", "deep sleep", "insomnia", "relaxing nature",
                  "nature ambience", "meditation", "desert night", "sand dunes",
                  "desert wind", "desert ambience", "sleep aid", "white noise"],
@@ -1099,14 +1102,14 @@ THEMES: dict[str, dict] = {
     },
 
     "winter_forest_silence": {
-        "title": "Winter Forest ❄️ {duration} | Snow Sounds for Sleep & Relaxation | Calm Classics",
+        "title": "Winter Forest ❄️ {duration} | Snow Sounds for Sleep & Relaxation | Classical Night Relax",
         "desc": (
             "Step into the sacred silence of a snow-covered forest. {duration} of pure winter "
             "forest ambience — the creak of frozen branches, a distant owl, the profound stillness "
             "that only snow can create. One of the most requested sleep sounds.\n\n"
             "❄️ Nature sounds: AI-crafted winter forest silence ambience\n"
             "🎨 Visuals: AI-generated winter forest and snow landscapes\n"
-            "🎵 Original ambient audio by Calm Classics (AI-generated, © 2026)\n\n"
+            "🎵 Original ambient audio by Classical Night Relax (AI-generated, © 2026)\n\n"
             "Perfect for: sleep, deep meditation, reading, relaxation, cozy evenings\n\n"
             "✦ Snow absorbs sound — mimicking this creates a profoundly calming effect\n"
             "✦ The subtle forest sounds prevent total silence (which can be disturbing)\n"
@@ -1118,7 +1121,7 @@ THEMES: dict[str, dict] = {
             "#DeepSleep #MeditationMusic #Relaxation #NatureAmbience #WhiteNoise"
         ),
         "tags": ["winter forest", "snow sounds", "nature sounds", "sleep sounds",
-                 "forest sounds", "winter ambience", "cozy sounds", "calm classics",
+                 "forest sounds", "winter ambience", "cozy sounds", "classical night relax",
                  "ambient music", "deep sleep", "meditation music", "relaxation",
                  "nature ambience", "white noise", "snowfall sounds", "winter sleep",
                  "forest ambience", "peaceful winter", "sleep aid", "frozen forest"],
@@ -1147,7 +1150,7 @@ THEMES: dict[str, dict] = {
     },
 
     "ambient_meditation_mix": {
-        "title": "Ambient Meditation Mix 🎧 {duration} | Deep Relaxation & Sleep Sounds | Calm Classics",
+        "title": "Ambient Meditation Mix 🎧 {duration} | Deep Relaxation & Sleep Sounds | Classical Night Relax",
         "desc": (
             "{duration} of carefully curated ambient meditation soundscapes — an ever-shifting "
             "journey through ice caves, distant waterfalls, cosmic drones, and ethereal tones. "
@@ -1155,7 +1158,7 @@ THEMES: dict[str, dict] = {
             "engaged enough to stay out of anxious thought while drifting toward sleep.\n\n"
             "🎧 Ambient mix: AI-crafted meditative soundscapes\n"
             "🎨 Visuals: AI-generated abstract and natural meditation environments\n"
-            "🎵 Original ambient audio by Calm Classics (AI-generated, © 2026)\n\n"
+            "🎵 Original ambient audio by Classical Night Relax (AI-generated, © 2026)\n\n"
             "What's in the mix:\n"
             "✦ Crystal ice cave resonance\n"
             "✦ Deep ambient drones and pads\n"
@@ -1168,7 +1171,7 @@ THEMES: dict[str, dict] = {
             "#AnxietyRelief #AmbientMeditation #SleepAid #RelaxingMusic #MindfulMusic"
         ),
         "tags": ["ambient music", "meditation music", "sleep sounds", "deep relaxation",
-                 "ambient mix", "ice cave sounds", "calm classics", "sound healing",
+                 "ambient mix", "ice cave sounds", "classical night relax", "sound healing",
                  "yoga nidra", "deep sleep", "anxiety relief", "ambient meditation",
                  "sleep aid", "relaxing music", "mindful music", "drone music",
                  "space ambient", "crystal sounds", "meditation sounds", "sleep music"],
@@ -1426,18 +1429,47 @@ def concat_with_xfade(clip_paths: list[Path], out_path: Path,
 
 # ── Long video assembly ────────────────────────────────────────────────────────
 
+def _validate_audio(path: Path) -> float:
+    """Return duration in seconds, or 0 if file is unreadable/invalid."""
+    try:
+        r = subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "stream=codec_type,duration",
+             "-select_streams", "a:0", "-of", "csv=p=0", str(path)],
+            capture_output=True, text=True, timeout=10
+        )
+        if r.returncode != 0 or not r.stdout.strip():
+            return 0.0
+        parts = r.stdout.strip().split(",")
+        return float(parts[1]) if len(parts) >= 2 and parts[0] == "audio" else 0.0
+    except Exception:
+        return 0.0
+
+
 def build_music_track(music_files: list[str], target_secs: int, tmp_dir: Path,
                       music_dir: Optional[Path] = None,
                       music_glob: Optional[str] = None) -> Optional[Path]:
     """Concatenate music files in a loop until target_secs is reached."""
     base_dir = music_dir or MUSIC_DIR
     if music_glob:
-        available = sorted(base_dir.glob(music_glob))
+        candidates = sorted(base_dir.glob(music_glob))
     else:
-        available = [base_dir / f for f in music_files if (base_dir / f).exists()]
+        candidates = [base_dir / f for f in music_files if (base_dir / f).exists()]
+
+    # Validate each candidate — skip corrupt/silent/missing-audio files
+    available = []
+    for p in candidates:
+        dur = _validate_audio(p)
+        if dur > 0:
+            available.append((p, dur))
+        else:
+            log.warning(f"  ✗ Skipped invalid/no-audio file: {p.name}")
+
     if not available:
-        log.warning("  No music files found — video will be silent")
+        log.warning("  No valid audio files found — video will be silent")
         return None
+
+    total_unique = sum(d for _, d in available)
+    log.info(f"  {len(available)} valid tracks, {total_unique/60:.0f}min unique audio")
 
     concat_txt = tmp_dir / "music_concat.txt"
     audio_out  = tmp_dir / "audio_track.mp3"
@@ -1446,78 +1478,106 @@ def build_music_track(music_files: list[str], target_secs: int, tmp_dir: Path,
     total = 0
     lines = []
     while total < target_secs + 60:
-        for f in available:
-            # Estimate duration (we'll just repeat until long enough)
-            lines.append(f"file '{f}'")
-            total += 300  # rough estimate; ffmpeg stops at -t
+        for p, dur in available:
+            lines.append(f"file '{p}'")
+            total += dur
 
     concat_txt.write_text("\n".join(lines))
 
+    # timeout scales with content: at least 600s, or 3× real-time for longer assemblies
+    timeout = max(600, int(total * 3))
     cmd = [
         "ffmpeg", "-y",
         "-f", "concat", "-safe", "0", "-i", str(concat_txt),
-        "-t", str(target_secs),
-        # Normalize to 44100 Hz stereo before encoding — fixes mixed-format sources
-        # (e.g. 22050 Hz mono files degrading the whole concat to 89 kbps output).
-        # aresample=async=1 also fills tiny inter-track gaps that cause audible dropouts.
         "-af", "aresample=async=1:min_hard_comp=0.1:first_pts=0,aformat=sample_rates=44100:channel_layouts=stereo",
         "-c:a", "libmp3lame", "-b:a", "192k",
         str(audio_out),
     ]
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+    if target_secs > 0:
+        cmd = cmd[:-1] + ["-t", str(target_secs), str(audio_out)]
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
     if r.returncode != 0 or not audio_out.exists():
         log.error(f"  Music build failed: {r.stderr[-300:]}")
         return None
     return audio_out
 
 
+def probe_duration(path: Path) -> float:
+    """Return duration of audio/video file in seconds."""
+    r = subprocess.run(
+        ["ffprobe", "-v", "quiet", "-show_entries", "format=duration",
+         "-of", "csv=p=0", str(path)],
+        capture_output=True, text=True
+    )
+    try:
+        return float(r.stdout.strip())
+    except ValueError:
+        return 0.0
+
+
+def natural_dur_label(secs: float) -> str:
+    """E.g. 7450s → '2h 4min'"""
+    h = int(secs // 3600)
+    m = int((secs % 3600) // 60)
+    if h and m:
+        return f"{h}h {m}min"
+    if h:
+        return f"{h}h"
+    return f"{m}min"
+
+
 def assemble_long_video(loop_mp4: Path, music_files: list[str],
                          duration_hours: int, out_mp4: Path,
                          music_dir: Optional[Path] = None,
-                         music_glob: Optional[str] = None) -> bool:
-    """Stream-loop the visual loop + overlay music → output video."""
-    target_secs = duration_hours * 3600
-    preset = "slow" if duration_hours <= 1 else ("medium" if duration_hours <= 3 else "fast")
+                         music_glob: Optional[str] = None) -> tuple[bool, float]:
+    """Stream-loop the visual loop + overlay music → natural-length output video.
+    Returns (success, actual_duration_secs)."""
+    # Use fast preset; natural mode makes videos longer so speed matters more
+    preset = "fast"
 
     tmp_dir = ROOT / "output" / "_tmp_visual_theme"
     tmp_dir.mkdir(parents=True, exist_ok=True)
 
-    audio_mp3 = build_music_track(music_files, target_secs, tmp_dir,
+    # Build full-length audio (no -t cutoff — play all tracks)
+    audio_mp3 = build_music_track(music_files, 0, tmp_dir,
                                    music_dir=music_dir, music_glob=music_glob)
 
     if audio_mp3:
+        actual_secs = probe_duration(audio_mp3)
         cmd = [
             "ffmpeg", "-y",
             "-stream_loop", "-1", "-i", str(loop_mp4),
             "-i", str(audio_mp3),
-            "-t", str(target_secs),
             "-map", "0:v:0",
             "-map", "1:a:0",
             "-c:v", "libx264", "-preset", preset, "-crf", "20",
             "-c:a", "aac", "-b:a", "192k",
+            "-shortest",        # stop when audio ends
             "-movflags", "+faststart",
             str(out_mp4),
         ]
     else:
+        actual_secs = duration_hours * 3600
         cmd = [
             "ffmpeg", "-y",
             "-stream_loop", "-1", "-i", str(loop_mp4),
-            "-t", str(target_secs),
+            "-t", str(actual_secs),
             "-c:v", "libx264", "-preset", preset, "-crf", "20",
             "-an",
             "-movflags", "+faststart",
             str(out_mp4),
         ]
 
-    log.info(f"  Assembling {duration_hours}h → {out_mp4.name}")
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=3600 * 3)
+    dur_label = natural_dur_label(actual_secs)
+    log.info(f"  Assembling {dur_label} → {out_mp4.name}")
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=3600 * 12)
     if r.returncode != 0 or not out_mp4.exists():
         log.error(f"  Assembly failed: {r.stderr[-300:]}")
-        return False
+        return False, 0.0
 
     size_mb = out_mp4.stat().st_size / 1024 / 1024
     log.info(f"  ✓ {size_mb:.0f}MB")
-    return True
+    return True, actual_secs
 
 
 # ── Meta + thumbnail ───────────────────────────────────────────────────────────
@@ -1544,8 +1604,12 @@ def append_outro(main_mp4: Path, outro_mp4: Path, out_mp4: Path) -> bool:
     return True
 
 
-def write_meta(theme: str, theme_cfg: dict, out_mp4: Path, duration_hours: int):
-    dur_label = f"{duration_hours} Hour" if duration_hours == 1 else f"{duration_hours} Hours"
+def write_meta(theme: str, theme_cfg: dict, out_mp4: Path, duration_hours: int,
+               actual_secs: float = 0.0):
+    if actual_secs > 0:
+        dur_label = natural_dur_label(actual_secs)
+    else:
+        dur_label = f"{duration_hours} Hour" if duration_hours == 1 else f"{duration_hours} Hours"
     title = theme_cfg["title"].format(duration=dur_label)
     desc  = theme_cfg["desc"].format(duration=dur_label)
 
@@ -1674,19 +1738,22 @@ def process_theme(theme: str, durations: list[int], api_key: str,
     log.info("Step 4: Long videos")
     done = 0
     for dur in durations:
-        out_name = f"visual_theme_{theme}_{dur}h_{DATE_STR}.mp4"
+        # Use a temp name during assembly; rename with actual duration once done
+        out_name = f"visual_theme_{theme}_natural_{DATE_STR}.mp4"
         out_mp4  = QUEUE_ID / out_name
 
         if out_mp4.exists() and not force:
             log.info(f"  EXISTS {out_name} (--force to redo)")
-            write_meta(theme, theme_cfg, out_mp4, dur)
+            actual_secs = probe_duration(out_mp4)
+            write_meta(theme, theme_cfg, out_mp4, dur, actual_secs)
             done += 1
             continue
 
         mdir  = MEDITATION_DIR if theme_cfg.get("music_source") == "meditation" else None
         mglob = theme_cfg.get("music_glob")
-        assembled = assemble_long_video(loop_path, theme_cfg.get("music_files", []), dur, out_mp4,
-                                        music_dir=mdir, music_glob=mglob)
+        assembled, actual_secs = assemble_long_video(
+            loop_path, theme_cfg.get("music_files", []), dur, out_mp4,
+            music_dir=mdir, music_glob=mglob)
         if assembled:
             # Optional: append outro clip
             if with_outro:
@@ -1698,8 +1765,8 @@ def process_theme(theme: str, durations: list[int], api_key: str,
                         out_with_outro.rename(out_mp4)
                 else:
                     log.warning(f"  --with-outro: file not found: {outro_mp4}")
-            write_meta(theme, theme_cfg, out_mp4, dur)
-            generate_thumbnail(theme, theme_cfg, out_mp4, api_key, duration_hours=dur)
+            write_meta(theme, theme_cfg, out_mp4, dur, actual_secs)
+            generate_thumbnail(theme, theme_cfg, out_mp4, api_key, duration_hours=None)
             done += 1
 
     return done
@@ -1708,6 +1775,7 @@ def process_theme(theme: str, durations: list[int], api_key: str,
 # ── CLI ────────────────────────────────────────────────────────────────────────
 
 def main():
+    check_disk_space()
     parser = argparse.ArgumentParser(description="Generate AI visual theme sleep videos for CNR")
     parser.add_argument("--theme",       choices=list(THEMES.keys()), help="Single theme")
     parser.add_argument("--all",         action="store_true", help="All themes")

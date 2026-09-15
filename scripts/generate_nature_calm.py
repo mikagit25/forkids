@@ -10,11 +10,13 @@ Usage:
   python3 scripts/generate_nature_calm.py --regen-meta
   python3 scripts/generate_nature_calm.py --dry-run
 """
-import argparse, json, shutil, subprocess, yaml
+import argparse, json, shutil, subprocess, sys, yaml
 from datetime import datetime
 from pathlib import Path
 
 ROOT     = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from disk_guard import check_disk_space
 REMOTION = ROOT / "remotion"
 QUEUE_EN = ROOT / "output" / "queue"
 QUEUE_AR = ROOT / "output" / "queue_ar"
@@ -285,6 +287,7 @@ def render_episode(ep_key: str, ep: dict, dry_run: bool, regen_meta: bool) -> bo
 
 
 def main():
+    check_disk_space()
     parser = argparse.ArgumentParser()
     parser.add_argument("--ep",       default=None, help="Render only this episode key (e.g. forest)")
     parser.add_argument("--regen-meta", action="store_true", help="Regenerate meta+thumbnails only")
@@ -306,6 +309,16 @@ def main():
         if render_episode(ep_key, ep, args.dry_run, args.regen_meta):
             ok += 1
     print(f"\nDone: {ok}/{len(episodes)}")
+
+    if ok > 0 and not args.dry_run:
+        print("\n→ Starting background pre-localization for queue=en...")
+        log_path = ROOT / "logs" / "prepare_queue.log"
+        subprocess.Popen(
+            ["python3", str(ROOT / "scripts" / "prepare_queue.py"),
+             "--queue", "en", "--limit", str(ok)],
+            stdout=open(log_path, "a"),
+            stderr=subprocess.STDOUT,
+        )
 
 
 if __name__ == "__main__":

@@ -1,0 +1,42 @@
+id: ar_lullaby_mama
+title_en: "Mama's Lullaby 🤱 | تهويدة ماما | Happy Bear Kids"
+title_ar: "تهويدة ماما 🤱 | هابي بير كيدز"
+video_type: kids_song
+track: kids_song
+made_for_kids: true
+queue: output/queue_ar
+ai_generated: true
+language: ar
+
+suno:
+  style: "Arabic lullaby, warm oud, soft piano, deeply tender, 55 BPM, mother love, bedtime, emotional, traditional, toddler sleep, gentle female voice"
+  bpm: 55
+  key: D major
+
+lyrics: |
+  [Verse 1]
+  ماما تحضنك وتغني لك
+  بحبها الكبير تهديلك
+  عيونك الحلوة غمضيها شوي
+  وبحضن ماما نامي يا روحي
+
+  [Chorus]
+  نامي يا حبيبتي
+  يا نور عيوني
+  ماما معاكي
+  دايماً تحميكي
+
+  [Verse 2]
+  أيدي ماما دافية وحنونة
+  بصوتها الناعم تهديكي يا حلوتنا
+  الأحلام الحلوة رح تجيلك
+  وماما تفضل جنبك تحبلك
+
+  [Chorus]
+  نامي يا حبيبتي
+  يا نور عيوني
+  ماما معاكي
+  دايماً تحميكي
+
+  [Outro]
+  نامي يا قلبي... بحب ماما...

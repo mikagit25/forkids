@@ -1,0 +1,44 @@
+id: focus_beethoven_eroica_01
+title: Beethoven Eroica & Pastoral 🏔️ {dur} | Classical Music for Focus • No Ads | Calm Classics
+video_type: focus_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: rain_window
+loop_duration_sec: 240
+durations_hours:
+- 1
+shuffle: false
+tracks:
+- id: beethoven_eroica_i_italian
+  composer: Ludwig van Beethoven
+  piece: Symphony No. 3 in E-flat major, Op. 55 (Eroica) — I. Allegro con brio
+  duration_sec: 1028
+  mood: heroic_entry
+- id: beethoven_symphony6_iii_iv_v
+  composer: Ludwig van Beethoven
+  piece: Symphony No. 6 in F major, Op. 68 (Pastoral) — III+IV+V
+  duration_sec: 1052
+  mood: pastoral
+- id: beethoven_symphony3_i_musopen
+  composer: Ludwig van Beethoven
+  piece: Symphony No. 3 in E-flat major, Op. 55 (Eroica) — I. Allegro con brio (v2)
+  duration_sec: 1065
+  mood: heroic
+tags:
+- beethoven
+- eroica symphony
+- pastoral symphony
+- symphony no 3
+- symphony no 6
+- beethoven symphony
+- focus music
+- study music
+- calm classics
+- no ads
+- classical no ads
+- instrumental
+max_repeat: 2.0
+
+disabled: true
+disabled_reason: "Contains unverified tracks from Google Drive batch. Verify before re-enabling."

@@ -1,0 +1,38 @@
+id: focus_franck_violin_01
+title: Franck & Beethoven Violin Sonatas 🎻 {dur} | Classical Music for Focus • No Ads | Calm Classics
+video_type: focus_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: rain_window
+loop_duration_sec: 240
+durations_hours:
+- 1
+shuffle: false
+tracks:
+- id: franck_violin_sonata_a_major
+  composer: "César Franck"
+  piece: Violin Sonata in A major — Complete
+  duration_sec: 1549
+  mood: lyrical_entry
+- id: beethoven_violin_concerto_op61_i_v3
+  composer: Ludwig van Beethoven
+  piece: Violin Concerto in D major, Op. 61 — I. Allegro ma non troppo
+  duration_sec: 1324
+  mood: noble
+tags:
+- franck
+- cesar franck
+- violin sonata
+- beethoven violin concerto
+- classical violin
+- focus music
+- study music
+- calm classics
+- no ads
+- instrumental
+- romantic classical
+max_repeat: 2.0
+
+disabled: true
+disabled_reason: "Contains unverified tracks from Google Drive batch. Verify before re-enabling."

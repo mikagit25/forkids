@@ -1,0 +1,52 @@
+id: sleep_kids_dreams_3h_01
+title_en: "Sweet Dreams for Babies 🌟 {duration} | Peaceful Classical Sleep Music | Happy Bear Kids"
+video_type: sleep_program
+track: kids_sleep
+made_for_kids: true
+queue: output/queue
+visual_theme: kenburns
+durations_hours:
+- 3
+max_repeat: 4.0
+tracks:
+- id: debussy_arabesque_no_1_andantino_con_moto
+  composer: Claude Debussy
+  piece: Arabesque No. 1
+- id: chopin_etude_op25_no1_aeolian_harp
+  composer: Frédéric Chopin
+  piece: Étude Op. 25 No. 1 'Aeolian Harp'
+- id: mozart_fantasia_d_minor_k397_adagio
+  composer: Wolfgang Amadeus Mozart
+  piece: Fantasia in D minor, K. 397 — Adagio
+- id: schubert_impromptu_no_2_in_e_flat_major_d_899
+  composer: Franz Schubert
+  piece: Impromptu No. 2 in E-flat major, D. 899
+- id: bach_prelude_c_major_wtc_i_bwv846
+  composer: Johann Sebastian Bach
+  piece: Prelude in C major, BWV 846 (Well-Tempered Clavier I)
+- id: chopin_prelude_op28_no17_aflat_major
+  composer: Frédéric Chopin
+  piece: Prelude Op. 28 No. 17 in A-flat major
+- id: schubert_piano_quintet_trout_ii
+  composer: Franz Schubert
+  piece: Piano Quintet 'The Trout', D. 667 — II. Andante
+- id: mozart_piano_sonata_k330_ii_andante
+  composer: Wolfgang Amadeus Mozart
+  piece: Piano Sonata No. 10 in C major, K. 330 — II. Andante
+tags:
+- sweet dreams baby
+- peaceful sleep music baby
+- classical music for babies
+- baby sleep debussy
+- baby bedtime music
+- toddler sleep classical
+- dreamy classical music
+- baby sleep 3 hours
+- children classical music
+- baby brain development
+- sleep music for children
+- gentle piano baby
+- happy bear kids
+- baby classical music
+- infant sleep music
+- newborn sleep music

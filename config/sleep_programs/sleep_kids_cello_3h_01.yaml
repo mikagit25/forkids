@@ -1,0 +1,52 @@
+id: sleep_kids_cello_3h_01
+title_en: "Cello & Strings for Babies 🎻 {duration} | Gentle Classical Baby Sleep | Happy Bear Kids"
+video_type: sleep_program
+track: kids_sleep
+made_for_kids: true
+queue: output/queue
+visual_theme: kenburns
+durations_hours:
+- 3
+max_repeat: 4.0
+tracks:
+- id: bach_cello_suite_no_1_prelude_in_g_bwv_1007
+  composer: Johann Sebastian Bach
+  piece: Cello Suite No. 1 — Prelude in G, BWV 1007
+- id: bach_double_violin_concerto_bwv1043_ii
+  composer: Johann Sebastian Bach
+  piece: Concerto for 2 Violins, BWV 1043 — II. Largo ma non tanto
+- id: schubert_string_quintet_in_c_major_d_956_ii_adagio
+  composer: Franz Schubert
+  piece: String Quintet in C major, D. 956 — II. Adagio
+- id: rachmaninoff_piano_concerto_2_ii_adagio
+  composer: Sergei Rachmaninoff
+  piece: Piano Concerto No. 2 in C minor, Op. 18 — II. Adagio sostenuto
+- id: handel_violin_sonata_f_major_largo
+  composer: George Frideric Handel
+  piece: Violin Sonata in F major, HWV 370 — III. Largo
+- id: schubert_fantasie_c_major_d934
+  composer: Franz Schubert
+  piece: Fantasie in C major, D. 934
+- id: bach_violin_partita_1_bwv1002_sarabande
+  composer: Johann Sebastian Bach
+  piece: Violin Partita No. 1, BWV 1002 — V. Sarabande
+- id: debussy_arabesque_no_1_string_quartet_arr
+  composer: Claude Debussy
+  piece: Arabesque No. 1 (string quartet arr.)
+tags:
+- cello music for babies
+- violin music babies
+- classical music for babies
+- baby sleep strings
+- baby bedtime music
+- toddler sleep classical
+- bach for babies
+- baby sleep 3 hours
+- children classical music
+- baby brain development
+- sleep music for children
+- cello lullaby
+- happy bear kids
+- baby classical music
+- strings for infants
+- gentle violin baby

@@ -1,0 +1,45 @@
+id: en_song_sharing
+title_en: "Sharing is Caring 🤝 | Kindness Song | Happy Bear Kids"
+video_type: kids_song
+track: kids_song
+made_for_kids: true
+queue: output/queue
+ai_generated: true
+language: en
+
+suno:
+  style: "children's warm pop, acoustic guitar, glockenspiel, kind, gentle, 78 BPM, values, friendship, toddler, heartfelt chorus, simple words"
+  bpm: 78
+  key: F major
+
+lyrics: |
+  [Verse 1]
+  I have a cookie, you have none
+  Let me break it, give you one
+  Sharing makes my heart feel bright
+  Giving half is always right!
+
+  [Chorus]
+  Sharing is caring
+  Caring is love
+  Give a little more
+  Push and shove? No no no!
+  Share your toys, share your smile
+  Makes the world worthwhile!
+
+  [Verse 2]
+  You have crayons, I have some too
+  Let's draw a picture me and you
+  Taking turns and being kind
+  Sharing's the best gift you'll find!
+
+  [Chorus]
+  Sharing is caring
+  Caring is love
+  Give a little more
+  Push and shove? No no no!
+  Share your toys, share your smile
+  Makes the world worthwhile!
+
+  [Outro]
+  Share today... and every day!

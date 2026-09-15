@@ -1,0 +1,43 @@
+id: focus_beethoven_concertos_01
+title: Beethoven Piano Concertos 🎹 {dur} | Classical Music for Focus • No Ads | Calm Classics
+video_type: focus_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: rain_window
+loop_duration_sec: 240
+durations_hours:
+- 1
+shuffle: false
+tracks:
+- id: beethoven_piano_concerto_4_i
+  composer: Ludwig van Beethoven
+  piece: Piano Concerto No. 4 in G major, Op. 58 — I. Allegro moderato
+  duration_sec: 1027
+  mood: gentle_entry
+- id: beethoven_piano_concerto_3_i
+  composer: Ludwig van Beethoven
+  piece: Piano Concerto No. 3 in C minor, Op. 37 — I.
+  duration_sec: 1039
+  mood: intense
+- id: beethoven_piano_concerto_1_i
+  composer: Ludwig van Beethoven
+  piece: Piano Concerto No. 1 in C major, Op. 15 — I. Allegro con brio
+  duration_sec: 1100
+  mood: triumphant
+tags:
+- beethoven
+- piano concerto
+- classical music for focus
+- study music
+- beethoven piano
+- concentration music
+- calm classics
+- work from home music
+- instrumental
+- no ads
+- classical no ads
+max_repeat: 4.0
+
+disabled: true
+disabled_reason: "Contains unverified tracks from Google Drive batch. Verify before re-enabling."

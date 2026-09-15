@@ -1,0 +1,42 @@
+id: ar_lullaby_forest
+title_en: "Forest Lullaby 🌲 | تهويدة الغابة | Happy Bear Kids"
+title_ar: "تهويدة الغابة 🌲 | هابي بير كيدز"
+video_type: kids_song
+track: kids_song
+made_for_kids: true
+queue: output/queue_ar
+ai_generated: true
+language: ar
+
+suno:
+  style: "Arabic lullaby, nay flute, forest birds ambience, slow, 58 BPM, peaceful, bedtime, gentle, nature sounds, toddler sleep, soft"
+  bpm: 58
+  key: G major
+
+lyrics: |
+  [Verse 1]
+  الغابة هادية والأشجار تهمس
+  العصافير نامت والقمر يلمس
+  الأرنب الصغير في بيته نايم
+  والدب الحلو بحضن أمه حايم
+
+  [Chorus]
+  نم في الغابة
+  يا طفلي الحلو
+  الأشجار تحرسك
+  والقمر يضو
+
+  [Verse 2]
+  جرجر الجداول على الحجارة
+  والنسيم يهدهد بكل لطارة
+  زهور الليل تفوح بعطرها
+  والغابة تغني لك بسرّها
+
+  [Chorus]
+  نم في الغابة
+  يا طفلي الحلو
+  الأشجار تحرسك
+  والقمر يضو
+
+  [Outro]
+  نم يا طفلي... في أمان الغابة...

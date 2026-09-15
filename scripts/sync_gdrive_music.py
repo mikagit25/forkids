@@ -54,9 +54,13 @@ def list_drive_files() -> list[dict]:
         sys.exit("Не удалось распарсить JSON от gdown")
 
 def main():
+    global GDRIVE_FOLDER
     parser = argparse.ArgumentParser()
     parser.add_argument("--download", action="store_true", help="Скачать новые файлы")
+    parser.add_argument("--folder", default=GDRIVE_FOLDER, help="Google Drive folder URL")
     args = parser.parse_args()
+
+    GDRIVE_FOLDER = args.folder
 
     all_files = list_drive_files()
     mp3s = [f for f in all_files if f["path"].endswith(".mp3")]

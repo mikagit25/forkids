@@ -18,6 +18,8 @@ from datetime import datetime
 from pathlib import Path
 
 ROOT      = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from disk_guard import check_disk_space
 REMOTION  = ROOT / "remotion"
 QUEUE_EN  = ROOT / "output" / "queue"
 QUEUE_AR  = ROOT / "output" / "queue_ar"
@@ -434,6 +436,7 @@ def process(ptype: str, lang: str, dry_run: bool, force: bool):
 
 
 def main():
+    check_disk_space()
     ap = argparse.ArgumentParser()
     ap.add_argument("--type",   choices=["upbeat", "lullaby"], help="Compilation type")
     ap.add_argument("--lang",   default="en", choices=["en", "ar", "both"])

@@ -1,0 +1,55 @@
+id: sleep_kids_mozart_3h_01
+title_en: "Mozart for Babies 🎵 {duration} | Classical Baby Sleep Music | Happy Bear Kids"
+video_type: sleep_program
+track: kids_sleep
+made_for_kids: true
+queue: output/queue
+visual_theme: kenburns
+durations_hours:
+- 3
+max_repeat: 4.0
+tracks:
+- id: mozart_adagio_c_major_k356_guitar
+  composer: Wolfgang Amadeus Mozart
+  piece: Adagio in C major, K. 356
+- id: mozart_piano_sonata_k330_ii_andante
+  composer: Wolfgang Amadeus Mozart
+  piece: Piano Sonata No. 10 in C major, K. 330 — II. Andante
+- id: mozart_serenade_g_major_romance
+  composer: Wolfgang Amadeus Mozart
+  piece: Serenade in G major — I. Romance
+- id: mozart_piano_sonata_k333_ii_andante
+  composer: Wolfgang Amadeus Mozart
+  piece: Piano Sonata No. 13 in B-flat major, K. 333 — II. Andante
+- id: mozart_fantasia_d_minor_k397_adagio
+  composer: Wolfgang Amadeus Mozart
+  piece: Fantasia in D minor, K. 397 — Adagio
+- id: bach_double_violin_concerto_bwv1043_ii
+  composer: Johann Sebastian Bach
+  piece: Concerto for 2 Violins, BWV 1043 — II. Largo ma non tanto
+- id: schubert_piano_quintet_trout_ii
+  composer: Franz Schubert
+  piece: Piano Quintet 'The Trout', D. 667 — II. Andante
+- id: handel_violin_sonata_f_major_largo
+  composer: George Frideric Handel
+  piece: Violin Sonata in F major, HWV 370 — III. Largo
+- id: mozart_piano_sonata_k333_complete
+  composer: Wolfgang Amadeus Mozart
+  piece: Piano Sonata No. 13 in B-flat major, K. 333
+tags:
+- mozart for babies
+- classical music for babies
+- baby sleep mozart
+- baby bedtime music
+- toddler sleep classical
+- classical lullaby
+- baby sleep 3 hours
+- children classical music
+- baby brain development
+- mozart baby brain
+- sleep music for children
+- gentle piano baby
+- happy bear kids
+- baby classical music
+- infant sleep music
+- newborn sleep music

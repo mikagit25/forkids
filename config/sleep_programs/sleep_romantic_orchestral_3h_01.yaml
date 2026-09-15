@@ -1,0 +1,64 @@
+id: sleep_romantic_orchestral_3h_01
+title: Romantic Orchestral Night 🌙 {dur} | Tchaikovsky · Rachmaninoff · Borodin | Classical Sleep • No Ads | Calm Classics
+video_type: sleep_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: moon_clouds
+loop_duration_sec: 240
+durations_hours:
+- 3
+shuffle: true
+tracks:
+- id: tchaikovsky_swan_lake_act4_intro_v2
+  composer: Pyotr Ilyich Tchaikovsky
+  piece: Swan Lake, Op. 20 — Act IV Intro
+  duration_sec: 1261
+  mood: ethereal_entry
+- id: tchaikovsky_swan_lake_act1_intro_v2
+  composer: Pyotr Ilyich Tchaikovsky
+  piece: Swan Lake, Op. 20 — Act I Intro
+  duration_sec: 1130
+  mood: graceful
+- id: rachmaninoff_piano_concerto_no2_ii_adagio
+  composer: Sergei Rachmaninoff
+  piece: Piano Concerto No. 2 in C minor, Op. 18 — II. Adagio sostenuto
+  duration_sec: 398
+  mood: introspective
+- id: rachmaninoff_pc2_iii_allegro_scherzando
+  composer: Sergei Rachmaninoff
+  piece: Piano Concerto No. 2 in C minor, Op. 18 — III. Allegro scherzando
+  duration_sec: 1152
+  mood: passionate
+- id: borodin_polovetsian_dances
+  composer: Alexander Borodin
+  piece: Prince Igor — Polovetsian Dances
+  duration_sec: 936
+  mood: exotic
+- id: tchaikovsky_1812_overture
+  composer: Pyotr Ilyich Tchaikovsky
+  piece: 1812 Overture, Op. 49
+  duration_sec: 999
+  mood: triumphant
+- id: franck_violin_sonata_a_major
+  composer: "César Franck"
+  piece: Violin Sonata in A major — Complete
+  duration_sec: 1549
+  mood: lyrical
+tags:
+- tchaikovsky
+- swan lake
+- rachmaninoff
+- borodin
+- 1812 overture
+- franck violin sonata
+- 3 hour classical
+- romantic classical
+- sleep music
+- calm classics
+- no ads
+- classical for sleep
+max_repeat: 1.3
+
+disabled: true
+disabled_reason: "Contains unverified tracks from Google Drive batch. Verify before re-enabling."

@@ -1,0 +1,49 @@
+id: sleep_kids_piano_3h_01
+title_en: "Gentle Piano for Children's Sleep 🎹 {duration} | Bach & Mozart | Happy Bear Kids"
+video_type: sleep_program
+track: kids_sleep
+made_for_kids: true
+queue: output/queue
+visual_theme: kenburns
+durations_hours:
+- 3
+max_repeat: 4.0
+tracks:
+- id: bach_wtc_prelude_fugue_24_b_minor
+  composer: Johann Sebastian Bach
+  piece: Well-Tempered Clavier — Prelude and Fugue No. 24 in B minor
+- id: schubert_piano_sonata_d960_i
+  composer: Franz Schubert
+  piece: Piano Sonata No. 21 in B-flat major, D. 960 — I. Molto moderato
+- id: debussy_arabesque_no_1_andantino_con_moto
+  composer: Claude Debussy
+  piece: Arabesque No. 1
+- id: mozart_mozart_serenade_in_g_major_i_romance
+  composer: Wolfgang Amadeus Mozart
+  piece: Serenade in G major — I. Romance
+- id: chopin_prelude_op_28_no_15_in_d_flat_major_raindrop
+  composer: Frédéric Chopin
+  piece: Prelude Op. 28 No. 15 'Raindrop'
+- id: mozart_adagio_c_major_k356_guitar
+  composer: Wolfgang Amadeus Mozart
+  piece: Adagio in C major, K. 356
+tags:
+- baby sleep music
+- piano music for babies
+- bach for babies
+- mozart for babies
+- baby bedtime
+- toddler sleep music
+- piano lullaby
+- baby sleep 3 hours
+- children classical music
+- baby brain development
+- classical piano for kids
+- sleep music for children
+- gentle piano baby
+- happy bear kids
+- schubert piano for children
+- debussy for babies
+
+disabled: true
+disabled_reason: "Contains unverified tracks from Google Drive batch. Verify before re-enabling."

@@ -1,0 +1,59 @@
+id: sleep_kids_lullaby_3h_01
+title_en: "Classical Lullabies for Babies 🌙 {duration} | Baby Bedtime Music | Happy Bear Kids"
+video_type: sleep_program
+track: kids_sleep
+made_for_kids: true
+queue: output/queue
+visual_theme: kenburns
+durations_hours:
+- 3
+max_repeat: 4.0
+tracks:
+- id: chopin_berceuse_in_d_flat_major_op_57
+  composer: Frédéric Chopin
+  piece: Berceuse in D-flat major, Op. 57
+- id: chopin_nocturne_in_b_flat_minor_op_9_no_1
+  composer: Frédéric Chopin
+  piece: Nocturne in B-flat minor, Op. 9 No. 1
+- id: mozart_adagio_c_major_k356_guitar
+  composer: Wolfgang Amadeus Mozart
+  piece: Adagio in C major, K. 356
+- id: schubert_six_musical_moments_d_780_ii
+  composer: Franz Schubert
+  piece: Six Musical Moments, D. 780 — II. Andantino
+- id: bach_cello_suite_no_1_prelude_in_g_bwv_1007
+  composer: Johann Sebastian Bach
+  piece: Cello Suite No. 1 — Prelude in G, BWV 1007
+- id: chopin_prelude_op_28_no_15_in_d_flat_major_raindrop
+  composer: Frédéric Chopin
+  piece: Prelude Op. 28 No. 15 'Raindrop'
+- id: schubert_impromptu_no_3_in_g_flat_major_d_899
+  composer: Franz Schubert
+  piece: Impromptu No. 3 in G-flat major, D. 899
+- id: chopin_waltz_aflat_farewell_op69_no1
+  composer: Frédéric Chopin
+  piece: Waltz in A-flat major 'Farewell', Op. 69 No. 1
+- id: handel_violin_sonata_f_major_largo
+  composer: George Frideric Handel
+  piece: Violin Sonata in F major, HWV 370 — III. Largo
+- id: debussy_arabesque_no_1_andantino_con_moto
+  composer: Claude Debussy
+  piece: Arabesque No. 1
+tags:
+- classical lullabies
+- lullaby for babies
+- chopin lullaby
+- baby bedtime music
+- classical music for babies
+- baby sleep music
+- berceuse chopin
+- toddler sleep classical
+- baby sleep 3 hours
+- children classical music
+- baby brain development
+- sleep music for children
+- lullaby classical piano
+- happy bear kids
+- baby classical music
+- infant lullaby
+- newborn lullaby

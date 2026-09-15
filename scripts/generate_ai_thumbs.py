@@ -36,6 +36,11 @@ UPLOADED  = ROOT / "uploaded"
 KEY_FILE        = ROOT / "credentials" / "gemini_api_key.txt"
 TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
 
+_FONT_BOLD   = "/usr/share/fonts/truetype/custom/BebasNeue-Regular.ttf"
+_FONT_MEDIUM = "/usr/share/fonts/truetype/custom/Montserrat-Bold.ttf"
+_FONT_LIGHT  = "/usr/share/fonts/truetype/custom/Montserrat-Regular.ttf"
+_FONT_FALLBACK = "/usr/share/fonts/truetype/noto/NotoSerifDisplay-Regular.ttf"
+
 # Gemini (free 1500/day when billing enabled on account)
 GEMINI_IMAGE_MODEL = "gemini-2.0-flash-preview-image-generation"
 GEMINI_API_BASE    = "https://generativelanguage.googleapis.com/v1beta/models"
@@ -74,6 +79,13 @@ STYLE_AR_NOTXT = (
     "no watermarks, no logos, no brand names, no copyright symbols"
 )
 
+# Calm Classics / CNR: photorealistic adult style — NO cartoon, NO kids content
+STYLE_CNR = (
+    "photorealistic photography, cinematic 8K, dramatic lighting, "
+    "moody atmospheric, adult classical music channel, "
+    "16:9 format 1280x720, no text, no watermarks, no logos"
+)
+
 # ID channel: Indonesian uses Latin script → text allowed, same style as EN
 # (STYLE_EN is reused for Indonesian)
 
@@ -92,6 +104,125 @@ _NUM_OBJECTS = {
 }
 
 
+_CNR_COMPOSER_MAP = {
+    "beethoven": "BEETHOVEN", "bach": "BACH", "chopin": "CHOPIN",
+    "mozart": "MOZART", "schubert": "SCHUBERT", "brahms": "BRAHMS",
+    "debussy": "DEBUSSY", "tchaikovsky": "TCHAIKOVSKY",
+    "wagner": "WAGNER", "vivaldi": "VIVALDI", "handel": "HANDEL",
+    "schumann": "SCHUMANN", "liszt": "LISZT", "verdi": "VERDI",
+    "franck": "FRANCK", "albinoni": "ALBINONI", "satie": "SATIE",
+    "ravel": "RAVEL", "saint": "SAINT-SAËNS",
+}
+
+_CNR_TYPE_MAP = {
+    "sleep_program": "♪ Sleep Music ♪",
+    "sleep_short":   "♪ Sleep Music ♪",
+    "focus_program": "♪ Focus Music ♪",
+    "visual_theme":  "♪ Ambient Music ♪",
+    "nature_calm":   "♪ Ambient Music ♪",
+}
+
+
+def _extract_cnr_labels(stem: str, meta: dict) -> tuple[str, str, str]:
+    """Return (composer_label, music_type, duration_badge) for CNR overlay."""
+    # Prefer stem (filename) for composer — title may list multiple composers
+    composer = "CLASSICAL"
+    for key, label in _CNR_COMPOSER_MAP.items():
+        if key in stem.lower():
+            composer = label
+            break
+    if composer == "CLASSICAL":
+        title_lower = meta.get("title", "").lower()
+        for key, label in _CNR_COMPOSER_MAP.items():
+            if key in title_lower:
+                composer = label
+                break
+
+    vtype = meta.get("video_type", "")
+    music_type = _CNR_TYPE_MAP.get(vtype, "♪ Classical Music ♪")
+
+    dur = meta.get("duration_hours", "")
+    if dur:
+        try:
+            badge = f"{int(float(dur))}H"
+        except (ValueError, TypeError):
+            badge = str(dur).upper()
+    else:
+        badge = ""
+
+    return composer, music_type, badge
+
+
+def _apply_cnr_overlay(img_bytes: bytes, stem: str, meta: dict) -> bytes:
+    """Add text overlay (composer, type, duration badge) to a CNR thumbnail."""
+    from PIL import Image, ImageDraw, ImageFont
+    import io
+
+    composer, music_type, badge = _extract_cnr_labels(stem, meta)
+
+    def load_font(path: str, size: int):
+        try:
+            return ImageFont.truetype(path, size)
+        except Exception:
+            return ImageFont.truetype(_FONT_FALLBACK, size)
+
+    img = Image.open(io.BytesIO(img_bytes)).convert("RGB").resize((1280, 720), Image.LANCZOS)
+    draw = ImageDraw.Draw(img)
+    W, H = img.size
+
+    font_composer = load_font(_FONT_BOLD, 110)
+    font_type     = load_font(_FONT_MEDIUM, 46)
+    font_channel  = load_font(_FONT_LIGHT, 30)
+    font_badge    = load_font(_FONT_BOLD, 44)
+
+    # Bottom gradient
+    grad_h = 220
+    gradient = Image.new("RGBA", (W, grad_h))
+    for y in range(grad_h):
+        alpha = int(210 * (y / grad_h) ** 0.6)
+        for x in range(W):
+            gradient.putpixel((x, y), (0, 0, 0, alpha))
+    img.paste(Image.new("RGB", (W, grad_h), (0, 0, 0)), (0, H - grad_h), gradient)
+
+    # Top shadow (for badge area)
+    top_grad = Image.new("RGBA", (W, 90))
+    for y in range(90):
+        alpha = int(160 * (1 - y / 90))
+        for x in range(W):
+            top_grad.putpixel((x, y), (0, 0, 0, alpha))
+    img.paste(Image.new("RGB", (W, 90), (0, 0, 0)), (0, 0), top_grad)
+
+    def draw_shadow(text, font, x, y, fill=(255, 255, 255), offset=3, anchor="mm"):
+        draw.text((x + offset, y + offset), text, font=font, fill=(0, 0, 0, 180), anchor=anchor)
+        draw.text((x, y), text, font=font, fill=fill, anchor=anchor)
+
+    # Duration badge top-right (gold for hour badges)
+    if badge:
+        badge_color = (180, 140, 20)
+        bx, by = W - 24, 18
+        bbox = draw.textbbox((bx, by), badge, font=font_badge, anchor="ra")
+        pad = 12
+        draw.rounded_rectangle([bbox[0]-pad, bbox[1]-6, bbox[2]+pad, bbox[3]+6],
+                                radius=8, fill=badge_color)
+        draw.text((bx, by + (bbox[3]-bbox[1])//2 + 6), badge,
+                  font=font_badge, fill="white", anchor="rm")
+
+    # Composer name large
+    cy = H - 160
+    draw_shadow(composer, font_composer, W // 2, cy, fill=(255, 255, 255), offset=4)
+
+    # Music type subtitle
+    draw_shadow(music_type, font_type, W // 2, cy + 72, fill=(200, 200, 200), offset=2)
+
+    # Channel name bottom
+    draw.text((W // 2, H - 22), "Classical Night Relax",
+              font=font_channel, fill=(160, 160, 160), anchor="ms")
+
+    buf = io.BytesIO()
+    img.save(buf, "PNG", optimize=True)
+    return buf.getvalue()
+
+
 def make_prompt(stem: str, meta: dict, is_ar: bool = False) -> str:
     """Build an English image generation prompt from video metadata.
 
@@ -105,6 +236,11 @@ def make_prompt(stem: str, meta: dict, is_ar: bool = False) -> str:
     # Normalise stem: strip lang suffix and date
     name = re.sub(r'_(en|ar|id)$', '', re.sub(r'_\d{8}.*$', '', stem))
     name = re.sub(r'^(ar|id)_', '', name)
+
+    # CNR natural/sleep/focus: treat as sleep_program if vtype missing but filename is CNR pattern
+    # These come from generate_sleep_classical.py and always have moon_clouds theme
+    if not vtype and re.search(r'_(natural|sleep_|focus_)', stem):
+        vtype = meta.get("video_type", "sleep_program")
 
     # Infer theme from meta, fallback to filename
     if meta.get("theme"):
@@ -130,20 +266,20 @@ def make_prompt(stem: str, meta: dict, is_ar: bool = False) -> str:
     # ── Calm Classics: sleep_program / focus_program / visual_theme ──────────
     if vtype in ("sleep_program", "focus_program", "visual_theme", "sleep_short"):
         _CC_THEME_PROMPTS = {
-            "moon_clouds":  "peaceful moonlit night sky with soft drifting clouds, full moon glow, "
-                            "classical music sleep relaxation, dark blue cinematic, no text",
-            "night_bear":   "sleeping bear silhouette under moonlit night sky with fireflies, "
-                            "classical lullaby, peaceful dark forest, cozy, no text",
-            "warm_waves":   "calm ocean waves at dusk with warm amber golden sunset, "
-                            "classical music relaxation, cinematic peaceful, no text",
-            "rain_window":  "cozy rainy window with warm candlelight inside glowing, "
-                            "classical music study focus atmosphere, no text",
+            "moon_clouds":  "real photograph of moonlit mountain landscape, full moon over misty valley, "
+                            "stars in sky, dark blue hour, long exposure photography, serene",
+            "night_bear":   "real photograph of misty dark forest at night, moonlight through trees, "
+                            "fireflies, deep forest silence, long exposure nature photography",
+            "warm_waves":   "real photograph of ocean waves at golden hour sunset, warm amber tones, "
+                            "dramatic sky, reflection on water, seascape photography",
+            "rain_window":  "real photograph of rainy window with glowing candle on sill, "
+                            "bokeh rain droplets, warm interior light, moody evening atmosphere",
         }
         cc_theme = meta.get("theme", "moon_clouds")
         base_prompt = _CC_THEME_PROMPTS.get(cc_theme, _CC_THEME_PROMPTS["moon_clouds"])
         dur_label = meta.get("duration_hours", "")
         dur_str = f", {dur_label} hour" if dur_label else ""
-        return f"{base_prompt}, {meta.get('title', 'classical music')[:40]}{dur_str}, professional YouTube thumbnail{style}"
+        return f"{base_prompt}, {dur_str}, {STYLE_CNR}"
 
     # ── numbers / counting ────────────────────────────────────────────────────
     if "counting" in vtype or "counting" in name or vtype == "numbers" or "number_learn" in name:
@@ -705,7 +841,10 @@ def gemini_generate_image(prompt: str, key: str,
                         return base64.b64decode(p["inlineData"]["data"])
         except urllib.error.HTTPError as e:
             body = e.read().decode()
-            err  = json.loads(body).get("error", {})
+            try:
+                err = json.loads(body).get("error", {}) if body.strip() else {}
+            except json.JSONDecodeError:
+                err = {}
             code = err.get("code", e.code)
             msg  = err.get("message", "")
 
@@ -752,7 +891,7 @@ def is_short(name: str) -> bool:
 
 def process_queue(queue_dir: Path, key: str, force: bool,
                   dry_run: bool, label: str, backend: str = "gemini",
-                  long_only: bool = True):
+                  long_only: bool = True, is_cnr: bool = False):
     mp4s = sorted([
         p for p in queue_dir.glob("*.mp4")
         if "test_" not in p.name and p.exists() and not p.is_symlink()
@@ -796,6 +935,13 @@ def process_queue(queue_dir: Path, key: str, force: bool,
         if img_bytes:
             try:
                 final = resize_to_720p(img_bytes)
+                if is_cnr:
+                    try:
+                        final = _apply_cnr_overlay(final, mp4.stem, meta)
+                        composer, music_type, badge = _extract_cnr_labels(mp4.stem, meta)
+                        print(f"    overlay: {composer} / {music_type} / {badge or '—'}")
+                    except Exception as oe:
+                        print(f"    overlay skipped: {oe}")
                 thumb_path.write_bytes(final)
                 print(f"    ✓ saved {len(final)//1024}KB")
                 ok += 1
@@ -823,6 +969,44 @@ def process_queue(queue_dir: Path, key: str, force: bool,
           f"{err} errors, {api_fail} API failures")
 
 
+def apply_cnr_overlay_queue(queue_dir: Path, dry_run: bool = False):
+    """Apply CNR text overlay to existing thumbnails in queue_dir (no API calls)."""
+    thumbs = sorted(queue_dir.glob("thumb_*.png"))
+    ok = skip = err = 0
+    for thumb in thumbs:
+        # Derive stem: thumb_STEM.png → STEM
+        stem = thumb.stem[len("thumb_"):]
+        meta_path = queue_dir / f"meta_{stem}.yaml"
+        meta = {}
+        if meta_path.exists():
+            with open(meta_path) as f:
+                meta = yaml.safe_load(f) or {}
+
+        vtype = meta.get("video_type", "")
+        if vtype not in ("sleep_program", "focus_program", "visual_theme",
+                         "sleep_short", "nature_calm"):
+            skip += 1
+            continue
+
+        composer, music_type, badge = _extract_cnr_labels(stem, meta)
+        print(f"  {thumb.name}  → {composer} / {music_type} / {badge or '—'}")
+
+        if dry_run:
+            ok += 1
+            continue
+
+        try:
+            original = thumb.read_bytes()
+            updated = _apply_cnr_overlay(original, stem, meta)
+            thumb.write_bytes(updated)
+            ok += 1
+        except Exception as e:
+            print(f"    ERROR: {e}")
+            err += 1
+
+    print(f"\nOverlay pass done: {ok} updated, {skip} skipped (non-CNR), {err} errors")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Generate AI thumbnails via Gemini or Together.ai")
@@ -840,7 +1024,14 @@ def main():
                         help="Process shorts (short_* files) instead of long videos")
     parser.add_argument("--all-types", action="store_true",
                         help="Process both long videos AND shorts (default cron mode)")
+    parser.add_argument("--apply-overlay", action="store_true",
+                        help="Apply CNR text overlay to existing queue_id thumbnails (no API calls)")
     args = parser.parse_args()
+
+    if args.apply_overlay:
+        print("Applying CNR text overlay to existing queue_id thumbnails …")
+        apply_cnr_overlay_queue(QUEUE_ID, dry_run=args.dry_run)
+        return
 
     gemini_key   = load_key()
     together_key = load_together_key()
@@ -897,7 +1088,8 @@ def main():
         process_queue(QUEUE_AR, key, args.force, args.dry_run, "AR", backend, long_only=long_only)
 
     if args.queue in ("id", "all"):
-        process_queue(QUEUE_ID, key, args.force, args.dry_run, "ID", backend, long_only=long_only)
+        process_queue(QUEUE_ID, key, args.force, args.dry_run, "ID", backend,
+                      long_only=long_only, is_cnr=True)
 
     if args.uploaded:
         process_queue(UPLOADED, key, args.force, args.dry_run, "UPLOADED", backend, long_only=long_only)

@@ -1,0 +1,52 @@
+id: sleep_kids_beethoven_3h_01
+title_en: "Beethoven for Babies 🌙 {duration} | Moonlight Sonata Baby Sleep | Happy Bear Kids"
+video_type: sleep_program
+track: kids_sleep
+made_for_kids: true
+queue: output/queue
+visual_theme: kenburns
+durations_hours:
+- 3
+max_repeat: 4.0
+tracks:
+- id: beethoven_moonlight_sonata_op27_no2
+  composer: Ludwig van Beethoven
+  piece: Piano Sonata No. 14 in C-sharp minor 'Moonlight', Op. 27 No. 2
+- id: schubert_string_quintet_in_c_major_d_956_ii_adagio
+  composer: Franz Schubert
+  piece: String Quintet in C major, D. 956 — II. Adagio
+- id: chopin_nocturne_csharp_minor_b49
+  composer: Frédéric Chopin
+  piece: Nocturne in C-sharp minor, B. 49
+- id: bach_cello_suite_no_1_prelude_in_g_bwv_1007
+  composer: Johann Sebastian Bach
+  piece: Cello Suite No. 1 — Prelude in G, BWV 1007
+- id: schubert_six_musical_moments_d_780_ii
+  composer: Franz Schubert
+  piece: Six Musical Moments, D. 780 — II. Andantino
+- id: mozart_adagio_c_major_k356_guitar
+  composer: Wolfgang Amadeus Mozart
+  piece: Adagio in C major, K. 356
+- id: beethoven_moonlight_sonata_op27_no2_ii
+  composer: Ludwig van Beethoven
+  piece: Piano Sonata No. 14 'Moonlight', Op. 27 No. 2
+- id: chopin_waltz_aflat_farewell_op69_no1
+  composer: Frédéric Chopin
+  piece: Waltz in A-flat major 'Farewell', Op. 69 No. 1
+tags:
+- beethoven for babies
+- moonlight sonata baby
+- classical music for babies
+- baby sleep beethoven
+- baby bedtime music
+- toddler sleep classical
+- moonlight sonata sleep
+- baby sleep 3 hours
+- children classical music
+- baby brain development
+- sleep music for children
+- beethoven lullaby
+- happy bear kids
+- baby classical music
+- infant sleep music
+- newborn sleep music

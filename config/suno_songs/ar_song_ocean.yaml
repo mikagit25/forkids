@@ -1,0 +1,42 @@
+id: ar_song_ocean
+title_en: "Ocean Song 🌊 | أغنية البحر | Happy Bear Kids"
+title_ar: "أغنية البحر 🌊 | هابي بير كيدز"
+video_type: kids_song
+track: kids_song
+made_for_kids: true
+queue: output/queue_ar
+ai_generated: true
+language: ar
+
+suno:
+  style: "Arabic children's song, qanun, wave sounds, gentle, wonder, 80 BPM, ocean animals, toddler, dreamy, flowing melody"
+  bpm: 80
+  key: E minor
+
+lyrics: |
+  [Verse 1]
+  البحر الواسع زرقا وجميل
+  الموج يغني بصوت جليل
+  السمك يسبح والدولفين يلعب
+  في عالم البحر كل شي عجب
+
+  [Chorus]
+  بحر بحر
+  يا بحر الأحلام
+  موجاتك حلوة
+  وفيك السلام
+
+  [Verse 2]
+  النجمة البحرية ترقص هناك
+  الأخطبوط يلعب ويفرح معاك
+  الأصداف تغني على الشاطئ الرملي
+  والبحر يناديك تعال معي
+
+  [Chorus]
+  بحر بحر
+  يا بحر الأحلام
+  موجاتك حلوة
+  وفيك السلام
+
+  [Outro]
+  يا بحر الجميل... أحبك!

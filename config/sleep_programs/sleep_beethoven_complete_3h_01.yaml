@@ -1,0 +1,59 @@
+id: sleep_beethoven_complete_3h_01
+title: Beethoven Complete — Symphony 9 & Piano Concertos 🎶 {dur} | Classical Sleep • No Ads | Calm Classics
+video_type: sleep_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: moon_clouds
+loop_duration_sec: 240
+durations_hours:
+- 3
+shuffle: false
+tracks:
+- id: beethoven_symphony9_iii_adagio
+  composer: Ludwig van Beethoven
+  piece: Symphony No. 9 in D minor, Op. 125 — III. Adagio molto e Cantabile
+  duration_sec: 974
+  mood: peaceful_entry
+- id: beethoven_symphony9_iv_final
+  composer: Ludwig van Beethoven
+  piece: Symphony No. 9 in D minor, Op. 125 — IV. Final
+  duration_sec: 1391
+  mood: majestic
+- id: beethoven_piano_concerto_4_i
+  composer: Ludwig van Beethoven
+  piece: Piano Concerto No. 4 in G major, Op. 58 — I. Allegro moderato
+  duration_sec: 1027
+  mood: lyrical
+- id: beethoven_piano_concerto_3_i
+  composer: Ludwig van Beethoven
+  piece: Piano Concerto No. 3 in C minor, Op. 37 — I.
+  duration_sec: 1039
+  mood: intense
+- id: beethoven_piano_concerto_1_i
+  composer: Ludwig van Beethoven
+  piece: Piano Concerto No. 1 in C major, Op. 15 — I. Allegro con brio
+  duration_sec: 1100
+  mood: triumphant
+- id: beethoven_violin_concerto_op61_i_v3
+  composer: Ludwig van Beethoven
+  piece: Violin Concerto in D major, Op. 61 — I. Allegro ma non troppo (v3)
+  duration_sec: 1324
+  mood: noble
+tags:
+- beethoven
+- symphony no 9
+- ode to joy
+- piano concerto
+- violin concerto
+- beethoven complete
+- 3 hour classical
+- classical music for sleep
+- calm classics
+- no ads
+- relaxing beethoven
+- instrumental sleep
+max_repeat: 1.2
+
+disabled: true
+disabled_reason: "All tracks use unverified Google Drive recordings (license: unverified). Must re-verify or replace tracks before use."

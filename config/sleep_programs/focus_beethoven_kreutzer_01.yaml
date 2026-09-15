@@ -1,0 +1,36 @@
+id: focus_beethoven_kreutzer_01
+title_en: Beethoven Kreutzer Sonata 🎻 {duration} | Violin & Piano | Focus & Study
+video_type: focus_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: rain_window
+loop_duration_sec: 240
+durations_hours:
+- 1
+shuffle: false
+tracks:
+- id: beethoven_violin_sonata_no9_kreutzer_op47
+  composer: Ludwig van Beethoven
+  piece: "Violin Sonata No. 9 in A major, Op. 47 'Kreutzer' — Complete"
+  duration_sec: 2093
+  mood: passionate
+tags:
+- beethoven kreutzer sonata
+- beethoven violin sonata
+- kreutzer sonata
+- violin and piano
+- beethoven focus music
+- classical study music
+- beethoven op 47
+- deep focus music
+- classical violin
+- beethoven piano
+- study music classical
+- focus music violin
+- calm classics
+- classical night relax
+- beethoven
+max_repeat: 2.0
+pad_from:
+- focus_drama_01

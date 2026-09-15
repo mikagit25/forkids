@@ -1,0 +1,45 @@
+id: en_song_movement
+title_en: "Move Your Body 🕺 | Dance & Exercise Song | Happy Bear Kids"
+video_type: kids_song
+track: kids_song
+made_for_kids: true
+queue: output/queue
+ai_generated: true
+language: en
+
+suno:
+  style: "children's energetic dance pop, hand claps, stomps, xylophone, 100 BPM, exercise, movement, toddler, call and response, high energy, fun"
+  bpm: 100
+  key: G major
+
+lyrics: |
+  [Verse 1]
+  Wiggle your fingers, wiggle them high
+  Stretch your arms up to the sky
+  Stomp your feet upon the floor
+  One two three and stomp some more!
+
+  [Chorus]
+  Move your body, move move move
+  Find your happy dancing groove
+  Jump and spin and touch your toes
+  That's the way the movement goes!
+
+  [Verse 2]
+  Shake your hips from side to side
+  Open your arms nice and wide
+  Hop like a bunny, fly like a bird
+  Move your body, every part!
+
+  [Chorus]
+  Move your body, move move move
+  Find your happy dancing groove
+  Jump and spin and touch your toes
+  That's the way the movement goes!
+
+  [Bridge]
+  Fast fast fast! Now slow slow slow...
+  High high high! Now low low low!
+
+  [Outro]
+  Move your body... every day!

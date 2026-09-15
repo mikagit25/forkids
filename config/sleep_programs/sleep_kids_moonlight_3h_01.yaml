@@ -1,0 +1,63 @@
+id: sleep_kids_moonlight_3h_01
+title_en: "Classical Music for Baby Sleep 🌙 {duration} | Chopin & Schubert | Happy Bear Kids"
+video_type: sleep_program
+track: kids_sleep
+made_for_kids: true
+queue: output/queue
+visual_theme: kenburns
+durations_hours:
+- 3
+max_repeat: 3.0
+tracks:
+- id: chopin_nocturne_in_e_flat_major_op_9_no_2
+  composer: Frédéric Chopin
+  piece: Nocturne in E-flat major, Op. 9 No. 2
+- id: chopin_nocturne_in_b_flat_minor_op_9_no_1
+  composer: Frédéric Chopin
+  piece: Nocturne in B-flat minor, Op. 9 No. 1
+- id: schubert_impromptu_no_3_in_g_flat_major_d_899
+  composer: Franz Schubert
+  piece: Impromptu No. 3 in G-flat major, D. 899
+- id: chopin_berceuse_in_d_flat_major_op_57
+  composer: Frédéric Chopin
+  piece: Berceuse in D-flat major, Op. 57
+- id: debussy_arabesque_no_1_andantino_con_moto
+  composer: Claude Debussy
+  piece: Arabesque No. 1
+- id: schubert_impromptu_no_4_in_a_flat_major_d_899
+  composer: Franz Schubert
+  piece: Impromptu No. 4 in A-flat major, D. 899
+- id: chopin_nocturne_b_major_op9_no3
+  composer: Frédéric Chopin
+  piece: Nocturne in B major, Op. 9 No. 3
+- id: chopin_prelude_op_28_no_15_in_d_flat_major_raindrop
+  composer: Frédéric Chopin
+  piece: Prelude Op. 28 No. 15 'Raindrop'
+- id: schubert_six_musical_moments_d_780_ii_andantino_in_a_f
+  composer: Franz Schubert
+  piece: Six Musical Moments, D. 780 — II. Andantino
+- id: chopin_nocturne_csharp_minor_b49
+  composer: Frédéric Chopin
+  piece: Nocturne in C-sharp minor, B. 49
+- id: mozart_adagio_c_major_k356_guitar
+  composer: Wolfgang Amadeus Mozart
+  piece: Adagio in C major, K. 356
+- id: bach_cello_suite_no_1_prelude_in_g_bwv_1007
+  composer: Johann Sebastian Bach
+  piece: Cello Suite No. 1 — Prelude in G, BWV 1007
+tags:
+- baby sleep music
+- classical music for babies
+- chopin for babies
+- schubert for babies
+- baby bedtime
+- toddler sleep music
+- classical lullaby
+- baby sleep 3 hours
+- children classical music
+- baby brain development
+- classical music for kids
+- sleep music for children
+- debussy for babies
+- lullaby classical
+- happy bear kids

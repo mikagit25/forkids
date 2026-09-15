@@ -1,0 +1,41 @@
+id: en_lullaby_winter
+title_en: "Winter Lullaby ❄️ | Goodnight Snowflakes | Happy Bear Kids"
+video_type: kids_song
+track: kids_song
+made_for_kids: true
+queue: output/queue
+ai_generated: true
+language: en
+
+suno:
+  style: "children's lullaby, soft piano, sleigh bells, winter wonder, slow dreamy, 58 BPM, bedtime, snow, cozy, toddler sleep, gentle female voice, tender"
+  bpm: 58
+  key: D major
+
+lyrics: |
+  [Verse 1]
+  Snowflakes falling soft and slow
+  Cover everything in white below
+  The world is quiet, still and deep
+  It's time for little ones to sleep
+
+  [Chorus]
+  Sleep, sleep, little one
+  The winter moon is bright
+  Stars are twinkling one by one
+  Goodnight, goodnight, goodnight
+
+  [Verse 2]
+  Cozy blankets warm and snug
+  Mama gives a gentle hug
+  Teddy bear is by your side
+  Dream of snowflakes floating wide
+
+  [Chorus]
+  Sleep, sleep, little one
+  The winter moon is bright
+  Stars are twinkling one by one
+  Goodnight, goodnight, goodnight
+
+  [Outro]
+  Goodnight snowflakes... sleep tight...

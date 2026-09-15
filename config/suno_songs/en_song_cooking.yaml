@@ -1,0 +1,49 @@
+id: en_song_cooking
+title_en: "Cooking Song 🍳 | Let's Cook Together! | Happy Bear Kids"
+video_type: kids_song
+track: kids_song
+made_for_kids: true
+queue: output/queue
+ai_generated: true
+language: en
+
+suno:
+  style: "children's upbeat pop, ukulele, xylophone, kitchen sounds, cheerful, 92 BPM, cooking fun, toddler, call and response, clapping"
+  bpm: 92
+  key: C major
+
+lyrics: |
+  [Verse 1]
+  Let's wash our hands and put on our apron
+  We're gonna cook something yummy today
+  Crack the egg and stir the batter
+  Mix it up the Happy Bear way!
+
+  [Chorus]
+  Cook cook cook
+  Let's cook together
+  Stir it round and round
+  Whatever the weather
+  Cook cook cook
+  It smells so good
+  Yummy yummy food
+  Just like we should!
+
+  [Verse 2]
+  Chop the veggies red and green
+  Tastiest lunch you've ever seen
+  Put it in the pot and watch it bubble
+  Cooking with friends is never trouble!
+
+  [Chorus]
+  Cook cook cook
+  Let's cook together
+  Stir it round and round
+  Whatever the weather
+  Cook cook cook
+  It smells so good
+  Yummy yummy food
+  Just like we should!
+
+  [Outro]
+  Mmm mmm mmm... let's eat!

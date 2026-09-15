@@ -1,0 +1,38 @@
+id: sleep_beethoven_symphony9_01
+title: Beethoven Symphony No. 9 🎶 {dur} | Classical Music for Sleep • No Ads | Calm Classics
+video_type: sleep_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: moon_clouds
+loop_duration_sec: 240
+durations_hours:
+- 1
+shuffle: false
+tracks:
+- id: beethoven_symphony9_iii_adagio
+  composer: Ludwig van Beethoven
+  piece: Symphony No. 9 in D minor, Op. 125 — III. Adagio molto e Cantabile
+  duration_sec: 974
+  mood: peaceful_entry
+- id: beethoven_symphony9_iv_final
+  composer: Ludwig van Beethoven
+  piece: Symphony No. 9 in D minor, Op. 125 — IV. Final
+  duration_sec: 1391
+  mood: majestic
+tags:
+- beethoven
+- symphony no 9
+- ode to joy
+- classical music for sleep
+- sleep music
+- beethoven symphony
+- calm classics
+- relaxing classical music
+- no ads
+- classical no ads
+- instrumental sleep
+max_repeat: 3.0
+
+disabled: true
+disabled_reason: "All tracks use unverified Google Drive recordings (license: unverified). Must re-verify or replace tracks before use."

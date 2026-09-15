@@ -30,6 +30,7 @@ ROOT = Path(__file__).resolve().parent.parent
 QUEUE_DIR    = ROOT / "output" / "queue"
 QUEUE_AR_DIR = ROOT / "output" / "queue_ar"
 QUEUE_ID_DIR = ROOT / "output" / "queue_id"   # Classical Night Relax (@ClassicalNightRelax)
+QUEUE_SD_DIR = ROOT / "sacred_drift" / "output" / "queue"  # Sacred Drift (@SacredDrift)
 UPLOADED_DIR = ROOT / "uploaded"
 PLAN_PATH    = ROOT / "config" / "weekly_plan.yaml"
 
@@ -37,6 +38,7 @@ QUEUE_DIRS = {
     "en": QUEUE_DIR,
     "ar": QUEUE_AR_DIR,
     "id": QUEUE_ID_DIR,
+    "sd": QUEUE_SD_DIR,
 }
 
 DAY_OFFSETS = {
@@ -136,7 +138,7 @@ def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
 
     language = metadata.get("language", "en")
 
-    made_for_kids = metadata.get("made_for_kids", channel != "id")
+    made_for_kids = metadata.get("made_for_kids", channel not in ("id", "sd"))
     cmd = [
         sys.executable,
         str(ROOT / "scripts" / "upload_youtube.py"),
@@ -173,6 +175,88 @@ def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
     return result.returncode == 0
 
 
+def _push_localizations_inline(video_id: str, localizations: dict, channel: str):
+    """Push pre-translated localizations to YouTube immediately after upload."""
+    import json as _json
+    try:
+        from google.oauth2.credentials import Credentials
+        from google.auth.transport.requests import Request
+        from googleapiclient.discovery import build
+
+        cred_map = {
+            "en": ROOT / "credentials" / "youtube_token.json",
+            "ar": ROOT / "credentials" / "youtube_token_ar.json",
+            "id": ROOT / "credentials" / "youtube_token_id.json",
+            "sd": ROOT / "credentials" / "youtube_token_ar.json",
+        }
+        token_path = cred_map[channel]
+        raw = token_path.read_text().strip() if token_path.exists() else ""
+        if not raw:
+            raise RuntimeError(
+                f"YouTube token missing/empty: {token_path}\n"
+                f"Run: python3 scripts/reauth_youtube.py --channel {channel}"
+            )
+        t = _json.loads(raw)
+        scopes = ["https://www.googleapis.com/auth/youtube",
+                  "https://www.googleapis.com/auth/youtube.force-ssl"]
+        creds = Credentials(
+            token=t.get("access_token"), refresh_token=t["refresh_token"],
+            token_uri="https://oauth2.googleapis.com/token",
+            client_id=t["client_id"], client_secret=t["client_secret"],
+            scopes=scopes,
+        )
+        if creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+            t["access_token"] = creds.token
+            import os as _os
+            tmp = token_path.with_suffix(".tmp")
+            tmp.write_text(_json.dumps(t, indent=2))
+            _os.replace(str(tmp), str(token_path))
+        yt = build("youtube", "v3", credentials=creds)
+
+        # Fetch existing localizations
+        resp = yt.videos().list(part="localizations", id=video_id).execute()
+        if not resp.get("items"):
+            print(f"  ⚠ Could not fetch video {video_id} for localizations")
+            return
+        existing = resp["items"][0].get("localizations", {})
+
+        # Push one language at a time (pushing all at once fails for CJK/Arabic)
+        # YouTube needs ~60s to process a freshly uploaded video before accepting localizations
+        import time as _time
+        pushed = 0
+        retry_langs = {}
+        for lang, data in localizations.items():
+            existing[lang] = data
+            try:
+                yt.videos().update(
+                    part="localizations",
+                    body={"id": video_id, "localizations": existing}
+                ).execute()
+                pushed += 1
+            except Exception as e:
+                if "invalidVideoMetadata" in str(e) or "400" in str(e):
+                    retry_langs[lang] = data
+                else:
+                    print(f"  ⚠ Could not push [{lang}]: {e}")
+        if retry_langs:
+            print(f"  ↺ {len(retry_langs)} langs got 400 — waiting 90s for YouTube to process video...")
+            _time.sleep(90)
+            for lang, data in retry_langs.items():
+                existing[lang] = data
+                try:
+                    yt.videos().update(
+                        part="localizations",
+                        body={"id": video_id, "localizations": existing}
+                    ).execute()
+                    pushed += 1
+                except Exception as e:
+                    print(f"  ⚠ Could not push [{lang}] after retry: {e}")
+        print(f"  → pushed {pushed}/{len(localizations)} localizations immediately")
+    except Exception as e:
+        print(f"  ⚠ Inline localization failed: {e} — skipping")
+
+
 def _delete_youtube_video(video_id: str, channel: str = "id"):
     """Delete a YouTube video by ID using the channel credentials. Logs result."""
     import subprocess as _sp
@@ -185,6 +269,39 @@ def _delete_youtube_video(video_id: str, channel: str = "id"):
         print(f"  ✓ Deleted replaced video {video_id} from YouTube")
     else:
         print(f"  ⚠ Could not delete {video_id}: {r.stdout.strip() or r.stderr.strip()[:100]}")
+
+
+def _add_to_playlist(video_id: str, playlist_id: str, channel: str):
+    """Add a video to a YouTube playlist using the channel credentials."""
+    CREDS = {
+        "en": ROOT / "credentials" / "youtube_token.json",
+        "ar": ROOT / "credentials" / "youtube_token_ar.json",
+        "id": ROOT / "credentials" / "youtube_token_id.json",
+        "sd": ROOT / "credentials" / "youtube_token_ar.json",
+    }
+    cred_path = CREDS.get(channel)
+    if not cred_path or not cred_path.exists():
+        print(f"  ⚠ No credentials for channel={channel}, cannot add to playlist")
+        return
+    try:
+        import google.oauth2.credentials
+        import googleapiclient.discovery
+        creds_data = yaml.safe_load(open(cred_path)) if cred_path.suffix == ".yaml" else __import__("json").loads(cred_path.read_text())
+        creds = google.oauth2.credentials.Credentials(
+            token=creds_data.get("token"),
+            refresh_token=creds_data.get("refresh_token"),
+            token_uri=creds_data.get("token_uri", "https://oauth2.googleapis.com/token"),
+            client_id=creds_data.get("client_id"),
+            client_secret=creds_data.get("client_secret"),
+        )
+        yt = googleapiclient.discovery.build("youtube", "v3", credentials=creds)
+        yt.playlistItems().insert(
+            part="snippet",
+            body={"snippet": {"playlistId": playlist_id, "resourceId": {"kind": "youtube#video", "videoId": video_id}}},
+        ).execute()
+        print(f"  ✓ Added to playlist {playlist_id}")
+    except Exception as e:
+        print(f"  ⚠ Could not add to playlist {playlist_id}: {e}")
 
 
 def _fix_ar_symlinks(old_path: Path, new_path: Path):
@@ -241,6 +358,8 @@ def is_ready(mp4_path: Path) -> tuple[bool, str]:
         return False, "meta file is 0 bytes"
 
     meta = yaml.safe_load(open(meta_path)) or {}
+    if meta.get("upload_blocked"):
+        return False, f"upload_blocked: {meta.get('upload_blocked')}"
     if not meta.get("title", "").strip():
         return False, "empty title"
     if not meta.get("description", "").strip():
@@ -263,20 +382,29 @@ def main():
                         help="If --type queue is empty, publish this type instead")
     parser.add_argument("--no-schedule", action="store_true", default=False,
                         help="Upload as public immediately (default: use upload_day/time from meta)")
-    parser.add_argument("--queue", choices=["en", "ar", "id"], default="en",
-                        help="Queue: en=output/queue/, ar=output/queue_ar/, id=output/queue_id/ (Classical Night Relax)")
+    parser.add_argument("--queue", choices=["en", "ar", "id", "sd"], default="en",
+                        help="Queue: en=Happy Bear Kids, ar=AR Kids, id=Classical Night Relax, sd=Sacred Drift")
+    parser.add_argument("--file", help="Publish a specific MP4 file from the queue (by filename, bypasses ordering)")
     args = parser.parse_args()
 
     active_queue_dir = QUEUE_DIRS[args.queue]
     active_queue_dir.mkdir(parents=True, exist_ok=True)
     UPLOADED_DIR.mkdir(parents=True, exist_ok=True)
 
-    all_mp4s = sorted(
-        [p for p in active_queue_dir.glob("*.mp4")
-         if "test_" not in p.name and p.exists()],   # p.exists() skips broken symlinks
-        key=lambda p: p.stat().st_mtime
-    )
-    all_queue = filter_queue(all_mp4s, args.type)
+    if args.file:
+        specific = active_queue_dir / args.file
+        if not specific.exists():
+            print(f"File not found: {specific}")
+            return
+        all_mp4s  = [specific]
+        all_queue = [specific]
+    else:
+        all_mp4s = sorted(
+            [p for p in active_queue_dir.glob("*.mp4")
+             if "test_" not in p.name and p.exists()],   # p.exists() skips broken symlinks
+            key=lambda p: p.stat().st_mtime
+        )
+        all_queue = filter_queue(all_mp4s, args.type)
 
     # Split into ready (have meta+description+thumbnail) and not-ready
     ready_queue   = []
@@ -340,15 +468,54 @@ def main():
 
         if success:
             if not args.dry_run:
-                dest = UPLOADED_DIR / mp4_path.name
-                shutil.move(str(mp4_path), str(dest))
+                # Check for AR symlinks before touching the MP4
+                ar_symlinks = [
+                    c for c in QUEUE_AR_DIR.glob("*.mp4")
+                    if c.is_symlink() and Path(os.readlink(str(c))).resolve() == mp4_path.resolve()
+                ]
+                if ar_symlinks:
+                    # AR still needs the file — move to uploaded/ and update symlinks
+                    dest = UPLOADED_DIR / mp4_path.name
+                    shutil.move(str(mp4_path), str(dest))
+                    _fix_ar_symlinks(mp4_path, dest)
+                    print(f"  → moved to uploaded/ (AR symlink exists)")
+                else:
+                    # No AR dependency — delete MP4 immediately to free disk space
+                    mp4_size_mb = mp4_path.stat().st_size // (1024 * 1024)
+                    mp4_path.unlink()
+                    print(f"  → MP4 deleted ({mp4_size_mb}MB freed)")
                 for suffix in [f"thumb_{mp4_path.stem}.png", f"meta_{mp4_path.stem}.yaml"]:
                     side = mp4_path.parent / suffix
                     if side.exists():
                         shutil.move(str(side), str(UPLOADED_DIR / suffix))
-                # Fix any AR symlinks that pointed to this file — redirect to uploaded/
-                _fix_ar_symlinks(mp4_path, dest)
-                print(f"  → moved to uploaded/")
+                # Push pre-translated localizations immediately, or fall back to background script
+                meta_dest = UPLOADED_DIR / f"meta_{mp4_path.stem}.yaml"
+                if meta_dest.exists():
+                    try:
+                        uploaded_meta = yaml.safe_load(open(meta_dest)) or {}
+                        yt_id         = uploaded_meta.get("youtube_id", "")
+                        pre_locs      = uploaded_meta.get("localizations", {})
+                    except Exception:
+                        yt_id    = ""
+                        pre_locs = {}
+                    if yt_id and pre_locs:
+                        # Push pre-translated localizations immediately (one lang at a time)
+                        _push_localizations_inline(yt_id, pre_locs, args.queue)
+                    elif yt_id:
+                        # No pre-translations — fall back to background localization
+                        subprocess.Popen(
+                            [sys.executable, "-u",
+                             str(ROOT / "scripts" / "localize_all_videos.py"),
+                             "--channel", args.queue, "--video-id", yt_id],
+                            stdout=open(ROOT / "logs" / "localize_auto.log", "a"),
+                            stderr=subprocess.STDOUT,
+                        )
+                        print(f"  → localization started in background ({yt_id})")
+                    # Add to playlist if specified in meta
+                    if yt_id:
+                        playlist_id = uploaded_meta.get("playlist_id", "")
+                        if playlist_id:
+                            _add_to_playlist(yt_id, playlist_id, args.queue)
                 # Auto-delete replaced video if meta has replace_id
                 meta_dest = UPLOADED_DIR / f"meta_{mp4_path.stem}.yaml"
                 if meta_dest.exists():

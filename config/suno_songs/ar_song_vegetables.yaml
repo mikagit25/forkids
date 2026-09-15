@@ -1,0 +1,42 @@
+id: ar_song_vegetables
+title_en: "Vegetables Song 🥕 | أغنية الخضروات | Happy Bear Kids"
+title_ar: "أغنية الخضروات 🥕 | هابي بير كيدز"
+video_type: kids_song
+track: kids_song
+made_for_kids: true
+queue: output/queue_ar
+ai_generated: true
+language: ar
+
+suno:
+  style: "Arabic children's song, oud, hand drum, cheerful, upbeat, 90 BPM, educational, toddler, vegetables, fun chorus"
+  bpm: 90
+  key: D major
+
+lyrics: |
+  [Verse 1]
+  الجزرة حمرا والخيارة خضرا
+  البطاطس صفرا والطماطم تلمع
+  الفلفل ملوّن والملفوف كبير
+  خضروات لذيذة كلوا وانبسطوا
+
+  [Chorus]
+  خضروات خضروات
+  أكلوا الخضروات
+  حلوة وطيبة
+  وصحية كمان
+
+  [Verse 2]
+  الذرة صفراء والبازيلا خضرا
+  الباذنجان بنفسج والبصل يطرب
+  سلطة مشكلة في طبق كبير
+  كلوا مع بعض يلا نتفرح
+
+  [Chorus]
+  خضروات خضروات
+  أكلوا الخضروات
+  حلوة وطيبة
+  وصحية كمان
+
+  [Outro]
+  يلا نأكل سوا... خضروات!

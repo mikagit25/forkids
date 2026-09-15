@@ -1,0 +1,42 @@
+id: ar_song_family
+title_en: "My Family Song 👨‍👩‍👧 | أغنية العائلة | Happy Bear Kids"
+title_ar: "أغنية العائلة 👨‍👩‍👧 | هابي بير كيدز"
+video_type: kids_song
+track: kids_song
+made_for_kids: true
+queue: output/queue_ar
+ai_generated: true
+language: ar
+
+suno:
+  style: "Arabic children's song, warm acoustic oud, hand clap, cheerful, 85 BPM, family theme, toddler, loving, simple repeat chorus"
+  bpm: 85
+  key: G major
+
+lyrics: |
+  [Verse 1]
+  ماما وبابا أحبهم كثير
+  وأخوي وأختي معاهم أطير
+  بيتنا الصغير مليان بالفرح
+  عيلتي حبيبتي يلا نفرح
+
+  [Chorus]
+  عيلتي عيلتي
+  أحبها كثير
+  ماما وبابا
+  وكل صغير
+
+  [Verse 2]
+  جدو وتتو يطرّبوا الروح
+  عمي وعمتي يجيبوا الفرفوح
+  نلعب سوا ونضحك ونغني
+  عيلة حلوة بدنياي تكفيني
+
+  [Chorus]
+  عيلتي عيلتي
+  أحبها كثير
+  ماما وبابا
+  وكل صغير
+
+  [Outro]
+  أحبك يا عيلتي... دايماً!

@@ -119,7 +119,9 @@ def process_queue(queue_dir: Path, lang: str, offset: int, dry_run: bool) -> int
         if parts[-1].isdigit() and len(parts[-1]) == 8:
             key = "_".join(parts[1:-1])
 
-        short_name = f"short_{stem}"
+        # Include offset in name so multiple clips per video are possible
+        off_tag    = f"_off{offset}" if offset != 60 else ""
+        short_name = f"short_{stem}{off_tag}"
         dst        = queue_dir / f"{short_name}.mp4"
         meta_path  = queue_dir / f"meta_{short_name}.yaml"
         thumb_dst  = queue_dir / f"thumb_{short_name}.png"

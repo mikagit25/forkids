@@ -1,0 +1,48 @@
+id: sleep_romantic_orchestral_01
+title: Romantic Orchestral Classics 🌙 {dur} | Classical Music for Sleep • No Ads | Calm Classics
+video_type: sleep_program
+track: calm_classics
+made_for_kids: false
+queue: output/queue_id
+visual_theme: moon_clouds
+loop_duration_sec: 240
+durations_hours:
+- 1
+shuffle: true
+tracks:
+- id: tchaikovsky_swan_lake_act4_intro_v2
+  composer: Pyotr Ilyich Tchaikovsky
+  piece: Swan Lake, Op. 20 — Act IV Intro
+  duration_sec: 1261
+  mood: ethereal_entry
+- id: rachmaninoff_pc2_iii_allegro_scherzando
+  composer: Sergei Rachmaninoff
+  piece: Piano Concerto No. 2 in C minor, Op. 18 — III. Allegro scherzando
+  duration_sec: 1152
+  mood: passionate
+- id: tchaikovsky_swan_lake_act1_intro_v2
+  composer: Pyotr Ilyich Tchaikovsky
+  piece: Swan Lake, Op. 20 — Act I Intro
+  duration_sec: 1130
+  mood: graceful
+- id: borodin_polovetsian_dances
+  composer: Alexander Borodin
+  piece: Prince Igor — Polovetsian Dances
+  duration_sec: 936
+  mood: exotic
+tags:
+- tchaikovsky
+- swan lake
+- rachmaninoff
+- borodin
+- romantic classical
+- sleep music
+- classical for sleep
+- calm classics
+- relaxing orchestral
+- no ads
+- classical no ads
+max_repeat: 2.0
+
+disabled: true
+disabled_reason: "All tracks use unverified Google Drive recordings (license: unverified). Must re-verify or replace tracks before use."

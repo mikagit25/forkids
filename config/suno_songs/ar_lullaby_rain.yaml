@@ -1,0 +1,42 @@
+id: ar_lullaby_rain
+title_en: "Rain Lullaby 🌧️ | تهويدة المطر | Happy Bear Kids"
+title_ar: "تهويدة المطر 🌧️ | هابي بير كيدز"
+video_type: kids_song
+track: kids_song
+made_for_kids: true
+queue: output/queue_ar
+ai_generated: true
+language: ar
+
+suno:
+  style: "Arabic lullaby, soft oud, rain ambience, slow dreamy, 60 BPM, bedtime, soothing, gentle female vocal, whisper, toddler sleep"
+  bpm: 60
+  key: F major
+
+lyrics: |
+  [Verse 1]
+  المطر ينزل على الشباك
+  نقنق هادئة تغني لك
+  غمض عيونك يا حبيبي
+  والنوم يجي يحضن قلبي
+
+  [Chorus]
+  نم نم يا صغيري
+  والمطر يغني
+  نم نم يا نوري
+  والليل يحنّي
+
+  [Verse 2]
+  القطرات تدق على السقف
+  والريح تسكت والكل يرف
+  أمك جنبك تحكيلك قصة
+  والنوم يجيك بلطف وخفة
+
+  [Chorus]
+  نم نم يا صغيري
+  والمطر يغني
+  نم نم يا نوري
+  والليل يحنّي
+
+  [Outro]
+  نم يا حبيبي... نم...
