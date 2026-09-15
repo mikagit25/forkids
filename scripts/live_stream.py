@@ -75,6 +75,90 @@ STREAM_TARGET_HOURS = 10
 # Max contribution from a single video in one playlist pass (avoid 16h video monopolising)
 MAX_SINGLE_CONTRIBUTION_HOURS = 5
 
+# ── Sacred Drift: 7-day themed stream rotation ────────────────────────────────
+# Each day has a primary theme → different mix of content categories
+SD_DAILY_THEMES = {
+    0: "classical",   # Monday    — Classical Night
+    1: "healing",     # Tuesday   — Deep Healing Journey
+    2: "nature",      # Wednesday — Nature & Earth Sounds
+    3: "focus",       # Thursday  — Focus & Study Session
+    4: "sacred",      # Friday    — Sacred Sound Healing
+    5: "jazz",        # Saturday  — Jazz & Soul Evening
+    6: "cosmic",      # Sunday    — Cosmic Space Meditation
+}
+
+SD_THEME_DISPLAY = {
+    "classical": ("Classical Night 🎻",                 "sleep"),
+    "healing":   ("Deep Healing Journey ✨",             "healing"),
+    "nature":    ("Nature & Earth Sounds 🌿",            "nature"),
+    "focus":     ("Focus & Study Session 🎵",            "healing"),
+    "sacred":    ("Sacred Sound Healing 🔔",             "healing"),
+    "jazz":      ("Jazz & Soul Evening 🎷",              "sleep"),
+    "cosmic":    ("Cosmic Space Meditation 🌌",          "healing"),
+}
+
+# Category detection keywords (checked against lowercase filename)
+SD_CAT_KEYWORDS: dict[str, list[str]] = {
+    "classical":  ["classical_sleep", "classical_focus"],
+    "hz_freq":    ["111hz", "174hz", "285hz", "396hz", "432hz", "528hz",
+                   "40hz", "741hz", "963hz", "binaural", "solfeggio",
+                   "delta_wave", "theta_wave", "alpha_wave", "healing_meditation"],
+    "chakra":     ["chakra", "crown_chakra", "heart_chakra", "root_chakra",
+                   "sacral_chakra", "solar_plexus", "third_eye", "seven_centers",
+                   "full_chakra", "complete_chakra"],
+    "reiki":      ["reiki", "healing_reiki", "healing_energy", "healing_hum",
+                   "healing_tone", "gong_bath", "sound_healing"],
+    "tibetan":    ["tibetan", "crystal_bowl", "singing_bowl", "temple_bells",
+                   "sound_bath"],
+    "mantra":     ["mantra", "zen_mantra", "buddha", "om_", "sacred_sounds",
+                   "chant", "zazen", "metta", "gratitude"],
+    "cosmic":     ["cosmic", "space_medit", "full_moon", "moon_tide",
+                   "crown_of_light", "starlit", "963hz"],
+    "nature":     ["waterfall", "bamboo", "forest", "rain", "ocean",
+                   "desert", "mountain", "morning_yoga", "birdsong",
+                   "glacier", "ice_cave", "distant_waterfall", "bamboo_forest",
+                   "desert_night", "block_"],
+    "sleep":      ["deep_sleep", "baby_lullaby", "drone", "ambient_piano",
+                   "amber_fireplace", "fireplace", "winter_fireplace",
+                   "attic_window", "airy_cloud", "moon_tide", "velvet"],
+    "comp":       ["comp_"],
+    "jazz":       ["jazz", "lounge", "sunday_soul", "evening_sax",
+                   "whiskey", "city_lights", "harbor_lights", "blue_hour",
+                   "autumn_lounge", "velvet_waltz", "velvet_evening",
+                   "velvet_nightfall", "velvet_bass"],
+}
+
+# Per-theme category weights: higher = more of this category in the stream
+# Primary (1.0) fills ~40-50% of stream, secondary (0.5) ~25%, filler (0.2) ~15%
+SD_THEME_WEIGHTS: dict[str, dict[str, float]] = {
+    "classical": {"classical": 1.0, "sleep": 0.4, "comp": 0.3, "nature": 0.1},
+    "healing":   {"hz_freq": 1.0, "chakra": 0.8, "reiki": 0.6,
+                  "tibetan": 0.5, "mantra": 0.4, "comp": 0.3},
+    "nature":    {"nature": 1.0, "sleep": 0.3, "comp": 0.2},
+    "focus":     {"classical": 0.9, "hz_freq": 0.6, "comp": 0.4,
+                  "chakra": 0.3, "sleep": 0.2},
+    "sacred":    {"tibetan": 1.0, "mantra": 0.9, "reiki": 0.7,
+                  "chakra": 0.6, "hz_freq": 0.4, "comp": 0.3},
+    "jazz":      {"jazz": 1.0, "sleep": 0.5, "comp": 0.3, "nature": 0.2},
+    "cosmic":    {"cosmic": 1.0, "chakra": 0.6, "hz_freq": 0.5,
+                  "tibetan": 0.4, "comp": 0.3, "sleep": 0.2},
+}
+
+# Per-series max hours per stream (prevents glacier×48 monopolising the entire night)
+# Series = base name with trailing _\d+ stripped
+SD_SERIES_MAX_HOURS: dict[str, float] = {
+    "glacier":   2.0,   # sound_design_glacier_ice_cave series
+    "waterfall": 1.5,   # distant_waterfall series
+    "bamboo":    1.5,   # bamboo_forest_wind series
+    "desert":    1.5,   # desert_night_wind series
+    "comp_":     1.0,   # each compilation is ~1h, use at most 1 per base
+    "cosmic_drone": 1.5,
+    "crown_chakra_963hz": 1.5,
+}
+# Default: meditation categories can repeat up to 3h (audio loop is intentional)
+SD_DEFAULT_SERIES_MAX_HOURS = 3.0
+SD_UNIQUE_SERIES_MAX_HOURS  = 99.0  # classical programs: no cap (each is unique)
+
 # (keyword_in_filename, display_title, mood)  — first match wins
 TITLE_MAP = [
     # Sleep — composer name first so viewers immediately know what they're hearing
@@ -646,6 +730,140 @@ def _pick_playlist(queue_dir: Path, history: list, target_hours: float,
             idx += 1
 
     return playlist
+
+
+def _sd_get_category(filename: str) -> str:
+    """Classify a Sacred Drift filename into one of SD_CAT_KEYWORDS categories."""
+    stem = filename.lower().replace("-", "_")
+    for cat, keywords in SD_CAT_KEYWORDS.items():
+        for kw in keywords:
+            if kw in stem:
+                return cat
+    return "sleep"  # default
+
+
+def _sd_series_base(filename: str) -> str:
+    """Extract series base name (strip date suffix and trailing _N index)."""
+    stem = Path(filename).stem
+    # strip _YYYYMMDD date
+    stem = re.sub(r'_20\d{6}$', '', stem)
+    # strip trailing _N (episode number)
+    stem = re.sub(r'_\d+$', '', stem)
+    return stem
+
+
+def _sd_series_cap(series_base: str) -> float:
+    """Return max hours a series may contribute to one stream."""
+    base_lower = series_base.lower()
+    for key, cap in SD_SERIES_MAX_HOURS.items():
+        if key in base_lower:
+            return cap
+    # Classical programs are unique content — no cap needed
+    if "classical" in base_lower:
+        return SD_UNIQUE_SERIES_MAX_HOURS
+    return SD_DEFAULT_SERIES_MAX_HOURS
+
+
+def _sd_pick_playlist(queue_dir: Path, history: list, target_hours: float,
+                      theme_override: str = "auto") -> tuple[list[Path], str]:
+    """
+    Build a Sacred Drift themed playlist for today's day-of-week rotation.
+
+    Rules:
+    - Theme determines category priorities (SD_THEME_WEIGHTS)
+    - Per-series cap prevents any one series from monopolising the stream
+    - Meditation audio repeats are acceptable but visual variant is preferred
+      (glacier/waterfall/bamboo series already have different visuals per episode)
+    - On forced repeat fill: shuffle playlist so order differs from previous run
+    - Returns (playlist, theme_name)
+    """
+    import random as _random
+    all_videos = _list_long_videos(queue_dir)
+    if not all_videos:
+        return [], "any"
+
+    # Determine today's theme
+    if theme_override == "auto":
+        theme = SD_DAILY_THEMES[datetime.now(timezone.utc).weekday()]
+    else:
+        theme = theme_override if theme_override in SD_THEME_WEIGHTS else "healing"
+
+    weights = SD_THEME_WEIGHTS[theme]
+    theme_display = SD_THEME_DISPLAY[theme][0]
+    log.info(f"  [SD] Today's theme: {theme} — {theme_display}")
+
+    # Score each video
+    recent_names: set[str] = set()
+    for h in history[-14:]:
+        for p in h.get("playlist", []):
+            recent_names.add(Path(p).name)
+
+    def _score(v: Path) -> float:
+        cat = _sd_get_category(v.name)
+        w = weights.get(cat, 0.05)
+        freshness = 0.0 if v.name in recent_names else 3.0
+        return w + freshness + _random.uniform(0, 0.1)  # small random tiebreak
+
+    candidates = sorted(all_videos, key=_score, reverse=True)
+
+    target_secs = target_hours * 3600
+    series_used: dict[str, float] = {}   # base_name → hours used
+    playlist: list[Path] = []
+    total_secs = 0.0
+
+    # Pass 1: fill with theme-scored candidates, respecting series caps
+    for v in candidates:
+        dur     = _get_duration(v)
+        base    = _sd_series_base(v.name)
+        cap     = _sd_series_cap(base) * 3600
+        used_so_far = series_used.get(base, 0.0)
+        if used_so_far >= cap:
+            continue  # this series has hit its cap
+        contribution = min(dur, cap - used_so_far)
+        playlist.append(v)
+        total_secs += contribution
+        series_used[base] = used_so_far + contribution
+        if total_secs >= target_secs:
+            break
+
+    # Pass 2: if still short, re-allow capped series with their remaining quota
+    if total_secs < target_secs:
+        added = {v.name for v in playlist}
+        for v in candidates:
+            if v.name in added:
+                continue
+            dur = _get_duration(v)
+            playlist.append(v)
+            total_secs += dur
+            if total_secs >= target_secs:
+                break
+
+    # Pass 3: forced repeat fill (meditation content) — shuffle so it sounds different
+    if playlist and total_secs < target_secs:
+        cat_for_theme = list(weights.keys())[0]  # primary category
+        # Prefer repeating meditation/nature content (no vocals)
+        repeat_pool = [v for v in playlist
+                       if _sd_get_category(v.name) in ("hz_freq", "chakra", "nature", "sleep", "reiki", "tibetan")]
+        if not repeat_pool:
+            repeat_pool = list(playlist)
+        _random.shuffle(repeat_pool)
+        idx = 0
+        while total_secs < target_secs and idx < 500:
+            v = repeat_pool[idx % len(repeat_pool)]
+            playlist.append(v)
+            total_secs += _get_duration(v)
+            idx += 1
+        log.info(f"  [SD] Repeat fill: added {idx} clips from meditation pool")
+
+    log.info(f"  [SD] Playlist: {len(playlist)} videos, ~{total_secs/3600:.1f}h | theme={theme}")
+    cat_counts: dict[str, int] = {}
+    for v in playlist:
+        c = _sd_get_category(v.name)
+        cat_counts[c] = cat_counts.get(c, 0) + 1
+    for cat, cnt in sorted(cat_counts.items(), key=lambda x: -x[1]):
+        log.info(f"    {cat:15s}: {cnt} videos")
+
+    return playlist, theme
 
 
 def _build_concat_file(playlist: list[Path], out: Path):
@@ -1327,19 +1545,22 @@ def cmd_start(args):
     # Select content (separate history per slot → independent rotation)
     history  = _load_json(_history_file(channel, slot), [])
     mood     = args.mood if args.mood != "auto" else slot_cfg["mood"]
-    log.info(f"[{slot}] Building playlist (mood={mood}, target={STREAM_TARGET_HOURS}h, save_vod={save_vod})...")
-    playlist = _pick_playlist(queue_dir, history, STREAM_TARGET_HOURS, mood)
-    if not playlist:
-        log.error("No long-form videos in queue. Run generate_sleep_classical.py first.")
-        sys.exit(1)
+    is_sd    = (channel == "sd")
+    log.info(f"[{slot}] Building playlist (channel={channel}, target={STREAM_TARGET_HOURS}h, save_vod={save_vod})...")
 
-    # Title from first video; description dynamically built from full playlist
-    is_sd = (channel == "sd")
     if is_sd:
-        primary_title, primary_mood = _sd_classify(playlist[0].name)
-        stream_title = f"{SD_LIVE_PREFIX}{primary_title}{SD_CHAN_SUFFIX}"
+        theme_arg = mood if mood in SD_THEME_WEIGHTS else "auto"
+        playlist, active_theme = _sd_pick_playlist(queue_dir, history, STREAM_TARGET_HOURS, theme_arg)
+        theme_display, primary_mood = SD_THEME_DISPLAY[active_theme]
+        stream_title = f"{SD_LIVE_PREFIX}{theme_display}{SD_CHAN_SUFFIX}"
         description  = _sd_build_description(playlist, primary_mood)
     else:
+        playlist = _pick_playlist(queue_dir, history, STREAM_TARGET_HOURS, mood)
+    if not playlist:
+        log.error("No long-form videos in queue.")
+        sys.exit(1)
+
+    if not is_sd:
         primary_title, primary_mood = _classify(playlist[0].name)
         stream_title = f"{LIVE_PREFIX}{primary_title}{CHAN_SUFFIX}"
         description  = _build_description(playlist, primary_mood)
@@ -1601,21 +1822,21 @@ def cmd_schedule(args):
     start_iso = next_start.strftime("%Y-%m-%dT%H:%M:%S.000Z")
 
     history  = _load_json(_history_file(channel, slot), [])
-    mood     = slot_cfg["mood"]
-    playlist = _pick_playlist(queue_dir, history, STREAM_TARGET_HOURS, mood)
-    if not playlist:
-        log.error("No videos in queue — cannot schedule")
-        return
-
-    is_sd = (channel == "sd")
+    is_sd    = (channel == "sd")
     if is_sd:
-        primary_title, primary_mood = _sd_classify(playlist[0].name)
-        stream_title = f"{SD_LIVE_PREFIX}{primary_title}{SD_CHAN_SUFFIX}"
+        playlist, active_theme = _sd_pick_playlist(queue_dir, history, STREAM_TARGET_HOURS, "auto")
+        theme_display, primary_mood = SD_THEME_DISPLAY[active_theme]
+        stream_title = f"{SD_LIVE_PREFIX}{theme_display}{SD_CHAN_SUFFIX}"
         description  = _sd_build_description(playlist, primary_mood)
     else:
+        mood     = slot_cfg["mood"]
+        playlist = _pick_playlist(queue_dir, history, STREAM_TARGET_HOURS, mood)
         primary_title, primary_mood = _classify(playlist[0].name)
         stream_title = f"{LIVE_PREFIX}{primary_title}{CHAN_SUFFIX}"
         description  = _build_description(playlist, primary_mood)
+    if not playlist:
+        log.error("No videos in queue — cannot schedule")
+        return
 
     log.info(f"[{slot}] Scheduling broadcast for {start_iso}: {stream_title[:60]}")
     yt = _get_youtube(channel)
