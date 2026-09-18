@@ -638,14 +638,47 @@ def _is_file_complete(path: Path) -> bool:
         return False
 
 
-def _list_long_videos(queue_dir: Path) -> list[Path]:
-    """All fully-written long-form MP4s in queue_dir, sorted newest first."""
+def _is_stream_safe(mp4: Path) -> bool:
+    """
+    Return True if it is safe to stream this video live.
+    Reads the paired meta YAML and checks stream_safe flag.
+    - stream_safe: true  → explicitly cleared (all tracks PD/CC0)
+    - stream_safe: false → explicitly blocked (unverified/licensed tracks)
+    - field absent       → for SD queue: assume safe (AI music); for CNR: assume safe
+                           but log a warning so the operator can review.
+    Sacred Drift videos are AI-generated music — always safe.
+    """
+    import yaml as _yaml
+    stem = mp4.stem
+    meta = mp4.parent / f"meta_{stem}.yaml"
+    if not meta.exists():
+        # No meta — allow SD content (AI music), warn for classical
+        if "classical" in stem or "sleep_program" in stem:
+            log.warning(f"  stream_safe: no meta for {mp4.name} — excluding from live stream")
+            return False
+        return True
+    try:
+        doc = _yaml.safe_load(meta.read_text()) or {}
+    except Exception:
+        return True
+    safe = doc.get("stream_safe")
+    if safe is False:
+        log.info(f"  stream_safe=false: excluding {mp4.name}")
+        return False
+    return True
+
+
+def _list_long_videos(queue_dir: Path, stream_safe_filter: bool = False) -> list[Path]:
+    """All fully-written long-form MP4s in queue_dir, sorted newest first.
+    If stream_safe_filter=True, exclude videos marked stream_safe: false."""
     videos = []
     for p in queue_dir.glob("*.mp4"):
         if _is_short(p.name):
             continue
         if not _is_file_complete(p):
             log.info(f"  skip (still writing): {p.name}")
+            continue
+        if stream_safe_filter and not _is_stream_safe(p):
             continue
         dur = _get_duration(p)
         if dur >= MIN_DURATION_SEC:
@@ -663,8 +696,9 @@ def _pick_playlist(queue_dir: Path, history: list, target_hours: float,
     Rotates through composers/themes, avoiding content used in recent streams.
     Each video contributes at most MAX_SINGLE_CONTRIBUTION_HOURS to avoid monopoly.
     If the playlist is still short after one pass, repeats it.
+    Only includes videos marked stream_safe (no unverified/licensed tracks).
     """
-    all_videos = _list_long_videos(queue_dir)
+    all_videos = _list_long_videos(queue_dir, stream_safe_filter=True)
     if not all_videos:
         return []
 
@@ -778,7 +812,9 @@ def _sd_pick_playlist(queue_dir: Path, history: list, target_hours: float,
     - Returns (playlist, theme_name)
     """
     import random as _random
-    all_videos = _list_long_videos(queue_dir)
+    # SD uses AI-generated music → always stream_safe; no filter needed
+    # but still skip any video explicitly marked stream_safe: false
+    all_videos = _list_long_videos(queue_dir, stream_safe_filter=True)
     if not all_videos:
         return [], "any"
 

@@ -886,6 +886,17 @@ def write_meta(program: dict, hours: int, queue: Path, out_name: str):
                       "classical music", "sleep music", "relaxation"]
     tags = (program.get("tags", []) + extra_tags)[:40]
 
+    # stream_safe: True only if ALL tracks have confirmed PD/CC0 license
+    try:
+        _lic_recs = load_licenses().get("recordings", [])
+        _id_to_lic = {r.get("id", ""): r.get("license", "unknown") for r in _lic_recs}
+        stream_safe = all(
+            _id_to_lic.get(t.get("id", ""), "unknown") in {"pd", "cc0"}
+            for t in program.get("tracks", [])
+        )
+    except Exception:
+        stream_safe = False  # conservative fallback
+
     meta = {
         "title":          title,
         "description":    desc,
@@ -898,6 +909,7 @@ def write_meta(program: dict, hours: int, queue: Path, out_name: str):
         "duration_hours": hours,
         "program_id":     prog_id,
         "tags":           tags,
+        "stream_safe":    stream_safe,
     }
 
     stem = Path(out_name).stem
