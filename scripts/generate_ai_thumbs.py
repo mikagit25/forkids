@@ -967,13 +967,15 @@ def process_queue(queue_dir: Path, key: str, force: bool,
         elif backend == "pollinations":
             img_bytes = pollinations_generate_image(prompt, seed=seed)
         elif backend == "auto":
-            img_bytes = pollinations_generate_image(prompt, seed=seed)
-            if not img_bytes and gemini_key:
-                print("    Pollinations failed — trying Gemini…")
-                img_bytes = gemini_generate_image(prompt, gemini_key)
-            if not img_bytes and together_key:
-                print("    Gemini failed — trying Together.ai…")
+            # Priority: Together.ai (working) → Gemini → Pollinations
+            if together_key:
                 img_bytes = together_generate_image(prompt, together_key)
+            if not img_bytes and gemini_key:
+                print("    Together failed — trying Gemini…")
+                img_bytes = gemini_generate_image(prompt, gemini_key)
+            if not img_bytes:
+                print("    Trying Pollinations…")
+                img_bytes = pollinations_generate_image(prompt, seed=seed)
         else:
             img_bytes = gemini_generate_image(prompt, key)
         if img_bytes:
@@ -1060,8 +1062,8 @@ def main():
                         help="Show prompts without calling API")
     parser.add_argument("--test",    metavar="CHARACTER",
                         help="Test one character (e.g. --test bear)")
-    parser.add_argument("--backend",  choices=["pollinations", "gemini", "together", "auto"],
-                        default="auto", help="Backend (default: auto = pollinations→gemini→together)")
+    parser.add_argument("--backend",  choices=["together", "gemini", "pollinations", "auto"],
+                        default="auto", help="Backend (default: auto = together→gemini→pollinations)")
     parser.add_argument("--uploaded", action="store_true",
                         help="Also process uploaded/ directory (for already-published videos)")
     parser.add_argument("--shorts", action="store_true",

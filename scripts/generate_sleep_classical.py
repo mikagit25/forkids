@@ -31,6 +31,10 @@ LOOPS_DIR  = ROOT / "output" / "_sleep_loops"
 TOGETHER_KEY_FILE     = ROOT / "credentials" / "together_api_key.txt"
 PEXELS_KEY_FILE       = ROOT / "credentials" / "pexels_api_key.txt"
 POLLINATIONS_KEY_FILE = ROOT / "credentials" / "pollinations_token.txt"
+GEMINI_KEY_FILE       = ROOT / "credentials" / "gemini_api_key.txt"
+
+GEMINI_IMAGE_MODEL = "gemini-2.0-flash-preview-image-generation"
+GEMINI_API_BASE    = "https://generativelanguage.googleapis.com/v1beta/models"
 DATE_STR   = datetime.now().strftime("%Y%m%d")
 
 log = logging.getLogger(__name__)
@@ -438,6 +442,56 @@ def _kb_concat(clips: list[Path], out: Path) -> bool:
     return True
 
 
+def _fetch_gemini_images(prompt: str, n_images: int, out_dir: Path,
+                         force: bool = False) -> list[Path]:
+    """Generate landscape images via Gemini image generation (free 1500 req/day)."""
+    if not GEMINI_KEY_FILE.exists():
+        return []
+    api_key = GEMINI_KEY_FILE.read_text().strip()
+    out_dir.mkdir(parents=True, exist_ok=True)
+    lighting_variants = ["moonlit", "candlelit", "dawn light", "golden hour", "dusk", "twilight"]
+    images: list[Path] = []
+    for i in range(n_images):
+        img_path = out_dir / f"gemini_{i:02d}.jpg"
+        if img_path.exists() and not force:
+            images.append(img_path)
+            log.info(f"  Gemini cached: {img_path.name}")
+            continue
+        varied = f"{prompt}, {lighting_variants[i % len(lighting_variants)]} atmosphere, ultra detailed"
+        url = f"{GEMINI_API_BASE}/{GEMINI_IMAGE_MODEL}:generateContent?key={api_key}"
+        payload = json.dumps({
+            "contents": [{"parts": [{"text": varied}]}],
+            "generationConfig": {"responseModalities": ["IMAGE", "TEXT"]},
+        }).encode()
+        log.info(f"  Gemini image {i+1}/{n_images}…")
+        try:
+            req = urllib.request.Request(url, data=payload,
+                                         headers={"Content-Type": "application/json"})
+            with urllib.request.urlopen(req, timeout=60) as r:
+                data = json.loads(r.read())
+            parts = data["candidates"][0]["content"]["parts"]
+            img_bytes = None
+            for p in parts:
+                if "inlineData" in p:
+                    img_bytes = base64.b64decode(p["inlineData"]["data"])
+                    break
+            if not img_bytes:
+                log.warning(f"  Gemini image {i+1}: no image in response")
+                continue
+            # Resize to target resolution for Ken Burns
+            from PIL import Image as _PIL
+            import io as _io
+            img = _PIL.open(_io.BytesIO(img_bytes)).convert("RGB")
+            img = img.resize((1344, 768), _PIL.LANCZOS)
+            img.save(img_path, "JPEG", quality=92)
+            images.append(img_path)
+            log.info(f"  Gemini image {i+1}: {img_path.stat().st_size//1024}KB")
+            time.sleep(4)  # ~15 RPM free tier
+        except Exception as e:
+            log.warning(f"  Gemini image {i+1} failed: {e}")
+    return images
+
+
 def _fetch_pollinations_images(prompt: str, n_images: int, out_dir: Path,
                                force: bool = False) -> list[Path]:
     """Generate landscape images via Pollinations.ai FLUX."""
@@ -542,21 +596,14 @@ def render_kenburns_loop(program_id: str, force: bool = False) -> Path | None:
         if images:
             log.info(f"  Using {len(images)} Pexels photos for Ken Burns")
 
-    # Step 2: Pollinations.ai FLUX (free, no API key)
-    if not images:
-        log.info(f"  Generating {KB_N_IMAGES} images via Pollinations.ai FLUX (free)…")
-        images = _fetch_pollinations_images(prompt, KB_N_IMAGES, imgs_dir, force)
-        if images:
-            log.info(f"  Using {len(images)} Pollinations images for Ken Burns")
-
-    # Step 3: Fall back to Together.ai FLUX (paid) if Pollinations failed
+    # Step 2: Together.ai FLUX (primary AI source)
     if not images:
         if not TOGETHER_KEY_FILE.exists():
-            log.error("  Pollinations failed and no Together.ai key — aborting Ken Burns")
+            log.error("  No Pexels results and no Together.ai key — aborting Ken Burns")
             return None
         api_key = TOGETHER_KEY_FILE.read_text().strip()
         lighting_variants = ["moonlit", "candlelit", "dawn light", "golden hour", "dusk", "twilight"]
-        log.info(f"  Pollinations unavailable — falling back to Together.ai FLUX…")
+        log.info(f"  Generating {KB_N_IMAGES} images via Together.ai FLUX…")
         for i in range(KB_N_IMAGES):
             img_path = imgs_dir / f"img_{i:02d}.jpg"
             if img_path.exists() and not force:
