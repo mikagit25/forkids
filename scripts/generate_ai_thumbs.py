@@ -22,6 +22,7 @@ import json
 import re
 import sys
 import time
+import urllib.parse
 import urllib.request
 import urllib.error
 from pathlib import Path
@@ -45,7 +46,10 @@ _FONT_FALLBACK = "/usr/share/fonts/truetype/noto/NotoSerifDisplay-Regular.ttf"
 GEMINI_IMAGE_MODEL = "gemini-2.0-flash-preview-image-generation"
 GEMINI_API_BASE    = "https://generativelanguage.googleapis.com/v1beta/models"
 
-# Together.ai — FLUX.1-schnell, free $25 credit on signup, then ~$0.0003/image
+# Pollinations.ai — FLUX, completely free, no API key required
+POLLINATIONS_URL = "https://image.pollinations.ai/prompt/{prompt}?width={w}&height={h}&nologo=true&model=flux&seed={seed}"
+
+# Together.ai — FLUX.1.1-pro, pay-per-use (~$0.0003/image)
 TOGETHER_IMAGE_URL = "https://api.together.xyz/v1/images/generations"
 TOGETHER_MODEL     = "black-forest-labs/FLUX.1.1-pro"  # serverless, pay-per-use
 
@@ -784,6 +788,24 @@ def load_together_key() -> str | None:
     return None
 
 
+def pollinations_generate_image(prompt: str, width: int = 1280, height: int = 720,
+                                seed: int = 42) -> bytes | None:
+    """Generate image via Pollinations.ai FLUX — free, no API key required."""
+    encoded = urllib.parse.quote(prompt)
+    url = POLLINATIONS_URL.format(prompt=encoded, w=width, h=height, seed=seed)
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "KidsChannel/1.0"})
+        with urllib.request.urlopen(req, timeout=90) as resp:
+            data = resp.read()
+        if len(data) < 1000:
+            print(f"    Pollinations returned suspicious response ({len(data)} bytes)")
+            return None
+        return data
+    except Exception as e:
+        print(f"    Pollinations request failed: {e}")
+    return None
+
+
 def together_generate_image(prompt: str, key: str) -> bytes | None:
     """Generate image via Together.ai FLUX.1-schnell."""
     try:
@@ -890,8 +912,9 @@ def is_short(name: str) -> bool:
 
 
 def process_queue(queue_dir: Path, key: str, force: bool,
-                  dry_run: bool, label: str, backend: str = "gemini",
-                  long_only: bool = True, is_cnr: bool = False):
+                  dry_run: bool, label: str, backend: str = "auto",
+                  long_only: bool = True, is_cnr: bool = False,
+                  gemini_key: str | None = None, together_key: str | None = None):
     mp4s = sorted([
         p for p in queue_dir.glob("*.mp4")
         if "test_" not in p.name and p.exists() and not p.is_symlink()
@@ -928,8 +951,19 @@ def process_queue(queue_dir: Path, key: str, force: bool,
             ok += 1
             continue
 
+        seed = abs(hash(mp4.stem)) % 10000
         if backend == "together":
             img_bytes = together_generate_image(prompt, key)
+        elif backend == "pollinations":
+            img_bytes = pollinations_generate_image(prompt, seed=seed)
+        elif backend == "auto":
+            img_bytes = pollinations_generate_image(prompt, seed=seed)
+            if not img_bytes and gemini_key:
+                print("    Pollinations failed — trying Gemini…")
+                img_bytes = gemini_generate_image(prompt, gemini_key)
+            if not img_bytes and together_key:
+                print("    Gemini failed — trying Together.ai…")
+                img_bytes = together_generate_image(prompt, together_key)
         else:
             img_bytes = gemini_generate_image(prompt, key)
         if img_bytes:
@@ -1009,15 +1043,15 @@ def apply_cnr_overlay_queue(queue_dir: Path, dry_run: bool = False):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate AI thumbnails via Gemini or Together.ai")
+        description="Generate AI thumbnails via Pollinations.ai (free), Gemini, or Together.ai")
     parser.add_argument("--queue",   choices=["en", "ar", "id", "all", "both", "none"], default="both")
     parser.add_argument("--force",   action="store_true")
     parser.add_argument("--dry-run", action="store_true",
                         help="Show prompts without calling API")
     parser.add_argument("--test",    metavar="CHARACTER",
                         help="Test one character (e.g. --test bear)")
-    parser.add_argument("--backend",  choices=["gemini", "together", "auto"],
-                        default="auto", help="Force specific backend (default: auto)")
+    parser.add_argument("--backend",  choices=["pollinations", "gemini", "together", "auto"],
+                        default="auto", help="Backend (default: auto = pollinations→gemini→together)")
     parser.add_argument("--uploaded", action="store_true",
                         help="Also process uploaded/ directory (for already-published videos)")
     parser.add_argument("--shorts", action="store_true",
@@ -1036,13 +1070,7 @@ def main():
     gemini_key   = load_key()
     together_key = load_together_key()
 
-    if not gemini_key and not together_key:
-        print("No API keys found. Add one of:")
-        print(f"  Gemini (free):  {KEY_FILE}")
-        print(f"  Together.ai:    {TOGETHER_KEY_FILE}")
-        sys.exit(1)
-
-    # Pick backend
+    # Pick backend — pollinations needs no key so it's always available
     if args.backend == "together":
         if not together_key:
             print(f"Together.ai key not found: {TOGETHER_KEY_FILE}")
@@ -1053,11 +1081,12 @@ def main():
             print(f"Gemini key not found: {KEY_FILE}")
             sys.exit(1)
         key, backend = gemini_key, "gemini"
+    elif args.backend == "pollinations":
+        key, backend = "", "pollinations"
     else:
-        # auto: prefer Gemini, fall back to Together
-        key    = gemini_key or together_key
-        backend = "gemini" if gemini_key else "together"
-    print(f"Backend: {backend}  key: {key[:14]}…")
+        # auto: pollinations (free) → gemini → together
+        key, backend = "", "auto"
+    print(f"Backend: {backend}" + (f"  key: {key[:14]}…" if key else " (no key needed)"))
 
     if args.test:
         # Quick single test
@@ -1066,8 +1095,11 @@ def main():
         prompt = make_prompt(stem, meta, is_ar=False)
         print(f"Prompt: {prompt}")
         if not args.dry_run:
+            seed = abs(hash(stem)) % 10000
             if backend == "together":
                 img = together_generate_image(prompt, key)
+            elif backend in ("pollinations", "auto"):
+                img = pollinations_generate_image(prompt, seed=seed)
             else:
                 img = gemini_generate_image(prompt, key)
             if img:
@@ -1075,24 +1107,27 @@ def main():
                 out.write_bytes(resize_to_720p(img))
                 print(f"Saved: {out}")
             else:
-                print("Generation failed — model may need billing enabled")
+                print("Generation failed")
         return
 
     # --all-types or --shorts both disable long_only filter
     long_only = not (args.shorts or args.all_types)
 
+    extra = dict(gemini_key=gemini_key, together_key=together_key)
+
     if args.queue in ("en", "both", "all"):
-        process_queue(QUEUE, key, args.force, args.dry_run, "EN", backend, long_only=long_only)
+        process_queue(QUEUE, key, args.force, args.dry_run, "EN", backend, long_only=long_only, **extra)
 
     if args.queue in ("ar", "both", "all"):
-        process_queue(QUEUE_AR, key, args.force, args.dry_run, "AR", backend, long_only=long_only)
+        process_queue(QUEUE_AR, key, args.force, args.dry_run, "AR", backend, long_only=long_only, **extra)
 
     if args.queue in ("id", "all"):
         process_queue(QUEUE_ID, key, args.force, args.dry_run, "ID", backend,
-                      long_only=long_only, is_cnr=True)
+                      long_only=long_only, is_cnr=True, **extra)
 
     if args.uploaded:
-        process_queue(UPLOADED, key, args.force, args.dry_run, "UPLOADED", backend, long_only=long_only)
+        process_queue(UPLOADED, key, args.force, args.dry_run, "UPLOADED", backend,
+                      long_only=long_only, **extra)
 
 
 if __name__ == "__main__":

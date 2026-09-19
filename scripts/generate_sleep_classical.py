@@ -14,7 +14,7 @@ Usage:
   python3 scripts/generate_sleep_classical.py --list-programs
   python3 scripts/generate_sleep_classical.py --regen-meta --program sleep_chopin_01
 """
-import argparse, base64, json, logging, random, re, subprocess, sys, time, yaml
+import argparse, base64, json, logging, random, re, subprocess, sys, time, urllib.parse, urllib.request, yaml
 from datetime import datetime
 from pathlib import Path
 
@@ -437,6 +437,39 @@ def _kb_concat(clips: list[Path], out: Path) -> bool:
     return True
 
 
+def _fetch_pollinations_images(prompt: str, n_images: int, out_dir: Path,
+                               force: bool = False) -> list[Path]:
+    """Generate landscape images via Pollinations.ai FLUX — free, no API key."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    lighting_variants = ["moonlit", "candlelit", "dawn light", "golden hour", "dusk", "twilight"]
+    images: list[Path] = []
+    for i in range(n_images):
+        img_path = out_dir / f"poll_{i:02d}.jpg"
+        if img_path.exists() and not force:
+            images.append(img_path)
+            log.info(f"  Pollinations cached: {img_path.name}")
+            continue
+        varied = f"{prompt}, {lighting_variants[i % len(lighting_variants)]} atmosphere"
+        encoded = urllib.parse.quote(varied)
+        url = (f"https://image.pollinations.ai/prompt/{encoded}"
+               f"?width=1344&height=768&nologo=true&model=flux&seed={i * 137}")
+        log.info(f"  Pollinations image {i+1}/{n_images}…")
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "KidsChannel/1.0"})
+            with urllib.request.urlopen(req, timeout=90) as resp:
+                data = resp.read()
+            if len(data) < 1000:
+                log.warning(f"  Pollinations: suspicious response ({len(data)} bytes)")
+                continue
+            img_path.write_bytes(data)
+            images.append(img_path)
+            log.info(f"  Pollinations image {i+1}: {len(data)//1024}KB")
+            time.sleep(1)
+        except Exception as e:
+            log.warning(f"  Pollinations image {i+1} failed: {e}")
+    return images
+
+
 def _fetch_pexels_images(query: str, n_images: int, out_dir: Path, force: bool = False) -> list[Path]:
     """Download landscape photos from Pexels API. Returns list of saved Paths."""
     import urllib.request, urllib.parse, json as _json
@@ -505,40 +538,45 @@ def render_kenburns_loop(program_id: str, force: bool = False) -> Path | None:
         if images:
             log.info(f"  Using {len(images)} Pexels photos for Ken Burns")
 
-    # Step 2: Fall back to FLUX AI generation if no Pexels images
+    # Step 2: Pollinations.ai FLUX (free, no API key)
+    if not images:
+        log.info(f"  Generating {KB_N_IMAGES} images via Pollinations.ai FLUX (free)…")
+        images = _fetch_pollinations_images(prompt, KB_N_IMAGES, imgs_dir, force)
+        if images:
+            log.info(f"  Using {len(images)} Pollinations images for Ken Burns")
+
+    # Step 3: Fall back to Together.ai FLUX (paid) if Pollinations failed
     if not images:
         if not TOGETHER_KEY_FILE.exists():
-            log.warning("  No Together API key — aborting Ken Burns")
+            log.error("  Pollinations failed and no Together.ai key — aborting Ken Burns")
             return None
-        api_key  = TOGETHER_KEY_FILE.read_text().strip()
+        api_key = TOGETHER_KEY_FILE.read_text().strip()
         lighting_variants = ["moonlit", "candlelit", "dawn light", "golden hour", "dusk", "twilight"]
-
-    if not images:
-        log.info(f"  Generating {KB_N_IMAGES} FLUX images…")
-    for i in range(KB_N_IMAGES if not images else 0):
-        img_path = imgs_dir / f"img_{i:02d}.jpg"
-        if img_path.exists() and not force:
-            images.append(img_path)
-            log.info(f"  Image cached: {img_path.name}")
-            continue
-        varied = f"{prompt}, {lighting_variants[i % len(lighting_variants)]} atmosphere"
-        log.info(f"  Generating image {i+1}/{KB_N_IMAGES} via FLUX…")
-        try:
-            import requests as req
-            resp = req.post(
-                "https://api.together.xyz/v1/images/generations",
-                headers={"Authorization": f"Bearer {api_key}"},
-                json={"model": "black-forest-labs/FLUX.1.1-pro",
-                      "prompt": varied, "width": 1344, "height": 768,
-                      "steps": 4, "n": 1, "response_format": "b64_json"},
-                timeout=90
-            )
-            resp.raise_for_status()
-            img_path.write_bytes(base64.b64decode(resp.json()["data"][0]["b64_json"]))
-            images.append(img_path)
-            time.sleep(2)
-        except Exception as e:
-            log.warning(f"  Image {i+1} failed: {e}")
+        log.info(f"  Pollinations unavailable — falling back to Together.ai FLUX…")
+        for i in range(KB_N_IMAGES):
+            img_path = imgs_dir / f"img_{i:02d}.jpg"
+            if img_path.exists() and not force:
+                images.append(img_path)
+                log.info(f"  Together cached: {img_path.name}")
+                continue
+            varied = f"{prompt}, {lighting_variants[i % len(lighting_variants)]} atmosphere"
+            log.info(f"  Together image {i+1}/{KB_N_IMAGES}…")
+            try:
+                import requests as req
+                resp = req.post(
+                    "https://api.together.xyz/v1/images/generations",
+                    headers={"Authorization": f"Bearer {api_key}"},
+                    json={"model": "black-forest-labs/FLUX.1.1-pro",
+                          "prompt": varied, "width": 1344, "height": 768,
+                          "steps": 4, "n": 1, "response_format": "b64_json"},
+                    timeout=90
+                )
+                resp.raise_for_status()
+                img_path.write_bytes(base64.b64decode(resp.json()["data"][0]["b64_json"]))
+                images.append(img_path)
+                time.sleep(2)
+            except Exception as e:
+                log.warning(f"  Together image {i+1} failed: {e}")
 
     if len(images) < 2:
         log.error(f"  Only {len(images)} images — skipping Ken Burns loop")
