@@ -34,8 +34,9 @@ QUEUE     = ROOT / "output" / "queue"
 QUEUE_AR  = ROOT / "output" / "queue_ar"
 QUEUE_ID  = ROOT / "output" / "queue_id"
 UPLOADED  = ROOT / "uploaded"
-KEY_FILE        = ROOT / "credentials" / "gemini_api_key.txt"
-TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
+KEY_FILE             = ROOT / "credentials" / "gemini_api_key.txt"
+TOGETHER_KEY_FILE    = ROOT / "credentials" / "together_api_key.txt"
+POLLINATIONS_KEY_FILE = ROOT / "credentials" / "pollinations_token.txt"
 
 _FONT_BOLD   = "/usr/share/fonts/truetype/custom/BebasNeue-Regular.ttf"
 _FONT_MEDIUM = "/usr/share/fonts/truetype/custom/Montserrat-Bold.ttf"
@@ -788,11 +789,20 @@ def load_together_key() -> str | None:
     return None
 
 
+def _load_pollinations_token() -> str:
+    if POLLINATIONS_KEY_FILE.exists():
+        return POLLINATIONS_KEY_FILE.read_text().strip()
+    return ""
+
+
 def pollinations_generate_image(prompt: str, width: int = 1280, height: int = 720,
                                 seed: int = 42) -> bytes | None:
-    """Generate image via Pollinations.ai FLUX — free, no API key required."""
+    """Generate image via Pollinations.ai FLUX."""
+    token = _load_pollinations_token()
     encoded = urllib.parse.quote(prompt)
     url = POLLINATIONS_URL.format(prompt=encoded, w=width, h=height, seed=seed)
+    if token:
+        url += f"&token={token}"
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "KidsChannel/1.0"})
         with urllib.request.urlopen(req, timeout=90) as resp:

@@ -28,8 +28,9 @@ LICENSES   = ROOT / "assets" / "music" / "classical" / "licenses.yaml"
 QUEUE_CC   = ROOT / "output" / "queue_id"    # Classical Night Relax queue (@ClassicalNightRelax)
 QUEUE_EN   = ROOT / "output" / "queue"       # EN kids queue (for kids_sleep track)
 LOOPS_DIR  = ROOT / "output" / "_sleep_loops"
-TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
-PEXELS_KEY_FILE   = ROOT / "credentials" / "pexels_api_key.txt"
+TOGETHER_KEY_FILE     = ROOT / "credentials" / "together_api_key.txt"
+PEXELS_KEY_FILE       = ROOT / "credentials" / "pexels_api_key.txt"
+POLLINATIONS_KEY_FILE = ROOT / "credentials" / "pollinations_token.txt"
 DATE_STR   = datetime.now().strftime("%Y%m%d")
 
 log = logging.getLogger(__name__)
@@ -439,7 +440,8 @@ def _kb_concat(clips: list[Path], out: Path) -> bool:
 
 def _fetch_pollinations_images(prompt: str, n_images: int, out_dir: Path,
                                force: bool = False) -> list[Path]:
-    """Generate landscape images via Pollinations.ai FLUX — free, no API key."""
+    """Generate landscape images via Pollinations.ai FLUX."""
+    token = POLLINATIONS_KEY_FILE.read_text().strip() if POLLINATIONS_KEY_FILE.exists() else ""
     out_dir.mkdir(parents=True, exist_ok=True)
     lighting_variants = ["moonlit", "candlelit", "dawn light", "golden hour", "dusk", "twilight"]
     images: list[Path] = []
@@ -453,6 +455,8 @@ def _fetch_pollinations_images(prompt: str, n_images: int, out_dir: Path,
         encoded = urllib.parse.quote(varied)
         url = (f"https://image.pollinations.ai/prompt/{encoded}"
                f"?width=1344&height=768&nologo=true&model=flux&seed={i * 137}")
+        if token:
+            url += f"&token={token}"
         log.info(f"  Pollinations image {i+1}/{n_images}…")
         try:
             req = urllib.request.Request(url, headers={"User-Agent": "KidsChannel/1.0"})
