@@ -399,10 +399,25 @@ def main():
         all_mp4s  = [specific]
         all_queue = [specific]
     else:
+        def _sort_key(p: Path):
+            name = p.name
+            # SD queue: compilations (AI audio) first, then sound design, then classical
+            if active_queue_dir == QUEUE_SD_DIR:
+                if name.startswith("sd_comp_"):
+                    priority = 0
+                elif name.startswith("sd_sound_design_") or name.startswith("ambient_") or name.startswith("fire_"):
+                    priority = 1
+                elif name.startswith("sd_classical_"):
+                    priority = 2
+                else:
+                    priority = 1
+                return (priority, p.stat().st_mtime)
+            return (0, p.stat().st_mtime)
+
         all_mp4s = sorted(
             [p for p in active_queue_dir.glob("*.mp4")
              if "test_" not in p.name and p.exists()],   # p.exists() skips broken symlinks
-            key=lambda p: p.stat().st_mtime
+            key=_sort_key
         )
         all_queue = filter_queue(all_mp4s, args.type)
 
