@@ -9,6 +9,7 @@ Usage:
 
 import os
 import sys
+import time
 import argparse
 import logging
 import pickle
@@ -177,6 +178,39 @@ def get_youtube_service(config: dict, channel: str = "en"):
     return build("youtube", "v3", credentials=creds)
 
 
+def _wait_for_processing(youtube, video_id: str, max_wait_sec: int = 600) -> dict:
+    """Poll video status until YouTube finishes processing. Returns status dict."""
+    deadline = time.time() + max_wait_sec
+    interval = 30
+    while time.time() < deadline:
+        try:
+            resp = youtube.videos().list(part="status", id=video_id).execute()
+            if resp.get("items"):
+                st = resp["items"][0]["status"]
+                upload_status = st.get("uploadStatus", "")
+                log.info(f"  Stage check: uploadStatus={upload_status}")
+                if upload_status in ("processed", "rejected", "failed"):
+                    return st
+        except Exception as e:
+            log.warning(f"  Stage check poll error: {e}")
+        time.sleep(interval)
+    log.warning(f"  Stage check: timeout after {max_wait_sec}s — assuming clean")
+    return {"uploadStatus": "timeout"}
+
+
+def _set_privacy(youtube, video_id: str, privacy: str, publish_at: Optional[str] = None) -> None:
+    """Update video privacy (and optional scheduled publishAt)."""
+    body: dict = {"privacyStatus": privacy}
+    if publish_at:
+        body["publishAt"] = publish_at
+    youtube.videos().update(
+        part="status",
+        body={"id": video_id, "status": body},
+    ).execute()
+    suffix = f" (scheduled {publish_at})" if publish_at else ""
+    log.info(f"  Privacy → {privacy}{suffix}")
+
+
 def upload_video(
     file_path: str,
     title: str,
@@ -190,17 +224,24 @@ def upload_video(
     language: str = "en",
     channel: str = "en",
     made_for_kids: bool = True,
-) -> str:
+    stage_check: bool = False,
+) -> Optional[str]:
     if config is None:
         config = load_config()
 
     youtube = get_youtube_service(config, channel=channel)
 
+    # stage_check: always upload private first, make public only after copyright scan
+    desired_status   = status
+    desired_publish_at = publish_at
+
     video_status: dict = {
         "madeForKids": made_for_kids,
         "selfDeclaredMadeForKids": made_for_kids,
     }
-    if publish_at:
+    if stage_check:
+        video_status["privacyStatus"] = "private"
+    elif publish_at:
         # Scheduled: private until publishAt
         video_status["privacyStatus"] = "private"
         video_status["publishAt"] = publish_at
@@ -258,6 +299,32 @@ def upload_video(
     elif thumbnail_path and Path(thumbnail_path).exists() and Path(thumbnail_path).stat().st_size == 0:
         log.warning(f"Thumbnail is 0 bytes, skipping: {thumbnail_path}")
 
+    # Stage check: wait for YouTube to scan, then publish or delete
+    if stage_check:
+        log.info("Stage check: waiting for YouTube copyright scan (~5 min)…")
+        st = _wait_for_processing(youtube, video_id)
+        upload_status  = st.get("uploadStatus", "timeout")
+        rejection      = st.get("rejectionReason", "")
+
+        if upload_status == "rejected" and rejection in ("claim", "copyright"):
+            log.error(f"  COPYRIGHT BLOCK detected (reason={rejection}) — deleting {video_id}")
+            try:
+                youtube.videos().delete(id=video_id).execute()
+                log.info(f"  Video {video_id} deleted.")
+            except Exception as del_e:
+                log.warning(f"  Delete failed: {del_e}")
+            return None  # caller checks for None → exit(2)
+
+        if upload_status == "rejected":
+            log.warning(f"  Video rejected (reason={rejection}) — not copyright, proceeding")
+
+        # Clean — set final visibility
+        try:
+            final_privacy = desired_status if not desired_publish_at else "private"
+            _set_privacy(youtube, video_id, final_privacy, desired_publish_at)
+        except Exception as e:
+            log.warning(f"  Could not set final privacy: {e}")
+
     # Add to playlists
     try:
         sys.path.insert(0, str(Path(__file__).parent))
@@ -294,6 +361,8 @@ def main():
                         help="Path to meta YAML sidecar — video ID will be written back after upload")
     parser.add_argument("--made-for-kids", default=None, choices=["true", "false"],
                         help="Override madeForKids flag (default: true for EN/AR, false for id/CNR)")
+    parser.add_argument("--stage-check", action="store_true",
+                        help="Upload private first, wait for YouTube copyright scan, then publish")
     args = parser.parse_args()
 
     config   = load_config()
@@ -335,7 +404,26 @@ def main():
         language=args.language,
         channel=ch,
         made_for_kids=made_for_kids,
+        stage_check=args.stage_check,
     )
+
+    if video_id is None and args.stage_check:
+        # Copyright block — write flag to meta so publish_queue skips this video
+        if args.meta_path:
+            meta_path = Path(args.meta_path)
+            if meta_path.exists():
+                try:
+                    with open(meta_path) as f:
+                        m = yaml.safe_load(f) or {}
+                    m["upload_blocked"] = "copyright_claim_detected — video deleted by stage_check"
+                    tmp = meta_path.with_suffix(".yaml.tmp")
+                    with open(tmp, "w") as f:
+                        yaml.dump(m, f, allow_unicode=True, default_flow_style=False)
+                    tmp.replace(meta_path)
+                    log.info(f"Marked upload_blocked in {meta_path.name}")
+                except Exception as e:
+                    log.warning(f"Failed to write upload_blocked to meta: {e}")
+        sys.exit(2)  # distinct exit code for copyright rejection
 
     if args.meta_path and video_id:
         meta_path = Path(args.meta_path)

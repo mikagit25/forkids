@@ -110,6 +110,9 @@ def calc_publish_at(upload_day: str, upload_time: str) -> str | None:
     return publish_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+STAGE_CHECK_CHANNELS = {"id"}  # channels where staged copyright check is mandatory
+
+
 def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
                  dry_run: bool = False, channel: str = "en") -> bool:
     title       = metadata.get("title", mp4_path.stem)
@@ -171,7 +174,16 @@ def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
     if meta_path.exists():
         cmd += ["--meta-path", str(meta_path)]
 
+    if channel in STAGE_CHECK_CHANNELS:
+        cmd += ["--stage-check"]
+        print(f"  [stage-check] will wait ~5 min for YouTube copyright scan")
+
     result = subprocess.run(cmd, capture_output=False)
+
+    if result.returncode == 2:
+        print(f"  [stage-check] COPYRIGHT BLOCK — video deleted, skipping future attempts")
+        return False
+
     return result.returncode == 0
 
 
