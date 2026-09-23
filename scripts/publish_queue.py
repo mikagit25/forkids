@@ -158,8 +158,16 @@ def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
     if tags_str:
         cmd += ["--tags", tags_str]
 
+    # Write description to a temp file to avoid subprocess arg encoding issues
+    # (long descriptions with emojis/apostrophes corrupt the JSON body when passed as CLI args)
+    desc_tmp = None
     if description:
-        cmd += ["--description", description]
+        import tempfile
+        desc_tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".txt",
+                                               delete=False, encoding="utf-8")
+        desc_tmp.write(description)
+        desc_tmp.close()
+        cmd += ["--description-file", desc_tmp.name]
 
     thumb_path = mp4_path.parent / f"thumb_{mp4_path.stem}.png"
     if thumb_path.exists():
@@ -179,6 +187,13 @@ def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
         print(f"  [stage-check] will wait ~5 min for YouTube copyright scan")
 
     result = subprocess.run(cmd, capture_output=False)
+
+    if desc_tmp:
+        import os as _os
+        try:
+            _os.unlink(desc_tmp.name)
+        except Exception:
+            pass
 
     if result.returncode == 2:
         print(f"  [stage-check] COPYRIGHT BLOCK — video deleted, skipping future attempts")

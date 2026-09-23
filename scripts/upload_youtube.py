@@ -90,14 +90,15 @@ def build_description(video_type: str, theme: str, meta: dict) -> str:
 
 def build_tags(video_type: str, theme: str, extra_tags: list, meta: dict) -> list:
     """Merge base tags + video-specific tags, deduplicated.
-    YouTube limits: each tag ≤30 chars, ≤500 cumulative chars, ≤30 tags total."""
+    YouTube limits: each tag ≤30 chars, ≤500 cumulative chars, ≤30 tags total.
+    Using 25-tag cap: channels under copyright review hit invalidTags at 26+."""
     base = meta.get("video_defaults", {}).get("tags_base", [])
     seen: set = set()
     result: list = []
     total_chars = 0
     for t in extra_tags + base:  # video tags take priority over base
         if t and t not in seen and len(t) <= 30:
-            if len(result) >= 30 or total_chars + len(t) > 500:
+            if len(result) >= 25 or total_chars + len(t) > 400:
                 break
             seen.add(t)
             result.append(t)
@@ -346,6 +347,8 @@ def main():
     parser.add_argument("--theme", default="animals", help="Theme (animals, fruits, shapes)")
     parser.add_argument("--title", default=None, help="Custom title (overrides template)")
     parser.add_argument("--description", default=None, help="Custom description (overrides template)")
+    parser.add_argument("--description-file", default=None,
+                        help="Path to file containing description (avoids arg encoding issues)")
     parser.add_argument("--tags", default=None, help="Extra comma-separated tags")
     parser.add_argument("--status", default="public",
                         choices=["public", "unlisted", "private"])
@@ -380,7 +383,10 @@ def main():
         channel_name=channel_name,
     )
 
-    description = args.description or build_description(args.video_type, args.theme, meta)
+    if args.description_file and Path(args.description_file).exists():
+        description = Path(args.description_file).read_text(encoding="utf-8")
+    else:
+        description = args.description or build_description(args.video_type, args.theme, meta)
 
     extra_tags = [t.strip() for t in args.tags.split(",")] if args.tags else []
     tags = build_tags(args.video_type, args.theme, extra_tags, meta)
