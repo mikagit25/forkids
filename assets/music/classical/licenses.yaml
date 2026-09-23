@@ -436,7 +436,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 217
-  file: Music/Violin Sonata in F major, HWV 370 - III. Largo (For Trumpet and Organ - Rondeau).mp3
+  file: Music/Violin Sonata in F major, HWV 370 - III. Largo (For Trumpet and Organ
+    - Rondeau).mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: beethoven_cello_sonata_op5_no2_i_adagio
@@ -452,7 +453,8 @@ recordings:
   notes: ''
 - id: beethoven_cello_sonata_op5_no2_ii_allegro
   composer: Ludwig van Beethoven
-  piece: Cello Sonata No. 2 in G minor, Op. 5 No. 2 — II. Allegro molto più tosto presto
+  piece: Cello Sonata No. 2 in G minor, Op. 5 No. 2 — II. Allegro molto più tosto
+    presto
   performer: ''
   year: 0
   source: musopen.org
@@ -504,7 +506,8 @@ recordings:
   duration_sec: 1193
   file: Music/lp-00546_BeG-record_1_side_A_64kb.mp3
   programs: []
-  notes: 'QUALITY WARNING: 64kbps vinyl digitization — do NOT use in programs until identified and quality verified'
+  notes: 'QUALITY WARNING: 64kbps vinyl digitization — do NOT use in programs until
+    identified and quality verified'
 - id: musopen_lp_00546_side_b
   composer: Unknown
   piece: Record lp-00546 Side B
@@ -515,7 +518,8 @@ recordings:
   duration_sec: 997
   file: Music/lp-00546_BeG-record_1_side_B_64kb.mp3
   programs: []
-  notes: 'QUALITY WARNING: 64kbps vinyl digitization — do NOT use in programs until identified and quality verified'
+  notes: 'QUALITY WARNING: 64kbps vinyl digitization — do NOT use in programs until
+    identified and quality verified'
 - id: bach_goldberg_variations_bwv988_part1
   composer: Johann Sebastian Bach
   piece: Goldberg Variations, BWV 988 — Part 1 (Aria + Variations 1–15)
@@ -645,7 +649,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 116
-  file: Music/Goldberg Variations, BWV 988 - 04 - Variatio 3 a 1 Clav. Canone all Unisuono.mp3
+  file: Music/Goldberg Variations, BWV 988 - 04 - Variatio 3 a 1 Clav. Canone all
+    Unisuono.mp3
   programs: []
   notes: ''
 - id: goldberg_variations_bwv_988_05_variatio_4_a_1_clav
@@ -678,7 +683,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 98
-  file: Music/Goldberg Variations, BWV 988 - 07 - Variatio 6 a 1 Clav. Canone alla Seconda.mp3
+  file: Music/Goldberg Variations, BWV 988 - 07 - Variatio 6 a 1 Clav. Canone alla
+    Seconda.mp3
   programs: []
   notes: ''
 - id: goldberg_variations_bwv_988_08_variatio_7_a_1_ovvero_2_clav
@@ -722,7 +728,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 126
-  file: Music/Goldberg Variations, BWV 988 - 10 - Variatio 9 a 1 Clav. Canone alla Terza.mp3
+  file: Music/Goldberg Variations, BWV 988 - 10 - Variatio 9 a 1 Clav. Canone alla
+    Terza.mp3
   programs: []
   notes: ''
 - id: goldberg_variations_bwv_988_11_variatio_10_a_1_clav_fughetta
@@ -788,7 +795,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 272
-  file: Music/Goldberg Variations, BWV 988 - 16 - Variatio 15 a 1 Clav. Canone alla Quinta.mp3
+  file: Music/Goldberg Variations, BWV 988 - 16 - Variatio 15 a 1 Clav. Canone alla
+    Quinta.mp3
   programs: []
   notes: ''
 - id: goldberg_variations_bwv_988_17_variatio_16_a_1_clav_ouverture
@@ -810,7 +818,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 109
-  file: Music/Goldberg Variations, BWV 988 - 19 - Variatio 18 a 1 Clav. Canone alla Sexta.mp3
+  file: Music/Goldberg Variations, BWV 988 - 19 - Variatio 18 a 1 Clav. Canone alla
+    Sexta.mp3
   programs: []
   notes: ''
 - id: goldberg_variations_bwv_988_20_variatio_19_a_1_clav
@@ -876,7 +885,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 165
-  file: Music/Goldberg Variations, BWV 988 - 25 - Variatio 24 a 1 Clav. Canone all Ottava.mp3
+  file: Music/Goldberg Variations, BWV 988 - 25 - Variatio 24 a 1 Clav. Canone all
+    Ottava.mp3
   programs: []
   notes: ''
 - id: goldberg_variations_bwv_988_27_variatio_26_a_2_clav
@@ -898,7 +908,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 111
-  file: Music/Goldberg Variations, BWV 988 - 28 - Variatio 27 a 2 Clav. Canone alla Nona.mp3
+  file: Music/Goldberg Variations, BWV 988 - 28 - Variatio 27 a 2 Clav. Canone alla
+    Nona.mp3
   programs: []
   notes: ''
 - id: goldberg_variations_bwv_988_29_variatio_28_a_2_clav
@@ -1327,7 +1338,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 216
-  file: Music/Violin Sonata in F major, HWV 370 - III. Largo (For Trumpet and Organ - Rondeau).mp3
+  file: Music/Violin Sonata in F major, HWV 370 - III. Largo (For Trumpet and Organ
+    - Rondeau).mp3
   programs: []
   notes: ''
 - id: bach_violin_partita_no1_bwv1002_allemanda
@@ -1551,7 +1563,8 @@ recordings:
   duration_sec: 780
   file: Music/Hungarian Rhapsody no. 2, S. 244-2.mp3
   programs: []
-  notes: Very dramatic/energetic. NOT for sleep. Reserve for focus_drama or highlight compilations.
+  notes: Very dramatic/energetic. NOT for sleep. Reserve for focus_drama or highlight
+    compilations.
 - id: barrios_julia_florida
   composer: Agustín Barrios Mangoré
   piece: Julia Florida (Guitar)
@@ -1615,9 +1628,11 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 97
-  file: Music/Requiem in D minor, K. 626 - III. Sequence - Rex tremendae (For Voices and Recorder Ensemble - Papalin).mp3
+  file: Music/Requiem in D minor, K. 626 - III. Sequence - Rex tremendae (For Voices
+    and Recorder Ensemble - Papalin).mp3
   programs: []
-  notes: Choral/dramatic — NOT for sleep. Too short and intense for programs. Archive only.
+  notes: Choral/dramatic — NOT for sleep. Too short and intense for programs. Archive
+    only.
 - id: beethoven_tempest_sonata_i_largo_allegro
   composer: Ludwig van Beethoven
   piece: Piano Sonata No. 17 'The Tempest', Op. 31 No. 2 — I. Largo, Allegro
@@ -1683,7 +1698,8 @@ recordings:
   duration_sec: 678
   file: Music/Ballade no. 1 in G minor, Op. 23.mp3
   programs: []
-  notes: Beautiful, sweeping — used in aurora_borealis, autumn_forest, evening_piano themes.
+  notes: Beautiful, sweeping — used in aurora_borealis, autumn_forest, evening_piano
+    themes.
 - id: chopin_etude_lament_op10_no6
   composer: Frédéric Chopin
   piece: Étude Op. 10, No. 6 in E-flat minor — 'Lament'
@@ -1694,10 +1710,12 @@ recordings:
   duration_sec: 252
   file: Music/Etude Op. 10, no. 6 in E flat minor - 'Lament'.mp3
   programs: []
-  notes: Slow, deeply poignant. Used in cherry_blossoms, fireplace_cabin, night_rain, autumn_forest.
+  notes: Slow, deeply poignant. Used in cherry_blossoms, fireplace_cabin, night_rain,
+    autumn_forest.
 - id: beethoven_moonlight_paul_pitman
   composer: Ludwig van Beethoven
-  piece: Piano Sonata No. 14 in C-sharp minor 'Moonlight', Op. 27 No. 2 — I. Adagio sostenuto (Paul Pitman)
+  piece: Piano Sonata No. 14 in C-sharp minor 'Moonlight', Op. 27 No. 2 — I. Adagio
+    sostenuto (Paul Pitman)
   performer: Paul Pitman
   year: 0
   source: musopen.org
@@ -1705,7 +1723,8 @@ recordings:
   duration_sec: 335
   file: Music/Paul Pitman - Moonlight Sonata, Op. 27 No. 2 - I. Adagio sostenuto.mp3
   programs: []
-  notes: Paul Pitman performance. Alternative to existing Moonlight recording. Sleep themes.
+  notes: Paul Pitman performance. Alternative to existing Moonlight recording. Sleep
+    themes.
 - id: bach_accou_bourree_bwv1002
   composer: Johann Sebastian Bach
   piece: Violin Partita No. 1, BWV 1002 — Bourree (Guitar arr. by Accou)
@@ -1873,13 +1892,15 @@ recordings:
   notes: Downloaded from Google Drive Music folder
 - id: beethoven_moonlight_sonata_op27_no2_ii_iii
   composer: Ludwig van Beethoven
-  piece: Piano Sonata No. 14 'Moonlight', Op. 27 No. 2 — II. Allegretto & III. Presto agitato
+  piece: Piano Sonata No. 14 'Moonlight', Op. 27 No. 2 — II. Allegretto & III. Presto
+    agitato
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 521
-  file: Music/Piano Sonata no. 14 in C#m 'Moonlight', Op. 27 no. 2 - II + III (Allegretto - Presto).mp3
+  file: Music/Piano Sonata no. 14 in C#m 'Moonlight', Op. 27 no. 2 - II + III (Allegretto
+    - Presto).mp3
   programs: []
   notes: Downloaded from Google Drive Music folder
 - id: beethoven_tempest_sonata_op31_no2_iii_allegretto
@@ -1967,7 +1988,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 381
-  file: Music/Requiem in D minor, K. 626 - I. Introitus and II. Kyrie (For Voices and Recorder Ensemble - Papalin).mp3
+  file: Music/Requiem in D minor, K. 626 - I. Introitus and II. Kyrie (For Voices
+    and Recorder Ensemble - Papalin).mp3
   programs: []
   notes: Downloaded from Google Drive Music folder
 - id: mozart_requiem_k626_vi_benedictus
@@ -1978,7 +2000,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 265
-  file: Music/Requiem in D minor, K. 626 - VI. Benedictus (For Voices and Recorder Ensemble - Papalin).mp3
+  file: Music/Requiem in D minor, K. 626 - VI. Benedictus (For Voices and Recorder
+    Ensemble - Papalin).mp3
   programs: []
   notes: Downloaded from Google Drive Music folder
 - id: mozart_requiem_k626_viii_lux_aeterna
@@ -1989,7 +2012,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 299
-  file: Music/Requiem in D minor, K. 626 - VIII. Communio - Lux aeterna (For Voices and Recorder Ensemble - Papalin).mp3
+  file: Music/Requiem in D minor, K. 626 - VIII. Communio - Lux aeterna (For Voices
+    and Recorder Ensemble - Papalin).mp3
   programs: []
   notes: Downloaded from Google Drive Music folder
 - id: schubert_fantasie_c_major_d934
@@ -2176,7 +2200,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 165
-  file: Music/The Magic Flute, K. 620 - Act 2. c. Der Holle Rache kocht in meinem Herzen.mp3
+  file: Music/The Magic Flute, K. 620 - Act 2. c. Der Holle Rache kocht in meinem
+    Herzen.mp3
   programs: []
   notes: Downloaded from Google Drive Music folder
 - id: beethoven_violin_sonata_no9_kreutzer_op47
@@ -2573,7 +2598,8 @@ recordings:
   duration_sec: 1100
   file: Music/Beethoven+-+Concerto+No.1+in+C+Major+Op.15+-+I.+Allegro+con+brio.mp3
   programs: []
-  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed PD.
+  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed
+    PD.
 - id: beethoven_piano_concerto_3_i
   composer: Ludwig van Beethoven
   piece: Piano Concerto No. 3 in C minor, Op. 37 — I.
@@ -2583,7 +2609,8 @@ recordings:
   duration_sec: 1039
   file: Music/Beethoven+-+Piano+Concerto+No.+3,+Op+37,+I.mp3
   programs: []
-  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed PD.
+  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed
+    PD.
 - id: beethoven_piano_concerto_4_i
   composer: Ludwig van Beethoven
   piece: Piano Concerto No. 4 in G major, Op. 58 — I. Allegro moderato
@@ -2593,7 +2620,8 @@ recordings:
   duration_sec: 1027
   file: Music/Beethoven+-+Concerto+No.4+in+G+Major+Op.58+-+I.+Allegro+moderato.mp3
   programs: []
-  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed PD.
+  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed
+    PD.
 - id: beethoven_symphony9_iii_adagio
   composer: Ludwig van Beethoven
   piece: Symphony No. 9 in D minor, Op. 125 — III. Adagio molto e Cantabile
@@ -2603,7 +2631,8 @@ recordings:
   duration_sec: 974
   file: Music/Beethoven+-+Symphony+No.9+in+D+minor+Op.125+-+III.+Adagio+molto+e+Contabil.mp3
   programs: []
-  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed PD.
+  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed
+    PD.
 - id: beethoven_symphony9_iv_final
   composer: Ludwig van Beethoven
   piece: Symphony No. 9 in D minor, Op. 125 — IV. Final
@@ -2613,7 +2642,8 @@ recordings:
   duration_sec: 1391
   file: Music/Beethoven+-+Symphony+No.9+in+D+minor+Op.125+-+IV.+final.mp3
   programs: []
-  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed PD.
+  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed
+    PD.
 - id: beethoven_violin_concerto_op61_i_v3
   composer: Ludwig van Beethoven
   piece: Violin Concerto in D major, Op. 61 — I. Allegro ma non troppo (v3)
@@ -2623,7 +2653,8 @@ recordings:
   duration_sec: 1324
   file: Music/Beethoven+-+Vioolconcert+in+D+Op.61+-+I.+Allegro+ma+non+troppo.mp3
   programs: []
-  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed PD.
+  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed
+    PD.
 - id: beethoven_symphony6_iii_iv_v
   composer: Ludwig van Beethoven
   piece: Symphony No. 6 in F major, Op. 68 (Pastoral) — III+IV+V
@@ -2633,7 +2664,8 @@ recordings:
   duration_sec: 1052
   file: Music/Beethoven+-+Symphony+No.6+in+F+major+Op.68+-+III.+Allegro+IV.+Allegro+V.+Allegretto.mp3
   programs: []
-  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed PD.
+  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed
+    PD.
 - id: beethoven_eroica_i_italian
   composer: Ludwig van Beethoven
   piece: Symphony No. 3 in E-flat major, Op. 55 (Eroica) — I. Allegro con brio
@@ -2643,7 +2675,8 @@ recordings:
   duration_sec: 1028
   file: Music/Beethoven+-+Sinfonia+N.3+in+Bemolle+maggiore+Op.55+-+I.+Allegro+con+brio.mp3
   programs: []
-  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed PD.
+  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed
+    PD.
 - id: beethoven_symphony5_iii_italian
   composer: Ludwig van Beethoven
   piece: Symphony No. 5 in C minor, Op. 67 — III. Allegro
@@ -2653,7 +2686,8 @@ recordings:
   duration_sec: 958
   file: Music/Beethoven+-+Sinfonia+N.5+in+Do+minore+Op.67+-+III.+Allegro+attacca.mp3
   programs: []
-  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed PD.
+  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed
+    PD.
 - id: beethoven_violin_concerto_op61_i_v4
   composer: Ludwig van Beethoven
   piece: Violin Concerto in D major, Op. 61 — I. Allegro ma non troppo (v4)
@@ -2663,7 +2697,8 @@ recordings:
   duration_sec: 1469
   file: Music/Beethoven+-+violin_concerto_in_d_opus_61-mvt_1.mp3
   programs: []
-  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed PD.
+  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed
+    PD.
 - id: beethoven_symphony3_i_musopen
   composer: Ludwig van Beethoven
   piece: Symphony No. 3 in E-flat major, Op. 55 (Eroica) — I. Allegro con brio (v2)
@@ -2673,51 +2708,60 @@ recordings:
   duration_sec: 1065
   file: Music/6258_Beethoven+-+Symphony+No+3,+I.mp3
   programs: []
-  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed PD.
+  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed
+    PD.
 - id: wagner_tannhaeuser_act1_conclusion
   composer: Richard Wagner
   piece: Tannhäuser — Act I, Conclusion
   performer: ''
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1396
   file: Music/Richard+Wagner+-+Tannhaeuser+-+Act+I,+Conclusion.mp3
   programs: []
-  notes: 'Musopen Public Domain — European Archive recording. Composition PD (Wagner died 1883). Pre-1972 LP: low Content
-    ID risk, tested safe for YouTube uploads. stream_safe=false maintained for live streams as precaution.'
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Musopen
+    Public Domain — European Archive recording. Composition PD (Wagner died 1883).
+    Pre-1972 LP: low Content ID risk, tested safe for YouTube uploads. stream_safe=false
+    maintained for live streams as precaution.'
 - id: wagner_tannhaeuser_act2_scenes12_p1
   composer: Richard Wagner
   piece: Tannhäuser — Act II, Scenes 1 & 2, Part 1
   performer: ''
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1622
   file: Music/Richard+Wagner+-+Tannhaeuser+-+Act+II,+Scenes+1&2,+Part+1.mp3
   programs: []
-  notes: 'Musopen Public Domain — European Archive recording. Composition PD (Wagner died 1883). Pre-1972 LP: low Content
-    ID risk, tested safe for YouTube uploads. stream_safe=false maintained for live streams as precaution.'
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Musopen
+    Public Domain — European Archive recording. Composition PD (Wagner died 1883).
+    Pre-1972 LP: low Content ID risk, tested safe for YouTube uploads. stream_safe=false
+    maintained for live streams as precaution.'
 - id: wagner_tannhaeuser_act2_scenes234_pi
   composer: Richard Wagner
   piece: Tannhäuser — Act II, Scenes 2-4, Part I
   performer: ''
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1314
   file: Music/Richard+Wagner+-+Tannhaeuser+-+Act+II,+Scenes+2,+Part+2,3,4,+Part+I.mp3
   programs: []
-  notes: 'Musopen Public Domain — European Archive recording. Composition PD (Wagner died 1883). Pre-1972 LP: low Content
-    ID risk, tested safe for YouTube uploads. stream_safe=false maintained for live streams as precaution.'
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Musopen
+    Public Domain — European Archive recording. Composition PD (Wagner died 1883).
+    Pre-1972 LP: low Content ID risk, tested safe for YouTube uploads. stream_safe=false
+    maintained for live streams as precaution.'
 - id: wagner_tannhaeuser_act2_scenes4_p2
   composer: Richard Wagner
   piece: Tannhäuser — Act II, Scenes 4, Part 2
   performer: ''
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1367
   file: Music/Richard+Wagner+-+Tannhaeuser+-+Act+II,+Scenes+4,+Part+2.mp3
   programs: []
-  notes: 'Musopen Public Domain — European Archive recording. Composition PD (Wagner died 1883). Pre-1972 LP: low Content
-    ID risk, tested safe for YouTube uploads. stream_safe=false maintained for live streams as precaution.'
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Musopen
+    Public Domain — European Archive recording. Composition PD (Wagner died 1883).
+    Pre-1972 LP: low Content ID risk, tested safe for YouTube uploads. stream_safe=false
+    maintained for live streams as precaution.'
 - id: franck_violin_sonata_a_major
   composer: César Franck
   piece: Violin Sonata in A major — Complete
@@ -2727,8 +2771,9 @@ recordings:
   duration_sec: 1549
   file: Music/Sonata+in+A+for+Violin+and+Piano-0-Cesar+Franck+-+Sonata+for+Violin+and+Piano+A-Major-2073-6945.mp3
   programs: []
-  notes: CC BY 3.0 — Tibor Szomora (violin) & Minami Matsunaga (piano), 2020, oktOpus Multimedia Institute. Attribution required
-    in video description. NOT stream_safe for live streams.
+  notes: CC BY 3.0 — Tibor Szomora (violin) & Minami Matsunaga (piano), 2020, oktOpus
+    Multimedia Institute. Attribution required in video description. NOT stream_safe
+    for live streams.
 - id: tchaikovsky_swan_lake_act1_intro_v2
   composer: Pyotr Ilyich Tchaikovsky
   piece: Swan Lake, Op. 20 — Act I Intro (v2)
@@ -2738,8 +2783,9 @@ recordings:
   duration_sec: 1130
   file: Music/Tchaikovsky+-+Swan+Lake+Op.20+-+Act+I+Intro.mp3
   programs: []
-  notes: 'REJECTED: Likely London Symphony Orchestra / Fistoulari (1952 Decca). Active Content ID claims from Naxos & UMG.
-    Pre-1972 US recording protected until 2067. DO NOT USE.'
+  notes: 'REJECTED: Likely London Symphony Orchestra / Fistoulari (1952 Decca). Active
+    Content ID claims from Naxos & UMG. Pre-1972 US recording protected until 2067.
+    DO NOT USE.'
 - id: tchaikovsky_swan_lake_act4_intro_v2
   composer: Pyotr Ilyich Tchaikovsky
   piece: Swan Lake, Op. 20 — Act IV Intro (v2)
@@ -2749,8 +2795,9 @@ recordings:
   duration_sec: 1261
   file: Music/Tchaikovsky+-+Swan+Lake+Op.20+-+Act+IV+Intro.mp3
   programs: []
-  notes: 'REJECTED: Likely London Symphony Orchestra / Fistoulari (1952 Decca). Active Content ID claims from Naxos & UMG.
-    Pre-1972 US recording protected until 2067. DO NOT USE.'
+  notes: 'REJECTED: Likely London Symphony Orchestra / Fistoulari (1952 Decca). Active
+    Content ID claims from Naxos & UMG. Pre-1972 US recording protected until 2067.
+    DO NOT USE.'
 - id: borodin_polovetsian_dances
   composer: Alexander Borodin
   piece: Prince Igor — Polovetsian Dances
@@ -2760,7 +2807,8 @@ recordings:
   duration_sec: 936
   file: Music/Borodin+-+Polovetsian+Dances.mp3
   programs: []
-  notes: Musopen Public Domain — Davis High School Symphony Orchestra. Confirmed via Musopen / Free Music Archive.
+  notes: Musopen Public Domain — Davis High School Symphony Orchestra. Confirmed via
+    Musopen / Free Music Archive.
 - id: bizet_carmen_act4
   composer: Georges Bizet
   piece: Carmen — Act 4
@@ -2771,8 +2819,8 @@ recordings:
   duration_sec: 1469
   file: Music/Bizet+-+Carmen+-+2+-+Act+4+-+Avec+la+garde+montante+a.mp3
   programs: []
-  notes: 'Musopen PD — Bizet (1875) composition clearly PD. Musopen exclusively hosts PD/CC recordings. Downloaded from Google
-    Drive (Musopen PD)'
+  notes: Musopen PD — Bizet (1875) composition clearly PD. Musopen exclusively hosts
+    PD/CC recordings. Downloaded from Google Drive (Musopen PD)
 - id: rachmaninoff_pc2_iii_allegro_scherzando
   composer: Sergei Rachmaninoff
   piece: Piano Concerto No. 2 in C minor, Op. 18 — III. Allegro scherzando
@@ -2782,7 +2830,8 @@ recordings:
   duration_sec: 1152
   file: Music/Piano+Concerto+No.+2+in+C+Minor,+Op.+18+-+III.+Allegro+scherzando.mp3
   programs: []
-  notes: Musopen Public Domain — Skidmore College Orchestra recording. Composition PD (pub.1901). Confirmed via Musopen.
+  notes: Musopen Public Domain — Skidmore College Orchestra recording. Composition
+    PD (pub.1901). Confirmed via Musopen.
 - id: tchaikovsky_1812_overture
   composer: Pyotr Ilyich Tchaikovsky
   piece: 1812 Overture, Op. 49
@@ -2804,8 +2853,8 @@ recordings:
   duration_sec: 1253
   file: Music/Gioachino+Rossini+-+Le+Berbier+De+Seville+-+2+-+Act+2+-+Fin.mp3
   programs: []
-  notes: 'Musopen PD — Rossini (1868) composition clearly PD. Musopen exclusively hosts PD/CC recordings. Downloaded from Google
-    Drive (Musopen PD)'
+  notes: Musopen PD — Rossini (1868) composition clearly PD. Musopen exclusively hosts
+    PD/CC recordings. Downloaded from Google Drive (Musopen PD)
 - id: rossini_barber_act1
   composer: Gioachino Rossini
   piece: The Barber of Seville — Act 1, Part 1
@@ -2816,9 +2865,10 @@ recordings:
   duration_sec: 1398
   file: Music/Giuseppe+Verdi+-+Le+Berbier+De+Seville+-+1+-+Act+1+-+1st+Part.mp3
   programs: []
-  notes: 'Musopen PD — Rossini (1868) composition clearly PD. Musopen exclusively hosts PD/CC recordings. Filename has "Giuseppe
-    Verdi" — likely Musopen database tagging error; piece title confirms this is Rossini''s Barber of Seville. Downloaded from
-    Google Drive (Musopen PD)'
+  notes: Musopen PD — Rossini (1868) composition clearly PD. Musopen exclusively hosts
+    PD/CC recordings. Filename has "Giuseppe Verdi" — likely Musopen database tagging
+    error; piece title confirms this is Rossini's Barber of Seville. Downloaded from
+    Google Drive (Musopen PD)
 - id: chopin_pc1_string_quartet_arr
   composer: Frédéric Chopin
   piece: Piano Concerto No. 1, Op. 11 — I. Allegro maestoso (string quartet arr.)
@@ -2972,7 +3022,8 @@ recordings:
   duration_sec: 2323
   file: Music/Anna+-+Tristan+und+Isolde+-+Part+1.mp3
   programs: []
-  notes: 'REJECTED: Performer under copyright (Maria Callas died 1977 / Anna - unknown). DO NOT USE.'
+  notes: 'REJECTED: Performer under copyright (Maria Callas died 1977 / Anna - unknown).
+    DO NOT USE.'
 - id: wagner_tristan_isolde_part2
   composer: Richard Wagner
   piece: Tristan und Isolde — Part 2
@@ -2983,7 +3034,8 @@ recordings:
   duration_sec: 2191
   file: Music/Anna+-+Tristan+und+Isolde+-+Part+2.mp3
   programs: []
-  notes: 'REJECTED: Performer under copyright (Maria Callas died 1977 / Anna - unknown). DO NOT USE.'
+  notes: 'REJECTED: Performer under copyright (Maria Callas died 1977 / Anna - unknown).
+    DO NOT USE.'
 - id: wagner_tristan_isolde_part3
   composer: Richard Wagner
   piece: Tristan und Isolde — Part 3
@@ -2994,7 +3046,8 @@ recordings:
   duration_sec: 2016
   file: Music/Anna+-+Tristan+und+Isolde+-+Part+3.mp3
   programs: []
-  notes: 'REJECTED: Performer under copyright (Maria Callas died 1977 / Anna - unknown). DO NOT USE.'
+  notes: 'REJECTED: Performer under copyright (Maria Callas died 1977 / Anna - unknown).
+    DO NOT USE.'
 - id: wagner_tristan_isolde_part4
   composer: Richard Wagner
   piece: Tristan und Isolde — Part 4
@@ -3005,7 +3058,8 @@ recordings:
   duration_sec: 1971
   file: Music/Anna+-+Tristan+und+Isolde+-+Part+4.mp3
   programs: []
-  notes: 'REJECTED: Performer under copyright (Maria Callas died 1977 / Anna - unknown). DO NOT USE.'
+  notes: 'REJECTED: Performer under copyright (Maria Callas died 1977 / Anna - unknown).
+    DO NOT USE.'
 - id: wagner_tristan_isolde_part5
   composer: Richard Wagner
   piece: Tristan und Isolde — Part 5
@@ -3016,7 +3070,8 @@ recordings:
   duration_sec: 2280
   file: Music/Anna+-+Tristan+und+Isolde+-+Part+5.mp3
   programs: []
-  notes: 'REJECTED: Performer under copyright (Maria Callas died 1977 / Anna - unknown). DO NOT USE.'
+  notes: 'REJECTED: Performer under copyright (Maria Callas died 1977 / Anna - unknown).
+    DO NOT USE.'
 - id: bizet_carmen_act1_a
   composer: Georges Bizet
   piece: Carmen — Act 1 (Sur la place), Part A
@@ -3613,14 +3668,16 @@ recordings:
   notes: Google Drive download — PD confirmed
 - id: beethoven_piano_sonata_32_op111_ii
   composer: Ludwig van Beethoven
-  piece: Piano Sonata No. 32 in C minor, Op. 111 — II. Arietta (Adagio molto semplice e cantabile)
+  piece: Piano Sonata No. 32 in C minor, Op. 111 — II. Arietta (Adagio molto semplice
+    e cantabile)
   performer: ''
   source: musopen.org
   license: pd
   duration_sec: 992
   file: Music/Piano+Sonata+No.32+In+C+Minor,+Op.111+-+2.+Arietta+(Adagio+Molto+Semplice+E+Cantabile).mp3
   programs: []
-  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed PD.
+  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed
+    PD.
 - id: schubert_piano_sonata_d960_i
   composer: Franz Schubert
   piece: Piano Sonata No. 21 in B-flat major, D. 960 — I. Molto moderato
@@ -3689,14 +3746,16 @@ recordings:
   notes: Google Drive download — PD confirmed
 - id: beethoven_hammerklavier_iii_adagio
   composer: Ludwig van Beethoven
-  piece: Piano Sonata No. 29 in B-flat major, Op. 106 'Hammerklavier' — III. Adagio sostenuto
+  piece: Piano Sonata No. 29 in B-flat major, Op. 106 'Hammerklavier' — III. Adagio
+    sostenuto
   performer: ''
   source: musopen.org
   license: pd
   duration_sec: 1035
   file: Music/Sonata+No.+29+in+B+flat+Major,+Op.+106+Hammerklavier+-+III.+Adagio+sostenuto.mp3
   programs: []
-  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed PD.
+  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed
+    PD.
 - id: brahms_symphony1_i
   composer: Johannes Brahms
   piece: Symphony No. 1 in C minor, Op. 68 — I. Un poco sostenuto — Allegro
@@ -3717,17 +3776,20 @@ recordings:
   duration_sec: 911
   file: Music/Symphony+No.+3+in+E+Flat+Major+Eroica,+Op.+55+-+I.+Allegro+con+brio.mp3
   programs: []
-  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed PD.
+  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed
+    PD.
 - id: beethoven_eroica_ii_marcia_funebre
   composer: Ludwig van Beethoven
-  piece: Symphony No. 3 in E-flat major, Op. 55 (Eroica) — II. Marcia funebre (Adagio assai)
+  piece: Symphony No. 3 in E-flat major, Op. 55 (Eroica) — II. Marcia funebre (Adagio
+    assai)
   performer: ''
   source: musopen.org
   license: pd
   duration_sec: 928
   file: Music/Symphony+No.+3+in+E+Flat+Major+Eroica,+Op.+55+-+II.+Marcia+funebre+Adagio+assai.mp3
   programs: []
-  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed PD.
+  notes: Musopen Public Domain — European Archive / Musopen Symphony recording. Confirmed
+    PD.
 - id: beethoven_symphony7_liszt_piano_transcription
   composer: Ludwig van Beethoven
   piece: Symphony No. 7 in A major, Op. 92 — F. Liszt piano transcription
@@ -3813,7 +3875,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 840
-  file: Music/Violin Partita no. 2, BWV 1004 - 5. Chaconne [Piano arrangement - K.H. Pillney].mp3
+  file: Music/Violin Partita no. 2, BWV 1004 - 5. Chaconne [Piano arrangement - K.H.
+    Pillney].mp3
   programs: []
   notes: Google Drive download — PD confirmed
 - id: bach_wtc_book1_prelude24_bwv869
@@ -3826,7 +3889,8 @@ recordings:
   duration_sec: 994
   file: Music/05454c1a-a321-4b25-84eb-dee186abf553.mp3
   programs: []
-  notes: Identified via AudD. WTC Book I complete or partial — ~16.5 min suggests multiple preludes/fugues.
+  notes: Identified via AudD. WTC Book I complete or partial — ~16.5 min suggests
+    multiple preludes/fugues.
 - id: bach_double_violin_concerto_bwv1043_ii
   composer: Johann Sebastian Bach
   piece: Concerto for 2 Violins in D minor, BWV 1043 — II. Largo ma non tanto
@@ -3837,7 +3901,8 @@ recordings:
   duration_sec: 977
   file: Music/197696e5-0ba4-4693-8a12-618c89225d29.mp3
   programs: []
-  notes: Identified via AudD (Bach Double Violin Concerto, Largo). 16.3 min suggests full movement + possible adjacent movements.
+  notes: Identified via AudD (Bach Double Violin Concerto, Largo). 16.3 min suggests
+    full movement + possible adjacent movements.
 - id: vivaldi_gloria_rv589_domine_deus
   composer: Antonio Vivaldi
   piece: Gloria in D Major, RV 589 — 8. Domine Deus, Agnus Dei (Adagio)
@@ -3848,7 +3913,8 @@ recordings:
   duration_sec: 941
   file: Music/19fdac3e-4ea4-4c85-8c06-d2160af53722.mp3
   programs: []
-  notes: Identified via AudD. 15.7 min suggests this is the full Gloria or multiple movements.
+  notes: Identified via AudD. 15.7 min suggests this is the full Gloria or multiple
+    movements.
 - id: handel_suite_g_minor_hwv432
   composer: George Frideric Handel
   piece: Suite in G minor, HWV 432
@@ -3870,7 +3936,8 @@ recordings:
   duration_sec: 931
   file: Music/263bbf89-b255-4462-9aeb-db47d982ea84.mp3
   programs: []
-  notes: Identified via AudD (French Suite No.5, BWV 816, Courante movement detected). ~15.5 min full suite.
+  notes: Identified via AudD (French Suite No.5, BWV 816, Courante movement detected).
+    ~15.5 min full suite.
 - id: unknown_03348ff0_1715_4eba_85eb_64a10a2ef2ab
   composer: Unknown
   piece: 03348ff0-1715-4eba-85eb-64a10a2ef2ab
@@ -5545,13 +5612,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_ballade_no_2_in_f_major_op_38_1_ballade_no_2_in_f_major_op_3
   composer: Unknown
-  piece: Ballade No. 2 in F major, Op. 38-1-Ballade No. 2 in F major, Op. 38-1953-6784 (1)
+  piece: Ballade No. 2 in F major, Op. 38-1-Ballade No. 2 in F major, Op. 38-1953-6784
+    (1)
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 512
-  file: Music/Ballade No. 2 in F major, Op. 38-1-Ballade No. 2 in F major, Op. 38-1953-6784 (1).mp3
+  file: Music/Ballade No. 2 in F major, Op. 38-1-Ballade No. 2 in F major, Op. 38-1953-6784
+    (1).mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_ballade_no_2_in_f_major_op_38_1_ballade_no_2_in_f_major_op_3_2
@@ -5617,7 +5686,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 1029
-  file: Music/Beethoven - Sinfonia N.3 in Bemolle maggiore Op.55 - I. Allegro con brio.mp3
+  file: Music/Beethoven - Sinfonia N.3 in Bemolle maggiore Op.55 - I. Allegro con
+    brio.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: beethoven_beethoven_sinfonia_n_5_in_do_minore_op_67_i_allegro_con
@@ -5650,7 +5720,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 1042
-  file: Music/Beethoven - String Quartet No.7 in F major Op.59 - III.Adagio molto e mesto.mp3
+  file: Music/Beethoven - String Quartet No.7 in F major Op.59 - III.Adagio molto
+    e mesto.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: beethoven_beethoven_symphony_no_9_in_d_minor_op_125_i_allegro_ma_n
@@ -5683,7 +5754,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 1443
-  file: Music/Beethoven - Symphony No. 9 in D minor, Op. 125 - IV. Presto - Allegro assai.mp3
+  file: Music/Beethoven - Symphony No. 9 in D minor, Op. 125 - IV. Presto - Allegro
+    assai.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: beethoven_beethoven_symphony_no_5_in_c_minor_op_67_ii_andante_con
@@ -5743,13 +5815,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: beethoven_beethoven_symphony_no_6_in_f_major_op_68_iii_allegro_iv
   composer: Ludwig van Beethoven
-  piece: Beethoven - Symphony No.6 in F major Op.68 - III. Allegro IV. Allegro V. Allegretto
+  piece: Beethoven - Symphony No.6 in F major Op.68 - III. Allegro IV. Allegro V.
+    Allegretto
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 1052
-  file: Music/Beethoven - Symphony No.6 in F major Op.68 - III. Allegro IV. Allegro V. Allegretto.mp3
+  file: Music/Beethoven - Symphony No.6 in F major Op.68 - III. Allegro IV. Allegro
+    V. Allegretto.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: beethoven_beethoven_symphony_no_9_i_sats
@@ -5864,13 +5938,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: beethoven_beethoven_trio_for_flute_bassoon_and_piano_i_allegro_ii
   composer: Ludwig van Beethoven
-  piece: Beethoven - Trio for Flute, Bassoon and Piano - I. Allegro II. Adagio III. Andante
+  piece: Beethoven - Trio for Flute, Bassoon and Piano - I. Allegro II. Adagio III.
+    Andante
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 1287
-  file: Music/Beethoven - Trio for Flute, Bassoon and Piano - I. Allegro II. Adagio III. Andante.mp3
+  file: Music/Beethoven - Trio for Flute, Bassoon and Piano - I. Allegro II. Adagio
+    III. Andante.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: beethoven_beethoven_variations_and_fugue_e_flat_major_op_35
@@ -6304,26 +6380,28 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_fantasy_in_c_wanderer_d_760_1_05_paul_pittman_wanderer_fan
   composer: Unknown
-  piece: Fantasy in C 'Wanderer', D. 760-1-05 Paul Pittman - Wanderer Fantasie in C Major, Op. 15 - I. Allegro con fuoco ma
-    non troppo-2204-72501
+  piece: Fantasy in C 'Wanderer', D. 760-1-05 Paul Pittman - Wanderer Fantasie in
+    C Major, Op. 15 - I. Allegro con fuoco ma non troppo-2204-72501
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 424
-  file: Music/Fantasy in C 'Wanderer', D. 760-1-05 Paul Pittman - Wanderer Fantasie in C Major, Op. 15 - I. Allegro con fuoco
-    ma non troppo-2204-72501.mp3
+  file: Music/Fantasy in C 'Wanderer', D. 760-1-05 Paul Pittman - Wanderer Fantasie
+    in C Major, Op. 15 - I. Allegro con fuoco ma non troppo-2204-72501.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_fantasy_in_c_wanderer_d_760_2_06_paul_pittman_wanderer_fan
   composer: Unknown
-  piece: Fantasy in C 'Wanderer', D. 760-2-06 Paul Pittman - Wanderer Fantasie in C Major, Op. 15 - II. Adagio-2204-72511
+  piece: Fantasy in C 'Wanderer', D. 760-2-06 Paul Pittman - Wanderer Fantasie in
+    C Major, Op. 15 - II. Adagio-2204-72511
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 425
-  file: Music/Fantasy in C 'Wanderer', D. 760-2-06 Paul Pittman - Wanderer Fantasie in C Major, Op. 15 - II. Adagio-2204-72511.mp3
+  file: Music/Fantasy in C 'Wanderer', D. 760-2-06 Paul Pittman - Wanderer Fantasie
+    in C Major, Op. 15 - II. Adagio-2204-72511.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_fantasy_in_c_major_op_15_d_760_wanderer_ii_adagio
@@ -6455,7 +6533,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 1160
-  file: Music/Gabriel Faure - Requiem Op.48 - 1. Introit and kyrie, 2. Offertoire, 3. Sanctus.mp3
+  file: Music/Gabriel Faure - Requiem Op.48 - 1. Introit and kyrie, 2. Offertoire,
+    3. Sanctus.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_gabriel_faure_requiem_op_48_5_agnus_dei
@@ -6966,13 +7045,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: handel_handel_allexander_s_feast_the_power_of_music_ii_part_1
   composer: George Frideric Handel
-  piece: Handel - Allexander's feast - The Power of music - II. Part 1 Concl, Part 2
+  piece: Handel - Allexander's feast - The Power of music - II. Part 1 Concl, Part
+    2
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 1510
-  file: Music/Handel - Allexander's feast - The Power of music - II. Part 1 Concl, Part 2.mp3
+  file: Music/Handel - Allexander's feast - The Power of music - II. Part 1 Concl,
+    Part 2.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: handel_handel_allexander_s_feast_the_power_of_music_iv_part_2
@@ -7043,13 +7124,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: handel_handel_ode_for_st_cecilias_day_aria_soprano_what_passion
   composer: George Frideric Handel
-  piece: Handel - Ode for St. Cecilias day - Aria (soprano) What passion cannot music raise and quell
+  piece: Handel - Ode for St. Cecilias day - Aria (soprano) What passion cannot music
+    raise and quell
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 1401
-  file: Music/Handel - Ode for St. Cecilias day - Aria (soprano) What passion cannot music raise and quell.mp3
+  file: Music/Handel - Ode for St. Cecilias day - Aria (soprano) What passion cannot
+    music raise and quell.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: handel_handel_society_choir_orchestra_israel_in_egypt_part_i_1
@@ -7340,24 +7423,28 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: bach_js_bach_well_tempered_clavier_prelude_in_fugue_no_14_in
   composer: Johann Sebastian Bach
-  piece: JS Bach - Well Tempered Clavier - Prelude in Fugue No.14 in F sharp minor b
+  piece: JS Bach - Well Tempered Clavier - Prelude in Fugue No.14 in F sharp minor
+    b
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 559
-  file: Music/JS Bach - Well Tempered Clavier - Prelude in Fugue No.14 in F sharp minor b.mp3
+  file: Music/JS Bach - Well Tempered Clavier - Prelude in Fugue No.14 in F sharp
+    minor b.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: bach_js_bach_well_tempered_clavier_prelude_in_fugue_no_4_in_c
   composer: Johann Sebastian Bach
-  piece: JS Bach - Well Tempered Clavier - Prelude in Fugue No.4 in C sharp minor (1)
+  piece: JS Bach - Well Tempered Clavier - Prelude in Fugue No.4 in C sharp minor
+    (1)
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 493
-  file: Music/JS Bach - Well Tempered Clavier - Prelude in Fugue No.4 in C sharp minor (1).mp3
+  file: Music/JS Bach - Well Tempered Clavier - Prelude in Fugue No.4 in C sharp minor
+    (1).mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: bach_js_bach_well_tempered_clavier_prelude_in_fugue_no_4_in_c_2
@@ -7516,24 +7603,28 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_mahler_symphony_no_2_in_c_minor_resurrection_iii_in_ru
   composer: Unknown
-  piece: Mahler - Symphony No.2 in C Minor - Resurrection - III. in ruhig fliessender bewegung
+  piece: Mahler - Symphony No.2 in C Minor - Resurrection - III. in ruhig fliessender
+    bewegung
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 1136
-  file: Music/Mahler - Symphony No.2 in C Minor - Resurrection - III. in ruhig fliessender bewegung.mp3
+  file: Music/Mahler - Symphony No.2 in C Minor - Resurrection - III. in ruhig fliessender
+    bewegung.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_mahler_symphony_no_2_in_c_minor_resurrection_iv_urlich
   composer: Unknown
-  piece: Mahler - Symphony No.2 in C minor - Resurrection - IV. Urlicht V. Im tempo des scherzo
+  piece: Mahler - Symphony No.2 in C minor - Resurrection - IV. Urlicht V. Im tempo
+    des scherzo
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 1216
-  file: Music/Mahler - Symphony No.2 in C minor - Resurrection - IV. Urlicht V. Im tempo des scherzo.mp3
+  file: Music/Mahler - Symphony No.2 in C minor - Resurrection - IV. Urlicht V. Im
+    tempo des scherzo.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_mahler_symphony_no_4_in_g_major_1_badachtig_nicht_ellen
@@ -7599,7 +7690,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 1042
-  file: Music/Martha Flotow - Romantic-comic Opera in 4 Acts - Dritter Aufzug, 1. Teil.mp3
+  file: Music/Martha Flotow - Romantic-comic Opera in 4 Acts - Dritter Aufzug, 1.
+    Teil.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_martha_flotow_romantic_comic_opera_in_4_acts_erster_aufz
@@ -7758,13 +7850,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: mozart_mozart_concerto_for_piano_and_orchestra_no_27_b_flat_major
   composer: Wolfgang Amadeus Mozart
-  piece: Mozart - Concerto for piano and orchestra No.27, B flat major - I. Allegro II. Larghetto
+  piece: Mozart - Concerto for piano and orchestra No.27, B flat major - I. Allegro
+    II. Larghetto
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 1385
-  file: Music/Mozart - Concerto for piano and orchestra No.27, B flat major - I. Allegro II. Larghetto.mp3
+  file: Music/Mozart - Concerto for piano and orchestra No.27, B flat major - I. Allegro
+    II. Larghetto.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: mozart_mozart_concerto_for_piano_and_orchestra_no_27_b_flat_major_2
@@ -8072,7 +8166,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 1005
-  file: Music/Mozart - Serenade No.9 in D major - I. Adagio II. 1st Minuetto III. Concertante.mp3
+  file: Music/Mozart - Serenade No.9 in D major - I. Adagio II. 1st Minuetto III.
+    Concertante.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: mozart_mozart_sinfonia_n_40_in_sol_minore_ii_andante
@@ -8209,13 +8304,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: tchaikovsky_p_i_tchaikovsky_concerto_per_pianoforte_e_orche_n_1_in_s
   composer: Pyotr Ilyich Tchaikovsky
-  piece: P.I. Tchaikovsky - Concerto Per Pianoforte E Orche N.1 - in si bemolle minore Op.23 - I. Allegro
+  piece: P.I. Tchaikovsky - Concerto Per Pianoforte E Orche N.1 - in si bemolle minore
+    Op.23 - I. Allegro
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 1127
-  file: Music/P.I. Tchaikovsky - Concerto Per Pianoforte E Orche N.1 - in si bemolle minore Op.23 - I. Allegro.mp3
+  file: Music/P.I. Tchaikovsky - Concerto Per Pianoforte E Orche N.1 - in si bemolle
+    minore Op.23 - I. Allegro.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: tchaikovsky_p_i_tchaikovsky_mazeppa_1
@@ -8314,7 +8411,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 1047
-  file: Music/P.I. Tschalkovsky - Symphoni No.6 h-moll Op.74 - I. Adagio Allegro non troppo.mp3
+  file: Music/P.I. Tschalkovsky - Symphoni No.6 h-moll Op.74 - I. Adagio Allegro non
+    troppo.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: liszt_pmlp11524_franz_liszt_fantasie_romantique_sur_2_melodies_sui
@@ -8451,13 +8549,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: tchaikovsky_peter_tchaikovsky_concerto_fantasy_op_56_ii_molto_viva
   composer: Pyotr Ilyich Tchaikovsky
-  piece: Peter Tchaikovsky - Concerto Fantasy - Op.56 - II. Molto vivace, Allegro moderato, Vivacissimo
+  piece: Peter Tchaikovsky - Concerto Fantasy - Op.56 - II. Molto vivace, Allegro
+    moderato, Vivacissimo
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 1008
-  file: Music/Peter Tchaikovsky - Concerto Fantasy - Op.56 - II. Molto vivace, Allegro moderato, Vivacissimo.mp3
+  file: Music/Peter Tchaikovsky - Concerto Fantasy - Op.56 - II. Molto vivace, Allegro
+    moderato, Vivacissimo.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: tchaikovsky_peter_tchaikovsky_concerto_no_2_in_g_op_44_i_allegro_bri
@@ -8473,13 +8573,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: tchaikovsky_peter_tchaikovsky_concerto_no_2_in_g_op_44_ii_andante_no
   composer: Pyotr Ilyich Tchaikovsky
-  piece: Peter Tchaikovsky - Concerto No.2 in G, Op.44 - II. Andante non troppo III. Allegro con fuoco
+  piece: Peter Tchaikovsky - Concerto No.2 in G, Op.44 - II. Andante non troppo III.
+    Allegro con fuoco
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 906
-  file: Music/Peter Tchaikovsky - Concerto No.2 in G, Op.44 - II. Andante non troppo III. Allegro con fuoco.mp3
+  file: Music/Peter Tchaikovsky - Concerto No.2 in G, Op.44 - II. Andante non troppo
+    III. Allegro con fuoco.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: tchaikovsky_peter_tchaikovsky_piano_concerto_no_3_op_75_i_allegro_br
@@ -8539,13 +8641,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_piano_concerto_no_1_in_e_minor_op_11_ii_romanze_larghetto
   composer: Unknown
-  piece: Piano Concerto no. 1 in E minor, Op. 11 - II. Romanze – Larghetto (String Quintet arr.) (1)
+  piece: Piano Concerto no. 1 in E minor, Op. 11 - II. Romanze – Larghetto (String
+    Quintet arr.) (1)
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 580
-  file: Music/Piano Concerto no. 1 in E minor, Op. 11 - II. Romanze – Larghetto (String Quintet arr.) (1).mp3
+  file: Music/Piano Concerto no. 1 in E minor, Op. 11 - II. Romanze – Larghetto (String
+    Quintet arr.) (1).mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_piano_concerto_no_1_op_11_string_quartet_1_01_2151_7181
@@ -8583,35 +8687,41 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_piano_sonata_no_32_in_c_minor_op_111_2_arietta_adagio_molt
   composer: Unknown
-  piece: Piano Sonata No.32 In C Minor, Op.111 - 2. Arietta (Adagio Molto Semplice E Cantabile)
+  piece: Piano Sonata No.32 In C Minor, Op.111 - 2. Arietta (Adagio Molto Semplice
+    E Cantabile)
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 992
-  file: Music/Piano Sonata No.32 In C Minor, Op.111 - 2. Arietta (Adagio Molto Semplice E Cantabile).mp3
+  file: Music/Piano Sonata No.32 In C Minor, Op.111 - 2. Arietta (Adagio Molto Semplice
+    E Cantabile).mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: beethoven_piano_sonata_no_14_in_c_m_moonlight_op_27_no_2_ii_iii_alle
   composer: Ludwig van Beethoven
-  piece: Piano Sonata no. 14 in C#m 'Moonlight', Op. 27 no. 2 - II III (Allegretto - Presto)
+  piece: Piano Sonata no. 14 in C#m 'Moonlight', Op. 27 no. 2 - II III (Allegretto
+    - Presto)
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 521
-  file: Music/Piano Sonata no. 14 in C#m 'Moonlight', Op. 27 no. 2 - II III (Allegretto - Presto).mp3
+  file: Music/Piano Sonata no. 14 in C#m 'Moonlight', Op. 27 no. 2 - II III (Allegretto
+    - Presto).mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_piano_sonata_no_21_in_bb_d_960_1_01_paul_pittman_sonata_in
   composer: Unknown
-  piece: Piano Sonata no. 21 in Bb, D. 960-1-01 Paul Pittman - Sonata in B Flat Major, D. 960 - I. Molto moderato-2203-7246
+  piece: Piano Sonata no. 21 in Bb, D. 960-1-01 Paul Pittman - Sonata in B Flat Major,
+    D. 960 - I. Molto moderato-2203-7246
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 934
-  file: Music/Piano Sonata no. 21 in Bb, D. 960-1-01 Paul Pittman - Sonata in B Flat Major, D. 960 - I. Molto moderato-2203-7246.mp3
+  file: Music/Piano Sonata no. 21 in Bb, D. 960-1-01 Paul Pittman - Sonata in B Flat
+    Major, D. 960 - I. Molto moderato-2203-7246.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_polonaise_in_a_flat_major_op_53
@@ -8697,55 +8807,60 @@ recordings:
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1397
   file: Music/Richard Wagner - Tannhaeuser - Act I, Conclusion.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_richard_wagner_tannhaeuser_act_ii_scenes_1_2_part_1
   composer: Unknown
   piece: Richard Wagner - Tannhaeuser - Act II, Scenes 1&2, Part 1
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1622
   file: Music/Richard Wagner - Tannhaeuser - Act II, Scenes 1&2, Part 1.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_richard_wagner_tannhaeuser_act_ii_scenes_2_part_2_3_4_pa
   composer: Unknown
   piece: Richard Wagner - Tannhaeuser - Act II, Scenes 2, Part 2,3,4, Part I
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1315
   file: Music/Richard Wagner - Tannhaeuser - Act II, Scenes 2, Part 2,3,4, Part I.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_richard_wagner_tannhaeuser_act_ii_scenes_4_part_2
   composer: Unknown
   piece: Richard Wagner - Tannhaeuser - Act II, Scenes 4, Part 2
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1368
   file: Music/Richard Wagner - Tannhaeuser - Act II, Scenes 4, Part 2.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_richard_wagner_tannhaeuser_act_iii_conclusion
   composer: Unknown
   piece: Richard Wagner - Tannhaeuser - Act III, Conclusion
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1444
   file: Music/Richard Wagner - Tannhaeuser - Act III, Conclusion.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_romeo_and_juliet_overture_fantasy
   composer: Unknown
   piece: Romeo And Juliet- Overture-Fantasy
@@ -8809,18 +8924,21 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 901
-  file: Music/Shumann - Konzert fur Klavier und Orchester a-moll Op.54 - I. Allegro affettuoso.mp3
+  file: Music/Shumann - Konzert fur Klavier und Orchester a-moll Op.54 - I. Allegro
+    affettuoso.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_shumann_konzert_fur_klavier_und_orchester_a_moll_op_54_i_2
   composer: Unknown
-  piece: Shumann - Konzert fur Klavier und Orchester a-moll Op.54 - II. Intermezzo III. Allegro vivace
+  piece: Shumann - Konzert fur Klavier und Orchester a-moll Op.54 - II. Intermezzo
+    III. Allegro vivace
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 914
-  file: Music/Shumann - Konzert fur Klavier und Orchester a-moll Op.54 - II. Intermezzo III. Allegro vivace.mp3
+  file: Music/Shumann - Konzert fur Klavier und Orchester a-moll Op.54 - II. Intermezzo
+    III. Allegro vivace.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: beethoven_sonata_no_14_in_c_sharp_minor_moonlight_op_27_no_2_iii_pre
@@ -8842,7 +8960,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 474
-  file: Music/Sonata No. 17 in D minor, Op. 31, No. 2 The Tempest - I. Largo. Allegro (1).mp3
+  file: Music/Sonata No. 17 in D minor, Op. 31, No. 2 The Tempest - I. Largo. Allegro
+    (1).mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_sonata_no_17_in_d_minor_op_31_no_2_the_tempest_i_largo_all_2
@@ -8891,13 +9010,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_sonata_no_8_in_c_minor_pathetique_op_13_i_grave_allegro
   composer: Unknown
-  piece: Sonata No. 8 in C Minor Pathetique, Op. 13 - I. Grave - Allegro di molto e con brio
+  piece: Sonata No. 8 in C Minor Pathetique, Op. 13 - I. Grave - Allegro di molto
+    e con brio
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 426
-  file: Music/Sonata No. 8 in C Minor Pathetique, Op. 13 - I. Grave - Allegro di molto e con brio.mp3
+  file: Music/Sonata No. 8 in C Minor Pathetique, Op. 13 - I. Grave - Allegro di molto
+    e con brio.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_sonata_no_3_in_b_minor_op_58_iii_largo
@@ -8913,13 +9034,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_sonata_in_a_for_violin_and_piano_0_cesar_franck_sonata_for
   composer: Unknown
-  piece: Sonata in A for Violin and Piano-0-Cesar Franck - Sonata for Violin and Piano A-Major-2073-6945
+  piece: Sonata in A for Violin and Piano-0-Cesar Franck - Sonata for Violin and Piano
+    A-Major-2073-6945
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 1550
-  file: Music/Sonata in A for Violin and Piano-0-Cesar Franck - Sonata for Violin and Piano A-Major-2073-6945.mp3
+  file: Music/Sonata in A for Violin and Piano-0-Cesar Franck - Sonata for Violin
+    and Piano A-Major-2073-6945.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_sonata_in_d_major_d_850_i_allegro_vivace
@@ -8946,24 +9069,28 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: mozart_sonata_no_12_in_f_k_332_0_mozart_sonate_nr_12_i_allegro
   composer: Wolfgang Amadeus Mozart
-  piece: Sonata no. 12 in F [K. 332]-0-Mozart - Sonate Nr. 12 - I. Allegro II. Adagio III. Allegro Assai-2084-6973
+  piece: Sonata no. 12 in F [K. 332]-0-Mozart - Sonate Nr. 12 - I. Allegro II. Adagio
+    III. Allegro Assai-2084-6973
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 838
-  file: Music/Sonata no. 12 in F [K. 332]-0-Mozart - Sonate Nr. 12 - I. Allegro II. Adagio III. Allegro Assai-2084-6973.mp3
+  file: Music/Sonata no. 12 in F [K. 332]-0-Mozart - Sonate Nr. 12 - I. Allegro II.
+    Adagio III. Allegro Assai-2084-6973.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_sonata_no_16_in_c_facile_k_545_0_fabiomassimo_castelluzzo
   composer: Unknown
-  piece: Sonata no. 16 In C 'Facile' [K 545] -0-Fabiomassimo Castelluzzo - Sonata No. 16 K545-2032-6876
+  piece: Sonata no. 16 In C 'Facile' [K 545] -0-Fabiomassimo Castelluzzo - Sonata
+    No. 16 K545-2032-6876
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 748
-  file: Music/Sonata no. 16 In C 'Facile' [K 545] -0-Fabiomassimo Castelluzzo - Sonata No. 16 K545-2032-6876.mp3
+  file: Music/Sonata no. 16 In C 'Facile' [K 545] -0-Fabiomassimo Castelluzzo - Sonata
+    No. 16 K545-2032-6876.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_spontini_la_vestale_1
@@ -9078,13 +9205,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_symphony_no_3_in_e_flat_major_eroica_op_55_ii_marcia_funeb
   composer: Unknown
-  piece: Symphony No. 3 in E Flat Major Eroica, Op. 55 - II. Marcia funebre Adagio assai
+  piece: Symphony No. 3 in E Flat Major Eroica, Op. 55 - II. Marcia funebre Adagio
+    assai
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 929
-  file: Music/Symphony No. 3 in E Flat Major Eroica, Op. 55 - II. Marcia funebre Adagio assai.mp3
+  file: Music/Symphony No. 3 in E Flat Major Eroica, Op. 55 - II. Marcia funebre Adagio
+    assai.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: beethoven_symphony_no_5_in_c_minor_op_67_i_allegro_con_brio
@@ -9199,13 +9328,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_symphony_no_8_in_c_major_the_great_d_944_i_andante_allegro
   composer: Unknown
-  piece: Symphony no. 8 in C major 'the Great', D. 944 - I. Andante, allegro ma non troppo
+  piece: Symphony no. 8 in C major 'the Great', D. 944 - I. Andante, allegro ma non
+    troppo
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 880
-  file: Music/Symphony no. 8 in C major 'the Great', D. 944 - I. Andante, allegro ma non troppo.mp3
+  file: Music/Symphony no. 8 in C major 'the Great', D. 944 - I. Andante, allegro
+    ma non troppo.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: tchaikovsky_tchaikovsky_swan_lake_op_20_act_i_intro
@@ -9287,13 +9418,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_tchalkovsky_eugene_onegin_5_lensky_s_aria_tatiana_the
   composer: Unknown
-  piece: Tchalkovsky - Eugene Onegin - 5 - Lensky's Aria, Tatiana & The Nurse, Tatianas Letter
+  piece: Tchalkovsky - Eugene Onegin - 5 - Lensky's Aria, Tatiana & The Nurse, Tatianas
+    Letter
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 1456
-  file: Music/Tchalkovsky - Eugene Onegin - 5 - Lensky's Aria, Tatiana & The Nurse, Tatianas Letter.mp3
+  file: Music/Tchalkovsky - Eugene Onegin - 5 - Lensky's Aria, Tatiana & The Nurse,
+    Tatianas Letter.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_tchalkovsky_eugene_onegin_6_polonaise_scene_20_choru
@@ -9304,7 +9437,8 @@ recordings:
   source: musopen.org
   license: pd
   duration_sec: 1461
-  file: Music/Tchalkovsky - Eugene Onegin - 6 - Polonaise, Scene 20 - Chorus, Gremins Aria.mp3
+  file: Music/Tchalkovsky - Eugene Onegin - 6 - Polonaise, Scene 20 - Chorus, Gremins
+    Aria.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_the_demon_opera_act_i_intro_scenes_1_2a
@@ -9463,13 +9597,15 @@ recordings:
   notes: Local file — verify PD status from Musopen download history
 - id: beethoven_the_pupils_of_liszt_frederic_lamond_1_beethoven_sonata_i
   composer: Ludwig van Beethoven
-  piece: The Pupils of Liszt - Frederic Lamond - 1. Beethoven Sonata in C minor Op.13 - Grave, Adagio, Rondo
+  piece: The Pupils of Liszt - Frederic Lamond - 1. Beethoven Sonata in C minor Op.13
+    - Grave, Adagio, Rondo
   performer: ''
   year: 0
   source: musopen.org
   license: pd
   duration_sec: 919
-  file: Music/The Pupils of Liszt - Frederic Lamond - 1. Beethoven Sonata in C minor Op.13 - Grave, Adagio, Rondo.mp3
+  file: Music/The Pupils of Liszt - Frederic Lamond - 1. Beethoven Sonata in C minor
+    Op.13 - Grave, Adagio, Rondo.mp3
   programs: []
   notes: Local file — verify PD status from Musopen download history
 - id: unknown_toccata_and_fugue_in_d_minor
@@ -9654,165 +9790,189 @@ recordings:
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 900
   file: Music/Wagner - grand_fantasie_from_die_walkure.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_wagner_siegfried_fantasie
   composer: Unknown
   piece: Wagner - siegfried_fantasie
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1272
   file: Music/Wagner - siegfried_fantasie.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_wagner_ovv_act_1_die_meistersinger_von_nurnberg_finale_a
   composer: Unknown
-  piece: Wagner Ovv. Act 1 - Die Meistersinger Von Nurnberg - Finale Act 2 - Scen 1,2
+  piece: Wagner Ovv. Act 1 - Die Meistersinger Von Nurnberg - Finale Act 2 - Scen
+    1,2
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1652
-  file: Music/Wagner Ovv. Act 1 - Die Meistersinger Von Nurnberg - Finale Act 2 - Scen 1,2.mp3
+  file: Music/Wagner Ovv. Act 1 - Die Meistersinger Von Nurnberg - Finale Act 2 -
+    Scen 1,2.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_wagner_ovv_act_1_die_meistersinger_von_nurnberg_scen_1_2
   composer: Unknown
   piece: 'Wagner Ovv. Act 1 - Die Meistersinger Von Nurnberg - Scen 1,2 '
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1524
   file: Music/Wagner Ovv. Act 1 - Die Meistersinger Von Nurnberg - Scen 1,2 .mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_wagner_ovv_act_1_die_meistersinger_von_nurnberg_scen_3
   composer: Unknown
   piece: Wagner Ovv. Act 1 - Die Meistersinger Von Nurnberg - Scen 3
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1596
   file: Music/Wagner Ovv. Act 1 - Die Meistersinger Von Nurnberg - Scen 3.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_wagner_ovv_act_2_die_meistersinger_von_nurnberg_finale
   composer: Unknown
   piece: Wagner Ovv. Act 2 - Die Meistersinger Von Nurnberg - Finale
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1464
   file: Music/Wagner Ovv. Act 2 - Die Meistersinger Von Nurnberg - Finale.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_wagner_ovv_act_2_die_meistersinger_von_nurnberg_scen_5_6
   composer: Unknown
   piece: Wagner Ovv. Act 2 - Die Meistersinger Von Nurnberg - Scen 5,6
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1557
   file: Music/Wagner Ovv. Act 2 - Die Meistersinger Von Nurnberg - Scen 5,6.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_wagner_ovv_act_3_die_meistersinger_von_nurnberg_finale_o
   composer: Unknown
-  piece: Wagner Ovv. Act 3 - Die Meistersinger Von Nurnberg - Finale, Overture, end Finale
+  piece: Wagner Ovv. Act 3 - Die Meistersinger Von Nurnberg - Finale, Overture, end
+    Finale
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1459
-  file: Music/Wagner Ovv. Act 3 - Die Meistersinger Von Nurnberg - Finale, Overture, end Finale.mp3
+  file: Music/Wagner Ovv. Act 3 - Die Meistersinger Von Nurnberg - Finale, Overture,
+    end Finale.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_wagner_ovv_act_3_die_meistersinger_von_nurnberg_prelude
   composer: Unknown
-  piece: Wagner Ovv. Act 3 - Die Meistersinger Von Nurnberg - Prelude Act 3 Scen 1,2 beg
+  piece: Wagner Ovv. Act 3 - Die Meistersinger Von Nurnberg - Prelude Act 3 Scen 1,2
+    beg
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1562
-  file: Music/Wagner Ovv. Act 3 - Die Meistersinger Von Nurnberg - Prelude Act 3 Scen 1,2 beg.mp3
+  file: Music/Wagner Ovv. Act 3 - Die Meistersinger Von Nurnberg - Prelude Act 3 Scen
+    1,2 beg.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_wagner_ovv_act_3_die_meistersinger_von_nurnberg_scen_2_c
   composer: Unknown
   piece: Wagner Ovv. Act 3 - Die Meistersinger Von Nurnberg - Scen 2 coy Scen 3 beg
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1572
-  file: Music/Wagner Ovv. Act 3 - Die Meistersinger Von Nurnberg - Scen 2 coy Scen 3 beg.mp3
+  file: Music/Wagner Ovv. Act 3 - Die Meistersinger Von Nurnberg - Scen 2 coy Scen
+    3 beg.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_wagner_ovv_act_3_die_meistersinger_von_nurnberg_scen_3_c
   composer: Unknown
-  piece: Wagner Ovv. Act 3 - Die Meistersinger Von Nurnberg - Scen 3 coy Scen 4 Scen 5 beg
+  piece: Wagner Ovv. Act 3 - Die Meistersinger Von Nurnberg - Scen 3 coy Scen 4 Scen
+    5 beg
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1549
-  file: Music/Wagner Ovv. Act 3 - Die Meistersinger Von Nurnberg - Scen 3 coy Scen 4 Scen 5 beg.mp3
+  file: Music/Wagner Ovv. Act 3 - Die Meistersinger Von Nurnberg - Scen 3 coy Scen
+    4 Scen 5 beg.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_wagners_parsifal_act_1_1_prelude
   composer: Unknown
   piece: Wagners Parsifal - Act 1 - 1. Prelude
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 970
   file: Music/Wagners Parsifal - Act 1 - 1. Prelude.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_wagners_parsifal_act_1_3_grail_scene
   composer: Unknown
   piece: Wagners Parsifal - Act 1 - 3. Grail Scene
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 970
   file: Music/Wagners Parsifal - Act 1 - 3. Grail Scene.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_wagners_parsifal_act_3_1_part_one
   composer: Unknown
   piece: Wagners Parsifal - Act 3 - 1. Part One
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1758
   file: Music/Wagners Parsifal - Act 3 - 1. Part One.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_wagners_parsifal_act_3_2_part_two
   composer: Unknown
   piece: Wagners Parsifal - Act 3 - 2. Part Two
   performer: ''
   year: 0
   source: musopen.org
-  license: pd
+  license: rejected
   duration_sec: 1663
   file: Music/Wagners Parsifal - Act 3 - 2. Part Two.mp3
   programs: []
-  notes: Local file — verify PD status from Musopen download history
+  notes: 'REJECTED: Content ID claim from label (European Archive recording). Local
+    file — verify PD status from Musopen download history'
 - id: unknown_waltz_in_a_minor_op_34_no_2_1
   composer: Unknown
   piece: Waltz in A minor, Op. 34 no. 2 (1)
