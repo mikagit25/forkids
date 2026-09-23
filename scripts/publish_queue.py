@@ -110,7 +110,7 @@ def calc_publish_at(upload_day: str, upload_time: str) -> str | None:
     return publish_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-STAGE_CHECK_CHANNELS = {"id"}  # channels where staged copyright check is mandatory
+STAGE_CHECK_CHANNELS = {"id", "sd"}  # channels where staged copyright check is mandatory
 
 
 def upload_video(mp4_path: Path, metadata: dict, schedule: bool = True,
