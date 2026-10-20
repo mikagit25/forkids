@@ -395,7 +395,7 @@ def build_meta(atype: str, audio_name: str, dur_sec: int, meta_cfg: dict) -> dic
     h = dur_sec // 3600
     m = (dur_sec % 3600) // 60
     dur_str = f"{h} Hour" if m == 0 else f"{h} Hour {m} Min"
-    title = f"{cfg['name']} — {dur_str} | Ambient Sounds | Sacred Drift"
+    title = f"{cfg['name']} — {dur_str} | Ambient Sounds"
 
     footer = meta_cfg.get('video_defaults', {}).get('description_footer', '')
     description = f"""{cfg['name']}
@@ -408,13 +408,14 @@ def build_meta(atype: str, audio_name: str, dur_sec: int, meta_cfg: dict) -> dic
 
 ━━━━━━━━━━━━━━━━━━━━━━━
 About Sacred Drift:
-Sacred Drift is a sanctuary of sound and vision — ambient nature, fire, water and healing soundscapes for deep rest and inner peace.
+Sacred Drift is a sanctuary of sound and vision — ambient nature, fire, water and sacred soundscapes for deep rest and inner peace.
 
 Subscribe 🔮 @SacredDrift
 ━━━━━━━━━━━━━━━━━━━━━━━
 
 📹 Footage licensed under Pexels License (free to use, no attribution required)
 🎵 Audio: {audio_name} (AI-generated, © Sacred Drift 2026)
+🎶 Music created with AI tools.
 
 {footer}"""
 

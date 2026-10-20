@@ -163,7 +163,7 @@ def build_vertical_short(image: Path, audio: Path, out_mp4: Path,
 
 
 def build_title(track_name: str) -> str:
-    return f"{track_name} 🔮 {SHORT_DUR}s | Sacred Drift #shorts"
+    return f"{track_name} 🔮 {SHORT_DUR}s #shorts"
 
 
 def build_description(track_name: str) -> str:
@@ -175,7 +175,7 @@ def build_description(track_name: str) -> str:
     elif 'anxiety' in n or 'stress' in n:
         hook = "🌿 Release tension in 55 seconds. Breathe in, let go."
     elif 'healing' in n or 'reiki' in n:
-        hook = "💫 55 seconds of healing sound. Let it wash through you."
+        hook = "💫 55 seconds of pure sound. Let it carry you inward."
     elif 'forest' in n or 'nature' in n:
         hook = "🌲 Step into the forest for 55 seconds. Pure stillness."
     elif 'ocean' in n or 'water' in n:
@@ -185,18 +185,20 @@ def build_description(track_name: str) -> str:
 
     return f"""{hook}
 
-Part of the Sacred Drift meditation library — healing frequencies, chakra music and sacred soundscapes for deep rest and inner peace.
+Part of the Sacred Drift meditation library — solfeggio frequencies, chakra music and sacred soundscapes for deep rest and inner peace.
+
+🎶 Music created with AI tools.
 
 Subscribe for daily meditation sessions 🔮 @SacredDrift
 
-#Meditation #SacredDrift #HealingFrequencies #MeditationShorts #Shorts"""
+#Meditation #SacredDrift #SolfeggioFrequencies #MeditationShorts #Shorts"""
 
 
 def build_tags(track_name: str, meta: dict) -> list:
     base = meta.get('video_defaults', {}).get('tags_base', [])
     n = track_name.lower()
-    extra = ['meditation shorts', 'shorts', 'sacred drift', 'healing sound']
-    if 'chakra' in n: extra += ['chakra shorts', 'chakra healing']
+    extra = ['meditation shorts', 'shorts', 'sacred drift', 'relaxation']
+    if 'chakra' in n: extra += ['chakra shorts', 'chakra meditation']
     if 'sleep' in n:  extra += ['sleep shorts', 'sleep music']
     if 'forest' in n: extra += ['nature shorts', 'forest sounds']
     if 'ocean' in n:  extra += ['ocean shorts', 'ocean sounds']

@@ -44,12 +44,12 @@ CATEGORIES = {
         'aurora_borealis', 3600
     ),
     'crown_chakra': (
-        'Crown Chakra Healing ✨',
+        'Crown Chakra Meditation ✨',
         ['crown chakra'],
         'aurora_borealis', 3600
     ),
     'heart_chakra': (
-        'Heart Chakra Opening 💚',
+        'Heart Chakra Meditation 💚',
         ['heart chakra'],
         'lavender_fields', 3600
     ),
@@ -109,7 +109,7 @@ CATEGORIES = {
         'zen_garden', 3600
     ),
     'healing_reiki': (
-        'Reiki & Healing Energy ✨',
+        'Reiki & Sound Bath ✨',
         ['reiki', 'healing hum', 'healing tone', 'healing chant',
          'healing energy', 'om mantra natural voice'],
         'lavender_fields', 3600
@@ -158,12 +158,12 @@ CATEGORIES = {
     ),
     # ── Merged compilations ───────────────────────────────────────────────────
     'complete_chakra': (
-        'Complete Chakra Healing — All Energy Centers 🌈',
+        'Complete Chakra Meditation — All Energy Centers 🌈',
         ['chakra', 'third eye', 'theta waves', 'alpha waves'],
         'aurora_borealis', 3600
     ),
     'sacred_sounds': (
-        'Sacred Sounds — Tibetan, Mantras & Healing 🔔',
+        'Sacred Sounds — Tibetan, Mantras & Sound Bath 🔔',
         ['tibetan', 'singing bowl', 'gong bath', 'temple bells',
          'sound bath', 'sound healing', 'reiki', 'healing hum',
          'healing tone', 'healing chant',
@@ -478,9 +478,7 @@ def build_video(theme: str, audio_mp3: Path, out_mp4: Path, duration: float) -> 
 def build_meta(cat_key: str, tracks: list[Path], duration: float, meta_cfg: dict) -> dict:
     display_name, keywords, _, _ = CATEGORIES[cat_key]
     mins  = int(duration / 60)
-    hours = round(mins / 60)
-    if hours < 1:
-        hours = 1
+    hours = max(1, mins // 60)
     dur_str = f"{hours} Hour" if hours == 1 else f"{hours} Hours"
 
     title = f"{display_name} • {dur_str}"
@@ -520,10 +518,10 @@ Subscribe 🔮 @SacredDrift
 
     base_tags = meta_cfg.get('video_defaults', {}).get('tags_base', [])
     cat_tags  = {
-        'chakra_journey':  ['chakra music', 'chakra meditation', 'chakra healing'],
-        'crown_chakra':    ['crown chakra', 'chakra healing', '963hz'],
-        'heart_chakra':    ['heart chakra', 'chakra healing', '639hz'],
-        'root_chakra':     ['root chakra', 'grounding meditation', 'chakra healing'],
+        'chakra_journey':  ['chakra music', 'chakra meditation', 'chakra balancing'],
+        'crown_chakra':    ['crown chakra', 'chakra meditation', '963hz'],
+        'heart_chakra':    ['heart chakra', 'chakra meditation', '639hz'],
+        'root_chakra':     ['root chakra', 'grounding meditation', 'chakra balancing'],
         'third_eye':       ['third eye meditation', 'theta waves', '852hz'],
         'solfeggio':       ['solfeggio frequencies', '432hz', '528hz', '741hz'],
         'deep_sleep':      ['sleep music', 'deep sleep', 'sleep fast'],
@@ -531,7 +529,7 @@ Subscribe 🔮 @SacredDrift
         'rain_water':      ['rain sounds', 'ocean waves', 'water sounds'],
         'tibetan_bowls':   ['tibetan bowls', 'singing bowls', 'gong bath'],
         'zen_mantra':      ['zen music', 'mantra meditation', 'om meditation'],
-        'healing_reiki':   ['reiki music', 'sound healing', 'healing frequencies'],
+        'healing_reiki':   ['reiki music', 'sound bath', 'solfeggio frequencies'],
         'cosmic_space':    ['space meditation', 'cosmic music', 'deep space'],
         'ambient_piano':   ['ambient music', 'piano meditation', 'relaxing piano'],
         'morning_yoga':    ['yoga music', 'morning meditation', 'yoga flow'],
@@ -640,9 +638,7 @@ def build_classical_meta(cat_key: str, tracks: list[Path], duration: float,
                          meta_cfg: dict) -> dict:
     display_name, composer, _, _ = CLASSICAL_CATEGORIES[cat_key]
     mins    = int(duration / 60)
-    hours   = round(mins / 60)
-    if hours < 1:
-        hours = 1
+    hours   = max(1, mins // 60)
     dur_str = f"{hours} Hour" if hours == 1 else f"{hours} Hours"
     title   = f"{display_name} • {dur_str}"
 
@@ -671,7 +667,7 @@ A {dur_str.lower()} collection of masterworks by {composer} — timeless classic
 
 ━━━━━━━━━━━━━━━━━━━━━━━
 About Sacred Drift:
-Sacred Drift is a sanctuary of sound — classical masterworks, healing frequencies and sacred soundscapes for deep rest and inner peace.
+Sacred Drift is a sanctuary of sound — classical masterworks, solfeggio frequencies and sacred soundscapes for deep rest and inner peace.
 
 Subscribe 🔮 @SacredDrift
 ━━━━━━━━━━━━━━━━━━━━━━━

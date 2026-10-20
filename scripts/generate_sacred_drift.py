@@ -304,7 +304,7 @@ def build_title(track_name: str, duration: float) -> str:
         dur_str = f"{hours}h {rem_mins:02d}min" if rem_mins else f"{hours}h"
     else:
         dur_str = f"{mins}min"
-    return f"{track_name} 🔮 {dur_str} | Sacred Drift"
+    return f"{track_name} 🔮 {dur_str}"
 
 
 def _build_timestamps(duration: float) -> str:
@@ -331,20 +331,20 @@ def build_description(track_name: str, duration: float, meta: dict) -> str:
 
     name_lower = track_name.lower()
     if 'chakra' in name_lower:
-        hook = f"Allow this {dur_str} session to gently activate and balance your energy centers. Let the healing frequencies wash through each chakra, releasing blockages and restoring flow."
-        benefit = "chakra balancing, energy healing, spiritual alignment"
+        hook = f"A {dur_str} journey through sound and frequency — a peaceful space to return to your center and find stillness."
+        benefit = "chakra meditation, energy balance, spiritual practice"
     elif 'sleep' in name_lower or 'drone' in name_lower:
         hook = f"Drift into deep, restorative sleep with this {dur_str} ambient soundscape. Designed to slow the mind, release the day, and guide you into peaceful rest."
-        benefit = "deep sleep, insomnia relief, rest and recovery"
+        benefit = "deep sleep, sleep music, relaxation"
     elif 'meditation' in name_lower or 'mindful' in name_lower:
         hook = f"Settle into stillness with this {dur_str} meditation session. Allow thoughts to dissolve as you arrive in the present moment — calm, clear, and at peace."
         benefit = "meditation, mindfulness, inner peace, stress relief"
     elif 'healing' in name_lower or 'reiki' in name_lower or 'gong' in name_lower:
-        hook = f"Let this {dur_str} healing session restore balance in body, mind and spirit. Sound has been used for millennia as a tool for deep healing — open yourself to its power."
-        benefit = "sound healing, energy healing, restoration"
+        hook = f"A {dur_str} session of immersive sound — crafted for deep rest, inner quiet and mindful presence."
+        benefit = "sound bath, relaxation, inner calm"
     elif 'anxiety' in name_lower or 'stress' in name_lower:
-        hook = f"Release tension and quiet anxious thoughts with this gentle {dur_str} soundscape. Each breath becomes easier, each moment more peaceful."
-        benefit = "anxiety relief, stress relief, calming"
+        hook = f"Release tension and find a calmer space with this gentle {dur_str} soundscape. Each breath becomes easier, each moment more peaceful."
+        benefit = "stress relief, calming, relaxation"
     elif 'yoga' in name_lower or 'morning' in name_lower:
         hook = f"Begin your practice with intention. This {dur_str} session supports movement, breath and presence — the perfect companion for yoga, stretching or morning ritual."
         benefit = "yoga music, morning routine, mindful movement"
@@ -370,9 +370,11 @@ How to use this session:
 
 ────────────────────────────
 About Sacred Drift:
-Sacred Drift is a sanctuary of sound — meditation music, healing frequencies and sacred soundscapes for those seeking deep rest, inner calm and spiritual connection. New sessions released every week.
+Sacred Drift is a sanctuary of sound — meditation music, solfeggio frequencies and sacred soundscapes for those seeking deep rest, inner calm and spiritual connection. New sessions released every week.
 
 Subscribe and turn on notifications so you never miss a session. 🔮
+
+🎶 Music created with AI tools.
 
 ────────────────────────────
 {_build_timestamps(duration)}{footer}"""
@@ -383,14 +385,14 @@ def build_tags(track_name: str, meta: dict) -> list:
     name_words = [w.lower() for w in re.split(r'[\s\-_]+', track_name) if len(w) > 3]
     extra = []
     n = track_name.lower()
-    if 'chakra' in n: extra += ['chakra healing', 'chakra meditation', 'chakra balancing', 'energy healing']
-    if 'sleep' in n: extra += ['sleep music', 'deep sleep', 'insomnia relief', 'sleep fast']
+    if 'chakra' in n: extra += ['chakra meditation', 'chakra balancing', 'energy balance', 'spiritual practice']
+    if 'sleep' in n: extra += ['sleep music', 'deep sleep', 'sleep fast', 'sleep sounds']
     if 'meditation' in n: extra += ['guided meditation', 'mindfulness', 'zen music', 'calm music']
-    if 'healing' in n or 'reiki' in n: extra += ['sound healing', 'reiki music', 'healing music']
+    if 'healing' in n or 'reiki' in n: extra += ['sound bath', 'reiki music', 'relaxation music']
     if 'gong' in n or 'tibetan' in n or 'bowl' in n: extra += ['tibetan bowls', 'singing bowls', 'gong bath']
     if 'binaural' in n: extra += ['binaural beats', 'theta waves', 'delta waves', 'alpha waves']
-    if '432' in n: extra += ['432hz', '432hz music', 'healing frequencies']
-    if '528' in n: extra += ['528hz', 'love frequency', 'dna repair frequency']
+    if '432' in n: extra += ['432hz', '432hz music', 'solfeggio frequencies']
+    if '528' in n: extra += ['528hz', 'love frequency', 'solfeggio frequencies']
     if 'forest' in n: extra += ['forest sounds', 'nature sounds', 'forest meditation']
     if 'ocean' in n: extra += ['ocean waves', 'ocean sounds', 'waves meditation']
     all_tags = extra + base
