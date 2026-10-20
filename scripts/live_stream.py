@@ -1615,7 +1615,7 @@ def cmd_start(args):
 
     # Write initial now-playing text (first program title, stripped of emoji)
     np_file = _now_playing_file(channel, slot)
-    first_title = primary_title
+    first_title = theme_display if is_sd else primary_title
     np_file.write_text(first_title.lstrip("🌙🎵🌿✨🍂🌸🌊🔥💜❄️🦢😴🔮🌈👁🔔🧘🌌🎹🏔️🌅💚 ").strip())
 
     # YouTube API

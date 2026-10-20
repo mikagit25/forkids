@@ -26,8 +26,9 @@ ROOT     = Path(__file__).resolve().parent.parent
 REMOTION = ROOT / "remotion"
 QUEUE_EN = ROOT / "output" / "queue"
 QUEUE_AR = ROOT / "output" / "queue_ar"
-TOGETHER_KEY_FILE = ROOT / "credentials" / "together_api_key.txt"
-TOGETHER_URL      = "https://api.together.xyz/v1/images/generations"
+TOGETHER_KEY_FILE  = ROOT / "credentials" / "together_api_key.txt"
+TOGETHER_URL       = "https://api.together.xyz/v1/images/generations"
+POLLINATIONS_URL   = "https://image.pollinations.ai/prompt/{prompt}?width=1280&height=720&nologo=true&model=flux"
 TOGETHER_MODEL    = "black-forest-labs/FLUX.1-schnell"
 DATE_STR          = datetime.now().strftime("%Y%m%d")
 FPS               = 30
@@ -102,37 +103,44 @@ def ffmpeg_loop(src: Path, out: Path, total_min: int, dry_run: bool) -> bool:
     return True
 
 
+def _thumb_together(out_path: Path, prompt: str) -> bool:
+    api_key = TOGETHER_KEY_FILE.read_text().strip()
+    resp = requests.post(
+        TOGETHER_URL,
+        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+        json={"model": TOGETHER_MODEL, "prompt": prompt, "width": 1280, "height": 720,
+              "steps": 4, "n": 1, "response_format": "b64_json"},
+        timeout=90,
+    )
+    resp.raise_for_status()
+    out_path.write_bytes(base64.b64decode(resp.json()["data"][0]["b64_json"]))
+    return True
+
+
+def _thumb_pollinations(out_path: Path, prompt: str) -> bool:
+    import urllib.parse
+    url  = POLLINATIONS_URL.format(prompt=urllib.parse.quote(prompt))
+    resp = requests.get(url, timeout=120)
+    resp.raise_for_status()
+    out_path.write_bytes(resp.content)
+    return True
+
+
 def generate_thumbnail(out_path: Path, lang: str, dry_run: bool) -> bool:
     if out_path.exists():
         return True
     if dry_run:
         print(f"  [DRY RUN] Thumb {lang.upper()} → {out_path.name}")
         return True
-    try:
-        api_key = TOGETHER_KEY_FILE.read_text().strip()
-        prompt  = THUMB_PROMPT_AR if lang == "ar" else THUMB_PROMPT
-        resp = requests.post(
-            TOGETHER_URL,
-            headers={
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json",
-                "User-Agent": "python-requests/2.31.0",
-            },
-            json={
-                "model": TOGETHER_MODEL,
-                "prompt": prompt,
-                "width": 1280, "height": 720,
-                "steps": 4, "n": 1, "response_format": "b64_json",
-            },
-            timeout=90,
-        )
-        resp.raise_for_status()
-        out_path.write_bytes(base64.b64decode(resp.json()["data"][0]["b64_json"]))
-        print(f"  ✓ Thumb {lang.upper()} → {out_path.name}")
-        return True
-    except Exception as e:
-        print(f"  ✗ Thumb {lang.upper()} failed: {e}")
-        return False
+    prompt = THUMB_PROMPT_AR if lang == "ar" else THUMB_PROMPT
+    for backend, fn in [("Together", _thumb_together), ("Pollinations", _thumb_pollinations)]:
+        try:
+            fn(out_path, prompt)
+            print(f"  ✓ Thumb {lang.upper()} [{backend}] → {out_path.name}")
+            return True
+        except Exception as e:
+            print(f"  ✗ Thumb {lang.upper()} [{backend}] failed: {e}")
+    return False
 
 
 def make_meta(lang: str, duration_min: int, sound: bool, music: str) -> dict:
@@ -195,6 +203,8 @@ def main():
                         help="Include ambient music (Suno AI track)")
     parser.add_argument("--music",   default="Dreamy Arpeggios v2.mp3",
                         help="Music filename in remotion/public/music/")
+    parser.add_argument("--langs",   nargs="+", default=["en"],
+                        help="Languages to generate (default: en only; AR channel paused)")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--force",   action="store_true")
     args = parser.parse_args()
@@ -203,6 +213,7 @@ def main():
     music     = args.music
     dry_run   = args.dry_run
     durations = sorted(set(args.durations))
+    langs     = [l.lower() for l in args.langs]
 
     sound_sfx = "_sound" if sound else ""
     loop_name = f"sensory_blob{sound_sfx}_5min_loop_{DATE_STR}"
@@ -233,22 +244,25 @@ def main():
         else:
             print(f"  ✓ {dur}min EN exists: {vid_en.name}")
 
-        # AR copy
-        if vid_en.exists() and (not vid_ar.exists() or args.force):
+        # AR copy (only if 'ar' in langs)
+        if "ar" in langs and vid_en.exists() and (not vid_ar.exists() or args.force):
             if dry_run:
                 print(f"  [DRY RUN] Copy {dur}min → queue_ar")
             else:
                 shutil.copy2(vid_en, vid_ar)
                 print(f"  ✓ Copied {dur}min → queue_ar")
 
-        # Thumbnails
-        thumb_en = QUEUE_EN / f"thumb_{slug}.png"
-        thumb_ar = QUEUE_AR / f"thumb_{slug}.png"
-        generate_thumbnail(thumb_en, "en", dry_run)
-        generate_thumbnail(thumb_ar, "ar", dry_run)
+        # Thumbnails and meta
+        lang_queue_map = []
+        if "en" in langs:
+            lang_queue_map.append(("en", QUEUE_EN))
+        if "ar" in langs:
+            lang_queue_map.append(("ar", QUEUE_AR))
 
-        # Meta YAML
-        for lang, queue in [("en", QUEUE_EN), ("ar", QUEUE_AR)]:
+        for lang, queue in lang_queue_map:
+            thumb_path = queue / f"thumb_{slug}.png"
+            generate_thumbnail(thumb_path, lang, dry_run)
+
             meta_path = queue / f"meta_{slug}.yaml"
             if not meta_path.exists() or args.force:
                 meta = make_meta(lang, dur, sound, music)
@@ -263,7 +277,7 @@ def main():
         loop_path.unlink()
         print(f"\n  Cleaned up loop file: {loop_path.name}")
 
-    print(f"\nDone — {len(durations)} duration(s), EN+AR.")
+    print(f"\nDone — {len(durations)} duration(s), {'+'.join(l.upper() for l in langs)}.")
 
 
 if __name__ == "__main__":

@@ -46,6 +46,31 @@ DAY_OFFSETS = {
     "thursday": 3, "friday": 4, "saturday": 5,
 }
 
+# Sacred Drift: 7-day compilation rotation (mirrors live_stream.py SD_DAILY_THEMES)
+# weekday() → 0=Mon … 6=Sun
+SD_DOW_THEME = {
+    0: "classical",   # Monday    — Classical / Piano
+    1: "healing",     # Tuesday   — Healing / Chakra
+    2: "nature",      # Wednesday — Nature & Earth
+    3: "focus",       # Thursday  — Focus / Solfeggio
+    4: "sacred",      # Friday    — Sacred / Tibetan
+    5: "jazz",        # Saturday  — Jazz & Lounge
+    6: "cosmic",      # Sunday    — Cosmic / Space
+}
+# Theme → which sd_comp_* categories to prioritise today
+SD_DOW_COMP_CATS: dict[str, list[str]] = {
+    "classical": ["bach_classics", "beethoven_classics", "mozart_classics",
+                  "chopin_classics", "schubert_classics", "tchaikovsky_classics",
+                  "verdi_classics", "ambient_piano", "deep_sleep"],
+    "healing":   ["solfeggio", "chakra_journey", "heart_chakra", "crown_chakra",
+                  "root_chakra", "third_eye", "complete_chakra", "healing_reiki"],
+    "nature":    ["forest_nature", "rain_water", "desert_mountain"],
+    "focus":     ["solfeggio", "third_eye", "ambient_piano"],
+    "sacred":    ["tibetan_bowls", "zen_mantra", "healing_reiki", "sacred_sounds"],
+    "jazz":      ["jazz_lounge"],
+    "cosmic":    ["cosmic_space", "awakening_journey", "morning_yoga"],
+}
+
 
 def load_plan() -> list:
     if not PLAN_PATH.exists():
@@ -428,16 +453,27 @@ def main():
     else:
         def _sort_key(p: Path):
             name = p.name
-            # SD queue: compilations (AI audio) first, then sound design, then classical
+            # EN kids: Wednesday(2) + Saturday(5) → kids classical gets priority
+            if active_queue_dir == QUEUE_DIR:
+                dow = datetime.now(timezone.utc).weekday()
+                if dow in (2, 5) and name.startswith("kids_classical_"):
+                    return (0, p.stat().st_mtime)
+                elif name.startswith("kids_classical_"):
+                    return (2, p.stat().st_mtime)
+                return (1, p.stat().st_mtime)
             if active_queue_dir == QUEUE_SD_DIR:
                 if name.startswith("sd_comp_"):
-                    priority = 0
+                    # Today's themed compilations first, others second
+                    today_theme = SD_DOW_THEME[datetime.now(timezone.utc).weekday()]
+                    today_cats  = SD_DOW_COMP_CATS.get(today_theme, [])
+                    is_today    = any(f"sd_comp_{cat}_" in name for cat in today_cats)
+                    priority = 0 if is_today else 1
                 elif name.startswith("sd_sound_design_") or name.startswith("ambient_") or name.startswith("fire_"):
-                    priority = 1
-                elif name.startswith("sd_classical_"):
                     priority = 2
+                elif name.startswith("sd_classical_"):
+                    priority = 3
                 else:
-                    priority = 1
+                    priority = 2
                 return (priority, p.stat().st_mtime)
             return (0, p.stat().st_mtime)
 

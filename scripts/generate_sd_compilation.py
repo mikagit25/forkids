@@ -16,13 +16,15 @@ import argparse, json, logging, re, shutil, subprocess, yaml
 from datetime import datetime
 from pathlib import Path
 
-ROOT       = Path(__file__).resolve().parent.parent
-AUDIO_DIR1 = ROOT / 'assets/audio/suno_meditation/Meditation'
-AUDIO_DIR2 = ROOT / 'sacred_drift/audio/ai_instrumental'
-AUDIO_DIR3 = ROOT / 'sacred_drift/audio/ai_chant'
-THEMES_DIR = ROOT / 'assets/visual_themes'
-QUEUE_DIR  = ROOT / 'sacred_drift/output/queue'
-CONFIG     = ROOT / 'sacred_drift/config/channel_metadata_sd.yaml'
+ROOT              = Path(__file__).resolve().parent.parent
+AUDIO_DIR1        = ROOT / 'assets/audio/suno_meditation/Meditation'
+AUDIO_DIR2        = ROOT / 'sacred_drift/audio/ai_instrumental'
+AUDIO_DIR3        = ROOT / 'sacred_drift/audio/ai_chant'
+CLASSICAL_DIR     = ROOT / 'assets/music/classical/Music'
+LICENSES_YAML     = ROOT / 'assets/music/classical/licenses.yaml'
+THEMES_DIR        = ROOT / 'assets/visual_themes'
+QUEUE_DIR         = ROOT / 'sacred_drift/output/queue'
+CONFIG            = ROOT / 'sacred_drift/config/channel_metadata_sd.yaml'
 DATE_STR   = datetime.now().strftime('%Y%m%d')
 
 CROSSFADE  = 3    # seconds between tracks
@@ -154,7 +156,7 @@ CATEGORIES = {
          'velvet bass', 'blue', 'sunday'],
         'evening_piano', 3600
     ),
-    # ── Merged compilations (combine weak categories into 1-hour sessions) ──────
+    # ── Merged compilations ───────────────────────────────────────────────────
     'complete_chakra': (
         'Complete Chakra Healing — All Energy Centers 🌈',
         ['chakra', 'third eye', 'theta waves', 'alpha waves'],
@@ -181,7 +183,84 @@ CATEGORIES = {
     ),
 }
 
+# ── Classical composer compilations ──────────────────────────────────────────
+# Each entry: (display_name, composer_full_name, visual_theme, target_dur_sec)
+# Tracks come from assets/music/classical/Music/ filtered by licenses.yaml (pd/cc0 only)
+CLASSICAL_CATEGORIES = {
+    'bach_classics': (
+        'Bach — Piano, Cello & Orchestral Masterworks 🎵',
+        'Johann Sebastian Bach',
+        'evening_piano', 3600
+    ),
+    'beethoven_classics': (
+        'Beethoven — Symphonies, Sonatas & Concertos 🎻',
+        'Ludwig van Beethoven',
+        'mountain_snow', 3600
+    ),
+    'mozart_classics': (
+        'Mozart — Symphonies, Concertos & Chamber Music 🎹',
+        'Wolfgang Amadeus Mozart',
+        'cherry_blossoms', 3600
+    ),
+    'chopin_classics': (
+        'Chopin — Nocturnes, Ballades & Études 🌙',
+        'Frédéric Chopin',
+        'lavender_fields', 3600
+    ),
+    'schubert_classics': (
+        'Schubert — Symphonies & Piano Works 🍂',
+        'Franz Schubert',
+        'autumn_forest', 3600
+    ),
+    'tchaikovsky_classics': (
+        'Tchaikovsky — Swan Lake, Ballets & Orchestral 🦢',
+        'Pyotr Ilyich Tchaikovsky',
+        'aurora_borealis', 3600
+    ),
+    'verdi_classics': (
+        'Verdi — Opera Highlights & Orchestral Works 🎭',
+        'Giuseppe Verdi',
+        'zen_garden', 3600
+    ),
+    'haydn_classics': (
+        'Haydn — Symphonies, Concertos & String Quartets 🎼',
+        'Joseph Haydn',
+        'mountain_snow', 3600
+    ),
+    'handel_classics': (
+        'Handel — Messiah, Water Music & Orchestral 🎺',
+        'George Frideric Handel',
+        'evening_piano', 3600
+    ),
+    'vivaldi_classics': (
+        'Vivaldi — The Four Seasons & Concertos 🌸',
+        'Antonio Vivaldi',
+        'cherry_blossoms', 3600
+    ),
+    'debussy_classics': (
+        'Debussy — Clair de Lune, Nocturnes & Impressionism 🌙',
+        'Claude Debussy',
+        'distant_waterfall', 3600
+    ),
+}
+
 # ── Audio helpers ─────────────────────────────────────────────────────────────
+
+def load_classical_tracks() -> dict[str, list[Path]]:
+    """Return {composer: [Path]} for all pd/cc0 tracks that exist and are readable."""
+    data = yaml.safe_load(LICENSES_YAML.read_text())
+    result: dict[str, list[Path]] = {}
+    for rec in data.get('recordings', []):
+        if rec.get('license') not in ('pd', 'cc0'):
+            continue
+        composer = rec.get('composer', '')
+        if not composer or composer in ('Unknown', 'Happy Bear Kids'):
+            continue
+        fpath = ROOT / 'assets/music/classical' / rec.get('file', '')
+        if fpath.exists() and get_duration(fpath) >= MIN_TRACK_DUR:
+            result.setdefault(composer, []).append(fpath)
+    return result
+
 
 def canonical_name(filename: str) -> str:
     name = Path(filename).stem
@@ -203,11 +282,14 @@ def get_all_tracks_grouped() -> list[Path]:
 
 
 def get_duration(path: Path) -> float:
-    r = subprocess.run(
-        ['ffprobe', '-v', 'quiet', '-print_format', 'json', '-show_format', str(path)],
-        capture_output=True
-    )
-    return float(json.loads(r.stdout)['format']['duration'])
+    try:
+        r = subprocess.run(
+            ['ffprobe', '-v', 'quiet', '-print_format', 'json', '-show_format', str(path)],
+            capture_output=True
+        )
+        return float(json.loads(r.stdout)['format']['duration'])
+    except (KeyError, ValueError, json.JSONDecodeError):
+        return 0.0
 
 
 def category_tracks(cat_key: str, all_tracks: list[Path]) -> list[Path]:
@@ -351,15 +433,17 @@ def build_video(theme: str, audio_mp3: Path, out_mp4: Path, duration: float) -> 
         loop_dur  = n_images * KB_CLIP
         loops_needed = int(duration / loop_dur) + 2
         concat_f = tmp / 'concat.txt'
+        log.info(f"  clips={len(clips)} tmp={tmp} tmp.exists={tmp.exists()} clips_exist={[c.exists() for c in clips]}")
         with open(concat_f, 'w') as f:
             for _ in range(loops_needed):
                 for c in clips:
                     f.write(f"file '{c.resolve()}'\n")
 
         loop_mp4 = tmp / 'loop.mp4'
+        log.info(f"  concat_f={concat_f} exists={concat_f.exists()} size={concat_f.stat().st_size if concat_f.exists() else 'N/A'} lines={len(open(concat_f).readlines()) if concat_f.exists() else 0}")
         cmd = ['ffmpeg', '-y', '-f', 'concat', '-safe', '0', '-i', str(concat_f),
                '-t', str(duration + 2), '-c', 'copy', str(loop_mp4)]
-        r = subprocess.run(cmd, capture_output=True, timeout=120)
+        r = subprocess.run(cmd, capture_output=True, timeout=300)
         if r.returncode != 0:
             log.error(f"Concat failed: {r.stderr.decode()[-200:]}")
             return False
@@ -549,6 +633,147 @@ def process_category(cat_key: str, all_tracks: list[Path], meta_cfg: dict,
         tmp_mp3.unlink(missing_ok=True)
 
 
+def build_classical_meta(cat_key: str, tracks: list[Path], duration: float,
+                         meta_cfg: dict) -> dict:
+    display_name, composer, _, _ = CLASSICAL_CATEGORIES[cat_key]
+    mins    = int(duration / 60)
+    hours   = mins // 60
+    rem     = mins % 60
+    dur_str = f"{hours} Hour {rem} Min" if hours else f"{mins} Minutes"
+    title   = f"{display_name} — {dur_str} | Sacred Drift"
+
+    # Build tracklist from file names (use piece name from licenses.yaml if available)
+    data       = yaml.safe_load(LICENSES_YAML.read_text())
+    file_to_piece = {
+        (ROOT / 'assets/music/classical' / r['file']): r.get('piece', '')
+        for r in data.get('recordings', []) if r.get('file')
+    }
+    seen, unique_pieces = set(), []
+    for t in tracks:
+        piece = file_to_piece.get(t) or canonical_name(t.name)
+        if piece not in seen:
+            seen.add(piece)
+            unique_pieces.append(piece)
+    tracklist = '\n'.join(f"  {i:02d}. {p}" for i, p in enumerate(unique_pieces, 1))
+
+    last_name = composer.split()[-1]
+    footer    = meta_cfg.get('video_defaults', {}).get('description_footer', '')
+    description = f"""{display_name}
+
+A {dur_str.lower()} collection of masterworks by {composer} — timeless classical music for deep focus, sleep and relaxation.
+
+✨ Best with headphones at comfortable volume.
+🎧 Ideal for: study, sleep, meditation, relaxation
+
+━━━━━━━━━━━━━━━━━━━━━━━
+About Sacred Drift:
+Sacred Drift is a sanctuary of sound — classical masterworks, healing frequencies and sacred soundscapes for deep rest and inner peace.
+
+Subscribe 🔮 @SacredDrift
+━━━━━━━━━━━━━━━━━━━━━━━
+
+🎵 {last_name} — Works in this compilation:
+{tracklist}
+
+🎼 Music: {composer} | Public Domain recordings via Musopen.org
+
+{footer}"""
+
+    composer_tags = {
+        'bach_classics':        ['bach', 'j.s. bach', 'bach piano', 'classical music'],
+        'beethoven_classics':   ['beethoven', 'beethoven symphony', 'classical piano'],
+        'mozart_classics':      ['mozart', 'mozart symphony', 'classical music'],
+        'chopin_classics':      ['chopin', 'chopin nocturne', 'romantic piano'],
+        'schubert_classics':    ['schubert', 'schubert symphony', 'romantic music'],
+        'tchaikovsky_classics': ['tchaikovsky', 'swan lake', 'tchaikovsky ballet'],
+        'verdi_classics':       ['verdi', 'opera music', 'italian opera'],
+        'haydn_classics':       ['haydn', 'haydn symphony', 'classical era music'],
+        'handel_classics':      ['handel', 'messiah', 'baroque music', 'handel water music'],
+        'vivaldi_classics':     ['vivaldi', 'four seasons', 'baroque violin', 'vivaldi concerto'],
+        'debussy_classics':     ['debussy', 'clair de lune', 'impressionist music', 'french classical'],
+    }.get(cat_key, [])
+
+    base_tags = meta_cfg.get('video_defaults', {}).get('tags_base', [])
+    generic   = ['classical music', 'classical sleep music', 'study music',
+                 'relaxing classical', 'focus music']
+    all_tags  = composer_tags + generic + base_tags
+    seen_t, tags, total = set(), [], 0
+    for t in all_tags:
+        if t and t not in seen_t and len(t) <= 30 and len(tags) < 25 and total + len(t) <= 400:
+            seen_t.add(t); tags.append(t); total += len(t)
+
+    return {
+        'title':         title,
+        'description':   description,
+        'tags':          tags,
+        'video_type':    'classical_compilation',
+        'language':      'en',
+        'is_short':      False,
+        'status':        'public',
+        'made_for_kids': False,
+        'ai_generated':  False,
+        'stream_safe':   False,  # Musopen recordings — never stream live (Content ID risk)
+        'composer':      composer,
+        'category':      cat_key,
+        'track_count':   len(tracks),
+        'duration_sec':  int(duration),
+    }
+
+
+def process_classical_category(cat_key: str, classical_tracks: dict[str, list[Path]],
+                                meta_cfg: dict, dry_run: bool = False,
+                                force: bool = False) -> bool:
+    display_name, composer, theme, target_dur = CLASSICAL_CATEGORIES[cat_key]
+    tracks = classical_tracks.get(composer, [])
+    if not tracks:
+        log.warning(f"[{cat_key}] No tracks for composer: {composer}")
+        return False
+
+    out_stem  = f"sd_comp_{cat_key}_{DATE_STR}"
+    out_mp4   = QUEUE_DIR / f"{out_stem}.mp4"
+    out_meta  = QUEUE_DIR / f"meta_{out_stem}.yaml"
+    out_thumb = QUEUE_DIR / f"thumb_{out_stem}.png"
+    tmp_mp3   = QUEUE_DIR / f"_tmp_{cat_key}.mp3"
+
+    if out_mp4.exists() and not force:
+        log.info(f"[{cat_key}] EXISTS — skip (--force to redo)")
+        return True
+
+    log.info(f"\n{'='*60}")
+    log.info(f"Classical Compilation: {display_name}")
+    log.info(f"  Composer: {composer} | Tracks: {len(tracks)} | Target: {target_dur/60:.0f}min")
+    for t in tracks[:5]:
+        log.info(f"    {t.name[:60]}")
+    if len(tracks) > 5:
+        log.info(f"    ... +{len(tracks)-5} more")
+
+    if dry_run:
+        total = sum(get_duration(t) for t in tracks)
+        log.info(f"  [DRY RUN] Would compile {len(tracks)} tracks → {min(total,target_dur)/60:.0f}min video")
+        return True
+
+    try:
+        duration = concat_audio(tracks, tmp_mp3, target_dur)
+        if duration < 60:
+            log.error(f"Audio too short: {duration}s")
+            return False
+
+        log.info(f"Building video ({duration/60:.0f}min)...")
+        if not build_video(theme, tmp_mp3, out_mp4, duration):
+            return False
+
+        make_thumbnail(theme, out_thumb)
+        log.info(f"  Thumb: {out_thumb.name}")
+
+        meta_doc = build_classical_meta(cat_key, tracks, duration, meta_cfg)
+        out_meta.write_text(yaml.dump(meta_doc, allow_unicode=True, default_flow_style=False))
+        log.info(f"  Meta: {out_meta.name}")
+
+        return True
+    finally:
+        tmp_mp3.unlink(missing_ok=True)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--list-categories', action='store_true')
@@ -558,36 +783,58 @@ def main():
     parser.add_argument('--force',    action='store_true')
     args = parser.parse_args()
 
-    meta_cfg   = yaml.safe_load(CONFIG.read_text())
-    all_tracks = get_all_tracks_grouped()
+    meta_cfg         = yaml.safe_load(CONFIG.read_text())
+    all_tracks       = get_all_tracks_grouped()
+    classical_tracks = load_classical_tracks()
     QUEUE_DIR.mkdir(parents=True, exist_ok=True)
 
+    all_keys         = list(CATEGORIES.keys())
+    all_classical    = list(CLASSICAL_CATEGORIES.keys())
+
     if args.list_categories:
-        print(f"\nCategories ({len(CATEGORIES)} total):\n")
-        print(f"  {'Key':<20} {'Name':<45} {'Tracks':>6}  {'~Min':>5}")
-        print(f"  {'-'*20} {'-'*45} {'-'*6}  {'-'*5}")
+        print(f"\nAI Categories ({len(CATEGORIES)} total):\n")
+        print(f"  {'Key':<22} {'Name':<48} {'Tracks':>6}  {'~Min':>5}")
+        print(f"  {'-'*22} {'-'*48} {'-'*6}  {'-'*5}")
         for key, (name, kws, theme, dur) in CATEGORIES.items():
             tracks = category_tracks(key, all_tracks)
             total  = sum(get_duration(t) for t in tracks)
-            print(f"  {key:<20} {name:<45} {len(tracks):>6}  {min(total,dur)/60:>5.0f}")
-        print(f"\nTotal unique tracks: {len(all_tracks)}")
+            print(f"  {key:<22} {name:<48} {len(tracks):>6}  {min(total,dur)/60:>5.0f}")
+        print(f"\nClassical Composer Categories ({len(CLASSICAL_CATEGORIES)} total):\n")
+        print(f"  {'Key':<24} {'Composer':<30} {'Tracks':>6}  {'~Min':>5}")
+        print(f"  {'-'*24} {'-'*30} {'-'*6}  {'-'*5}")
+        for key, (name, composer, theme, dur) in CLASSICAL_CATEGORIES.items():
+            tracks = classical_tracks.get(composer, [])
+            total  = sum(get_duration(t) for t in tracks)
+            print(f"  {key:<24} {composer:<30} {len(tracks):>6}  {min(total,dur)/60:>5.0f}")
         return
 
     if args.category:
-        if args.category not in CATEGORIES:
+        if args.category in CATEGORIES:
+            to_process_ai       = [args.category]
+            to_process_classical = []
+        elif args.category in CLASSICAL_CATEGORIES:
+            to_process_ai        = []
+            to_process_classical = [args.category]
+        else:
             log.error(f"Unknown category: {args.category}. Use --list-categories")
             return
-        to_process = [args.category]
     elif args.all:
-        to_process = list(CATEGORIES.keys())
+        to_process_ai        = all_keys
+        to_process_classical = all_classical
     else:
         parser.print_help()
         return
 
     ok = fail = 0
-    for cat_key in to_process:
+    for cat_key in to_process_ai:
         if process_category(cat_key, all_tracks, meta_cfg,
                             dry_run=args.dry_run, force=args.force):
+            ok += 1
+        else:
+            fail += 1
+    for cat_key in to_process_classical:
+        if process_classical_category(cat_key, classical_tracks, meta_cfg,
+                                      dry_run=args.dry_run, force=args.force):
             ok += 1
         else:
             fail += 1

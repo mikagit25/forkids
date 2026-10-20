@@ -28,6 +28,7 @@ import { SleepClassicalLoop, SleepClassicalLoopProps } from "./SleepClassicalLoo
 import { PeekABooLong, PeekABooLongProps } from "./PeekABooLong";
 import { SensoryBlobLoop, SensoryBlobLoopProps } from "./SensoryBlobLoop";
 import { SortFixLong, SortFixLongProps, SortFixRound } from "./SortFixLong";
+import { KidsClassicsLoop, KidsClassicsLoopProps } from "./KidsClassicsLoop";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const C = Composition as React.ComponentType<any>;
@@ -686,6 +687,32 @@ export const Root: React.FC = () => {
           loopSecs: 300,
           phaseOffset: 0,
         } satisfies SleepClassicalLoopProps}
+      />
+
+      {/* KidsClassicsLoop — 5-min seamless sprite loop for classical music compilations */}
+      <C
+        id="KidsClassicsLoop"
+        component={KidsClassicsLoop}
+        durationInFrames={9000}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          bgTop:    "#1a1080",
+          bgBottom: "#3b2bb5",
+          sprites: [
+            { path: "animals/bear_3d.png",   size: 460, baseX: 0.50, baseY: 0.44,
+              xAmp: 80,  xN: 3, yAmp: 50, yN: 2, scaleAmp: 0.05, seed: 1 },
+            { path: "objects/note_gold.png", size: 160, baseX: 0.18, baseY: 0.28,
+              xAmp: 100, xN: 2, yAmp: 70, yN: 3, scaleAmp: 0.08, seed: 2 },
+            { path: "objects/note_gold.png", size: 130, baseX: 0.80, baseY: 0.32,
+              xAmp: 90,  xN: 4, yAmp: 60, yN: 2, scaleAmp: 0.07, seed: 3 },
+            { path: "objects/star_3d.png",   size: 140, baseX: 0.14, baseY: 0.68,
+              xAmp: 70,  xN: 3, yAmp: 55, yN: 4, scaleAmp: 0.06, seed: 4 },
+            { path: "objects/star_3d.png",   size: 110, baseX: 0.86, baseY: 0.72,
+              xAmp: 80,  xN: 2, yAmp: 45, yN: 3, scaleAmp: 0.08, seed: 5 },
+          ],
+        } as KidsClassicsLoopProps}
       />
     </>
   );
