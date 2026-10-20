@@ -1047,6 +1047,7 @@ def generate_thumbnail(out_mp4: Path, program: dict, hours: int) -> bool:
             spec.loader.exec_module(gat)
             thumb_path.write_bytes(gat.resize_to_720p(kb_img.read_bytes()))
             log.info(f"  Thumb from KB image → {thumb_path.name}")
+            _apply_thumb_text(thumb_path, program, hours)
             return True
         except Exception as e:
             log.warning(f"  KB thumb resize failed: {e}")
@@ -1090,6 +1091,7 @@ def generate_thumbnail(out_mp4: Path, program: dict, hours: int) -> bool:
         img_pil.save(buf, "PNG", optimize=True)
         thumb_path.write_bytes(buf.getvalue())
         log.info(f"  Thumb → {thumb_path.name}")
+        _apply_thumb_text(thumb_path, program, hours)
         return True
     except Exception as e:
         log.warning(f"  Thumbnail skipped: {e}")
