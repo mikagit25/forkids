@@ -50,6 +50,11 @@ KB_MOTIONS   = ["zoom_in", "pan_right", "zoom_out", "pan_left", "pan_up", "pan_d
 
 # Cinematic prompts per program — used for both Ken Burns loop images and thumbnail
 PROGRAM_KB_PROMPTS: dict[str, str] = {
+    # ── Oct 2026 Chopin series ──
+    "sleep_chopin_nocturnes_complete_01": "grand piano by tall window at night, full moon over quiet Parisian rooftops, single candle, deep blue and silver tones, peaceful, cinematic 4K, no text, no letters",
+    "sleep_chopin_preludes_01":     "rain on window glass at night, blurred warm lamplight, grand piano in dim cozy room, soft reflections, calm, cinematic 4K, no text, no letters",
+    "sleep_romantic_piano_01":      "candlelit 19th century music room, piano with open sheet music, warm amber light, velvet curtains, snowy night outside, cinematic 4K, no text, no letters",
+    "sleep_chopin_8h_01":           "starry night sky over calm lake, distant cottage with one lit window, deep navy palette, very dark and restful, cinematic 4K, no text, no letters",
     "sleep_chopin_01":          "candlelit grand piano in dark Parisian salon, moonlight through tall windows, romantic atmosphere, cinematic 4K, no text, no letters",
     "sleep_chopin_02":          "Romantic era salon with soft candlelight, old gold picture frames, moonlit Parisian interior, warm amber glow, no text, no letters",
     "sleep_swan_lake_01":       "moonlit lake at night, white swans gliding on still water, full moon reflection, misty forest background, ethereal blue, no text, no letters",
