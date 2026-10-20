@@ -1,10 +1,10 @@
-# Happy Bear Kids + Calm Classics — Claude Code Context v2.1
+# Happy Bear Kids + Sacred Drift — Claude Code Context v2.2
 
 **Отдельный проект от MedMind.** Работать только из `/opt/kids_channel/`.  
 GitHub: https://github.com/mikagit25/forkids
 
-> **СТРАТЕГИЯ v2.1 (с июля 2026):** отказ от 18 видео/день. Упор на качество.  
-> ID канал перепрофилирован в **Calm Classics** (взрослый, английский, сон/фокус).  
+> **СТРАТЕГИЯ v2.2 (с октября 2026):** 3 активных канала: EN детский, Sacred Drift (медитация/фокус), Calm Classics (классика, спит).  
+> AR канал (@happybearkidsar) **перепрофилирован в Sacred Drift** — детский контент туда НЕ идёт.  
 > Триаж сценариев: https://docs.google.com/spreadsheets/d/15jxsyr1sTL9Ciy3Fh5e7ONbhnni28hjyM4mkZ3VPTYQ
 
 ---
@@ -14,34 +14,47 @@ GitHub: https://github.com/mikagit25/forkids
 | Канал | Тип | Хэндл | Channel ID | Токен | Очередь |
 |-------|-----|--------|------------|-------|---------|
 | **Happy Bear Kids** | Детский EN | @HappyBearKids1 | UCIOerrKr02oTAAk2_oOg0Xg | `credentials/youtube_token.json` | `output/queue/` |
-| **Happy Bear Kids العربية** | Детский AR | @happybearkidsar | UCTAAc0Ih4PpwY9agi2tT8Gg | `credentials/youtube_token_ar.json` | `output/queue_ar/` |
+| **Sacred Drift** *(бывш. AR)* | Взрослый EN | @SacredDrift | UCTAAc0Ih4PpwY9agi2tT8Gg | `credentials/youtube_token_ar.json` | `sacred_drift/output/queue/` |
 | **Calm Classics** *(бывш. ID)* | Взрослый EN | @happybearkidsin | UCOozTZwjXgkfYiTAzSzePAA | `credentials/youtube_token_id.json` | `output/queue_id/` |
 
+> ⚠️ `youtube_token_ar.json` — это токен Sacred Drift (взрослый канал медитации), НЕ детский AR!  
+> AR-очередь `output/queue_ar/` заморожена. AR-контент не генерировать.
+
 - GCP проект: `kids-chanel-497308` (588442208504) — отдельный от MedMind
-- `made_for_kids: true` — только для EN и AR каналов
-- `made_for_kids: false` — **обязательно** для Calm Classics (монетизация!)
+- `made_for_kids: true` — **только Happy Bear Kids EN**
+- `made_for_kids: false` — **обязательно** для Sacred Drift и Calm Classics (монетизация!)
+- YouTube категория: `"10"` (Music) для Sacred Drift и Calm Classics; `"27"` (Education) для EN детского
 
 ### Аутентификация (OAuth)
 ```bash
 python3 scripts/reauth_youtube.py              # EN канал
-python3 scripts/reauth_youtube.py --channel ar # AR канал
+python3 scripts/reauth_youtube.py --channel ar # Sacred Drift (бывш. AR)
 python3 scripts/reauth_youtube.py --channel id # Calm Classics канал
 ```
 
+### Sacred Drift — отдельная инфраструктура
+- Конфиг: `sacred_drift/config/channel_metadata_sd.yaml`
+- Очередь: `sacred_drift/output/queue/` → `--queue sd`
+- Живые стримы: 21:00–07:00 UTC ежедневно (`live_stream.py --channel sd --slot eu`)
+- **ЗАПРЕЩЕНО стримить классику (Musopen)** — Content ID риск на весь канал; все `*_classics_*` мета имеют `stream_safe: false`
+- Генерация: `generate_sd_compilation.py`, `generate_sacred_drift.py`
+- YouTube категория 10 (Music), `made_for_kids: false`
+
 ---
 
-## РАСПИСАНИЕ ПУБЛИКАЦИЙ v2.1
+## РАСПИСАНИЕ ПУБЛИКАЦИЙ v2.2
 
 | Канал | Тип | Слоты | Кол-во |
 |-------|-----|-------|--------|
-| EN (Happy Bear) | длинные | ежедневно 18:00 | 7/нед |
-| EN (Happy Bear) | шортсы | ежедневно 10:30, до 3 шт | 7/нед |
-| AR (Happy Bear) | длинные | ежедневно 19:00 | 7/нед |
-| AR (Happy Bear) | шортсы | ежедневно 09:00, до 3 шт | 7/нед |
-| Calm Classics | длинные | ежедневно 20:00 | 7/нед |
-| Calm Classics | шортсы | ежедневно 21:00 | 7/нед |
+| EN (Happy Bear) | длинные | ежедневно 18:00 UTC | 7/нед |
+| EN (Happy Bear) | шортсы | ежедневно 10:30 UTC, до 3 шт | 7/нед |
+| **Sacred Drift** | длинные | ежедневно 20:00 UTC | 7/нед |
+| **Sacred Drift** | шортсы | ежедневно 10:00 UTC | 7/нед |
+| **Sacred Drift** | **live stream** | 21:00–07:00 UTC ежедневно | ежедневно |
+| Calm Classics | длинные | по мере генерации | по наличию |
 
-**Было:** 18 видео/день (6 EN + 6 AR + 6 ID). **Стало:** до 14 длинных + шортсы ежедневно на детских каналах.
+**AR канал заморожен** — `queue_ar/` не трогать, AR контент не генерировать.  
+Sacred Drift — день-недели ротация: Пн=классика, Вт=лечение, Ср=природа, Чт=фокус, Пт=сакральное, Сб=джаз, Вс=космос.
 
 ---
 
@@ -69,27 +82,28 @@ made_for_kids: false    # false для Calm Classics, true для EN/AR детс
 
 ### 3. Язык и канал
 
-> **ВАЖНО: Calm Classics / Classical Night Relax (@ClassicalNightRelax) — это ВЗРОСЛЫЙ канал.**  
-> Детский контент туда НЕ идёт. `queue_id` ≠ дети.
+> **ВАЖНО: Sacred Drift и Calm Classics — ВЗРОСЛЫЕ каналы.**  
+> Детский контент туда НЕ идёт. `queue_id` и `sacred_drift/output/queue/` ≠ дети.  
+> `youtube_token_ar.json` = Sacred Drift (взрослый), НЕ детский AR!
 
-| Канал | Очередь | Разрешённый контент |
-|-------|---------|-------------------|
-| EN детский (@HappyBearKids1) | `output/queue/` | Всё детское: dance, vocab, nursery, emotions, lullaby, etc. |
-| AR детский (@happybearkidsar) | `output/queue_ar/` | Всё детское на арабском |
-| **Calm Classics / CNRelax** | `output/queue_id/` | **ТОЛЬКО:** `sleep_program`, `focus_program`, `sleep_short`, `visual_theme`, `nature_calm` — классическая музыка / ambient для взрослых |
+| Канал | Очередь | `--queue` флаг | Разрешённый контент |
+|-------|---------|----------------|-------------------|
+| EN детский (@HappyBearKids1) | `output/queue/` | `en` | Всё детское: dance, vocab, nursery, emotions, lullaby, etc. |
+| **Sacred Drift** (@SacredDrift) | `sacred_drift/output/queue/` | `sd` | Meditation, chakra, solfeggio, ambient, nature sounds, AI compilations |
+| **Calm Classics** (@happybearkidsin) | `output/queue_id/` | `id` | `sleep_program`, `focus_program`, `visual_theme`, `nature_calm` — классика |
+| ~~AR~~ (заморожен) | `output/queue_ar/` | `ar` | **НЕ ГЕНЕРИРОВАТЬ** |
 
 **Правило lang в сценариях:**
 - `lang=en` → только EN канал
-- `lang=ar` → только AR канал
-- `lang=kids` → EN + AR (никогда не CNRelax) — для любого детского no-text контента
-- `lang=id` → только CNRelax
-- `lang=both` → EN + AR (с голосом/текстом, 2 рендера)
-- `lang=all` → EN + AR + CNRelax — **только если контент одобрен для взрослого канала**
+- `lang=ar` → **ЗАМОРОЖЕН**, не использовать
+- `lang=kids` → только EN — для детского no-text контента
+- `lang=id` → только Calm Classics
+- `lang=sd` → только Sacred Drift
+- `lang=both` → EN + AR (заморожен — не использовать)
 
 **Перекрёстный контент (изредка):**
-- Классическая музыка может идти на детские каналы с детским thumbnail (`made_for_kids: true`)
-- Абстрактные визуалы (nature_calm) могут дублироваться на CNRelax с взрослым meta
-- Детские персонажи, dance videos, ABC, счёт, nursery rhymes → **никогда на CNRelax**
+- Классическая музыка (kids_classical_*) → EN детский канал с `made_for_kids: true`
+- Детские персонажи, dance videos, ABC, счёт → **никогда на Sacred Drift или Calm Classics**
 
 ### 4. Описание по языку
 - EN/CC → английский + английские хэштеги

@@ -478,11 +478,12 @@ def build_video(theme: str, audio_mp3: Path, out_mp4: Path, duration: float) -> 
 def build_meta(cat_key: str, tracks: list[Path], duration: float, meta_cfg: dict) -> dict:
     display_name, keywords, _, _ = CATEGORIES[cat_key]
     mins  = int(duration / 60)
-    hours = mins // 60
-    rem   = mins % 60
-    dur_str = f"{hours} Hour {rem} Min" if hours else f"{mins} Minutes"
+    hours = round(mins / 60)
+    if hours < 1:
+        hours = 1
+    dur_str = f"{hours} Hour" if hours == 1 else f"{hours} Hours"
 
-    title = f"{display_name} — {dur_str} | Sacred Drift"
+    title = f"{display_name} • {dur_str}"
 
     # Deduplicate tracklist — variants of the same prompt play back-to-back in the video
     # but we list each unique track name only once in the description
@@ -501,17 +502,19 @@ def build_meta(cat_key: str, tracks: list[Path], duration: float, meta_cfg: dict
 A {dur_str.lower()} deep meditation session — {len(unique_names)} carefully selected tracks for continuous, uninterrupted practice.
 
 ✨ Best with headphones at comfortable volume.
-🎧 Ideal for: meditation, sleep, healing, relaxation
+🎧 Ideal for: meditation, sleep, relaxation, study
 
 ━━━━━━━━━━━━━━━━━━━━━━━
 About Sacred Drift:
-Sacred Drift is a sanctuary of sound — healing frequencies, chakra music and sacred soundscapes for deep rest and inner peace. New sessions every week.
+Sacred Drift is a sanctuary of sound — solfeggio frequencies, chakra music and sacred soundscapes for deep rest and inner peace. New sessions every week.
 
 Subscribe 🔮 @SacredDrift
 ━━━━━━━━━━━━━━━━━━━━━━━
 
 🎵 Tracks in this compilation:
 {tracklist}
+
+🎶 Music created with AI tools.
 
 {footer}"""
 
@@ -521,9 +524,9 @@ Subscribe 🔮 @SacredDrift
         'crown_chakra':    ['crown chakra', 'chakra healing', '963hz'],
         'heart_chakra':    ['heart chakra', 'chakra healing', '639hz'],
         'root_chakra':     ['root chakra', 'grounding meditation', 'chakra healing'],
-        'third_eye':       ['third eye', 'theta waves', 'pineal gland'],
+        'third_eye':       ['third eye meditation', 'theta waves', '852hz'],
         'solfeggio':       ['solfeggio frequencies', '432hz', '528hz', '741hz'],
-        'deep_sleep':      ['sleep music', 'deep sleep', 'insomnia relief'],
+        'deep_sleep':      ['sleep music', 'deep sleep', 'sleep fast'],
         'forest_nature':   ['forest sounds', 'nature sounds', 'nature meditation'],
         'rain_water':      ['rain sounds', 'ocean waves', 'water sounds'],
         'tibetan_bowls':   ['tibetan bowls', 'singing bowls', 'gong bath'],
@@ -637,10 +640,11 @@ def build_classical_meta(cat_key: str, tracks: list[Path], duration: float,
                          meta_cfg: dict) -> dict:
     display_name, composer, _, _ = CLASSICAL_CATEGORIES[cat_key]
     mins    = int(duration / 60)
-    hours   = mins // 60
-    rem     = mins % 60
-    dur_str = f"{hours} Hour {rem} Min" if hours else f"{mins} Minutes"
-    title   = f"{display_name} — {dur_str} | Sacred Drift"
+    hours   = round(mins / 60)
+    if hours < 1:
+        hours = 1
+    dur_str = f"{hours} Hour" if hours == 1 else f"{hours} Hours"
+    title   = f"{display_name} • {dur_str}"
 
     # Build tracklist from file names (use piece name from licenses.yaml if available)
     data       = yaml.safe_load(LICENSES_YAML.read_text())
@@ -675,7 +679,7 @@ Subscribe 🔮 @SacredDrift
 🎵 {last_name} — Works in this compilation:
 {tracklist}
 
-🎼 Music: {composer} | Public Domain recordings via Musopen.org
+🎼 Music: {composer} | Public Domain recordings via Musopen.org (CC0 / Public Domain).
 
 {footer}"""
 

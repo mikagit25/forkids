@@ -254,7 +254,7 @@ def upload_video(
             "title": title[:100],
             "description": description[:5000],
             "tags": tags[:500],
-            "categoryId": "10" if channel == "id" else "27",
+            "categoryId": "10" if channel in ("id", "sd") else "27",
             "defaultLanguage": language,
             "defaultAudioLanguage": language,
         },
