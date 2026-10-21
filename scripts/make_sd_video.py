@@ -39,8 +39,8 @@ QUEUE_DIR = ROOT / "sacred_drift" / "output" / "queue"
 
 STYLE_CATEGORY = {"bowls": "tibetan_bowls", "cosmic": "cosmic_space", "sleep": "deep_sleep",
                   "solfeggio": "solfeggio", "rain": "rain_water", "morning": "morning_yoga"}
-# publish_queue.py weekday themes → which procedural style fits that day
-WEEKDAY_STYLE = {0: "sleep", 1: "solfeggio", 2: "rain", 3: "solfeggio", 4: "bowls", 5: "rain", 6: "cosmic"}
+# publish_queue.py weekday themes → procedural style (mirrors SD_DOW_THEME in publish_queue.py)
+WEEKDAY_STYLE = {0: "sleep", 1: "solfeggio", 2: "rain", 3: "bowls", 4: "morning", 5: "cosmic", 6: "cosmic"}
 
 TAGS = {
     "bowls":     ["tibetan singing bowls", "singing bowls", "sound bath", "meditation music", "tibetan bowls",

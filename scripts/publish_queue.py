@@ -46,29 +46,29 @@ DAY_OFFSETS = {
     "thursday": 3, "friday": 4, "saturday": 5,
 }
 
-# Sacred Drift: 7-day compilation rotation (mirrors live_stream.py SD_DAILY_THEMES)
+# Sacred Drift: 7-day compilation rotation
 # weekday() → 0=Mon … 6=Sun
+# Classical music removed (Content ID risk from Musopen recordings).
+# Monday now uses procedural deep_sleep; Saturday uses rain instead of jazz.
 SD_DOW_THEME = {
-    0: "classical",   # Monday    — Classical / Piano
-    1: "healing",     # Tuesday   — Healing / Chakra
-    2: "nature",      # Wednesday — Nature & Earth
-    3: "focus",       # Thursday  — Focus / Solfeggio
-    4: "sacred",      # Friday    — Sacred / Tibetan
-    5: "jazz",        # Saturday  — Jazz & Lounge
-    6: "cosmic",      # Sunday    — Cosmic / Space
+    0: "sleep",    # Monday    — Deep Sleep
+    1: "healing",  # Tuesday   — Solfeggio / Healing
+    2: "nature",   # Wednesday — Rain & Nature
+    3: "sacred",   # Thursday  — Tibetan Bowls
+    4: "morning",  # Friday    — Morning / Yoga
+    5: "cosmic",   # Saturday  — Cosmic / Space
+    6: "cosmic",   # Sunday    — Cosmic / Space
 }
 # Theme → which sd_comp_* categories to prioritise today
+# All content is procedurally generated — no classical music (Content ID risk).
 SD_DOW_COMP_CATS: dict[str, list[str]] = {
-    "classical": ["bach_classics", "beethoven_classics", "mozart_classics",
-                  "chopin_classics", "schubert_classics", "tchaikovsky_classics",
-                  "verdi_classics", "ambient_piano", "deep_sleep"],
-    "healing":   ["solfeggio", "chakra_journey", "heart_chakra", "crown_chakra",
-                  "root_chakra", "third_eye", "complete_chakra", "healing_reiki"],
-    "nature":    ["forest_nature", "rain_water", "desert_mountain"],
-    "focus":     ["solfeggio", "third_eye", "ambient_piano"],
-    "sacred":    ["tibetan_bowls", "zen_mantra", "healing_reiki", "sacred_sounds"],
-    "jazz":      ["jazz_lounge"],
-    "cosmic":    ["cosmic_space", "awakening_journey", "morning_yoga"],
+    "sleep":   ["deep_sleep"],
+    "healing": ["solfeggio", "chakra_journey", "heart_chakra", "crown_chakra",
+                "root_chakra", "third_eye", "complete_chakra", "healing_reiki"],
+    "nature":  ["rain_water", "forest_nature", "desert_mountain"],
+    "sacred":  ["tibetan_bowls", "zen_mantra", "healing_reiki", "sacred_sounds"],
+    "morning": ["morning_yoga", "awakening_journey"],
+    "cosmic":  ["cosmic_space", "awakening_journey"],
 }
 
 
