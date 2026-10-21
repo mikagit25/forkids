@@ -89,6 +89,11 @@ def glow(img: np.ndarray, cx, cy, r, color, strength):
     img += np.exp(-d2)[..., None].astype(np.float32) * np.array(color, np.float32) * strength
 
 
+def rx(P, key, default=0.0):
+    """Audio-reactive value for this frame (set by render_sd_video.py); default when rendering without audio."""
+    return P.get("rx", {}).get(key, default)
+
+
 def to_img(a):
     return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
 
@@ -167,17 +172,23 @@ def scene_lake(t, w, h, P, C):
     # drifting mist band over the far shore
     mist = pan(C["mist"], t, w)
     band = np.exp(-((np.arange(h)[:, None] - hz) / (h * 0.06)) ** 2)
-    a = lerp(a, np.array([200, 190, 210], np.float32), (mist * band * 0.45)[..., None])
+    a = lerp(a, np.array([200, 190, 210], np.float32), (mist * band * (0.40 + 0.25 * rx(P, "low")))[..., None])
     im = to_img(vignette(a, 0.3))
     d = ImageDraw.Draw(im, "RGBA")
     # ripples spreading on the water (in video: one ring per bowl strike)
     cx, cy = C["ripple_c"]
-    for age in ((t % 7.0), (t + 3.5) % 7.0):
-        r = 20 + age * w * 0.03
-        al = int(110 * max(0, 1 - age / 7))
-        d.ellipse([cx - r, cy - r * 0.18, cx + r, cy + r * 0.18], outline=(230, 225, 240, al), width=2)
-    for (sx, sy, rx, ry) in P.get("_", C["stones"]):
-        d.ellipse([sx - rx, sy - ry, sx + rx, sy + ry], fill=(18, 16, 24, 255))
+    rings = P["rx"]["ripples"] if "rx" in P else [((t % 7.0), 1.0, 0.0), ((t + 3.5) % 7.0, 1.0, 0.0)]
+    for age, strength, dx in rings:                                   # (seconds since strike, 0..1, x offset)
+        life = 7.0 + 4.0 * strength
+        for k, lag in enumerate((0.0, 0.6, 1.2)):                     # each strike sends out 3 rings
+            a2 = age - lag
+            if a2 <= 0 or a2 > life:
+                continue
+            r = 18 + a2 * w * 0.028
+            al = int((60 + 110 * strength) * (1 - a2 / life) * (1 - 0.3 * k))
+            d.ellipse([cx + dx - r, cy - r * 0.18, cx + dx + r, cy + r * 0.18], outline=(232, 226, 245, al), width=2)
+    for (sx, sy, srx, sry) in C["stones"]:
+        d.ellipse([sx - srx, sy - sry, sx + srx, sy + sry], fill=(18, 16, 24, 255))
     return im
 
 
@@ -192,16 +203,23 @@ def scene_cosmic(t, w, h, P, C):
         C["stars"] = [(rng.random(800) * w, rng.random(800) * h, rng.random(800) ** 4, rng.random(800)) for _ in range(3)]
     shift = t * (w / LOOP)                                         # stars wrap exactly once per loop
     a = np.zeros((h, w, 3), np.float32) + np.array([4, 6, 16], np.float32)
-    a += pan(C["neb"], t, w)
+    a += pan(C["neb"], t, w) * (0.85 + 0.3 * rx(P, "env", 0.5))
     im = to_img(a)
     d = ImageDraw.Draw(im, "RGBA")
     for layer, (xs, ys, br, ph) in enumerate(C["stars"]):
         speed = layer + 1                                          # integer → still periodic over LOOP
-        tw = 0.75 + 0.25 * np.sin(2 * np.pi * t * np.round(LOOP * (0.12 + ph * 0.3)) / LOOP + ph * 6.28)
+        amp_tw = 0.25 + 0.35 * rx(P, "high")
+        tw = (1 - amp_tw) + amp_tw * np.sin(2 * np.pi * t * np.round(LOOP * (0.12 + ph * 0.3)) / LOOP + ph * 6.28)
         for x, y, b, k in zip((xs + shift * speed) % w, ys, br * tw, ph):
             r = 0.6 + layer * 0.6 + b * 1.6
             al = int(90 + 165 * b)
             d.ellipse([x - r, y - r, x + r, y + r], fill=(235, 235, 255, al))
+    for age, (mx, my, ang, ln) in P.get("rx", {}).get("meteors", []):   # shooting star on each strike
+        if 0 <= age < 1.4:
+            k = age / 1.4
+            hx, hy = mx + math.cos(ang) * ln * k, my + math.sin(ang) * ln * k
+            tx, ty = hx - math.cos(ang) * ln * 0.35, hy - math.sin(ang) * ln * 0.35
+            d.line([tx, ty, hx, hy], fill=(255, 250, 235, int(220 * (1 - k))), width=2)
     return im.filter(ImageFilter.GaussianBlur(0.4))
 
 
@@ -212,7 +230,6 @@ def scene_night(t, w, h, P, C):
         a = grad(h, w, [(0, top), (1, low)])
         C["moon"] = (w * rng.uniform(0.6, 0.8), h * rng.uniform(0.2, 0.32), h * 0.055)
         mx, my, mr = C["moon"]
-        glow(a, mx, my, mr * 5, (150, 160, 200), 0.35)
         C["bg"] = a
         W2 = int(w * 1.4)
         cl = fbm(h // 2, W2 // 4, rng, 5, 2)                         # stretched 4x sideways, 2x down: wide clouds
@@ -220,6 +237,8 @@ def scene_night(t, w, h, P, C):
         C["stars"] = (rng.random(260) * w, rng.random(260) * h * 0.6, rng.random(260))
         C["trees"] = ridge(w, rng, h * 0.9, h * 0.03, 7) - (rng.random(w) ** 8) * h * 0.04
     a = C["bg"].copy()
+    mx, my, mr = C["moon"]
+    glow(a, mx, my, mr * 5, (150, 160, 200), 0.30 + 0.25 * rx(P, "env", 0.2))
     im = to_img(a)
     d = ImageDraw.Draw(im, "RGBA")
     xs, ys, ph = C["stars"]
@@ -241,14 +260,27 @@ def scene_night(t, w, h, P, C):
 def scene_mandala(t, w, h, P, C):
     hue, folds, style, rings = P["hue"], P["folds"], P.get("style", "flower"), P.get("rings", 5)
     base = np.zeros((h, w, 3), np.float32) + np.array(hsv(hue, 0.6, 0.08), np.float32)
-    glow(base, w / 2, h / 2, h * 0.5, hsv(hue, 0.5, 0.5), 0.6 * (1 + 0.15 * math.sin(2 * math.pi * t / 8)))
+    glow(base, w / 2, h / 2, h * 0.5, hsv(hue, 0.5, 0.5),
+         0.6 * (1 + 0.15 * math.sin(2 * math.pi * t / 8)) * (0.75 + 0.6 * rx(P, "env", 0.4)))
     im = to_img(base)
     layer = Image.new("RGBA", (w, h), (0, 0, 0, 0))
     d = ImageDraw.Draw(layer)
     cx, cy = w / 2, h / 2
-    breathe = 1 + 0.03 * math.sin(2 * math.pi * t / 8)
+    breathe = 1 + 0.03 * math.sin(2 * math.pi * t / 8) + 0.07 * rx(P, "low")
+    spec = P.get("rx", {}).get("spectrum")
+    if spec is not None:                                              # circular equalizer around the mandala
+        R0 = h * 0.43 * breathe
+        bands = np.concatenate([spec, spec[::-1]])                    # mirrored → symmetric ring
+        n = len(bands)
+        for k, v in enumerate(bands):
+            ang = 2 * math.pi * k / n - math.pi / 2 + t * 0.01
+            L = h * (0.012 + 0.07 * float(v) ** 1.5)
+            x0, y0 = cx + R0 * math.cos(ang), cy + R0 * math.sin(ang)
+            x1, y1 = cx + (R0 + L) * math.cos(ang), cy + (R0 + L) * math.sin(ang)
+            d.line([x0, y0, x1, y1], fill=hsv(hue + 0.05 * float(v), 0.5, 1.0) + (int(90 + 140 * float(v)),),
+                   width=max(2, int(h / 300)))
     for ring in range(1, rings + 1):
-        R = h * 0.42 * ring / rings * breathe
+        R = h * 0.27 * ring / rings * breathe              # outer circles (R*1.55) stay inside the frame
         rot = t * (0.02 if ring % 2 else -0.015) * (1 + ring * 0.3)
         col = hsv(hue + ring * 0.03, 0.55, 1.0) + (int(160 - ring * 14),)
         n = folds * (1 if ring < 3 else 2)
@@ -290,13 +322,13 @@ def scene_window(t, w, h, P, C):
         n = 120
         C["drops"] = dict(x=rng.random(n) * w, y0=rng.random(n) * h, sp=rng.uniform(6, 30, n) * (rng.random(n) < 0.3),
                           r=rng.uniform(3, 10, n) * h / 720)
-    a = C["bokeh"] * 0.9
+    a = C["bokeh"] * (0.82 + 0.22 * rx(P, "low", 0.4))
     a = a + np.linspace(14, 0, h)[:, None, None]                     # fogged glass at the top
     im = to_img(a)
     d = ImageDraw.Draw(im, "RGBA")
     D = C["drops"]
     for x, y0, sp, r in zip(D["x"], D["y0"], D["sp"], D["r"]):
-        y = (y0 + sp * t) % (h + 60) - 30
+        y = (y0 + sp * rx(P, "rain_t", t)) % (h + 60) - 30
         ry = r * (1.25 if sp > 0 else 1.0)
         if sp > 0:                                                    # faint wet trail above a sliding drop
             d.line([x, y - r * 9, x, y - r], fill=(160, 170, 190, 22), width=max(1, int(r * 0.5)))
@@ -331,7 +363,7 @@ def scene_sunrise(t, w, h, P, C):
     yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
     ang = np.arctan2(yy - sy, xx - sx)
     idx = ((ang + np.pi) / (2 * np.pi) * len(C["rays"])).astype(int) % len(C["rays"])
-    rays = C["rays"][idx] * (0.6 + 0.4 * math.sin(t * 0.2))
+    rays = C["rays"][idx] * (0.45 + 0.25 * math.sin(2 * math.pi * t / LOOP * 6) + 0.5 * rx(P, "env", 0.4))
     fall = np.exp(-np.hypot(xx - sx, yy - sy) / (h * 0.7)) * (yy < sy)
     a += (rays * fall * 40)[..., None] * np.array([1.0, 0.85, 0.6], np.float32)
     im = to_img(a)
