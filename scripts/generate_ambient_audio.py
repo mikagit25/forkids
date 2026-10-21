@@ -145,6 +145,7 @@ class Score:
     beds: list = field(default_factory=list)   # callables (c0, c1) -> (L, R) for continuous noise beds
     reverb_s: float = 5.5
     reverb_lp: float = 5000
+    echo: tuple | None = None                   # (delay_s, feedback, repeats) ping-pong echo on the reverb send
     dry: float = 0.55
     wet: float = 0.75
     band: tuple = (35, 14000)
@@ -171,7 +172,10 @@ def pad_voice(f, length, rng, tab_a=TAB_DARK, tab_b=TAB_WARM, detune=0.0025, bri
     return fn
 
 
-def bowl(f0, rng, length=24.0, partials=((1.0, 1.0, 9.0), (2.76, 0.5, 6.0), (5.40, 0.22, 3.5), (8.93, 0.10, 2.0))):
+def bowl(f0, rng, length=24.0, partials=((1.0, 1.0, 9.0), (2.76, 0.5, 6.0), (5.40, 0.22, 3.5), (8.93, 0.10, 2.0)),
+         sustain=1.0, brightness=1.0):
+    """Singing bowl. sustain>1 = longer ring; brightness<1 = softer upper partials (less 'ringing')."""
+    partials = [(r, a * (brightness ** i), d * sustain) for i, (r, a, d) in enumerate(partials)]
     beats = [rng.uniform(0.5, 1.4) for _ in partials]
 
     def fn(tt):
@@ -317,54 +321,56 @@ class WavesBed:
 
 
 class RainBed:
-    """Procedural rain; intensity drifts slowly.
+    """Procedural rain with wave-like gusts: intensity swells and fades every 8–18 s
+    (irregular), on top of a slow drift over minutes.
 
-    mode='inside'  (default) rain heard from inside a room: muffled wash, dull soft taps on
-                   glass/roof, occasional drip on the sill — no hiss.
-    mode='outside' open-air rain: brighter wash and crisp droplets."""
-    def __init__(self, rng, level=None, period=420, mode="inside"):
-        self.rng, self.period, self.ph, self.mode = rng, period, rng.uniform(0, 6.28), mode
-        self.inside = mode == "inside"
-        self.level = level if level is not None else (0.032 if self.inside else 0.05)
+    mode='window'  (default) rain just outside an open window — present but not hissy
+    mode='inside'  heard from inside a closed room: muffled, dull taps, drips
+    mode='outside' open-air rain: bright wash, crisp droplets"""
+    MODES = {   #        wash band      lowpass  drop freqs (Hz)           decay   rate  level
+        "inside":  ((120, 1600),  1400, (620, 820, 1050, 1300),        0.006,  14, 0.032),
+        "window":  ((200, 4200),  3600, (1100, 1500, 1900, 2500),      0.0040, 20, 0.045),
+        "outside": ((500, 7000),  None, (2600, 3400, 4300, 5200),      0.0025, 28, 0.050),
+    }
+
+    def __init__(self, rng, level=None, period=420, mode="window"):
+        band, lp, freqs, dec, rate, lvl = self.MODES[mode]
+        self.rng, self.period, self.ph, self.mode, self.rate = rng, period, rng.uniform(0, 6.28), mode, rate
+        self.level = level if level is not None else lvl
+        self.wash = NoiseBed(rng, band[0], band[1], 1.0, breathe=0.0)
+        self.lp = butter(2, lp, btype="low", fs=SR, output="sos") if lp else None
+        self.lp_zi = [sosfilt_zi(self.lp) * 0, sosfilt_zi(self.lp) * 0] if lp else None
         k = np.arange(int(0.03 * SR)) / SR
-        if self.inside:
-            self.wash = NoiseBed(rng, 120, 1600, 1.0, breathe=0.0)
-            self.lp = butter(2, 1400, btype="low", fs=SR, output="sos")
-            self.lp_zi = [sosfilt_zi(self.lp) * 0, sosfilt_zi(self.lp) * 0]
-            self.kernels = [(np.sin(2 * np.pi * f * k) * np.exp(-k / 0.006)).astype(np.float32)
-                            for f in (620, 820, 1050, 1300)]
-            self.drip = (np.sin(2 * np.pi * 520 * k) * np.exp(-k / 0.012)).astype(np.float32)
-            self.rate = 14
-        else:
-            self.wash = NoiseBed(rng, 500, 7000, 1.0, breathe=0.0)
-            k = k[: int(0.012 * SR)]
-            self.kernels = [(np.sin(2 * np.pi * f * k) * np.exp(-k / 0.0025)).astype(np.float32)
-                            for f in (2600, 3400, 4300, 5200)]
-            self.rate = 28
+        self.kernels = [(np.sin(2 * np.pi * f * k) * np.exp(-k / dec)).astype(np.float32) for f in freqs]
+        self.drip = (np.sin(2 * np.pi * 520 * k) * np.exp(-k / 0.012)).astype(np.float32)
+        self.gust_P = rng.uniform(9, 16); self.gust_ph = rng.uniform(0, 6.28)
 
     def __call__(self, c0, c1):
         n = c1 - c0
         t = np.arange(c0, c1) / SR
-        inten = 0.7 + 0.3 * np.sin(2 * np.pi * t / self.period + self.ph)
+        drift = 0.75 + 0.25 * np.sin(2 * np.pi * t / self.period + self.ph)
+        P = self.gust_P
+        sw = 0.5 + 0.5 * np.sin(2 * np.pi * t / P + self.gust_ph + 0.8 * np.sin(2 * np.pi * t / (P * 3.3)))
+        gust = 0.45 + 0.55 * sw ** 1.6                              # wave-like swell of the downpour
+        inten = drift * gust
         wl, wr = self.wash(c0, c1)
         out = []
         for ch, w in enumerate((wl, wr)):
             drops = np.zeros(n, np.float32)
             cnt = self.rng.poisson(self.rate * n / SR)
             pos = self.rng.integers(0, n, cnt)
-            drops[pos] = self.rng.uniform(0.1, 1.0, cnt) ** 2
+            drops[pos] = self.rng.uniform(0.1, 1.0, cnt) ** 2 * gust[pos]
             d = sum(fftconvolve(drops * (self.rng.random(n) < 0.25), kern, mode="same")
                     for kern in self.kernels)
-            if self.inside:
+            if self.mode != "outside":
                 dr = np.zeros(n, np.float32)
-                k = self.rng.poisson(n / SR / 3.5)                   # a drip every few seconds
+                k = self.rng.poisson(n / SR / (3.5 if self.mode == "inside" else 6.0))
                 dr[self.rng.integers(0, n, k)] = self.rng.uniform(0.4, 1.0, k)
-                d = 0.5 * d + 0.8 * fftconvolve(dr, self.drip, mode="same")
-                mix = 0.7 * w + d
-                mix, self.lp_zi[ch] = sosfilt(self.lp, mix, zi=self.lp_zi[ch])   # through the window
-            else:
-                mix = 0.6 * w + 0.9 * d
-            out.append((mix * inten * self.level).astype(np.float32))
+                d = 0.6 * d + 0.7 * fftconvolve(dr, self.drip, mode="same")
+            mix = (0.65 * w + 0.9 * d) * inten
+            if self.lp is not None:
+                mix, self.lp_zi[ch] = sosfilt(self.lp, mix, zi=self.lp_zi[ch])
+            out.append((mix * self.level).astype(np.float32))
         return out[0], out[1]
 
 
@@ -481,29 +487,70 @@ def _choir_events(sections, rng, tun, gain, every=2, vowel=None):
     return ev
 
 
+BOWL_VARIANTS = {
+    # gaps between strikes (s), sustain, brightness, octave choices, reverb base, echo, gong gap
+    "ringing": dict(gaps=(8, 15),  sustain=1.0, bright=1.0,  octaves=[0, 0, 12], reverb=6.0,
+                    echo=None,              gong=(120, 260), layers={"gong": 0.75, "chimes": 0.4, "choir": 0.3, "waves": 0.15},
+                    timbres=["dark", "warm", "hollow", "soft"], pad=0.013),
+    "slow":    dict(gaps=(22, 40), sustain=1.8, bright=0.55, octaves=[0, 0, 0, 12], reverb=9.5,
+                    echo=((0.9, 1.4), (0.40, 0.55), 6), gong=(150, 320), layers={"gong": 0.5, "choir": 0.35, "waves": 0.25},
+                    timbres=["soft", "dark", "hollow"], pad=0.011),
+    "deep":    dict(gaps=(18, 34), sustain=2.0, bright=0.45, octaves=[-12, 0, 0], reverb=10.5,
+                    echo=((1.1, 1.6), (0.35, 0.5), 5),  gong=(70, 160),  layers={"gong": 1.0, "choir": 0.25, "waves": 0.2},
+                    timbres=["soft", "dark"], pad=0.012),
+}
+
+
+VARIANT_TITLES = {
+    ("bowls", "slow"): ("Slow Tibetan Bowls Meditation", ["Long Echoes", "Endless Stillness", "Evening Prayer Hall",
+                        "Silent Monastery", "Distant Bells", "Patient Light", "Stone and Silence", "Unhurried Dawn",
+                        "Inner Temple", "Slow Breath of the Temple"]),
+    ("bowls", "deep"): ("Deep Tibetan Bowls & Gong", ["Ancient Gong Hall", "Deep Resonance", "Low Temple Chamber",
+                        "Earth Tone", "Cavern Temple", "Roots of Silence", "Bronze Depths", "Night Ritual"]),
+    ("rain", "inside"):  ("Soft Rain Heard From Indoors", ["Closed Window", "Upstairs Room", "Warm Kitchen",
+                          "Reading Nook", "Cabin Interior", "Library Evening", "Sleepy Bedroom", "Tea by the Window"]),
+    ("rain", "outside"): ("Open Air Rain Meditation", ["Garden Path", "Covered Porch", "Park Bench", "Village Square",
+                          "Wet Pine Grove", "Temple Roof", "Courtyard Downpour", "Summer Storm Walk"]),
+}
+
+
 def style_bowls(rng, dur, o):
+    variant = o.get("variant") or pick(rng, ["ringing", "slow", "slow", "deep"])   # calm variants more often
+    V = BOWL_VARIANTS[variant]
     tun = Tuning(); key = int(rng.integers(45, 52)); info = {}
-    R = _recipe(rng, ["dark", "warm", "hollow", "soft"],
-                {"gong": 0.75, "chimes": 0.4, "choir": 0.3, "waves": 0.15}, 6.0)
-    secs = plan_harmony(rng, dur, "minor" if rng.random() < 0.7 else "major", int(pick(rng, [16, 20, 24])), key, info=info)
-    ev = pad_events(secs, rng, tun, 5, TIMBRES[R["timbre"]], 0.013)
+    R = _recipe(rng, V["timbres"], V["layers"], V["reverb"])
+    R["variant"] = variant
+    secs = plan_harmony(rng, dur, "minor" if rng.random() < 0.7 else "major",
+                        int(pick(rng, [16, 20, 24] if variant == "ringing" else [24, 28, 32])), key, info=info)
+    ev = pad_events(secs, rng, tun, 6, TIMBRES[R["timbre"]], V["pad"])
     scale = SCALES[pick(rng, ["minor_penta", "dorian"])]
+    ring = 26 * V["sustain"]
 
     def mk_bowl(t):
         r = root_at(secs, t)
-        m = r + 12 + int(pick(rng, scale)) + int(pick(rng, [0, 0, 12]))
-        return Event(t, 26, bowl(tun.hz(m) * rng.uniform(0.998, 1.002), rng), rng.uniform(-0.55, 0.55), 0.10)
-    ev += scattered(rng, dur, 2.5, (8 * R["pace"], 15 * R["pace"]), mk_bowl, d_period=rng.uniform(500, 900))
+        m = r + 12 + int(pick(rng, scale)) + int(pick(rng, V["octaves"]))
+        return Event(t, ring, bowl(tun.hz(m) * rng.uniform(0.998, 1.002), rng, sustain=V["sustain"], brightness=V["bright"]),
+                     rng.uniform(-0.55, 0.55), 0.10 if variant == "ringing" else 0.12)
+    lo, hi = V["gaps"]
+    ev += scattered(rng, dur, 2.5, (lo * R["pace"], hi * R["pace"]), mk_bowl, d_period=rng.uniform(500, 900))
     if "gong" in R["layers"]:
-        ev += scattered(rng, dur, rng.uniform(40, 90), (120, 260),
-                        lambda t: Event(t, 32, gong(tun.hz(root_at(secs, t) - 12), rng), rng.uniform(-0.2, 0.2), 0.05))
+        ev += scattered(rng, dur, rng.uniform(30, 80), V["gong"],
+                        lambda t: Event(t, 40, gong(tun.hz(root_at(secs, t) - 12), rng), rng.uniform(-0.2, 0.2),
+                                        0.05 if variant == "ringing" else 0.065))
     if "chimes" in R["layers"]:
         ev += scattered(rng, dur, rng.uniform(20, 60), (45, 110),
                         lambda t: chimes_cluster(rng, t, root_at(secs, t), tun, 0.012))
     if "choir" in R["layers"]:
-        ev += _choir_events(secs, rng, tun, 0.006)
+        ev += _choir_events(secs, rng, tun, 0.006, vowel="oo" if variant != "ringing" else None)
     beds = [NoiseBed(rng, 150, 900, 0.004)] + ([WavesBed(rng, 0.012)] if "waves" in R["layers"] else [])
-    return Score(ev, beds, reverb_s=R["reverb_s"], reverb_lp=4800, params={"key": key, **info, "recipe": R})
+    echo = None
+    if V["echo"]:
+        (d0, d1), (f0, f1), reps = V["echo"]
+        echo = (round(rng.uniform(d0, d1), 2), round(rng.uniform(f0, f1), 2), reps)
+        R["echo"] = echo
+    return Score(ev, beds, reverb_s=R["reverb_s"], reverb_lp=4800 if variant == "ringing" else 3800, echo=echo,
+                 dry=0.55 if variant == "ringing" else 0.45, wet=0.75 if variant == "ringing" else 0.9,
+                 params={"key": key, **info, "recipe": R})
 
 
 def style_cosmic(rng, dur, o):
@@ -606,7 +653,7 @@ def style_solfeggio(rng, dur, o):
 def style_rain(rng, dur, o):
     tun = Tuning(); key = int(rng.integers(45, 52)); info = {}
     R = _recipe(rng, ["warm", "dark", "hollow", "soft"], {"plucks": 0.75, "choir": 0.2, "thunder": 0.5}, 4.5)
-    R["rain"] = o.get("rain") or "inside"
+    R["rain"] = o.get("rain") or "window"
     secs = plan_harmony(rng, dur, "major" if rng.random() < 0.75 else "minor", int(pick(rng, [20, 24])), key, info=info)
     ev = pad_events(secs, rng, tun, 6, TIMBRES[R["timbre"]], 0.011)
     if "plucks" in R["layers"]:
@@ -660,15 +707,31 @@ STYLES = {"bowls": style_bowls, "cosmic": style_cosmic, "sleep": style_sleep,
 
 # ── renderer ──────────────────────────────────────────────────────────────────
 
-def make_ir(rng, secs, lp):
-    n = int(secs * SR); t = np.arange(n) / SR
+def make_ir(rng, secs, lp, echo=None):
+    """Stereo hall impulse response; optional ping-pong echo taps folded into the same IR
+    (so echoes ride the existing chunked convolution with no extra state)."""
+    n = int(secs * SR)
+    if echo:
+        delay, fb, reps = echo
+        n = max(n, int((delay * reps + 1.0) * SR))
+    t = np.arange(n) / SR
     env = np.exp(-t / (secs / 3.4))
     sos = butter(1, lp, btype="low", fs=SR, output="sos")
     irs = []
-    for pre in (0.020, 0.027):
+    for ch, pre in enumerate((0.020, 0.027)):
         ir = sosfilt(sos, rng.standard_normal(n)) * env
         ir[: int(pre * SR)] = 0
-        irs.append((ir / np.sqrt((ir ** 2).sum())).astype(np.float32))
+        ir = ir / np.sqrt((ir ** 2).sum())
+        if echo:
+            delay, fb, reps = echo
+            for k in range(1, reps + 1):
+                if (k % 2 == 1) != (ch == 0):                   # ping-pong: odd repeats left, even right
+                    continue
+                w = int(0.002 * SR * k) + 8                     # each repeat a little softer/darker
+                tap = np.hanning(w); tap /= np.sqrt((tap ** 2).sum())
+                i = int(k * delay * SR)
+                ir[i:i + w] += 0.30 * (fb ** (k - 1)) * tap[: max(0, min(w, n - i))]
+        irs.append(ir.astype(np.float32))
     return irs
 
 
@@ -692,7 +755,7 @@ def measure_lufs(L, R) -> float:
 def render(score: Score, dur: float, out_path: Path, fmt: str, seed: int, log=print) -> dict:
     N = int(dur * SR); C = CHUNK_S * SR
     rng_ir = np.random.default_rng(seed + 991)
-    irL, irR = make_ir(rng_ir, score.reverb_s, score.reverb_lp)
+    irL, irR = make_ir(rng_ir, score.reverb_s, score.reverb_lp, score.echo)
     tails = [np.zeros(len(irL) - 1, np.float32), np.zeros(len(irR) - 1, np.float32)]
     sos_m = butter(2, list(score.band), btype="band", fs=SR, output="sos")
     zi_m = [sosfilt_zi(sos_m) * 0, sosfilt_zi(sos_m) * 0]
@@ -779,18 +842,60 @@ def render(score: Score, dur: float, out_path: Path, fmt: str, seed: int, log=pr
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
 def track_title(style, rng, params: dict) -> str:
-    base, names = TITLES[style]
+    R = params.get("recipe", {})
+    base, names = VARIANT_TITLES.get((style, R.get("variant") or R.get("rain")), TITLES[style])
     hz = params.get("hz")
     if style == "solfeggio" and params.get("binaural_beat_hz"):
         base = "{hz}Hz Solfeggio Binaural Beats " + f"{params['binaural_beat_hz']:g}Hz"
     return f"{base.format(hz=f'{hz:g}' if hz else '528')} — {names[int(rng.integers(len(names)))]}"
 
 
+LAYER_WORDS = {"gong": "a deep gong", "chimes": "wind chimes", "choir": "a soft wordless choir",
+               "waves": "distant ocean waves", "shimmer": "shimmering arpeggios", "plucks": "gentle plucked notes",
+               "thunder": "far-off thunder", "bowls": "low singing bowls", "rain": "soft rain",
+               "bells": "soft bells", "drone": "a low drone"}
+TIMBRE_WORDS = {"soft": "soft, rounded", "dark": "warm, dark", "warm": "warm, glowing",
+                "hollow": "woody, hollow", "glass": "clear, glassy"}
+
+
+def describe(style: str, params: dict) -> dict:
+    """Plain-English character of a track, for titles/descriptions and for picking playlists."""
+    R = params.get("recipe", {})
+    v, rain = R.get("variant"), R.get("rain")
+    core = {
+        "bowls": {"ringing": "Bright, clear-ringing Tibetan singing bowls",
+                  "slow": "Slow Tibetan singing bowls with long sustain and gentle echoes",
+                  "deep": "Deep, low Tibetan bowls and a resonant gong"}.get(v, "Tibetan singing bowls"),
+        "cosmic": "Dark, floating cosmic pads with distant star-like tones",
+        "sleep": "A very slow, dark drone made for falling asleep",
+        "solfeggio": (f"A pure {params.get('hz', 528):g} Hz tone over a soft tuned pad"
+                      + (f", with a {params['binaural_beat_hz']:g} Hz binaural beat (use headphones)"
+                         if params.get("binaural_beat_hz") else "")),
+        "rain": {"inside": "Rain heard softly from indoors", "window": "Rain falling just outside an open window",
+                 "outside": "Open-air rain"}.get(rain, "Gentle rain") + " over a warm pad",
+        "morning": "Bright, gentle major-key pads and bells",
+    }[style]
+    layers = [LAYER_WORDS[x] for x in R.get("layers", []) if x in LAYER_WORDS
+              and not (x == "gong" and v == "deep")]            # deep variant already names the gong
+    rv = R.get("reverb_s", 6)
+    space = "a vast, echoing space" if rv >= 8.5 else "a spacious hall" if rv >= 6 else "a close, intimate space"
+    pace = R.get("pace", 1.0) * (1.6 if v in ("slow", "deep") else 1.0)
+    pace_w = "very slow and unhurried" if pace >= 1.4 else "slow and steady" if pace >= 1.0 else "gently flowing"
+    use = {"bowls": "deep meditation and breathwork" if v in ("slow", "deep") else "morning meditation and focus",
+           "cosmic": "meditation, sleep and focus", "sleep": "sleep and night-time rest",
+           "solfeggio": "meditation and relaxation", "rain": "sleep, reading and study",
+           "morning": "yoga and a calm morning routine"}[style]
+    with_ = (", with " + (", ".join(layers[:-1]) + " and " + layers[-1] if len(layers) > 1 else layers[0])) if layers else ""
+    text = f"{core}{with_}, in {space}. {TIMBRE_WORDS.get(R.get('timbre'), 'soft').capitalize()} tone, {pace_w}. Best for {use}."
+    tags = [w for w in (v, rain, R.get("timbre"), pace_w.split()[0], "echo" if R.get("echo") else None) if w]
+    return {"description": text, "character": tags}
+
+
 def signature(style: str, title: str, params: dict) -> tuple:
     """What makes two tracks of the same style sound alike: key, progression, timbre, layers."""
     r = params.get("recipe", {})
-    return (style, (params.get("key") or 0) % 12, params.get("progression"), r.get("timbre"),
-            tuple(sorted(r.get("layers", []))), params.get("hz"), title.split(" — ")[-1])
+    return (style, r.get("variant") or r.get("rain"), (params.get("key") or 0) % 12, params.get("progression"),
+            r.get("timbre"), tuple(sorted(r.get("layers", []))), params.get("hz"), title.split(" — ")[-1])
 
 
 def recent_tracks(log_path: Path, style: str, n: int = 8) -> list[dict]:
@@ -820,8 +925,10 @@ def main():
                     help="solfeggio: binaural beat in Hz (e.g. 4 = theta, 2 = delta) — headphones")
     ap.add_argument("--register", type=int, choices=[0, -12], default=None,
                     help="solfeggio: -12 = deeper pad an octave lower (default: random)")
-    ap.add_argument("--rain", choices=["inside", "outside"], default=None,
-                    help="rain style: heard from inside a room (default) or open air")
+    ap.add_argument("--rain", choices=["window", "inside", "outside"], default=None,
+                    help="rain: just outside an open window (default), muffled indoors, or open air")
+    ap.add_argument("--variant", choices=sorted(BOWL_VARIANTS), default=None,
+                    help="bowls: ringing (bright), slow (long sustain + echo), deep (low bowls + gong); default random")
     ap.add_argument("--allow-repeat", action="store_true",
                     help="skip the check against recently generated tracks of the same style")
     ap.add_argument("--format", choices=["mp3", "flac", "wav"], default="mp3")
@@ -837,7 +944,7 @@ def main():
     out_dir = Path(a.out_dir); out_dir.mkdir(parents=True, exist_ok=True)
     seed_next = a.seed if a.seed is not None else int(time.time()) % 1_000_000
     log_path = out_dir / "ambient_log.jsonl"
-    opts = {"hz": a.hz, "binaural": a.binaural, "register": a.register, "rain": a.rain}
+    opts = {"hz": a.hz, "binaural": a.binaural, "register": a.register, "rain": a.rain, "variant": a.variant}
     recent = [] if a.allow_repeat else recent_tracks(log_path, a.style)
     recent_sigs = {json.dumps(r["signature"]) for r in recent if r.get("signature")}
     recent_names = {r["title"].split(" — ")[-1] for r in recent if r.get("title")}
@@ -854,13 +961,15 @@ def main():
                 break
         out = out_dir / f"{title} ({seed}).{a.format}"
         R = score.params.get("recipe", {})
-        print(f"🎵 [{i + 1}/{a.count}] {out.name}  ({dur / 60:.1f} min)\n"
+        D = describe(a.style, score.params)
+        print(f"🎵 [{i + 1}/{a.count}] {out.name}  ({dur / 60:.1f} min)\n    {D['description']}\n"
               f"    timbre={R.get('timbre')} layers={R.get('layers')} key={score.params.get('key')} "
               f"reverb={R.get('reverb_s')}s" + (f" hz={score.params.get('hz')}" if score.params.get("hz") else ""))
         stats = render(score, dur, out, a.format, seed)
         rec = {"file": out.name, "title": title, "style": a.style, "seed": seed, "duration_s": dur,
                "generator": "generate_ambient_audio.py", "version": VERSION, "params": score.params,
-               "signature": list(sig), "target_lufs": score.target_lufs, **stats,
+               "signature": list(sig), "description": D["description"], "character": D["character"],
+               "target_lufs": score.target_lufs, **stats,
                "created": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
                "license": "Original procedural synthesis by Sacred Drift — no samples, no AI model"}
         with open(log_path, "a") as f:

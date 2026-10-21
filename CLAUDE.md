@@ -156,7 +156,13 @@ python3 scripts/generate_ambient_audio.py --style sleep --minutes 480 --format f
 - Стили: `bowls`, `cosmic`, `sleep` (−20 LUFS), `solfeggio --hz N`, `rain`, `morning`. Остальные −18 LUFS.
 - Частоты: `--hz` любое значение (без флага — случайно из 111…963), `--register -12` — глубже пэд,
   `--binaural 4` — бинауральные биения (левое ухо hz, правое hz+4; в названии «Binaural Beats»).
-- Дождь: по умолчанию `--rain inside` (приглушённо, как из комнаты), `--rain outside` — открытый.
+- Дождь: по умолчанию `--rain window` (за открытым окном, с накатами как волны), `inside` — приглушённо
+  из комнаты, `outside` — открытый. У каждого режима своё название («Soft Rain Heard From Indoors» и т.д.).
+- Чаши: `--variant ringing` (звонкие), `slow` (редкие удары, долгое звучание, эхо, большой зал),
+  `deep` (низкие чаши + гонг). Без флага — случайно, спокойные варианты чаще. Свои названия:
+  «Tibetan Singing Bowls», «Slow Tibetan Bowls Meditation», «Deep Tibetan Bowls & Gong».
+- Каждый трек получает описание характера (звук, слои, пространство, темп, «Best for …») в
+  `ambient_log.jsonl`; `generate_sd_compilation.py` вставляет их в описание видео блоком «About this session».
 - Разнообразие: каждый seed = свой рецепт (тональность, прогрессия, длина аккорда, тембр пэда
   soft/dark/warm/hollow/glass, слои gong/chimes/choir/waves/shimmer/plucks/thunder, размер реверба, темп).
   Новый трек автоматически перегенерируется, если похож на один из 8 последних того же стиля

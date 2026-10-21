@@ -477,6 +477,28 @@ def build_video(theme: str, audio_mp3: Path, out_mp4: Path, duration: float) -> 
 
 # ── Meta ─────────────────────────────────────────────────────────────────────
 
+def code_track_notes(tracks: list[Path], limit: int = 4) -> str:
+    """'About this session' lines from generate_ambient_audio.py's log (one per distinct character)."""
+    log = AUDIO_DIR4 / 'ambient_log.jsonl'
+    if not log.exists():
+        return ''
+    by_file = {}
+    for line in log.read_text().splitlines():
+        try:
+            r = json.loads(line)
+            by_file[r['file']] = r.get('description', '')
+        except (ValueError, KeyError):
+            continue
+    seen, lines = set(), []
+    for t in tracks:
+        d = by_file.get(t.name)
+        if d and d not in seen:
+            seen.add(d); lines.append(f"• {d}")
+        if len(lines) >= limit:
+            break
+    return ("🎧 About this session:\n" + "\n".join(lines) + "\n") if lines else ''
+
+
 def music_credit(tracks: list[Path]) -> str:
     """Honest credit line: procedural tracks (code_ambient) are not AI-generated."""
     code = sum(1 for t in tracks if AUDIO_DIR4 in t.parents)
@@ -521,6 +543,7 @@ Sacred Drift is a sanctuary of sound — solfeggio frequencies, chakra music and
 Subscribe 🔮 @SacredDrift
 ━━━━━━━━━━━━━━━━━━━━━━━
 
+{code_track_notes(tracks)}
 🎵 Tracks in this compilation:
 {tracklist}
 
