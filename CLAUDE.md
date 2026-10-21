@@ -189,6 +189,18 @@ python3 scripts/sd_scenes.py --preview /tmp/scenes --seed 5                     
   круговой эквалайзер; звёзды мерцают с верхами + падающая звезда на ударах; капли на окне быстрее в накатах дождя.
 - Скорость: 40–90 мс/кадр при 960×540 → ~1–2 ч рендера на час видео (один процесс). Запускать ночью, последовательно.
 
+**Одна команда = готовое видео в очереди** (музыка → видео → превью → мета):
+```bash
+python3 scripts/make_sd_video.py --style solfeggio --hz 528 --minutes 60
+python3 scripts/make_sd_video.py --style bowls --variant slow --minutes 60
+python3 scripts/make_sd_video.py --style today --minutes 60        # стиль по дню недели
+```
+- Выход: `sacred_drift/output/queue/sd_comp_<category>_code_<date>_<seed>.{mp4,png}` + `meta_….yaml`
+  (префикс `sd_comp_<category>_` → работает ротация тем по дням в publish_queue.py).
+- Сцена выбирается по стилю (мандала — любимая: всегда для solfeggio, часто для bowls/cosmic/morning).
+- Превью: кадр из видео + крупный текст («639HZ SOLFEGGIO», «SLOW BOWLS MEDITATION»…), подпись SACRED DRIFT.
+- Описание 200+ слов из характера трека; `ai_generated: false`, `music_source: procedural`.
+
 ### 8. Suno (AI-музыка)
 - Требует активной платной подписки + документация промпта
 - Нельзя упоминать известных артистов по имени

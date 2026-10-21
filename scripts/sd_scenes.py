@@ -129,8 +129,10 @@ def params(scene: str, seed: int, hz: float | None = None) -> dict:
     if scene == "cosmic":
         h1 = rng.uniform(0.52, 0.86); P["hues"] = (h1, 0.52 + (h1 - 0.52 + rng.uniform(0.08, 0.2)) % 0.34)
     if scene == "mandala":
-        hz = hz or 528
-        P["hue"] = 0.75 * math.log2(hz / 111) / math.log2(963 / 111)    # low Hz = red/amber → high Hz = violet
+        if hz:
+            P["hue"] = 0.75 * math.log2(hz / 111) / math.log2(963 / 111)    # low Hz = red/amber → high Hz = violet
+        else:
+            P["hue"] = float(rng.uniform(0.45, 0.85))                         # no tone: calm teal → violet range
         P["folds"] = int(rng.choice([6, 8, 12]))
         P["style"] = str(rng.choice(["flower", "petals", "polygon"]))
         P["rings"] = int(rng.integers(4, 7))
@@ -382,6 +384,21 @@ SCENES = {"lake": scene_lake, "cosmic": scene_cosmic, "night": scene_night,
           "mandala": scene_mandala, "window": scene_window, "sunrise": scene_sunrise}
 STYLE_SCENE = {"bowls": "lake", "cosmic": "cosmic", "sleep": "night",
                "solfeggio": "mandala", "rain": "window", "morning": "sunrise"}
+# scenes that fit each style, with weights — the mandala (audience favourite) also suits bowls/cosmic/morning
+STYLE_SCENES = {"bowls": [("lake", 0.5), ("mandala", 0.5)], "cosmic": [("cosmic", 0.6), ("mandala", 0.4)],
+                "sleep": [("night", 1.0)], "solfeggio": [("mandala", 1.0)], "rain": [("window", 1.0)],
+                "morning": [("sunrise", 0.65), ("mandala", 0.35)]}
+
+
+def pick_scene(style: str, seed: int) -> str:
+    opts = STYLE_SCENES.get(style, [("lake", 1.0)])
+    r = np.random.default_rng(seed + 4242).random()
+    acc = 0.0
+    for name, w in opts:
+        acc += w
+        if r < acc:
+            return name
+    return opts[-1][0]
 
 
 def frame(scene, t, w, h, P, cache):

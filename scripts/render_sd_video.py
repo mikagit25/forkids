@@ -73,8 +73,8 @@ def main():
     audio = Path(a.audio)
     info = track_info(audio)
     style = info.get("style")
-    scene = a.scene or sd_scenes.STYLE_SCENE.get(style, "lake")
     seed = a.seed if a.seed is not None else info.get("seed", 1)
+    scene = a.scene or (sd_scenes.pick_scene(style, seed) if style else "lake")
     hz = (info.get("params") or {}).get("hz")
     out = Path(a.out) if a.out else QUEUE / (audio.stem + ".mp4")
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -103,7 +103,7 @@ def main():
     cmd = ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{a.w}x{a.h}",
            "-r", str(a.fps), "-i", "-", "-ss", f"{a.start:.3f}", "-i", str(audio), "-t", f"{n / a.fps:.3f}",
            "-vf", f"scale={a.out_w}:{a.out_h}:flags=bicubic", "-c:v", "libx264", "-preset", "medium",
-           "-crf", "20", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(out)]
+           "-crf", "23", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(out)]
     proc = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     t0 = time.time()
     for k in range(n):
