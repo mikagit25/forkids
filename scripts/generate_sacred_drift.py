@@ -297,14 +297,15 @@ def mix_video_audio(video_path: Path, audio_path: Path, out_path: Path, duration
 # ── Meta YAML ────────────────────────────────────────────────────────────────
 
 def build_title(track_name: str, duration: float) -> str:
-    mins = int(duration / 60)
-    hours = mins // 60
-    rem_mins = mins % 60
-    if hours > 0:
-        dur_str = f"{hours}h {rem_mins:02d}min" if rem_mins else f"{hours}h"
-    else:
-        dur_str = f"{mins}min"
-    return f"{track_name} 🔮 {dur_str}"
+    # Shorts rule: no duration, no channel name — see sd_title_rules.py
+    import re as _re
+    from sd_title_rules import format_short_title, THEME_KEYWORDS, THEME_DISPLAY
+    # Parse theme and subtitle from track_name, e.g. "Sound Design Glacier Ice Cave_10"
+    clean = _re.sub(r'^sound design[:\s]+', '', track_name, flags=_re.IGNORECASE).strip()
+    clean = _re.sub(r'_\d+$', '', clean).strip()
+    theme_key = clean.lower().replace(' ', '_')
+    subtitle = clean  # use cleaned name as subtitle if no poetic override
+    return format_short_title(theme_key, subtitle)
 
 
 def _build_timestamps(duration: float) -> str:

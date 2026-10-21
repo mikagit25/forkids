@@ -478,7 +478,9 @@ def build_fire_video(key: str, loop_path: Path, force: bool = False) -> bool:
 
     meta_cfg = yaml.safe_load(CONFIG.read_text()) if CONFIG.exists() else {}
     h = TARGET_DUR // 3600
-    title = f"{preset['name']} — {h} Hour Procedural | Fire Ambience | Sacred Drift"
+    # Long-video rule: no channel name suffix — see sd_title_rules.py
+    dur_label = "1 Hour" if h == 1 else f"{h} Hours"
+    title = f"{preset['name']} — Fire Ambience 🔥 {dur_label}"
     footer = meta_cfg.get('video_defaults', {}).get('description_footer', '')
     description = f"""{preset['name']}
 

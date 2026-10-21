@@ -74,7 +74,8 @@ def adapt_title(cnr_title: str, vtype: str, dur_min: int) -> str:
     else:
         angle = 'Sacred Sound Session'
 
-    return f"{title} — {angle} 🎶 {dur_str} | Sacred Drift"
+    # Long-video rule: no channel name suffix — see sd_title_rules.py
+    return f"{title} — {angle} 🎶 {dur_str}"
 
 
 # ── Description adaptation ────────────────────────────────────────────────────
