@@ -142,6 +142,26 @@ bash scripts/run_renders_sequential.sh   # правильно
   или `🎵 موسيقى أصلية من هابي بير كيدز` (AR)
 - **НИКОГДА** не писать "Kevin MacLeod", "incompetech", "CC Attribution" в описаниях
 
+### 7а. Процедурная музыка (код, без ИИ) — основной источник для Sacred Drift
+`scripts/generate_ambient_audio.py` синтезирует эмбиент с нуля (numpy/scipy): пэды со сменой
+аккордов и тональностей, поющие чаши, гонги, колокольчики, дроны, дождь, реверб. Без сэмплов,
+без ИИ-моделей → нет риска Content ID, нет лимитов, бесплатно.
+
+```bash
+python3 scripts/generate_ambient_audio.py --list-styles
+python3 scripts/generate_ambient_audio.py --style bowls --minutes 12 --count 4     # 4 трека подряд
+python3 scripts/generate_ambient_audio.py --style solfeggio --hz 432 --minutes 60
+python3 scripts/generate_ambient_audio.py --style sleep --minutes 480 --format flac  # 8 ч
+```
+- Стили: `bowls`, `cosmic`, `sleep` (−20 LUFS), `solfeggio --hz N`, `rain`, `morning`. Остальные −18 LUFS.
+- Выход: `sacred_drift/audio/code_ambient/<Title> (<seed>).mp3`, журнал `ambient_log.jsonl`
+  (seed + параметры = доказательство авторства; трек воспроизводится по seed).
+- `generate_sd_compilation.py` подхватывает эту папку автоматически; категория — по ключевым словам в названии.
+- Подпись в описании ставится сама: «Original music composed and synthesized by Sacred Drift» (не писать «AI»).
+- Скорость ~7 с на минуту аудио, память ~0.5 ГБ при любой длине (рендер кусками по 30 с).
+- НЕ зацикливать один короткий трек в длинное видео (reused content). Генерировать нужную длину.
+- Вокал, джаз, живые инструменты → по-прежнему ИИ-сервис (Suno/Mureka/Lyria) или Musopen.
+
 ### 8. Suno (AI-музыка)
 - Требует активной платной подписки + документация промпта
 - Нельзя упоминать известных артистов по имени

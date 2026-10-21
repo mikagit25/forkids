@@ -20,6 +20,7 @@ ROOT              = Path(__file__).resolve().parent.parent
 AUDIO_DIR1        = ROOT / 'assets/audio/suno_meditation/Meditation'
 AUDIO_DIR2        = ROOT / 'sacred_drift/audio/ai_instrumental'
 AUDIO_DIR3        = ROOT / 'sacred_drift/audio/ai_chant'
+AUDIO_DIR4        = ROOT / 'sacred_drift/audio/code_ambient'   # generate_ambient_audio.py (procedural, no AI)
 CLASSICAL_DIR     = ROOT / 'assets/music/classical/Music'
 LICENSES_YAML     = ROOT / 'assets/music/classical/licenses.yaml'
 THEMES_DIR        = ROOT / 'assets/visual_themes'
@@ -277,7 +278,8 @@ def get_all_tracks_grouped() -> list[Path]:
     Variants of the same prompt are adjacent — they sound like one continuous piece."""
     sources = (list(AUDIO_DIR1.glob('*.mp3'))
                + (list(AUDIO_DIR2.glob('*.mp3')) if AUDIO_DIR2.exists() else [])
-               + (list(AUDIO_DIR3.glob('*.mp3')) if AUDIO_DIR3.exists() else []))
+               + (list(AUDIO_DIR3.glob('*.mp3')) if AUDIO_DIR3.exists() else [])
+               + (list(AUDIO_DIR4.glob('*.mp3')) if AUDIO_DIR4.exists() else []))
     return sorted(sources, key=lambda p: (canonical_name(p.name).lower(), p.name.lower()))
 
 
@@ -475,6 +477,16 @@ def build_video(theme: str, audio_mp3: Path, out_mp4: Path, duration: float) -> 
 
 # ── Meta ─────────────────────────────────────────────────────────────────────
 
+def music_credit(tracks: list[Path]) -> str:
+    """Honest credit line: procedural tracks (code_ambient) are not AI-generated."""
+    code = sum(1 for t in tracks if AUDIO_DIR4 in t.parents)
+    if tracks and code == len(tracks):
+        return "🎶 Original music composed and synthesized by Sacred Drift (procedural synthesis, no samples)."
+    if code:
+        return "🎶 Original Sacred Drift synthesis and music created with AI tools."
+    return "🎶 Music created with AI tools."
+
+
 def build_meta(cat_key: str, tracks: list[Path], duration: float, meta_cfg: dict) -> dict:
     display_name, keywords, _, _ = CATEGORIES[cat_key]
     mins  = int(duration / 60)
@@ -512,7 +524,7 @@ Subscribe 🔮 @SacredDrift
 🎵 Tracks in this compilation:
 {tracklist}
 
-🎶 Music created with AI tools.
+{music_credit(tracks)}
 
 {footer}"""
 
