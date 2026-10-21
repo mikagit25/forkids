@@ -159,7 +159,8 @@ python3 scripts/generate_ambient_audio.py --style sleep --minutes 480 --format f
 - Дождь: по умолчанию `--rain window` (за открытым окном, с накатами как волны), `inside` — приглушённо
   из комнаты, `outside` — открытый. У каждого режима своё название («Soft Rain Heard From Indoors» и т.д.).
 - Чаши: `--variant ringing` (звонкие), `slow` (редкие удары, долгое звучание, эхо, большой зал),
-  `deep` (низкие чаши + гонг). Без флага — случайно, спокойные варианты чаще. Свои названия:
+  `deep` (низкие чаши + гонг). Затухание удара естественное (−20 дБ за 5–9 с), длину создают пространство и эхо.
+  Без флага — случайно, спокойные варианты чаще. Свои названия:
   «Tibetan Singing Bowls», «Slow Tibetan Bowls Meditation», «Deep Tibetan Bowls & Gong».
 - Каждый трек получает описание характера (звук, слои, пространство, темп, «Best for …») в
   `ambient_log.jsonl`; `generate_sd_compilation.py` вставляет их в описание видео блоком «About this session».

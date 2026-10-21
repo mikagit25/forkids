@@ -172,9 +172,18 @@ def pad_voice(f, length, rng, tab_a=TAB_DARK, tab_b=TAB_WARM, detune=0.0025, bri
     return fn
 
 
-def bowl(f0, rng, length=24.0, partials=((1.0, 1.0, 9.0), (2.76, 0.5, 6.0), (5.40, 0.22, 3.5), (8.93, 0.10, 2.0)),
-         sustain=1.0, brightness=1.0):
-    """Singing bowl. sustain>1 = longer ring; brightness<1 = softer upper partials (less 'ringing')."""
+BOWL_PARTIALS = ((1.0, 1.0, 4.2), (2.76, 0.5, 2.8), (5.40, 0.22, 1.6), (8.93, 0.10, 0.9))
+
+
+def bowl_length(sustain=1.0):
+    return 7 * BOWL_PARTIALS[0][2] * sustain + 2
+
+
+def bowl(f0, rng, length=None, partials=BOWL_PARTIALS, sustain=1.0, brightness=1.0):
+    """Struck singing bowl with a natural two-stage decay: most of the strike energy fades
+    within a few seconds, then a quieter hum lingers (sustain=1: about -20 dB at 6 s, -40 dB at 15 s).
+    sustain>1 = slightly longer ring (bigger bowl); brightness<1 = softer upper partials."""
+    length = length or bowl_length(sustain)
     partials = [(r, a * (brightness ** i), d * sustain) for i, (r, a, d) in enumerate(partials)]
     beats = [rng.uniform(0.5, 1.4) for _ in partials]
 
@@ -182,8 +191,10 @@ def bowl(f0, rng, length=24.0, partials=((1.0, 1.0, 9.0), (2.76, 0.5, 6.0), (5.4
         s = np.zeros(len(tt))
         for (ratio, amp, dec), bt in zip(partials, beats):
             f = f0 * ratio
-            s += amp * np.exp(-tt / dec) * (np.sin(2 * np.pi * f * tt) + 0.7 * np.sin(2 * np.pi * (f + bt) * tt))
-        return (s * (1 - np.exp(-tt / 0.012))).astype(np.float32)     # soft mallet, no click
+            env = 0.6 * np.exp(-tt / (dec * 0.3)) + 0.4 * np.exp(-tt / dec)
+            s += amp * env * (np.sin(2 * np.pi * f * tt) + 0.7 * np.sin(2 * np.pi * (f + bt) * tt))
+        tail = np.clip((length - tt) / 3.0, 0, 1)                       # fade the last 3 s, no cut-off
+        return (s * (1 - np.exp(-tt / 0.012)) * tail).astype(np.float32)   # soft mallet, no click
     return fn
 
 
@@ -492,11 +503,11 @@ BOWL_VARIANTS = {
     "ringing": dict(gaps=(8, 15),  sustain=1.0, bright=1.0,  octaves=[0, 0, 12], reverb=6.0,
                     echo=None,              gong=(120, 260), layers={"gong": 0.75, "chimes": 0.4, "choir": 0.3, "waves": 0.15},
                     timbres=["dark", "warm", "hollow", "soft"], pad=0.013),
-    "slow":    dict(gaps=(22, 40), sustain=1.8, bright=0.55, octaves=[0, 0, 0, 12], reverb=9.5,
-                    echo=((0.9, 1.4), (0.40, 0.55), 6), gong=(150, 320), layers={"gong": 0.5, "choir": 0.35, "waves": 0.25},
+    "slow":    dict(gaps=(22, 40), sustain=1.3, bright=0.55, octaves=[0, 0, 0, 12], reverb=8.0,
+                    echo=((0.9, 1.4), (0.30, 0.42), 4), gong=(150, 320), layers={"gong": 0.5, "choir": 0.35, "waves": 0.25},
                     timbres=["soft", "dark", "hollow"], pad=0.011),
-    "deep":    dict(gaps=(18, 34), sustain=2.0, bright=0.45, octaves=[-12, 0, 0], reverb=10.5,
-                    echo=((1.1, 1.6), (0.35, 0.5), 5),  gong=(70, 160),  layers={"gong": 1.0, "choir": 0.25, "waves": 0.2},
+    "deep":    dict(gaps=(18, 34), sustain=1.5, bright=0.45, octaves=[-12, 0, 0], reverb=9.0,
+                    echo=((1.1, 1.6), (0.28, 0.40), 4),  gong=(70, 160),  layers={"gong": 1.0, "choir": 0.25, "waves": 0.2},
                     timbres=["soft", "dark"], pad=0.012),
 }
 
@@ -524,7 +535,7 @@ def style_bowls(rng, dur, o):
                         int(pick(rng, [16, 20, 24] if variant == "ringing" else [24, 28, 32])), key, info=info)
     ev = pad_events(secs, rng, tun, 6, TIMBRES[R["timbre"]], V["pad"])
     scale = SCALES[pick(rng, ["minor_penta", "dorian"])]
-    ring = 26 * V["sustain"]
+    ring = bowl_length(V["sustain"])
 
     def mk_bowl(t):
         r = root_at(secs, t)
@@ -586,7 +597,7 @@ def style_sleep(rng, dur, o):
         ev.append(Event(s.start - 9, ln, drone([tun.hz(s.root - 12), tun.hz(s.root - 5)], ln, rng), 0, 0.045, wet=0.6))
     if "bowls" in R["layers"]:
         ev += scattered(rng, dur, 20, (40 * R["pace"], 75 * R["pace"]),
-                        lambda t: Event(t, 28, bowl(tun.hz(root_at(secs, t) + int(pick(rng, [0, 7, 12]))), rng),
+                        lambda t: Event(t, bowl_length(), bowl(tun.hz(root_at(secs, t) + int(pick(rng, [0, 7, 12]))), rng),
                                         rng.uniform(-0.4, 0.4), 0.05))
     if "choir" in R["layers"]:
         ev += _choir_events(secs, rng, tun, 0.004, every=1, vowel="oo")
