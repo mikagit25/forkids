@@ -154,6 +154,13 @@ python3 scripts/generate_ambient_audio.py --style solfeggio --hz 432 --minutes 6
 python3 scripts/generate_ambient_audio.py --style sleep --minutes 480 --format flac  # 8 ч
 ```
 - Стили: `bowls`, `cosmic`, `sleep` (−20 LUFS), `solfeggio --hz N`, `rain`, `morning`. Остальные −18 LUFS.
+- Частоты: `--hz` любое значение (без флага — случайно из 111…963), `--register -12` — глубже пэд,
+  `--binaural 4` — бинауральные биения (левое ухо hz, правое hz+4; в названии «Binaural Beats»).
+- Дождь: по умолчанию `--rain inside` (приглушённо, как из комнаты), `--rain outside` — открытый.
+- Разнообразие: каждый seed = свой рецепт (тональность, прогрессия, длина аккорда, тембр пэда
+  soft/dark/warm/hollow/glass, слои gong/chimes/choir/waves/shimmer/plucks/thunder, размер реверба, темп).
+  Новый трек автоматически перегенерируется, если похож на один из 8 последних того же стиля
+  (или совпадает имя). Рецепт пишется в `ambient_log.jsonl`. Отключить: `--allow-repeat`.
 - Выход: `sacred_drift/audio/code_ambient/<Title> (<seed>).mp3`, журнал `ambient_log.jsonl`
   (seed + параметры = доказательство авторства; трек воспроизводится по seed).
 - `generate_sd_compilation.py` подхватывает эту папку автоматически; категория — по ключевым словам в названии.
