@@ -158,7 +158,8 @@ def _extract_cnr_labels(stem: str, meta: dict) -> tuple[str, str, str]:
     return composer, music_type, badge
 
 
-def _apply_cnr_overlay(img_bytes: bytes, stem: str, meta: dict) -> bytes:
+def _apply_cnr_overlay(img_bytes: bytes, stem: str, meta: dict,
+                       channel_name: str = "Classical Night Relax") -> bytes:
     """Add text overlay (composer, type, duration badge) to a CNR thumbnail."""
     from PIL import Image, ImageDraw, ImageFont
     import io
@@ -220,7 +221,7 @@ def _apply_cnr_overlay(img_bytes: bytes, stem: str, meta: dict) -> bytes:
     draw_shadow(music_type, font_type, W // 2, cy + 72, fill=(200, 200, 200), offset=2)
 
     # Channel name bottom
-    draw.text((W // 2, H - 22), "Classical Night Relax",
+    draw.text((W // 2, H - 22), channel_name,
               font=font_channel, fill=(160, 160, 160), anchor="ms")
 
     buf = io.BytesIO()

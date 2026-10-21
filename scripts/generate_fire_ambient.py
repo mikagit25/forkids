@@ -42,6 +42,7 @@ FIRE_TYPES = {
     'fireplace': {
         'query':        'cozy fireplace crackling wood burning',
         'display_name': 'Cozy Fireplace 🔥',
+        'thumb_label':  'COZY\nFIREPLACE',
         'audio_kw':     ['amber fireplace', 'crackling fireplace', 'winter fireplace',
                          'candlelight hour', 'soft piano stillness'],
         'theme_desc':   'crackling wood fireplace, warm amber glow, cozy interior, close-up flames',
@@ -51,6 +52,7 @@ FIRE_TYPES = {
     'campfire': {
         'query':        'campfire night outdoor burning wood',
         'display_name': 'Campfire Night 🏕️',
+        'thumb_label':  'CAMPFIRE\nNIGHT',
         'audio_kw':     ['sunset beach campfire', 'summer night', 'crackling fireplace',
                          'amber fireplace', 'attic window'],
         'theme_desc':   'outdoor campfire at night, sparks floating up, dark forest background',
@@ -60,6 +62,7 @@ FIRE_TYPES = {
     'candle': {
         'query':        'candle flame meditation close up burning',
         'display_name': 'Candlelight Meditation 🕯️',
+        'thumb_label':  'CANDLELIGHT\nMEDITATION',
         'audio_kw':     ['candlelight hour', 'soft piano stillness', 'quiet library',
                          'amber fireplace', 'soft forgiveness'],
         'theme_desc':   'single candle flame in darkness, soft golden glow, meditation atmosphere',
@@ -69,6 +72,7 @@ FIRE_TYPES = {
     'fire_closeup': {
         'query':        'fire flames close up burning abstract',
         'display_name': 'Sacred Fire — Close Up 🔥',
+        'thumb_label':  'SACRED\nFIRE',
         'audio_kw':     ['deep drone sanctuary', 'deep ambient drone', 'velvet bass wash',
                          'crackling fireplace', 'amber fireplace'],
         'theme_desc':   'close up fire flames, abstract burning, deep red and orange tones',
@@ -281,15 +285,35 @@ def build_long_video(loop_path: Path, audio_path: Path | None,
 
 # ── Thumbnail ─────────────────────────────────────────────────────────────────
 
-def make_thumbnail(loop_path: Path, out_path: Path) -> bool:
-    """Grab a frame from the middle of the loop for thumbnail."""
+def make_thumbnail(loop_path: Path, out_path: Path, fire_type: str = "") -> bool:
+    """Grab a frame from the middle of the loop and apply Sacred Drift text overlay."""
     dur = get_duration(loop_path)
     mid = dur / 2
+    frame_path = out_path.with_suffix('.frame.png')
     r = subprocess.run([
         'ffmpeg', '-y', '-ss', str(mid), '-i', str(loop_path),
-        '-vframes', '1', '-s', '1280x720', str(out_path)
+        '-vframes', '1', '-s', '1280x720', str(frame_path)
     ], capture_output=True, timeout=30)
-    return r.returncode == 0 and out_path.exists()
+    if r.returncode != 0 or not frame_path.exists():
+        return False
+    try:
+        import sys
+        sys.path.insert(0, str(Path(__file__).parent))
+        import thumb_text as tt
+        from PIL import Image, ImageEnhance
+        img = Image.open(frame_path).convert("RGB")
+        img = ImageEnhance.Brightness(img).enhance(1.2)
+        img = ImageEnhance.Contrast(img).enhance(1.1)
+        cfg = FIRE_TYPES.get(fire_type, {})
+        label = cfg.get('thumb_label', 'FIRE\nAMBIENCE')
+        img = tt.add_thumb_text(img, label, channel_tag="Sacred Drift")
+        img.save(out_path, "PNG", optimize=True)
+        frame_path.unlink(missing_ok=True)
+        return True
+    except Exception as e:
+        log.warning(f"  Thumb overlay failed ({e}), using raw frame")
+        frame_path.rename(out_path)
+        return True
 
 
 # ── Meta ──────────────────────────────────────────────────────────────────────
@@ -420,7 +444,7 @@ def process_fire_type(fire_type: str, meta_cfg: dict, dry_run: bool = False,
         return False
 
     # 5. Thumbnail from loop
-    make_thumbnail(loop_path, out_thumb)
+    make_thumbnail(loop_path, out_thumb, fire_type=fire_type)
     log.info(f"  Thumb: {out_thumb.name}")
 
     # 6. Meta

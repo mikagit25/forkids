@@ -298,11 +298,22 @@ def process_cnr_video(meta_file: Path, dry_run: bool = False) -> bool:
     # 2. Generate SD-style thumbnail
     thumb_prompt = get_thumb_prompt(title)
     if not generate_thumbnail(thumb_prompt, sd_thumb):
-        # Fallback: copy CNR thumbnail if exists
+        # Fallback: copy CNR thumbnail and re-brand it as Sacred Drift
         cnr_thumb = meta_file.parent / f"thumb_{stem}.png"
         if cnr_thumb.exists():
-            shutil.copy(str(cnr_thumb), str(sd_thumb))
-            log.info(f"  Thumb fallback: copied from CNR")
+            try:
+                import sys as _sys
+                _sys.path.insert(0, str(Path(__file__).parent))
+                import thumb_text as tt
+                from PIL import Image, ImageEnhance
+                img = Image.open(cnr_thumb).convert("RGB")
+                img = ImageEnhance.Brightness(img).enhance(1.1)
+                img = tt.add_thumb_text(img, "MEDITATION\nMUSIC", channel_tag="Sacred Drift")
+                img.save(sd_thumb, "PNG", optimize=True)
+                log.info("  Thumb fallback: CNR frame re-branded as Sacred Drift")
+            except Exception as e:
+                shutil.copy(str(cnr_thumb), str(sd_thumb))
+                log.warning(f"  Thumb fallback: copied CNR thumbnail (re-brand failed: {e})")
         else:
             sd_thumb.write_bytes(b'')  # placeholder
 

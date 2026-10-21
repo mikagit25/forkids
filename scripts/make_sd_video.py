@@ -39,6 +39,19 @@ QUEUE_DIR = ROOT / "sacred_drift" / "output" / "queue"
 
 STYLE_CATEGORY = {"bowls": "tibetan_bowls", "cosmic": "cosmic_space", "sleep": "deep_sleep",
                   "solfeggio": "solfeggio", "rain": "rain_water", "morning": "morning_yoga"}
+# SEO-friendly YouTube title bases — match what people actually search for
+STYLE_TITLE = {
+    "bowls":     "Tibetan Singing Bowls Meditation 🔔",
+    "cosmic":    "Cosmic Space Meditation Music ✨",
+    "sleep":     "Deep Sleep Music 😴",
+    "solfeggio": None,   # built dynamically with Hz value
+    "rain":      "Rain Sounds for Sleep & Relaxation 🌧",
+    "morning":   "Morning Yoga & Meditation Music 🌅",
+}
+BOWL_VARIANT_TITLE = {
+    "slow": "Slow Tibetan Bowls Meditation 🔔",
+    "deep": "Deep Tibetan Bowls & Gong 🔔",
+}
 # publish_queue.py weekday themes → procedural style (mirrors SD_DOW_THEME in publish_queue.py)
 WEEKDAY_STYLE = {0: "sleep", 1: "solfeggio", 2: "rain", 3: "bowls", 4: "morning", 5: "cosmic", 6: "cosmic"}
 
@@ -91,10 +104,26 @@ def duration_adj(minutes: float) -> str:
     return f"{int(minutes // 60)}-hour" if minutes >= 60 else f"{int(round(minutes))}-minute"
 
 
+def _seo_title(style: str, params: dict) -> str:
+    """Return clean, search-friendly title base (no subtitles)."""
+    R = params.get("recipe", {})
+    if style == "bowls":
+        return BOWL_VARIANT_TITLE.get(R.get("variant"), STYLE_TITLE["bowls"])
+    if style == "solfeggio":
+        hz = f"{params.get('hz', 528):g}Hz"
+        return (f"{hz} Binaural Beats Meditation 🎶"
+                if params.get("binaural_beat_hz")
+                else f"{hz} Solfeggio Frequency Meditation 🎶")
+    if style == "rain":
+        return {"inside": "Soft Rain Sounds for Sleep & Study 🌧",
+                "outside": "Open Air Rain Meditation 🌧"}.get(R.get("rain"), STYLE_TITLE["rain"])
+    return STYLE_TITLE[style]
+
+
 def build_meta(rec: dict, scene: str, minutes: float) -> dict:
     style, params = rec["style"], rec.get("params", {})
     dur = duration_label(minutes)
-    title = f"{rec['title']} • {dur}"[:100]
+    title = f"{_seo_title(style, params)} • {dur}"[:100]
     use_line = {
         "bowls": "Sit comfortably, let each strike fade completely before the next breath, and follow the echoes.",
         "cosmic": "Lie back, close your eyes and let the slow harmonies carry your attention outwards.",
