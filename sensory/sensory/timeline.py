@@ -60,7 +60,7 @@ def formation(template: str, cast: list[str], rnd: random.Random) -> list[Slot]:
         return [Slot(cast[0], 470, 560, 215, mv2, 0.0), Slot(cast[1], 960, 520, 250, "bounce", 0.25),
                 Slot(cast[2], 1450, 560, 215, mv2, 0.0, mirror=True)]
     if template == "wave":
-        return [Slot(c, 260 + i * 350, 560, 150, "bounce", i * 0.25) for i, c in enumerate(cast[:5])]
+        return [Slot(c, 230 + i * 365, 560, 172, "bounce", i * 0.25) for i, c in enumerate(cast[:5])]
     if template == "conga":
         return [Slot(c, i * 530.0, 600, 165, "bounce", i * 0.5) for i, c in enumerate(cast[:4])]
     if template == "rest":
@@ -79,7 +79,9 @@ def build(bmap: dict, pool: list[str], seed: int) -> list[Scene]:
     need = {"solo": 1, "duet": 2, "trio": 3, "wave": 5, "conga": 4, "rest": 1, "party": 6}
     for k, sec in enumerate(bmap["sections"]):
         options = SECTION_TEMPLATE.get(sec["name"], ["trio"])
-        template = options[(k // 2 + seed) % len(options)]
+        prev = scenes[-1].template if scenes else None
+        choices = [o for o in options if o != prev] or options            # never the same formation twice in a row
+        template = choices[(k + seed) % len(choices)]
         n = need[template]
         fresh = [c for c in pool if c not in last] or pool[:]
         rnd.shuffle(fresh)
