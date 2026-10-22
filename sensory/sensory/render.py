@@ -108,6 +108,51 @@ def render_to_music(out: Path, audio: str, cast, seconds: float | None = None, f
         raise RuntimeError("ffmpeg failed")
 
 
+def _render_range(args):
+    """Worker: frames [f0, f1) of an episode → video-only mp4."""
+    import json
+    audio, scenes, f0, f1, fps, w, h, path = args
+    from .timeline import energy_at, frame_items
+    bmap = json.loads(Path(audio).with_suffix(".json").read_text())
+    cmd = ["ffmpeg", "-loglevel", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{w}x{h}",
+           "-r", str(fps), "-i", "-", "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p",
+           str(path)]
+    p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
+    ph = lambda t, off: beatmap_phase(bmap, t, off)        # noqa: E731
+    for f in range(f0, f1):
+        t = f / fps
+        p.stdin.write(compose(frame_items(scenes, bmap, t, ph, energy_at(bmap, t), w, h), w, h, t).tobytes())
+    p.stdin.close()
+    if p.wait():
+        raise RuntimeError("ffmpeg failed")
+    return path
+
+
+def render_episode(out: Path, audio: str, pool: list[str], seed: int, fps=30, w=1920, h=1080,
+                   workers: int | None = None, seconds: float | None = None):
+    """Song + character pool → finished mp4. Frames are split across CPU cores, then concatenated."""
+    import json
+    import os
+    import tempfile
+    from multiprocessing import Pool
+    from .timeline import build
+    bmap = json.loads(Path(audio).with_suffix(".json").read_text())
+    scenes = build(bmap, pool, seed)
+    total = int((seconds or bmap["duration"] + 1.0) * fps)
+    workers = workers or os.cpu_count() or 1
+    with tempfile.TemporaryDirectory() as td:
+        bounds = [total * i // workers for i in range(workers + 1)]
+        jobs = [(audio, scenes, bounds[i], bounds[i + 1], fps, w, h, Path(td) / f"part{i}.mp4") for i in range(workers)]
+        with Pool(workers) as pool_:
+            parts = pool_.map(_render_range, jobs)
+        lst = Path(td) / "list.txt"
+        lst.write_text("".join(f"file '{p}'\n" for p in parts))
+        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(lst),
+                        "-i", audio, "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k",
+                        "-t", f"{total / fps:.3f}", "-movflags", "+faststart", str(out)], check=True)
+    return scenes
+
+
 def click_track(path: Path, seconds: float, bpm: float, sr=44100):
     """Metronome so the sync can be checked by ear: accent on every 4th beat."""
     n = int(seconds * sr); y = np.zeros(n, np.float32)
@@ -132,6 +177,17 @@ def main():
         Image.fromarray(render_still([("berry", 960, 520, 300)])).save(out / "step1_berry.png")
         Image.fromarray(render_still([("pear", 480, 560, 220), ("berry", 960, 520, 250),
                                       ("plum", 1440, 560, 220)])).save(out / "step1_group.png")
+    elif a.step == 4:
+        import time
+        from . import music
+        from .characters import CHARACTERS
+        song = music.plan("calypso", 7, 120)
+        wav = out / "step4_calypso.wav"; music.render(song, wav)
+        t0 = time.time()
+        scenes = render_episode(out / "step4_mini.mp4", str(wav), list(CHARACTERS), seed=7)
+        for sc in scenes:
+            print(f"  {sc.start:6.1f}s {sc.section:6} {sc.template:6} {[s.name for s in sc.slots]}")
+        print(f"  render {time.time() - t0:.0f}s")
     elif a.step == 3:
         from . import music
         song = music.plan("disco", 3, 30)

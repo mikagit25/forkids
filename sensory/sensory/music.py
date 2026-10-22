@@ -43,7 +43,7 @@ GENRES = {
     "calypso": dict(bpm=(100, 108), lead="steel", lead2="marimba", comp="stab", swing=0.12),
     "march":   dict(bpm=(104, 112), lead="glock", lead2="marimba", comp="chick", swing=0.0),
     "bounce":  dict(bpm=(122, 128), lead="square", lead2="bell", comp="stab", swing=0.0),
-    "lullaby": dict(bpm=(64, 72), lead="musicbox", lead2="bell", comp="pad", swing=0.0),
+    "lullaby": dict(bpm=(64, 72), lead="felt", lead2="flute", comp="pad", swing=0.0),
 }
 
 
@@ -99,6 +99,23 @@ def musicbox(f, dur, vel=1.0):
     t = _t(2.2)
     y = np.sin(2 * np.pi * f * t) * np.exp(-t / 1.1) + 0.25 * np.sin(2 * np.pi * f * 4 * t) * np.exp(-t / 0.3)
     return (y * vel * 0.6).astype(np.float32)
+
+
+def felt(f, dur, vel=1.0):
+    """Felt piano / soft kalimba: slow-ish attack, almost no overtones → warm, not bell-like."""
+    t = _t(2.0)
+    y = np.sin(2 * np.pi * f * t) + 0.18 * np.sin(2 * np.pi * 2 * f * t) * np.exp(-t / 0.25)
+    env = np.minimum(1, t / 0.012) * np.exp(-t / 0.9)
+    return (y * env * vel * 0.7).astype(np.float32)
+
+
+def flute(f, dur, vel=1.0):
+    """Soft breathy flute-like tone for gentle doubling."""
+    t = _t(dur + 0.3)
+    vib = 1 + 0.003 * np.sin(2 * np.pi * 5 * t) * np.minimum(1, t / 0.4)
+    y = np.sin(2 * np.pi * f * np.cumsum(vib) / SR)
+    env = np.minimum(1, t / 0.12) * np.clip((dur + 0.3 - t) / 0.3, 0, 1)
+    return (y * env * vel * 0.4).astype(np.float32)
 
 
 def piano(f, dur, vel=1.0):
@@ -159,7 +176,7 @@ def shaker(vel=1.0):
 
 
 LEADS = {"marimba": marimba, "bell": bell, "glock": glock, "steel": steel, "square": square,
-         "musicbox": musicbox, "piano": piano}
+         "musicbox": musicbox, "piano": piano, "felt": felt, "flute": flute}
 
 
 # ── song plan ────────────────────────────────────────────────────────────────
@@ -302,12 +319,12 @@ def render(song: Song, out_wav: Path) -> dict:
                         continue
                     if variation:
                         idx = min(idx + 2, 9)
-                    m = song.key + 12 + PENTA[idx % 5] + 12 * (idx // 5)
+                    m = song.key + (0 if song.genre == "lullaby" else 12) + PENTA[idx % 5] + 12 * (idx // 5)
                     tt = swing(t0 + (st % 8) * step, st)
                     add(lead(hz(m), ln * step, 0.9), tt, 0.32, 0.1)
-                    if kind == "B" or name == "A2":                        # doubling an octave up
-                        add(lead2(hz(m + 12), ln * step, 0.5), tt, 0.10, -0.2)
-            if kind == "intro" and b >= b0 + 2:                              # pickup sparkle
+                    if kind == "B" or name == "A2":                        # doubling (lullaby: same octave)
+                        add(lead2(hz(m + (0 if song.genre == "lullaby" else 12)), ln * step, 0.5), tt, 0.10, -0.2)
+            if kind == "intro" and b >= b0 + 2 and song.genre != "lullaby":                              # pickup sparkle
                 add(bell(hz(song.key + 24), step), t0 + 3 * beat, 0.12)
     # small room reverb
     ir_t = _t(1.2)
@@ -315,6 +332,9 @@ def render(song: Song, out_wav: Path) -> dict:
     ir /= np.sqrt((ir ** 2).sum())
     wl, wr = fftconvolve(L, ir)[:n], fftconvolve(R, ir[::-1].copy())[:n]
     L, R = L + 0.18 * wl, R + 0.18 * wr
+    if song.genre == "lullaby":                               # warm and dark: nothing sparkly at bedtime
+        sos = butter(2, 2800, btype="low", fs=SR, output="sos")
+        L, R = sosfilt(sos, L).astype(np.float32), sosfilt(sos, R).astype(np.float32)
     end = int(song.bars * bar_s * SR)
     fade = np.ones(n, np.float32); fade[end:] = np.linspace(1, 0, n - end)
     st = np.stack([L * fade, R * fade], 1)
