@@ -62,9 +62,9 @@ def main():
     ap.add_argument("--out", default=None)
     ap.add_argument("--seconds", type=float, default=None, help="render only the first N seconds (preview)")
     ap.add_argument("--start", type=float, default=0.0, help="preview: start at this second of the track")
-    ap.add_argument("--fps", type=int, default=24)
-    ap.add_argument("--w", type=int, default=960, help="render width (upscaled to --out-w)")
-    ap.add_argument("--h", type=int, default=540)
+    ap.add_argument("--fps", type=int, default=None, help="default 24 (12 for the dark scene)")
+    ap.add_argument("--w", type=int, default=None, help="render width, upscaled to --out-w (default 960; dark 640)")
+    ap.add_argument("--h", type=int, default=None)
     ap.add_argument("--out-w", type=int, default=1920)
     ap.add_argument("--out-h", type=int, default=1080)
     ap.add_argument("--no-eq", action="store_true", help="no equalizer ring on the mandala")
@@ -76,6 +76,9 @@ def main():
     seed = a.seed if a.seed is not None else info.get("seed", 1)
     scene = a.scene or (sd_scenes.pick_scene(style, seed) if style else "lake")
     hz = (info.get("params") or {}).get("hz")
+    fast = scene in sd_scenes.FAST_SCENES
+    a.fps = a.fps or (12 if fast else 24)
+    a.w, a.h = a.w or (480 if fast else 960), a.h or (270 if fast else 540)
     out = Path(a.out) if a.out else QUEUE / (audio.stem + ".mp4")
     out.parent.mkdir(parents=True, exist_ok=True)
 
@@ -89,6 +92,10 @@ def main():
           + (f" hz={hz}" if hz else ""))
 
     P = sd_scenes.params(scene, seed, hz)
+    strikes = ((info.get("params") or {}).get("recipe") or {}).get("strikes")
+    if scene == "dark":       # lightning: exact thunder times from the generator, else detected strikes
+        P["strikes"] = [tuple(x) for x in strikes] if strikes else \
+            [(i / a.fps + 2.5, 0.7) for i in sorted(onsets)]
     C: dict = {}
     rng = np.random.default_rng(seed + 17)
     ripples: list[list] = []          # [birth_frame, strength, x offset]
@@ -102,8 +109,8 @@ def main():
 
     cmd = ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{a.w}x{a.h}",
            "-r", str(a.fps), "-i", "-", "-ss", f"{a.start:.3f}", "-i", str(audio), "-t", f"{n / a.fps:.3f}",
-           "-vf", f"scale={a.out_w}:{a.out_h}:flags=bicubic", "-c:v", "libx264", "-preset", "medium",
-           "-crf", "23", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(out)]
+           "-vf", f"scale={a.out_w}:{a.out_h}:flags=bicubic", "-c:v", "libx264",
+           "-preset", "veryfast" if fast else "medium", "-crf", "26" if fast else "23", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(out)]
     proc = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     t0 = time.time()
     for k in range(n):

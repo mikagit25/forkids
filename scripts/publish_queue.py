@@ -50,14 +50,15 @@ DAY_OFFSETS = {
 # weekday() → 0=Mon … 6=Sun
 # Classical music removed (Content ID risk from Musopen recordings).
 # Monday now uses procedural deep_sleep; Saturday uses rain instead of jazz.
+# v2.3 (trends analysis, Oct 2026) — mirrors program() in make_sd_video.py
 SD_DOW_THEME = {
-    0: "sleep",    # Monday    — Deep Sleep
-    1: "healing",  # Tuesday   — Solfeggio / Healing
-    2: "nature",   # Wednesday — Rain & Nature
-    3: "sacred",   # Thursday  — Tibetan Bowls
-    4: "morning",  # Friday    — Morning / Yoga
-    5: "cosmic",   # Saturday  — Cosmic / Space
-    6: "cosmic",   # Sunday    — Cosmic / Space
+    0: "nature",   # Monday    — Thunderstorm for sleep, 8 h dark screen
+    1: "healing",  # Tuesday   — Frequency (432/528/777/963…), 3 h mandala
+    2: "sacred",   # Wednesday — Tibetan bowls for overthinking/stress, 3 h
+    3: "healing",  # Thursday  — Theta binaural beats for study, 3 h
+    4: "nature",   # Friday    — Rain in a setting (tin roof, tent, car, fireplace), 3 h
+    5: "cosmic",   # Saturday  — Deep space sleep, 3 h
+    6: "sleep",    # Sunday    — Sacred Drift Sleep #NN, 10 h dark screen
 }
 # Theme → which sd_comp_* categories to prioritise today
 # All content is procedurally generated — no classical music (Content ID risk).
@@ -463,11 +464,19 @@ def main():
                 return (1, p.stat().st_mtime)
             if active_queue_dir == QUEUE_SD_DIR:
                 if name.startswith("sd_comp_"):
-                    # Today's themed compilations first, others second
-                    today_theme = SD_DOW_THEME[datetime.now(timezone.utc).weekday()]
+                    # Made for today's programme slot (meta publish_dow) → first; then today's theme; then others
+                    dow_now     = datetime.now(timezone.utc).weekday()
+                    today_theme = SD_DOW_THEME[dow_now]
                     today_cats  = SD_DOW_COMP_CATS.get(today_theme, [])
                     is_today    = any(f"sd_comp_{cat}_" in name for cat in today_cats)
                     priority = 0 if is_today else 1
+                    meta_p = p.parent / f"meta_{p.stem}.yaml"
+                    try:
+                        slot = (yaml.safe_load(meta_p.read_text()) or {}).get("publish_dow") if meta_p.exists() else None
+                    except Exception:
+                        slot = None
+                    if slot is not None:
+                        priority = -1 if slot == dow_now else 1   # another day's slot: wait for its day
                 elif name.startswith("sd_sound_design_") or name.startswith("ambient_") or name.startswith("fire_"):
                     priority = 2
                 elif name.startswith("sd_classical_"):
