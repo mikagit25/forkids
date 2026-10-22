@@ -61,6 +61,53 @@ def render_clip(out: Path, seconds: float, bpm: float, cast, fps=30, w=1920, h=1
         raise RuntimeError("ffmpeg failed")
 
 
+def beatmap_phase(bmap: dict, t: float, offset: float = 0.0) -> tuple[int, float]:
+    """Beat index + phase from the music's beat map (exact, also for tempo changes)."""
+    import bisect
+    beats = bmap["beats"]
+    tt = t - offset * bmap["beat_s"]
+    i = max(0, bisect.bisect_right(beats, tt) - 1)
+    if i >= len(beats) - 1:
+        return i, 0.0
+    return i, (tt - beats[i]) / (beats[i + 1] - beats[i])
+
+
+SECTION_ENERGY = {"intro": 0.55, "A": 1.0, "A2": 1.05, "B": 1.2, "B2": 1.2, "break": 0.45, "outro": 0.6}
+
+
+def section_at(bmap: dict, t: float) -> str:
+    for s in bmap["sections"]:
+        if s["start"] <= t < s["end"]:
+            return s["name"]
+    return "outro"
+
+
+def render_to_music(out: Path, audio: str, cast, seconds: float | None = None, fps=30, w=1920, h=1080):
+    """Dance to a sensory.music track: beats from its JSON beat map, energy from the song section."""
+    import json
+    bmap = json.loads(Path(audio).with_suffix(".json").read_text())
+    seconds = seconds or bmap["duration"] + 1.5
+    chars = [CHARACTERS[c[0]](seed=i + 1) for i, c in enumerate(cast)]
+    cmd = ["ffmpeg", "-loglevel", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{w}x{h}",
+           "-r", str(fps), "-i", "-", "-i", audio, "-t", f"{seconds:.2f}", "-c:a", "aac", "-b:a", "192k",
+           "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", "-movflags", "+faststart",
+           str(out)]
+    p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
+    energy = 0.5
+    for f in range(int(seconds * fps)):
+        t = f / fps
+        target = SECTION_ENERGY.get(section_at(bmap, t), 1.0)
+        energy += (target - energy) * 0.08                    # smooth change between sections
+        items = []
+        for ch, (name, cx, cy, r, move, off) in zip(chars, cast):
+            b, ph = beatmap_phase(bmap, t, off)
+            items.append((ch, cx, cy, r, dance_pose(b, ph, move, energy)))
+        p.stdin.write(compose(items, w, h, t).tobytes())
+    p.stdin.close()
+    if p.wait():
+        raise RuntimeError("ffmpeg failed")
+
+
 def click_track(path: Path, seconds: float, bpm: float, sr=44100):
     """Metronome so the sync can be checked by ear: accent on every 4th beat."""
     n = int(seconds * sr); y = np.zeros(n, np.float32)
@@ -85,6 +132,13 @@ def main():
         Image.fromarray(render_still([("berry", 960, 520, 300)])).save(out / "step1_berry.png")
         Image.fromarray(render_still([("pear", 480, 560, 220), ("berry", 960, 520, 250),
                                       ("plum", 1440, 560, 220)])).save(out / "step1_group.png")
+    elif a.step == 3:
+        from . import music
+        song = music.plan("disco", 3, 30)
+        wav = out / "step3_disco.wav"; music.render(song, wav)
+        render_to_music(out / "step3_dance.mp4", str(wav), [("pear", 480, 560, 220, "sway", 0.0),
+                                                              ("berry", 960, 520, 250, "bounce", 0.0),
+                                                              ("plum", 1440, 560, 220, "stretch", 0.5)])
     else:
         click = out / "click120.wav"; click_track(click, 8, 120)
         render_clip(out / "step2_berry.mp4", 8, 120, [("berry", 960, 520, 300, "bounce", 0.0)], audio=str(click))
