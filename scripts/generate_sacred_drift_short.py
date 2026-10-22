@@ -163,7 +163,7 @@ def build_vertical_short(image: Path, audio: Path, out_mp4: Path,
 
 
 def build_title(track_name: str) -> str:
-    return f"{track_name} 🔮 {SHORT_DUR}s #shorts"
+    return f"{track_name} 🔮 #shorts"
 
 
 def build_description(track_name: str) -> str:

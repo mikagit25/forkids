@@ -65,6 +65,9 @@ def fix_title(title: str) -> str:
     t = re.sub(r'\s*[\|]\s*Sacred Drift\s+(?=#shorts)', ' ', t, flags=re.IGNORECASE)
     t = re.sub(r'\s*[\|]\s*Sacred Drift\s*$', '', t, flags=re.IGNORECASE)
 
+    # 3. Remove duration from shorts titles ("🔮 55s #shorts" → "🔮 #shorts")
+    t = re.sub(r'(🔮)\s+\d+s\s+(#shorts)', r'\1 \2', t)
+
     # 3. Replace "—" separator before "•" duration if still present
     t = re.sub(r'\s+—\s+(•)', r' \1', t)
 
