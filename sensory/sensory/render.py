@@ -13,7 +13,7 @@ from .easing import beat_phase, dance_pose
 from .style import add_glow, flatten, over, surface, to_array
 
 
-def compose(items, w=1920, h=1080, t=0.0) -> np.ndarray:
+def compose(items, w=1920, h=1080, t=0.0, rgba=False) -> np.ndarray:
     """items = [(character, cx, cy, r, pose), ...] → RGB uint8 frame."""
     canvas = np.zeros((h, w, 4), np.float32)
     for ch, cx, cy, r, pose in items:
@@ -31,7 +31,7 @@ def compose(items, w=1920, h=1080, t=0.0) -> np.ndarray:
         if cx1 > cx0 and cy1 > cy0:
             sub = layer[cy0 - y0:cy1 - y0, cx0 - x0:cx1 - x0]
             canvas[cy0:cy1, cx0:cx1] = over(canvas[cy0:cy1, cx0:cx1], sub)
-    return flatten(canvas)
+    return canvas if rgba else flatten(canvas)
 
 
 def render_still(cast, w=1920, h=1080, t=0.0):
