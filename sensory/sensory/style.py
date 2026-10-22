@@ -65,7 +65,13 @@ def to_array(s: cairo.ImageSurface) -> np.ndarray:
 
 def add_glow(layer: np.ndarray, color, radius=28, strength=0.55) -> np.ndarray:
     """Soft coloured halo from the layer's alpha, placed under it (black background → additive)."""
-    a = gaussian_filter(layer[..., 3], radius)
+    # blur at 1/4 resolution (fast enough for 30 fps rendering), then upsample
+    al = layer[..., 3]
+    h, w = al.shape
+    q = al[: h // 4 * 4, : w // 4 * 4].reshape(h // 4, 4, w // 4, 4).mean((1, 3))
+    q = gaussian_filter(q, radius / 4)
+    a = np.zeros_like(al)
+    a[: h // 4 * 4, : w // 4 * 4] = np.repeat(np.repeat(q, 4, 0), 4, 1)
     glow = np.zeros_like(layer)
     glow[..., :3] = a[..., None] * np.array(color, np.float32) * strength
     glow[..., 3] = a * strength

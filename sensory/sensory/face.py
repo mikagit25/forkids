@@ -19,6 +19,16 @@ def blink_amount(t: float, seed: int) -> float:
     return 1.0
 
 
+def happy_eye(ctx: cairo.Context, x, y, r):
+    """Closed, smiling eye (^) — used for a giggle."""
+    ctx.save()
+    ctx.move_to(x - r * 0.8, y + r * 0.2)
+    ctx.curve_to(x - r * 0.5, y - r * 0.75, x + r * 0.5, y - r * 0.75, x + r * 0.8, y + r * 0.2)
+    ctx.set_source_rgb(0.06, 0.05, 0.08); ctx.set_line_width(r * 0.28)
+    ctx.set_line_cap(cairo.LINE_CAP_ROUND); ctx.stroke()
+    ctx.restore()
+
+
 def eye(ctx: cairo.Context, x, y, r, look=(0.0, 0.0), open_=1.0):
     ctx.save()
     ctx.translate(x, y); ctx.scale(1, max(open_, 0.1))
@@ -35,21 +45,26 @@ def eye(ctx: cairo.Context, x, y, r, look=(0.0, 0.0), open_=1.0):
     ctx.restore()
 
 
-def face(ctx: cairo.Context, cx, cy, size, t=0.0, seed=1, look=(0.0, 0.0), smile=1.0, cheeks=(1.0, 0.45, 0.6)):
-    """size ≈ body radius. Eyes sit slightly above centre, mouth below."""
+def face(ctx: cairo.Context, cx, cy, size, t=0.0, seed=1, look=(0.0, 0.0), smile=1.0, cheeks=(1.0, 0.45, 0.6),
+         happy=False):
+    """size ≈ body radius. Eyes sit slightly above centre, mouth below.
+    smile: 0.3 = small closed-ish smile … 1.4 = big open laugh. happy: ^ ^ giggle eyes."""
     o = blink_amount(t, seed)
     er = size * 0.2
     dx = size * 0.3
-    eye(ctx, cx - dx, cy - size * 0.08, er, look, o)
-    eye(ctx, cx + dx, cy - size * 0.08, er, look, o)
+    for sx in (-1, 1):
+        if happy:
+            happy_eye(ctx, cx + sx * dx, cy - size * 0.08, er)
+        else:
+            eye(ctx, cx + sx * dx, cy - size * 0.08, er, look, o)
     # cheeks
     for sx in (-1, 1):
         g = cairo.RadialGradient(cx + sx * dx * 1.45, cy + size * 0.2, 0, cx + sx * dx * 1.45, cy + size * 0.2, size * 0.16)
-        g.add_color_stop_rgba(0, *cheeks, 0.75); g.add_color_stop_rgba(1, *cheeks, 0)
+        g.add_color_stop_rgba(0, *cheeks, 0.9 if happy else 0.75); g.add_color_stop_rgba(1, *cheeks, 0)
         ctx.set_source(g)
         ctx.arc(cx + sx * dx * 1.45, cy + size * 0.2, size * 0.16, 0, 2 * math.pi); ctx.fill()
     # smile: open mouth with a tongue
-    mw, mh = size * 0.26, size * 0.17 * smile
+    mw, mh = size * (0.22 + 0.04 * smile), size * 0.17 * smile
     my = cy + size * 0.2
     ctx.save()
     ctx.move_to(cx - mw, my)
