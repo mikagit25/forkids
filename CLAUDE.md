@@ -242,6 +242,29 @@ python3 scripts/generate_ambient_audio.py --style storm --setting window --thund
 > Пример: `Tibetan Singing Bowls — Deep Stillness 🎵 Meditation Music #Shorts`  
 > Длительность — только в названиях ДЛИННЫХ видео (1 Hour, 3 Hours и т.д.).
 
+### 7г. Сенсорные видео для малышей — `sensory/` (Happy Bear Kids EN, с окт. 2026)
+Новый формат по образцу больших сенсорных каналов: глянцевые фрукты с лицами на чёрном фоне танцуют
+строго в бит, без речи. **Свои** персонажи и музыка (не копировать чужих героев/названия/треки).
+Всё рисуется кодом (pycairo + numpy + ffmpeg), поэтому Rule 4 (только 3D-спрайты) к `sensory/` не применяется.
+Это новый тип `sensory_dance` / `sensory_sleep` — НЕ размороженные `dance_fruits_*`/`sensory_loop`.
+```bash
+pip install --break-system-packages pycairo scipy pyyaml pillow numpy   # один раз
+cd sensory
+python3 -m sensory.episode --minutes 12                       # танец, музыка кодом (disco/calypso/march/bounce)
+python3 -m sensory.episode --collection --minutes 12          # танец под песню из assets/audio/suno
+python3 -m sensory.episode --format sleep                     # сон под неиспользованную колыбельную из коллекции
+python3 -m sensory.episode --format sleep --audio "<трек>.mp3"
+python3 -m sensory.episode --minutes 2 --queue-dir out/q      # тест, не в настоящую очередь
+```
+- Выход: `output/queue/sensory_{dance|sleep}_…{.mp4,.png}` + `meta_….yaml` (`made_for_kids: true`, 200+ слов).
+- Музыка кодом: `sensory/music.py` (5 жанров, своя бит-карта); песни из коллекции: `sensory/external.py`
+  определяет темп и доли сам. Колыбельные кодом не делаем — для сна берём готовые треки из коллекции.
+- Suno-трек → в описании «AI-generated», `ai_generated: true`; кодовая музыка → `ai_generated: false`.
+- Хореография (`timeline.py`): части песни = номера (соло, дуэт, трио, волна, паровозик, пауза, финал),
+  в каждой части новый состав из 8 фруктов. Журнал эпизодов: `sensory/episodes/episode_log.jsonl`.
+- Скорость: ~4 мин рендера на минуту танца (2 ядра); сон — петля 4 мин (~25 мин) под трек любой длины.
+- Рендерить последовательно с другими тяжёлыми задачами (правило 5). План серии: `sensory/SERIES.md`.
+
 ### 8. Suno (AI-музыка)
 - Требует активной платной подписки + документация промпта
 - Нельзя упоминать известных артистов по имени
