@@ -29,6 +29,16 @@ def happy_eye(ctx: cairo.Context, x, y, r):
     ctx.restore()
 
 
+def sleepy_eye(ctx: cairo.Context, x, y, r):
+    """Closed, sleeping eye (‿) with tiny lashes."""
+    ctx.save()
+    ctx.move_to(x - r * 0.75, y)
+    ctx.curve_to(x - r * 0.45, y + r * 0.55, x + r * 0.45, y + r * 0.55, x + r * 0.75, y)
+    ctx.set_source_rgb(0.06, 0.05, 0.08); ctx.set_line_width(r * 0.22)
+    ctx.set_line_cap(cairo.LINE_CAP_ROUND); ctx.stroke()
+    ctx.restore()
+
+
 def eye(ctx: cairo.Context, x, y, r, look=(0.0, 0.0), open_=1.0):
     ctx.save()
     ctx.translate(x, y); ctx.scale(1, max(open_, 0.1))
@@ -46,14 +56,16 @@ def eye(ctx: cairo.Context, x, y, r, look=(0.0, 0.0), open_=1.0):
 
 
 def face(ctx: cairo.Context, cx, cy, size, t=0.0, seed=1, look=(0.0, 0.0), smile=1.0, cheeks=(1.0, 0.45, 0.6),
-         happy=False):
+         happy=False, sleepy=False):
     """size ≈ body radius. Eyes sit slightly above centre, mouth below.
     smile: 0.3 = small closed-ish smile … 1.4 = big open laugh. happy: ^ ^ giggle eyes."""
     o = blink_amount(t, seed)
     er = size * 0.2
     dx = size * 0.3
     for sx in (-1, 1):
-        if happy:
+        if sleepy:
+            sleepy_eye(ctx, cx + sx * dx, cy - size * 0.08, er)
+        elif happy:
             happy_eye(ctx, cx + sx * dx, cy - size * 0.08, er)
         else:
             eye(ctx, cx + sx * dx, cy - size * 0.08, er, look, o)
@@ -63,6 +75,13 @@ def face(ctx: cairo.Context, cx, cy, size, t=0.0, seed=1, look=(0.0, 0.0), smile
         g.add_color_stop_rgba(0, *cheeks, 0.9 if happy else 0.75); g.add_color_stop_rgba(1, *cheeks, 0)
         ctx.set_source(g)
         ctx.arc(cx + sx * dx * 1.45, cy + size * 0.2, size * 0.16, 0, 2 * math.pi); ctx.fill()
+    if sleepy:                                               # small, closed, content smile
+        my = cy + size * 0.24
+        ctx.move_to(cx - size * 0.1, my)
+        ctx.curve_to(cx - size * 0.05, my + size * 0.07, cx + size * 0.05, my + size * 0.07, cx + size * 0.1, my)
+        ctx.set_source_rgb(0.25, 0.04, 0.08); ctx.set_line_width(size * 0.035)
+        ctx.set_line_cap(cairo.LINE_CAP_ROUND); ctx.stroke()
+        return
     # smile: open mouth with a tongue
     mw, mh = size * (0.22 + 0.04 * smile), size * 0.17 * smile
     my = cy + size * 0.2

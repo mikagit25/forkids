@@ -23,7 +23,8 @@ def compose(items, w=1920, h=1080, t=0.0, rgba=False) -> np.ndarray:
         bw, bh = half * 2, int(r * 3.9)
         s, ctx = surface(bw, bh)
         ch.draw(ctx, x - x0, y - y0, r, t, pose.get("sx", 1), pose.get("sy", 1), pose.get("tilt", 0),
-                pose.get("look", (0, 0)), pose.get("smile", 1.0), pose.get("happy", False))
+                pose.get("look", (0, 0)), pose.get("smile", 1.0), pose.get("happy", False),
+                pose.get("sleepy", False))
         layer = to_array(s)
         layer = over(add_glow(layer, ch.glow_color, radius=r * 0.12, strength=0.6), layer)
         # paste the box into the frame (clipped at the edges)

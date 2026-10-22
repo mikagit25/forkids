@@ -179,6 +179,33 @@ LEADS = {"marimba": marimba, "bell": bell, "glock": glock, "steel": steel, "squa
          "musicbox": musicbox, "piano": piano, "felt": felt, "flute": flute}
 
 
+def hall_ir(rng, secs, lp, echo=None):
+    """Stereo hall IR (same recipe as the Sacred Drift bowls): low-passed noise, exponential decay,
+    20/27 ms pre-delay per side; optional ping-pong echo taps (delay, feedback, repeats)."""
+    n = int(secs * SR)
+    if echo:
+        n = max(n, int((echo[0] * echo[2] + 0.5) * SR))
+    t = np.arange(n) / SR
+    env = np.exp(-t / (secs / 3.4))
+    sos = butter(1, lp, btype="low", fs=SR, output="sos")
+    out = []
+    for ch, pre in enumerate((0.020, 0.027)):
+        ir = sosfilt(sos, rng.standard_normal(n)) * env
+        ir[: int(pre * SR)] = 0
+        ir = ir / np.sqrt((ir ** 2).sum())
+        if echo:
+            delay, fb, reps = echo
+            for k in range(1, reps + 1):
+                if (k % 2 == 1) != (ch == 0):
+                    continue
+                w = int(0.002 * SR * k) + 8
+                tap = np.hanning(w); tap /= np.sqrt((tap ** 2).sum())
+                i = int(k * delay * SR)
+                ir[i:i + w] += 0.30 * fb ** (k - 1) * tap[: max(0, min(w, n - i))]
+        out.append(ir.astype(np.float32))
+    return out
+
+
 # ── song plan ────────────────────────────────────────────────────────────────
 
 @dataclass
@@ -243,13 +270,20 @@ def render(song: Song, out_wav: Path) -> dict:
     beat = song.beat_s; bar_s = 4 * beat; step = beat / 2
     n = int((song.bars * bar_s + 2.5) * SR)
     L = np.zeros(n, np.float32); R = np.zeros(n, np.float32)
+    WL = np.zeros(n, np.float32); WR = np.zeros(n, np.float32)       # reverb send bus (melody/chords only)
+    lull = song.genre == "lullaby"
 
-    def add(sig, t, gain=1.0, pan=0.0):
+    def add(sig, t, gain=1.0, pan=0.0, send=None):
         i = int(t * SR)
         if i >= n:
             return
         sig = sig[: n - i] * gain
-        L[i:i + len(sig)] += sig * (1 - max(pan, 0)); R[i:i + len(sig)] += sig * (1 + min(pan, 0))
+        l, r = sig * (1 - max(pan, 0)), sig * (1 + min(pan, 0))
+        L[i:i + len(sig)] += l; R[i:i + len(sig)] += r
+        if send is None:
+            send = 0.35
+        if send:
+            WL[i:i + len(sig)] += l * send; WR[i:i + len(sig)] += r * send
 
     def swing(t, st):
         return t + (G["swing"] * step if st % 2 == 1 else 0.0)
@@ -272,26 +306,26 @@ def render(song: Song, out_wav: Path) -> dict:
                     tq = t0 + q * beat
                     if kind == "break":
                         if q in (1, 3):
-                            add(clap(0.9), tq, 0.5)
+                            add(clap(0.9), tq, 0.5, send=0.06)
                         continue
                     if song.genre in ("disco", "bounce") or q in (0, 2):
-                        add(kick(), tq, 0.9)
+                        add(kick(), tq, 0.9, send=0.06)
                     if song.genre == "march" and q in (1, 3):
-                        add(snare(0.8), tq, 0.4)
+                        add(snare(0.8), tq, 0.4, send=0.06)
                     elif q in (1, 3):
-                        add(clap() if song.genre in ("bounce", "calypso") else snare(), tq, 0.45)
+                        add(clap() if song.genre in ("bounce", "calypso") else snare(), tq, 0.45, send=0.06)
                     if kind != "intro" or b >= b0 + 2:
                         for e in (0, 1):
                             st = q * 2 + e
                             if song.genre == "disco" and e == 1:
-                                add(hat(0.6, open_=True), swing(tq + step, st), 0.18, 0.3)
+                                add(hat(0.6, open_=True), swing(tq + step, st), 0.18, 0.3, send=0.06)
                             elif song.genre == "calypso":
-                                add(shaker(0.8), swing(tq + e * step, st), 0.25, -0.3)
+                                add(shaker(0.8), swing(tq + e * step, st), 0.25, -0.3, send=0.06)
                             else:
-                                add(hat(0.5 + 0.3 * e), swing(tq + e * step, st), 0.16, 0.3)
+                                add(hat(0.5 + 0.3 * e), swing(tq + e * step, st), 0.16, 0.3, send=0.06)
                 if last_bar and kind in ("A2", "B2", "B") and drums:            # fill into the next section
                     for k in range(4):
-                        add(snare(0.5 + 0.12 * k), t0 + 3 * beat + k * beat / 4, 0.35)
+                        add(snare(0.5 + 0.12 * k), t0 + 3 * beat + k * beat / 4, 0.35, send=0.06)
             # bass
             if kind not in ("break",) or b == b0 + nb - 1:
                 pattern = {"disco": [(0, 0), (1, 12), (2, 0), (3, 12), (4, 0), (5, 12), (6, 7), (7, 12)],
@@ -301,7 +335,7 @@ def render(song: Song, out_wav: Path) -> dict:
                            "lullaby": [(0, 0)]}[song.genre]
                 for st, iv in pattern:
                     ln = step * (1.6 if song.genre != "lullaby" else 7)
-                    add(bass(hz(root + iv), ln, 0.9), swing(t0 + st * step, st), 0.42)
+                    add(bass(hz(root + iv), ln, 0.9), swing(t0 + st * step, st), 0.42, send=0.0)
             # comp (chords)
             for st in {"piano": [2, 6], "stab": [1, 3, 5, 7], "chick": [2, 6], "pad": [0]}[G["comp"]]:
                 for m in chord:
@@ -326,19 +360,19 @@ def render(song: Song, out_wav: Path) -> dict:
                         add(lead2(hz(m + (0 if song.genre == "lullaby" else 12)), ln * step, 0.5), tt, 0.10, -0.2)
             if kind == "intro" and b >= b0 + 2 and song.genre != "lullaby":                              # pickup sparkle
                 add(bell(hz(song.key + 24), step), t0 + 3 * beat, 0.12)
-    # small room reverb
-    ir_t = _t(1.2)
-    ir = (np.random.default_rng(3).standard_normal(len(ir_t)) * np.exp(-ir_t / 0.25)).astype(np.float32)
-    ir /= np.sqrt((ir ** 2).sum())
-    wl, wr = fftconvolve(L, ir)[:n], fftconvolve(R, ir[::-1].copy())[:n]
-    L, R = L + 0.18 * wl, R + 0.18 * wr
+    # reverb like the singing bowls: smooth dark hall, pre-delay, separate L/R; lullaby gets a soft
+    # ping-pong echo locked to the tempo (dotted eighth) — never a reversed or grainy tail
+    irl, irr = hall_ir(np.random.default_rng(song.seed + 9), 2.6 if lull else 1.1, 3200 if lull else 5500,
+                       (beat * 0.75, 0.38, 4) if lull else None)
+    L = L + (0.55 if lull else 0.30) * fftconvolve(WL, irl)[:n]
+    R = R + (0.55 if lull else 0.30) * fftconvolve(WR, irr)[:n]
     if song.genre == "lullaby":                               # warm and dark: nothing sparkly at bedtime
         sos = butter(2, 2800, btype="low", fs=SR, output="sos")
         L, R = sosfilt(sos, L).astype(np.float32), sosfilt(sos, R).astype(np.float32)
     end = int(song.bars * bar_s * SR)
     fade = np.ones(n, np.float32); fade[end:] = np.linspace(1, 0, n - end)
     st = np.stack([L * fade, R * fade], 1)
-    st = np.tanh(st / (np.abs(st).max() + 1e-9) * 1.6) / np.tanh(1.6) * 0.89      # soft limit, peak ≈ −1 dB
+    st = st / (np.abs(st).max() + 1e-9) * 0.89             # clean linear peak normalise (no saturation)
     pcm = (st * 32767).astype("<i2").tobytes()
     subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-f", "s16le", "-ar", str(SR), "-ac", "2", "-i", "-",
                     "-af", f"loudnorm=I={-20 if song.genre == 'lullaby' else -14}:TP=-1.0:LRA=9", "-ar", str(SR), str(out_wav)], input=pcm, check=True)

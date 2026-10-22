@@ -26,7 +26,7 @@ class Character:
         return 0.0, r * 0.05, r
 
     def draw(self, ctx: cairo.Context, cx, cy, r, t=0.0, sx=1.0, sy=1.0, tilt=0.0, look=(0.0, 0.0),
-             smile=1.0, happy=False):
+             smile=1.0, happy=False, sleepy=False):
         ctx.save()
         ctx.translate(cx, cy + r)           # squash around the bottom: feet stay on the beat line
         ctx.rotate(math.radians(tilt))
@@ -35,5 +35,5 @@ class Character:
         self.body(ctx, r)
         self.decorate(ctx, r)
         fx, fy, fs = self.face_pos(r)
-        F.face(ctx, fx, fy, fs, t, self.seed, look, smile=smile, happy=happy)
+        F.face(ctx, fx, fy, fs, t, self.seed, look, smile=smile, happy=happy, sleepy=sleepy)
         ctx.restore()
