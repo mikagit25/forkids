@@ -54,7 +54,8 @@ python3 scripts/reauth_youtube.py --channel id # Calm Classics канал
 | Calm Classics | длинные | по мере генерации | по наличию |
 
 **AR канал заморожен** — `queue_ar/` не трогать, AR контент не генерировать.  
-Sacred Drift — день-недели ротация: Пн=классика, Вт=лечение, Ср=природа, Чт=фокус, Пт=сакральное, Сб=джаз, Вс=космос.
+Sacred Drift — программа v2.3 по дню ПУБЛИКАЦИИ (см. 7в): Пн=гроза 8 ч (тёмный экран), Вт=частота 3 ч, Ср=чаши «от overthinking» 3 ч,
+Чт=тета-бинауральные для учёбы 3 ч, Пт=дождь в обстановке (крыша/палатка/машина/камин) 3 ч, Сб=космос 3 ч, Вс=Sacred Drift Sleep #NN 10 ч (тёмный экран).
 
 ---
 
@@ -153,7 +154,7 @@ python3 scripts/generate_ambient_audio.py --style bowls --minutes 12 --count 4  
 python3 scripts/generate_ambient_audio.py --style solfeggio --hz 432 --minutes 60
 python3 scripts/generate_ambient_audio.py --style sleep --minutes 480 --format flac  # 8 ч
 ```
-- Стили: `bowls`, `cosmic`, `sleep` (−20 LUFS), `solfeggio --hz N`, `rain`, `morning`. Остальные −18 LUFS.
+- Стили: `bowls`, `cosmic`, `sleep` (−20 LUFS), `solfeggio --hz N`, `rain`, `morning`, `storm` (−20 LUFS, см. 7в). Остальные −18 LUFS.
 - Частоты: `--hz` любое значение (без флага — случайно из 111…963), `--register -12` — глубже пэд,
   `--binaural 4` — бинауральные биения (левое ухо hz, правое hz+4; в названии «Binaural Beats»).
 - Дождь: по умолчанию `--rain window` (за открытым окном, с накатами как волны), `inside` — приглушённо
@@ -193,13 +194,46 @@ python3 scripts/sd_scenes.py --preview /tmp/scenes --seed 5                     
 ```bash
 python3 scripts/make_sd_video.py --style solfeggio --hz 528 --minutes 60
 python3 scripts/make_sd_video.py --style bowls --variant slow --minutes 60
-python3 scripts/make_sd_video.py --style today --minutes 60        # стиль по дню недели
+python3 scripts/make_sd_video.py --program today --with-short      # программа дня публикации + Short (ночной cron)
 ```
 - Выход: `sacred_drift/output/queue/sd_comp_<category>_code_<date>_<seed>.{mp4,png}` + `meta_….yaml`
   (префикс `sd_comp_<category>_` → работает ротация тем по дням в publish_queue.py).
 - Сцена выбирается по стилю (мандала — любимая: всегда для solfeggio, часто для bowls/cosmic/morning).
 - Превью: кадр из видео + крупный текст («639HZ SOLFEGGIO», «SLOW BOWLS MEDITATION»…), подпись SACRED DRIFT.
 - Описание 200+ слов из характера трека; `ai_generated: false`, `music_source: procedural`.
+
+### 7в. Гроза, тёмный экран, недельная программа, Shorts (v2.3, по анализу трендов)
+**Гроза/дождь в обстановке** — `--style storm`:
+```bash
+python3 scripts/generate_ambient_audio.py --style storm --setting tin_roof --thunder gentle --minutes 180
+python3 scripts/generate_ambient_audio.py --style storm --setting window --thunder heavy --minutes 480
+```
+- `--setting`: `window`, `open`, `tin_roof` (звон металла + гул крыши), `tent` (глухие шлепки), `car` (барабанит по крыше + гул салона),
+  `fireplace` (дождь за стеной + треск камина). `--thunder heavy|gentle|none`, `--intensity heavy|steady|light`, `--music` (тихий пэд).
+- Гром: несколько раскатов, треск у близких ударов, приглушение стенами по обстановке; громкость держится ~+6–8 дБ над дождём
+  (не будит). Генерация ленивая — 8–10 ч треки по памяти ~0.5 ГБ. Ветер — порывами.
+- Точные времена ударов пишутся в `ambient_log.jsonl` (`recipe.strikes`) → молнии в видео совпадают с громом
+  (вспышка за 0.4 + 3·distance с до звука, близкие — 2–3 мерцания).
+- Названия всегда содержат «rain»/«thunderstorm» (категория `rain_water`), без «fireplace»/«forest» (не путать с другими сборниками).
+
+**Тёмный экран** — сцена `dark` (`render_sd_video.py --scene dark`): почти чёрное небо, слабые медленные облака, линия деревьев,
+молнии подсвечивают облака. Рендер 480×270 → 1080p, 12 fps, x264 veryfast: ~1 мин на 7 мин видео → 8 ч ≈ 70 мин.
+Превью для тёмных видео рисуется отдельно (молния / лунная ночь), иначе в ленте чёрный квадрат.
+
+**Недельная программа** — `make_sd_video.py --program today` (или `mon…sun`, `--for-date YYYY-MM-DD`):
+- Дата = день ПУБЛИКАЦИИ: запуск после 12:00 UTC готовит видео на завтра (cron 23:30 → выход завтра в 20:00).
+- Вариации по номеру недели (частоты 528/432/777/963/639/396/852/417, обстановки, варианты чаш) — один день недели не повторяется.
+- Заголовок: проблема/польза + инструмент + длительность (+ номер серии у Вс), одно эмодзи, ничего после длительности.
+  Без медицинских обещаний (никаких «pain relief», «healing», «parasympathetic»). `--no-ads-title` добавляет «(No Mid-Roll Ads)» —
+  **только пока канал не монетизирован**.
+- В мету пишутся `publish_dow`, `publish_date`, `program`; publish_queue.py публикует видео своего дня первым
+  (`SD_DOW_THEME` выровнен с программой). Счётчик серий: `sacred_drift/series.json`.
+
+**Shorts** — `make_sd_short.py --from-meta meta_….yaml` | `--audio трек.mp3` | `--latest N`:
+- Ищет лучший момент (удар грома/чаши на 6-й секунде, самый насыщенный участок), рендерит сцену заново в 9:16
+  (не кроп), текст-хук сверху, затухания, название `{Тема} — {Подзаголовок} 🎵 {Ключевые слова} #Shorts`,
+  описание 200+ слов со ссылкой на полную версию. Тёмный экран в Shorts заменяется видимой сценой (окно/луна).
+- Выход: `sd_short_<category>_code_<date>_<seed>.{mp4,png}` + мета, `is_short: true`. ~1–2 мин на Short.
 
 ### 7г. Сенсорные видео для малышей — `sensory/` (Happy Bear Kids EN, с окт. 2026)
 Новый формат по образцу больших сенсорных каналов: глянцевые фрукты с лицами на чёрном фоне танцуют

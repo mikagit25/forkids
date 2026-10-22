@@ -20,6 +20,8 @@ Preview:
 from __future__ import annotations
 
 import argparse
+import bisect
+import random
 import colorsys
 import math
 from pathlib import Path
@@ -230,7 +232,8 @@ def scene_night(t, w, h, P, C):
         rng = np.random.default_rng(P["rng_seed"])
         top, low = P["palette"]
         a = grad(h, w, [(0, top), (1, low)])
-        C["moon"] = (w * rng.uniform(0.6, 0.8), h * rng.uniform(0.2, 0.32), h * 0.055)
+        my = rng.uniform(0.2, 0.32) if w >= h else rng.uniform(0.36, 0.44)   # portrait: below the Shorts hook text
+        C["moon"] = (w * rng.uniform(0.6, 0.8), h * my, min(w, h) * 0.055)
         mx, my, mr = C["moon"]
         C["bg"] = a
         W2 = int(w * 1.4)
@@ -261,8 +264,9 @@ def scene_night(t, w, h, P, C):
 
 def scene_mandala(t, w, h, P, C):
     hue, folds, style, rings = P["hue"], P["folds"], P.get("style", "flower"), P.get("rings", 5)
+    S = min(w, h)                                         # size from the short side → works in 9:16 Shorts too
     base = np.zeros((h, w, 3), np.float32) + np.array(hsv(hue, 0.6, 0.08), np.float32)
-    glow(base, w / 2, h / 2, h * 0.5, hsv(hue, 0.5, 0.5),
+    glow(base, w / 2, h / 2, S * 0.5, hsv(hue, 0.5, 0.5),
          0.6 * (1 + 0.15 * math.sin(2 * math.pi * t / 8)) * (0.75 + 0.6 * rx(P, "env", 0.4)))
     im = to_img(base)
     layer = Image.new("RGBA", (w, h), (0, 0, 0, 0))
@@ -271,18 +275,18 @@ def scene_mandala(t, w, h, P, C):
     breathe = 1 + 0.03 * math.sin(2 * math.pi * t / 8) + 0.07 * rx(P, "low")
     spec = P.get("rx", {}).get("spectrum")
     if spec is not None:                                              # circular equalizer around the mandala
-        R0 = h * 0.43 * breathe
+        R0 = S * 0.43 * breathe
         bands = np.concatenate([spec, spec[::-1]])                    # mirrored → symmetric ring
         n = len(bands)
         for k, v in enumerate(bands):
             ang = 2 * math.pi * k / n - math.pi / 2 + t * 0.01
-            L = h * (0.012 + 0.07 * float(v) ** 1.5)
+            L = S * (0.012 + 0.07 * float(v) ** 1.5)
             x0, y0 = cx + R0 * math.cos(ang), cy + R0 * math.sin(ang)
             x1, y1 = cx + (R0 + L) * math.cos(ang), cy + (R0 + L) * math.sin(ang)
             d.line([x0, y0, x1, y1], fill=hsv(hue + 0.05 * float(v), 0.5, 1.0) + (int(90 + 140 * float(v)),),
-                   width=max(2, int(h / 300)))
+                   width=max(2, int(S / 300)))
     for ring in range(1, rings + 1):
-        R = h * 0.27 * ring / rings * breathe              # outer circles (R*1.55) stay inside the frame
+        R = S * 0.27 * ring / rings * breathe              # outer circles (R*1.55) stay inside the frame
         rot = t * (0.02 if ring % 2 else -0.015) * (1 + ring * 0.3)
         col = hsv(hue + ring * 0.03, 0.55, 1.0) + (int(160 - ring * 14),)
         n = folds * (1 if ring < 3 else 2)
@@ -380,14 +384,67 @@ def scene_sunrise(t, w, h, P, C):
     return to_img(vignette(a, 0.25))
 
 
+def strike_flash(t: float, strikes) -> tuple[float, float]:
+    """Lightning brightness at time t. strikes = [(thunder_time_s, distance 0..1), ...].
+    Light arrives before the sound (≈3 s per km → we use 0.4 + 3·distance s), near strikes
+    flicker 2–3 times, far ones are one soft glow. Returns (brightness 0..1, x position 0..1)."""
+    if not strikes:
+        return 0.0, 0.5
+    i = bisect.bisect_right(strikes, (t + 3.5, 9.0))
+    best, bx = 0.0, 0.5
+    for ts, dist in strikes[max(0, i - 3): i]:
+        tl = ts - (0.4 + 3.0 * dist)                 # flash time
+        dt = t - tl
+        if dt < 0 or dt > 2.5:
+            continue
+        r = random.Random(int(ts * 100))
+        if dist < 0.5:                               # near: bright, flickering
+            v = sum(a * math.exp(-(dt - o) / 0.09) for o, a in ((0, 1.0), (0.13, 0.55), (0.34 + r.random() * 0.2, 0.8))
+                    if dt >= o)
+            v *= 1.0 - 0.6 * dist
+        else:                                        # far: one soft glow behind the clouds
+            v = 0.45 * (1 - dist * 0.5) * math.exp(-max(dt - 0.15, 0) / 0.45) * min(1, dt / 0.15)
+        if v > best:
+            best, bx = v, r.uniform(0.15, 0.85)
+    return min(best, 1.3), bx
+
+
+def scene_dark(t, w, h, P, C):
+    """Dark screen for 8–10 h sleep videos: near-black sky, faint slow clouds, black treeline;
+    lightning lights the clouds from within on every thunder strike. Cheap to render."""
+    if "bg" not in C:
+        rng = np.random.default_rng(P["rng_seed"])
+        C["bg"] = grad(h, w, [(0, (7, 9, 18)), (0.7, (3, 4, 10)), (1, (2, 2, 6))])
+        W2 = int(w * 1.5)
+        cl = fbm(h // 2, W2 // 4, rng, 5, 2)
+        C["clouds"] = zoom(cl, (h / cl.shape[0], W2 / cl.shape[1]), order=1)[:h, :W2].astype(np.float32)
+        C["trees"] = ridge(w, rng, h * 0.92, h * 0.025, 7) - (rng.random(w) ** 8) * h * 0.035
+        C["mask"] = (np.arange(h)[:, None] >= C["trees"][None, :])[..., None]
+        C["dither"] = (rng.random((h, w, 1)).astype(np.float32) - 0.5) * 1.6   # static: no banding, costs no bitrate
+        C["xx"] = np.linspace(0, 1, w, dtype=np.float32)[None, :]
+        C["yy"] = np.linspace(0, 1, h, dtype=np.float32)[:, None]
+    cl = pan(C["clouds"], t, w, period=LOOP * 2)
+    dens = ((cl - 0.35) / 0.4).clip(0, 1) * (1.0 - 0.6 * C["yy"])
+    env = rx(P, "env", 0.3)
+    a = C["bg"] + (dens * (5 + 3 * env))[..., None] * np.array([0.8, 0.9, 1.3], np.float32)
+    fl, fx = strike_flash(t, P.get("strikes"))
+    if fl > 0.01:
+        spot = np.exp(-((C["xx"] - fx) ** 2) / 0.05 - (C["yy"] - 0.25) ** 2 / 0.12)
+        lit = (0.25 + 0.75 * dens) * (0.35 + 0.65 * spot) * fl
+        a = a + lit[..., None] * np.array([150, 160, 200], np.float32)
+    a = np.where(C["mask"], np.array([1, 1, 3], np.float32), a + C["dither"])
+    return to_img(a)
+
+
 SCENES = {"lake": scene_lake, "cosmic": scene_cosmic, "night": scene_night,
-          "mandala": scene_mandala, "window": scene_window, "sunrise": scene_sunrise}
+          "mandala": scene_mandala, "window": scene_window, "sunrise": scene_sunrise, "dark": scene_dark}
 STYLE_SCENE = {"bowls": "lake", "cosmic": "cosmic", "sleep": "night",
-               "solfeggio": "mandala", "rain": "window", "morning": "sunrise"}
+               "solfeggio": "mandala", "rain": "window", "morning": "sunrise", "storm": "dark"}
 # scenes that fit each style, with weights — the mandala (audience favourite) also suits bowls/cosmic/morning
 STYLE_SCENES = {"bowls": [("lake", 0.5), ("mandala", 0.5)], "cosmic": [("cosmic", 0.6), ("mandala", 0.4)],
                 "sleep": [("night", 1.0)], "solfeggio": [("mandala", 1.0)], "rain": [("window", 1.0)],
-                "morning": [("sunrise", 0.65), ("mandala", 0.35)]}
+                "morning": [("sunrise", 0.65), ("mandala", 0.35)], "storm": [("dark", 0.6), ("window", 0.4)]}
+FAST_SCENES = {"dark"}       # rendered small + 12 fps + fast encode → practical for 8–10 h videos
 
 
 def pick_scene(style: str, seed: int) -> str:

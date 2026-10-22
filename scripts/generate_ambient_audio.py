@@ -59,7 +59,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_OUT = ROOT / "sacred_drift" / "audio" / "code_ambient"
 SR = 44100
 CHUNK_S = 30
-VERSION = "1.1"
+VERSION = "1.2"
 
 # ── basic music helpers ───────────────────────────────────────────────────────
 
@@ -284,16 +284,68 @@ def drone(freqs, length, rng):
     return fn
 
 
-def thunder(rng, length=9.0):
-    noise = rng.standard_normal(int(length * SR)).astype(np.float32)
-    sos = butter(2, [30, 220], btype="band", fs=SR, output="sos")
-    rumble = sosfilt(sos, noise).astype(np.float32)
+def _lazy(make, length):
+    """Build a precomputed sample array only while the event is sounding, then free it
+    (keeps 10-hour storms with hundreds of thunder events small in memory)."""
+    cache = {}
 
     def fn(tt):
-        i = np.clip((tt * SR).astype(np.int64), 0, len(rumble) - 1)
-        e = (1 - np.exp(-tt / 0.8)) * np.exp(-tt / 2.8) * (1 + 0.5 * np.sin(2 * np.pi * 0.7 * tt))
-        return (rumble[i] * e).astype(np.float32)
+        if "a" not in cache:
+            cache["a"] = make()
+        a = cache["a"]
+        i = np.clip((tt * SR).astype(np.int64), 0, len(a) - 1)
+        out = a[i]
+        if len(tt) and tt[-1] >= length - 2.0 / SR:
+            cache.clear()
+        return out
     return fn
+
+
+def thunder(rng, length=9.0):
+    seed = int(rng.integers(1 << 31))
+
+    def make():
+        r = np.random.default_rng(seed)
+        noise = r.standard_normal(int(length * SR)).astype(np.float32)
+        rumble = sosfilt(butter(2, [30, 220], btype="band", fs=SR, output="sos"), noise).astype(np.float32)
+        tt = np.arange(len(rumble)) / SR
+        e = (1 - np.exp(-tt / 0.8)) * np.exp(-tt / 2.8) * (1 + 0.5 * np.sin(2 * np.pi * 0.7 * tt))
+        return (rumble * e).astype(np.float32)
+    return _lazy(make, length)
+
+
+def thunder_storm(rng, distance=0.5, muffle=None, length=None):
+    """Realistic thunder: a sharp crack for near strikes, then 2–5 rolling rumbles that
+    overlap and fade; distance 0 (overhead) … 1 (far away). muffle = low-pass Hz (indoors)."""
+    length = length or float(rng.uniform(9, 17))
+    seed = int(rng.integers(1 << 31))
+
+    def make():
+        r = np.random.default_rng(seed)
+        n = int(length * SR); t = np.arange(n) / SR
+        cut = 110 + (1 - distance) * 260
+        rumble = sosfilt(butter(2, [25, cut], btype="band", fs=SR, output="sos"), r.standard_normal(n))
+        env = np.zeros(n)
+        for k in range(int(r.integers(2, 6))):
+            t0 = 0.0 if k == 0 else r.uniform(0.2, length * 0.45)
+            a = r.uniform(0.5, 1.0) * 0.75 ** k
+            rise = 0.12 + distance * 0.7
+            dec = r.uniform(1.4, 3.8) * (1 + distance)
+            m = t >= t0
+            env[m] += a * (1 - np.exp(-(t[m] - t0) / rise)) * np.exp(-(t[m] - t0) / dec)
+        env *= 1 + 0.3 * np.sin(2 * np.pi * r.uniform(5, 9) * t)          # rolling flutter
+        out = rumble * env
+        if distance < 0.45:                                                  # crack of a near strike
+            cl = int(r.uniform(0.08, 0.25) * SR)
+            crack = sosfilt(butter(2, [350, 5000], btype="band", fs=SR, output="sos"), r.standard_normal(cl))
+            out[:cl] += crack * np.exp(-np.arange(cl) / (0.04 * SR)) * (1 - distance) * 2.2
+        if muffle:
+            out = sosfilt(butter(2, muffle, btype="low", fs=SR, output="sos"), out)
+        out *= np.clip((length - t) / 2.0, 0, 1)
+        # loudness-normalise (not peak): muffled indoor thunder must not come out louder than open-air
+        loud = np.sqrt(np.mean(out[: int(SR * 4)] ** 2)) + 1e-9
+        return np.clip(out * (0.3 / loud), -3, 3).astype(np.float32)
+    return _lazy(make, length)
 
 
 # ── continuous beds (stateful across chunks) ──────────────────────────────────
@@ -331,6 +383,41 @@ class WavesBed:
         return (l * env).astype(np.float32), (r * env).astype(np.float32)
 
 
+class WindBed:
+    """Wind in gusts: band noise whose level and brightness swell irregularly."""
+    def __init__(self, rng, level=0.02):
+        self.level = level
+        self.lo, self.hi = NoiseBed(rng, 80, 500, 1.0, 0.0), NoiseBed(rng, 400, 1800, 1.0, 0.0)
+        self.P = rng.uniform(14, 26); self.ph = rng.uniform(0, 6.28)
+
+    def __call__(self, c0, c1):
+        t = np.arange(c0, c1) / SR
+        g = 0.5 + 0.5 * np.sin(2 * np.pi * t / self.P + self.ph + 1.1 * np.sin(2 * np.pi * t / (self.P * 2.7)))
+        g = 0.2 + 0.8 * g ** 2
+        a, b = self.lo(c0, c1), self.hi(c0, c1)
+        return tuple((x + 0.6 * y * g) * g * self.level for x, y in zip(a, b))
+
+
+class FireBed:
+    """Fireplace: low roar plus random crackles and pops."""
+    def __init__(self, rng, level=0.03):
+        self.rng, self.level = rng, level
+        self.roar = NoiseBed(rng, 40, 320, 1.0, breathe=0.05)
+        k = np.arange(int(0.012 * SR)) / SR
+        self.pop = (np.sign(np.sin(2 * np.pi * 2600 * k)) * np.exp(-k / 0.0015)).astype(np.float32)
+
+    def __call__(self, c0, c1):
+        n = c1 - c0
+        rl, rr = self.roar(c0, c1)
+        out = []
+        for r in (rl, rr):
+            cr = np.zeros(n, np.float32)
+            cnt = self.rng.poisson(6 * n / SR)
+            cr[self.rng.integers(0, n, cnt)] = self.rng.uniform(0.05, 1.0, cnt) ** 3
+            out.append(((0.8 * r + 0.5 * fftconvolve(cr, self.pop, mode="same")) * self.level).astype(np.float32))
+        return out[0], out[1]
+
+
 class RainBed:
     """Procedural rain with wave-like gusts: intensity swells and fades every 8–18 s
     (irregular), on top of a slow drift over minutes.
@@ -342,6 +429,10 @@ class RainBed:
         "inside":  ((120, 1600),  1400, (620, 820, 1050, 1300),        0.006,  14, 0.032),
         "window":  ((200, 4200),  3600, (1100, 1500, 1900, 2500),      0.0040, 20, 0.045),
         "outside": ((500, 7000),  None, (2600, 3400, 4300, 5200),      0.0025, 28, 0.050),
+        # storm settings: what the rain falls on changes the sound of every drop
+        "tin_roof": ((300, 6000), None, (2300, 3000, 3800, 4700),      0.018,  36, 0.045),   # ringing metal
+        "tent":     ((100, 1300), 1700, (170, 230, 310, 420),          0.012,  44, 0.060),   # dull fabric thuds
+        "car":      ((150, 1500), 2200, (480, 680, 930, 1250),         0.009,  32, 0.050),   # drumming on the roof
     }
 
     def __init__(self, rng, level=None, period=420, mode="window"):
@@ -351,10 +442,14 @@ class RainBed:
         self.wash = NoiseBed(rng, band[0], band[1], 1.0, breathe=0.0)
         self.lp = butter(2, lp, btype="low", fs=SR, output="sos") if lp else None
         self.lp_zi = [sosfilt_zi(self.lp) * 0, sosfilt_zi(self.lp) * 0] if lp else None
-        k = np.arange(int(0.03 * SR)) / SR
+        k = np.arange(int(max(0.03, dec * 5) * SR)) / SR
         self.kernels = [(np.sin(2 * np.pi * f * k) * np.exp(-k / dec)).astype(np.float32) for f in freqs]
+        k = np.arange(int(0.03 * SR)) / SR
         self.drip = (np.sin(2 * np.pi * 520 * k) * np.exp(-k / 0.012)).astype(np.float32)
         self.gust_P = rng.uniform(9, 16); self.gust_ph = rng.uniform(0, 6.28)
+        # resonant "body" of the surface (tin roof drums, car cabin booms)
+        self.body = {"tin_roof": NoiseBed(rng, 220, 650, 1.0, breathe=0.0),
+                     "car": NoiseBed(rng, 45, 160, 1.0, breathe=0.0)}.get(mode)
 
     def __call__(self, c0, c1):
         n = c1 - c0
@@ -365,6 +460,7 @@ class RainBed:
         gust = 0.45 + 0.55 * sw ** 1.6                              # wave-like swell of the downpour
         inten = drift * gust
         wl, wr = self.wash(c0, c1)
+        body = self.body(c0, c1) if self.body is not None else None
         out = []
         for ch, w in enumerate((wl, wr)):
             drops = np.zeros(n, np.float32)
@@ -373,12 +469,14 @@ class RainBed:
             drops[pos] = self.rng.uniform(0.1, 1.0, cnt) ** 2 * gust[pos]
             d = sum(fftconvolve(drops * (self.rng.random(n) < 0.25), kern, mode="same")
                     for kern in self.kernels)
-            if self.mode != "outside":
+            if self.mode in ("inside", "window"):
                 dr = np.zeros(n, np.float32)
                 k = self.rng.poisson(n / SR / (3.5 if self.mode == "inside" else 6.0))
                 dr[self.rng.integers(0, n, k)] = self.rng.uniform(0.4, 1.0, k)
                 d = 0.6 * d + 0.7 * fftconvolve(dr, self.drip, mode="same")
             mix = (0.65 * w + 0.9 * d) * inten
+            if body is not None:
+                mix = mix + (0.35 if self.mode == "tin_roof" else 0.5) * body[ch] * inten
             if self.lp is not None:
                 mix, self.lp_zi[ch] = sosfilt(self.lp, mix, zi=self.lp_zi[ch])
             out.append((mix * self.level).astype(np.float32))
@@ -474,6 +572,10 @@ TITLES = {
     "rain":      ("Gentle Rain Meditation", ["Window Rain", "Spring Shower", "Evening Drizzle", "Rooftop Rain",
                                              "Misty Garden", "Rain on Leaves", "Cabin Rain", "Monsoon Night",
                                              "Soft Downpour", "Garden After Rain"]),
+    "storm":     ("Thunderstorm Sounds for Sleep", ["Midnight Storm", "Summer Night", "Mountain Cabin",
+                                                    "Country Road", "Old Farmhouse", "Late Autumn",
+                                                    "Coastal Night", "Quiet Valley", "Northern Woods",
+                                                    "Prairie Night", "Lakeside Cabin"]),
     "morning":   ("Morning Sunrise Yoga Flow", ["First Light", "Golden Hour", "Dew Fields", "Open Sky",
                                                    "Gentle Awakening", "Soft Breeze", "Warm Horizon", "New Day",
                                                    "Sun Salutation", "Clear Morning"]),
@@ -712,8 +814,64 @@ def style_morning(rng, dur, o):
                  params={"key": key, **info, "recipe": R})
 
 
+STORM_SETTINGS = {
+    # rain mode, thunder low-pass (what walls/roof let through), wind chance
+    "window":    ("window",   2600, 0.5),
+    "open":      ("outside",  None, 0.7),
+    "tin_roof":  ("tin_roof", 1800, 0.4),
+    "tent":      ("tent",     3200, 0.8),
+    "car":       ("car",       700, 0.3),
+    "fireplace": ("inside",    900, 0.3),
+}
+STORM_INTENSITY = {"heavy": 1.45, "steady": 1.0, "light": 0.6}
+
+
+def style_storm(rng, dur, o):
+    """Thunderstorm / rain soundscape for sleep: rain falling on a chosen surface, rolling thunder
+    (heavy = near strikes with a crack, gentle = far away, none), gusts of wind, optional fire,
+    optional very soft pad. Mostly dry — small room reverb, no drama at the start."""
+    setting = o.get("setting") or pick(rng, ["window", "window", "tin_roof", "tent", "car", "fireplace", "open"])
+    thunder_k = o.get("thunder") or pick(rng, ["heavy", "gentle", "gentle", "none"])
+    intensity = o.get("intensity") or ("light" if thunder_k == "none" and rng.random() < 0.4
+                                       else "heavy" if thunder_k == "heavy" else "steady")
+    mode, muffle, wind_p = STORM_SETTINGS[setting]
+    R = {"variant": setting, "thunder": thunder_k, "intensity": intensity, "layers": [],
+         "reverb_s": round(rng.uniform(2.0, 3.0), 2), "pace": 1.0, "timbre": None}
+    lvl = RainBed.MODES[mode][5] * STORM_INTENSITY[intensity]
+    beds = [RainBed(rng, level=lvl, mode=mode, period=rng.uniform(300, 600))]
+    if thunder_k != "none" and rng.random() < wind_p or (setting == "open" and intensity == "heavy"):
+        R["layers"].append("wind")
+        beds.append(WindBed(rng, level=0.03 if setting in ("car", "fireplace") else 0.05))
+    if setting == "fireplace":
+        R["layers"].append("fire")
+        beds.append(FireBed(rng, level=0.028))
+    ev = []
+    if thunder_k != "none":
+        R["layers"].append("thunder")
+        near = thunder_k == "heavy"
+        strikes = R.setdefault("strikes", [])
+        gaps = (35, 100) if near else (80, 210)
+
+        def mk(t):
+            dist = float(rng.uniform(0.12, 0.6) if near else rng.uniform(0.6, 0.95))
+            ln = float(rng.uniform(9, 17))
+            strikes.append([round(t, 2), round(dist, 2)])          # exact times → lightning in the video
+            g = (0.04 if near else 0.022) * (1.15 - 0.5 * dist)      # sleep: thunder stays below a startle
+            return Event(t, ln, thunder_storm(rng, dist, muffle, ln), rng.uniform(-0.6, 0.6), g, wet=0.5)
+        ev += scattered(rng, dur, rng.uniform(25, 70), gaps, mk, d_period=900)
+    info = {}
+    if o.get("music"):
+        R["layers"].append("pad")
+        tun = Tuning(); key = int(rng.integers(43, 50))
+        secs = plan_harmony(rng, dur, "minor" if rng.random() < 0.5 else "major", 24, key, info=info)
+        ev += pad_events(secs, rng, tun, 8, TIMBRES["soft"], 0.006)
+        info["key"] = key
+    return Score(ev, beds, reverb_s=R["reverb_s"], reverb_lp=4000, dry=0.9, wet=0.25,
+                 band=(28, 16000), target_lufs=-20.0, params={**info, "recipe": R})
+
+
 STYLES = {"bowls": style_bowls, "cosmic": style_cosmic, "sleep": style_sleep,
-          "solfeggio": style_solfeggio, "rain": style_rain, "morning": style_morning}
+          "solfeggio": style_solfeggio, "rain": style_rain, "morning": style_morning, "storm": style_storm}
 
 
 # ── renderer ──────────────────────────────────────────────────────────────────
@@ -852,8 +1010,36 @@ def render(score: Score, dur: float, out_path: Path, fmt: str, seed: int, log=pr
 
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
+STORM_TITLES = {   # (setting, thunder) → base title; every one contains "rain" or "thunderstorm"
+    ("window", "heavy"): "Thunderstorm Sounds for Sleep",
+    ("window", "gentle"): "Gentle Thunderstorm for Sleep",
+    ("window", "none"): "Rain Sounds for Sleep, No Thunder",
+    ("open", "heavy"): "Heavy Rain and Thunder",
+    ("open", "gentle"): "Rain with Distant Thunder",
+    ("open", "none"): "Heavy Rain Sounds, No Thunder",
+    ("tin_roof", None): "Rain on a Tin Roof",
+    ("tent", None): "Rain on a Tent",
+    ("car", None): "Rain on a Car Roof",
+    ("fireplace", "none"): "Rain and Crackling Fire",
+    ("fireplace", None): "Thunderstorm by the Fire",
+}
+
+
+def storm_title(R: dict) -> str:
+    s, th, it = R.get("variant"), R.get("thunder"), R.get("intensity")
+    if th == "none" and it == "light" and s in ("window", "open"):
+        return "Light Rain Sounds for Sleep"
+    t = STORM_TITLES.get((s, th)) or STORM_TITLES.get((s, None)) or "Thunderstorm Sounds for Sleep"
+    if s in ("tin_roof", "tent", "car"):
+        t += {"heavy": " with Thunder", "gentle": " with Distant Thunder", "none": ", No Thunder"}[th]
+    return t
+
+
 def track_title(style, rng, params: dict) -> str:
     R = params.get("recipe", {})
+    if style == "storm":
+        names = TITLES["storm"][1]
+        return f"{storm_title(R)} — {names[int(rng.integers(len(names)))]}"
     base, names = VARIANT_TITLES.get((style, R.get("variant") or R.get("rain")), TITLES[style])
     hz = params.get("hz")
     if style == "solfeggio" and params.get("binaural_beat_hz"):
@@ -864,7 +1050,8 @@ def track_title(style, rng, params: dict) -> str:
 LAYER_WORDS = {"gong": "a deep gong", "chimes": "wind chimes", "choir": "a soft wordless choir",
                "waves": "distant ocean waves", "shimmer": "shimmering arpeggios", "plucks": "gentle plucked notes",
                "thunder": "far-off thunder", "bowls": "low singing bowls", "rain": "soft rain",
-               "bells": "soft bells", "drone": "a low drone"}
+               "bells": "soft bells", "drone": "a low drone", "wind": "gusts of wind",
+               "fire": "a crackling fire", "pad": "a very soft, low pad"}
 TIMBRE_WORDS = {"soft": "soft, rounded", "dark": "warm, dark", "warm": "warm, glowing",
                 "hollow": "woody, hollow", "glass": "clear, glassy"}
 
@@ -885,9 +1072,14 @@ def describe(style: str, params: dict) -> dict:
         "rain": {"inside": "Rain heard softly from indoors", "window": "Rain falling just outside an open window",
                  "outside": "Open-air rain"}.get(rain, "Gentle rain") + " over a warm pad",
         "morning": "Bright, gentle major-key pads and bells",
+        "storm": (({"window": "Rain against the window", "open": "Open-air rain", "tin_roof": "Rain drumming on a tin roof",
+                    "tent": "Rain pattering on a tent", "car": "Rain drumming on a car roof",
+                    "fireplace": "Rain outside a warm room"}.get(v, "Rain"))
+                  + {"heavy": " with rolling, nearby thunder", "gentle": " with soft, distant thunder",
+                     "none": ", no thunder"}.get(R.get("thunder"), "")),
     }[style]
     layers = [LAYER_WORDS[x] for x in R.get("layers", []) if x in LAYER_WORDS
-              and not (x == "gong" and v == "deep")]            # deep variant already names the gong
+              and not (x == "gong" and v == "deep") and x != "thunder"]            # deep variant already names the gong
     rv = R.get("reverb_s", 6)
     space = "a vast, echoing space" if rv >= 8.5 else "a spacious hall" if rv >= 6 else "a close, intimate space"
     pace = R.get("pace", 1.0) * (1.6 if v in ("slow", "deep") else 1.0)
@@ -895,8 +1087,16 @@ def describe(style: str, params: dict) -> dict:
     use = {"bowls": "deep meditation and breathwork" if v in ("slow", "deep") else "morning meditation and focus",
            "cosmic": "meditation, sleep and focus", "sleep": "sleep and night-time rest",
            "solfeggio": "meditation and relaxation", "rain": "sleep, reading and study",
-           "morning": "yoga and a calm morning routine"}[style]
+           "morning": "yoga and a calm morning routine",
+           "storm": "deep sleep, blocking out noise, reading and study"}[style]
     with_ = (", with " + (", ".join(layers[:-1]) + " and " + layers[-1] if len(layers) > 1 else layers[0])) if layers else ""
+    if style == "storm":
+        it = {"heavy": "Heavy, steady downpour", "steady": "Steady rain", "light": "Light, gentle rain"}.get(
+            R.get("intensity"), "Steady rain")
+        return {"description": f"{core}{with_}. {it} that swells and eases in slow waves, close and natural, "
+                               f"with no music and no sudden changes at the start. Best for {use}.".replace(
+                                   "no music", "only a faint pad" if "pad" in R.get("layers", []) else "no music"),
+                "character": [w for w in (v, R.get("thunder"), R.get("intensity")) if w]}
     text = f"{core}{with_}, in {space}. {TIMBRE_WORDS.get(R.get('timbre'), 'soft').capitalize()} tone, {pace_w}. Best for {use}."
     tags = [w for w in (v, rain, R.get("timbre"), pace_w.split()[0], "echo" if R.get("echo") else None) if w]
     return {"description": text, "character": tags}
@@ -905,7 +1105,7 @@ def describe(style: str, params: dict) -> dict:
 def signature(style: str, title: str, params: dict) -> tuple:
     """What makes two tracks of the same style sound alike: key, progression, timbre, layers."""
     r = params.get("recipe", {})
-    return (style, r.get("variant") or r.get("rain"), (params.get("key") or 0) % 12, params.get("progression"),
+    return (style, r.get("variant") or r.get("rain"), r.get("thunder"), (params.get("key") or 0) % 12, params.get("progression"),
             r.get("timbre"), tuple(sorted(r.get("layers", []))), params.get("hz"), title.split(" — ")[-1])
 
 
@@ -940,6 +1140,11 @@ def main():
                     help="rain: just outside an open window (default), muffled indoors, or open air")
     ap.add_argument("--variant", choices=sorted(BOWL_VARIANTS), default=None,
                     help="bowls: ringing (bright), slow (long sustain + echo), deep (low bowls + gong); default random")
+    ap.add_argument("--setting", choices=sorted(STORM_SETTINGS), default=None,
+                    help="storm: where the rain falls — window, open, tin_roof, tent, car, fireplace (default random)")
+    ap.add_argument("--thunder", choices=["heavy", "gentle", "none"], default=None, help="storm: thunder (default random)")
+    ap.add_argument("--intensity", choices=sorted(STORM_INTENSITY), default=None, help="storm: rain strength")
+    ap.add_argument("--music", action="store_true", help="storm: add a very soft low pad under the rain")
     ap.add_argument("--allow-repeat", action="store_true",
                     help="skip the check against recently generated tracks of the same style")
     ap.add_argument("--format", choices=["mp3", "flac", "wav"], default="mp3")
@@ -955,7 +1160,8 @@ def main():
     out_dir = Path(a.out_dir); out_dir.mkdir(parents=True, exist_ok=True)
     seed_next = a.seed if a.seed is not None else int(time.time()) % 1_000_000
     log_path = out_dir / "ambient_log.jsonl"
-    opts = {"hz": a.hz, "binaural": a.binaural, "register": a.register, "rain": a.rain, "variant": a.variant}
+    opts = {"hz": a.hz, "binaural": a.binaural, "register": a.register, "rain": a.rain, "variant": a.variant,
+            "setting": a.setting, "thunder": a.thunder, "intensity": a.intensity, "music": a.music}
     recent = [] if a.allow_repeat else recent_tracks(log_path, a.style)
     recent_sigs = {json.dumps(r["signature"]) for r in recent if r.get("signature")}
     recent_names = {r["title"].split(" — ")[-1] for r in recent if r.get("title")}
