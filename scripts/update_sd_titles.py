@@ -61,13 +61,23 @@ def fix_title(title: str) -> str:
     for pat in (_DUR_PAT, _DUR_PAT2, _DUR_PAT3):
         t = pat.sub(lambda m: f" {_round_dur(m)} ", t)
 
-    # 2. Strip "| Sacred Drift" at end
+    # 2. Strip "| Sacred Drift" — at end OR before #shorts (keep space before hashtag)
+    t = re.sub(r'\s*[\|]\s*Sacred Drift\s+(?=#shorts)', ' ', t, flags=re.IGNORECASE)
     t = re.sub(r'\s*[\|]\s*Sacred Drift\s*$', '', t, flags=re.IGNORECASE)
 
     # 3. Replace "—" separator before "•" duration if still present
     t = re.sub(r'\s+—\s+(•)', r' \1', t)
 
-    # 4. Tidy multiple spaces
+    # 4. "Rain & Water Meditation" → "Rain & Water Ambience" (mixed content)
+    t = t.replace('Rain & Water Meditation', 'Rain & Water Ambience')
+
+    # 5. "Heart Chakra Opening" → "Heart Chakra Meditation" (display name fix)
+    t = t.replace('Heart Chakra Opening', 'Heart Chakra Meditation')
+
+    # 6. "— N Hour" → "• N Hour" (em-dash separator before hour)
+    t = re.sub(r'\s+—\s+(\d+ Hour)', r' • \1', t)
+
+    # 7. Tidy multiple spaces
     t = re.sub(r' {2,}', ' ', t).strip()
 
     return t

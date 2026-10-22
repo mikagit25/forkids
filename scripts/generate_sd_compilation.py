@@ -89,10 +89,12 @@ CATEGORIES = {
         'rainforest_night', 3600
     ),
     'rain_water': (
-        'Rain & Water Meditation 🌊',
-        ['rain', 'ocean', 'river', 'mountain stream', 'waterfall',
+        'Rain & Water Ambience 🌧️',
+        ['rain meditation', 'rain ambient', 'rainfall', 'rain on', 'rain and',
+         'autumn rain', 'gentle rain', 'spring rain', 'tropical rain',
+         'ocean', 'river', 'mountain stream', 'waterfall',
          'crystal lake', 'hot springs', 'tropical sunset', 'thunderstorm',
-         'tide', 'harbor', 'surf', 'underwater ocean'],
+         'low tide', 'moon tide', 'surf', 'underwater ocean'],
         'night_rain', 3600
     ),
     'tibetan_bowls': (
