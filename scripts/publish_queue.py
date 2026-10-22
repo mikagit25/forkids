@@ -477,6 +477,9 @@ def main():
                         slot = None
                     if slot is not None:
                         priority = -1 if slot == dow_now else 1   # another day's slot: wait for its day
+                elif "_code_" in name and name.startswith("sd_short_"):
+                    # Procedural short (make_sd_video --with-short) — always first in the shorts slot
+                    priority = -1
                 elif name.startswith("sd_sound_design_") or name.startswith("ambient_") or name.startswith("fire_"):
                     priority = 2
                 elif name.startswith("sd_classical_"):
