@@ -17,7 +17,7 @@ day the video will be PUBLISHED (the nightly run after 12:00 UTC prepares tomorr
   Thu  theta binaural beats for study  3 h  mandala
   Fri  rain in a setting (tin roof…)   3 h  window / dark
   Sat  deep space sleep                3 h  cosmic
-  Sun  Sacred Drift Sleep #NN         10 h  dark screen
+  Sun  Sacred Drift Sleep #NN          3 h  dark screen (length test; was 10 h)
 Title formula: problem/benefit + instrument + duration (+ series number), one emoji, nothing
 after the duration; no medical claims.
 
@@ -96,7 +96,10 @@ def program(dow: int, week: int) -> dict:
                          "intensity": r(["steady", "light", "heavy"])}}
     if dow == 5:
         return {"style": "cosmic", "minutes": 180, "scene": "cosmic", "opts": {}}
-    return {"style": "sleep", "minutes": 600, "scene": "dark", "opts": {}, "series": "Sacred Drift Sleep"}
+    # length test (Oct 2026): Calm Classics data — 4–11 h videos are watched ~5%, 1 h ~17%. Sunday runs 3 h for
+    # 2–3 weeks while Monday stays 8 h; compare % watched + impressions in analytics_report, then decide.
+    return {"style": "sleep", "minutes": 180, "scene": "dark", "opts": {}, "series": "Sacred Drift Sleep",
+            "length_test": "sun_3h_vs_mon_8h"}
 
 
 def publish_date(now: datetime.datetime | None = None) -> datetime.date:
@@ -437,6 +440,8 @@ def main():
         meta["program"] = DAY_NAMES[pdate.weekday()] if a.program == "today" else a.program
         if prog.get("series"):
             meta["series"] = prog["series"]; meta["series_no"] = next_series_number(prog["series"], commit=True)
+        if prog.get("length_test"):
+            meta["length_test"] = prog["length_test"]
     meta_p.write_text(yaml.dump(meta, allow_unicode=True, default_flow_style=False, sort_keys=False))
     print(f"✅ queued: {mp4.name}\n   title: {meta['title']}\n   words in description: {len(meta['description'].split())}")
     if a.with_short:
