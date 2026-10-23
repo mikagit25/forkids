@@ -125,6 +125,8 @@ def channel_report(key: str, days: int) -> dict:
         v["search_terms"] = [r["insightTrafficSourceDetail"] for r in
                              q(ya, S, E, "views", "insightTrafficSourceDetail",
                                f"video=={v['video']};insightTrafficSourceType==YT_SEARCH", "-views", 10)]
+        v["sources"] = {r["insightTrafficSourceType"]: r["views"] for r in
+                        q(ya, S, E, "views", "insightTrafficSourceType", f"video=={v['video']}", "-views")}
         v["devices"] = {r["deviceType"]: r["estimatedMinutesWatched"] for r in
                         q(ya, S, E, "estimatedMinutesWatched", "deviceType", f"video=={v['video']}")}
     # our recent titles (to see which searched words we already use)
@@ -212,14 +214,17 @@ def md_channel(R: dict) -> str:
             out.append("**➕ Searched but NOT in our titles — try them:** " + ", ".join(K["missing_from_titles"][:12]))
         out.append("")
     if R["videos"]:
-        out.append("| Video | Views | Avg % watched | Avg min | TV share | Found by |")
-        out.append("|---|---:|---:|---:|---:|---|")
+        out.append("| Video | Views | Avg % watched | Avg min | TV share | Main source | Found by |")
+        out.append("|---|---:|---:|---:|---:|---|---|")
         for v in R["videos"][:12]:
             dv = v.get("devices") or {}
             tvs = pct(dv.get("TV", 0), sum(dv.values())) if dv else ""
             st = ", ".join((v.get("search_terms") or [])[:3])
+            src = v.get("sources") or {}
+            main = max(src, key=src.get) if src else None
+            ms = f"{SOURCE_NAMES.get(main, main)} {pct(src[main], sum(src.values()))}" if main else ""
             out.append(f"| {v.get('title', v['video'])[:70]} | {int(v['views']):,} | {v['averageViewPercentage']:.0f}% | "
-                       f"{v['averageViewDuration'] / 60:.1f} | {tvs} | {st} |")
+                       f"{v['averageViewDuration'] / 60:.1f} | {tvs} | {ms} | {st} |")
         out.append("")
     return "\n".join(out)
 
