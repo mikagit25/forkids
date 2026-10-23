@@ -344,6 +344,20 @@ python3 -m sensory.episode --minutes 2 --queue-dir out/q      # тест, не �
 
 ---
 
+## АНАЛИТИКА (еженедельно)
+
+```bash
+python3 scripts/analytics_report.py                 # все 3 канала, 28 дней → reports/ + Telegram
+python3 scripts/analytics_report.py --channel sd --days 7
+```
+- Устройства (доля ТВ → фоновый просмотр, тёмная картинка), источники трафика, **поисковые запросы**,
+  топ-видео (% досмотра, ТВ-доля, по каким словам нашли), сравнение с прошлым периодом.
+- `config/title_keywords_{en,sd,cc}.json` — слова и фразы из поиска + «ищут, но нет в наших названиях».
+  Использовать при выборе названий новых видео.
+- Нужно право `yt-analytics.readonly` (добавлено в reauth-скрипты): один раз заново
+  `reauth_youtube.py --channel en|ar|id`. Без него отчёт пишет «needs analytics permission».
+- Cron: понедельник 06:00 UTC.
+
 ## ПРАВИЛА ПУБЛИКАЦИИ
 
 ```bash

@@ -23,6 +23,7 @@ TOKEN  = ROOT / "credentials" / "token.pickle"
 SCOPES = [
     "https://www.googleapis.com/auth/youtube.upload",
     "https://www.googleapis.com/auth/youtube",
+    "https://www.googleapis.com/auth/yt-analytics.readonly",   # analytics_report.py (read-only)
 ]
 
 REDIRECT = "http://localhost:9876/"
