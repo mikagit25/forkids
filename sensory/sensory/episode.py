@@ -161,6 +161,8 @@ How families use it:
 
 The picture stays dark and slow on purpose, so the screen can face away and the music can do the work. There is no talking and no text, so it works for children everywhere.
 
+Every episode features a different group of fruit friends in a different gentle colour palette, so the series stays fresh while keeping the same calm, sleep-friendly atmosphere your little one will come to recognise.
+
 {credit}
 🎨 Original characters and animation by Happy Bear Kids.
 

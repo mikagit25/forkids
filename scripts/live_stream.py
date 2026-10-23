@@ -79,7 +79,7 @@ MAX_SINGLE_CONTRIBUTION_HOURS = 5
 # ── Sacred Drift: 7-day themed stream rotation ────────────────────────────────
 # Each day has a primary theme → different mix of content categories
 SD_DAILY_THEMES = {
-    0: "classical",   # Monday    — Classical Night
+    0: "sleep",       # Monday    — Deep Sleep & Rain (thunderstorm programme)
     1: "healing",     # Tuesday   — Deep Healing Journey
     2: "nature",      # Wednesday — Nature & Earth Sounds
     3: "focus",       # Thursday  — Focus & Study Session
@@ -1380,7 +1380,7 @@ def _escape_drawtext(text: str) -> str:
     return text.replace("\\", "\\\\").replace("'", "\\'").replace(":", "\\:").replace("%", "\\%")
 
 
-def _drawtext_vf(now_playing_path: Path) -> str:
+def _drawtext_vf(now_playing_path: Path, channel_brand: str = CHANNEL_BRAND) -> str:
     """
     Build ffmpeg -vf string for a two-line overlay:
       Line 1 (large): current program title — read from file, refreshed every 60s
@@ -1388,7 +1388,7 @@ def _drawtext_vf(now_playing_path: Path) -> str:
     Positioned in the lower third, centred, with semi-transparent black box.
     """
     np = str(now_playing_path).replace("'", "\\'").replace(":", "\\:")
-    brand = _escape_drawtext(CHANNEL_BRAND)
+    brand = _escape_drawtext(channel_brand)
 
     title_dt = (
         f"drawtext="
@@ -1467,9 +1467,10 @@ def _start_now_playing_watcher(playlist: list[Path], durations: list[float],
 # ── ffmpeg ────────────────────────────────────────────────────────────────────
 
 def _start_ffmpeg(playlist_file: Path, rtmp_url: str,
-                  now_playing_path: Path, log_path: Path) -> int:
+                  now_playing_path: Path, log_path: Path,
+                  channel_brand: str = CHANNEL_BRAND) -> int:
     """Launch ffmpeg streaming process with on-screen track name overlay. Returns PID."""
-    vf = _drawtext_vf(now_playing_path)
+    vf = _drawtext_vf(now_playing_path, channel_brand)
     cmd = [
         "ffmpeg", "-hide_banner", "-loglevel", "warning",
         "-fflags", "+genpts",          # regenerate timestamps at concat seams
@@ -1688,8 +1689,9 @@ def cmd_start(args):
     watcher_pid = _start_now_playing_watcher(playlist, durations, np_file, _ffmpeg_log(channel, slot))
     log.info(f"Now-playing watcher PID {watcher_pid}")
 
-    # Start ffmpeg with on-screen overlay
-    pid = _start_ffmpeg(pf, rtmp_url, np_file, _ffmpeg_log(channel, slot))
+    # Start ffmpeg with on-screen overlay (brand differs per channel)
+    brand = "Sacred Drift" if is_sd else CHANNEL_BRAND
+    pid = _start_ffmpeg(pf, rtmp_url, np_file, _ffmpeg_log(channel, slot), channel_brand=brand)
     log.info(f"ffmpeg PID {pid} — transitioning broadcast to live...")
 
     # Wait for stream to be ingesting, then manually transition to live
