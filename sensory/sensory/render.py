@@ -109,10 +109,20 @@ def render_to_music(out: Path, audio: str, cast, seconds: float | None = None, f
         raise RuntimeError("ffmpeg failed")
 
 
+def _high_contrast(frame: np.ndarray) -> np.ndarray:
+    """Convert frame to grayscale + boost contrast for newborn high-contrast mode."""
+    gray = (frame[..., 0] * 0.299 + frame[..., 1] * 0.587 + frame[..., 2] * 0.114).astype(np.float32) / 255
+    # stretch: darks → black, lights → white
+    lo, hi = np.percentile(gray[gray > 0.02], [2, 98]) if gray.max() > 0.02 else (0.0, 1.0)
+    gray = np.clip((gray - lo) / max(hi - lo, 0.01), 0, 1)
+    rgb = (gray[..., None] * 255).astype(np.uint8)
+    return np.concatenate([rgb, rgb, rgb], axis=2)
+
+
 def _render_range(args):
     """Worker: frames [f0, f1) of an episode → video-only mp4."""
     import json
-    audio, scenes, f0, f1, fps, w, h, path = args
+    audio, scenes, f0, f1, fps, w, h, path, high_contrast = args
     from .timeline import energy_at, frame_items
     bmap = json.loads(Path(audio).with_suffix(".json").read_text())
     cmd = ["ffmpeg", "-loglevel", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{w}x{h}",
@@ -122,7 +132,10 @@ def _render_range(args):
     ph = lambda t, off: beatmap_phase(bmap, t, off)        # noqa: E731
     for f in range(f0, f1):
         t = f / fps
-        p.stdin.write(compose(frame_items(scenes, bmap, t, ph, energy_at(bmap, t), w, h), w, h, t).tobytes())
+        frame = compose(frame_items(scenes, bmap, t, ph, energy_at(bmap, t), w, h), w, h, t)
+        if high_contrast:
+            frame = _high_contrast(frame)
+        p.stdin.write(frame.tobytes())
     p.stdin.close()
     if p.wait():
         raise RuntimeError("ffmpeg failed")
@@ -130,7 +143,8 @@ def _render_range(args):
 
 
 def render_episode(out: Path, audio: str, pool: list[str], seed: int, fps=30, w=1920, h=1080,
-                   workers: int | None = None, seconds: float | None = None):
+                   workers: int | None = None, seconds: float | None = None,
+                   high_contrast: bool = False):
     """Song + character pool → finished mp4. Frames are split across CPU cores, then concatenated."""
     import json
     import os
@@ -143,7 +157,8 @@ def render_episode(out: Path, audio: str, pool: list[str], seed: int, fps=30, w=
     workers = workers or os.cpu_count() or 1
     with tempfile.TemporaryDirectory() as td:
         bounds = [total * i // workers for i in range(workers + 1)]
-        jobs = [(audio, scenes, bounds[i], bounds[i + 1], fps, w, h, Path(td) / f"part{i}.mp4") for i in range(workers)]
+        jobs = [(audio, scenes, bounds[i], bounds[i + 1], fps, w, h, Path(td) / f"part{i}.mp4", high_contrast)
+                for i in range(workers)]
         with Pool(workers) as pool_:
             parts = pool_.map(_render_range, jobs)
         lst = Path(td) / "list.txt"

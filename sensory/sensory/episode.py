@@ -198,10 +198,16 @@ def main():
     ap.add_argument("--seed", type=int, default=None)
     ap.add_argument("--queue-dir", default=str(QUEUE))
     ap.add_argument("--workers", type=int, default=None)
+    ap.add_argument("--high-contrast", action="store_true",
+                    help="B&W high-contrast mode for newborns 0-3 months")
+    ap.add_argument("--family", choices=["fruits", "veggies", "all"], default="fruits",
+                    help="character family to use (default: fruits)")
     a = ap.parse_args()
     seed = a.seed if a.seed is not None else int(datetime.datetime.now().timestamp()) % 100000
     rnd = random.Random(seed)
     q = Path(a.queue_dir); q.mkdir(parents=True, exist_ok=True)
+    from .characters import FAMILIES
+    char_pool = FAMILIES.get(getattr(a, "family", "fruits"), FAMILIES["fruits"])
     src = Path(a.audio) if a.audio else None
     if src is None and (a.format == "sleep" or a.audio_dir or a.collection):
         src = pick_track(a.format, a.audio_dir, rnd)
@@ -213,7 +219,7 @@ def main():
     if a.format == "sleep":
         from .sleep import render_sleep
         stem = f"sensory_sleep_{today}_{seed}"
-        groups = render_sleep(q / f"{stem}.mp4", str(src), list(CHARACTERS), seed, minutes=a.minutes)
+        groups = render_sleep(q / f"{stem}.mp4", str(src), list(char_pool), seed, minutes=a.minutes)
         dur = float(json.loads(subprocess_probe(q / f"{stem}.mp4")))
         minutes = dur / 60
         cast = [c for g in groups for c in g]
@@ -240,18 +246,35 @@ def main():
                            check=True)
             bmap = analyze(wav, wav.with_suffix(".json"))
         print(f"♪ {genre} {bmap['bpm']:.0f} BPM, {bmap['duration'] / 60:.1f} min")
-        scenes = render_episode(q / f"{stem}.mp4", str(wav), list(CHARACTERS), seed, workers=a.workers)
+        hc = getattr(a, "high_contrast", False)
+        if hc:
+            stem = f"sensory_highcontrast_{genre}_{today}_{seed}"
+        scenes = render_episode(q / f"{stem}.mp4", str(wav), list(char_pool), seed,
+                                workers=a.workers, high_contrast=hc)
         minutes = bmap["duration"] / 60
         cast = [s.name for sc in scenes for s in sc.slots]
-        thumbnail(q / f"thumb_{stem}.png", list(dict.fromkeys(cast)), "FRUIT DANCE PARTY", seed)
+        if hc:
+            thumbnail(q / f"thumb_{stem}.png", list(dict.fromkeys(cast)), "HIGH CONTRAST", seed)
+        else:
+            thumbnail(q / f"thumb_{stem}.png", list(dict.fromkeys(cast)), "FRUIT DANCE PARTY", seed)
         word = GENRE_WORDS.get(genre, ("Party", "music"))
-        meta = {"title": f"Dancing Fruit {word[0]} 🍓 Sensory Video for Babies & Toddlers • {duration_words(round(minutes))}"[:100],
+        if hc:
+            video_title = f"High Contrast Baby Video 👁️ Sensory for Newborns • {duration_words(round(minutes))}"[:100]
+            video_type = "sensory_highcontrast"
+            tags = ["high contrast baby", "newborn sensory", "baby visual stimulation", "black and white baby",
+                    "sensory video", "newborn video", "baby development", "infant stimulation",
+                    "happy bear kids", "tummy time", "visual tracking", "0-3 months baby"]
+        else:
+            video_title = f"Dancing Fruit {word[0]} 🍓 Sensory Video for Babies & Toddlers • {duration_words(round(minutes))}"[:100]
+            video_type = "sensory_dance"
+            tags = ["sensory video", "baby sensory", "dancing fruit", "toddler video", "kids music",
+                    "fruit dance", "high contrast baby", "baby video", "dance party for kids", "happy bear kids",
+                    "visual stimulation", "babies music", f"{word[1]} for kids"]
+        meta = {"title": video_title,
                 "description": description_for(genre if genre in GENRE_WORDS else "bounce", minutes, cast).replace(
                     "🎵 Original music composed and synthesized by Happy Bear Kids — every note made in code, © 2026.", credit),
-                "tags": ["sensory video", "baby sensory", "dancing fruit", "toddler video", "kids music",
-                         "fruit dance", "high contrast baby", "baby video", "dance party for kids", "happy bear kids",
-                         "visual stimulation", "babies music", f"{word[1]} for kids"],
-                "video_type": "sensory_dance"}
+                "tags": tags,
+                "video_type": video_type}
         extra = {"bpm": bmap["bpm"]}
         wav.unlink(missing_ok=True); wav.with_suffix(".json").unlink(missing_ok=True)
     meta.update({"language": "en", "is_short": False, "status": "public", "made_for_kids": True,
