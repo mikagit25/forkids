@@ -112,9 +112,21 @@ def used_sources() -> set[str]:
     return out
 
 
+def _track_duration(path: Path) -> float:
+    import subprocess as sp
+    r = sp.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(path)],
+               capture_output=True, text=True)
+    try:
+        return float(r.stdout.strip())
+    except ValueError:
+        return 0.0
+
+
 def pick_track(fmt: str, audio_dir: str | None, rnd: random.Random) -> Path | None:
     """A track from our collection that no earlier episode used. Sleep: lullaby/sleep tracks first
-    (Suno), then procedural sleep music; dance: Suno songs (anything not a lullaby)."""
+    (Suno), then procedural sleep music; dance: Suno songs (anything not a lullaby).
+    Minimum durations: sleep >= 300s, dance >= 120s — filters out Suno clips/demos."""
+    min_sec = 300 if fmt == "sleep" else 120
     dirs = [Path(audio_dir)] if audio_dir else ([SUNO_DIR, SD_CODE_DIR] if fmt == "sleep" else [SUNO_DIR])
     words = ("lullaby", "sleep", "night", "dream", "calm", "bedtime") if fmt == "sleep" else None
     used = used_sources()
@@ -126,6 +138,8 @@ def pick_track(fmt: str, audio_dir: str | None, rnd: random.Random) -> Path | No
             files = [p for p in files if any(w in p.name.lower() for w in words)]
         elif fmt == "dance":
             files = [p for p in files if not any(w in p.name.lower() for w in ("lullaby", "sleep"))]
+        if not audio_dir:
+            files = [p for p in files if _track_duration(p) >= min_sec]
         if files:
             return rnd.choice(files)
     return None
