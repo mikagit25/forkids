@@ -41,6 +41,7 @@ GROQ_MODEL     = "openai/gpt-oss-20b"
 _GROQ_KEY_FILE = Path(__file__).resolve().parent.parent / "credentials" / "groq_api_keys.txt"
 GROQ_KEYS = [k.strip() for k in _GROQ_KEY_FILE.read_text().splitlines() if k.strip()] if _GROQ_KEY_FILE.exists() else []
 _groq_idx = 0
+GROQ_CALL_DELAY = 1.0  # seconds between Groq calls to stay within rate limits (~60 RPM / 3 keys)
 
 # BCP-47 codes and display names for YouTube localizations
 LANG_MAP = {
@@ -244,7 +245,10 @@ def translate_field(text: str, target_lang: str, field: str,
         {"role": "system", "content": instruction},
         {"role": "user",   "content": text},
     ]
-    for attempt in range(len(GROQ_KEYS) * 2):
+    import time as _t
+    # Up to 8 full key cycles; long sleep between cycles
+    wait_s = [2, 2, 65, 90, 90, 120, 120, 120]
+    for attempt in range(len(GROQ_KEYS) * 8):
         groq_key = _next_groq_key()
         payload = json.dumps({
             "model": GROQ_MODEL,
@@ -263,19 +267,20 @@ def translate_field(text: str, target_lang: str, field: str,
             method="POST",
         )
         try:
+            _t.sleep(GROQ_CALL_DELAY)
             with urllib.request.urlopen(req, timeout=60) as resp:
                 data = json.loads(resp.read())
             return _fix_composer_names(data["choices"][0]["message"]["content"].strip(), target_lang)
         except urllib.error.HTTPError as e:
             body = e.read().decode(errors="ignore")[:200]
             if e.code == 429:
-                if attempt > 0 and attempt % len(GROQ_KEYS) == 0:
-                    import time as _t; _t.sleep(65)
-                else:
-                    import time as _t; _t.sleep(2)
+                cycle = attempt // len(GROQ_KEYS)
+                w = wait_s[min(cycle, len(wait_s) - 1)]
+                print(f"    429 rate-limit (key {attempt % len(GROQ_KEYS)+1}/{len(GROQ_KEYS)}, cycle {cycle+1}), waiting {w}s...")
+                _t.sleep(w)
             else:
                 raise RuntimeError(f"Groq HTTP {e.code}: {body}") from e
-    raise RuntimeError("All Groq keys exhausted")
+    raise RuntimeError("All Groq keys exhausted after 8 cycles")
 
 
 def translate_meta(title: str, description: str, langs: list[str],
