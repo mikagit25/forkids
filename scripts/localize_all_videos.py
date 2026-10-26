@@ -38,12 +38,14 @@ LANG_MAP = {
     "ja": "Japanese",
     "ru": "Russian",
     "ko": "Korean",
+    "zh-Hans": "Chinese (Simplified)",
     "ar": "Arabic (Modern Standard)",
 }
 
 LANG_CODES = {
     "es": "es", "fr": "fr", "pt": "pt", "id": "id",
-    "de": "de", "it": "it", "ja": "ja", "ru": "ru", "ko": "ko", "ar": "ar",
+    "de": "de", "it": "it", "ja": "ja", "ru": "ru", "ko": "ko",
+    "zh-Hans": "zh", "ar": "ar",
 }
 
 COMPOSER_NAMES: dict[str, dict[str, str]] = {
@@ -101,8 +103,8 @@ def _composer_hint(lang: str) -> str:
 
 LANGS_BY_CHANNEL = {
     "en": ["es", "fr", "pt", "id"],
-    "ar": [],  # AR channel publishes in Arabic; no outbound translations
     "id": ["de", "it", "ja", "ru", "es", "fr", "pt", "ko", "ar"],
+    "sd": ["es", "fr", "pt", "id", "de", "it", "ja", "ru", "ko", "zh-Hans", "ar"],
 }
 
 CHANNEL_CONFIG = {
@@ -111,15 +113,15 @@ CHANNEL_CONFIG = {
         "type":   "kids",
         "langs":  LANGS_BY_CHANNEL["en"],
     },
-    "ar": {
-        "json":   ROOT / "credentials" / "youtube_token_ar.json",
-        "type":   "kids",
-        "langs":  LANGS_BY_CHANNEL["ar"],
-    },
     "id": {
         "json":   ROOT / "credentials" / "youtube_token_id.json",
         "type":   "adult",
         "langs":  LANGS_BY_CHANNEL["id"],
+    },
+    "sd": {
+        "json":   ROOT / "credentials" / "youtube_token_ar.json",
+        "type":   "adult",
+        "langs":  LANGS_BY_CHANNEL["sd"],
     },
 }
 
@@ -328,7 +330,7 @@ def push_localizations(yt, video_id: str, localizations: dict, dry_run: bool):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--channel", choices=["en", "ar", "id"], required=True)
+    parser.add_argument("--channel", choices=list(CHANNEL_CONFIG), required=True)
     parser.add_argument("--langs", default=None, help="Comma-separated lang codes")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--limit", type=int, default=0, help="Max videos to process (0=all)")
