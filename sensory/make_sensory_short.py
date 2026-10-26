@@ -170,8 +170,9 @@ def main():
     bmap = music.render(music.plan(genre, seed, SHORT_SECS + 4), wav)
     print(f"  {bmap['bpm']:.0f} BPM")
 
-    # Pick character
-    character = rnd.choice(list(CHARACTERS))
+    # Pick character — mix seed with genre so different genres get different characters
+    char_rnd = random.Random(seed ^ hash(genre) & 0xFFFFFF)
+    character = char_rnd.choice(list(CHARACTERS))
 
     # Render video (no audio)
     tmp_vid = q / f"{stem}_noaudio.mp4"

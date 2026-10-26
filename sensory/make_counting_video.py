@@ -206,9 +206,9 @@ How to watch together:
 • Try counting backwards after: 10, 9, 8…!
 
 Why counting videos help:
-• Early number sense starts with hearing and seeing numbers repeated
-• Bright colours and fun characters make learning feel like play
-• The beat helps little ones feel rhythm and sequence naturally
+• Early number sense starts with hearing and seeing numbers repeated in a fun, low-pressure context
+• Bright colours and fun characters make learning feel like play, not work
+• The beat helps little ones feel rhythm and sequence naturally, building early maths intuition
 
 🎵 Original music composed and synthesized by Happy Bear Kids — every note made in code, © 2026.
 🎨 Original characters and animation by Happy Bear Kids.
