@@ -374,6 +374,8 @@ def main():
     ap.add_argument("--scene", choices=sorted(sd_scenes.SCENES), default=None)
     ap.add_argument("--queue-dir", default=str(QUEUE_DIR))
     ap.add_argument("--audio-dir", default=str(AUDIO_DIR))
+    ap.add_argument("--from-audio", default=None,
+                    help="Path to an existing audio file — skip generation, use this track")
     a = ap.parse_args()
 
     if a.style == "today":
@@ -400,22 +402,51 @@ def main():
     else:
         style = a.style
     a.minutes = a.minutes or 60
-    if style not in STYLE_CATEGORY:
+    if not a.from_audio and style not in STYLE_CATEGORY:
         sys.exit(f"unknown style {style}")
     audio_dir = Path(a.audio_dir); audio_dir.mkdir(parents=True, exist_ok=True)
     qdir = Path(a.queue_dir); qdir.mkdir(parents=True, exist_ok=True)
 
     # 1. music
-    cmd = [sys.executable, str(SCRIPTS / "generate_ambient_audio.py"), "--style", style, "--minutes", str(a.minutes),
-           "--out-dir", str(audio_dir)]
-    for flag, val in (("--seed", a.seed), ("--variant", a.variant), ("--rain", a.rain), ("--hz", a.hz),
-                      ("--binaural", a.binaural), ("--setting", a.setting), ("--thunder", a.thunder),
-                      ("--intensity", a.intensity)):
-        if val is not None:
-            cmd += [flag, str(val)]
-    print("① music …"); subprocess.run(cmd, check=True)
-    rec = json.loads((audio_dir / "ambient_log.jsonl").read_text().splitlines()[-1])
-    audio = audio_dir / rec["file"]
+    if a.from_audio:
+        audio = Path(a.from_audio).resolve()
+        if not audio.exists():
+            sys.exit(f"--from-audio: file not found: {audio}")
+        # Look up log entry for this file
+        log_path = audio.parent / "ambient_log.jsonl"
+        rec = None
+        if log_path.exists():
+            for line in log_path.read_text().splitlines():
+                try:
+                    r = json.loads(line)
+                    if Path(r.get("file", "")).name == audio.name:
+                        rec = r; break
+                except ValueError:
+                    pass
+        if rec is None:
+            # Synthesize a minimal record from the filename
+            import re
+            seed_m = re.search(r'\((\d+)\)', audio.stem)
+            seed_val = int(seed_m.group(1)) if seed_m else 1
+            rec = {"file": audio.name, "seed": seed_val, "style": style or "cosmic",
+                   "params": {}, "title": audio.stem}
+        dur_s = float(subprocess.check_output(
+            ["ffprobe", "-v", "quiet", "-show_entries", "format=duration", "-of", "csv=p=0", str(audio)]
+        ).strip())
+        a.minutes = a.minutes or round(dur_s / 60)
+        style = style or rec.get("style", "cosmic")
+        print(f"① using existing audio: {audio.name} ({a.minutes:.0f} min)")
+    else:
+        cmd = [sys.executable, str(SCRIPTS / "generate_ambient_audio.py"), "--style", style, "--minutes", str(a.minutes),
+               "--out-dir", str(audio_dir)]
+        for flag, val in (("--seed", a.seed), ("--variant", a.variant), ("--rain", a.rain), ("--hz", a.hz),
+                          ("--binaural", a.binaural), ("--setting", a.setting), ("--thunder", a.thunder),
+                          ("--intensity", a.intensity)):
+            if val is not None:
+                cmd += [flag, str(val)]
+        print("① music …"); subprocess.run(cmd, check=True)
+        rec = json.loads((audio_dir / "ambient_log.jsonl").read_text().splitlines()[-1])
+        audio = audio_dir / rec["file"]
     scene = a.scene or sd_scenes.pick_scene(style, rec["seed"])
 
     stem = f"sd_comp_{STYLE_CATEGORY[style]}_code_{pdate:%Y%m%d}_{rec['seed']}"
