@@ -389,6 +389,13 @@ def save_localized_langs(meta_path: Path, langs: list[str]):
         yaml.dump(meta, f, allow_unicode=True, sort_keys=False, default_flow_style=False)
 
 
+def _has_youtube_id(path: Path) -> bool:
+    try:
+        return bool(load_meta(path).get("youtube_id"))
+    except Exception:
+        return False
+
+
 def find_queue_metas_with_id(dirs, extra_filter=None) -> list[Path]:
     """Scan one or more directories for meta_*.yaml files that have youtube_id set.
 
@@ -484,11 +491,21 @@ def main():
     elif args.queue:
         queue_dir = CHANNEL_CONFIG[channel]["queue_dir"]
         uploaded_dir = ROOT / "uploaded"
-        # For id/CNR channel, uploaded/ contains ALL channels mixed together.
-        # Only take made_for_kids=False entries, which are exclusively CNR videos.
-        cnr_filter = (lambda d: d.get("made_for_kids") is False) if channel in ("id", "sd") else None
-        metas_queue    = find_queue_metas_with_id([queue_dir])
-        metas_uploaded = find_queue_metas_with_id([uploaded_dir], extra_filter=cnr_filter)
+        # uploaded/ mixes all channels — filter by channel-specific signals:
+        # - sd: filename prefix meta_sd_* (Sacred Drift procedural videos)
+        # - id: made_for_kids=False AND NOT sd_ prefix (Calm Classics)
+        # - en: made_for_kids=True
+        if channel == "sd":
+            metas_queue    = find_queue_metas_with_id([queue_dir])
+            metas_uploaded = [p for p in sorted(uploaded_dir.glob("meta_sd_*.yaml"))
+                              if _has_youtube_id(p)]
+        elif channel == "id":
+            cnr_filter = lambda d: d.get("made_for_kids") is False
+            metas_queue    = find_queue_metas_with_id([queue_dir])
+            metas_uploaded = find_queue_metas_with_id([uploaded_dir], extra_filter=cnr_filter)
+        else:
+            metas_queue    = find_queue_metas_with_id([queue_dir])
+            metas_uploaded = find_queue_metas_with_id([uploaded_dir])
         metas = metas_queue + metas_uploaded
         print(f"Found {len(metas)} meta files with youtube_id "
               f"({len(metas_queue)} in {queue_dir.name}, {len(metas_uploaded)} in uploaded/) [{channel}]")
