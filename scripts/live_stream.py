@@ -606,6 +606,10 @@ def _classify(filename: str) -> tuple[str, str]:
     for keyword, title, mood in TITLE_MAP:
         if keyword in stem:
             return f"{MOOD_EMOJI[mood]} {title}", mood
+    # SD files (sd_comp_*, sd_short_*) — use SD title map
+    if stem.startswith("sd_"):
+        t, mood = _sd_classify(filename)
+        return t, mood
     return "🎵 Classical Music", "ambient"
 
 
@@ -863,24 +867,27 @@ def _sd_pick_playlist(queue_dir: Path, history: list, target_hours: float,
         if total_secs >= target_secs:
             break
 
-    # Pass 2: if still short, re-allow capped series with their remaining quota
+    # Pass 2: if still short, re-allow capped series — but only on-theme categories
+    # (categories explicitly listed in weights; weight > 0.05 = intentional for this theme)
+    theme_cats = {cat for cat, w in weights.items() if w >= 0.1}
     if total_secs < target_secs:
         added = {v.name for v in playlist}
         for v in candidates:
             if v.name in added:
                 continue
+            if _sd_get_category(v.name) not in theme_cats:
+                continue  # don't pollute stream with off-theme content
             dur = _get_duration(v)
             playlist.append(v)
             total_secs += dur
             if total_secs >= target_secs:
                 break
 
-    # Pass 3: forced repeat fill (meditation content) — shuffle so it sounds different
+    # Pass 3: forced repeat fill — repeat only on-theme content (never off-theme noise)
     if playlist and total_secs < target_secs:
         cat_for_theme = list(weights.keys())[0]  # primary category
-        # Prefer repeating meditation/nature content (no vocals)
-        repeat_pool = [v for v in playlist
-                       if _sd_get_category(v.name) in ("hz_freq", "chakra", "nature", "sleep", "reiki", "tibetan")]
+        # Prefer repeating the on-theme pool (no nature in a cosmic stream, etc.)
+        repeat_pool = [v for v in playlist if _sd_get_category(v.name) in theme_cats]
         if not repeat_pool:
             repeat_pool = list(playlist)
         _random.shuffle(repeat_pool)
