@@ -14,14 +14,17 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-# Primary: local Ollama (no rate limits, no API key)
-OLLAMA_URL   = "http://localhost:11434/api/generate"
-OLLAMA_MODEL = "translategemma:4b"
+# Primary: local Ollama (short timeout — fail fast if stuck)
+OLLAMA_URL      = "http://localhost:11434/api/generate"
+OLLAMA_MODEL    = "qwen3:8b"
+OLLAMA_TIMEOUT  = 8    # seconds — circuit breaker after first timeout
+_ollama_alive   = True
 
-# Fallback: Groq cloud (used only if Ollama unavailable)
-GROQ_CHAT_URL  = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_MODEL     = "openai/gpt-oss-20b"
-_GROQ_KEY_FILE = Path(__file__).resolve().parent.parent / "credentials" / "groq_api_keys.txt"
+# Groq cloud — openai/gpt-oss-20b reasoning model (high quality)
+GROQ_CHAT_URL   = "https://api.groq.com/openai/v1/chat/completions"
+GROQ_MODEL      = "openai/gpt-oss-20b"
+GROQ_CALL_DELAY = 1.0  # seconds between calls to stay within rate limits
+_GROQ_KEY_FILE  = Path(__file__).resolve().parent.parent / "credentials" / "groq_api_keys.txt"
 GROQ_KEYS = [k.strip() for k in _GROQ_KEY_FILE.read_text().splitlines() if k.strip()] if _GROQ_KEY_FILE.exists() else []
 _groq_key_idx = 0
 
@@ -234,36 +237,43 @@ def translate_field(text: str, target_lang: str, field: str,
     )
     instruction = prompt.rsplit("\n\n\n", 1)[0]
 
-    # Try Ollama first (translategemma:4b — specialized translation model, 55 languages)
-    try:
-        payload = json.dumps({
-            "model": OLLAMA_MODEL,
-            "prompt": prompt,
-            "stream": False,
-            "options": {"temperature": 0.1, "num_predict": 1000},
-        }).encode()
-        req = urllib.request.Request(
-            OLLAMA_URL, data=payload,
-            headers={"Content-Type": "application/json"}, method="POST",
-        )
-        with urllib.request.urlopen(req, timeout=180) as resp:
-            data = json.loads(resp.read())
-        return _fix_composer_names(data["response"].strip(), target_lang)
-    except Exception as ollama_err:
-        print(f"    Ollama unavailable ({ollama_err}), falling back to Groq...")
+    global _ollama_alive
+    if _ollama_alive:
+        try:
+            payload = json.dumps({
+                "model": OLLAMA_MODEL,
+                "prompt": prompt,
+                "stream": False,
+                "think": False,
+                "options": {"temperature": 0.1, "num_predict": 1500},
+            }).encode()
+            req = urllib.request.Request(
+                OLLAMA_URL, data=payload,
+                headers={"Content-Type": "application/json"}, method="POST",
+            )
+            with urllib.request.urlopen(req, timeout=OLLAMA_TIMEOUT) as resp:
+                data = json.loads(resp.read())
+            result = data.get("response", "").strip()
+            if result:
+                return _fix_composer_names(result, target_lang)
+            raise ValueError("empty response")
+        except Exception as ollama_err:
+            _ollama_alive = False
+            print(f"    Ollama unavailable ({ollama_err.__class__.__name__}), using Groq for this session...")
 
-    # Fallback: Groq cloud
+    # Groq cloud (openai/gpt-oss-20b — reasoning model, high-quality translation)
     groq_messages = [
         {"role": "system", "content": instruction},
         {"role": "user",   "content": text},
     ]
-    for attempt in range(len(GROQ_KEYS) * 2):
+    wait_s = [2, 2, 65, 90, 90, 120, 120, 120]
+    for attempt in range(len(GROQ_KEYS) * 8):
         groq_key = _next_groq_key()
         payload = json.dumps({
             "model": GROQ_MODEL,
             "messages": groq_messages,
             "temperature": 0.3,
-            "max_tokens": 2500,
+            "max_tokens": 3000,
         }).encode()
         req = urllib.request.Request(
             GROQ_CHAT_URL,
@@ -276,22 +286,20 @@ def translate_field(text: str, target_lang: str, field: str,
             method="POST",
         )
         try:
+            time.sleep(GROQ_CALL_DELAY)
             with urllib.request.urlopen(req, timeout=60) as resp:
                 data = json.loads(resp.read())
             return _fix_composer_names(data["choices"][0]["message"]["content"].strip(), target_lang)
         except urllib.error.HTTPError as e:
             body = e.read().decode(errors="ignore")[:200]
             if e.code == 429:
-                key_num = (attempt % len(GROQ_KEYS)) + 1
-                if attempt > 0 and attempt % len(GROQ_KEYS) == 0:
-                    print(f"    All keys rate-limited, waiting 65s for reset...")
-                    time.sleep(65)
-                else:
-                    print(f"    Rate limit on key #{key_num}, rotating...")
-                    time.sleep(2)
+                cycle = attempt // len(GROQ_KEYS)
+                w = wait_s[min(cycle, len(wait_s) - 1)]
+                print(f"    429 rate-limit (key {attempt % len(GROQ_KEYS)+1}/{len(GROQ_KEYS)}, cycle {cycle+1}), waiting {w}s...")
+                time.sleep(w)
             else:
                 raise RuntimeError(f"Groq HTTP {e.code}: {body}") from e
-    raise RuntimeError("All Groq keys exhausted")
+    raise RuntimeError("All Groq keys exhausted after 8 cycles")
 
 
 def push_localizations(yt, video_id: str, localizations: dict, dry_run: bool):
