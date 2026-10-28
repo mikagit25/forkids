@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageEnhance, ImageOps
@@ -50,27 +51,86 @@ def _wrap2(s):
     return [" ".join(w[:best]), " ".join(w[best:])] if len(w) > 1 else [s]
 
 
-def description(ep_dir: Path, episode: dict) -> Path:
+def short_url(it: dict) -> str:
+    if it["source"] == "commons" and it["id"].startswith("commons:"):
+        return f"https://commons.wikimedia.org/?curid={it['id'].split(':', 1)[1]}"
+    return it.get("page_url") or ""
+
+
+def _short_title(t: str, n=60) -> str:
+    t = re.sub(r"\s*\(.*?\)\s*", " ", t).strip(" ._-")
+    return t if len(t) <= n else t[: n - 1].rsplit(" ", 1)[0] + "…"
+
+
+def _image_index(ep_dir: Path):
+    """Every photo in order of first appearance, with its timestamp in the video."""
     man = json.loads((ep_dir / "manifest.json").read_text())
+    by_id = {i["id"]: i for v in man["scenes"].values() for i in v}
+    tl = json.loads((ep_dir / "build" / "timeline.json").read_text())
+    first, order = {}, []
+    for s in tl:
+        if s["kind"] == "photo" and s["id"] not in first:
+            first[s["id"]] = s["start"]
+            order.append(by_id[s["id"]])
+    return order, first
+
+
+def description(ep_dir: Path, episode: dict) -> Path:
+    from .render import fmt_ts
+    LIMIT = 5000
     chapters = (ep_dir / "build" / "chapters.txt").read_text().strip()
-    lines = [episode.get("subtitle", ""), "", "CHAPTERS", chapters, "", "ARCHIVE IMAGES"]
-    seen = set()
-    for scene in episode["scenes"]:
-        for i in man["scenes"].get(scene["id"], []):
-            if i["use"] and i["id"] not in seen:
-                seen.add(i["id"])
-                lines.append(f"• {i['title'][:90]} — {i['credit'][:80]} ({i['license'][:60]}) {i['page_url']}")
-    refs = episode.get("references") or []
-    if refs:
-        lines += ["", "FURTHER READING"] + [f"• {r}" for r in refs]
-    lines += ["", "Narration uses a synthetic (AI) voice. Script researched and fact-checked by our team.",
-              "All images are public domain or openly licensed; see the list above."]
+    order, first = _image_index(ep_dir)
+    colorized = [i for i in order if i.get("colorize")]
+
+    # full list for the archive: sources.md (can be published on your site and linked)
+    md = [f"# Sources: {episode['title']}", "", "## Archive images (in order of appearance)", "",
+          "| Time | Image | Archive | License | Link |", "|---|---|---|---|---|"]
+    for n, i in enumerate(order, 1):
+        md.append(f"| {fmt_ts(first[i['id']])} | {i['title'].replace('|', '/')}"
+                  f"{' (shown original, then digitally colorized)' if i.get('colorize') else ''} | {i['credit'].replace('|', '/')} "
+                  f"| {i['license']} | {i['page_url']} |")
+    if episode.get("references"):
+        md += ["", "## Research sources", ""] + [f"- {r}" for r in episode["references"]]
+    (ep_dir / "build" / "sources.md").write_text("\n".join(md) + "\n")
+
+    head = [episode.get("subtitle", ""), "", "CHAPTERS", chapters, ""]
+    tail = []
+    if episode.get("references"):
+        tail += ["", "RESEARCH SOURCES"] + [f"• {r}" for r in episode["references"]]
+    tail += ["", "Every image in this video comes from a public archive and is in the public domain or openly licensed.",
+             "Each one is listed above with the time it appears and a link to the original, so you can check it yourself."]
+    if colorized:
+        tail += ["Colorized images are always shown in their original black and white first. Their colours are an "
+                 "algorithmic estimate, not historical record."]
+    tail += ["Narration uses a synthetic voice. Script researched and fact-checked by our team."]
     if episode.get("hashtags"):
-        lines += ["", " ".join(episode["hashtags"])]
-    text = "\n".join(lines)
+        tail += ["", " ".join(episode["hashtags"])]
+    src_url = episode.get("sources_url")  # optional: where sources.md is published (e.g. your site)
+
+    def build_list(title_len):
+        out = ["ARCHIVE IMAGES (time · image · license · original)"]
+        for i in order:
+            lic = re.sub(r"\s+", " ", i["license"])[:28]
+            col = " [colorized]" if i.get("colorize") else ""
+            out.append(f"{fmt_ts(first[i['id']])} {_short_title(i['title'], title_len)}{col} · {lic} · {short_url(i)}")
+        return out
+
+    for title_len in (60, 45, 32, 22):
+        lines = head + build_list(title_len) + tail
+        text = "\n".join(lines)
+        if len(text) <= LIMIT:
+            break
+    else:  # still too long: keep links only for what fits and point to the full list
+        lst = build_list(22)
+        more = [f"Full list of all {len(order)} images with links: {src_url}" if src_url else
+                "Full list of all images with links: see the pinned comment."]
+        while len("\n".join(head + lst + more + tail)) > LIMIT and len(lst) > 2:
+            lst.pop()
+        text = "\n".join(head + lst + more + tail)
     out = ep_dir / "build" / "description.txt"
     out.write_text(text)
-    print(f"description: {out} ({len(text)} chars; YouTube limit 5000)")
+    print(f"description: {out} ({len(text)} chars, {len(order)} images listed; YouTube limit {LIMIT})")
+    print(f"sources:     {ep_dir / 'build' / 'sources.md'}")
     return out
 
 

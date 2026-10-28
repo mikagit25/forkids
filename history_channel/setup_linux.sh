@@ -14,6 +14,12 @@ mkdir -p models fonts
   https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx
 [ -f models/voices-v1.0.bin ] || curl -L -o models/voices-v1.0.bin \
   https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
+# parallax depth model (Depth Anything V2 Small, Apache-2.0, ~100 MB)
+[ -f models/depth_anything_v2_vits.onnx ] || curl -L -o models/depth_anything_v2_vits.onnx \
+  https://github.com/fabio-sim/Depth-Anything-ONNX/releases/download/v2.0.0/depth_anything_v2_vits.onnx
+# colorization model (DDColor, Apache-2.0, ~1 GB) - only needed for shots marked colorize
+[ -f models/ddcolor.onnx ] || curl -L -o models/ddcolor.onnx \
+  https://github.com/facefusion/facefusion-assets/releases/download/models-3.0.0/ddcolor.onnx
 G=https://raw.githubusercontent.com/google/fonts/main/ofl
 [ -f fonts/PlayfairDisplay.ttf ]   || curl -sL -o fonts/PlayfairDisplay.ttf   "$G/playfairdisplay/PlayfairDisplay%5Bwght%5D.ttf"
 [ -f fonts/Oswald.ttf ]            || curl -sL -o fonts/Oswald.ttf            "$G/oswald/Oswald%5Bwght%5D.ttf"

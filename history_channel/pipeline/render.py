@@ -1,16 +1,21 @@
 """Step 3: assemble the video.
 
-Archive photos get slow Ken Burns motion and cross-dissolves, chapter cards come from the script,
-every photo carries an on-screen source credit, subtitles (SRT) and YouTube chapters are generated
-from the real narration timings.
+- Archive photos move with 2.5D parallax: a depth map (Depth Anything V2 Small) shifts near and far
+  parts of the *same* pixels at different speeds. Nothing is painted in. Falls back to Ken Burns if
+  the depth model is not installed.
+- Shots marked `colorize` show the authentic black-and-white photo first, then dissolve to a
+  colorized version; the on-screen credit then says "Digitally colorized".
+- Quote cards show a primary-source quote while the narrator reads it.
+- Chapter cards, title card, end card, on-screen source credit for every photo.
+- Subtitles (SRT), YouTube chapters and a timeline of which photo appears when (for the description).
 """
 from __future__ import annotations
 
 import json
-import zlib
 import random
 import re
 import subprocess
+import zlib
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -19,6 +24,7 @@ import numpy as np
 import soundfile as sf
 from PIL import Image, ImageDraw, ImageFilter, ImageFont, ImageOps
 
+from . import vision
 from .tts import SR
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -28,6 +34,7 @@ XF = 0.8          # cross-dissolve seconds
 CARD = 3.2        # chapter card seconds
 TITLE = 4.5       # title card seconds (after the cold open)
 ENDCARD = 12.0    # end screen seconds (YouTube end-screen elements need 5-20s)
+MAX_SHOT = 13.0   # longest time one photo stays on screen
 
 
 # ------------------------------------------------------------------ text helpers
@@ -55,7 +62,7 @@ def draw_tracked(d: ImageDraw.ImageDraw, xy, text, f, fill, tracking=0, anchor_c
 
 
 def wrap(d, text, f, max_w):
-    """Greedy wrap to find the line count, then rebalance so lines have similar width (no orphans)."""
+    """Greedy wrap to find the line count, then rebalance two-line titles (no orphans)."""
     words, lines, cur = text.split(), [], ""
     for w in words:
         t = (cur + " " + w).strip()
@@ -73,49 +80,107 @@ def wrap(d, text, f, max_w):
     return lines
 
 
-# ------------------------------------------------------------------ canvases (4K, so motion stays sharp at 1080p)
-def load_photo(path: Path) -> Image.Image:
+# ------------------------------------------------------------------ photo canvases (4K, so motion stays sharp at 1080p)
+def load_rgb(path: Path, autocontrast=True) -> np.ndarray:
     im = Image.open(path).convert("RGB")
-    im = ImageOps.autocontrast(im, cutoff=0.4)   # old scans are often washed out
-    return im
+    if autocontrast:
+        im = ImageOps.autocontrast(im, cutoff=0.4)   # old scans are often washed out
+    return np.array(im)
 
 
-def make_canvas(im: Image.Image, W: int, H: int) -> tuple[Image.Image, bool]:
-    """Returns (canvas, is_full_bleed). Wide images fill the frame; others sit on a blurred copy."""
-    a = im.width / im.height
-    if 1.42 <= a <= 2.3:
-        return ImageOps.fit(im, (W, H), Image.LANCZOS, centering=(0.5, 0.42)), True
-    bg = ImageOps.fit(im, (W // 8, H // 8), Image.BILINEAR).filter(ImageFilter.GaussianBlur(6))
-    bg = bg.resize((W, H), Image.BILINEAR)
-    bg = Image.eval(bg, lambda v: int(v * 0.38))
-    fg = im.copy()
-    fg.thumbnail((int(W * 0.94), int(H * 0.92)), Image.LANCZOS)
-    # thin paper-like border + shadow to make it read as an archival object
-    pad = max(6, fg.width // 160)
-    framed = ImageOps.expand(fg, border=pad, fill=(232, 226, 212))
-    shadow = Image.new("RGBA", (framed.width + 80, framed.height + 80), (0, 0, 0, 0))
-    ImageDraw.Draw(shadow).rectangle([40, 50, framed.width + 40, framed.height + 50], fill=(0, 0, 0, 160))
-    shadow = shadow.filter(ImageFilter.GaussianBlur(28))
-    x, y = (W - framed.width) // 2, (H - framed.height) // 2
-    bg.paste(shadow, (x - 40, y - 40), shadow)
-    bg.paste(framed, (x, y))
-    return bg, False
+def layout(w, h, CW, CH):
+    a = w / h
+    if 1.42 <= a <= 2.3:                              # wide: fill the frame
+        s = max(CW / w, CH / h)
+        nw, nh = round(w * s), round(h * s)
+        return {"fill": True, "nw": nw, "nh": nh, "ox": int((nw - CW) * 0.5), "oy": int((nh - CH) * 0.42)}
+    s = min(CW * 0.92 / w, CH * 0.90 / h)             # otherwise: framed print on a blurred copy
+    nw, nh = round(w * s), round(h * s)
+    return {"fill": False, "nw": nw, "nh": nh, "x": (CW - nw) // 2, "y": (CH - nh) // 2}
 
 
-def card_canvas(bg_img: Image.Image | None, W, H, kicker, title, sub=None, big=False):
-    if bg_img is not None:
-        bg = ImageOps.fit(bg_img, (W // 6, H // 6), Image.BILINEAR).filter(ImageFilter.GaussianBlur(5)).resize((W, H))
-        bg = Image.eval(ImageOps.grayscale(bg).convert("RGB"), lambda v: int(v * 0.26))
+def photo_canvas(rgb: np.ndarray, L, CW, CH) -> np.ndarray:
+    if L["fill"]:
+        r = cv2.resize(rgb, (L["nw"], L["nh"]), interpolation=cv2.INTER_CUBIC)
+        return np.ascontiguousarray(r[L["oy"]:L["oy"] + CH, L["ox"]:L["ox"] + CW])
+    bg = cv2.resize(rgb, (CW // 8, CH // 8), interpolation=cv2.INTER_AREA)
+    bg = cv2.GaussianBlur(bg, (0, 0), 6)
+    bg = (cv2.resize(bg, (CW, CH), interpolation=cv2.INTER_LINEAR) * 0.38).astype(np.float32)
+    x, y, nw, nh = L["x"], L["y"], L["nw"], L["nh"]
+    pad = max(6, nw // 160)
+    # soft shadow
+    sh = np.zeros((CH, CW), np.float32)
+    sh[y - pad + 40:y + nh + pad + 40, x - pad + 20:x + nw + pad + 20] = 0.65
+    sh = cv2.GaussianBlur(sh, (0, 0), 28)
+    bg *= (1 - sh)[..., None]
+    bg[y - pad:y + nh + pad, x - pad:x + nw + pad] = (232, 226, 212)   # paper-like border
+    bg[y:y + nh, x:x + nw] = cv2.resize(rgb, (nw, nh), interpolation=cv2.INTER_AREA if nw < rgb.shape[1] else cv2.INTER_CUBIC)
+    return bg.clip(0, 255).astype(np.uint8)
+
+
+def depth_canvas(d: np.ndarray, L, CW, CH) -> np.ndarray:
+    if L["fill"]:
+        r = cv2.resize(d, (L["nw"], L["nh"]), interpolation=cv2.INTER_LINEAR)
+        return np.ascontiguousarray(r[L["oy"]:L["oy"] + CH, L["ox"]:L["ox"] + CW])
+    x, y, nw, nh = L["x"], L["y"], L["nw"], L["nh"]
+    inner = 0.25 + 0.75 * cv2.resize(d, (nw, nh), interpolation=cv2.INTER_LINEAR)
+    c = np.full((CH, CW), 0.15, np.float32)
+    c[y:y + nh, x:x + nw] = float(np.median(inner))   # the print moves as one flat plane...
+    c = cv2.GaussianBlur(c, (0, 0), 20)
+    m = np.zeros((CH, CW), np.float32)
+    m[y + 60:y + nh - 60, x + 60:x + nw - 60] = 1
+    m = cv2.GaussianBlur(m, (0, 0), 30)                # ...with depth inside, feathered to its edges
+    full = c.copy()
+    full[y:y + nh, x:x + nw] = inner
+    return (m * full + (1 - m) * c).astype(np.float32)
+
+
+def quote_canvas(W, H, text, source):
+    """Aged-paper card with the quote, for primary-source citations."""
+    rng = np.random.default_rng(zlib.crc32(text.encode()))
+    paper = np.empty((H, W, 3), np.float32)
+    paper[:] = (226, 214, 188)
+    n = cv2.resize(rng.normal(0, 1, (H // 16, W // 16)).astype(np.float32), (W, H), interpolation=cv2.INTER_CUBIC)
+    n2 = rng.normal(0, 1, (H, W)).astype(np.float32)
+    paper += (n * 9 + n2 * 4)[..., None]
+    y, x = np.ogrid[-1:1:H * 1j, -1:1:W * 1j]
+    paper *= (1 - 0.35 * np.clip(np.sqrt(x * x * 0.8 + y * y) - 0.45, 0, 1))[..., None]
+    im = Image.fromarray(paper.clip(0, 255).astype(np.uint8))
+    d = ImageDraw.Draw(im)
+    s = W / 3840
+    ink = (43, 33, 24)
+    qf = font("EBGaramond-Italic.ttf", int(150 * s), 500)
+    lines = []
+    for para in text.split("\n"):
+        lines += wrap(d, para, qf, W * 0.66) if len(para) > 30 else [para]
+    lh = qf.size * 1.28
+    y0 = H / 2 - lh * len(lines) / 2 - 60 * s
+    mf = font("PlayfairDisplay.ttf", int(420 * s), 700)
+    d.text((W * 0.13, y0 - 330 * s), "“", font=mf, fill=(176, 138, 70))
+    for i, ln in enumerate(lines):
+        w = d.textlength(ln, font=qf)
+        d.text(((W - w) / 2, y0 + i * lh), ln, font=qf, fill=ink)
+    sf_ = font("Oswald.ttf", int(64 * s), 500)
+    yy = y0 + lh * len(lines) + 90 * s
+    d.line([(W / 2 - 90 * s, yy - 30 * s), (W / 2 + 90 * s, yy - 30 * s)], fill=(140, 110, 60), width=max(2, int(4 * s)))
+    draw_tracked(d, (W / 2, yy), source.upper(), sf_, (95, 72, 45), tracking=int(9 * s))
+    return np.array(im)
+
+
+def card_canvas(bg_rgb: np.ndarray | None, W, H, kicker, title, sub=None, big=False):
+    if bg_rgb is not None:
+        g = cv2.cvtColor(bg_rgb, cv2.COLOR_RGB2GRAY)
+        g = cv2.resize(g, (W // 6, H // 6), interpolation=cv2.INTER_AREA)
+        g = cv2.resize(cv2.GaussianBlur(g, (0, 0), 5), (W, H))
+        bg = Image.fromarray((np.stack([g] * 3, -1) * 0.26).astype(np.uint8))
     else:
         bg = Image.new("RGB", (W, H), (14, 13, 12))
     d = ImageDraw.Draw(bg)
     s = W / 3840
-    cy = H * 0.5
     tf = font("PlayfairDisplay.ttf", int((190 if big else 170) * s), 600)
     lines = wrap(d, title, tf, W * 0.78)
     lh = tf.size * 1.12
-    block = lh * len(lines)
-    y = cy - block / 2
+    y = H * 0.5 - lh * len(lines) / 2
     if kicker:
         kf = font("Oswald.ttf", int(62 * s), 500)
         draw_tracked(d, (W / 2, y - 150 * s), kicker.upper(), kf, GOLD, tracking=int(14 * s))
@@ -129,7 +194,7 @@ def card_canvas(bg_img: Image.Image | None, W, H, kicker, title, sub=None, big=F
         for i, ln in enumerate(wrap(d, sub, sf_, W * 0.7)):
             w = d.textlength(ln, font=sf_)
             d.text(((W - w) / 2, y + 125 * s + i * sf_.size * 1.2), ln, font=sf_, fill=(205, 198, 184))
-    return bg
+    return np.array(bg)
 
 
 def credit_overlay(text: str, w: int, h: int) -> np.ndarray:
@@ -138,7 +203,7 @@ def credit_overlay(text: str, w: int, h: int) -> np.ndarray:
     f = font("SourceSans3.ttf", int(28 * s), 500)
     im = Image.new("RGBA", (w, int(70 * s)), (0, 0, 0, 0))
     d = ImageDraw.Draw(im)
-    text = text if len(text) <= 95 else text[:92] + "…"
+    text = text if len(text) <= 110 else text[:107] + "…"
     for dx, dy in ((2, 2), (1, 1)):
         d.text((int(44 * s) + dx, int(24 * s) + dy), text, font=f, fill=(0, 0, 0, 170))
     d.text((int(44 * s), int(24 * s)), text, font=f, fill=(236, 232, 222, 215))
@@ -164,105 +229,198 @@ def credit_line(it: dict) -> str:
 class Shot:
     start: float
     end: float
-    kind: str                 # photo | card
-    file: str | None = None
+    kind: str                 # photo | card | quote
+    item: dict | None = None  # manifest entry for photos
     card: dict | None = None
-    credit: str = ""
+    quote: dict | None = None
+    colorize: bool = False
     seed: int = 0
-    _canvas: np.ndarray | None = field(default=None, repr=False)
+    credit: str = ""
+    canvas: np.ndarray | None = field(default=None, repr=False)
+    color: np.ndarray | None = field(default=None, repr=False)
+    depth: np.ndarray | None = field(default=None, repr=False)
     full_bleed: bool = True
 
 
-def build_timeline(ep_dir: Path, episode: dict, manifest: dict, timings: dict):
+def _seed(s: str) -> int:
+    return zlib.crc32(s.encode()) & 0xffff
+
+
+def _photo_shots(imgs, t0, t1, rot):
+    """Spread photos over [t0, t1]; `rot` keeps rotating through the scene's images across segments."""
+    dur = t1 - t0
+    if dur <= 0.05:
+        return []
+    n = max(1, int(np.ceil(dur / MAX_SHOT)))
+    out = []
+    for k in range(n):
+        it = imgs[(rot[0]) % len(imgs)]
+        rot[0] += 1
+        a, b = t0 + k * dur / n, t0 + (k + 1) * dur / n
+        out.append(Shot(a, b, "photo", item=it, colorize=bool(it.get("colorize")), credit=credit_line(it),
+                        seed=(_seed(it["id"]) + rot[0]) & 0xffff))
+    return out
+
+
+def build_timeline(episode: dict, manifest: dict, timings: dict):
     shots, audio_marks, chapters = [], [], []
     t = 0.0
-    first_bg = {}
-    for scene in episode["scenes"]:
-        imgs = [i for i in manifest["scenes"].get(scene["id"], []) if i["use"]]
-        first_bg[scene["id"]] = imgs[0]["file"] if imgs else None
-
+    used = {sc["id"]: [i for i in manifest["scenes"].get(sc["id"], []) if i["use"]] for sc in episode["scenes"]}
     for idx, scene in enumerate(episode["scenes"]):
         sid = scene["id"]
-        imgs = [i for i in manifest["scenes"].get(sid, []) if i["use"]]
+        imgs = used[sid]
+        if not imgs:
+            raise SystemExit(f"scene '{sid}' has no images selected in manifest.json")
         if scene.get("chapter"):
             m = re.match(r"^([IVXLC]+)\.\s*(.+)$", scene["chapter"])
             kicker, title = (f"Chapter {m.group(1)}", m.group(2)) if m else ("", scene["chapter"])
             chapters.append((t, title))
-            shots.append(Shot(t, t + CARD, "card", card={"bg": first_bg[sid], "kicker": kicker, "title": title,
-                                                         "sub": scene.get("date")}, seed=zlib.crc32(sid.encode()) & 0xffff))
+            shots.append(Shot(t, t + CARD, "card", card={"bg": imgs[0]["file"], "kicker": kicker, "title": title,
+                                                         "sub": scene.get("date")}, seed=_seed(sid)))
             t += CARD
         elif idx == 0:
             chapters.append((0.0, "Intro"))
         dur = timings[sid]["duration"]
         audio_marks.append((t, sid))
-        if not imgs:
-            raise SystemExit(f"scene '{sid}' has no images selected in manifest.json")
-        # longer shots for fewer images, but never a single photo for more than ~14s
-        n = len(imgs)
-        reps = max(1, int(np.ceil(dur / (14.0 * n))))
-        seq = (imgs * reps)[: max(n, int(np.ceil(dur / 14.0)))]
-        step = dur / len(seq)
-        for k, it in enumerate(seq):
-            shots.append(Shot(t + k * step, t + (k + 1) * step, "photo", file=it["file"],
-                              credit=credit_line(it), seed=(zlib.crc32(it["id"].encode()) + k) & 0xffff))
+        # n photos are spread over the scene; a quote card covers the sentences it quotes
+        q = scene.get("quote")
+        qa = qb = None
+        if q:
+            sents = timings[sid]["sentences"]
+            key = (q.get("match") or q["text"][:25]).lower()
+            hit = next((i for i, s in enumerate(sents) if key in s["text"].lower()), None)
+            if hit is not None:
+                last = min(hit + int(q.get("sentences", 1)) - 1, len(sents) - 1)
+                qa, qb = max(0.0, sents[hit]["start"] - 0.35), min(dur, sents[last]["end"] + 0.6)
+                if qa < 3.0:
+                    qa = 0.0
+                if dur - qb < 3.0:
+                    qb = dur
+            else:
+                print(f"   ! quote in '{sid}': no sentence contains '{key}', quote card skipped")
+        rot = [0]
+        if qa is None:
+            shots += _photo_shots(imgs, t, t + dur, rot)
+        else:
+            shots += _photo_shots(imgs, t, t + qa, rot)
+            shots.append(Shot(t + qa, t + qb, "quote", quote=q, seed=_seed(q["text"])))
+            shots += _photo_shots(imgs, t + qb, t + dur, rot)
         t += dur
-        if idx == 0:  # title card right after the cold open
-            shots.append(Shot(t, t + TITLE, "card", card={"bg": first_bg[sid], "kicker": "",
-                                                          "title": episode["title"], "sub": episode.get("subtitle"), "big": True}))
+        if idx == 0:
+            shots.append(Shot(t, t + TITLE, "card", card={"bg": imgs[0]["file"], "kicker": "", "title": episode["title"],
+                                                          "sub": episode.get("subtitle"), "big": True}))
             t += TITLE
-    shots.append(Shot(t, t + ENDCARD, "card", card={"bg": first_bg[episode["scenes"][-1]["id"]],
-                                                    "kicker": episode.get("channel", ""), "title": "Thanks for watching",
-                                                    "sub": "More stories from the archives"}))
+    last_imgs = used[episode["scenes"][-1]["id"]]
+    shots.append(Shot(t, t + ENDCARD, "card", card={"bg": last_imgs[0]["file"], "kicker": episode.get("channel", ""),
+                                                    "title": "Thanks for watching", "sub": "More stories from the archives"}))
     t += ENDCARD
     return shots, audio_marks, chapters, t
 
 
 # ------------------------------------------------------------------ motion
+def smooth(p):
+    return p * p * (3 - 2 * p)
+
+
 def motion(shot: Shot, p: float, CW, CH):
     rnd = random.Random(shot.seed)
-    if shot.kind == "card":
+    if shot.kind != "photo":
         z0, z1, (ax, ay), (bx, by) = 1.0, 1.035, (0.5, 0.5), (0.5, 0.5)
     else:
         zin = rnd.random() < 0.6
-        zmax = 1.16 if shot.full_bleed else 1.10
+        zmax = 1.14 if shot.full_bleed else 1.06
         z0, z1 = (1.0, zmax) if zin else (zmax, 1.0)
         if shot.full_bleed:
-            ax, ay = rnd.uniform(0.25, 0.75), rnd.uniform(0.3, 0.6)
-            bx, by = rnd.uniform(0.25, 0.75), rnd.uniform(0.3, 0.6)
+            ax, ay = rnd.uniform(0.3, 0.7), rnd.uniform(0.32, 0.58)
+            bx, by = rnd.uniform(0.3, 0.7), rnd.uniform(0.32, 0.58)
         else:
-            ax, ay, bx, by = 0.5, 0.5, 0.5 + rnd.uniform(-0.04, 0.04), 0.5 + rnd.uniform(-0.04, 0.04)
-    e = p * p * (3 - 2 * p)  # smoothstep easing
+            ax, ay, bx, by = 0.5, 0.5, 0.5 + rnd.uniform(-0.03, 0.03), 0.5 + rnd.uniform(-0.03, 0.03)
+    e = smooth(p)
     z = z0 + (z1 - z0) * e
     fx, fy = ax + (bx - ax) * e, ay + (by - ay) * e
     hw, hh = CW / (2 * z), CH / (2 * z)
-    cx = np.clip(fx * CW, hw, CW - hw)
-    cy = np.clip(fy * CH, hh, CH - hh)
-    return z, cx, cy
+    return z, float(np.clip(fx * CW, hw, CW - hw)), float(np.clip(fy * CH, hh, CH - hh)), zin if shot.kind == "photo" else True
 
 
-def render_frame(shot: Shot, t: float, W, H, CW, CH):
-    span = (shot.end - shot.start) + XF
-    p = np.clip((t - shot.start + XF / 2) / span, 0, 1)
-    z, cx, cy = motion(shot, p, CW, CH)
-    s = z * W / CW
-    M = np.float32([[s, 0, W / 2 - s * cx], [0, s, H / 2 - s * cy]])
-    return cv2.warpAffine(shot._canvas, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
+class Renderer:
+    def __init__(self, ep_dir: Path, W, H, CW, CH, parallax: bool):
+        self.ep_dir, self.W, self.H, self.CW, self.CH = ep_dir, W, H, CW, CH
+        self.parallax = parallax
+        self.X, self.Y = np.meshgrid(np.arange(W, dtype=np.float32), np.arange(H, dtype=np.float32))
+        self.Xc, self.Yc = self.X - W / 2, self.Y - H / 2
+        self.cache = {}
 
+    def prepare(self, sh: Shot):
+        if sh.canvas is not None:
+            return
+        W, H, CW, CH = self.W, self.H, self.CW, self.CH
+        if sh.kind == "photo":
+            f = sh.item["file"]
+            key = ("p", f)
+            if key not in self.cache:
+                path = self.ep_dir / f
+                rgb = load_rgb(path)
+                L = layout(rgb.shape[1], rgb.shape[0], CW, CH)
+                canvas = cv2.cvtColor(photo_canvas(rgb, L, CW, CH), cv2.COLOR_RGB2BGR)
+                depth = None
+                if self.parallax:
+                    d = vision.depth(path)
+                    if d is not None:
+                        depth = depth_canvas(d, L, CW, CH)
+                color = None
+                if sh.colorize:
+                    cp = vision.colorize(path) if vision.is_grayscale(cv2.imread(str(path))) else None
+                    if cp is not None:
+                        color = cv2.cvtColor(photo_canvas(load_rgb(cp), L, CW, CH), cv2.COLOR_RGB2BGR)
+                    else:
+                        print(f"   ! colorize skipped for {f} (model missing or photo already in colour)")
+                self.cache[key] = (canvas, depth, color, L["fill"])
+                while len(self.cache) > 5:
+                    self.cache.pop(next(iter(self.cache)))
+            sh.canvas, sh.depth, sh.color, sh.full_bleed = self.cache[key]
+            if sh.color is None:
+                sh.colorize = False
+        elif sh.kind == "quote":
+            sh.canvas = cv2.cvtColor(quote_canvas(CW, CH, sh.quote["text"], sh.quote.get("source", "")), cv2.COLOR_RGB2BGR)
+        else:
+            c = sh.card
+            bg = load_rgb(self.ep_dir / c["bg"]) if c.get("bg") else None
+            sh.canvas = cv2.cvtColor(card_canvas(bg, CW, CH, c.get("kicker"), c["title"], c.get("sub"), c.get("big", False)),
+                                     cv2.COLOR_RGB2BGR)
 
-def prepare(shot: Shot, ep_dir: Path, CW, CH, cache: dict):
-    if shot._canvas is not None:
-        return
-    if shot.kind == "photo":
-        key = ("p", shot.file)
-        if key not in cache:
-            cv, fb = make_canvas(load_photo(ep_dir / shot.file), CW, CH)
-            cache[key] = (cv2.cvtColor(np.array(cv), cv2.COLOR_RGB2BGR), fb)
-        shot._canvas, shot.full_bleed = cache[key]
-    else:
-        c = shot.card
-        bg = load_photo(ep_dir / c["bg"]) if c.get("bg") else None
-        cv = card_canvas(bg, CW, CH, c.get("kicker"), c["title"], c.get("sub"), c.get("big", False))
-        shot._canvas = cv2.cvtColor(np.array(cv), cv2.COLOR_RGB2BGR)
+    def color_mix(self, sh: Shot, t: float) -> float:
+        """0 = authentic original, 1 = colorized. Original holds for ~45% of the shot first."""
+        if not sh.colorize:
+            return 0.0
+        d = sh.end - sh.start
+        a = sh.start + max(2.5, 0.42 * d)
+        return float(smooth(np.clip((t - a) / 2.2, 0, 1)))
+
+    def frame(self, sh: Shot, t: float) -> np.ndarray:
+        W, H, CW, CH = self.W, self.H, self.CW, self.CH
+        span = (sh.end - sh.start) + XF
+        p = float(np.clip((t - sh.start + XF / 2) / span, 0, 1))
+        z, cx, cy, zin = motion(sh, p, CW, CH)
+        s = z * W / CW
+        M = np.float32([[s, 0, W / 2 - s * cx], [0, s, H / 2 - s * cy]])
+        f = cv2.warpAffine(sh.canvas, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
+        c = self.color_mix(sh, t)
+        if c > 0:
+            fc = cv2.warpAffine(sh.color, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
+            f = cv2.addWeighted(f, 1 - c, fc, c, 0)
+        if sh.depth is not None:
+            d = cv2.warpAffine(sh.depth, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
+            rnd = random.Random(sh.seed * 7 + 1)
+            ang = rnd.uniform(0, 2 * np.pi)
+            amp = (0.022 if sh.full_bleed else 0.012) * W     # total lateral parallax travel, in pixels
+            e = smooth(p) - 0.5
+            k = d - 0.4                                        # focus plane: far things drift back, near things forward
+            sx, sy = float(amp * e * np.cos(ang)), float(amp * e * 0.6 * np.sin(ang))
+            dolly = (0.035 if zin else -0.035) * e             # depth-dependent zoom = the "3D push-in"
+            mx = (self.X - sx * k - self.Xc * (dolly * k)).astype(np.float32, copy=False)
+            my = (self.Y - sy * k - self.Yc * (dolly * k)).astype(np.float32, copy=False)
+            f = cv2.remap(f, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
+        return f
 
 
 def vignette(W, H):
@@ -273,29 +431,39 @@ def vignette(W, H):
 
 
 # ------------------------------------------------------------------ audio, subtitles, chapters
-def build_audio(ep_dir, audio_marks, total, music: str | None):
+def music_track(episode, total, chapters):
+    m = episode.get("music")
+    if not m:
+        return None
+    if isinstance(m, str):
+        a, msr = sf.read(m, dtype="float32", always_2d=True)
+        a = a.mean(axis=1)
+        if msr != SR:
+            x = np.linspace(0, len(a), int(len(a) * SR / msr), endpoint=False)
+            a = np.interp(x, np.arange(len(a)), a).astype(np.float32)
+        return np.tile(a, int(np.ceil(total * SR / len(a))))[: int(total * SR)]
+    if m.get("generate"):
+        from .music import underscore
+        print("   synthesizing underscore...")
+        hits = [c[0] for c in chapters if c[0] > 1]
+        return underscore(total, seed=int(m.get("seed", 1)), mood=m.get("mood", "somber"), hits=hits)
+    return None
+
+
+def build_audio(ep_dir, audio_marks, total, music):
     out = np.zeros(int(total * SR) + SR, np.float32)
     for t0, sid in audio_marks:
         a, _ = sf.read(ep_dir / "audio" / f"{sid}.wav", dtype="float32")
         i = int(t0 * SR)
         out[i:i + len(a)] += a
-    if music:
-        m, msr = sf.read(music, dtype="float32", always_2d=True)
-        m = m.mean(axis=1)
-        if msr != SR:
-            x = np.linspace(0, len(m), int(len(m) * SR / msr), endpoint=False)
-            m = np.interp(x, np.arange(len(m)), m).astype(np.float32)
-        m = np.tile(m, int(np.ceil(len(out) / len(m))))[: len(out)]
-        # duck under the voice
-        env = np.abs(out)
+    if music is not None:
+        m = np.zeros_like(out)
+        m[: len(music)] = music[: len(out)]
         k = int(0.4 * SR)
-        env = np.convolve(env, np.ones(k) / k, mode="same")
-        gain = np.where(env > 0.01, 0.07, 0.16).astype(np.float32)
-        gain = np.convolve(gain, np.ones(k) / k, mode="same")
-        fade = np.ones_like(m)
-        fade[: 2 * SR] = np.linspace(0, 1, 2 * SR)
-        fade[-4 * SR:] = np.linspace(1, 0, 4 * SR)
-        out += m * gain * fade
+        env = np.convolve(np.abs(out), np.ones(k) / k, mode="same")
+        gain = np.where(env > 0.01, 0.075, 0.22).astype(np.float32)   # duck under the voice, rise on cards
+        gain = np.convolve(gain, np.ones(2 * k) / (2 * k), mode="same")
+        out += m * gain
     peak = np.max(np.abs(out)) or 1
     out *= min(1.0, 0.89 / peak)
     path = ep_dir / "build" / "mix.wav"
@@ -304,12 +472,14 @@ def build_audio(ep_dir, audio_marks, total, music: str | None):
 
 
 def fmt_srt(t):
-    h, rem = divmod(t, 3600)
-    m, s = divmod(rem, 60)
-    return f"{int(h):02d}:{int(m):02d}:{int(s):02d},{int(round((s % 1) * 1000)):03d}".replace(",1000", ",999")
+    ms = int(round(t * 1000))
+    h, ms = divmod(ms, 3600000)
+    m, ms = divmod(ms, 60000)
+    s, ms = divmod(ms, 1000)
+    return f"{h:02d}:{m:02d}:{s:02d},{ms:03d}"
 
 
-def write_srt(ep_dir, audio_marks, timings, path):
+def write_srt(audio_marks, timings, path):
     cues = []
     for t0, sid in audio_marks:
         for s in timings[sid]["sentences"]:
@@ -341,20 +511,26 @@ def fmt_ts(t):
 
 
 # ------------------------------------------------------------------ main
-def render(ep_dir: Path, episode: dict, preview: bool = False):
+def render(ep_dir: Path, episode: dict, preview: bool = False, parallax: bool = True):
     manifest = json.loads((ep_dir / "manifest.json").read_text())
     timings = json.loads((ep_dir / "audio" / "timings.json").read_text())
     build = ep_dir / "build"
     build.mkdir(exist_ok=True)
     W, H, FPS = (960, 540, 24) if preview else (1920, 1080, 30)
     CW, CH = (1920, 1080) if preview else (3840, 2160)
+    if parallax and not vision.depth_available():
+        print("   depth model not installed -> plain Ken Burns (run setup to download it)")
+        parallax = False
 
-    shots, audio_marks, chapters, total = build_timeline(ep_dir, episode, manifest, timings)
-    mix = build_audio(ep_dir, audio_marks, total, episode.get("music"))
-    write_srt(ep_dir, audio_marks, timings, build / "subtitles.en.srt")
+    shots, audio_marks, chapters, total = build_timeline(episode, manifest, timings)
+    music = music_track(episode, total, chapters)
+    mix = build_audio(ep_dir, audio_marks, total, music)
+    write_srt(audio_marks, timings, build / "subtitles.en.srt")
     (build / "chapters.txt").write_text("\n".join(f"{fmt_ts(a)} {b}" for a, b in chapters))
     (build / "timeline.json").write_text(json.dumps(
-        [{"start": round(s.start, 2), "end": round(s.end, 2), "kind": s.kind, "file": s.file} for s in shots], indent=1))
+        [{"start": round(s.start, 2), "end": round(s.end, 2), "kind": s.kind,
+          "id": s.item["id"] if s.item else None, "colorized": bool(s.item and s.item.get("colorize"))} for s in shots],
+        indent=1))
 
     out = build / (f"{episode['slug']}_preview.mp4" if preview else f"{episode['slug']}.mp4")
     ff = subprocess.Popen([
@@ -365,44 +541,48 @@ def render(ep_dir: Path, episode: dict, preview: bool = False):
         "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", "-shortest", str(out)],
         stdin=subprocess.PIPE)
 
+    R = Renderer(ep_dir, W, H, CW, CH, parallax)
     vig = vignette(W, H)
-    cache, credits = {}, {}
+    credits = {}
+
+    def credit_img(text):
+        if text not in credits:
+            credits[text] = credit_overlay(text, W, H)
+        return credits[text]
+
+    def overlay(frame, ov, a):
+        if a <= 0.01:
+            return
+        al = (ov[..., 3:4].astype(np.float32) / 255) * a
+        roi = frame[H - ov.shape[0]:H]
+        roi[:] = (roi * (1 - al) + ov[..., :3] * al).astype(np.uint8)
+
     nframes = int(total * FPS)
     cur = 0
     for fi in range(nframes):
         t = fi / FPS
         while cur < len(shots) - 1 and t >= shots[cur].end:
-            shots[cur]._canvas = None
+            shots[cur].canvas = shots[cur].depth = shots[cur].color = None
             cur += 1
-        if len(cache) > 6:  # keep memory flat
-            for k in list(cache)[:-4]:
-                cache.pop(k)
         sh = shots[cur]
-        prepare(sh, ep_dir, CW, CH, cache)
-        frame = render_frame(sh, t, W, H, CW, CH)
-        alpha_cur = 1.0
+        R.prepare(sh)
+        frame = R.frame(sh, t)
+        a_cur = 1.0
         nxt = shots[cur + 1] if cur + 1 < len(shots) else None
         if nxt and t > sh.end - XF / 2:
-            prepare(nxt, ep_dir, CW, CH, cache)
-            w = np.clip((t - (sh.end - XF / 2)) / XF, 0, 1)
-            w = w * w * (3 - 2 * w)
-            frame = cv2.addWeighted(frame, 1 - w, render_frame(nxt, t, W, H, CW, CH), w, 0)
-            alpha_cur = 1 - w
+            R.prepare(nxt)
+            w = smooth(float(np.clip((t - (sh.end - XF / 2)) / XF, 0, 1)))
+            frame = cv2.addWeighted(frame, 1 - w, R.frame(nxt, t), w, 0)
+            a_cur = 1 - w
         frame = ((frame.astype(np.uint16) * vig) >> 8).astype(np.uint8)
-        # credits: fade in/out with their own shot
-        for s_, a_ in ((sh, alpha_cur), (nxt, 1 - alpha_cur)):
-            if s_ is None or s_.kind != "photo" or a_ <= 0.02 or not s_.credit:
+        for s_, a_ in ((sh, a_cur), (nxt, 1 - a_cur)):
+            if s_ is None or s_.kind != "photo" or a_ <= 0.02:
                 continue
-            k = (s_.credit, W)
-            if k not in credits:
-                credits[k] = credit_overlay(s_.credit, W, H)
-            ov = credits[k]
-            fin = np.clip(min(t - s_.start - 0.6, s_.end - t - 0.2) / 0.6, 0, 1)
-            a = (ov[..., 3:4].astype(np.float32) / 255) * a_ * fin
-            if a.max() > 0:
-                roi = frame[H - ov.shape[0]:H]
-                roi[:] = (roi * (1 - a) + ov[..., :3] * a).astype(np.uint8)
-        # fade in from / out to black
+            fin = float(np.clip(min(t - s_.start - 0.6, s_.end - t - 0.2) / 0.6, 0, 1)) * a_
+            c = R.color_mix(s_, t)
+            overlay(frame, credit_img(s_.credit), fin * (1 - c))
+            if c > 0:
+                overlay(frame, credit_img(s_.credit + " · Digitally colorized"), fin * c)
         fade = min(1.0, t / 0.8, (total - t) / 1.5)
         if fade < 1:
             frame = (frame * max(fade, 0)).astype(np.uint8)

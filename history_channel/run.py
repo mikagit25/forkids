@@ -34,7 +34,7 @@ def main():
         elif step == "voice":
             tts.voice_episode(ep_dir, episode)
         elif step in ("render", "preview"):
-            render.render(ep_dir, episode, preview=step == "preview")
+            render.render(ep_dir, episode, preview=step == "preview", parallax="--no-parallax" not in sys.argv)
         elif step == "publish":
             publish.thumbnail(ep_dir, episode)
             publish.description(ep_dir, episode)

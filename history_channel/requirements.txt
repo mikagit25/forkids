@@ -2,6 +2,7 @@ kokoro-onnx>=0.4
 onnxruntime>=1.20
 soundfile
 numpy
+scipy
 opencv-python-headless
 Pillow>=10
 PyYAML
