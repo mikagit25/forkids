@@ -1,0 +1,177 @@
+# Status: script draft, fact-check pending (see factcheck.md)
+# Series: Biography of a Disease
+
+title: "The Plague: How One Bacterium Killed Half of Europe"
+subtitle: "From the Black Death of 1347 to the antibiotics that tamed it, and why plague still exists today"
+slug: plague
+language: en
+era: [1300, 1920]        # wide: medieval manuscripts to the 1894 Hong Kong outbreak
+visual_context: "Black Death plague history"   # helps the relevance check
+voice:
+  backend: kokoro
+  name: bm_george
+  lang: en-gb
+  speed: 0.93
+music:
+  generate: true
+  seed: 1347
+  mood: somber
+
+scenes:
+  - id: cold-open
+    montage: true          # fast cuts + one teaser photo from every chapter
+    narration: >
+      In the autumn of 1347, ships arrived in Sicily carrying something no one in Europe had seen in living memory.
+      Within five years, between a third and half of all Europeans were dead.
+      People blamed the stars, the air, God's anger, and their Jewish neighbours. Doctors cut veins, burned herbs and prayed.
+      The same disease came back again and again for four hundred years. It was finally identified only in 1894, in Hong Kong.
+      And it has never completely gone away.
+      This is the biography of the plague.
+    images:
+      - {query: "Black Death", count: 4}
+      - {query: "danse macabre", count: 2}
+      - {query: "plague doctor", count: 1}
+
+  - id: origin
+    chapter: "I. Out of Asia"
+    narration: >
+      The plague is caused by a bacterium, Yersinia pestis. It lives in wild rodents and is spread among them by fleas. When infected rodents die, their hungry fleas look for new hosts, and sometimes those hosts are human.
+      Ancient DNA has shown that plague infected people thousands of years ago, and one great pandemic, the Plague of Justinian, struck the Mediterranean in the sixth century.
+      The strain behind the Black Death seems to have emerged in Central Asia. In 2022, scientists studying gravestones and remains from the 1330s near Lake Issyk-Kul, in what is now Kyrgyzstan, identified the direct ancestor of the bacterium that would devastate Europe.
+      From there, it travelled west along the trade routes of the Mongol world.
+    images:
+      - {query: "Yersinia pestis", count: 1, modern: true}
+      - {query: "Silk Road caravan medieval", count: 2}
+      - {query: "Issyk-Kul gravestone", count: 1, modern: true}
+
+  - id: caffa
+    chapter: "II. The Siege of Caffa"
+    date: "1346"
+    narration: >
+      In 1346, the army of the Golden Horde was besieging Caffa, a Genoese trading port on the Black Sea coast of Crimea.
+      Then plague broke out among the besiegers.
+      According to an account written soon afterwards by the Italian lawyer Gabriele de' Mussis, the attackers hurled the corpses of plague victims over the city walls with catapults.
+      Whether or not it happened exactly this way, the disease entered the city. Genoese ships fled Caffa, and carried the plague with them across the sea, to Constantinople and then to the Mediterranean.
+    images:
+      - {query: "Caffa Feodosia", count: 2}
+      - {query: "medieval siege catapult", count: 2}
+
+  - id: arrival
+    chapter: "III. The Great Mortality"
+    date: "1347–1351"
+    narration: >
+      In October 1347, the plague reached Sicily. From there it spread with terrifying speed: to Italy, France, Spain and England by the summer of 1348, then Germany, Scandinavia and finally Russia.
+      Most victims developed the bubonic form. A high fever was followed by painful swellings, called buboes, in the groin, armpits or neck. Many died within days.
+      Some caught the pneumonic form, which attacks the lungs and spreads from person to person through coughing. It was almost always fatal.
+      Whole villages were emptied. Cities dug mass graves when the churchyards were full. In Florence, the writer Giovanni Boccaccio described people falling dead in the streets, and families abandoning each other in fear.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "25–50 million", text: "Europeans dead, 30–60% of the population", match: "Whole villages were emptied"}
+    images:
+      - {query: "Black Death burial Tournai", count: 2, colorize: true}
+      - {query: "plague 14th century manuscript", count: 2}
+      - {query: "Boccaccio plague Florence", count: 1}
+
+  - id: explanations
+    chapter: "IV. Stars, Air and Sin"
+    narration: >
+      Medieval people tried desperately to understand what was happening.
+      In 1348, the medical faculty of the University of Paris produced a report for the King of France. It blamed an unlucky conjunction of the planets Saturn, Jupiter and Mars, which had corrupted the air.
+      Most doctors believed in miasma, poisonous air. People carried posies of flowers and herbs, burned aromatic woods, and avoided the south wind.
+      Others saw the plague as God's punishment. Groups of flagellants marched from town to town, whipping themselves in public to atone for the sins of the world.
+    images:
+      - {query: "flagellants medieval", count: 2}
+      - {query: "medieval astrology manuscript", count: 1}
+      - {query: "medieval physician manuscript", count: 1}
+
+  - id: persecution
+    chapter: "V. Scapegoats"
+    narration: >
+      Fear turned to hatred. Across Europe, Jewish communities were falsely accused of poisoning wells to spread the disease.
+      Pope Clement the Sixth condemned the accusations, pointing out that Jews were dying of the plague like everyone else. It made little difference.
+      In Strasbourg, in February 1349, around two thousand Jews were murdered. Hundreds of communities in Germany and beyond were attacked or destroyed.
+      It is one of the darkest chapters of the pandemic, and a warning that epidemics do not only spread disease.
+    images:
+      - {query: "Strasbourg 1349", count: 1}
+      - {query: "Pope Clement VI", count: 1}
+      - {query: "medieval Jewish community manuscript", count: 1}
+
+  - id: treatments
+    chapter: "VI. Bleeding and Theriac"
+    narration: >
+      What could doctors actually do? Very little.
+      They let blood, to rebalance the body's humours. They lanced buboes. They prescribed theriac, an ancient compound medicine with dozens of ingredients, sometimes including viper flesh. The wealthy were advised to flee early, go far, and return late.
+      The most famous image of the plague doctor, with a long beaked mask stuffed with herbs, a waxed coat and a stick, does not actually come from the Black Death. It appeared in the seventeenth century, during later outbreaks.
+      But one measure did work. In 1377, the city of Ragusa, today's Dubrovnik, ordered ships from plague areas to wait thirty days before landing. The period was later extended to forty days, quaranta giorni in Italian. That is where our word quarantine comes from.
+    cards:
+      - {big: "40 days", text: "quaranta giorni: the origin of 'quarantine'", match: "The period was later extended to forty days"}
+    images:
+      - {query: "plague doctor 17th century", count: 2, colorize: true}
+      - {query: "bloodletting medieval", count: 1}
+      - {query: "Dubrovnik old town walls", count: 1, modern: true}
+
+  - id: aftermath
+    chapter: "VII. A Changed World"
+    narration: >
+      The Black Death transformed European society.
+      With so many workers dead, survivors could demand higher wages and better conditions. Landowners and governments tried to freeze wages by law, which fed anger that later exploded in revolts such as the English Peasants' Revolt of 1381.
+      Art became haunted by death. The Dance of Death, with skeletons leading kings, bishops and peasants alike to the grave, became a favourite theme of painters across Europe.
+    images:
+      - {query: "danse macabre", count: 2}
+      - {query: "Peasants' Revolt 1381", count: 2}
+
+  - id: returns
+    chapter: "VIII. The Plague Returns"
+    date: "1348–1720"
+    narration: >
+      The plague never really left. It came back to Europe every few years for nearly four centuries.
+      In 1665, the Great Plague of London killed around a hundred thousand people, perhaps a quarter of the city. Weekly bills of mortality listed the dead parish by parish. Doors of infected houses were marked with a red cross and the words, Lord have mercy upon us.
+      In 1720, a ship brought plague to Marseille, and about half the city's population died.
+      Then, slowly and for reasons still debated, plague retreated from Western Europe.
+    images:
+      - {query: "Great Plague of London 1665", count: 2}
+      - {query: "bill of mortality 1665", count: 1}
+      - {query: "plague Marseille 1720", count: 2}
+
+  - id: yersin
+    chapter: "IX. Hong Kong, 1894"
+    date: "1894"
+    narration: >
+      At the end of the nineteenth century, a third great plague pandemic began in China. In 1894 it reached Hong Kong.
+      Two scientists raced to find its cause. One was the Japanese bacteriologist Kitasato Shibasaburō. The other was a Swiss-born French doctor from the Pasteur Institute, Alexandre Yersin, working from a bamboo hut.
+      Yersin found the bacterium in the buboes of victims, and correctly described it. It was later named after him: Yersinia pestis.
+      A few years later, researchers proved the role of rat fleas in carrying it. After more than five centuries, the killer finally had a name and a route.
+    images:
+      - {query: "Hong Kong plague 1894", count: 2}
+      - {query: "Alexandre Yersin", count: 1}
+      - {query: "Kitasato Shibasaburo", count: 1}
+
+  - id: today
+    chapter: "X. Plague Today"
+    narration: >
+      Today, the plague is treatable. Antibiotics such as streptomycin cure most patients if they are treated early.
+      But the bacterium still lives in wild rodents on several continents, including the western United States. Every year there are human cases, most of them in Africa, especially Madagascar.
+      In 2017, an outbreak of pneumonic plague in Madagascar caused more than two thousand cases and over two hundred deaths before it was brought under control.
+      The disease that once killed half of Europe is now rare, and usually curable. But it has never been eradicated.
+    images:
+      - {query: "Madagascar plague", count: 1, modern: true}
+      - {query: "prairie dog", count: 1, modern: true}
+      - {query: "Yersinia pestis micrograph", count: 1, modern: true}
+
+  - id: closing
+    chapter: "Epilogue"
+    narration: >
+      The plague gave us quarantine, health boards, and the idea that a city could act together against disease. It also showed how quickly fear can turn on the vulnerable.
+      Nearly seven hundred years after the Black Death, both lessons still matter.
+      In the next story from the history of disease, we look at a killer that humans actually managed to wipe from the face of the Earth.
+      Subscribe so you don't miss it.
+    images:
+      - {query: "danse macabre", count: 1}
+      - {query: "Black Death", count: 1}
+
+thumbnail:
+  scene: arrival
+  big: "1347"
+  small: "HALF OF EUROPE DIED"
+tags: ["Black Death", "plague", "bubonic plague", "medieval history", "pandemic history", "history of medicine", "quarantine", "documentary"]
+references:
+  - "Wikipedia, Black Death: https://en.wikipedia.org/wiki/Black_Death"

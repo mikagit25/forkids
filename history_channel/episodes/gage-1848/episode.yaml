@@ -1,0 +1,173 @@
+# Status: script draft, fact-check pending (see factcheck.md)
+
+title: "Phineas Gage: The Iron Rod That Changed Brain Science"
+subtitle: "A railway foreman, a thirteen-pound iron bar through his skull, and the man he became"
+slug: gage-1848
+language: en
+era: [1840, 1870]        # photos dated far outside this range are skipped
+visual_context: "Phineas Gage 1848 brain injury"   # helps the relevance check
+voice:
+  backend: kokoro
+  name: am_michael
+  lang: en-us
+  speed: 0.95
+music:
+  generate: true
+  seed: 1848
+  mood: tense
+
+scenes:
+  - id: cold-open
+    montage: true          # fast cuts + one teaser photo from every chapter
+    narration: >
+      In 1848, an iron bar more than a metre long shot straight through a man's head.
+      It went in under his left cheekbone, passed behind his eye, and flew out through the top of his skull. It landed many metres away.
+      A few minutes later, he was sitting up and talking.
+      He survived. But the people who knew him said he was no longer the same man.
+      His skull is still on display today, next to the iron that pierced it, and his story is still taught in almost every psychology course in the world.
+      This is the strange and often misunderstood story of Phineas Gage.
+    images:
+      - {query: "Phineas Gage", count: 3}
+      - {query: "Phineas Gage skull", count: 2}
+      - {query: "Vermont railroad 1840s", count: 1}
+
+  - id: railway
+    chapter: "I. The Foreman"
+    date: "Vermont, 1848"
+    narration: >
+      In the 1840s, railways were spreading across New England, and building them meant blasting through solid rock.
+      Phineas Gage was a construction foreman for the Rutland and Burlington Railroad, near the town of Cavendish, in Vermont. He was twenty-five years old, and his employers considered him one of their most capable and efficient men.
+      His job was dangerous and precise. A hole was drilled into the rock and filled with blasting powder and a fuse. Then sand or clay was packed on top, and the charge was pressed down with a long iron rod called a tamping iron.
+      Gage's tamping iron had been made specially for him. It was about three feet seven inches long, an inch and a quarter across at its widest, and it weighed thirteen and a quarter pounds.
+    images:
+      - {query: "Rutland and Burlington Railroad", count: 2}
+      - {query: "railroad construction 1840s", count: 2}
+      - {query: "Cavendish Vermont", count: 1}
+
+  - id: accident
+    chapter: "II. Half Past Four"
+    date: "13 September 1848"
+    narration: >
+      Late in the afternoon of the thirteenth of September 1848, Gage was preparing a blast hole.
+      Accounts suggest that he was distracted for a moment, and began tamping the powder before the sand had been poured in. The iron struck a spark against the rock.
+      The powder exploded. The tamping iron shot upwards like a missile. It entered Gage's head below his left cheekbone, passed behind his left eye, through the front of his brain, and burst out of the top of his skull.
+      It landed, smeared with blood and brain, about twenty-five metres away.
+      Gage was thrown onto his back. His limbs twitched. And then, within a few minutes, he spoke.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "13¼ lb", text: "of iron, 3 ft 7 in long", match: "The powder exploded"}
+    images:
+      - {query: "Phineas Gage tamping iron", count: 2}
+      - {query: "Phineas Gage skull", count: 2}
+      - {query: "blasting rock 1840s", count: 1}
+
+  - id: doctor
+    chapter: "III. Business Enough"
+    narration: >
+      His men put him in an ox cart and drove him to his lodgings in town, nearly a mile away. Gage sat upright for the journey, and then climbed the steps of the hotel porch with only a little help.
+      About half an hour after the accident, a local doctor, Edward Williams, arrived. Gage greeted him from his chair with one of the most famous understatements in medical history.
+      Doctor, here is business enough for you.
+      Williams at first did not believe the story. Then Gage stood up and vomited, and the effort pushed about half a teacupful of brain out through the hole in the top of his head.
+    quote:
+      text: "Doctor, here is business enough for you."
+      source: "Phineas Gage to Dr Edward H. Williams, 13 September 1848"
+      match: "Doctor, here is business enough for you"
+    images:
+      - {query: "ox cart 1840s", count: 1}
+      - {query: "Vermont village 1840s", count: 2}
+      - {query: "country doctor 1840s", count: 1}
+
+  - id: harlow
+    chapter: "IV. Dr Harlow"
+    narration: >
+      That evening, another doctor took charge of the case. His name was John Martyn Harlow, and his notes are the main reason we know Gage's story at all.
+      Harlow cleaned the wound, removed fragments of bone, and pressed the larger pieces of skull back into place. He covered the hole and left Gage's head propped up.
+      Over the following weeks, Gage nearly died. A severe infection set in. He drifted in and out of consciousness, and at one point a coffin was made ready.
+      Harlow drained an abscess, and Gage slowly recovered. He lost the sight of his left eye, but within ten weeks he was well enough to travel home to his parents in New Hampshire.
+    images:
+      - {query: "John Martyn Harlow", count: 1}
+      - {query: "1840s surgical instruments", count: 2}
+      - {query: "New Hampshire 1840s", count: 1}
+
+  - id: changed
+    chapter: "V. No Longer Gage"
+    narration: >
+      Physically, Gage seemed to have recovered. But Harlow described a change in his character.
+      The careful, well-liked foreman had become impatient and restless, and given to profanity. He made plans and then abandoned them. His employers, Harlow wrote, would not give him his old job back.
+      His friends and acquaintances put it simply. He was no longer Gage.
+      Harlow did not publish these observations until 1868, years after Gage's death. And they are much shorter and vaguer than most people assume.
+    quote:
+      text: "No longer Gage."
+      source: "Dr John M. Harlow, recording what Gage's friends said, 1868"
+      match: "He was no longer Gage"
+    images:
+      - {query: "Phineas Gage daguerreotype", count: 2, colorize: true}
+      - {query: "1850s portrait daguerreotype man", count: 1}
+
+  - id: legend
+    chapter: "VI. The Legend Grows"
+    narration: >
+      Over the next century, Gage's story grew in the telling.
+      Textbooks described him as a drunk, a brawler, a liar who drifted from job to job and showed himself off in circus side-shows. Some said he became cruel, or violent. Almost none of this comes from anyone who actually knew him.
+      What is true is that Gage did appear in public for a time, with his tamping iron, and Harlow mentions an appearance at Barnum's American Museum in New York.
+      His case became a weapon in a scientific argument. Some doctors used it to show that a person could lose part of the brain and be fine. Others used it to argue that particular parts of the brain controlled particular parts of the personality.
+    images:
+      - {query: "Barnum's American Museum", count: 2}
+      - {query: "phrenology head 19th century", count: 2}
+
+  - id: chile
+    chapter: "VII. The Stagecoach Driver"
+    date: "1852–1859"
+    narration: >
+      The real story of Gage's later life is far more interesting than the legend.
+      After working for about eighteen months at a stable and coach service in New Hampshire, Gage went to South America. From 1852 he worked in Chile as a long-distance stagecoach driver, on the route between Valparaíso and Santiago.
+      It was demanding work. He had to rise before dawn, care for the horses, handle the reins of a team on mountain roads, collect fares and deal with passengers, day after day, for years.
+      Modern researchers, notably the psychologist Malcolm Macmillan, argue that this structured routine may have helped Gage recover many of the social skills he had lost. If so, Phineas Gage is not only a story about what brain damage can take away, but also about what a person can rebuild.
+    images:
+      - {query: "Valparaiso 1850s", count: 2}
+      - {query: "stagecoach 19th century", count: 2}
+      - {query: "Santiago Chile 1850s", count: 1}
+
+  - id: death
+    chapter: "VIII. San Francisco"
+    date: "1860"
+    narration: >
+      In 1859, with his health failing, Gage left Chile and joined his mother and sister in San Francisco. He recovered enough to take work on a farm.
+      But in February 1860, he began to have epileptic seizures, very probably caused by his old brain injury.
+      On the twenty-first of May 1860, after a series of severe seizures, Phineas Gage died. He was thirty-six years old, almost twelve years after the accident.
+    cards:
+      - {big: "12 years", text: "Gage lived after the accident", match: "Phineas Gage died"}
+    images:
+      - {query: "San Francisco 1860", count: 2}
+      - {query: "San Francisco 1850s", count: 1}
+
+  - id: skull
+    chapter: "IX. The Skull and the Iron"
+    narration: >
+      Harlow had lost touch with his famous patient. When he learned of Gage's death, he wrote to the family.
+      In 1866, with their permission, Gage's body was exhumed. His skull, and the tamping iron he had kept with him for the rest of his life, were sent to Harlow.
+      Harlow later gave them to Harvard's Warren Anatomical Museum, in Boston, where they can still be seen today.
+      In 2009, a collector identified an old photograph that had been labelled as a whaler holding a harpoon. It was actually a portrait of Phineas Gage, holding his iron. He looks well dressed, confident, and calm. His left eye is closed, and the scars are visible.
+    images:
+      - {query: "Phineas Gage skull Warren Museum", count: 2}
+      - {query: "Warren Anatomical Museum", count: 1}
+      - {query: "Phineas Gage portrait", count: 1, colorize: true}
+
+  - id: science
+    chapter: "Epilogue"
+    narration: >
+      Today, scientists have used Gage's skull and modern computer models to reconstruct the path of the iron through his brain. It destroyed much of the left frontal lobe, a region we now know is involved in planning, decision making and controlling our behaviour.
+      Phineas Gage did not prove everything the textbooks claimed. But his case helped convince the world that who we are is tied to the physical structure of the brain.
+      And behind the legend was a man who survived the impossible, and then quietly went on with his life.
+      If you enjoyed this story from the history of medicine, subscribe for more.
+    images:
+      - {query: "frontal lobe brain illustration", count: 1, modern: true}
+      - {query: "Phineas Gage", count: 1}
+
+thumbnail:
+  scene: skull
+  big: "1848"
+  small: "AN IRON BAR THROUGH HIS BRAIN"
+tags: ["Phineas Gage", "brain injury", "neuroscience history", "psychology", "history of medicine", "frontal lobe", "documentary"]
+references:
+  - "Wikipedia, Phineas Gage: https://en.wikipedia.org/wiki/Phineas_Gage"
+  - "University of Akron, The Phineas Gage Information Page: https://www.uakron.edu/gage/story.dot"

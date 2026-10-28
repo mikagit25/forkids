@@ -75,7 +75,15 @@ def search_commons(query: str, limit: int = 30) -> list[dict]:
         "gsrlimit": str(limit),  # noqa
         "prop": "imageinfo", "iiprop": "url|size|mime|extmetadata", "iiurlwidth": "3000",
     }
-    data = _get("https://commons.wikimedia.org/w/api.php", params).json()
+    data = {}
+    for attempt in range(5):   # Commons answers 200 + {"error": "cirrussearch-too-busy-error"} under load
+        data = _get("https://commons.wikimedia.org/w/api.php", params).json()
+        if "error" not in data:
+            break
+        time.sleep(2 + 3 * attempt)
+    else:
+        raise RuntimeError(f"Commons search failed: {data.get('error', {}).get('code')}")
+    time.sleep(0.5)            # be polite: one search at a time
     pages = sorted(data.get("query", {}).get("pages", []), key=lambda p: p.get("index", 999))
     out = []
     for p in pages:
@@ -106,6 +114,45 @@ def search_commons(query: str, limit: int = 30) -> list[dict]:
             "width": ii.get("width"), "height": ii.get("height"),
         })
     return out
+
+
+def commons_file(title: str) -> dict | None:
+    """One specific Commons file, picked by hand (e.g. "File:Foo.jpg"). Licence is still checked."""
+    params = {"action": "query", "format": "json", "formatversion": "2",
+              "prop": "imageinfo", "iiprop": "url|size|mime|extmetadata", "iiurlwidth": "3000"}
+    if title.startswith("curid:"):            # page id, e.g. "curid:25513204" (short and unambiguous)
+        params["pageids"] = title.split(":", 1)[1]
+    else:
+        title = title if title.startswith("File:") else "File:" + title
+        params["titles"] = title
+    data = {}
+    for attempt in range(5):
+        data = _get("https://commons.wikimedia.org/w/api.php", params).json()
+        if "error" not in data:
+            break
+        time.sleep(2 + 3 * attempt)
+    pages = data.get("query", {}).get("pages", [])
+    if not pages or "imageinfo" not in pages[0]:
+        print(f"   ! not found on Commons: {title}")
+        return None
+    p = pages[0]
+    ii = p["imageinfo"][0]
+    md = ii.get("extmetadata", {})
+    lic = _strip_html(md.get("LicenseShortName", {}).get("value")) or _strip_html(md.get("License", {}).get("value"))
+    if not lic or not license_ok(lic):
+        print(f"   ! licence not allowed ({lic}): {title}")
+        return None
+    artist = _strip_html(md.get("Artist", {}).get("value"))
+    credit = _strip_html(md.get("Credit", {}).get("value"))
+    return {
+        "source": "commons", "id": f"commons:{p['pageid']}",
+        "title": p["title"].removeprefix("File:").rsplit(".", 1)[0],
+        "description": _strip_html(md.get("ImageDescription", {}).get("value"))[:400],
+        "date": _strip_html(md.get("DateTimeOriginal", {}).get("value")),
+        "page_url": ii.get("descriptionurl"), "download_url": ii.get("thumburl") or ii.get("url"),
+        "license": lic, "credit": ", ".join(x for x in (artist, credit) if x)[:200] or "Wikimedia Commons",
+        "width": ii.get("width"), "height": ii.get("height"),
+    }
 
 
 # ---------------------------------------------------------------- Library of Congress
@@ -283,6 +330,7 @@ DEFAULT_SOURCES = ("commons", "smithsonian", "europeana", "wellcome", "loc")
 
 
 DISABLED: set[str] = set()
+FAILS: dict[str, int] = {}
 
 
 def search_all(query: str, sources=DEFAULT_SOURCES) -> list[dict]:
@@ -298,8 +346,12 @@ def search_all(query: str, sources=DEFAULT_SOURCES) -> list[dict]:
         try:
             lists.append(SOURCES[s](query))
         except Exception as e:  # one archive being down must not stop the episode
-            print(f"   ! {s} unavailable ({str(e)[:80]}), skipping it for this run")
-            DISABLED.add(s)
+            FAILS[s] = FAILS.get(s, 0) + 1
+            if FAILS[s] >= 3:
+                print(f"   ! {s} unavailable ({str(e)[:80]}), skipping it for the rest of this run")
+                DISABLED.add(s)
+            else:
+                print(f"   ! {s} search failed for '{query}' ({str(e)[:60]})")
             lists.append([])
     out = []
     for i in range(max((len(l) for l in lists), default=0)):

@@ -1,0 +1,168 @@
+# Status: script draft, fact-check pending (see factcheck.md)
+
+title: "Semmelweis: The Doctor Who Told Doctors to Wash Their Hands"
+subtitle: "He cut deaths in a Vienna maternity ward tenfold, and was destroyed for it"
+slug: semmelweis-1847
+language: en
+era: [1830, 1875]        # photos dated far outside this range are skipped
+visual_context: "Semmelweis Vienna maternity hospital 1840s"   # helps the relevance check
+voice:
+  backend: kokoro
+  name: bm_george
+  lang: en-gb
+  speed: 0.93
+music:
+  generate: true
+  seed: 1847
+  mood: somber
+
+scenes:
+  - id: cold-open
+    montage: true          # fast cuts + one teaser photo from every chapter
+    narration: >
+      In the 1840s, the most dangerous place for a woman to give birth in Vienna was one of the most modern hospitals in Europe.
+      Women begged not to be taken there. Some gave birth in the street rather than go through its doors.
+      One young doctor worked out why. The killer was not bad air or bad luck. It was on the doctors' own hands.
+      He introduced a simple rule, and deaths in his ward fell to a fraction of what they had been.
+      His reward was ridicule, unemployment, and a lonely death in an asylum.
+      This is the story of Ignaz Semmelweis, the saviour of mothers.
+    images:
+      - {query: "Ignaz Semmelweis", count: 3}
+      - {query: "Vienna General Hospital", count: 2}
+      - {query: "Vienna 1840s", count: 2}
+
+  - id: vienna
+    chapter: "I. The Two Clinics"
+    date: "Vienna, 1846"
+    narration: >
+      Ignaz Semmelweis was born in 1818 in Buda, in Hungary. He trained in Vienna, and in 1846 he became an assistant in the maternity department of the Vienna General Hospital, one of the largest hospitals in the world.
+      The department had two clinics. They admitted women on alternate days, so the patients in each were essentially the same: mostly poor women, many of them unmarried, who received free care in exchange for being used to train doctors and midwives.
+      The First Clinic was where medical students trained. The Second Clinic was where midwives trained.
+      And there was one enormous difference between them.
+    images:
+      - {query: "Allgemeines Krankenhaus Wien", count: 2}
+      - {query: "Vienna 1840s", count: 2}
+      - {query: "Semmelweis portrait", count: 1, colorize: true}
+
+  - id: fever
+    chapter: "II. Childbed Fever"
+    narration: >
+      The disease was puerperal fever, or childbed fever. A few days after giving birth, a mother would develop a high fever, severe abdominal pain and a racing pulse. Very often, she died.
+      In the First Clinic, the doctors' clinic, the death rate from childbed fever averaged about ten per cent. In the Second Clinic, run by midwives, it was under four per cent.
+      Everyone in Vienna knew it. Women arriving on the First Clinic's days pleaded on their knees to be admitted to the other one. Some deliberately gave birth on the way, in the street, because women who arrived having already delivered were still given free care, and were far less likely to die.
+      Semmelweis was tormented by it. He noticed that the street births had lower mortality than his own ward. Whatever was killing the women, it was happening inside his clinic.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "10% vs 4%", text: "deaths in the doctors' clinic vs the midwives' clinic", match: "In the First Clinic, the doctors' clinic"}
+    images:
+      - {query: "puerperal fever", count: 2}
+      - {query: "19th century hospital ward", count: 2}
+      - {query: "childbirth 19th century", count: 1}
+
+  - id: theories
+    chapter: "III. Every Theory But One"
+    narration: >
+      Semmelweis began eliminating possibilities, one by one.
+      Was it overcrowding? The Second Clinic was actually more crowded. The weather, or the air? Both clinics shared the same building and the same air.
+      Was it the position women gave birth in? He had them deliver lying on their side, as the midwives did. Nothing changed.
+      Was it fear? A priest walked through the First Clinic ringing a bell when he brought the last rites to a dying woman. Semmelweis had him take another route, silently. Nothing changed.
+      He was close to despair.
+    images:
+      - {query: "Vienna hospital 19th century", count: 2}
+      - {query: "priest last rites 19th century", count: 1}
+      - {query: "Semmelweis", count: 1}
+
+  - id: kolletschka
+    chapter: "IV. A Scalpel Cut"
+    date: "1847"
+    narration: >
+      Then, in 1847, a tragedy gave him the answer.
+      His friend and colleague Jakob Kolletschka, a professor of forensic medicine, was accidentally cut by a student's scalpel during an autopsy. Within days, Kolletschka fell ill and died.
+      Reading the autopsy report on his friend, Semmelweis was struck by something. The disease that killed Kolletschka looked exactly like the disease that killed the mothers.
+      And then he saw the difference between the two clinics. The medical students and doctors of the First Clinic began their day in the dissecting room, working on corpses. Then they went straight to examine women in labour, without properly cleaning their hands. The midwives never did autopsies.
+      Semmelweis concluded that the doctors were carrying what he called cadaverous particles from the dead to the living.
+    images:
+      - {query: "anatomy dissection 19th century", count: 2}
+      - {query: "Jakob Kolletschka", count: 1}
+      - {query: "autopsy room 19th century", count: 1}
+
+  - id: chlorine
+    chapter: "V. Chlorinated Lime"
+    date: "May 1847"
+    narration: >
+      In May 1847, Semmelweis ordered everyone coming from the autopsy room to wash their hands in a solution of chlorinated lime before examining patients. He chose it because it removed the smell of the dissecting room better than soap.
+      The results were dramatic. In April, before the rule, mortality in the First Clinic had been eighteen point three per cent. In June it was two point two per cent. In July, one point two per cent.
+      For the first time, the doctors' clinic was as safe as the midwives' clinic.
+      Later he extended the rule to cleaning instruments, and to washing between examinations of living patients too, after cases were traced to a woman with an infected wound.
+    cards:
+      - {big: "18.3% → 1.2%", text: "mortality in the First Clinic, April to July 1847", match: "In April, before the rule"}
+    images:
+      - {query: "Semmelweis handwashing", count: 2}
+      - {query: "Semmelweis Vienna", count: 1}
+      - {query: "chloride of lime", count: 1}
+
+  - id: rejection
+    chapter: "VI. Gentlemen's Hands"
+    narration: >
+      You might think the medical world would have celebrated. It did not.
+      Semmelweis's idea had a deeply uncomfortable implication: that doctors themselves had been killing their patients. Many senior physicians were offended by the suggestion that a gentleman's hands could be unclean.
+      His explanation also did not fit the medical theories of the time, which blamed disease on miasma, on bad air, or on imbalances in the body. And Semmelweis made his own situation worse. He was slow to publish, and he did not explain his findings in a way his opponents found convincing.
+      In 1849, his post in Vienna was not renewed. He left the city and returned to Hungary.
+    images:
+      - {query: "Vienna medical school 19th century", count: 2}
+      - {query: "physicians 1850s portrait", count: 2}
+
+  - id: pest
+    chapter: "VII. Pest"
+    date: "1851–1861"
+    narration: >
+      In Pest, Semmelweis took charge of the maternity ward at Saint Rochus Hospital. He introduced the same rules, and childbed fever there almost disappeared.
+      In 1861, he finally published his book, The Etiology, Concept and Prophylaxis of Childbed Fever.
+      It was largely ignored, or attacked. Semmelweis responded with furious open letters to leading obstetricians across Europe, calling them irresponsible, even murderers.
+      The letters made him even more isolated. Colleagues began to say that he had become unstable.
+    images:
+      - {query: "Pest Budapest 1850s", count: 2}
+      - {query: "Saint Rochus Hospital Budapest", count: 1}
+      - {query: "Semmelweis book 1861", count: 1}
+
+  - id: asylum
+    chapter: "VIII. The Asylum"
+    date: "1865"
+    narration: >
+      In 1865, his behaviour had become increasingly erratic. Historians still debate what was wrong with him: early dementia, a psychiatric illness, or something else.
+      Colleagues lured him to Vienna on a pretext, and had him committed to an asylum.
+      When he tried to leave, he was beaten by the guards and restrained.
+      Two weeks later, on the thirteenth of August 1865, Ignaz Semmelweis died, at the age of forty-seven. The likely cause was an infected wound on his hand, the kind of infection he had spent his life fighting.
+    images:
+      - {query: "Vienna asylum 19th century", count: 2}
+      - {query: "Semmelweis grave", count: 1}
+
+  - id: vindication
+    chapter: "IX. Vindicated"
+    narration: >
+      Within a few years, the world began to catch up.
+      In France, Louis Pasteur showed that microorganisms cause fermentation and disease. In Britain, the surgeon Joseph Lister used carbolic acid to keep wounds and instruments clean, and infections after surgery fell dramatically.
+      Germ theory finally explained what Semmelweis had seen. The cadaverous particles were bacteria.
+      Today, his name lives on in a less flattering way too. The Semmelweis reflex is the habit of rejecting new evidence because it contradicts established beliefs.
+    images:
+      - {query: "Louis Pasteur", count: 2}
+      - {query: "Joseph Lister carbolic spray", count: 2}
+
+  - id: closing
+    chapter: "Epilogue"
+    narration: >
+      In Budapest, the medical university and a museum bear Semmelweis's name, and the house where he was born is now a museum of the history of medicine.
+      Every time a doctor or nurse washes their hands between patients, they are following the rule a young assistant introduced in a Vienna maternity ward in 1847.
+      It took the world decades to listen to him. Thousands of mothers died while it argued.
+      If you enjoyed this story from the history of medicine, subscribe for more.
+    images:
+      - {query: "Semmelweis statue Budapest", count: 1, modern: true}
+      - {query: "Ignaz Semmelweis", count: 1}
+
+thumbnail:
+  scene: chlorine
+  big: "WASH YOUR HANDS"
+  small: "THE DOCTOR THEY DESTROYED"
+tags: ["Semmelweis", "handwashing", "childbed fever", "history of medicine", "Vienna", "germ theory", "documentary"]
+references:
+  - "Wikipedia, Ignaz Semmelweis: https://en.wikipedia.org/wiki/Ignaz_Semmelweis"
+  - "Wikipedia, Contemporary reaction to Ignaz Semmelweis: https://en.wikipedia.org/wiki/Contemporary_reaction_to_Ignaz_Semmelweis"

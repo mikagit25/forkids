@@ -19,13 +19,13 @@ import numpy as np
 
 from PIL import Image
 
-from .archives import DEFAULT_SOURCES, SESSION, search_all
+from .archives import DEFAULT_SOURCES, SESSION, commons_file, search_all
 
 ALTERNATES = 3  # extra candidates kept per query for the reviewer
 
 
 def _download(c: dict, media: Path) -> Path | None:
-    name = c["id"].replace(":", "_").replace("/", "_") + "_" + hashlib.md5(c["download_url"].encode()).hexdigest()[:6] + ".jpg"
+    name = c["id"].replace(":", "_") + "_" + hashlib.md5(c["download_url"].encode()).hexdigest()[:6] + ".jpg"
     dest = media / name
     if dest.exists():
         return dest
@@ -58,8 +58,8 @@ def _scale_counts(scene: dict, teasers: int = 0):
     """Ask for enough photos to cover the narration without repeats (about one per 6.5 s, 2.6 s in a montage)."""
     secs = len(scene["narration"].split()) / WPM * 60
     need = int(np.ceil(secs / (2.6 if scene.get("montage") else SHOT_SECONDS))) - (teasers if scene.get("montage") else 0)
-    qs = scene.get("images", [])
-    have = sum(q.get("count", 1) for q in qs)
+    qs = [q for q in scene.get("images", []) if not q.get("file")]
+    have = sum(q.get("count", 1) for q in scene.get("images", []))
     i = 0
     while have < need and qs:
         q = qs[i % len(qs)]
@@ -97,7 +97,26 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
             print(f"[{sid}] kept {sum(i['use'] for i in old['scenes'][sid])} images from previous run")
             continue
         chosen = []
+        # 1) photos picked by hand (exact Commons files) always come first, in script order
         for q in scene.get("images", []):
+            if not q.get("file"):
+                continue
+            c = commons_file(q["file"])
+            if not c:
+                continue
+            path = _download(c, media)
+            if not path:
+                continue
+            c.update(file=str(path.relative_to(ep_dir)), use=True, query=q.get("note", q["file"]),
+                     colorize=bool(q.get("colorize")), picked=True, score=1.0)
+            hashes.append(select.phash(path))
+            seen.add(c["id"])
+            chosen.append(c)
+            print(f"[{sid}] picked: {c['title'][:70]}")
+        # 2) automatic search for anything still described only by a query
+        for q in scene.get("images", []):
+            if q.get("file"):
+                continue
             want = q.get("count", 1)
             print(f"[{sid}] searching: {q['query']}")
             cands = search_all(q["query"], q.get("sources") or DEFAULT_SOURCES)

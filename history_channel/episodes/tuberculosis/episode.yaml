@@ -1,0 +1,167 @@
+# Status: script draft, fact-check pending (see factcheck.md)
+# Series: Biography of a Disease
+
+title: "Tuberculosis: The White Plague That Never Left"
+subtitle: "Nine thousand years of consumption, the sanatorium era, the first cure, and why TB still kills more than any other infection"
+slug: tuberculosis
+language: en
+era: [1800, 1960]        # sanatorium photos, posters, engravings
+visual_context: "tuberculosis consumption history sanatorium"   # helps the relevance check
+voice:
+  backend: kokoro
+  name: bm_lewis
+  lang: en-gb
+  speed: 0.93
+music:
+  generate: true
+  seed: 1882
+  mood: somber
+
+scenes:
+  - id: cold-open
+    montage: true          # fast cuts + one teaser photo from every chapter
+    narration: >
+      It has been found in human bones nine thousand years old.
+      In the nineteenth century, it killed about a quarter of Europe's adults. Poets and composers died of it, and people thought it made them beautiful.
+      Doctors prescribed mountain air, rest, and sleeping outdoors in the snow. Whole towns were built around patients waiting to get better, or to die.
+      Then, in 1944, a young American scientist found the first drug that could cure it.
+      And yet today, tuberculosis still kills more people than any other single infection on Earth.
+      This is the biography of the white plague.
+    images:
+      - {query: "tuberculosis sanatorium", count: 4}
+      - {query: "tuberculosis poster", count: 2}
+      - {query: "Robert Koch", count: 1}
+
+  - id: ancient
+    chapter: "I. Older Than History"
+    narration: >
+      Tuberculosis is caused by a slow-growing bacterium, Mycobacterium tuberculosis. It usually attacks the lungs, and spreads through the air when an infected person coughs.
+      Genetic studies suggest that it emerged in Africa and spread around the world with human migration.
+      The oldest confirmed human case comes from Atlit Yam, a submerged village off the coast of Israel, about nine thousand years old. Egyptian mummies show signs of tuberculosis of the spine. The ancient Greeks called it phthisis, the wasting disease. In English it became consumption, because it seemed to consume its victims from within.
+    images:
+      - {query: "Mycobacterium tuberculosis", count: 1, modern: true}
+      - {query: "Egyptian mummy tuberculosis", count: 1}
+      - {query: "Hippocrates", count: 1}
+
+  - id: white-plague
+    chapter: "II. The White Plague"
+    date: "1800s"
+    narration: >
+      In the crowded cities of the Industrial Revolution, tuberculosis exploded.
+      Workers lived packed into damp, airless rooms, and the bacterium passed easily from one to the next. By the nineteenth century, it was killing about a quarter of Europe's adult population.
+      People called it the white plague, after the deathly pallor of its victims.
+      Its symptoms were slow and cruel: a persistent cough, fevers and night sweats, weight loss, and finally coughing up blood. Some patients lived with it for years, slowly fading.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "1 in 4", text: "adult deaths in 19th-century Europe", match: "By the nineteenth century, it was killing"}
+    images:
+      - {query: "Victorian slum", count: 2}
+      - {query: "industrial revolution city 19th century", count: 2}
+      - {query: "consumption patient 19th century", count: 1}
+
+  - id: romantic
+    chapter: "III. The Romantic Disease"
+    narration: >
+      Strangely, the nineteenth century also romanticised consumption.
+      Because it often struck young people, and slowly made them thin, pale and flushed, it became associated with sensitivity, beauty and artistic genius. Some fashionable women even tried to look consumptive.
+      The disease took a long list of artists and writers. The composer Frédéric Chopin suffered from chronic lung disease for years, almost certainly tuberculosis, and his letters and the writings of George Sand describe his coughing fits. The poet John Keats, who had trained as a doctor, recognised his own blood on a pillow and knew what it meant.
+      The reality was far from romantic. Most victims were poor, and died in misery.
+    images:
+      - {query: "Frederic Chopin", count: 1, colorize: true}
+      - {query: "John Keats", count: 1}
+      - {query: "La Traviata Violetta", count: 1}
+
+  - id: laennec
+    chapter: "IV. Listening to the Chest"
+    date: "1816"
+    narration: >
+      Diagnosis was difficult, until a French doctor named René Laennec had an idea.
+      In 1816, examining a young woman, he felt it would be improper to put his ear directly to her chest. He rolled a sheet of paper into a tube, placed one end on her chest and the other to his ear, and was amazed at how clearly he could hear her heart.
+      He developed this into a wooden instrument, the stethoscope, and used it to describe the sounds of diseased lungs in remarkable detail.
+      Laennec himself died of tuberculosis, at the age of forty-five.
+    images:
+      - {query: "Laennec stethoscope", count: 2, colorize: true}
+      - {query: "René Laennec", count: 1}
+
+  - id: koch
+    chapter: "V. Koch's Discovery"
+    date: "24 March 1882"
+    narration: >
+      For centuries, many doctors believed tuberculosis was hereditary, or caused by a weak constitution.
+      On the twenty-fourth of March 1882, in Berlin, the German physician Robert Koch stood before the Physiological Society and announced that he had found its cause: a bacterium, which he had managed to stain and see under the microscope, and to grow in the laboratory.
+      It was a turning point in medicine. Tuberculosis was infectious. It could be prevented.
+      Today, the twenty-fourth of March is World Tuberculosis Day.
+    cards:
+      - {big: "24 March 1882", text: "Koch announces the cause of TB", match: "On the twenty-fourth of March 1882"}
+    images:
+      - {query: "Robert Koch laboratory", count: 2}
+      - {query: "Robert Koch", count: 1}
+      - {query: "tubercle bacillus Koch drawing", count: 1}
+
+  - id: sanatorium
+    chapter: "VI. The Sanatorium"
+    date: "1854–1950"
+    narration: >
+      Without a cure, doctors turned to rest and fresh air.
+      In 1854, Hermann Brehmer opened a sanatorium in the mountains of Silesia, in Görbersdorf. In 1884, Edward Trudeau, himself a tuberculosis patient, opened one at Saranac Lake in the Adirondack mountains of New York.
+      Soon there were sanatoriums across Europe and America. Patients lay for hours on open verandas, wrapped in blankets, even in winter. They ate rich food, took their temperature several times a day, and followed strict rules.
+      Some recovered. Many did not. But sanatoriums also separated the sick from their families, which helped slow the spread of the disease.
+    images:
+      - {query: "sanatorium porch patients", count: 2, colorize: true}
+      - {query: "Saranac Lake cure porch", count: 2}
+      - {query: "Görbersdorf sanatorium", count: 1}
+
+  - id: public-health
+    chapter: "VII. Don't Spit"
+    narration: >
+      Once people knew tuberculosis was spread by germs, governments went to war against it.
+      Public health campaigns urged people not to spit in the street. Spittoons were removed or regulated, streetcars posted warning signs, and cities ran campaigns about ventilation and housing.
+      The double-barred cross became the symbol of the fight against tuberculosis, and Christmas seals were sold to raise money for the cause.
+      In 1895, Wilhelm Röntgen discovered X-rays, and soon mass chest X-ray screening helped find cases early.
+    images:
+      - {query: "tuberculosis poster", count: 2}
+      - {query: "do not spit sign", count: 1}
+      - {query: "Christmas seal tuberculosis", count: 1}
+      - {query: "chest X-ray screening 1940s", count: 1}
+
+  - id: cure
+    chapter: "VIII. The First Cure"
+    date: "1921–1952"
+    narration: >
+      The first weapon was a vaccine. In France, Albert Calmette and Camille Guérin spent years weakening a strain of cattle tuberculosis. Their BCG vaccine was first given to a human in 1921, and is still used today, especially to protect children.
+      But the real breakthrough came in 1944, at Rutgers University, in New Jersey. A young graduate student, Albert Schatz, working in the laboratory of Selman Waksman, isolated a new antibiotic from soil bacteria: streptomycin. It killed the tuberculosis bacterium.
+      Bacteria soon developed resistance to it. So doctors combined it with other drugs: PAS from 1946, then isoniazid in 1952, and rifampicin in the 1970s.
+      For the first time, tuberculosis could be cured. Sanatoriums emptied and closed.
+    images:
+      - {query: "Selman Waksman", count: 1}
+      - {query: "Albert Calmette", count: 1}
+      - {query: "streptomycin", count: 1}
+      - {query: "BCG vaccination", count: 1}
+
+  - id: today
+    chapter: "IX. Not Gone"
+    narration: >
+      In wealthy countries, tuberculosis came to seem like a disease of the past. It was not.
+      In 1993, the World Health Organization declared tuberculosis a global health emergency. HIV, which weakens the immune system, had fuelled a new wave of cases, and drug-resistant strains were spreading.
+      Today, tuberculosis kills more than a million people every year, more than any other single infectious disease. Most of them live in poorer countries, and most of these deaths are preventable with drugs that already exist.
+      Multidrug-resistant tuberculosis, which does not respond to the main medicines, remains one of the greatest threats in global health.
+    images:
+      - {query: "tuberculosis treatment", count: 1, modern: true}
+      - {query: "tuberculosis", count: 2}
+
+  - id: closing
+    chapter: "Epilogue"
+    narration: >
+      Tuberculosis has been with us for at least nine thousand years. We have understood it for less than a hundred and fifty, and been able to cure it for less than eighty.
+      It is a reminder that a disease does not disappear just because we have the tools to stop it. It disappears only when those tools reach everyone.
+      If you enjoyed this biography of a disease, subscribe for the next one.
+    images:
+      - {query: "tuberculosis sanatorium", count: 1}
+      - {query: "Robert Koch", count: 1}
+
+thumbnail:
+  scene: sanatorium
+  big: "WHITE PLAGUE"
+  small: "STILL THE DEADLIEST INFECTION"
+tags: ["tuberculosis", "consumption", "history of medicine", "Robert Koch", "sanatorium", "antibiotics", "documentary"]
+references:
+  - "Wikipedia, History of tuberculosis: https://en.wikipedia.org/wiki/History_of_tuberculosis"

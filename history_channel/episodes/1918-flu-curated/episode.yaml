@@ -1,0 +1,282 @@
+# VARIANT FOR COMPARISON: same script as episodes/1918-flu, but every photo was picked by hand
+# (Claude reviewed Commons candidates visually; "curid:N" = https://commons.wikimedia.org/?curid=N).
+# The automatic version in episodes/1918-flu is kept unchanged.
+#
+# Episode definition. Everything the pipeline needs lives here.
+# Workflow: edit narration -> fact-check (factcheck.md) -> fetch -> review contact sheet -> render.
+#
+# Per image query:  count, sources, colorize (true = show the original first, then dissolve to a colorized version)
+# Per scene:        chapter, date, quote {text, source, match}  (quote card shown while that sentence is read)
+
+title: "1918: The Pandemic That Hid Behind a War"
+subtitle: "How the deadliest flu in history spread, who fought it without medicine, and how science brought it back to life"
+slug: 1918-flu-curated
+language: en
+era: [1915, 1921]        # photos dated far outside this range are skipped
+visual_context: "1918 influenza pandemic"   # helps the relevance check
+voice:
+  backend: kokoro        # kokoro (free, local) | openai (paid API)
+  name: bm_george        # kokoro voices: bm_george, bm_lewis, am_michael, am_onyx, bf_emma ...
+  lang: en-gb
+  speed: 0.93
+music:
+  generate: true         # documentary underscore synthesized by code (pipeline/music.py), mixed under the voice
+  seed: 1918
+  mood: somber           # somber | tense | hopeful
+# music: path/to/track.mp3   # or use your own licensed track
+
+scenes:
+  - id: cold-open
+    montage: true          # fast cuts + one teaser photo from every chapter
+    narration: >
+      In the autumn of 1918, a city threw a parade for two hundred thousand people. Within days, every hospital bed was full.
+      Healthy young soldiers felt fine at breakfast and were dead by nightfall. Nurses ran out of beds, doctors ran out of answers, and cities ran out of coffins.
+      On two islands in the Pacific, one governor closed the harbour and the other did not, and the difference was counted in thousands of lives.
+      And in a frozen grave in Alaska, the virus waited for almost eighty years.
+      Children even sang about it in the street. I had a little bird, its name was Enza. I opened the window, and in-flew-Enza.
+      It infected around five hundred million people, one in three humans alive, and killed at least fifty million.
+      This is the story of the 1918 influenza pandemic, told through the photographs and documents it left behind.
+    quote:
+      text: "I had a little bird,\nIts name was Enza.\nI opened the window,\nAnd in-flu-enza."
+      source: "Children's skipping rhyme, United States, 1918"
+      match: "I had a little bird"
+      sentences: 2           # the rhyme is read as two sentences
+    images:
+      - {file: "curid:15677879"}
+      - {file: "curid:109932599"}
+      - {file: "curid:6213389"}
+      - {file: "curid:88520623"}
+
+  - id: kansas
+    chapter: "I. A Cook in Kansas"
+    date: "March 1918"
+    narration: >
+      The story is usually told starting at Camp Funston, a vast army training camp in Kansas.
+      On a morning in early March 1918, a company cook reported to the infirmary with a fever, a sore throat and aching muscles.
+      By lunchtime, dozens more soldiers had joined him. Within weeks, more than a thousand men were sick.
+      Most of them recovered. This first wave looked like an ordinary, if unusually fast, spring flu, and newspapers barely noticed.
+      Historians still argue about where the virus really began. Kansas, France, Britain and China have all been proposed, and the question may never be settled.
+      What is certain is that the army camps of 1918 were perfect incubators: tens of thousands of young men from every corner of the country, packed into barracks, then shipped across the Atlantic.
+      The war gave the virus a free ride to Europe, and then, a few months later, a free ride back.
+    images:
+      - {file: "curid:25513204", colorize: true}
+      - {file: "curid:108658111"}
+      - {file: "curid:95964964"}
+      - {file: "curid:33536385"}
+      - {file: "curid:80764806"}
+      - {file: "curid:62438308"}
+      - {file: "curid:31602643"}
+
+  - id: name
+    chapter: "II. The Wrong Name"
+    narration: >
+      The world would come to call it the Spanish flu. But it almost certainly did not start in Spain.
+      Spain was neutral in the war, and its newspapers were not censored.
+      While the warring nations kept news of sickness quiet to protect morale, Spanish papers reported the epidemic openly, including the illness of their own king, Alfonso the Thirteenth.
+      So it looked, to the rest of the world, as if Spain was the worst hit.
+      In Spain, meanwhile, many people called it the French flu.
+      Censorship did more than give the disease the wrong name. It meant that when the real danger arrived, many people were told there was nothing to worry about.
+    images:
+      - {file: "curid:126709302"}
+      - {file: "curid:37885700"}
+      - {file: "curid:75049767"}
+      - {file: "curid:96716013"}
+      - {file: "curid:87034599"}
+      - {file: "curid:54737081"}
+
+  - id: second-wave
+    chapter: "III. The Second Wave"
+    date: "Autumn 1918"
+    narration: >
+      In late August 1918, the virus came back, and it had changed.
+      Almost at the same time, a far more lethal form appeared in ports on three continents: Brest in France, Freetown in Sierra Leone, and Boston in the United States.
+      Outside Boston, at Camp Devens, the army hospital filled within days. In September, the army sent one of the country's most respected doctors, Victor Vaughan, to see it for himself.
+      He found every bed taken and young men dying in the corridors. On the day he arrived, sixty-three soldiers died.
+      Healthy people could feel well at breakfast and be dead by nightfall. Doctors described patients whose faces turned a dusky blue as their lungs filled with fluid, a sign of oxygen starvation that nurses learned to dread.
+      Vaughan later wrote a sentence that captures the fear of that autumn.
+      If the epidemic continues its mathematical rate of acceleration, civilization could easily disappear from the face of the earth.
+    quote:
+      text: "If the epidemic continues its mathematical rate of acceleration, civilization could easily disappear from the face of the earth."
+      source: "Dr. Victor C. Vaughan, US Army Medical Department, 1918"
+      match: "If the epidemic continues"
+    images:
+      - {file: "curid:98404173"}
+      - {file: "curid:95962027"}
+      - {file: "curid:88235885"}
+      - {file: "curid:6213331"}
+      - {file: "curid:68050116"}
+      - {file: "curid:73895117"}
+      - {file: "curid:16604995"}
+
+  - id: philadelphia
+    chapter: "IV. The Parade"
+    date: "28 September 1918"
+    narration: >
+      Nowhere shows the cost of a bad decision more clearly than Philadelphia.
+      By late September, sailors at the city's navy yard were already falling ill. Many local doctors urged the authorities to cancel public events.
+      But on the twenty-eighth of September, the city went ahead with a huge parade to sell war bonds.
+      Officials had expected around ten thousand spectators. More than two hundred thousand people packed the streets, shoulder to shoulder, cheering the marching bands.
+      Within days, every one of the city's thirty-one hospitals was full.
+      In the weeks that followed, Philadelphia ran out of coffins and gravediggers. Bodies waited in homes for days. Priests drove horse carts through the streets, collecting the dead.
+      More than twelve thousand Philadelphians died.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "200,000", text: "people packed the parade route", match: "More than two hundred thousand people"}
+    images:
+      - {file: "curid:91404830"}
+      - {file: "curid:92542818"}
+      - {file: "curid:104910096"}
+      - {file: "curid:108658107"}
+
+  - id: nurses
+    chapter: "V. The Nurses"
+    narration: >
+      If doctors could do little, nurses could do a great deal: keeping patients warm, fed and hydrated could be the difference between life and death.
+      But there were not enough of them. More than half of the army's twenty thousand nurses had already sailed to Europe when the second wave hit America.
+      The American Red Cross launched a national appeal. It placed newspaper advertisements, asked hospitals to release staff, and accepted nurses still in training.
+      At the height of the crisis, anyone who had completed a single Red Cross nursing course could be sent to the wards.
+      Thousands of nurses fell ill. Hundreds died. The army decided that nurses who died of influenza, even those who never left the country, had died in the line of duty.
+      The crisis also cracked an old barrier. The Army Nurse Corps had refused to employ Black nurses. In the final months of 1918, a handful were finally admitted, among them Aileen Cole, who had spent the epidemic nursing miners in West Virginia.
+    images:
+      - {file: "curid:88516049"}
+      - {file: "curid:6652749"}
+      - {file: "curid:6645133"}
+      - {file: "curid:6648648"}
+      - {file: "curid:88235393"}
+      - {file: "curid:88516078", colorize: true}
+
+  - id: who-it-killed
+    chapter: "VI. The Wrong Victims"
+    narration: >
+      Ordinary flu kills mostly the very young and the very old.
+      The 1918 virus did that too, but it also struck down healthy adults between twenty and forty, people in the prime of their lives.
+      Researchers still debate why. One theory is that strong young immune systems over-reacted, flooding the lungs with inflammation.
+      Another is that older people had been exposed to a similar virus decades earlier, and kept some protection.
+      Whatever the reason, the effect was staggering. Families lost both parents in a single week. Orphanages filled.
+      In the United States, life expectancy fell by more than ten years in a single year, and October 1918 became the deadliest month in American history.
+    images:
+      - {file: "curid:28908990"}
+      - {file: "curid:88523612"}
+      - {query: "1918 influenza victims", count: 1}
+      - {query: "1918 influenza soldiers hospital", count: 2}
+
+  - id: masks
+    chapter: "VII. Masks and Rebels"
+    date: "San Francisco, 1918–1919"
+    narration: >
+      Doctors in 1918 had no vaccine against influenza, and no antibiotics to treat the bacterial pneumonia that killed so many patients.
+      They did not even know that the disease was caused by a virus. That would not be discovered until the 1930s.
+      So cities fought back with the only tools they had: closing schools, churches and theatres, banning public gatherings, and ordering people to wear gauze masks.
+      San Francisco went furthest. From the twenty-fifth of October 1918, everyone in public had to wear a mask. People who refused could be fined or jailed. Even the mayor and the city's health officer were fined, after being caught without masks at a boxing match.
+      The order was lifted in November. When cases rose again, it returned in January 1919, and this time many residents had had enough.
+      An Anti-Mask League was formed, and around four and a half thousand people came to its first public meeting. A week later, the order was lifted for good.
+      Studies of the pandemic later showed that cities which acted early and kept their measures in place, like St. Louis, saw far lower peaks of death than cities that hesitated.
+    images:
+      - {file: "curid:88467690"}
+      - {file: "curid:98981971"}
+      - {file: "curid:107373257"}
+      - {file: "curid:88248064", colorize: true}
+      - {file: "curid:89683595"}
+      - {file: "curid:119145248"}
+      - {file: "curid:92317339"}
+      - {file: "curid:88519928"}
+      - {file: "curid:67906344"}
+      - {file: "curid:95955899"}
+
+  - id: samoa
+    chapter: "VIII. Two Islands"
+    date: "November 1918"
+    narration: >
+      Perhaps the starkest lesson of all came from two neighbouring groups of islands in the South Pacific.
+      On the seventh of November 1918, a steamer called the Talune arrived at Apia, in Western Samoa, then governed by New Zealand. Sick passengers were allowed ashore.
+      Within weeks, around eight and a half thousand people had died, more than a fifth of the population.
+      Just across the water, American Samoa was run by a naval governor, John Poyer. Without waiting for orders, he closed the islands. Samoan volunteers patrolled the shore to stop illegal landings, and new arrivals were kept under watch.
+      American Samoa recorded no deaths from influenza at all.
+      Same virus, same ocean, two different decisions.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "0", text: "influenza deaths in American Samoa", match: "American Samoa recorded no deaths"}
+    images:
+      - {file: "curid:113819721"}
+      - {file: "curid:9680133"}
+      - {file: "curid:10059522"}
+      - {file: "curid:16928912"}
+      - {file: "curid:16834536"}
+      - {file: "curid:97703694"}
+      - {file: "curid:144925497"}
+
+  - id: world
+    chapter: "IX. Around the World"
+    narration: >
+      No country suffered more than India. The virus is thought to have arrived in Bombay in the summer of 1918, perhaps on a troop ship returning from Europe.
+      It then followed the railways inland, through towns and villages already weakened by a failed monsoon and food shortages.
+      Historians estimate that at least twelve million Indians died, and possibly far more. That may be a quarter or more of all the deaths in the world.
+      In Brazil, the virus did not spare the powerful. Rodrigues Alves, elected president in 1918, fell ill and died in January 1919, before he could take office.
+      From the Arctic to South Africa, from Brazil to China, the pattern repeated. Almost no inhabited place on Earth escaped.
+    images:
+      - {file: "curid:123691817"}
+      - {file: "curid:130482342"}
+      - {file: "curid:131698417"}
+      - {file: "curid:5121071"}
+      - {file: "curid:5122452"}
+      - {file: "curid:2953443"}
+      - {file: "curid:148836698"}
+
+  - id: brevig
+    chapter: "X. The Village in the Ice"
+    date: "Brevig Mission, Alaska"
+    narration: >
+      In November 1918, the virus reached Brevig Mission, a tiny village on the coast of Alaska.
+      In five days, seventy-two of its eighty adults died. They were buried together in a mass grave in the frozen ground.
+      In 1951, a young Swedish scientist named Johan Hultin dug into that grave, hoping to recover the virus. He failed.
+      Forty-six years later, at the age of seventy-two, he went back.
+      This time he found the body of a woman, preserved by the permafrost, whose lungs still carried fragments of the virus's genetic code.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "72 of 80", text: "adults of Brevig Mission died in five days", match: "In five days, seventy-two"}
+    images:
+      - {file: "curid:159119438"}
+      - {file: "curid:44326448"}
+      - {file: "curid:12436436"}
+      - {file: "curid:80192562"}
+      - {file: "curid:161244690"}
+      - {file: "curid:19050774"}
+
+  - id: resurrection
+    chapter: "XI. Bringing It Back"
+    date: "2005"
+    narration: >
+      Working with Jeffery Taubenberger's team, who had pieced together the virus's genes from preserved tissue samples, scientists finally had the complete genetic recipe of the 1918 virus.
+      In 2005, at a high-security laboratory at the US Centers for Disease Control, the microbiologist Terrence Tumpey reconstructed it.
+      The precautions were extraordinary. Only Tumpey was allowed to handle the virus. He worked alone, after hours, passing fingerprint and iris scans to enter the lab, and took an antiviral drug every day in case of infection.
+      What he found explained a great deal. Some infected mice died within three days. Four days after infection, their lungs held thirty-nine thousand times more virus than mice infected with a comparison strain.
+      When he swapped out individual genes, the virus became far less deadly. It was the combination of all eight genes together that made the 1918 virus so exceptionally virulent.
+      For the first time since 1918, the virus existed again, so that researchers could finally ask what made it so lethal, and how to recognise the next one before it spreads.
+    images:
+      - {file: "curid:1314479"}
+      - {file: "curid:593472"}
+      - {file: "curid:82983798"}
+
+  - id: closing
+    chapter: "Epilogue"
+    narration: >
+      The 1918 pandemic killed more people than the war it travelled with. Yet for decades it was almost forgotten, overshadowed by the armistice and the peace.
+      Its lessons were written in the records of crowded hospitals, emergency ordinances and mass graves. In Philadelphia and St. Louis. In Western and American Samoa.
+      And they came back into focus every time a new virus began to spread.
+      The children who sang about a little bird named Enza grew up, and many of them never forgot why.
+      If you enjoyed this story from the archives, subscribe for more forgotten chapters of medical history.
+    images:
+      - {file: "curid:1240267"}
+      - {file: "curid:27680046"}
+      - {file: "curid:30885698"}
+
+thumbnail:
+  scene: philadelphia          # take the hero image from this scene (or set image: "commons:12345")
+  big: "1918"
+  small: "THE PARADE THAT KILLED A CITY"
+tags: ["1918 flu", "Spanish flu", "pandemic history", "history of medicine", "Philadelphia 1918", "Samoa 1918", "documentary"]
+references:
+  - "CDC, History of 1918 Flu Pandemic: https://archive.cdc.gov/www_cdc_gov/flu/pandemic-resources/1918-commemoration/1918-pandemic-history.htm"
+  - "CDC, The Deadliest Flu (reconstruction of the 1918 virus): https://archive.cdc.gov/www_cdc_gov/flu/pandemic-resources/reconstruction-1918-virus.html"
+  - "US National Archives, Pandemic Nursing: The 1918 Influenza Outbreak: https://prologue.blogs.archives.gov/2023/05/24/pandemic-nursing-the-1918-influenza-outbreak"
+  - "PBS American Experience, Victor Vaughan: https://www.pbs.org/wgbh/americanexperience/features/influenza-victor-vaughan"
+  - "Wikipedia, SS Talune: https://en.wikipedia.org/wiki/SS_Talune"
+  - "Wikipedia, Anti-Mask League of San Francisco: https://en.wikipedia.org/wiki/Anti-Mask_League_of_San_Francisco"
+  - "Wikipedia, 1918 flu pandemic in India: https://en.wikipedia.org/wiki/1918_flu_pandemic_in_India"

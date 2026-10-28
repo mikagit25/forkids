@@ -1,0 +1,166 @@
+# Status: script draft, fact-check pending (see factcheck.md)
+# Series: Biography of a Disease
+
+title: "Yellow Fever: The Mosquito That Stopped Empires"
+subtitle: "How a tropical virus emptied Philadelphia, beat Napoleon, buried the French in Panama, and was finally tamed"
+slug: yellow-fever
+language: en
+era: [1780, 1940]        # engravings and photos from Philadelphia 1793 to the Panama Canal
+visual_context: "yellow fever history Panama Canal mosquito"   # helps the relevance check
+voice:
+  backend: kokoro
+  name: am_onyx
+  lang: en-us
+  speed: 0.95
+music:
+  generate: true
+  seed: 1900
+  mood: tense
+
+scenes:
+  - id: cold-open
+    montage: true          # fast cuts + one teaser photo from every chapter
+    narration: >
+      In 1793, it drove the government of the United States out of its own capital.
+      A few years later, it destroyed one of Napoleon's armies in the Caribbean. It killed thousands of French workers trying to dig a canal across Panama.
+      For more than a century, doctors argued about how it spread: through filth, through bedding, through the air.
+      The answer turned out to be a mosquito. Proving it cost the lives of brave volunteers.
+      And that discovery made the Panama Canal possible.
+      This is the biography of yellow fever.
+    images:
+      - {query: "yellow fever", count: 4}
+      - {query: "Panama Canal construction", count: 2}
+      - {query: "Aedes aegypti", count: 1, modern: true}
+
+  - id: disease
+    chapter: "I. Yellow Jack"
+    narration: >
+      Yellow fever is caused by a virus, carried by mosquitoes, above all the species Aedes aegypti.
+      It begins like many fevers, with chills, headache and muscle pain. Most patients recover. But in some, after a brief remission, the disease returns violently. The liver fails, turning the skin and eyes yellow. Patients bleed from the gums and stomach, and vomit dark, digested blood, the dreaded black vomit.
+      The virus and its mosquito originally came from Africa. They crossed the Atlantic on slave ships in the seventeenth century, carried in water barrels where mosquitoes bred. In the ports of the Americas, the disease found a new home.
+      Sailors called it Yellow Jack, after the yellow quarantine flag flown by ships carrying the sick.
+    images:
+      - {query: "yellow fever patient", count: 2}
+      - {query: "Aedes aegypti", count: 1, modern: true}
+      - {query: "sailing ship 18th century", count: 1}
+
+  - id: philadelphia
+    chapter: "II. Philadelphia, 1793"
+    date: "1793"
+    narration: >
+      In the summer of 1793, Philadelphia was the capital of the United States and its largest city.
+      That August, yellow fever broke out near the docks. Within weeks it was everywhere.
+      Around twenty thousand people fled the city, including President George Washington and much of the federal government. Those who stayed watched carts carry the dead through empty streets.
+      Doctors disagreed bitterly about treatment. Benjamin Rush, the most famous physician in America, bled his patients heavily and gave them powerful purges. Others prescribed rest and gentle care.
+      By the time cold weather arrived in November and the epidemic ended, around five thousand people had died, about one in ten of the city's population.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "1 in 10", text: "Philadelphians died in 1793", match: "By the time cold weather arrived"}
+    images:
+      - {query: "Philadelphia 1793 yellow fever", count: 2}
+      - {query: "Benjamin Rush", count: 1, colorize: true}
+      - {query: "Philadelphia 18th century", count: 2}
+
+  - id: haiti
+    chapter: "III. Napoleon's Lost Army"
+    date: "1802–1803"
+    narration: >
+      In 1802, Napoleon sent a large army to the Caribbean colony of Saint-Domingue, today's Haiti, to crush the revolution of formerly enslaved people and restore French control.
+      The army fought the Haitian revolutionaries. But it was also attacked by yellow fever. Tens of thousands of French soldiers died, among them the expedition's commander, Napoleon's brother-in-law, General Leclerc.
+      The disaster helped convince Napoleon to give up his ambitions in the Americas. In 1803, he sold the vast Louisiana territory to the United States.
+      And on the first of January 1804, Haiti declared its independence, the first nation founded by formerly enslaved people.
+    images:
+      - {query: "Saint-Domingue expedition", count: 2}
+      - {query: "Haitian Revolution", count: 2}
+      - {query: "Charles Leclerc", count: 1}
+
+  - id: theories
+    chapter: "IV. Filth, Fomites and a Cuban Doctor"
+    narration: >
+      Through the nineteenth century, yellow fever struck again and again, from New Orleans to Rio de Janeiro.
+      Most doctors believed it spread through filth and miasma, or through the clothes and bedding of the sick. Cities burned tar in the streets and fumigated houses.
+      In 1881, a Cuban physician named Carlos Finlay proposed a different idea. He argued that yellow fever was carried by a mosquito.
+      For almost twenty years, few people took him seriously.
+    images:
+      - {query: "Carlos Finlay", count: 1, colorize: true}
+      - {query: "New Orleans yellow fever 1878", count: 2}
+      - {query: "Havana 19th century", count: 1}
+
+  - id: reed
+    chapter: "V. The Reed Commission"
+    date: "1900"
+    narration: >
+      In 1900, after the Spanish-American War, yellow fever was killing American soldiers in Cuba. The US Army sent a commission led by Major Walter Reed to find out why.
+      The commission decided to test Finlay's mosquito theory, on human volunteers.
+      On the thirty-first of August 1900, Dr Jesse Lazear allowed a mosquito that had fed on yellow fever patients to bite a soldier, Private William Dean. Within days, Dean fell ill. He survived.
+      Lazear himself was less lucky. In September, he developed yellow fever and died. His colleagues believed a mosquito had bitten him during his work.
+    images:
+      - {query: "Walter Reed", count: 1, colorize: true}
+      - {query: "Jesse Lazear", count: 1}
+      - {query: "Yellow Fever Commission Cuba", count: 2}
+
+  - id: camp
+    chapter: "VI. Proof"
+    narration: >
+      To be certain, the commission built an experimental station near Havana and ran a careful series of experiments.
+      In one building, volunteers slept for weeks among the soiled bedding and clothing of yellow fever patients. None of them caught the disease.
+      In another, clean and well-ventilated, volunteers were exposed only to infected mosquitoes. They fell ill.
+      For the second phase of testing, volunteers signed written consent forms, among the earliest in medical research, acknowledging that they might die.
+      The conclusion was clear. Yellow fever was not spread by filth or bedding. It was spread by mosquitoes.
+    images:
+      - {query: "Camp Lazear", count: 2}
+      - {query: "yellow fever experiment Cuba 1900", count: 2}
+
+  - id: gorgas
+    chapter: "VII. War on the Mosquito"
+    date: "1901–1906"
+    narration: >
+      If mosquitoes were the problem, mosquitoes could be fought.
+      In Havana, the army doctor William Gorgas launched a campaign against them in 1901. Water containers were covered, breeding sites destroyed, and houses fumigated by burning pyrethrum powder. Within about a year, yellow fever had disappeared from the city.
+      Then Gorgas went to Panama. Two decades earlier, a French company had tried to dig a canal there. Disease, mostly yellow fever and malaria, had killed thousands of its workers, and the project had collapsed.
+      Now the Americans were trying again. Gorgas led about four thousand workers in a war on mosquitoes: draining standing water, spreading oil on ponds, and putting screens on windows. By December 1905, deaths from yellow fever among canal workers had stopped.
+    images:
+      - {query: "William Gorgas", count: 1}
+      - {query: "Panama Canal mosquito brigade", count: 2, colorize: true}
+      - {query: "French Panama Canal", count: 2}
+
+  - id: canal
+    chapter: "VIII. The Canal"
+    date: "1914"
+    narration: >
+      Without yellow fever, the canal could be built.
+      Tens of thousands of workers dug through mountains, built enormous locks and dammed a river to create a lake. In August 1914, the Panama Canal opened, linking the Atlantic and the Pacific.
+      It was one of the greatest engineering projects in history. And it was, in part, a victory of medicine over a mosquito.
+    images:
+      - {query: "Panama Canal construction", count: 2}
+      - {query: "Culebra Cut", count: 1}
+      - {query: "Panama Canal locks construction", count: 1}
+
+  - id: vaccine
+    chapter: "IX. The Vaccine"
+    date: "1937"
+    narration: >
+      Mosquito control worked in cities, but yellow fever also lived in monkeys in the jungles of Africa and South America, so it could never be wiped out that way.
+      In 1937, the South African virologist Max Theiler, working at the Rockefeller Foundation in New York, developed a vaccine called 17D. A single dose gives protection for life. It is still used today.
+      Theiler received the Nobel Prize in Physiology or Medicine in 1951.
+    images:
+      - {query: "Max Theiler", count: 1}
+      - {query: "Rockefeller Foundation laboratory 1930s", count: 2}
+
+  - id: today
+    chapter: "Epilogue"
+    narration: >
+      Yellow fever has not been defeated. It still circulates in parts of Africa and South America, and causes tens of thousands of deaths in some years, mostly where vaccination coverage is low.
+      Travellers to these regions are often required to show proof of vaccination, the famous yellow card.
+      The story of yellow fever is the story of how science learned that the most dangerous creature in history is not a tiger or a shark, but the mosquito.
+      If you enjoyed this biography of a disease, subscribe for the next one.
+    images:
+      - {query: "yellow fever vaccination", count: 1, modern: true}
+      - {query: "yellow fever", count: 1}
+
+thumbnail:
+  scene: gorgas
+  big: "YELLOW JACK"
+  small: "THE MOSQUITO THAT STOPPED EMPIRES"
+tags: ["yellow fever", "Panama Canal", "Walter Reed", "mosquito", "history of medicine", "Philadelphia 1793", "Haiti", "documentary"]
+references:
+  - "Gavi VaccinesWork, Yellow fever and the Panama Canal: https://www.gavi.org/vaccineswork/long-view-yellow-fever-and-panama-canal"
