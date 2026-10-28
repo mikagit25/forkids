@@ -261,7 +261,7 @@
         "file": "media/commons_158146866_98c663.jpg",
         "use": false,
         "query": "Camp Funston influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -281,7 +281,7 @@
         "file": "media/commons_158147139_120481.jpg",
         "use": false,
         "query": "Camp Funston influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -301,7 +301,7 @@
         "file": "media/commons_158146638_a2f1e4.jpg",
         "use": false,
         "query": "Camp Funston influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -321,7 +321,7 @@
         "file": "media/commons_158147178_31e7ea.jpg",
         "use": false,
         "query": "Camp Funston influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -341,7 +341,7 @@
         "file": "media/commons_158147005_b5feee.jpg",
         "use": false,
         "query": "Camp Funston influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -361,7 +361,7 @@
         "file": "media/commons_158147089_43f3f5.jpg",
         "use": false,
         "query": "Camp Funston influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -381,7 +381,7 @@
         "file": "media/commons_158146687_f6a8b2.jpg",
         "use": false,
         "query": "Camp Funston influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -401,7 +401,7 @@
         "file": "media/commons_158146649_c59667.jpg",
         "use": false,
         "query": "Camp Funston influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -1334,7 +1334,7 @@
         "file": "media/commons_62613105_0e5815.jpg",
         "use": true,
         "query": "Red Cross nurses 1918 influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -1354,7 +1354,7 @@
         "file": "media/commons_6648648_e5c633.jpg",
         "use": true,
         "query": "Red Cross nurses 1918 influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -1374,7 +1374,7 @@
         "file": "media/commons_88235393_2f3815.jpg",
         "use": true,
         "query": "Red Cross nurses 1918 influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -1394,7 +1394,7 @@
         "file": "media/commons_88520623_14f032.jpg",
         "use": true,
         "query": "Red Cross nurses 1918 influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -1414,7 +1414,7 @@
         "file": "media/commons_67590733_df1274.jpg",
         "use": true,
         "query": "Red Cross nurses 1918 influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -1434,7 +1434,7 @@
         "file": "media/commons_66431407_c46deb.jpg",
         "use": false,
         "query": "Red Cross nurses 1918 influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -1454,7 +1454,7 @@
         "file": "media/commons_6213389_aaa7d0.jpg",
         "use": false,
         "query": "Red Cross nurses 1918 influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -1474,7 +1474,7 @@
         "file": "media/commons_88523612_03e1c9.jpg",
         "use": false,
         "query": "Red Cross nurses 1918 influenza",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -1963,7 +1963,7 @@
         "file": "media/commons_593457_43b8c5.jpg",
         "use": true,
         "query": "Seattle police masks 1918",
-        "colorize": false
+        "colorize": true
       },
       {
         "source": "commons",
@@ -2513,22 +2513,202 @@
     "brevig": [
       {
         "source": "commons",
-        "id": "commons:80192562",
-        "title": "Landing Fields - Alaska - Teller through Ungalic - NARA - 68159066",
-        "description": "",
-        "date": "1917 – 1964",
-        "page_url": "https://commons.wikimedia.org/wiki/File:Landing_Fields_-_Alaska_-_Teller_through_Ungalic_-_NARA_-_68159066.jpg",
-        "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ed/Landing_Fields_-_Alaska_-_Teller_through_Ungalic_-_NARA_-_68159066.jpg/3840px-Landing_Fields_-_Alaska_-_Teller_through_Ungalic_-_NARA_-_68159066.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "id": "commons:18961489",
+        "title": "Proposed and existing hydropower and hydrokinetic projects in Alaska",
+        "description": "Map showing hydropower project sites and regions of Alaska.\nSymbols are triangle = in-river, cross =  tidal, square = existing conventional, and circle = proposed conventional\nThese are sites that are being followed by NOAA for their potential impact on anadromous fish (those fish that move from salt water to fresh water to breed).  \nThe regions are delineated according to the Alaska Department of",
+        "date": "2012-04-04",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Proposed_and_existing_hydropower_and_hydrokinetic_projects_in_Alaska.png",
+        "download_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Proposed_and_existing_hydropower_and_hydrokinetic_projects_in_Alaska.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
         "license": "Public domain",
-        "credit": "Unknown authorUnknown author or not provided, U.S. National Archives and Records Administration",
-        "width": 3840,
-        "height": 2962,
-        "meta": 0.3,
-        "clip": 0.32218995690345764,
-        "score": 0.943,
-        "file": "media/commons_80192562_19dacf.jpg",
+        "credit": "Habitat Conservation Division - Hydropower Program, NOAA Marine Fisheries Service, Alaska Office",
+        "width": 2300,
+        "height": 1777,
+        "meta": 0.0,
+        "clip": 0.24363252520561218,
+        "score": 0.172,
+        "file": "media/commons_18961489_1f105e.jpg",
+        "use": false,
+        "query": "Brevig Mission Alaska village",
+        "colorize": false
+      },
+      {
+        "source": "commons",
+        "id": "commons:148355357",
+        "title": "Ice wedges form underground over time and produce polygons on the tundra. The complex patterns are best seen from the air. (c5336f1c-1dd8-b71c-072d-34f5852f454e)",
+        "description": "Aerial view of polygons on the landscape.\nIce wedges form underground over time and produce polygons on the tundra. The complex patterns are best seen from the air.\nKeywords: united states; tundra; permafrost; polygon; cape krusenstern national monument; cakr; aerial; landscape; western arctic national parklands; wear; arctic; northwest alaska; nw alaska; alaska",
+        "date": "Taken on 31 January 2013",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Ice_wedges_form_underground_over_time_and_produce_polygons_on_the_tundra._The_complex_patterns_are_best_seen_from_the_air._(c5336f1c-1dd8-b71c-072d-34f5852f454e).jpg",
+        "download_url": "https://upload.wikimedia.org/wikipedia/commons/6/60/Ice_wedges_form_underground_over_time_and_produce_polygons_on_the_tundra._The_complex_patterns_are_best_seen_from_the_air._%28c5336f1c-1dd8-b71c-072d-34f5852f454e%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "license": "Public domain",
+        "credit": "NPS Photo, NPGallery",
+        "width": 2950,
+        "height": 1977,
+        "meta": 0.0,
+        "clip": 0.3323744833469391,
+        "score": 0.704,
+        "file": "media/commons_148355357_07ae51.jpg",
         "use": true,
-        "query": "Teller Alaska",
+        "query": "Alaska tundra permafrost landscape",
+        "colorize": false
+      },
+      {
+        "source": "commons",
+        "id": "commons:148354203",
+        "title": "Polygons - a sign of continous underground permafrost - show up in stark contrast against the red tundra vegetation. Variations (c4ed779a-1dd8-b71c-0786-604db8eeea9f)",
+        "description": "Aerial view of polygons on tundra\nPolygons - a sign of continous underground permafrost - show up in stark contrast against the red tundra vegetation. Variations in moisture on the perimeter of the polygons encourages plant growth of a different color.\nKeywords: tundra; polygon; plant; permafrost; landscape; geology; backcountry; autumn; alaska; aerial",
+        "date": "Taken on 5 September 2012",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Polygons_-_a_sign_of_continous_underground_permafrost_-_show_up_in_stark_contrast_against_the_red_tundra_vegetation._Variations_(c4ed779a-1dd8-b71c-0786-604db8eeea9f).jpg",
+        "download_url": "https://upload.wikimedia.org/wikipedia/commons/8/85/Polygons_-_a_sign_of_continous_underground_permafrost_-_show_up_in_stark_contrast_against_the_red_tundra_vegetation._Variations_%28c4ed779a-1dd8-b71c-0786-604db8eeea9f%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "license": "Public domain",
+        "credit": "NPS Photo, NPGallery",
+        "width": 1600,
+        "height": 1067,
+        "meta": 0.0,
+        "clip": 0.2884315848350525,
+        "score": 0.441,
+        "file": "media/commons_148354203_b9d699.jpg",
+        "use": true,
+        "query": "Alaska tundra permafrost landscape",
+        "colorize": false
+      },
+      {
+        "source": "commons",
+        "id": "commons:159149645",
+        "title": "Finger Mountain Tundra (53451048267)",
+        "description": "Boreal forest dominates nearly all of the landscape alongside the Dalton Highway south of the Brooks Range. At Finger Mountain, however, the trees thin out and the views open up. Only low-to-the-ground shrubs, grasses, and sedges of sub-alpine tundra can survive on this high, windswept, permafrost-riddled ridge. (Interestingly, this is what the view may have looked like during recent Ice Ages, whe",
+        "date": "Taken on 29 April 2023, 11:13:38",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Finger_Mountain_Tundra_(53451048267).jpg",
+        "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Finger_Mountain_Tundra_%2853451048267%29.jpg/3840px-Finger_Mountain_Tundra_%2853451048267%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "license": "Public domain",
+        "credit": "BLM Alaska, Finger Mountain Tundra",
+        "width": 3840,
+        "height": 2880,
+        "meta": 0.0,
+        "clip": 0.2854216694831848,
+        "score": 0.423,
+        "file": "media/commons_159149645_1665e9.jpg",
+        "use": false,
+        "query": "Alaska tundra permafrost landscape",
+        "colorize": false
+      },
+      {
+        "source": "commons",
+        "id": "commons:19050778",
+        "title": "Road dip caused by melting permafrost",
+        "description": "An example of thermo-karst topography caused by the melting of permafrost causing the road to drop. In this instance the relative elevation change is approximately 10 feet.\n   Image ID: line5193, NOAA's America's Coastlines Collection\n   Location: Alaska, Seward Peninsula\n\n    Photo Date: 2010 August",
+        "date": "2012-04-11",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Road_dip_caused_by_melting_permafrost.jpg",
+        "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Road_dip_caused_by_melting_permafrost.jpg/3840px-Road_dip_caused_by_melting_permafrost.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "license": "Public domain",
+        "credit": "Dr. John Cloud, NOAA Central Library, NOAA Photo Library [1]",
+        "width": 5184,
+        "height": 3456,
+        "meta": 0.0,
+        "clip": 0.27038222551345825,
+        "score": 0.332,
+        "file": "media/commons_19050778_9f0c47.jpg",
+        "use": false,
+        "query": "Alaska tundra permafrost landscape",
+        "colorize": false
+      },
+      {
+        "source": "commons",
+        "id": "commons:145388131",
+        "title": "Fires and smoke in central Russia (MODIS 2016-07-25)",
+        "description": "In mid-July 2016, satellites observed dense smoke over north-central Russia. Many of the fires appeared in the tundra-taiga interface, where boreal forest give way to low-lying vegetation and permafrost.\nThe Moderate Resolution Imaging Spectroradiometer (MODIS) aboard NASA's Aqua satellite captured this true-color image of smoke and fire across north-central Russia on July 15. Red marks show hot s",
+        "date": "Taken on 16 July 2016",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Fires_and_smoke_in_central_Russia_(MODIS_2016-07-25).jpg",
+        "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Fires_and_smoke_in_central_Russia_%28MODIS_2016-07-25%29.jpg/3840px-Fires_and_smoke_in_central_Russia_%28MODIS_2016-07-25%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "license": "Public domain",
+        "credit": "Jeff Schmaltz, MODIS Land Rapid Response Team, NASA GSFC, This image or video was catalogued by Goddard Space Flight Center of the United States National Aeronautics and Space Administration (NASA) un",
+        "width": 3840,
+        "height": 2941,
+        "meta": 0.0,
+        "clip": 0.20293666422367096,
+        "score": -0.072,
+        "file": "media/commons_145388131_e30bf5.jpg",
+        "use": false,
+        "query": "Alaska tundra permafrost landscape",
+        "colorize": false
+      },
+      {
+        "source": "commons",
+        "id": "commons:121983237",
+        "title": "Ships near Nome waterfront, Alaska, October 20, 1899 - DPLA - a1ce592132f8bc7a9f1320a3d5d58558",
+        "description": "Gold was discovered near Nome in the summer of 1898. Prospectors rushed to stake claims and the city's population quickly ballooned to 10,000 people. In 1899, more gold was discovered on beaches near the town and spurred an even greater rush of visitors. By 1900, an estimated 1,000 people a day were arriving in Nome. Pillsbury took some of the first available photographs of the Nome. Following his",
+        "date": "20 October 1899date QS:P571,+1899-10-20T00:00:00Z/11",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Ships_near_Nome_waterfront,_Alaska,_October_20,_1899_-_DPLA_-_a1ce592132f8bc7a9f1320a3d5d58558.jpg",
+        "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/Ships_near_Nome_waterfront%2C_Alaska%2C_October_20%2C_1899_-_DPLA_-_a1ce592132f8bc7a9f1320a3d5d58558.jpg/3840px-Ships_near_Nome_waterfront%2C_Alaska%2C_October_20%2C_1899_-_DPLA_-_a1ce592132f8bc7a9f1320a3d5d58558.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "license": "Public domain",
+        "credit": "Arthur Clarence Pillsbury, This file was contributed to Wikimedia Commons by Seattle Public Library as part of a cooperation project. The donation was facilitated by the Digital Public Library of Amer",
+        "width": 3840,
+        "height": 597,
+        "meta": 0.3,
+        "clip": 0.2942630648612976,
+        "score": 0.776,
+        "file": "media/commons_121983237_cce3ca.jpg",
+        "use": true,
+        "query": "Nome Alaska Bering Sea coast",
+        "colorize": false
+      },
+      {
+        "source": "commons",
+        "id": "commons:175709079",
+        "title": "Seasonal Breakup in the Amundsen Gulf (154425)",
+        "description": "In the early 1900s, polar explorer Roald Amundsen led the first successful expedition across the Northwest Passage. The sinuous seaway winds through the Canadian Arctic Archipelago and can dramatically shorten the journey between the Pacific and Atlantic oceans. Amundsen’s ship and crew emerged from the archipelago in August 1905 and entered what became his namesake, the Amundsen Gulf.\nEven now, n",
+        "date": "Taken on 9 June 2025",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Seasonal_Breakup_in_the_Amundsen_Gulf_(154425).jpg",
+        "download_url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Seasonal_Breakup_in_the_Amundsen_Gulf_%28154425%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "license": "Public domain",
+        "credit": "NASA Earth Observatory image by Wanmei Liang, using MODIS data from NASA EOSDIS LANCE and GIBS/Worldview. Story by Kathryn Hansen., This image or video was catalogued by Goddard Space Flight Center of",
+        "width": 2332,
+        "height": 1555,
+        "meta": 0.3,
+        "clip": 0.26122650504112244,
+        "score": 0.577,
+        "file": "media/commons_175709079_1c2286.jpg",
+        "use": false,
+        "query": "Nome Alaska Bering Sea coast",
+        "colorize": false
+      },
+      {
+        "source": "commons",
+        "id": "commons:33501554",
+        "title": "Bering Sea Storm, Looking Down East Beach (5188618614)",
+        "description": "On November 17, 2010, strong winds brought warmer temperatures and some bigger waves.Still no sea ice visible from the beaches in Nome.",
+        "date": "2010-11-17 13:47",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Bering_Sea_Storm,_Looking_Down_East_Beach_(5188618614).jpg",
+        "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9b/Bering_Sea_Storm%2C_Looking_Down_East_Beach_%285188618614%29.jpg/3840px-Bering_Sea_Storm%2C_Looking_Down_East_Beach_%285188618614%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "license": "CC BY 2.0",
+        "credit": "Bering Land Bridge National Preserve, Bering Sea Storm, Looking Down East Beach",
+        "width": 3840,
+        "height": 2880,
+        "meta": 0.0,
+        "clip": 0.26550525426864624,
+        "score": 0.303,
+        "file": "media/commons_33501554_0c832b.jpg",
+        "use": true,
+        "query": "Nome Alaska Bering Sea coast",
+        "colorize": false
+      },
+      {
+        "source": "commons",
+        "id": "commons:1805586",
+        "title": "Nome Alaska aerial view",
+        "description": "Aerial view of the harbor and jetty at Nome, Alaska.",
+        "date": "not specified",
+        "page_url": "https://commons.wikimedia.org/wiki/File:Nome_Alaska_aerial_view.jpg",
+        "download_url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Nome_Alaska_aerial_view.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+        "license": "Public domain",
+        "credit": "U.S. Army Corps of Engineers, photographer unknown, U.S. Army Corps of Engineers Digital Visual LibraryImage pageImage description pageDigital Visual Library home page",
+        "width": 1500,
+        "height": 993,
+        "meta": 0.0,
+        "clip": 0.2626001238822937,
+        "score": 0.286,
+        "file": "media/commons_1805586_2c0ad7.jpg",
+        "use": false,
+        "query": "Nome Alaska Bering Sea coast",
         "colorize": false
       }
     ],

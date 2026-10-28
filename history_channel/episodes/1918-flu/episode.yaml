@@ -192,9 +192,10 @@ scenes:
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "72 of 80", text: "adults of Brevig Mission died in five days", match: "In five days, seventy-two"}
     images:
-      - {query: "Brevig Mission", count: 1}
-      - {query: "Teller Alaska", count: 1}
-      - {query: "permafrost Alaska tundra", count: 1}
+      - {query: "Brevig Mission Alaska village", count: 1, modern: true}
+      - {query: "Teller Alaska aerial coast", count: 1, modern: true}
+      - {query: "Alaska tundra permafrost landscape", count: 1, modern: true}
+      - {query: "Nome Alaska Bering Sea coast", count: 1, modern: true}
 
   - id: resurrection
     chapter: "XI. Bringing It Back"
