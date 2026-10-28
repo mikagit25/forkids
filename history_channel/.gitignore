@@ -1,0 +1,8 @@
+.venv/
+models/
+fonts/
+episodes/*/media/
+episodes/*/build/
+episodes/*/manifest.json
+episodes/*/contact_sheet.html
+episodes/*/audio/
