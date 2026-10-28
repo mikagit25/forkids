@@ -65,6 +65,9 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
         sid = scene["id"]
         if sid in old.get("scenes", {}) and all((ep_dir / i["file"]).exists() for i in old["scenes"][sid]):
             manifest["scenes"][sid] = old["scenes"][sid]
+            col = {q["query"]: bool(q.get("colorize")) for q in scene.get("images", [])}
+            for it in manifest["scenes"][sid]:   # pick up colorize flags added to the script later
+                it["colorize"] = it.get("colorize", col.get(it.get("query"), False)) or col.get(it.get("query"), False)
             print(f"[{sid}] kept {sum(i['use'] for i in old['scenes'][sid])} images from previous run")
             continue
         chosen = []
@@ -85,6 +88,7 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
                 c["file"] = str(path.relative_to(ep_dir))
                 c["use"] = got < want
                 c["query"] = q["query"]
+                c["colorize"] = bool(q.get("colorize"))
                 chosen.append(c)
                 got += 1
             if got < want:
@@ -108,7 +112,7 @@ def write_contact_sheet(ep_dir: Path, episode: dict, manifest: dict):
             cards.append(f"""
             <figure class="{'use' if it['use'] else 'alt'}">
               <img src="{html.escape(it['file'])}" loading="lazy">
-              <figcaption><b>{badge}</b> · {html.escape(it['id'])}<br>
+              <figcaption><b>{badge}</b>{' · COLORIZE' if it.get('colorize') else ''} · {html.escape(it['id'])}<br>
               {html.escape(it['title'][:120])}<br>
               <small>{html.escape(it['license'])} · {html.escape(it['credit'][:80])}</small><br>
               <a href="{html.escape(it['page_url'] or '')}" target="_blank">source page</a></figcaption>
