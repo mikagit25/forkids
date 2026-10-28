@@ -25,7 +25,7 @@ ALTERNATES = 3  # extra candidates kept per query for the reviewer
 
 
 def _download(c: dict, media: Path) -> Path | None:
-    name = c["id"].replace(":", "_") + "_" + hashlib.md5(c["download_url"].encode()).hexdigest()[:6] + ".jpg"
+    name = c["id"].replace(":", "_").replace("/", "_") + "_" + hashlib.md5(c["download_url"].encode()).hexdigest()[:6] + ".jpg"
     dest = media / name
     if dest.exists():
         return dest

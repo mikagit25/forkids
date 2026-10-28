@@ -197,7 +197,7 @@
         "clip": 0.28226760029792786,
         "score": 0.704,
         "file": "media/smithsonian_SAAM-1992.13.116_1_0bdfd9.jpg",
-        "use": true,
+        "use": false,
         "query": "children playing 1918",
         "colorize": false
       },
@@ -239,7 +239,7 @@
         "clip": 0.26545432209968567,
         "score": 0.603,
         "file": "media/commons_158146966_ae5b09.jpg",
-        "use": true,
+        "use": false,
         "query": "Camp Funston influenza",
         "colorize": true
       },
@@ -259,7 +259,7 @@
         "clip": 0.26544517278671265,
         "score": 0.603,
         "file": "media/commons_158146866_98c663.jpg",
-        "use": true,
+        "use": false,
         "query": "Camp Funston influenza",
         "colorize": false
       },
@@ -279,7 +279,7 @@
         "clip": 0.2655063271522522,
         "score": 0.603,
         "file": "media/commons_158147139_120481.jpg",
-        "use": true,
+        "use": false,
         "query": "Camp Funston influenza",
         "colorize": false
       },
@@ -299,7 +299,7 @@
         "clip": 0.2629241347312927,
         "score": 0.588,
         "file": "media/commons_158146638_a2f1e4.jpg",
-        "use": true,
+        "use": false,
         "query": "Camp Funston influenza",
         "colorize": false
       },
@@ -319,7 +319,7 @@
         "clip": 0.2621215581893921,
         "score": 0.583,
         "file": "media/commons_158147178_31e7ea.jpg",
-        "use": true,
+        "use": false,
         "query": "Camp Funston influenza",
         "colorize": false
       },
@@ -339,7 +339,7 @@
         "clip": 0.26112696528434753,
         "score": 0.577,
         "file": "media/commons_158147005_b5feee.jpg",
-        "use": true,
+        "use": false,
         "query": "Camp Funston influenza",
         "colorize": false
       },
@@ -761,7 +761,7 @@
         "clip": 0.2815876007080078,
         "score": 0.7,
         "file": "media/commons_147652613_3586d4.jpg",
-        "use": true,
+        "use": false,
         "query": "Puerta del Sol 1910s",
         "colorize": false
       },
