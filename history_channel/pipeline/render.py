@@ -229,13 +229,15 @@ def credit_line(it: dict) -> str:
 class Shot:
     start: float
     end: float
-    kind: str                 # photo | card | quote
+    kind: str                 # photo | card | quote | stat
     item: dict | None = None  # manifest entry for photos
     card: dict | None = None
     quote: dict | None = None
     colorize: bool = False
+    detail: bool = False      # second look at a photo: tight crop on its most detailed region
     seed: int = 0
     credit: str = ""
+    focus: tuple | None = None
     canvas: np.ndarray | None = field(default=None, repr=False)
     color: np.ndarray | None = field(default=None, repr=False)
     depth: np.ndarray | None = field(default=None, repr=False)
@@ -246,20 +248,77 @@ def _seed(s: str) -> int:
     return zlib.crc32(s.encode()) & 0xffff
 
 
-def _photo_shots(imgs, t0, t1, rot):
-    """Spread photos over [t0, t1]; `rot` keeps rotating through the scene's images across segments."""
+SHOT_TARGET = 6.5   # seconds per photo in normal scenes
+SHOT_MIN = 4.0
+SHOT_MAX = 10.0
+MONTAGE_SHOT = 2.6  # cold-open montage cut length
+
+
+def _photo_shots(imgs, t0, t1, state, target=SHOT_TARGET, lo=SHOT_MIN, hi=SHOT_MAX):
+    """Fill [t0, t1] with photos without ever showing the same framing twice in a scene.
+
+    state["queue"]: photos not shown yet in this scene; state["details"]: photos that may get one
+    close-up "detail" shot. If the scene still runs out of pictures, shots simply last longer.
+    """
     dur = t1 - t0
     if dur <= 0.05:
         return []
-    n = max(1, int(np.ceil(dur / MAX_SHOT)))
-    out = []
+    n = max(1, min(round(dur / target), int(dur // lo)))
+    avail = len(state["queue"]) + len(state["details"])
+    if n > avail:                       # not enough fresh pictures: hold each one longer, up to `hi`
+        n = max(avail, int(np.ceil(dur / hi)), 1)
+    out, last = [], state.get("last")
     for k in range(n):
-        it = imgs[(rot[0]) % len(imgs)]
-        rot[0] += 1
+        if state["queue"]:
+            it, detail = state["queue"].pop(0), False
+        elif state["details"]:
+            # never put a detail right after its own wide shot
+            j = next((i for i, x in enumerate(state["details"]) if x["id"] != last), 0)
+            it, detail = state["details"].pop(j), True
+        else:
+            it, detail = state["all"][k % len(state["all"])], True
         a, b = t0 + k * dur / n, t0 + (k + 1) * dur / n
-        out.append(Shot(a, b, "photo", item=it, colorize=bool(it.get("colorize")), credit=credit_line(it),
-                        seed=(_seed(it["id"]) + rot[0]) & 0xffff))
+        out.append(Shot(a, b, "photo", item=it, colorize=bool(it.get("colorize")) and not detail, detail=detail,
+                        credit=credit_line(it), seed=(_seed(it["id"]) + (7 if detail else 0)) & 0xffff))
+        last = it["id"]
+    state["last"] = last
     return out
+
+
+def _overlay_intervals(scene, timings, dur):
+    """Quote and stat cards are timed to the sentence that contains their `match` text."""
+    items = []
+    if scene.get("quote"):
+        items.append(("quote", scene["quote"]))
+    for c in scene.get("cards", []) or []:
+        items.append(("stat", c))
+    out = []
+    sents = timings["sentences"]
+    for kind, c in items:
+        key = (c.get("match") or c.get("text", "")[:25]).lower()
+        hit = next((i for i, s in enumerate(sents) if key in s["text"].lower()), None)
+        if hit is None:
+            print(f"   ! {kind} card in '{scene['id']}': no sentence contains '{key}', skipped")
+            continue
+        last = min(hit + int(c.get("sentences", 1)) - 1, len(sents) - 1)
+        a, b = max(0.0, sents[hit]["start"] - 0.35), min(dur, sents[last]["end"] + 0.6)
+        if kind == "stat":
+            b = min(b, a + 6.0)
+        out.append((a, b, kind, c))
+    out.sort(key=lambda x: x[0])
+    merged = []
+    for a, b, k, c in out:   # drop overlaps, snap tiny gaps to the card
+        if merged and a < merged[-1][1]:
+            continue
+        if merged and a - merged[-1][1] < 2.0:
+            a = merged[-1][1]
+        merged.append([a, b, k, c])
+    for m in merged:
+        if m[0] < 2.5:
+            m[0] = 0.0
+        if dur - m[1] < 2.5:
+            m[1] = dur
+    return merged
 
 
 def build_timeline(episode: dict, manifest: dict, timings: dict):
@@ -282,29 +341,22 @@ def build_timeline(episode: dict, manifest: dict, timings: dict):
             chapters.append((0.0, "Intro"))
         dur = timings[sid]["duration"]
         audio_marks.append((t, sid))
-        # n photos are spread over the scene; a quote card covers the sentences it quotes
-        q = scene.get("quote")
-        qa = qb = None
-        if q:
-            sents = timings[sid]["sentences"]
-            key = (q.get("match") or q["text"][:25]).lower()
-            hit = next((i for i, s in enumerate(sents) if key in s["text"].lower()), None)
-            if hit is not None:
-                last = min(hit + int(q.get("sentences", 1)) - 1, len(sents) - 1)
-                qa, qb = max(0.0, sents[hit]["start"] - 0.35), min(dur, sents[last]["end"] + 0.6)
-                if qa < 3.0:
-                    qa = 0.0
-                if dur - qb < 3.0:
-                    qb = dur
-            else:
-                print(f"   ! quote in '{sid}': no sentence contains '{key}', quote card skipped")
-        rot = [0]
-        if qa is None:
-            shots += _photo_shots(imgs, t, t + dur, rot)
-        else:
-            shots += _photo_shots(imgs, t, t + qa, rot)
-            shots.append(Shot(t + qa, t + qb, "quote", quote=q, seed=_seed(q["text"])))
-            shots += _photo_shots(imgs, t + qb, t + dur, rot)
+
+        montage = bool(scene.get("montage"))
+        pool = list(imgs)
+        if montage:   # cold open: this scene's photos plus the strongest photo of every later chapter
+            for later in episode["scenes"][idx + 1:]:
+                for it in used[later["id"]][:1 if later.get("chapter") else 0]:
+                    if it["id"] not in {x["id"] for x in pool}:
+                        pool.append(it)
+        state = {"queue": list(pool), "details": [] if montage else list(pool), "all": pool}
+        kw = dict(target=MONTAGE_SHOT, lo=2.0, hi=4.0) if montage else {}
+        cur = 0.0
+        for a, b, kind, c in _overlay_intervals(scene, timings[sid], dur):
+            shots += _photo_shots(pool, t + cur, t + a, state, **kw)
+            shots.append(Shot(t + a, t + b, kind, quote={**c, "bg": imgs[0]["file"]}, seed=_seed(c.get("text", "") + kind)))
+            cur = b
+        shots += _photo_shots(pool, t + cur, t + dur, state, **kw)
         t += dur
         if idx == 0:
             shots.append(Shot(t, t + TITLE, "card", card={"bg": imgs[0]["file"], "kicker": "", "title": episode["title"],
@@ -322,10 +374,28 @@ def smooth(p):
     return p * p * (3 - 2 * p)
 
 
+def find_focus(canvas: np.ndarray) -> tuple[float, float]:
+    """Most detailed region of a photo (edge energy), as relative x, y. Used to frame detail shots."""
+    g = cv2.cvtColor(cv2.resize(canvas, (192, 108), interpolation=cv2.INTER_AREA), cv2.COLOR_BGR2GRAY).astype(np.float32)
+    e = np.abs(cv2.Sobel(g, cv2.CV_32F, 1, 0)) + np.abs(cv2.Sobel(g, cv2.CV_32F, 0, 1))
+    e = cv2.GaussianBlur(e, (0, 0), 9)
+    e[:, :30] = e[:, -30:] = 0
+    e[:22, :] = e[-22:, :] = 0
+    y, x = np.unravel_index(int(np.argmax(e)), e.shape)
+    return x / 192, y / 108
+
+
 def motion(shot: Shot, p: float, CW, CH):
     rnd = random.Random(shot.seed)
+    zin = True
     if shot.kind != "photo":
         z0, z1, (ax, ay), (bx, by) = 1.0, 1.035, (0.5, 0.5), (0.5, 0.5)
+    elif shot.detail:
+        fx0, fy0 = shot.focus or (0.5, 0.45)
+        zbase = 1.65 if shot.full_bleed else 1.85
+        z0, z1 = zbase, zbase + 0.12
+        ax, ay = fx0 + rnd.uniform(-0.03, 0.03), fy0 + rnd.uniform(-0.03, 0.03)
+        bx, by = fx0, fy0
     else:
         zin = rnd.random() < 0.6
         zmax = 1.14 if shot.full_bleed else 1.06
@@ -339,7 +409,31 @@ def motion(shot: Shot, p: float, CW, CH):
     z = z0 + (z1 - z0) * e
     fx, fy = ax + (bx - ax) * e, ay + (by - ay) * e
     hw, hh = CW / (2 * z), CH / (2 * z)
-    return z, float(np.clip(fx * CW, hw, CW - hw)), float(np.clip(fy * CH, hh, CH - hh)), zin if shot.kind == "photo" else True
+    return z, float(np.clip(fx * CW, hw, CW - hw)), float(np.clip(fy * CH, hh, CH - hh)), zin
+
+
+def stat_canvas(bg_rgb, W, H, big, text):
+    """Big number card, e.g. '675,000' / 'Americans died'."""
+    if bg_rgb is not None:
+        g = cv2.cvtColor(bg_rgb, cv2.COLOR_RGB2GRAY)
+        g = cv2.resize(cv2.GaussianBlur(cv2.resize(g, (W // 6, H // 6)), (0, 0), 5), (W, H))
+        im = Image.fromarray((np.stack([g] * 3, -1) * 0.22).astype(np.uint8))
+    else:
+        im = Image.new("RGB", (W, H), (14, 13, 12))
+    d = ImageDraw.Draw(im)
+    s = W / 3840
+    bf = font("PlayfairDisplay.ttf", int(540 * s), 700)
+    w = d.textlength(big, font=bf)
+    while w > W * 0.85:
+        bf = font("PlayfairDisplay.ttf", int(bf.size * 0.9), 700)
+        w = d.textlength(big, font=bf)
+    y = H * 0.30
+    d.text(((W - w) / 2, y), big, font=bf, fill=GOLD)
+    tf = font("EBGaramond-Italic.ttf", int(110 * s), 500)
+    for i, ln in enumerate(wrap(d, text, tf, W * 0.7)):
+        lw = d.textlength(ln, font=tf)
+        d.text(((W - lw) / 2, y + bf.size * 1.25 + i * tf.size * 1.25), ln, font=tf, fill=(236, 230, 216))
+    return np.array(im)
 
 
 class Renderer:
@@ -380,8 +474,14 @@ class Renderer:
             sh.canvas, sh.depth, sh.color, sh.full_bleed = self.cache[key]
             if sh.color is None:
                 sh.colorize = False
+            if sh.detail and sh.focus is None:
+                sh.focus = find_focus(sh.canvas)
         elif sh.kind == "quote":
             sh.canvas = cv2.cvtColor(quote_canvas(CW, CH, sh.quote["text"], sh.quote.get("source", "")), cv2.COLOR_RGB2BGR)
+        elif sh.kind == "stat":
+            bg = load_rgb(self.ep_dir / sh.quote["bg"]) if sh.quote.get("bg") else None
+            sh.canvas = cv2.cvtColor(stat_canvas(bg, CW, CH, str(sh.quote["big"]), sh.quote.get("text", "")),
+                                     cv2.COLOR_RGB2BGR)
         else:
             c = sh.card
             bg = load_rgb(self.ep_dir / c["bg"]) if c.get("bg") else None

@@ -8,6 +8,8 @@ title: "1918: The Pandemic That Hid Behind a War"
 subtitle: "How the deadliest flu in history spread, who fought it without medicine, and how science brought it back to life"
 slug: 1918-flu
 language: en
+era: [1915, 1921]        # photos dated far outside this range are skipped
+visual_context: "1918 influenza pandemic"   # helps the relevance check
 voice:
   backend: kokoro        # kokoro (free, local) | openai (paid API)
   name: bm_george        # kokoro voices: bm_george, bm_lewis, am_michael, am_onyx, bf_emma ...
@@ -21,14 +23,15 @@ music:
 
 scenes:
   - id: cold-open
+    montage: true          # fast cuts + one teaser photo from every chapter
     narration: >
-      In 1918, American children skipping rope in the street sang a new rhyme.
-      I had a little bird, its name was Enza. I opened the window, and in-flew-Enza.
-      It sounded like a joke. It was not.
-      That year, the First World War was finally coming to an end. Millions of young men were on the move, in trains, in troop ships, in crowded camps.
-      And travelling with them was something far deadlier than any weapon on the Western Front.
-      Within two years it would infect around five hundred million people, one in three humans alive. It would kill at least fifty million.
-      This is the story of the 1918 influenza pandemic: of the doctors and nurses who fought it without medicine, of the cities that chose differently, and of the scientists who, almost a century later, brought the virus back to life.
+      In the autumn of 1918, a city threw a parade for two hundred thousand people. Within days, every hospital bed was full.
+      Healthy young soldiers felt fine at breakfast and were dead by nightfall. Nurses ran out of beds, doctors ran out of answers, and cities ran out of coffins.
+      On two islands in the Pacific, one governor closed the harbour and the other did not, and the difference was counted in thousands of lives.
+      And in a frozen grave in Alaska, the virus waited for almost eighty years.
+      Children even sang about it in the street. I had a little bird, its name was Enza. I opened the window, and in-flew-Enza.
+      It infected around five hundred million people, one in three humans alive, and killed at least fifty million.
+      This is the story of the 1918 influenza pandemic, told through the photographs and documents it left behind.
     quote:
       text: "I had a little bird,\nIts name was Enza.\nI opened the window,\nAnd in-flu-enza."
       source: "Children's skipping rhyme, United States, 1918"
@@ -99,6 +102,8 @@ scenes:
       Within days, every one of the city's thirty-one hospitals was full.
       In the weeks that followed, Philadelphia ran out of coffins and gravediggers. Bodies waited in homes for days. Priests drove horse carts through the streets, collecting the dead.
       More than twelve thousand Philadelphians died.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "200,000", text: "people packed the parade route", match: "More than two hundred thousand people"}
     images:
       - {query: "Philadelphia Liberty Loan parade 1918", count: 2}
       - {query: "Liberty Bonds Parades Philadelphia", count: 2}
@@ -156,6 +161,8 @@ scenes:
       Just across the water, American Samoa was run by a naval governor, John Poyer. Without waiting for orders, he closed the islands. Samoan volunteers patrolled the shore to stop illegal landings, and new arrivals were kept under watch.
       American Samoa recorded no deaths from influenza at all.
       Same virus, same ocean, two different decisions.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "0", text: "influenza deaths in American Samoa", match: "American Samoa recorded no deaths"}
     images:
       - {query: "Apia harbour", count: 2}
       - {query: "Pago Pago harbor naval station", count: 1}
@@ -182,6 +189,8 @@ scenes:
       In 1951, a young Swedish scientist named Johan Hultin dug into that grave, hoping to recover the virus. He failed.
       Forty-six years later, at the age of seventy-two, he went back.
       This time he found the body of a woman, preserved by the permafrost, whose lungs still carried fragments of the virus's genetic code.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "72 of 80", text: "adults of Brevig Mission died in five days", match: "In five days, seventy-two"}
     images:
       - {query: "Brevig Mission", count: 1}
       - {query: "Teller Alaska", count: 1}
@@ -198,8 +207,8 @@ scenes:
       When he swapped out individual genes, the virus became far less deadly. It was the combination of all eight genes together that made the 1918 virus so exceptionally virulent.
       For the first time since 1918, the virus existed again, so that researchers could finally ask what made it so lethal, and how to recognise the next one before it spreads.
     images:
-      - {query: "Terrence Tumpey 1918 influenza", count: 1}
-      - {query: "1918 influenza virus electron micrograph", count: 2}
+      - {query: "Terrence Tumpey 1918 influenza", modern: true, count: 1}
+      - {query: "1918 influenza virus electron micrograph", modern: true, count: 2}
 
   - id: closing
     chapter: "Epilogue"

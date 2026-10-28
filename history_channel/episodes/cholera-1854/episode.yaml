@@ -1,0 +1,196 @@
+# Status: script draft, fact-check pending (see factcheck.md)
+
+title: "The Pump That Killed Soho: How One Doctor Beat Cholera"
+subtitle: "John Snow, the Broad Street outbreak, and the Great Stink that finally cleaned up London"
+slug: cholera-1854
+language: en
+era: [1840, 1880]        # photos dated far outside this range are skipped
+visual_context: "Victorian London 1850s cholera"   # helps the relevance check
+voice:
+  backend: kokoro
+  name: bm_george
+  lang: en-gb
+  speed: 0.93
+music:
+  generate: true
+  seed: 1854
+  mood: somber
+
+scenes:
+  - id: cold-open
+    montage: true          # fast cuts + one teaser photo from every chapter
+    narration: >
+      At the end of August 1854, in the heart of London, people began to die at a terrifying rate.
+      In three days, about a hundred and twenty-seven people on or near one street were dead.
+      The experts blamed foul air. One doctor blamed the water, and set out to prove it with a street map, a lot of knocking on doors, and the handle of a water pump.
+      The authorities ignored him. It took a river so foul that Parliament could not breathe, eighty-two miles of brick sewers, and another epidemic to prove him right.
+      This is the story of John Snow, the Broad Street pump, and the Great Stink of London.
+    images:
+      - {query: "John Snow cholera map 1854", count: 1}
+      - {query: "Soho London 1850s", count: 1}
+      - {query: "cholera", count: 1}
+
+  - id: blue-death
+    chapter: "I. The Blue Death"
+    narration: >
+      Cholera had arrived in Britain for the first time in 1831. It came back again and again, killing tens of thousands.
+      It was a horrifying disease. Victims lost so much fluid that their skin turned bluish and wrinkled, and they could die within hours.
+      Most doctors believed it was caused by miasma, poisonous air given off by rotting matter. It seemed to make sense. The poorest districts, where cholera struck hardest, were also the ones that stank the most.
+      London in the 1850s stank a great deal. Human waste collected in cesspits under houses, overflowed into streets, and drained into the River Thames, the same river that much of the city drank from.
+    images:
+      - {query: "Punch Thames", count: 2}
+      - {query: "Victorian London slum", count: 1}
+
+  - id: snow
+    chapter: "II. Dr Snow"
+    narration: >
+      John Snow was born in York in 1813, the son of a labourer. He worked his way up to become one of the leading doctors in London.
+      He was best known for something else entirely: anaesthesia. Snow was an expert in ether and chloroform, and in 1853 he gave chloroform to Queen Victoria during the birth of her son, Prince Leopold.
+      But he had also been thinking hard about cholera. The disease attacked the gut, not the lungs. To Snow, that suggested it was swallowed, not breathed in.
+      In 1849, he published a short essay arguing that cholera spread through contaminated water. Almost nobody was convinced. He needed proof.
+    images:
+      - {query: "John Snow physician portrait", count: 1, colorize: true}
+      - {query: "John Snow", count: 1}
+      - {query: "Queen Victoria 1850s portrait", count: 1}
+
+  - id: outbreak
+    chapter: "III. Broad Street"
+    date: "31 August 1854"
+    narration: >
+      The outbreak in Soho began on the thirty-first of August 1854. It was so violent that many families fled the area within days.
+      Snow lived nearby. He suspected the water at once, and his suspicion fell on a public pump on Broad Street, a popular well in the heart of the outbreak.
+      He took samples of the water. It looked fairly clean. Under the microscope he saw some white particles, but nothing conclusive.
+      So he did something else. He went from door to door.
+    images:
+      - {query: "Soho 1854 cholera", count: 2}
+      - {query: "Soho London 1850s", count: 1}
+
+  - id: map
+    chapter: "IV. The Map"
+    narration: >
+      With the help of a local clergyman, the Reverend Henry Whitehead, Snow gathered the name and address of every victim he could find.
+      He marked each death on a map of the area as a small black bar. The bars piled up around one spot: the Broad Street pump.
+      Then he looked at the exceptions, because exceptions are where the truth hides.
+      A brewery stood right next to the pump. None of its workers caught cholera. They were given a daily allowance of beer, and drank that instead of water from the well.
+      A large workhouse nearby, home to hundreds of poor people, had very few cases. It had its own well.
+      And some victims lived far away from Broad Street. When Snow investigated, he found that they too had drunk the pump's water. Some families simply preferred its taste. A few of the victims were children who went to school near the pump.
+    images:
+      - {query: "Snow cholera map Broad Street", count: 2}
+      - {query: "London 1850s", count: 1}
+
+  - id: handle
+    chapter: "V. The Pump Handle"
+    date: "7–8 September 1854"
+    narration: >
+      On the evening of the seventh of September, Snow presented his evidence to the local parish authorities, the Board of Guardians.
+      They were sceptical. But they agreed to act. The next day, the pump was put out of use. According to the famous story, its handle was removed.
+      The outbreak was probably already fading by then, as people fled and the source weakened. Snow himself admitted it.
+      But the investigation had done something more important than stopping one outbreak. It showed, with names, addresses and a map, where the disease was coming from.
+    images:
+      - {query: "John Snow pump replica Broadwick Street", modern: true, count: 1}
+      - {query: "John Snow pub Broadwick Street", modern: true, count: 2}
+
+
+  - id: experiment
+    chapter: "VI. The Grand Experiment"
+    narration: >
+      Snow had a second piece of evidence, and it was even more powerful.
+      South London was supplied by two private water companies, whose pipes ran down the very same streets. Neighbours on the same road, living the same lives, could be customers of different companies without even knowing it.
+      One company, the Lambeth Company, had moved its intake upriver a few years earlier, away from the sewage of central London. The other, the Southwark and Vauxhall Company, still drew its water from the Thames in the middle of the city, where sewers poured into the river.
+      Snow went from house to house, checking which company supplied each home where someone had died. He even tested the water's salt content to tell the two supplies apart.
+      The result was striking. Households supplied by Southwark and Vauxhall suffered many times more cholera deaths than those supplied by Lambeth.
+      Snow called it a grand experiment, carried out on hundreds of thousands of people without anyone having planned it.
+    images:
+      - {query: "Thames 1850s river", count: 1}
+      - {query: "London 1850s", count: 1}
+      - {query: "Southwark 1850s", count: 1}
+
+  - id: source
+    chapter: "VII. The Cesspit"
+    narration: >
+      Henry Whitehead, the clergyman who helped Snow, had at first believed in the miasma theory himself. Snow's map changed his mind.
+      Whitehead kept digging, and he found what was likely the starting point.
+      At a house on Broad Street, a baby had fallen ill with cholera just before the outbreak. Her mother had washed the baby's nappies, and poured the water into a cesspit at the front of the house.
+      That cesspit lay only about three feet from the well, and its brickwork was leaking.
+      The water people trusted most had been mixing with sewage all along.
+    images:
+      - {query: "Soho 1854 cholera", count: 1}
+      - {query: "cholera", count: 1}
+      - {query: "Soho 1854 cholera", count: 1}
+
+  - id: rejected
+    chapter: "VIII. Ignored"
+    narration: >
+      You might expect the authorities to have celebrated Snow. They did not.
+      The official Board of Health report put the outbreak down to bad air. Many experts found the idea that people were drinking each other's waste simply too disgusting to accept.
+      Another clue was missed entirely. That same year, in Italy, the anatomist Filippo Pacini looked at the intestines of cholera victims under a microscope and described the comma-shaped bacterium that causes the disease. His work went almost unnoticed for decades.
+      Meanwhile the Thames got worse. In 1855, the scientist Michael Faraday took a boat trip on the river, dropped pieces of white card into the water, and watched them vanish from sight almost at once. He wrote to The Times that the whole river was, for the time, a real sewer.
+    quote:
+      text: "The whole river was for the time a real sewer."
+      source: "Michael Faraday, letter to The Times, July 1855"
+      match: "whole river was, for the time"
+    images:
+      - {query: "Faraday Punch 1855 Father Thames", count: 1}
+      - {query: "Filippo Pacini", count: 1}
+      - {query: "Thames 1850s river", count: 1}
+
+  - id: stink
+    chapter: "IX. The Great Stink"
+    date: "Summer 1858"
+    narration: >
+      In June 1858, London baked in a heatwave. The level of the Thames dropped, and the sewage that normally flowed away was left rotting on its banks in the sun.
+      The smell became unbearable. It was so bad that inside the Houses of Parliament, beside the river, curtains were soaked in chloride of lime in an attempt to block it out. Members even discussed moving Parliament out of London.
+      The newspapers called it the Great Stink.
+      John Snow did not live to see what happened next. He died that June, at the age of forty-five.
+    images:
+      - {query: "Great Stink", count: 1}
+      - {query: "Father Thames Punch 1858", count: 1}
+      - {query: "Great Stink", count: 1}
+
+  - id: sewers
+    chapter: "X. Bazalgette's Sewers"
+    narration: >
+      Parliament acts quickly when it can smell the problem. In August 1858, it passed a law giving the city the money and power to fix it.
+      The job went to the engineer Joseph Bazalgette. His plan was enormous: about eighty-two miles of huge brick sewers, fed by around eleven hundred miles of street sewers, carrying waste east, away from the city, before releasing it downstream.
+      Work began in 1859. Along the river, new embankments were built to carry the sewers, and roads and gardens were laid on top. The system was fully working by 1875, and much of it is still in use today.
+      Bazalgette built it to deal with the smell. But in doing so, he also cut off cholera's main route into the city's water.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "82 miles", text: "of main sewers, still in use", match: "about eighty-two miles of huge brick sewers"}
+    images:
+      - {query: "Bazalgette", count: 2, colorize: true}
+      - {query: "Victoria Embankment construction", count: 1}
+      - {query: "Joseph Bazalgette portrait", count: 1}
+
+  - id: proof
+    chapter: "XI. Proof"
+    date: "1866"
+    narration: >
+      In 1866, cholera struck London one last time. More than five and a half thousand people died.
+      This time the outbreak was confined almost entirely to one part of the East End, between Aldgate and Bow, one of the few areas not yet connected to Bazalgette's system. Its water came from a company that had been releasing contaminated water into the supply.
+      The pattern was impossible to explain with bad air. It was exactly what John Snow had predicted.
+      In 1883, the German scientist Robert Koch identified the cholera bacterium again, this time convincing the world. The miasma theory was finished.
+    images:
+      - {query: "cholera", count: 1}
+      - {query: "Robert Koch", count: 1}
+      - {query: "Vibrio cholerae", modern: true, count: 1}
+
+  - id: closing
+    chapter: "Epilogue"
+    narration: >
+      Today, John Snow is considered one of the founders of epidemiology, the science of tracking how diseases spread. His method is still taught to every new generation of public health students: find the cases, map them, and pay attention to the exceptions.
+      On what is now Broadwick Street in Soho, a replica of the pump stands near the original site, without a handle. Next to it is a pub named after John Snow.
+      If you enjoyed this story from the archives, subscribe for more forgotten chapters of medical history.
+    images:
+      - {query: "John Snow pub Broadwick Street", modern: true, count: 1}
+      - {query: "John Snow", count: 1}
+
+thumbnail:
+  scene: map
+  big: "1854"
+  small: "THE PUMP THAT KILLED SOHO"
+tags: ["John Snow", "cholera", "1854", "Broad Street pump", "Great Stink", "Bazalgette", "history of medicine", "epidemiology", "London history"]
+references:
+  - "Wikipedia, 1854 Broad Street cholera outbreak: https://en.wikipedia.org/wiki/1854_Broad_Street_cholera_outbreak"
+  - "Wikipedia, Great Stink: https://en.wikipedia.org/wiki/Great_Stink"
+  - "Linda Hall Library, John Snow: https://www.lindahall.org/john-snow"
+  - "Michael Faraday to the Editor of The Times, 7 July 1855 (Epsilon): https://epsilon.ac.uk/view/faraday/letters/Faraday3003"

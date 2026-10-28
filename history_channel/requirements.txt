@@ -7,6 +7,8 @@ opencv-python-headless
 Pillow>=10
 PyYAML
 requests
+imagehash          # duplicate detection
+fastembed          # CLIP relevance check (downloads ViT-B/32 on first run)
 # only for "upload":
 google-api-python-client
 google-auth-oauthlib
