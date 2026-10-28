@@ -1,0 +1,187 @@
+# Status: script draft, fact-check pending (see factcheck.md)
+
+title: "Halifax 1917: The Biggest Explosion Before the Atomic Bomb"
+subtitle: "How a collision in a Canadian harbour destroyed a city in one second"
+slug: halifax-1917
+language: en
+era: [1910, 1922]        # photos dated far outside this range are skipped
+visual_context: "Halifax Explosion 1917"   # helps the relevance check
+voice:
+  backend: kokoro
+  name: bm_lewis
+  lang: en-gb
+  speed: 0.93
+music:
+  generate: true
+  seed: 1917
+  mood: tense
+
+scenes:
+  - id: cold-open
+    montage: true          # fast cuts + one teaser photo from every chapter
+    narration: >
+      On a December morning in 1917, hundreds of people stood at their windows to watch a ship burning in the harbour.
+      None of them knew what was in her hold.
+      At four minutes past nine, the ship vanished, and with it a whole district of the city.
+      A wave as tall as a six-storey building swept the shore. Glass blinded hundreds. A railway dispatcher sent one last message, and a blizzard buried the ruins the next day.
+      It was the largest man-made explosion the world had ever seen, and it stayed that way until the atomic bomb.
+      This is the story of the Halifax Explosion.
+    images:
+      - {query: "Halifax explosion damage", count: 2}
+      - {query: "Halifax harbour", count: 1}
+
+  - id: port
+    chapter: "I. A City at War"
+    date: "1917"
+    narration: >
+      In 1917, Halifax was one of the busiest ports in the British Empire.
+      Its deep, sheltered harbour was where convoys gathered before crossing the Atlantic to Europe, carrying soldiers, food and ammunition to the First World War.
+      The harbour is shaped like an hourglass. Between the outer harbour and the vast inner basin lies a narrow channel called the Narrows, with the city of Halifax on one side and Dartmouth on the other.
+      Every ship going in or out had to pass through it.
+      The war had transformed the city. Its population swelled with soldiers, sailors, dock workers and their families. Warships, troop ships and freighters crowded the harbour every day.
+      Richmond, in the north end of Halifax, was a working-class district of wooden houses, schools, churches, a sugar refinery and railway yards, built on a hillside that looked straight down onto the Narrows.
+      From almost every window in Richmond, you could see the water.
+    images:
+      - {query: "Halifax explosion map", count: 2}
+      - {query: "Halifax Nova Scotia 1910s", count: 1}
+
+  - id: ships
+    chapter: "II. Two Ships"
+    date: "6 December 1917"
+    narration: >
+      That morning, two ships were heading for the Narrows from opposite directions.
+      Coming in was the Mont-Blanc, a French cargo ship. Her holds were packed with high explosives: picric acid, TNT and guncotton. On her deck sat barrels of benzol, a highly flammable fuel.
+      Because of wartime secrecy, she flew no flag warning of dangerous cargo.
+      Going out was the Imo, a Norwegian ship on her way to New York to load relief supplies for Belgium. She was running late, and travelling faster than she should have.
+      The two ships found themselves on the same side of the channel. Signals were exchanged, misunderstood, and exchanged again.
+      At about a quarter to nine, the Imo's bow struck the Mont-Blanc.
+    images:
+      - {query: "SS Mont Blanc", count: 1}
+      - {query: "Halifax explosion Imo", count: 2}
+
+  - id: fire
+    chapter: "III. Twenty Minutes"
+    narration: >
+      The collision itself was not severe. But it sparked a fire among the benzol barrels on the Mont-Blanc's deck, and the flames spread fast.
+      Her crew knew exactly what was in the holds. They abandoned ship, rowing hard for the Dartmouth shore and shouting warnings that few people could understand.
+      The burning ship drifted, unmanned, towards the Halifax side, and came to rest against Pier 6 in the Richmond district.
+      A fire in the harbour was a spectacle. Crowds gathered along the waterfront. People came to their windows to watch. Firefighters raced to the pier.
+      Almost nobody knew that they were looking at a floating bomb.
+    images:
+      - {query: "Halifax explosion Richmond", count: 2}
+      - {query: "Halifax explosion damage", count: 1}
+
+  - id: coleman
+    chapter: "IV. The Last Message"
+    narration: >
+      At the Richmond railway station, near the pier, a train dispatcher named Vince Coleman learned what the burning ship was carrying.
+      He could have run. Instead he returned to his telegraph key to warn incoming trains to stop.
+      His message is usually recorded like this.
+      Munitions ship on fire. Making for Pier 6. Goodbye.
+      Vince Coleman was killed at his post moments later. Accounts differ over how many lives his message saved, but he became one of the best-remembered heroes of that day.
+    quote:
+      text: "Munitions ship on fire.\nMaking for Pier 6.\nGoodbye."
+      source: "Vince Coleman, train dispatcher, telegraph message as commonly recorded"
+      match: "Munitions ship on fire"
+    images:
+      - {query: "Halifax explosion North End", count: 1}
+      - {query: "Halifax explosion ruins", count: 1}
+      - {query: "Halifax explosion damage", count: 1}
+
+  - id: blast
+    chapter: "V. 9:04:35"
+    narration: >
+      At nine o'clock, four minutes and thirty-five seconds, the Mont-Blanc exploded.
+      The blast released energy equal to about two point nine kilotons of TNT. The ship was torn apart. Pieces of her were thrown across the city. Her anchor shank was later found nearly four kilometres away.
+      A shock wave flattened the Richmond district. More than two and a half square kilometres were levelled. Over twelve thousand buildings were destroyed or damaged.
+      The water of the harbour was pushed aside so violently that a tsunami surged up the shore, as high as eighteen metres on the Halifax side, and carried the Imo onto the Dartmouth beach.
+      Windows shattered for miles. A cloud of white smoke rose high above the city.
+      In the wooden houses of Richmond, the blast overturned breakfast stoves and lamps. Within minutes, fires broke out among the ruins, spreading through streets of collapsed buildings where people were still trapped.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "2.9 kt", text: "of TNT equivalent", match: "two point nine kilotons"}
+    images:
+      - {query: "Halifax Explosion blast cloud", count: 1}
+      - {query: "Halifax explosion ruins", count: 2, colorize: true}
+      - {query: "Halifax explosion Dartmouth", count: 1}
+
+  - id: aftermath
+    chapter: "VI. The Wounded City"
+    narration: >
+      Nearly two thousand people were killed, most of them instantly. Around nine thousand were injured.
+      The cruellest injuries came from glass. So many people had been watching the fire from their windows that hundreds were blinded or partly blinded by flying shards.
+      Doctors removed two hundred and forty-nine damaged eyes. Sixteen people lost their sight in both eyes. The care of these patients helped shape the treatment of the blind in Canada for decades.
+      Across the harbour, the Mi'kmaq settlement at Turtle Grove, on the Dartmouth shore, was wiped out. It was never rebuilt.
+      About twenty-five thousand people were left homeless or without proper shelter, in a Canadian December.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "≈2,000", text: "people killed", match: "Nearly two thousand people were killed"}
+    images:
+      - {query: "Halifax explosion hospital", count: 2}
+      - {query: "Halifax explosion children", count: 2}
+
+
+  - id: rescue
+    chapter: "VII. Into the Ruins"
+    narration: >
+      The first rescuers were the survivors themselves: neighbours digging with their bare hands, soldiers from the city's barracks, and sailors from the warships in the harbour.
+      Some of the ships had lost men of their own. Sailors who had rowed out to help fight the fire on the Mont-Blanc were caught in the blast.
+      Every hospital was overwhelmed within an hour. Doctors operated in corridors, in private homes, in anything with a roof. Volunteers drove the injured through the streets in carts, cars and wagons.
+      A school on Chebucto Road was turned into a morgue. Families came there for days, searching for missing relatives among the dead.
+      Many of the victims were children. Schools in Richmond had been about to start their day. Some children were killed on their way to class, others at home, at the windows, watching the fire.
+    images:
+      - {query: "Halifax explosion damage", count: 2}
+      - {query: "Halifax explosion ruins", count: 1}
+      - {query: "Halifax explosion hospital", count: 1, colorize: true}
+
+  - id: blizzard
+    chapter: "VIII. The Blizzard"
+    date: "7 December 1917"
+    narration: >
+      The next day, a blizzard struck. Around forty centimetres of snow fell on the ruins.
+      The storm buried survivors still trapped under wreckage, slowed rescue teams and stalled the relief trains trying to reach the city.
+      Soldiers and sailors from the ships in the harbour dug through the snow and rubble. Schools, churches and halls that were still standing became hospitals and morgues.
+    images:
+      - {query: "Halifax explosion damage", count: 2, colorize: true}
+      - {query: "Halifax explosion", count: 1}
+
+  - id: boston
+    chapter: "IX. Help from Boston"
+    narration: >
+      Help came quickly from across Canada, from Britain, and above all from the United States.
+      Boston sent a relief train loaded with doctors, nurses and medical supplies, and the Massachusetts relief committee raised money and materials for months.
+      Halifax never forgot it. In 1918, the city sent Boston a Christmas tree as a thank-you.
+      The tradition was revived in 1971 and continues today. Every year, a tree from Nova Scotia stands on Boston Common.
+      Help also came in money and materials from across the British Empire. The Halifax Relief Commission was set up to care for the injured, the orphaned and the homeless, and to rebuild what had been destroyed. It went on supporting survivors for decades.
+    images:
+      - {query: "Halifax explosion", count: 2}
+      - {query: "Halifax explosion", count: 1}
+
+  - id: blame
+    chapter: "X. Who Was to Blame?"
+    narration: >
+      Grief quickly turned to anger. An official inquiry blamed the Mont-Blanc's captain and pilot, and the naval officer responsible for harbour traffic.
+      A civil court found the Mont-Blanc entirely at fault. But on appeal, the judges ruled that both ships were equally to blame.
+      No one was ever convicted.
+      The disaster did change the rules. Ports around the world began to take the handling of explosive cargo far more seriously.
+    images:
+      - {query: "Halifax herald explosion", count: 1}
+      - {query: "Halifax Nova Scotia 1910s", count: 1}
+      - {query: "Halifax explosion damage", count: 1}
+
+  - id: rebuild
+    chapter: "Epilogue"
+    narration: >
+      Richmond was rebuilt. Part of it became the Hydrostone, a neighbourhood of solid concrete-block row houses built by the Halifax Relief Commission, one of Canada's first public housing projects. People still live there today.
+      Every year on the sixth of December, Halifax remembers the people it lost, at nine o'clock, four minutes and thirty-five seconds.
+      If you enjoyed this story from the archives, subscribe for more forgotten chapters of history.
+    images:
+      - {query: "Hydrostone", count: 1}
+      - {query: "Halifax explosion", count: 1}
+
+thumbnail:
+  scene: blast
+  big: "9:04"
+  small: "THE CITY THAT VANISHED IN ONE SECOND"
+tags: ["Halifax Explosion", "1917", "Canada history", "disaster documentary", "Mont-Blanc", "Vince Coleman", "World War I"]
+references:
+  - "Wikipedia, Halifax Explosion: https://en.wikipedia.org/wiki/Halifax_Explosion"
+  - "The Canadian Encyclopedia, Halifax Explosion: https://thecanadianencyclopedia.ca/en/article/halifax-explosion"

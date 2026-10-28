@@ -1,0 +1,169 @@
+# Status: script draft, fact-check pending (see factcheck.md)
+
+title: "Tunguska 1908: The Sky Exploded and Nobody Came for 19 Years"
+subtitle: "The largest impact event in recorded history, and the scientist who finally went to look"
+slug: tunguska-1908
+language: en
+era: [1900, 1935]        # photos dated far outside this range are skipped
+visual_context: "Tunguska event Siberia 1908"   # helps the relevance check
+voice:
+  backend: kokoro
+  name: am_michael
+  lang: en-us
+  speed: 0.95
+music:
+  generate: true
+  seed: 1908
+  mood: tense
+
+scenes:
+  - id: cold-open
+    montage: true          # fast cuts + one teaser photo from every chapter
+    narration: >
+      On a summer morning in 1908, the sky above Siberia exploded.
+      Millions of trees were knocked flat over an area larger than the whole of Greater London, all pointing away from a single spot.
+      A man sixty kilometres away felt as if his shirt was on fire. Barometers in Britain twitched. For nights afterwards, Europeans could read the newspaper outdoors at midnight.
+      When a scientist finally reached the site, nineteen years later, he found no crater at all, only a forest of standing, burnt, branchless trees.
+      What happened at Tunguska, and could it happen again?
+    images:
+      - {query: "Tunguska", count: 2, colorize: true}
+      - {query: "Tunguska Kulik", count: 1}
+
+  - id: morning
+    chapter: "I. Thirtieth of June"
+    date: "1908"
+    narration: >
+      The date was the thirtieth of June 1908, by the modern calendar. In the Russian Empire, which still used the old Julian calendar, it was the seventeenth.
+      Shortly after seven in the morning local time, people scattered across the vast forests of central Siberia saw a column of blue-white light move across the sky, almost as bright as the sun.
+      Then came a flash, and a sound like artillery fire, rolling on and on.
+      The explosion happened above one of the emptiest places on Earth, near the Podkamennaya Tunguska river, a tributary of the Yenisei. The nearest settlements were small trading posts and the camps of Evenk reindeer herders.
+    images:
+      - {query: "Yenisei river", modern: true, count: 2}
+      - {query: "taiga Siberia", modern: true, count: 1}
+
+  - id: vanavara
+    chapter: "II. The Trading Post"
+    narration: >
+      About sixty kilometres to the south, at the Vanavara trading post, a man named Semyon Semyonov was sitting on his porch.
+      Years later, he described what he felt to investigators. A sudden, terrible heat from the north, so intense that it seemed his shirt was burning.
+      As if my shirt had caught fire.
+      Then a blast threw him several metres from the porch, and he briefly lost consciousness. Windows shattered. The ground shook.
+      Among the Evenk herders closer to the blast, at least three people are believed to have died. Whole herds of reindeer were lost, and storehouses were burned.
+    quote:
+      text: "As if my shirt had caught fire."
+      source: "Semyon Semyonov, Vanavara trading post, recalling 30 June 1908"
+      match: "As if my shirt had caught fire"
+    images:
+      - {query: "Siberia 1908", count: 1}
+      - {query: "reindeer Siberia", modern: true, count: 2}
+
+  - id: world
+    chapter: "III. Bright Nights"
+    narration: >
+      The rest of the world did not know where the explosion had happened. But it noticed.
+      Seismic stations as far away as Irkutsk, Tashkent, Tiflis and Jena recorded the shock as if it were a moderate earthquake. Barographs across the world, including in London, registered the pressure wave as it travelled around the planet.
+      And for several nights, from the thirtieth of June to early July, the skies over Europe and western Asia stayed strangely bright. People wrote to newspapers about glowing clouds and midnight twilight.
+      Nobody connected these reports to a remote corner of Siberia.
+    images:
+      - {query: "seismograph", modern: true, count: 1}
+      - {query: "barograph", modern: true, count: 1}
+      - {query: "night sky clouds twilight", modern: true, count: 1}
+
+  - id: kulik
+    chapter: "IV. The Meteorite Hunter"
+    date: "1921–1927"
+    narration: >
+      The Russian Empire had other concerns. Then came the First World War, the revolution and the civil war.
+      It was not until 1921 that a scientist went looking. His name was Leonid Kulik, a mineralogist who specialised in meteorites.
+      Kulik became convinced that a giant iron meteorite had fallen in the Tunguska region. If he could find it, he believed, it would be worth a fortune to Soviet industry.
+      His first expedition in 1921 never reached the central area.
+      In 1927, he tried again. This time he had the support of the Soviet Academy of Sciences.
+      The journey was brutal. There were no roads, only swamps, rivers and endless forest. Some local Evenk people were reluctant to guide him. For them, the place of the blast carried a dark meaning, and stories of that day had been passed around for years.
+      Kulik pressed on, by sledge, on horseback and finally on foot, and in April 1927, he finally reached the edge of the devastated zone.
+    images:
+      - {query: "Leonid Kulik", count: 2}
+      - {query: "Tunguska Kulik", count: 1}
+
+  - id: site
+    chapter: "V. The Forest of Poles"
+    date: "1927"
+    narration: >
+      What Kulik found was astonishing.
+      For kilometres in every direction, the trees lay flat, their trunks pointing away from the centre, like spokes of a giant wheel.
+      But when he reached the centre itself, he found something stranger still. The trees there were still standing upright, scorched and stripped of their branches, like a forest of telegraph poles.
+      And there was no crater. No hole in the ground, no giant meteorite. Nothing.
+      Kulik spent years searching. He dug into bogs he thought might be impact craters and drained swamps. He never found the meteorite he was looking for.
+    images:
+      - {query: "Tunguska", count: 2, colorize: true}
+      - {query: "Tunguska", count: 1}
+
+
+  - id: expeditions
+    chapter: "VI. The Search Goes On"
+    narration: >
+      Kulik returned again and again. In 1928 and 1929, with larger teams, he mapped the fallen forest and photographed the damage. Those photographs are the ones that made Tunguska famous around the world.
+      After Kulik's death, other scientists took up the work. In the 1950s and 1960s, Soviet expeditions sifted the soil of the area and found tiny spheres of melted rock and metal, microscopic droplets that could have come from a vaporised space object.
+      Researchers also mapped the direction of tens of thousands of fallen trees. The pattern looked like the wings of a butterfly, and from its shape they could work out the angle and direction from which the object came in.
+      In 2007, an Italian team proposed that a small lake near the area, Lake Cheko, might be a crater made by a surviving fragment. Other scientists disagree, and the debate continues.
+    images:
+      - {query: "Siberia 1908", count: 2}
+      - {query: "Tunguska", count: 1}
+
+  - id: theories
+    chapter: "VII. A Hundred Theories"
+    narration: >
+      A mystery with no crater attracted every kind of explanation.
+      Over the decades, people proposed a comet, a chunk of antimatter, a tiny black hole, a natural gas explosion from beneath the ground, and, inevitably, a crashed alien spaceship.
+      Most of these ideas fall apart under the evidence. But they kept Tunguska famous, long after Kulik's expeditions ended.
+      Kulik himself never got a final answer. He volunteered to defend Moscow in the Second World War, was captured, and died in a German prison camp in 1942.
+    images:
+      - {query: "comet 1910 photograph", count: 1}
+      - {query: "Tunguska event map", count: 1}
+      - {query: "taiga Siberia", modern: true, count: 1}
+
+  - id: airburst
+    chapter: "VIII. An Explosion in the Air"
+    narration: >
+      Today, most scientists agree on what happened.
+      A space rock, most likely a stony asteroid around fifty or sixty metres across, entered the atmosphere at enormous speed. The pressure and heat became too much for it. Several kilometres above the ground, it exploded.
+      That is why there was no crater. The object never hit the ground. Its energy was released in the air, as a blast wave and a flash of heat.
+      The upright trees at the centre had been directly underneath. The blast came straight down on them, snapping off their branches but leaving the trunks standing. Further out, the wave struck at an angle and knocked the trees flat.
+      Estimates of the energy range from around three to thirty megatons, hundreds of times more powerful than the bomb dropped on Hiroshima.
+      Objects this size are thought to hit the Earth's atmosphere only rarely, perhaps once every few hundred years. Most of the time they fall over oceans or empty land, and nobody notices at all.
+      In 1908, it fell over one of the emptiest places on the planet. That was luck, and nothing more.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "3–30 Mt", text: "estimated energy of the blast", match: "Estimates of the energy range"}
+    images:
+      - {query: "meteor airburst", modern: true, count: 1}
+      - {query: "Tunguska", count: 2}
+
+  - id: chelyabinsk
+    chapter: "IX. It Happened Again"
+    date: "2013"
+    narration: >
+      For a long time, Tunguska seemed like a once-in-a-millennium event.
+      Then, on the fifteenth of February 2013, a much smaller asteroid, about eighteen metres across, exploded over the Russian city of Chelyabinsk.
+      This time thousands of cameras were watching. The blast released around half a megaton of energy. It shattered windows across the city and injured more than a thousand people, almost all of them from flying glass.
+      The Chelyabinsk object was a fraction of the size of the Tunguska one. Had the 1908 explosion happened over a city instead of the empty taiga, the result would have been a catastrophe.
+    images:
+      - {query: "Chelyabinsk meteor", modern: true, count: 1}
+      - {query: "Bennu", modern: true, count: 2}
+
+  - id: closing
+    chapter: "Epilogue"
+    narration: >
+      Today, the thirtieth of June is marked around the world as Asteroid Day, chosen in memory of Tunguska.
+      Space agencies now track thousands of near-Earth objects. In 2022, NASA's DART mission deliberately crashed a spacecraft into a small asteroid and changed its orbit, the first test of how we might one day defend ourselves.
+      The forest at Tunguska has grown back. But if you walk there today, you can still find the old fallen trunks, all pointing away from the place where the sky exploded.
+      If you enjoyed this story from the archives, subscribe for more.
+    images:
+      - {query: "DART Dimorphos", modern: true, count: 1}
+      - {query: "taiga Siberia", modern: true, count: 1}
+
+thumbnail:
+  scene: site
+  big: "1908"
+  small: "THE SKY EXPLODED OVER SIBERIA"
+tags: ["Tunguska event", "1908", "asteroid", "Siberia", "Leonid Kulik", "unsolved mysteries", "science history", "documentary"]
+references:
+  - "Wikipedia, Tunguska event: https://en.wikipedia.org/wiki/Tunguska_event"

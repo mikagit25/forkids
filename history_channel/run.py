@@ -7,6 +7,7 @@
   python run.py episodes/1918-flu render     # final 1080p + subtitles + chapters
   python run.py episodes/1918-flu publish    # thumbnail + description
   python run.py episodes/1918-flu all        # fetch, voice, render, publish
+  python run.py episodes/1918-flu review     # contact sheets of all photos for review (episodes/<ep>/review/)
   python run.py episodes/1918-flu upload     # upload as PRIVATE (needs client_secret.json)
 """
 import sys
@@ -14,7 +15,7 @@ from pathlib import Path
 
 import yaml
 
-from pipeline import fetch, publish, render, tts
+from pipeline import fetch, publish, render, review, tts
 
 
 def main():
@@ -38,6 +39,8 @@ def main():
         elif step == "publish":
             publish.thumbnail(ep_dir, episode)
             publish.description(ep_dir, episode)
+        elif step == "review":
+            review.review_pack(ep_dir, episode)
         elif step == "upload":
             publish.upload(ep_dir, episode)
         elif not step.startswith("--"):

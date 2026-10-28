@@ -1,9 +1,11 @@
 """Search public archives and keep only images that are safe to use on a monetized channel.
 
 Sources:
-  commons   - Wikimedia Commons (huge, mirrors LoC/NARA/CDC/Wellcome items, good license metadata)
-  loc       - Library of Congress (photos & prints)
-  wellcome  - Wellcome Collection (history of medicine)
+  commons     - Wikimedia Commons (huge, mirrors LoC/NARA/CDC/Wellcome items, good license metadata)
+  smithsonian - Smithsonian Open Access (CC0 only). Key: SI_API_KEY (free at api.data.gov; DEMO_KEY is rate-limited)
+  europeana   - Europeana, aggregated European archives. Key: EUROPEANA_KEY (free; "api2demo" for testing)
+  wellcome    - Wellcome Collection (history of medicine)
+  loc         - Library of Congress (photos & prints); sometimes answers scripts with a Cloudflare check
 
 Every candidate carries: source, id, title, page_url, download_url, license, credit, width, height.
 Only licenses in ALLOWED are returned. NC (non-commercial) and ND (no-derivatives) are always rejected,
@@ -12,6 +14,7 @@ because a monetized YouTube video is commercial use and Ken Burns motion/croppin
 from __future__ import annotations
 
 import html
+import os
 import re
 import time
 
@@ -65,11 +68,11 @@ def license_ok(lic: str) -> bool:
 
 
 # ---------------------------------------------------------------- Wikimedia Commons
-def search_commons(query: str, limit: int = 20) -> list[dict]:
+def search_commons(query: str, limit: int = 30) -> list[dict]:
     params = {
         "action": "query", "format": "json", "formatversion": "2",
         "generator": "search", "gsrsearch": f"{query} filetype:bitmap", "gsrnamespace": "6",
-        "gsrlimit": str(limit),
+        "gsrlimit": str(limit),  # noqa
         "prop": "imageinfo", "iiprop": "url|size|mime|extmetadata", "iiurlwidth": "3000",
     }
     data = _get("https://commons.wikimedia.org/w/api.php", params).json()
@@ -207,13 +210,82 @@ def search_wellcome(query: str, limit: int = 20) -> list[dict]:
     return out
 
 
-SOURCES = {"commons": search_commons, "loc": search_loc, "wellcome": search_wellcome}
+# ---------------------------------------------------------------- Smithsonian Open Access (CC0)
+def search_smithsonian(query: str, limit: int = 20) -> list[dict]:
+    key = os.environ.get("SI_API_KEY", "DEMO_KEY")
+    data = _get("https://api.si.edu/openaccess/api/v1.0/search",
+                {"q": f"{query} AND online_media_type:Images", "rows": str(limit), "api_key": key}).json()
+    out = []
+    for row in data.get("response", {}).get("rows", []):
+        dn = row.get("content", {}).get("descriptiveNonRepeating", {})
+        for m in (dn.get("online_media") or {}).get("media", [])[:1]:
+            if m.get("type") != "Images" or (m.get("usage") or {}).get("access") != "CC0":
+                continue
+            content = m.get("content") or ""
+            if "deliveryService" not in content:
+                continue
+            dates = (row.get("content", {}).get("indexedStructured", {}) or {}).get("date") or []
+            out.append({
+                "source": "smithsonian",
+                "id": f"smithsonian:{m.get('idsId') or content.split('id=')[-1]}",
+                "title": (row.get("title") or "")[:200],
+                "description": "",
+                "date": " ".join(dates) if isinstance(dates, list) else str(dates),
+                "page_url": dn.get("record_link") or dn.get("guid") or "https://www.si.edu/openaccess",
+                "download_url": content + "&max=3000",
+                "license": "CC0",
+                "credit": f"Smithsonian ({row.get('unitCode', '')})",
+                "width": 0, "height": 0,
+            })
+    return out
+
+
+# ---------------------------------------------------------------- Europeana
+EUROPEANA_OK = ("publicdomain/mark", "publicdomain/zero", "licenses/by/")
+
+
+def search_europeana(query: str, limit: int = 20) -> list[dict]:
+    key = os.environ.get("EUROPEANA_KEY", "api2demo")
+    data = _get("https://api.europeana.eu/record/v2/search.json",
+                {"wskey": key, "query": query, "qf": "TYPE:IMAGE", "reusability": "open",
+                 "media": "true", "rows": str(limit), "profile": "standard"}).json()
+    out = []
+    for it in data.get("items", []):
+        rights = (it.get("rights") or [""])[0]
+        if not any(r in rights for r in EUROPEANA_OK):
+            continue
+        by = (it.get("edmIsShownBy") or [None])[0]
+        if not by:
+            continue
+        # IIIF previews are often sized down ("/full/512,/"); ask for a large version instead
+        by = re.sub(r"/full/\d*,\d*/", "/full/max/", by)
+        lic = ("Public domain" if "publicdomain/mark" in rights else
+               "CC0" if "publicdomain/zero" in rights else "CC BY " + (re.findall(r"by/([\d.]+)", rights) or [""])[0])
+        page = (it.get("guid") or "").split("?")[0]
+        out.append({
+            "source": "europeana",
+            "id": f"europeana:{it.get('id', '').strip('/')}",
+            "title": ((it.get("title") or [""])[0])[:200],
+            "description": " ".join((it.get("dcDescription") or [])[:1])[:400],
+            "date": " ".join(str(y) for y in (it.get("year") or [])),
+            "page_url": page,
+            "download_url": by,
+            "license": lic,
+            "credit": f"{(it.get('dataProvider') or ['Europeana'])[0]} via Europeana",
+            "width": 0, "height": 0,
+        })
+    return out
+
+
+SOURCES = {"commons": search_commons, "smithsonian": search_smithsonian, "europeana": search_europeana,
+           "wellcome": search_wellcome, "loc": search_loc}
+DEFAULT_SOURCES = ("commons", "smithsonian", "europeana", "wellcome", "loc")
 
 
 DISABLED: set[str] = set()
 
 
-def search_all(query: str, sources=("commons", "wellcome", "loc")) -> list[dict]:
+def search_all(query: str, sources=DEFAULT_SOURCES) -> list[dict]:
     """Interleave results so one archive does not dominate the scene.
 
     Commons goes first: it has the best license metadata and mirrors most LoC/NARA/CDC photos.

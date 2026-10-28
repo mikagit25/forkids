@@ -1,0 +1,205 @@
+# Status: script draft, fact-check pending (see factcheck.md)
+
+title: "Endurance: 28 Men, No Ship, and the Rescue Nobody Expected"
+subtitle: "Shackleton's lost expedition, told through Frank Hurley's original photographs"
+slug: endurance-1914
+language: en
+era: [1910, 1922]        # photos dated far outside this range are skipped
+visual_context: "Shackleton Endurance Antarctic expedition 1914-1916"   # helps the relevance check
+voice:
+  backend: kokoro
+  name: bm_george
+  lang: en-gb
+  speed: 0.93
+music:
+  generate: true
+  seed: 1914
+  mood: tense
+
+scenes:
+  - id: cold-open
+    montage: true          # fast cuts + one teaser photo from every chapter
+    narration: >
+      In 1914, twenty-eight men sailed south to cross Antarctica on foot.
+      They never set foot on the continent. Their ship was trapped in the ice, crushed, and dragged to the bottom of the sea.
+      They lived for five months on floating ice, ate their dogs, and smashed hundreds of their own photographs to save weight.
+      Six of them crossed eight hundred miles of the worst ocean on Earth in a lifeboat. Three of them walked over mountains no one had ever crossed.
+      And more than a century later, their ship was found, three kilometres down, with her name still on the stern.
+      Nobody in the world knew where they were. This is how all twenty-eight came home.
+    images:
+      - {query: "Endurance ship ice Hurley", count: 2}
+      - {query: "Shackleton expedition camp ice 1915", count: 1}
+
+  - id: plan
+    chapter: "I. The Last Great Journey"
+    date: "August 1914"
+    narration: >
+      By 1914, the South Pole had already been reached, first by Roald Amundsen, then by Robert Falcon Scott, who died on the way back.
+      Ernest Shackleton, an Anglo-Irish explorer who had come within a hundred miles of the Pole a few years earlier, wanted the one prize left: to cross the entire continent on foot, from sea to sea.
+      His plan needed two ships. The Endurance would carry his party to the Weddell Sea. A second ship, the Aurora, would land men on the other side of Antarctica to lay supply depots along the final stretch of the route.
+      The Endurance left Plymouth on the eighth of August 1914, just days after Britain entered the First World War. Shackleton offered to put his ship and crew at the Navy's disposal. The reply came back in one word: proceed.
+    images:
+      - {query: "Ernest Shackleton portrait", count: 1}
+      - {query: "Endurance ship Shackleton", count: 2}
+
+
+  - id: crew
+    chapter: "II. The Crew"
+    narration: >
+      You may have heard of the newspaper advertisement Shackleton supposedly placed to find his crew: men wanted for a hazardous journey, small wages, bitter cold, safe return doubtful.
+      It is a wonderful story. But historians have never found any trace of it in the newspapers of the time, and it was probably invented years later.
+      What is true is that thousands of people applied. Shackleton chose his men in his own unusual way, sometimes after an interview lasting only a few minutes, asking whether a candidate could sing.
+      There were sailors and scientists, a physicist, a geologist, a biologist, two surgeons, an artist and a photographer.
+      And there was one man nobody had chosen. When the Endurance left Buenos Aires, a young Welsh sailor named Perce Blackborow was found hiding aboard as a stowaway. Shackleton was furious, then signed him on as a steward.
+    images:
+      - {query: "Shackleton expedition", count: 2}
+      - {query: "Shackleton expedition", count: 1}
+
+  - id: beset
+    chapter: "III. Frozen In"
+    date: "January 1915"
+    narration: >
+      After a last stop at the whaling stations of South Georgia, the Endurance sailed south on the fifth of December 1914.
+      The Weddell Sea that year was choked with pack ice. For weeks the ship forced her way through narrow channels of open water.
+      Then, in the middle of January 1915, barely a day's sail from the coast where Shackleton planned to land, the ice closed around her.
+      The men tried to cut her free with picks, saws and chisels. On the fourteenth of February, they gave up.
+      There was nothing to do but wait for spring. The Endurance had become a prisoner, drifting wherever the ice carried her.
+    images:
+      - {query: "Endurance trapped in ice Weddell Sea", count: 2}
+      - {query: "Endurance crushed by ice", count: 1}
+
+  - id: winter
+    chapter: "IV. The Long Night"
+    narration: >
+      The Antarctic winter brought months of darkness. The crew turned the ship into a home. They held football matches on the ice, raced their dog teams, staged concerts and shaved each other's heads for fun.
+      Shackleton understood that boredom and despair could kill as surely as cold. He kept everyone busy and treated every man, from the officers to the youngest sailor, the same way.
+      Among them was the expedition photographer, an Australian named Frank Hurley. He climbed the frozen rigging with his heavy camera, and when the polar night came, he lit the ship with flares to photograph her glowing in the dark.
+      Those pictures would one day show the world what these men endured.
+    images:
+      - {query: "Endurance night flash photograph Hurley", count: 1}
+      - {query: "Endurance ship ice Hurley", count: 2}
+      - {query: "Frank Hurley camera Antarctica", count: 1, colorize: true}
+
+  - id: crushed
+    chapter: "V. The End of the Endurance"
+    date: "October 1915"
+    narration: >
+      When spring came, the ice did not release the ship. It began to crush her.
+      Huge pressure ridges pushed against the hull. The timbers groaned and cracked. Water poured in faster than the pumps could clear it.
+      On the twenty-seventh of October 1915, in temperatures below minus twenty-six degrees, Shackleton gave the order to abandon ship.
+      The men dragged their tents, stores and three lifeboats onto the ice. For almost a month the broken hull stayed upright, still held by the floe.
+      There was one painful loss even before the ship sank. The carpenter, Harry McNish, had brought his cat aboard, a tabby the crew called Mrs Chippy. There was no way to feed a cat on the ice, and Shackleton ordered that it be shot, along with the youngest sledge dogs. McNish never forgave him.
+      Then, on the twenty-first of November, she slipped under.
+      Shackleton wrote simply that the connexion had been cut.
+    quote:
+      text: "The connexion had been cut."
+      source: "Ernest Shackleton, South (1919)"
+      match: "the connexion had been cut"
+    images:
+      - {query: "Endurance crushed by ice", count: 2, colorize: true}
+      - {query: "Endurance wreck ice 1915", count: 1}
+
+  - id: plates
+    chapter: "VI. What to Leave Behind"
+    narration: >
+      Every pound now mattered. Each man was allowed to keep two pounds of personal belongings.
+      Hurley had already rescued his photographic plates from the flooded ship, diving into the icy water to reach them.
+      Together with Shackleton, he sorted through around five hundred and fifty of them. He could carry only about a hundred and twenty.
+      Hurley smashed the rest on the ice, so that he would never be tempted to go back for them.
+      The images he kept are the ones you are seeing now.
+    images:
+      - {query: "Hurley Shackleton Patience Camp", count: 2}
+      - {query: "Ocean Camp Shackleton", count: 1}
+
+  - id: drift
+    chapter: "VII. Ocean Camp and Patience Camp"
+    date: "1915–1916"
+    narration: >
+      For five months the men lived on the drifting ice, first at a spot they called Ocean Camp, then at Patience Camp.
+      They hunted seals and penguins for meat and blubber. When food ran short, the dogs had to be shot.
+      Twice they tried to march towards land, dragging the lifeboats behind them. The snow was so soft that they covered barely a mile a day, and they gave up.
+      Slowly, the ice carried them north, towards open sea. Every day the floe beneath them grew smaller and more fragile.
+      On the ninth of April 1916, it split apart. Shackleton ordered the three boats into the water.
+    images:
+      - {query: "Patience Camp 1916", count: 2}
+      - {query: "Shackleton lifeboats ice", count: 1}
+
+  - id: elephant
+    chapter: "VIII. Elephant Island"
+    date: "April 1916"
+    narration: >
+      For seven days the boats fought through ice and freezing spray. Men were soaked, frostbitten and so thirsty they chewed raw seal meat for its moisture.
+      On the fifteenth of April they landed on Elephant Island, a bare, storm-swept rock at the edge of the Antarctic Peninsula.
+      It was the first time in four hundred and ninety-seven days that they had stood on solid ground.
+      But nobody would ever look for them there. It was far from any shipping route.
+      Shackleton decided that the only hope was to go for help himself, in a twenty-two-foot open boat, across the most dangerous ocean on Earth.
+    images:
+      - {query: "Elephant Island Shackleton", count: 2, colorize: true}
+      - {query: "Elephant Island 1916 camp", count: 1}
+
+  - id: caird
+    chapter: "IX. Eight Hundred Miles"
+    date: "24 April 1916"
+    narration: >
+      The boat was called the James Caird. Shackleton chose five men to go with him, including the ship's captain, Frank Worsley, a navigator of genius, and the Irish sailor Tom Crean.
+      Their destination was South Georgia, about eight hundred miles away. To miss it meant drifting into the open Atlantic and certain death.
+      For sixteen days they sailed through gales and towering waves. Ice built up on the boat until it threatened to capsize her, and the men crawled out to chip it off.
+      Worsley could take only four sightings of the sun in the entire journey, bracing himself on the pitching deck while two men held him upright.
+      On the tenth of May, they landed at King Haakon Bay, on South Georgia. They had made it. But they were on the wrong side of the island.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "800 miles", text: "in a 22-foot open boat", match: "about eight hundred miles away"}
+    images:
+      - {query: "James Caird launch Elephant Island", count: 2}
+      - {query: "James Caird boat", count: 1}
+
+  - id: crossing
+    chapter: "X. Across the Mountains"
+    date: "May 1916"
+    narration: >
+      The whaling station at Stromness lay on the other side of unmapped, glaciated mountains. No one had ever crossed them.
+      Shackleton, Worsley and Crean set off with a rope, an axe and screws from the boat driven through their boots for grip.
+      They walked for about thirty-six hours without sleep. At one point, lost on a ridge as night fell, they sat down together and slid down the mountainside on the coiled rope.
+      On the twentieth of May 1916, three filthy, bearded men walked into Stromness. The station manager did not recognise them.
+    images:
+      - {query: "South Georgia", count: 2}
+      - {query: "Stromness whaling station", count: 1}
+
+  - id: rescue
+    chapter: "XI. Not a Life Lost"
+    date: "30 August 1916"
+    narration: >
+      Shackleton immediately went back for the men on Elephant Island. Three times, the pack ice turned his rescue ships away.
+      On the fourth attempt, he sailed aboard the Yelcho, a small steam tug of the Chilean Navy commanded by Luis Pardo.
+      On the thirtieth of August 1916, after four and a half months on the island, the twenty-two men left behind saw the ship approaching.
+      Frank Wild, Shackleton's second in command, had kept them going for four and a half months. They lived under the two upturned lifeboats, eating penguins and seals and burning blubber for warmth. Every morning, Wild told the men to roll up their sleeping bags, because the boss might come today.
+      Every one of them was alive.
+      Not one member of the Endurance party died. The expedition's other half, the Ross Sea party, was not so lucky: three of its men died laying depots for a crossing that never came.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "28 / 28", text: "men of the Endurance came home", match: "Not one member of the Endurance party died"}
+    images:
+      - {query: "Elephant Island Shackleton", count: 2}
+      - {query: "Luis Pardo Yelcho", count: 1}
+
+  - id: found
+    chapter: "Epilogue"
+    date: "March 2022"
+    narration: >
+      For more than a century, the Endurance lay somewhere on the floor of the Weddell Sea.
+      In March 2022, an expedition using underwater robots found her, three thousand and eight metres down, about four miles from the position Frank Worsley had recorded in 1915.
+      She sits upright and remarkably well preserved. Her name can still be read across the stern.
+      The wreck is now a protected monument. It will not be raised.
+      And the story of the men who lost her is still told, in large part through the photographs Frank Hurley chose to save.
+      If you enjoyed this story from the archives, subscribe for more.
+    images:
+      - {query: "Endurance ship Hurley 1915", count: 1}
+      - {query: "Endurance expedition crew portrait", count: 1}
+
+thumbnail:
+  scene: crushed
+  big: "28 MEN"
+  small: "NO SHIP. NO RADIO. NO HOPE."
+tags: ["Shackleton", "Endurance", "Antarctica", "survival story", "Frank Hurley", "exploration history", "documentary"]
+references:
+  - "Wikipedia, Imperial Trans-Antarctic Expedition: https://en.wikipedia.org/wiki/Imperial_Trans-Antarctic_Expedition"
+  - "Endurance22, Endurance is found: https://endurance22.org/endurance-is-found"
+  - "Ernest Shackleton, South (1919), Project Gutenberg: https://www.gutenberg.org/ebooks/5199"

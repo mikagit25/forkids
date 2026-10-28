@@ -1,0 +1,162 @@
+# Status: script draft, fact-check pending (see factcheck.md)
+
+title: "The Great Molasses Flood: Boston's Strangest Disaster"
+subtitle: "A wave of syrup, 21 dead, and the trial that changed how America builds"
+slug: molasses-1919
+language: en
+era: [1910, 1925]        # photos dated far outside this range are skipped
+visual_context: "Boston 1919 molasses disaster"   # helps the relevance check
+voice:
+  backend: kokoro
+  name: am_onyx
+  lang: en-us
+  speed: 0.95
+music:
+  generate: true
+  seed: 1919
+  mood: somber
+
+scenes:
+  - id: cold-open
+    montage: true          # fast cuts + one teaser photo from every chapter
+    narration: >
+      It sounds like a joke. A flood of molasses, sweeping through the streets of an American city.
+      But on a January day in 1919, a giant tank in Boston split open, and a wave of syrup taller than a house tore through a crowded neighbourhood.
+      It knocked buildings off their foundations, bent the steel of an elevated railway and swallowed people, horses and a fire station.
+      Twenty-one people died. The company blamed anarchists. The families took it to court.
+      And the verdict changed the way buildings are designed across America.
+      This is the story of the Great Molasses Flood.
+    images:
+      - {query: "Molasses Flood", count: 2, colorize: true}
+      - {query: "North End Boston", count: 1}
+
+  - id: north-end
+    chapter: "I. The North End"
+    date: "Boston, 1919"
+    narration: >
+      Boston's North End was one of the most crowded neighbourhoods in America. Most of its residents were Italian immigrants, along with Irish families, packed into tenements near the harbour.
+      Along Commercial Street ran the docks, warehouses, a fire station and the elevated railway, carrying trains above the street on steel girders.
+      And standing over it all was a giant steel tank, owned by the Purity Distilling Company, a subsidiary of United States Industrial Alcohol.
+      It was fifty feet tall and ninety feet across. It could hold about two point three million gallons of molasses.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "2.3 million", text: "gallons of molasses in one tank", match: "It could hold about two point three million gallons"}
+    images:
+      - {query: "Commercial Street Boston 1910s", count: 2}
+      - {query: "Atlantic Avenue elevated Boston", count: 1}
+
+  - id: why
+    chapter: "II. Why Molasses?"
+    narration: >
+      Molasses was not just for baking. It could be fermented and distilled into industrial alcohol, a key ingredient in making munitions.
+      During the First World War, demand had soared. Ships from the Caribbean unloaded molasses into the Boston tank, and from there it went by rail to a distillery across the river.
+      By early 1919 the war was over, but another deadline was approaching. The country was about to adopt Prohibition, which would ban the production of alcoholic drinks. Some historians believe the company was hurrying to turn as much molasses as possible into alcohol before the law took effect.
+      The tank had been filled again just days before.
+      The timing was remarkable. The day after the disaster, on the sixteenth of January 1919, enough states ratified the Eighteenth Amendment to make nationwide Prohibition part of the Constitution.
+    images:
+      - {query: "Boston molasses disaster", count: 1}
+      - {query: "Boston 1910s", count: 1}
+      - {query: "Boston 1910s", count: 1}
+
+  - id: warnings
+    chapter: "III. The Leaking Tank"
+    narration: >
+      The tank had been built in 1915, in a hurry. The man in charge of its construction was the company's treasurer, Arthur Jell. He could not read a blueprint, and he had no training as an engineer or architect.
+      The tank was never properly tested. Instead of filling it with water to check for leaks, the company filled it with only a few inches.
+      From its very first filling, it leaked. Brown streaks ran down its sides. The company's response was to paint the tank brown, so the leaks would not show.
+      Local families came with buckets and cans to collect the molasses that oozed out. Workers reported hearing the tank groan and rumble.
+    images:
+      - {query: "Molasses Flood", count: 2}
+      - {query: "North End Boston tenements", count: 1}
+
+  - id: noon
+    chapter: "IV. 12:30 p.m."
+    date: "15 January 1919"
+    narration: >
+      The fifteenth of January 1919 was unusually mild. The day before, it had been bitterly cold. Now the temperature rose to around forty degrees Fahrenheit.
+      At about half past twelve, as dock workers ate lunch and children played outside, people nearby heard a deep rumble, followed by sharp cracks, like a machine gun. Rivets were popping out of the tank's steel plates.
+      Then the tank split open.
+      Millions of gallons of molasses burst out in a single wave, around twenty-five feet high at its peak.
+    images:
+      - {query: "Molasses Flood", count: 2}
+      - {query: "Boston 1919 street", count: 1}
+
+  - id: wave
+    chapter: "V. The Wave"
+    narration: >
+      The wave smashed through everything in its path.
+      Steel panels from the tank hurtled into the girders of the elevated railway, nearly bringing the tracks down. A streetcar was pushed off its rails. Buildings were knocked from their foundations. A fire station was swept partly into the harbour.
+      People and horses were caught in the flood. Molasses is heavy and thick. Once it engulfed someone, they could barely move or breathe.
+      Rescuers arrived within minutes, among them sailors from a training ship in the harbour. They waded into syrup up to their waists, pulling out anyone they could reach.
+      Twenty-one people died. Many were labourers and residents of the neighbourhood. Some of the youngest victims were children who had been playing nearby. About a hundred and fifty more were injured.
+    images:
+      - {query: "Boston molasses disaster", count: 2, colorize: true}
+      - {query: "Molasses Flood", count: 1}
+
+
+  - id: victims
+    chapter: "VI. The Victims"
+    narration: >
+      The dead came from every part of the neighbourhood's life.
+      There were labourers working on the docks and in the freight yards, a teamster with his wagon, firemen resting in their station, and city workers eating lunch in a nearby building.
+      Among the youngest was a ten-year-old boy, Pasquale Iantosca, who had been collecting firewood near the tank. Several other children were caught as they played or walked home for lunch.
+      Many of the families were immigrants who had come to Boston for work and a better life. For years afterwards, survivors described the sound of the tank bursting, and the brown wave rolling towards them, as the most frightening thing they had ever known.
+    images:
+      - {query: "North End Boston", count: 1}
+      - {query: "North End Boston tenements", count: 2}
+
+  - id: science
+    chapter: "VII. Why It Was So Deadly"
+    narration: >
+      For decades, people wondered how a liquid used in cookies could kill.
+      In 2016, a team of scientists at Harvard modelled the disaster. They found that the cold made all the difference.
+      As the molasses spread out into the freezing January air, it cooled quickly and became even thicker. Victims caught in it found themselves trapped, as if in quicksand that was slowly setting around them. That also made the rescue painfully slow.
+      It took days to find all the victims. The last bodies were not recovered for months.
+    images:
+      - {query: "Molasses Flood", count: 2}
+      - {query: "Boston 1919 street", count: 1}
+
+  - id: cleanup
+    chapter: "VIII. Cleaning Up a Sea of Syrup"
+    narration: >
+      The cleanup took weeks. Fresh water barely shifted the sticky mass, so crews hosed it down with salt water from the harbour and scraped it off with shovels.
+      Molasses was tracked across the city on boots and carriage wheels, onto trams and into homes. The harbour turned brown.
+      And for decades afterwards, North End residents said that on hot summer days, the neighbourhood still smelled faintly of molasses.
+    images:
+      - {query: "Boston molasses disaster", count: 2}
+      - {query: "Boston North End 1920s", count: 1}
+
+  - id: trial
+    chapter: "IX. The Trial"
+    date: "1919–1925"
+    narration: >
+      The company had a ready explanation. It claimed that anarchists had blown up the tank. In 1919, America was gripped by fear of anarchist bombings, and the story was not as absurd as it sounds today.
+      The company's lawyers pointed to letters and threats, and to the bombings carried out by anarchist groups in other American cities around that time.
+      But the families did not accept it. One hundred and nineteen residents and businesses joined together in one of the first class-action lawsuits in Massachusetts.
+      For about three years, a court-appointed auditor heard testimony from engineers, workers and witnesses. In the end, he found that the tank had simply been too weak for its load, built without proper calculation and never properly tested.
+      The auditor's report ran to hundreds of pages. He rejected the bomb theory completely. There was no evidence of an explosive, and the failure was exactly what would be expected from a tank that was too weak.
+      United States Industrial Alcohol was held responsible. It paid around six hundred and twenty-eight thousand dollars in damages, roughly seven thousand dollars for each victim's family.
+    cards:                 # big-number cards, shown while the matching sentence is read
+      - {big: "$628,000", text: "paid in damages", match: "It paid around six hundred and twenty-eight thousand dollars"}
+    images:
+      - {query: "Boston 1910s", count: 1}
+      - {query: "anarchist bombing 1919", count: 1}
+      - {query: "Molasses Flood", count: 1}
+
+  - id: legacy
+    chapter: "Epilogue"
+    narration: >
+      The verdict changed the rules. Massachusetts, and then states across the country, began requiring that large structures be designed and approved by licensed engineers and architects, with their calculations on file.
+      Today, a small plaque on Commercial Street marks the spot. The tank is long gone, and a park stands nearby.
+      It is easy to laugh at the idea of a molasses flood. But the people of the North End paid for it with their lives, and every building we trust today owes a little to what Boston learned that day.
+      If you enjoyed this story from the archives, subscribe for more forgotten chapters of history.
+    images:
+      - {query: "Great Molasses Flood plaque", modern: true, count: 1}
+      - {query: "Molasses Flood", count: 1}
+
+thumbnail:
+  scene: wave
+  big: "1919"
+  small: "A WAVE OF MOLASSES HIT BOSTON"
+tags: ["Great Molasses Flood", "Boston", "1919", "weird history", "disaster", "North End", "documentary"]
+references:
+  - "Wikipedia, Great Molasses Flood: https://en.wikipedia.org/wiki/Great_Molasses_Flood"
