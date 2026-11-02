@@ -148,6 +148,17 @@ scenes:
       On the tenth of May, they landed at King Haakon Bay, on South Georgia. They had made it. But they were on the wrong side of the island.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "800 miles", text: "in a 22-foot open boat", match: "about eight hundred miles away"}
+    maps:
+      - match: "Their destination was South Georgia"
+        sentences: 2
+        style: route
+        title: "The voyage of the James Caird"
+        region: [-65, -66, -25, -50]
+        points:
+          - [-55.1, -61.1, "Elephant Island, 24 Apr"]
+          - [-48.0, -58.5, ""]
+          - [-38.0, -54.2, ""]
+          - [-37.25, -54.05, "King Haakon Bay, 10 May"]
     images:
       - {query: "James Caird launch Elephant Island", count: 2}
       - {query: "James Caird boat", count: 1}

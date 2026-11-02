@@ -5,6 +5,9 @@ Sources:
   smithsonian - Smithsonian Open Access (CC0 only). Key: SI_API_KEY (free at api.data.gov; DEMO_KEY is rate-limited)
   europeana   - Europeana, aggregated European archives. Key: EUROPEANA_KEY (free; "api2demo" for testing)
   wellcome    - Wellcome Collection (history of medicine)
+  met         - The Metropolitan Museum of Art (public-domain objects, CC0): paintings, engravings, prints
+  aic         - Art Institute of Chicago (public-domain works, CC0)
+  cleveland   - Cleveland Museum of Art (CC0)
   loc         - Library of Congress (photos & prints); sometimes answers scripts with a Cloudflare check
 
 Every candidate carries: source, id, title, page_url, download_url, license, credit, width, height.
@@ -324,9 +327,105 @@ def search_europeana(query: str, limit: int = 20) -> list[dict]:
     return out
 
 
-SOURCES = {"commons": search_commons, "smithsonian": search_smithsonian, "europeana": search_europeana,
+# ---------------------------------------------------------------- Museums: paintings, engravings, prints (all PD/CC0)
+def search_met(query: str, limit: int = 12) -> list[dict]:
+    """The Metropolitan Museum of Art Open Access (public-domain objects are CC0)."""
+    ids = _get("https://collectionapi.metmuseum.org/public/collection/v1.1/search",
+               {"q": query, "hasImages": "true", "limit": str(limit * 2)}).json().get("objectIDs") or []
+    out = []
+    for oid in ids[: limit * 2]:
+        try:
+            o = _get(f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{oid}").json()
+        except Exception:
+            continue
+        if not o.get("isPublicDomain") or not o.get("primaryImage"):
+            continue
+        out.append({
+            "source": "met", "id": f"met:{oid}", "title": (o.get("title") or "")[:200],
+            "description": " ".join(x for x in (o.get("artistDisplayName"), o.get("medium")) if x)[:300],
+            "date": o.get("objectDate") or "", "page_url": o.get("objectURL"),
+            "download_url": o["primaryImage"], "license": "CC0 (Metropolitan Museum of Art)",
+            "credit": "The Metropolitan Museum of Art", "width": 0, "height": 0,
+        })
+        if len(out) >= limit:
+            break
+    return out
+
+
+def search_aic(query: str, limit: int = 12) -> list[dict]:
+    """Art Institute of Chicago (public-domain works are CC0)."""
+    data = _get("https://api.artic.edu/api/v1/artworks/search",
+                {"q": query, "limit": "40", "fields": "id,title,date_display,image_id,is_public_domain,artist_title"}).json()
+    out = []
+    for a in data.get("data", []):
+        if not a.get("is_public_domain") or not a.get("image_id"):
+            continue
+        out.append({
+            "source": "aic", "id": f"aic:{a['id']}", "title": (a.get("title") or "")[:200],
+            "description": a.get("artist_title") or "", "date": a.get("date_display") or "",
+            "page_url": f"https://www.artic.edu/artworks/{a['id']}",
+            "download_url": f"https://www.artic.edu/iiif/2/{a['image_id']}/full/1686,/0/default.jpg",
+            "license": "CC0 (Art Institute of Chicago)", "credit": "Art Institute of Chicago", "width": 0, "height": 0,
+        })
+        if len(out) >= limit:
+            break
+    return out
+
+
+def search_cleveland(query: str, limit: int = 12) -> list[dict]:
+    """Cleveland Museum of Art Open Access (CC0)."""
+    data = _get("https://openaccess-api.clevelandart.org/api/artworks/",
+                {"q": query, "cc0": "1", "has_image": "1", "limit": str(limit)}).json()
+    out = []
+    for c in data.get("data", []):
+        img = (c.get("images") or {}).get("print") or (c.get("images") or {}).get("web") or {}
+        if not img.get("url"):
+            continue
+        out.append({
+            "source": "cleveland", "id": f"cleveland:{c['id']}", "title": (c.get("title") or "")[:200],
+            "description": (c.get("tombstone") or "")[:300], "date": c.get("creation_date") or "",
+            "page_url": c.get("url"), "download_url": img["url"], "license": "CC0 (Cleveland Museum of Art)",
+            "credit": "Cleveland Museum of Art", "width": int(img.get("width") or 0), "height": int(img.get("height") or 0),
+        })
+    return out
+
+
+def museum_object(ref: str) -> dict | None:
+    """A specific hand-picked object: 'met:437803', 'aic:12345', 'cleveland:2025.10' style refs."""
+    src, oid = ref.split(":", 1)
+    try:
+        if src == "met":
+            o = _get(f"https://collectionapi.metmuseum.org/public/collection/v1/objects/{oid}").json()
+            if not o.get("isPublicDomain"):
+                return None
+            return {"source": "met", "id": ref, "title": o.get("title", ""), "description": "", "date": o.get("objectDate", ""),
+                    "page_url": o.get("objectURL"), "download_url": o.get("primaryImage"),
+                    "license": "CC0 (Metropolitan Museum of Art)", "credit": "The Metropolitan Museum of Art", "width": 0, "height": 0}
+        if src == "aic":
+            a = _get(f"https://api.artic.edu/api/v1/artworks/{oid}",
+                     {"fields": "id,title,date_display,image_id,is_public_domain"}).json()["data"]
+            if not a.get("is_public_domain"):
+                return None
+            return {"source": "aic", "id": ref, "title": a.get("title", ""), "description": "", "date": a.get("date_display", ""),
+                    "page_url": f"https://www.artic.edu/artworks/{oid}",
+                    "download_url": f"https://www.artic.edu/iiif/2/{a['image_id']}/full/1686,/0/default.jpg",
+                    "license": "CC0 (Art Institute of Chicago)", "credit": "Art Institute of Chicago", "width": 0, "height": 0}
+        if src == "cleveland":
+            c = _get(f"https://openaccess-api.clevelandart.org/api/artworks/{oid}").json()["data"]
+            if c.get("share_license_status") != "CC0":
+                return None
+            img = c["images"].get("print") or c["images"]["web"]
+            return {"source": "cleveland", "id": ref, "title": c.get("title", ""), "description": "", "date": c.get("creation_date", ""),
+                    "page_url": c.get("url"), "download_url": img["url"], "license": "CC0 (Cleveland Museum of Art)",
+                    "credit": "Cleveland Museum of Art", "width": 0, "height": 0}
+    except Exception as e:
+        print(f"   ! {ref}: {e}")
+    return None
+
+
+SOURCES = {"commons": search_commons, "met": search_met, "aic": search_aic, "cleveland": search_cleveland, "smithsonian": search_smithsonian, "europeana": search_europeana,
            "wellcome": search_wellcome, "loc": search_loc}
-DEFAULT_SOURCES = ("commons", "smithsonian", "europeana", "wellcome", "loc")
+DEFAULT_SOURCES = ("commons", "smithsonian", "europeana", "wellcome", "met", "aic", "cleveland", "loc")
 
 
 DISABLED: set[str] = set()

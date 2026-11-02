@@ -19,7 +19,7 @@ import numpy as np
 
 from PIL import Image
 
-from .archives import DEFAULT_SOURCES, SESSION, commons_file, search_all
+from .archives import DEFAULT_SOURCES, SESSION, commons_file, museum_object, search_all
 
 ALTERNATES = 3  # extra candidates kept per query for the reviewer
 
@@ -101,7 +101,8 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
         for q in scene.get("images", []):
             if not q.get("file"):
                 continue
-            c = commons_file(q["file"])
+            ref = q["file"]
+            c = museum_object(ref) if ref.split(":", 1)[0] in ("met", "aic", "cleveland") else commons_file(ref)
             if not c:
                 continue
             path = _download(c, media)
@@ -161,11 +162,36 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
                       f"({len(pool)} downloaded) - consider another query")
         manifest["scenes"][sid] = chosen
 
+    auto_colorize(ep_dir, episode, manifest)
     man_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False))
     write_contact_sheet(ep_dir, episode, manifest)
     n = sum(i["use"] for v in manifest["scenes"].values() for i in v)
     print(f"\nmanifest: {n} images selected. Review: {ep_dir / 'contact_sheet.html'}")
     return manifest
+
+
+def auto_colorize(ep_dir: Path, episode: dict, manifest: dict):
+    """`colorize_per_scene: N` in episode.yaml marks N black-and-white photos per scene for the
+    original-then-colour reveal, if the script did not mark any. Prefers large, wide photos."""
+    import cv2
+    from .vision import is_grayscale
+    n = int(episode.get("colorize_per_scene", 0) or 0)
+    if not n:
+        return
+    for scene in episode["scenes"]:
+        if scene.get("montage"):
+            continue
+        items = [i for i in manifest["scenes"].get(scene["id"], []) if i["use"]]
+        if any(i.get("colorize") for i in items):
+            continue
+        cands = []
+        for it in items:
+            im = cv2.imread(str(ep_dir / it["file"]))
+            if im is not None and is_grayscale(im):
+                h, w = im.shape[:2]
+                cands.append((-(w >= h * 1.2), -w * h, it))
+        for _, _, it in sorted(cands, key=lambda x: (x[0], x[1]))[:n]:
+            it["colorize"] = True
 
 
 def write_contact_sheet(ep_dir: Path, episode: dict, manifest: dict):

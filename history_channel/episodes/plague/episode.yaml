@@ -7,6 +7,7 @@ slug: plague
 language: en
 era: [1300, 1920]        # wide: medieval manuscripts to the 1894 Hong Kong outbreak
 visual_context: "Black Death plague history"   # helps the relevance check
+colorize_per_scene: 1
 voice:
   backend: kokoro
   name: bm_george
@@ -28,6 +29,12 @@ scenes:
       And it has never completely gone away.
       This is the biography of the plague.
     images:
+      # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
+      - {file: "curid:74450965"}
+      - {file: "curid:539682"}
+      - {file: "curid:87121914"}
+      - {file: "curid:471772"}
+      # automatic search tops up the rest:
       - {query: "Black Death", count: 4}
       - {query: "danse macabre", count: 2}
       - {query: "plague doctor", count: 1}
@@ -39,7 +46,21 @@ scenes:
       Ancient DNA has shown that plague infected people thousands of years ago, and one great pandemic, the Plague of Justinian, struck the Mediterranean in the sixth century.
       The strain behind the Black Death seems to have emerged in Central Asia. In 2022, scientists studying gravestones and remains from the 1330s near Lake Issyk-Kul, in what is now Kyrgyzstan, identified the direct ancestor of the bacterium that would devastate Europe.
       From there, it travelled west along the trade routes of the Mongol world.
+    maps:
+      - match: "From there, it travelled west"
+        style: route
+        title: "Along the trade routes"
+        region: [20, 25, 95, 55]
+        points:
+          - [77.0, 42.4, "Issyk-Kul, 1338"]
+          - [69.2, 41.3, ""]
+          - [51.5, 45.0, ""]
+          - [44.5, 46.3, "Golden Horde lands"]
+          - [35.4, 45.0, "Caffa, Crimea"]
     images:
+      # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
+      - {file: "curid:539827"}
+      # automatic search tops up the rest:
       - {query: "Yersinia pestis", count: 1, modern: true}
       - {query: "Silk Road caravan medieval", count: 2}
       - {query: "Issyk-Kul gravestone", count: 1, modern: true}
@@ -53,6 +74,10 @@ scenes:
       According to an account written soon afterwards by the Italian lawyer Gabriele de' Mussis, the attackers hurled the corpses of plague victims over the city walls with catapults.
       Whether or not it happened exactly this way, the disease entered the city. Genoese ships fled Caffa, and carried the plague with them across the sea, to Constantinople and then to the Mediterranean.
     images:
+      # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
+      - {file: "curid:50084154"}
+      - {file: "curid:6262537"}
+      # automatic search tops up the rest:
       - {query: "Caffa Feodosia", count: 2}
       - {query: "medieval siege catapult", count: 2}
 
@@ -66,7 +91,28 @@ scenes:
       Whole villages were emptied. Cities dug mass graves when the churchyards were full. In Florence, the writer Giovanni Boccaccio described people falling dead in the streets, and families abandoning each other in fear.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "25–50 million", text: "Europeans dead, 30–60% of the population", match: "Whole villages were emptied"}
+    maps:
+      - match: "In October 1347, the plague reached Sicily"
+        sentences: 2
+        style: route
+        title: "The road of the Black Death"
+        region: [-12, 30, 45, 64]
+        points:
+          - [35.4, 45.0, "Caffa, 1346"]
+          - [28.9, 41.0, "Constantinople, 1347"]
+          - [15.55, 38.19, "Messina, Oct 1347"]
+          - [5.37, 43.3, "Marseille, Nov 1347"]
+          - [2.35, 48.85, "Paris, 1348"]
+          - [-2.45, 50.61, "Melcombe, England, June 1348"]
+          - [5.32, 60.39, "Bergen, Norway, 1349"]
+          - [37.62, 55.75, "Moscow, 1353"]
     images:
+      # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
+      - {file: "curid:108925"}
+      - {file: "curid:2401762"}
+      - {file: "curid:35866769"}
+      - {file: "curid:36273766"}
+      # automatic search tops up the rest:
       - {query: "Black Death burial Tournai", count: 2, colorize: true}
       - {query: "plague 14th century manuscript", count: 2}
       - {query: "Boccaccio plague Florence", count: 1}
@@ -79,6 +125,12 @@ scenes:
       Most doctors believed in miasma, poisonous air. People carried posies of flowers and herbs, burned aromatic woods, and avoided the south wind.
       Others saw the plague as God's punishment. Groups of flagellants marched from town to town, whipping themselves in public to atone for the sins of the world.
     images:
+      # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
+      - {file: "curid:15395317"}
+      - {file: "curid:98844273"}
+      - {file: "met:396158"}
+      - {file: "met:812666"}
+      # automatic search tops up the rest:
       - {query: "flagellants medieval", count: 2}
       - {query: "medieval astrology manuscript", count: 1}
       - {query: "medieval physician manuscript", count: 1}
@@ -91,6 +143,12 @@ scenes:
       In Strasbourg, in February 1349, around two thousand Jews were murdered. Hundreds of communities in Germany and beyond were attacked or destroyed.
       It is one of the darkest chapters of the pandemic, and a warning that epidemics do not only spread disease.
     images:
+      # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
+      - {file: "curid:18524848"}
+      - {file: "curid:59392497"}
+      - {file: "curid:174105154"}
+      - {file: "curid:9096873"}
+      # automatic search tops up the rest:
       - {query: "Strasbourg 1349", count: 1}
       - {query: "Pope Clement VI", count: 1}
       - {query: "medieval Jewish community manuscript", count: 1}
@@ -104,7 +162,23 @@ scenes:
       But one measure did work. In 1377, the city of Ragusa, today's Dubrovnik, ordered ships from plague areas to wait thirty days before landing. The period was later extended to forty days, quaranta giorni in Italian. That is where our word quarantine comes from.
     cards:
       - {big: "40 days", text: "quaranta giorni: the origin of 'quarantine'", match: "The period was later extended to forty days"}
+    maps:
+      - match: "In 1377, the city of Ragusa"
+        style: spread
+        title: "Ragusa (Dubrovnik), 1377"
+        region: [10, 38, 24, 47]
+        points:
+          - [18.09, 42.65, "Ragusa: the first quarantine"]
     images:
+      # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
+      - {file: "curid:36030033"}
+      - {file: "curid:36198398"}
+      - {file: "curid:36351342"}
+      - {file: "curid:48214665"}
+      - {file: "curid:112318826"}
+      - {file: "met:436332"}
+      - {file: "met:341122"}
+      # automatic search tops up the rest:
       - {query: "plague doctor 17th century", count: 2, colorize: true}
       - {query: "bloodletting medieval", count: 1}
       - {query: "Dubrovnik old town walls", count: 1, modern: true}
@@ -116,6 +190,19 @@ scenes:
       With so many workers dead, survivors could demand higher wages and better conditions. Landowners and governments tried to freeze wages by law, which fed anger that later exploded in revolts such as the English Peasants' Revolt of 1381.
       Art became haunted by death. The Dance of Death, with skeletons leading kings, bishops and peasants alike to the grave, became a favourite theme of painters across Europe.
     images:
+      # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
+      - {file: "curid:16824845"}
+      - {file: "curid:52922761"}
+      - {file: "curid:57753085"}
+      - {file: "curid:18670022"}
+      - {file: "met:365190"}
+      - {file: "met:365187"}
+      - {file: "cleveland:110600"}
+      - {file: "cleveland:110599"}
+      - {file: "cleveland:110597"}
+      - {file: "cleveland:110605"}
+      - {file: "aic:7385"}
+      # automatic search tops up the rest:
       - {query: "danse macabre", count: 2}
       - {query: "Peasants' Revolt 1381", count: 2}
 
@@ -128,6 +215,18 @@ scenes:
       In 1720, a ship brought plague to Marseille, and about half the city's population died.
       Then, slowly and for reasons still debated, plague retreated from Western Europe.
     images:
+      # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
+      - {file: "curid:51090209"}
+      - {file: "curid:1258647"}
+      - {file: "curid:36326593"}
+      - {file: "curid:36346543"}
+      - {file: "curid:36008080"}
+      - {file: "curid:56832600"}
+      - {file: "curid:35939897"}
+      - {file: "curid:22485933"}
+      - {file: "curid:36346087"}
+      - {file: "met:436257"}
+      # automatic search tops up the rest:
       - {query: "Great Plague of London 1665", count: 2}
       - {query: "bill of mortality 1665", count: 1}
       - {query: "plague Marseille 1720", count: 2}
@@ -140,7 +239,21 @@ scenes:
       Two scientists raced to find its cause. One was the Japanese bacteriologist Kitasato Shibasaburō. The other was a Swiss-born French doctor from the Pasteur Institute, Alexandre Yersin, working from a bamboo hut.
       Yersin found the bacterium in the buboes of victims, and correctly described it. It was later named after him: Yersinia pestis.
       A few years later, researchers proved the role of rat fleas in carrying it. After more than five centuries, the killer finally had a name and a route.
+    maps:
+      - match: "In 1894 it reached Hong Kong"
+        style: route
+        title: "The third pandemic"
+        region: [95, 15, 125, 32]
+        points:
+          - [102.7, 25.0, "Yunnan, 1855"]
+          - [113.26, 23.13, "Canton, early 1894"]
+          - [114.17, 22.28, "Hong Kong, May 1894"]
     images:
+      # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
+      - {file: "curid:35997474"}
+      - {file: "curid:149173692"}
+      - {file: "curid:36202067"}
+      # automatic search tops up the rest:
       - {query: "Hong Kong plague 1894", count: 2}
       - {query: "Alexandre Yersin", count: 1}
       - {query: "Kitasato Shibasaburo", count: 1}

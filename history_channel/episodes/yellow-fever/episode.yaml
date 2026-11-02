@@ -39,6 +39,15 @@ scenes:
       It begins like many fevers, with chills, headache and muscle pain. Most patients recover. But in some, after a brief remission, the disease returns violently. The liver fails, turning the skin and eyes yellow. Patients bleed from the gums and stomach, and vomit dark, digested blood, the dreaded black vomit.
       The virus and its mosquito originally came from Africa. They crossed the Atlantic on slave ships in the seventeenth century, carried in water barrels where mosquitoes bred. In the ports of the Americas, the disease found a new home.
       Sailors called it Yellow Jack, after the yellow quarantine flag flown by ships carrying the sick.
+    maps:
+      - match: "They crossed the Atlantic on slave ships"
+        style: route
+        title: "Across the Atlantic"
+        region: [-95, -5, 15, 35]
+        points:
+          - [-0.2, 5.6, "West Africa"]
+          - [-16.0, 14.0, ""]
+          - [-61.5, 15.0, "Caribbean, 1600s"]
     images:
       - {query: "yellow fever patient", count: 2}
       - {query: "Aedes aegypti", count: 1, modern: true}
@@ -118,6 +127,14 @@ scenes:
       In Havana, the army doctor William Gorgas launched a campaign against them in 1901. Water containers were covered, breeding sites destroyed, and houses fumigated by burning pyrethrum powder. Within about a year, yellow fever had disappeared from the city.
       Then Gorgas went to Panama. Two decades earlier, a French company had tried to dig a canal there. Disease, mostly yellow fever and malaria, had killed thousands of its workers, and the project had collapsed.
       Now the Americans were trying again. Gorgas led about four thousand workers in a war on mosquitoes: draining standing water, spreading oil on ponds, and putting screens on windows. By December 1905, deaths from yellow fever among canal workers had stopped.
+    maps:
+      - match: "Then Gorgas went to Panama"
+        style: spread
+        title: "From Havana to Panama"
+        region: [-90, 5, -70, 26]
+        points:
+          - [-82.38, 23.13, "Havana, 1901"]
+          - [-79.52, 8.98, "Panama, 1904"]
     images:
       - {query: "William Gorgas", count: 1}
       - {query: "Panama Canal mosquito brigade", count: 2, colorize: true}

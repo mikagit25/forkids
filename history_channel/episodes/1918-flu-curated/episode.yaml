@@ -99,6 +99,15 @@ scenes:
       text: "If the epidemic continues its mathematical rate of acceleration, civilization could easily disappear from the face of the earth."
       source: "Dr. Victor C. Vaughan, US Army Medical Department, 1918"
       match: "If the epidemic continues"
+    maps:
+      - match: "a far more lethal form appeared"
+        style: spread
+        title: "Three ports, late August 1918"
+        region: [-80, -10, 20, 55]
+        points:
+          - [-4.49, 48.39, "Brest, France"]
+          - [-13.23, 8.48, "Freetown, Sierra Leone"]
+          - [-71.06, 42.36, "Boston, USA"]
     images:
       - {file: "curid:98404173"}
       - {file: "curid:95962027"}
@@ -194,6 +203,14 @@ scenes:
       Same virus, same ocean, two different decisions.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "0", text: "influenza deaths in American Samoa", match: "American Samoa recorded no deaths"}
+    maps:
+      - match: "On the seventh of November 1918"
+        sentences: 2
+        style: spread
+        title: "Two islands, November 1918"
+        points:
+          - [-171.76, -13.83, "Apia, Western Samoa"]
+          - [-170.70, -14.28, "Pago Pago, American Samoa"]
     images:
       - {file: "curid:113819721"}
       - {file: "curid:9680133"}
@@ -231,6 +248,14 @@ scenes:
       This time he found the body of a woman, preserved by the permafrost, whose lungs still carried fragments of the virus's genetic code.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "72 of 80", text: "adults of Brevig Mission died in five days", match: "In five days, seventy-two"}
+    maps:
+      - match: "the virus reached Brevig Mission"
+        style: spread
+        title: "Brevig Mission, Alaska"
+        region: [-175, 58, -150, 70]
+        points:
+          - [-166.48, 64.43, "Nome"]
+          - [-166.08, 65.33, "Brevig Mission"]
     images:
       - {file: "curid:159119438"}
       - {file: "curid:44326448"}

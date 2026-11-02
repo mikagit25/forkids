@@ -1,3 +1,6 @@
 # Channel-wide defaults (episode.yaml can override any of these)
 channel: "Archive Tales"          # placeholder channel name, shown on the end card
 hashtags: ["#history", "#medicalhistory", "#archives"]
+
+colorize_per_scene: 1     # one black-and-white photo per scene gets the original-then-colour reveal
+film_look: true           # grain, faint flicker and dust on archive photos
