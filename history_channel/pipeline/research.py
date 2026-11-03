@@ -12,6 +12,9 @@ Sources (keys go in history_channel/.env, never in chat or in git):
   nyt       New York Times Article Search API (NYT_API_KEY): headlines, abstracts, dates back to 1851.
             Use for research and for quoting headlines; the NYT scans themselves are not reused.
   trove     National Library of Australia (TROVE_KEY): Australian newspapers, worldwide wire stories.
+  paperspast Papers Past website directly (no key): New Zealand newspapers, with the article ids (oid) and
+            column areas needed for `paperspast:` clippings. Papers marked "not available for commercial use"
+            are skipped.
   digitalnz Papers Past via DigitalNZ (DIGITALNZ_KEY): New Zealand newspapers (e.g. Samoa 1918).
   dpla      Digital Public Library of America (DPLA_KEY): aggregated US archives.
   europeana Europeana newspapers (EUROPEANA_KEY, demo key works with limits).
@@ -23,8 +26,11 @@ episode.yaml:
 """
 from __future__ import annotations
 
+import base64
+import html as _html
 import json
 import os
+import re
 import time
 from pathlib import Path
 
@@ -179,7 +185,55 @@ def europeana_news(q, d0, d1, n=30):
     return out
 
 
-SOURCES = {"chronam": chronam, "nyt": nyt, "trove": trove, "digitalnz": digitalnz, "dpla": dpla, "europeana": europeana_news}
+def _ddmmyyyy(s):  # 1918-09-20 -> 20-09-1918
+    y, m, d = (str(s).split("-") + ["01", "01"])[:3]
+    return f"{d}-{m}-{y}"
+
+
+def paperspast(q, d0, d1, n=25):
+    """Search the Papers Past website (no key). Politely: one page of results, then one request per article
+    every ~1.5 s. Each result carries `oid` and `areas`, ready for `- {paperspast: <oid>, areas: [...]}`."""
+    base = "https://paperspast.natlib.govt.nz"
+    r = SESSION.get(base + "/newspapers", params={"query": q, "start_date": _ddmmyyyy(d0), "end_date": _ddmmyyyy(d1),
+                                                  "items_per_page": str(n), "snippet": "true"}, timeout=60)
+    r.raise_for_status()
+    oids = []
+    for oid in re.findall(r'href="/newspapers/([A-Z][A-Za-z]*\d{8}\.[\d.]+\d)', r.text):
+        if oid not in oids:
+            oids.append(oid)
+    out = []
+    for oid in oids[:n]:
+        time.sleep(1.5)
+        try:
+            page = SESSION.get(f"{base}/newspapers/{oid}", timeout=60).text
+        except Exception as e:
+            print(f"   ! paperspast {oid}: {e}")
+            continue
+        if "not available for commercial use" in page.lower():
+            continue
+        m = re.search(r"<title>(.*?)</title>", page, re.S)
+        title = _html.unescape(_strip_html(m.group(1))).strip() if m else oid
+        body = re.search(r'itemprop="articleBody"[^>]*>(.*?)</div>', page, re.S)
+        text = _html.unescape(_strip_html(body.group(1))) if body else ""
+        areas = set()
+        for enc in re.findall(r"imageserver/newspapers/([A-Za-z0-9=+/]+)", page):
+            try:
+                dec = base64.b64decode(enc + "=" * (-len(enc) % 4)).decode("utf-8", "ignore")
+            except Exception:
+                continue
+            a = re.search(r"area=(\d+)", dec)
+            if oid in dec and a:
+                areas.add(int(a.group(1)))
+        dm = re.search(r"(\d{4})(\d{2})(\d{2})", oid)
+        date = f"{dm.group(1)}-{dm.group(2)}-{dm.group(3)}" if dm else ""
+        out.append({"source": "Papers Past", "date": date, "headline": title.split("|")[0].strip(),
+                    "text": re.sub(r"\s+", " ", text)[:400], "url": f"{base}/newspapers/{oid}",
+                    "oid": oid, "areas": sorted(areas), "public_domain": date[:4] < "1929"})
+    return out
+
+
+SOURCES = {"chronam": chronam, "nyt": nyt, "trove": trove, "digitalnz": digitalnz, "dpla": dpla, "europeana": europeana_news,
+           "paperspast": paperspast}
 
 
 def research(ep_dir: Path, episode: dict):
@@ -213,6 +267,8 @@ def research(ep_dir: Path, episode: dict):
                 if r.get("text"):
                     line += f" — {r['text'][:280]}"
                 line += f" [link]({r['url']})" if r.get("url") else ""
+                if r.get("oid"):
+                    line += f" · clip: `{{paperspast: {r['oid']}, areas: {r.get('areas')}}}`"
                 if r.get("image"):
                     line += f" [page image]({r['image']})"
                 md.append(line)

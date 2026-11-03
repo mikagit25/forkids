@@ -7,6 +7,7 @@
   python run.py episodes/1918-flu render     # final 1080p + subtitles + chapters
   python run.py episodes/1918-flu publish    # thumbnail + description
   python run.py episodes/1918-flu all        # fetch, voice, render, publish
+  python run.py episodes/1918-flu candidates # numbered contact sheets from all archives, for picking by eye
   python run.py episodes/1918-flu research   # newspaper headlines of the time -> research/newspapers.md
   python run.py episodes/1918-flu review     # contact sheets of all photos for review (episodes/<ep>/review/)
   python run.py episodes/1918-flu upload     # upload as PRIVATE (needs client_secret.json)
@@ -16,7 +17,7 @@ from pathlib import Path
 
 import yaml
 
-from pipeline import fetch, publish, render, research, review, tts
+from pipeline import candidates, fetch, publish, render, research, review, tts
 
 
 def main():
@@ -41,6 +42,10 @@ def main():
         elif step == "publish":
             publish.thumbnail(ep_dir, episode)
             publish.description(ep_dir, episode)
+        elif step == "candidates":
+            only = [a for a in sys.argv[sys.argv.index("candidates") + 1:] if not a.startswith("--")]
+            candidates.build(ep_dir, episode, only or None)
+            break
         elif step == "research":
             research.research(ep_dir, episode)
         elif step == "review":

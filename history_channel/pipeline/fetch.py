@@ -122,7 +122,13 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
             if not q.get("file"):
                 continue
             ref = q["file"]
-            c = museum_object(ref) if ref.split(":", 1)[0] in ("met", "aic", "cleveland") else commons_file(ref)
+            prefix = ref.split(":", 1)[0]
+            if prefix in ("met", "aic", "cleveland"):
+                c = museum_object(ref)
+            elif prefix in ("curid", "File") or ref.startswith("File:"):
+                c = commons_file(ref)
+            else:   # smithsonian:, europeana:, wellcome:, loc:, commons: ... picked from a candidate sheet
+                c = _from_candidates(ep_dir, ref)
             if not c:
                 continue
             path = _download(c, media)
@@ -193,6 +199,27 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
     n = sum(i["use"] for v in manifest["scenes"].values() for i in v)
     print(f"\nmanifest: {n} images selected. Review: {ep_dir / 'contact_sheet.html'}")
     return manifest
+
+
+def _from_candidates(ep_dir: Path, ref: str) -> dict | None:
+    from .archives import license_ok
+    idx = ep_dir / "candidates" / "index.json"
+    if not idx.exists():
+        print(f"   ! {ref}: run the candidates step first (no candidates/index.json)")
+        return None
+    rec = json.loads(idx.read_text()).get(ref)
+    if not rec:
+        print(f"   ! {ref}: not in candidates/index.json")
+        return None
+    rec = dict(rec)
+    lic = rec.get("license", "")
+    if not (license_ok(lic) or lic.startswith("CC0") or "No known restrictions" in lic):
+        print(f"   ! {ref}: licence not allowed ({lic})")
+        return None
+    for k in ("meta", "query", "size_from_thumb"):
+        rec.pop(k, None)
+    rec["width"] = rec["height"] = 0
+    return rec
 
 
 def _rotated(path: Path, deg: int) -> Path:
