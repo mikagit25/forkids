@@ -17,7 +17,7 @@ from pathlib import Path
 
 import numpy as np
 
-from PIL import Image
+from PIL import Image, ImageOps
 
 from .archives import DEFAULT_SOURCES, SESSION, commons_file, museum_object, search_all
 
@@ -36,6 +36,7 @@ def _download(c: dict, media: Path) -> Path | None:
                 continue
             im = Image.open(io.BytesIO(r.content))
             im.load()
+            im = ImageOps.exif_transpose(im)      # phone/camera photos stored sideways with an EXIF flag
             if im.width < 700:
                 return None
             if im.mode != "RGB":
@@ -88,7 +89,15 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
     for si, scene in enumerate(episode["scenes"]):
         sid = scene["id"]
         _scale_counts(scene, later_chapters(si))
-        if sid in old.get("scenes", {}) and all((ep_dir / i["file"]).exists() for i in old["scenes"][sid]):
+        sig = hashlib.md5(json.dumps(scene.get("images", []), sort_keys=True).encode()).hexdigest()[:12]
+        manifest.setdefault("sig", {})[sid] = sig
+        unchanged = old.get("sig", {}).get(sid, sig) == sig   # manifests from before this check count as unchanged
+        want_rot = sum(1 for q in scene.get("images", []) if q.get("rotate"))
+        have_rot = sum(1 for i in old.get("scenes", {}).get(sid, []) if i.get("rotate"))
+        unchanged = unchanged and want_rot == have_rot
+        if not unchanged:
+            print(f"[{sid}] images changed in episode.yaml -> fetching this scene again")
+        if unchanged and sid in old.get("scenes", {}) and all((ep_dir / i["file"]).exists() for i in old["scenes"][sid]):
             manifest["scenes"][sid] = old["scenes"][sid]
             col = {q["query"]: bool(q.get("colorize")) for q in scene.get("images", [])}
             for it in manifest["scenes"][sid]:   # pick up colorize flags added to the script later
@@ -119,6 +128,9 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
             path = _download(c, media)
             if not path:
                 continue
+            if q.get("rotate"):
+                path = _rotated(path, int(q["rotate"]))
+                c["rotate"] = int(q["rotate"])
             c.update(file=str(path.relative_to(ep_dir)), use=True, query=q.get("note", q["file"]),
                      colorize=bool(q.get("colorize")), picked=True, score=1.0)
             if q.get("match"):
@@ -181,6 +193,15 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
     n = sum(i["use"] for v in manifest["scenes"].values() for i in v)
     print(f"\nmanifest: {n} images selected. Review: {ep_dir / 'contact_sheet.html'}")
     return manifest
+
+
+def _rotated(path: Path, deg: int) -> Path:
+    """rotate: 90 = turn clockwise, -90 = counter-clockwise, 180 = upside down. Cached as a separate file."""
+    out = path.with_name(f"{path.stem}_r{deg % 360}.jpg")
+    if not out.exists():
+        with Image.open(path) as im:
+            im.rotate(-deg, expand=True).save(out, "JPEG", quality=92)   # PIL rotates counter-clockwise
+    return out
 
 
 def newspaper_clipping(q: dict, media: Path, ep_dir: Path) -> dict | None:

@@ -133,7 +133,7 @@ scenes:
     images:
       - {file: "curid:91404830"}
       - {file: "curid:92542818"}
-      - {file: "curid:104910096"}
+      - {file: "curid:104910096", rotate: -90}   # the archive scan is sideways; this is a vertical photo
       - {file: "curid:108658107"}
 
   - id: nurses
