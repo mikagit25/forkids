@@ -165,3 +165,8 @@ thumbnail:
 tags: ["tuberculosis", "consumption", "history of medicine", "Robert Koch", "sanatorium", "antibiotics", "documentary"]
 references:
   - "Wikipedia, History of tuberculosis: https://en.wikipedia.org/wiki/History_of_tuberculosis"
+
+research:                # newspapers of the time: python run.py episodes/tuberculosis research
+  - {q: "Koch tuberculosis bacillus", from: 1882-03-24, to: 1882-12-31, sources: [chronam, nyt]}
+  - {q: "tuberculosis sanatorium", from: 1900-01-01, to: 1925-12-31, sources: [chronam, nyt]}
+  - {q: "streptomycin tuberculosis", from: 1944-01-01, to: 1950-12-31, sources: [nyt]}

@@ -97,6 +97,15 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
             print(f"[{sid}] kept {sum(i['use'] for i in old['scenes'][sid])} images from previous run")
             continue
         chosen = []
+        # 0) newspaper clippings: a crop of a scanned page (public domain: published before 1929)
+        for q in scene.get("images", []):
+            if not q.get("newspaper"):
+                continue
+            c = newspaper_clipping(q, media, ep_dir)
+            if c:
+                hashes.append(select.phash(ep_dir / c["file"]))
+                chosen.append(c)
+                print(f"[{sid}] clipping: {c['title'][:70]}")
         # 1) photos picked by hand (exact Commons files) always come first, in script order
         for q in scene.get("images", []):
             if not q.get("file"):
@@ -116,7 +125,7 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
             print(f"[{sid}] picked: {c['title'][:70]}")
         # 2) automatic search for anything still described only by a query
         for q in scene.get("images", []):
-            if q.get("file"):
+            if q.get("file") or q.get("newspaper"):
                 continue
             want = q.get("count", 1)
             print(f"[{sid}] searching: {q['query']}")
@@ -168,6 +177,42 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
     n = sum(i["use"] for v in manifest["scenes"].values() for i in v)
     print(f"\nmanifest: {n} images selected. Review: {ep_dir / 'contact_sheet.html'}")
     return manifest
+
+
+def newspaper_clipping(q: dict, media: Path, ep_dir: Path) -> dict | None:
+    """q = {newspaper: <page image url>, crop: [x0, y0, x1, y1] (fractions of the page), paper: "...",
+            date: "1918-10-05", page_url: "<link for the description>"}"""
+    date = str(q.get("date", ""))
+    if not date[:4].isdigit() or int(date[:4]) >= 1929:
+        print(f"   ! clipping skipped: needs a publication date before 1929 ({date or 'no date'})")
+        return None
+    url = q["newspaper"]
+    if "/iiif/" in url and url.rstrip("/").endswith("default.jpg"):
+        parts = url.split("/")
+        parts[-3] = "3000,"   # ask the IIIF server for a large render of the whole page
+        parts[-4] = "full"
+        url = "/".join(parts)
+    key = hashlib.md5((url + str(q.get("crop"))).encode()).hexdigest()[:10]
+    dest = media / f"news_{key}.jpg"
+    if not dest.exists():
+        try:
+            r = SESSION.get(url, timeout=120)
+            r.raise_for_status()
+            im = Image.open(io.BytesIO(r.content)).convert("RGB")
+        except Exception as e:
+            print(f"   ! clipping download failed: {e}")
+            return None
+        if q.get("crop"):
+            x0, y0, x1, y1 = q["crop"]
+            W, H = im.size
+            im = im.crop((int(x0 * W), int(y0 * H), int(x1 * W), int(y1 * H)))
+        im.save(dest, "JPEG", quality=92)
+    paper = q.get("paper", "Newspaper")
+    return {"source": "newspaper", "id": f"news:{key}", "title": f"{paper}, {date}", "description": q.get("note", ""),
+            "date": date, "page_url": q.get("page_url") or q["newspaper"], "download_url": q["newspaper"],
+            "license": "Public domain (published before 1929)", "credit": f"{paper}, {date}",
+            "width": 0, "height": 0, "file": str(dest.relative_to(ep_dir)), "use": True, "query": "newspaper",
+            "colorize": False, "picked": True, "score": 1.0}
 
 
 def auto_colorize(ep_dir: Path, episode: dict, manifest: dict):

@@ -181,3 +181,8 @@ thumbnail:
 tags: ["yellow fever", "Panama Canal", "Walter Reed", "mosquito", "history of medicine", "Philadelphia 1793", "Haiti", "documentary"]
 references:
   - "Gavi VaccinesWork, Yellow fever and the Panama Canal: https://www.gavi.org/vaccineswork/long-view-yellow-fever-and-panama-canal"
+
+research:                # newspapers of the time: python run.py episodes/yellow-fever research
+  - {q: "yellow fever mosquito Reed", from: 1900-08-01, to: 1901-12-31, sources: [chronam, nyt]}
+  - {q: "yellow fever Panama Gorgas", from: 1904-01-01, to: 1906-12-31, sources: [chronam, nyt]}
+  - {q: "yellow fever New Orleans", from: 1905-07-01, to: 1905-11-30, sources: [chronam, nyt]}

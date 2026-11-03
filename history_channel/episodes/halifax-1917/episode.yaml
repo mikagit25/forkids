@@ -185,3 +185,6 @@ tags: ["Halifax Explosion", "1917", "Canada history", "disaster documentary", "M
 references:
   - "Wikipedia, Halifax Explosion: https://en.wikipedia.org/wiki/Halifax_Explosion"
   - "The Canadian Encyclopedia, Halifax Explosion: https://thecanadianencyclopedia.ca/en/article/halifax-explosion"
+
+research:                # newspapers of the time: python run.py episodes/halifax-1917 research
+  - {q: "Halifax explosion", from: 1917-12-06, to: 1918-01-31, sources: [chronam, nyt, trove, europeana]}

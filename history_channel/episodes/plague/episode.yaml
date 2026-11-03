@@ -288,3 +288,7 @@ thumbnail:
 tags: ["Black Death", "plague", "bubonic plague", "medieval history", "pandemic history", "history of medicine", "quarantine", "documentary"]
 references:
   - "Wikipedia, Black Death: https://en.wikipedia.org/wiki/Black_Death"
+
+research:                # newspapers of the time: python run.py episodes/plague research
+  - {q: "bubonic plague Hong Kong", from: 1894-05-01, to: 1894-12-31, sources: [chronam, nyt, trove]}
+  - {q: "plague San Francisco Chinatown", from: 1900-03-01, to: 1904-12-31, sources: [chronam, nyt]}

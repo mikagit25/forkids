@@ -166,3 +166,6 @@ tags: ["Semmelweis", "handwashing", "childbed fever", "history of medicine", "Vi
 references:
   - "Wikipedia, Ignaz Semmelweis: https://en.wikipedia.org/wiki/Ignaz_Semmelweis"
   - "Wikipedia, Contemporary reaction to Ignaz Semmelweis: https://en.wikipedia.org/wiki/Contemporary_reaction_to_Ignaz_Semmelweis"
+
+research:                # newspapers of the time: python run.py episodes/semmelweis-1847 research
+  - {q: "Semmelweis", from: 1847-01-01, to: 1900-12-31, sources: [nyt, europeana]}

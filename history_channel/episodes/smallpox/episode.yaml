@@ -165,3 +165,7 @@ tags: ["smallpox", "Edward Jenner", "vaccination history", "eradication", "histo
 references:
   - "CDC, History of Smallpox: https://www.cdc.gov/smallpox/about/history.html"
   - "US National Library of Medicine, Smallpox: vaccination: https://www.nlm.nih.gov/exhibition/smallpox/sp_vaccination.html"
+
+research:                # newspapers of the time: python run.py episodes/smallpox research
+  - {q: "smallpox vaccination", from: 1900-01-01, to: 1925-12-31, sources: [chronam, nyt]}
+  - {q: "smallpox epidemic", from: 1901-01-01, to: 1903-12-31, sources: [chronam, nyt]}

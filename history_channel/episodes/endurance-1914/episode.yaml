@@ -214,3 +214,7 @@ references:
   - "Wikipedia, Imperial Trans-Antarctic Expedition: https://en.wikipedia.org/wiki/Imperial_Trans-Antarctic_Expedition"
   - "Endurance22, Endurance is found: https://endurance22.org/endurance-is-found"
   - "Ernest Shackleton, South (1919), Project Gutenberg: https://www.gutenberg.org/ebooks/5199"
+
+research:                # newspapers of the time: python run.py episodes/endurance-1914 research
+  - {q: "Shackleton", from: 1914-08-01, to: 1914-12-31, sources: [chronam, nyt]}
+  - {q: "Shackleton rescued", from: 1916-05-01, to: 1916-10-31, sources: [chronam, nyt, trove]}

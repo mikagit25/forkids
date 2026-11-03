@@ -171,3 +171,6 @@ tags: ["Phineas Gage", "brain injury", "neuroscience history", "psychology", "hi
 references:
   - "Wikipedia, Phineas Gage: https://en.wikipedia.org/wiki/Phineas_Gage"
   - "University of Akron, The Phineas Gage Information Page: https://www.uakron.edu/gage/story.dot"
+
+research:                # newspapers of the time: python run.py episodes/gage-1848 research
+  - {q: "iron bar head Cavendish", from: 1848-09-13, to: 1849-06-30, sources: [chronam, nyt]}

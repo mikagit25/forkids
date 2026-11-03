@@ -167,3 +167,6 @@ thumbnail:
 tags: ["Tunguska event", "1908", "asteroid", "Siberia", "Leonid Kulik", "unsolved mysteries", "science history", "documentary"]
 references:
   - "Wikipedia, Tunguska event: https://en.wikipedia.org/wiki/Tunguska_event"
+
+research:                # newspapers of the time: python run.py episodes/tunguska-1908 research
+  - {q: "meteor Siberia", from: 1908-06-28, to: 1908-08-31, sources: [chronam, nyt, trove, europeana]}

@@ -305,3 +305,9 @@ references:
   - "Wikipedia, SS Talune: https://en.wikipedia.org/wiki/SS_Talune"
   - "Wikipedia, Anti-Mask League of San Francisco: https://en.wikipedia.org/wiki/Anti-Mask_League_of_San_Francisco"
   - "Wikipedia, 1918 flu pandemic in India: https://en.wikipedia.org/wiki/1918_flu_pandemic_in_India"
+
+research:                # newspapers of the time: python run.py episodes/1918-flu-curated research
+  - {q: "influenza parade Liberty Loan", from: 1918-09-20, to: 1918-10-15, sources: [chronam, nyt]}
+  - {q: "influenza masks San Francisco", from: 1918-10-20, to: 1919-02-10, sources: [chronam, nyt]}
+  - {q: "Spanish influenza epidemic", from: 1918-09-01, to: 1918-11-30, sources: [chronam, nyt, trove, europeana]}
+  - {q: "Samoa influenza Talune", from: 1918-11-01, to: 1919-03-31, sources: [digitalnz, trove, nyt]}

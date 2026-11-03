@@ -160,3 +160,7 @@ thumbnail:
 tags: ["Great Molasses Flood", "Boston", "1919", "weird history", "disaster", "North End", "documentary"]
 references:
   - "Wikipedia, Great Molasses Flood: https://en.wikipedia.org/wiki/Great_Molasses_Flood"
+
+research:                # newspapers of the time: python run.py episodes/molasses-1919 research
+  - {q: "molasses tank explosion Boston", from: 1919-01-15, to: 1919-02-28, sources: [chronam, nyt]}
+  - {q: "molasses verdict", from: 1925-01-01, to: 1925-12-31, sources: [nyt]}

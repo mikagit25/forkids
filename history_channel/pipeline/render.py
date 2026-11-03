@@ -218,6 +218,8 @@ SOURCE_NAMES = {"commons": "Wikimedia Commons", "loc": "Library of Congress", "w
 def credit_line(it: dict) -> str:
     if it["source"] in ("loc", "europeana", "smithsonian"):
         return it["credit"] + (" · " + it["license"] if it["source"] != "loc" else "")
+    if it["source"] == "newspaper":
+        return it["credit"] + " · public domain"
     if it["source"] in ("met", "aic", "cleveland"):
         return f"{SOURCE_NAMES[it['source']]} · Open Access (CC0)"
     lic = re.sub(r"\s+", " ", it.get("license", "")).strip()
