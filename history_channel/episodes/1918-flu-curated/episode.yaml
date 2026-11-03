@@ -197,7 +197,9 @@ scenes:
     narration: >
       Perhaps the starkest lesson of all came from two neighbouring groups of islands in the South Pacific.
       On the seventh of November 1918, a steamer called the Talune arrived at Apia, in Western Samoa, then governed by New Zealand. Sick passengers were allowed ashore.
+      Two weeks later, a New Zealand newspaper reported that Samoa had cabled for help, and that none could be spared from New Zealand. The government was trying to find doctors in Australia instead.
       Within weeks, around eight and a half thousand people had died, more than a fifth of the population.
+      When the full story reached New Zealand at the end of January 1919, one paper printed it under a single word: holocaust. Whole villages had been wiped out.
       Just across the water, American Samoa was run by a naval governor, John Poyer. Without waiting for orders, he closed the islands. Samoan volunteers patrolled the shore to stop illegal landings, and new arrivals were kept under watch.
       American Samoa recorded no deaths from influenza at all.
       Same virus, same ocean, two different decisions.
@@ -212,6 +214,10 @@ scenes:
           - [-171.76, -13.83, "Apia, Western Samoa"]
           - [-170.70, -14.28, "Pago Pago, American Samoa"]
     images:
+      # newspapers of the time (Papers Past, out of copyright), shown when the narrator reaches them
+      - {paperspast: "LT19181122.2.57", areas: [1, 2], paper: "Lyttelton Times", date: "1918-11-22", match: "a New Zealand newspaper reported"}
+      - {paperspast: "GRA19190129.2.12", paper: "Grey River Argus", date: "1919-01-29", match: "one paper printed it under a single word"}
+      - {paperspast: "NOT19190129.2.34.3", paper: "North Otago Times", date: "1919-01-29", match: "Whole villages had been wiped out"}
       - {file: "curid:113819721"}
       - {file: "curid:9680133"}
       - {file: "curid:10059522"}

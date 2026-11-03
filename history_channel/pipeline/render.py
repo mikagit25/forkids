@@ -219,7 +219,7 @@ def credit_line(it: dict) -> str:
     if it["source"] in ("loc", "europeana", "smithsonian"):
         return it["credit"] + (" · " + it["license"] if it["source"] != "loc" else "")
     if it["source"] == "newspaper":
-        return it["credit"] + " · public domain"
+        return it["credit"]
     if it["source"] in ("met", "aic", "cleveland"):
         return f"{SOURCE_NAMES[it['source']]} · Open Access (CC0)"
     lic = re.sub(r"\s+", " ", it.get("license", "")).strip()
@@ -291,9 +291,9 @@ def _photo_shots(imgs, t0, t1, state, target=SHOT_TARGET, lo=SHOT_MIN, hi=SHOT_M
     return out
 
 
-def _overlay_intervals(scene, timings, dur):
-    """Quote and stat cards are timed to the sentence that contains their `match` text."""
-    items = []
+def _overlay_intervals(scene, timings, dur, timed_photos=()):
+    """Quote, stat and map cards (and photos with `match`) are timed to the sentence containing `match`."""
+    items = [("photo", it) for it in timed_photos]
     if scene.get("quote"):
         items.append(("quote", scene["quote"]))
     for c in scene.get("cards", []) or []:
@@ -314,6 +314,8 @@ def _overlay_intervals(scene, timings, dur):
             b = min(b, a + 6.0)
         if kind == "map":
             b = max(b, a + 7.0)       # a route needs time to draw and to be read
+        if kind == "photo":
+            b = min(max(b, a + 5.0), a + 9.0)
         out.append((a, b, kind, c))
     out.sort(key=lambda x: x[0])
     merged = []
@@ -359,12 +361,18 @@ def build_timeline(episode: dict, manifest: dict, timings: dict):
                 for it in used[later["id"]][:1 if later.get("chapter") else 0]:
                     if it["id"] not in {x["id"] for x in pool}:
                         pool.append(it)
+        timed = [it for it in pool if it.get("match")]
+        pool = [it for it in pool if not it.get("match")] or list(timed)
         state = {"queue": list(pool), "details": [] if montage else list(pool), "all": pool}
         kw = dict(target=MONTAGE_SHOT, lo=2.0, hi=4.0) if montage else {}
         cur = 0.0
-        for a, b, kind, c in _overlay_intervals(scene, timings[sid], dur):
+        for a, b, kind, c in _overlay_intervals(scene, timings[sid], dur, timed):
             shots += _photo_shots(pool, t + cur, t + a, state, **kw)
-            shots.append(Shot(t + a, t + b, kind, quote={**c, "bg": imgs[0]["file"]}, seed=_seed(c.get("text", "") + kind)))
+            if kind == "photo":
+                shots.append(Shot(t + a, t + b, "photo", item=c, colorize=bool(c.get("colorize")), credit=credit_line(c),
+                                  seed=_seed(c["id"])))
+            else:
+                shots.append(Shot(t + a, t + b, kind, quote={**c, "bg": imgs[0]["file"]}, seed=_seed(c.get("text", "") + kind)))
             cur = b
         shots += _photo_shots(pool, t + cur, t + dur, state, **kw)
         t += dur
