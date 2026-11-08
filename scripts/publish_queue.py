@@ -370,19 +370,77 @@ def _fix_ar_symlinks(old_path: Path, new_path: Path):
 
 SHORT_PREFIXES = ("short_", "ar_short_", "sleep_short_", "funnel_", "visual_short_", "kw_short_")
 
+TYPE_HISTORY_PATH = ROOT / "output" / "type_history_en.json"
+TYPE_COOLDOWN_HRS = 23  # don't publish same video_type within this many hours
+
+
+def _load_type_history() -> dict:
+    """Load {video_type: last_published_iso} from disk."""
+    try:
+        if TYPE_HISTORY_PATH.exists():
+            import json as _j
+            return _j.loads(TYPE_HISTORY_PATH.read_text())
+    except Exception:
+        pass
+    return {}
+
+
+def _save_type_history(history: dict):
+    import json as _j
+    TYPE_HISTORY_PATH.parent.mkdir(parents=True, exist_ok=True)
+    TYPE_HISTORY_PATH.write_text(_j.dumps(history, indent=2))
+
+
+def _on_cooldown(video_type: str, history: dict) -> bool:
+    """Return True if this type was published recently and should be deprioritised."""
+    last_str = history.get(video_type)
+    if not last_str:
+        return False  # never published → free to go
+    try:
+        last = datetime.fromisoformat(last_str.replace("Z", "+00:00"))
+        hours_ago = (datetime.now(timezone.utc) - last).total_seconds() / 3600
+        return hours_ago < TYPE_COOLDOWN_HRS
+    except Exception:
+        return False
+SHORT_MAX_SECS = 180  # YouTube Shorts hard limit
+
+
+def _video_duration(path: Path) -> float | None:
+    """Return video duration in seconds via ffprobe, or None on error."""
+    try:
+        r = subprocess.run(
+            ["ffprobe", "-v", "quiet", "-show_entries", "format=duration",
+             "-of", "csv=p=0", str(path)],
+            capture_output=True, text=True, timeout=5,
+        )
+        return float(r.stdout.strip()) if r.stdout.strip() else None
+    except Exception:
+        return None
+
 
 def is_short(path: Path) -> bool:
+    # 1. Check meta flag / prefix
+    flagged = False
+    meta_dur = None
     if path.name.startswith(SHORT_PREFIXES):
-        return True
-    # Fallback: check meta is_short field (covers any naming scheme)
-    meta_path = path.parent / f"meta_{path.stem}.yaml"
-    if meta_path.exists():
-        try:
-            m = yaml.safe_load(open(meta_path)) or {}
-            return bool(m.get("is_short", False))
-        except Exception:
-            pass
-    return False
+        flagged = True
+    else:
+        meta_path = path.parent / f"meta_{path.stem}.yaml"
+        if meta_path.exists():
+            try:
+                m = yaml.safe_load(open(meta_path)) or {}
+                flagged = bool(m.get("is_short", False))
+                meta_dur = m.get("duration_sec")  # prefer meta over ffprobe (fast)
+            except Exception:
+                pass
+    if not flagged:
+        return False
+    # 2. Verify actual duration ≤ SHORT_MAX_SECS (YouTube hard limit)
+    # Use meta duration_sec if available (avoids slow ffprobe scan)
+    dur = float(meta_dur) if meta_dur is not None else _video_duration(path)
+    if dur is not None and dur > SHORT_MAX_SECS:
+        return False  # too long for Shorts — treat as long video
+    return True
 
 
 def is_long(path: Path) -> bool:
@@ -452,16 +510,27 @@ def main():
         all_mp4s  = [specific]
         all_queue = [specific]
     else:
+        type_history = _load_type_history() if args.queue == "en" else {}
+
         def _sort_key(p: Path):
             name = p.name
-            # EN kids: Wednesday(2) + Saturday(5) → kids classical gets priority
+            # EN kids: rotate video types — no same type two days in a row
             if active_queue_dir == QUEUE_DIR:
                 dow = datetime.now(timezone.utc).weekday()
                 if dow in (2, 5) and name.startswith("kids_classical_"):
                     return (0, p.stat().st_mtime)
                 elif name.startswith("kids_classical_"):
                     return (2, p.stat().st_mtime)
-                return (1, p.stat().st_mtime)
+                # Read video_type from meta for rotation check
+                meta_p = p.parent / f"meta_{p.stem}.yaml"
+                vtype = "unknown"
+                try:
+                    if meta_p.exists():
+                        vtype = (yaml.safe_load(meta_p.read_text()) or {}).get("video_type", "unknown")
+                except Exception:
+                    pass
+                # on cooldown → priority 3 (goes to end); free → priority 1
+                return (3 if _on_cooldown(vtype, type_history) else 1, p.stat().st_mtime)
             if active_queue_dir == QUEUE_SD_DIR:
                 if name.startswith("sd_comp_"):
                     # Made for today's programme slot (meta publish_dow) → first; then today's theme; then others
@@ -547,8 +616,26 @@ def main():
     uploaded = 0
     failed   = 0
 
+    # Duplicate check module (soft import — works even if registry not built yet)
+    try:
+        from duplicate_check import check_duplicate
+        _dup_check_available = True
+    except ImportError:
+        _dup_check_available = False
+
     for mp4_path in ready_queue[:limit]:
         metadata = load_sidecar(mp4_path) or match_metadata(mp4_path.name, plan)
+
+        # --- Duplicate guard ---
+        if _dup_check_available and args.queue in ("en", "sd"):
+            is_dup, dup_reason = check_duplicate(
+                mp4_path, metadata, args.queue, dry_run=args.dry_run
+            )
+            if is_dup:
+                print(f"  ⚠ SKIPPED (duplicate): {mp4_path.name}")
+                failed += 1
+                continue
+
         success  = upload_video(
             mp4_path, metadata,
             schedule=not args.no_schedule,
@@ -557,6 +644,16 @@ def main():
         )
 
         if success:
+            if not args.dry_run and args.queue == "en":
+                # Record this type as recently published for rotation
+                try:
+                    vtype = (metadata or {}).get("video_type", "")
+                    if vtype:
+                        h = _load_type_history()
+                        h[vtype] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                        _save_type_history(h)
+                except Exception:
+                    pass
             if not args.dry_run:
                 # Check for AR symlinks before touching the MP4
                 ar_symlinks = [

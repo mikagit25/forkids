@@ -90,7 +90,7 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
         _scale_counts(scene, later_chapters(si))
         if sid in old.get("scenes", {}) and all((ep_dir / i["file"]).exists() for i in old["scenes"][sid]):
             manifest["scenes"][sid] = old["scenes"][sid]
-            col = {q["query"]: bool(q.get("colorize")) for q in scene.get("images", [])}
+            col = {q["query"]: bool(q.get("colorize")) for q in scene.get("images", []) if "query" in q}
             for it in manifest["scenes"][sid]:   # pick up colorize flags added to the script later
                 it["colorize"] = it.get("colorize", col.get(it.get("query"), False)) or col.get(it.get("query"), False)
                 hashes.append(select.phash(ep_dir / it["file"]))
