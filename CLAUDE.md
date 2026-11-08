@@ -14,7 +14,7 @@ GitHub: https://github.com/mikagit25/forkids
 | Канал | Тип | Хэндл | Channel ID | Токен | Очередь |
 |-------|-----|--------|------------|-------|---------|
 | **Happy Bear Kids** | Детский EN | @HappyBearKids1 | UCIOerrKr02oTAAk2_oOg0Xg | `credentials/youtube_token.json` | `output/queue/` |
-| **Sacred Drift** *(бывш. AR)* | Взрослый EN | @SacredDrift | UCTAAc0Ih4PpwY9agi2tT8Gg | `credentials/youtube_token_ar.json` | `sacred_drift/output/queue/` |
+| **Sacred Drift** *(бывш. AR)* | Взрослый EN | @SacredDrift | UC43gnMYXiO9IAmB3gw12DSw | `credentials/youtube_token_ar.json` | `sacred_drift/output/queue/` |
 | **Calm Classics** *(бывш. ID)* | Взрослый EN | @happybearkidsin | UCOozTZwjXgkfYiTAzSzePAA | `credentials/youtube_token_id.json` | `output/queue_id/` |
 
 > ⚠️ `youtube_token_ar.json` — это токен Sacred Drift (взрослый канал медитации), НЕ детский AR!  
@@ -224,8 +224,8 @@ python3 scripts/generate_ambient_audio.py --style storm --setting window --thund
 - Дата = день ПУБЛИКАЦИИ: запуск после 12:00 UTC готовит видео на завтра (cron 23:30 → выход завтра в 20:00).
 - Вариации по номеру недели (частоты 528/432/777/963/639/396/852/417, обстановки, варианты чаш) — один день недели не повторяется.
 - Заголовок: проблема/польза + инструмент + длительность (+ номер серии у Вс), одно эмодзи, ничего после длительности.
-  Без медицинских обещаний (никаких «pain relief», «healing», «parasympathetic»). `--no-ads-title` добавляет «(No Mid-Roll Ads)» —
-  **только пока канал не монетизирован**.
+  Без медицинских обещаний (никаких «pain relief», «healing», «parasympathetic»).
+  **ЗАПРЕЩЕНО** писать «No Ads» / «No Mid-Roll Ads» в названии — YouTube показывает рекламу на любых видео, это обман слушателя.
 - В мету пишутся `publish_dow`, `publish_date`, `program`; publish_queue.py публикует видео своего дня первым
   (`SD_DOW_THEME` выровнен с программой). Счётчик серий: `sacred_drift/series.json`.
 
@@ -341,6 +341,30 @@ python3 -m sensory.episode --minutes 2 --queue-dir out/q      # тест, не �
 ### Цель монетизации Calm Classics
 - 1000 подписчиков + 4000 часов просмотра → YPP к месяцу 3-4
 - Go/No-go решение по аналитике к месяцу 6
+
+---
+
+## АНТИ-ДУБЛИ (обязательно)
+
+### Реестр загрузок
+- `data/upload_registry.json` — все видео каналов EN и SD (402 EN + 7 SD на ноябрь 2026)
+- Обновить реестр: `python3 scripts/build_upload_registry.py`
+- Обновлять раз в неделю или после крупного батча публикаций
+
+### Проверка перед загрузкой (автоматически в publish_queue.py)
+- Перед каждым upload: сравнение названия с реестром (Jaccard ≥ 0.82 → отказ)
+- Совпадение sha256 → отказ
+- При отказе: файл переходит в `output/rejected_duplicates/`, уведомление в Telegram
+- Dry-run проверка: `python3 scripts/duplicate_check.py --channel en`
+
+### Правила для генераторов
+- **Лимит:** не более 1 длинного видео в день на EN канал (`publish_queue.py` соблюдает через крон)
+- **Ротация типов:** `output/type_history_en.json` — один и тот же `video_type` не публикуется два дня подряд
+- **Уникальные названия:** включать в название персонажей / тему / длительность
+  - sensory_dance: `Dancing Animal Disco 🐾` / `Dancing Fruit Parade 🍓` (семейство + жанр)
+  - lullaby_long: `Sleepy Bear Lullaby • 25 Minutes` (персонаж + длина)
+  - high_contrast: версия для 0–3 мес / 3–6 мес / 6+ мес в названии
+- **Запрещено:** одинаковый трек-лист под новым названием; одна и та же нарезка для разных Shorts
 
 ---
 

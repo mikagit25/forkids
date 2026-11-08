@@ -26,12 +26,12 @@ SESSION.headers["User-Agent"] = UA
 MIN_WIDTH = 900
 
 
-def _get(url, params=None, retries=3, timeout=30):
+def _get(url, params=None, retries=5, timeout=30):
     for attempt in range(retries):
         try:
             r = SESSION.get(url, params=params, timeout=timeout)
             if r.status_code == 429:
-                time.sleep(5 * (attempt + 1))
+                time.sleep(8 * (attempt + 1))
                 continue
             r.raise_for_status()
             return r
@@ -39,6 +39,7 @@ def _get(url, params=None, retries=3, timeout=30):
             if attempt == retries - 1:
                 raise
             time.sleep(2 * (attempt + 1))
+    return None  # all retries exhausted (rate-limited)
 
 
 def _strip_html(s: str | None) -> str:
@@ -127,7 +128,11 @@ def commons_file(title: str) -> dict | None:
         params["titles"] = title
     data = {}
     for attempt in range(5):
-        data = _get("https://commons.wikimedia.org/w/api.php", params).json()
+        resp = _get("https://commons.wikimedia.org/w/api.php", params)
+        if resp is None:
+            time.sleep(10 * (attempt + 1))
+            continue
+        data = resp.json()
         if "error" not in data:
             break
         time.sleep(2 + 3 * attempt)

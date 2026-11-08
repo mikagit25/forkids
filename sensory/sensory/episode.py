@@ -137,7 +137,11 @@ def pick_track(fmt: str, audio_dir: str | None, rnd: random.Random) -> Path | No
         if words and not audio_dir:
             files = [p for p in files if any(w in p.name.lower() for w in words)]
         elif fmt == "dance":
-            files = [p for p in files if not any(w in p.name.lower() for w in ("lullaby", "sleep"))]
+            # Exclude slow/lullaby tracks by filename keywords
+            DANCE_EXCLUDE = ("lullaby", "sleep", "lull", "dream", "sleepy",
+                             "bedtime", "goodnight", "calm", "gentle", "berceuse",
+                             "kolybel", "nap", "slumber")
+            files = [p for p in files if not any(w in p.name.lower() for w in DANCE_EXCLUDE)]
         if not audio_dir:
             files = [p for p in files if _track_duration(p) >= min_sec]
         if files:
@@ -200,14 +204,24 @@ def main():
     ap.add_argument("--workers", type=int, default=None)
     ap.add_argument("--high-contrast", action="store_true",
                     help="B&W high-contrast mode for newborns 0-3 months")
-    ap.add_argument("--family", choices=["fruits", "veggies", "all"], default="fruits",
+    ap.add_argument("--family", choices=["fruits", "veggies", "animals", "ocean", "all"], default="fruits",
                     help="character family to use (default: fruits)")
     a = ap.parse_args()
     seed = a.seed if a.seed is not None else int(datetime.datetime.now().timestamp()) % 100000
     rnd = random.Random(seed)
     q = Path(a.queue_dir); q.mkdir(parents=True, exist_ok=True)
     from .characters import FAMILIES
-    char_pool = FAMILIES.get(getattr(a, "family", "fruits"), FAMILIES["fruits"])
+    family = getattr(a, "family", "fruits")
+    char_pool = FAMILIES.get(family, FAMILIES["fruits"])
+    # Family-aware labels for titles, thumbnails, descriptions, tags
+    FAMILY_LABEL = {
+        "fruits":  ("Fruit",  "🍓", ["dancing fruit", "fruit dance", "fruit video for babies"]),
+        "veggies": ("Veggie", "🥕", ["dancing vegetables", "veggie dance", "vegetables for kids"]),
+        "animals": ("Animal", "🐾", ["dancing animals", "animal dance", "animals for babies", "cute animals"]),
+        "ocean":   ("Ocean",  "🌊", ["ocean animals", "sea creatures", "underwater for babies", "ocean video"]),
+        "all":     ("Friend", "🌈", ["sensory dance", "dancing characters", "colorful video for babies"]),
+    }
+    fam_name, fam_emoji, fam_tags = FAMILY_LABEL.get(family, FAMILY_LABEL["fruits"])
     src = Path(a.audio) if a.audio else None
     if src is None and (a.format == "sleep" or a.audio_dir or a.collection):
         src = pick_track(a.format, a.audio_dir, rnd)
@@ -256,7 +270,7 @@ def main():
         if hc:
             thumbnail(q / f"thumb_{stem}.png", list(dict.fromkeys(cast)), "HIGH CONTRAST", seed)
         else:
-            thumbnail(q / f"thumb_{stem}.png", list(dict.fromkeys(cast)), "FRUIT DANCE PARTY", seed)
+            thumbnail(q / f"thumb_{stem}.png", list(dict.fromkeys(cast)), f"{fam_name.upper()} DANCE PARTY", seed)
         word = GENRE_WORDS.get(genre, ("Party", "music"))
         if hc:
             video_title = f"High Contrast Baby Video 👁️ Sensory for Newborns • {duration_words(round(minutes))}"[:100]
@@ -265,11 +279,11 @@ def main():
                     "sensory video", "newborn video", "baby development", "infant stimulation",
                     "happy bear kids", "tummy time", "visual tracking", "0-3 months baby"]
         else:
-            video_title = f"Dancing Fruit {word[0]} 🍓 Sensory Video for Babies & Toddlers • {duration_words(round(minutes))}"[:100]
+            video_title = f"Dancing {fam_name} {word[0]} {fam_emoji} Sensory Video for Babies & Toddlers • {duration_words(round(minutes))}"[:100]
             video_type = "sensory_dance"
-            tags = ["sensory video", "baby sensory", "dancing fruit", "toddler video", "kids music",
-                    "fruit dance", "high contrast baby", "baby video", "dance party for kids", "happy bear kids",
-                    "visual stimulation", "babies music", f"{word[1]} for kids"]
+            tags = ["sensory video", "baby sensory", "toddler video", "kids music",
+                    "high contrast baby", "baby video", "dance party for kids", "happy bear kids",
+                    "visual stimulation", "babies music", f"{word[1]} for kids"] + fam_tags
         meta = {"title": video_title,
                 "description": description_for(genre if genre in GENRE_WORDS else "bounce", minutes, cast).replace(
                     "🎵 Original music composed and synthesized by Happy Bear Kids — every note made in code, © 2026.", credit),
