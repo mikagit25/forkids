@@ -66,6 +66,19 @@ def phash(path: Path):
         return None
 
 
+def phash_img(im: Image.Image):
+    try:
+        import imagehash
+        g = im.convert("L")
+        w, h = g.size
+        out = [imagehash.phash(g)]
+        for f in (0.08, 0.16):
+            out.append(imagehash.phash(g.crop((int(w * f), int(h * f), int(w * (1 - f)), int(h * (1 - f))))))
+        return out
+    except Exception:
+        return None
+
+
 def is_duplicate(h, hashes: list, max_dist: int = 10) -> bool:
     if not h:
         return False

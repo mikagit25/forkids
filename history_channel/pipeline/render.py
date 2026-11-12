@@ -210,12 +210,18 @@ def credit_overlay(text: str, w: int, h: int) -> np.ndarray:
     return cv2.cvtColor(np.array(im), cv2.COLOR_RGBA2BGRA)
 
 
-SOURCE_NAMES = {"commons": "Wikimedia Commons", "loc": "Library of Congress", "wellcome": "Wellcome Collection"}
+SOURCE_NAMES = {"commons": "Wikimedia Commons", "loc": "Library of Congress", "wellcome": "Wellcome Collection",
+                "met": "The Metropolitan Museum of Art", "aic": "Art Institute of Chicago", "cleveland": "Cleveland Museum of Art",
+                "smithsonian": "Smithsonian", "europeana": "Europeana"}
 
 
 def credit_line(it: dict) -> str:
-    if it["source"] == "loc":
+    if it["source"] in ("loc", "europeana", "smithsonian"):
+        return it["credit"] + (" · " + it["license"] if it["source"] != "loc" else "")
+    if it["source"] == "newspaper":
         return it["credit"]
+    if it["source"] in ("met", "aic", "cleveland"):
+        return f"{SOURCE_NAMES[it['source']]} · Open Access (CC0)"
     lic = re.sub(r"\s+", " ", it.get("license", "")).strip()
     if it["source"] == "commons":
         who = it.get("credit", "")
@@ -285,13 +291,15 @@ def _photo_shots(imgs, t0, t1, state, target=SHOT_TARGET, lo=SHOT_MIN, hi=SHOT_M
     return out
 
 
-def _overlay_intervals(scene, timings, dur):
-    """Quote and stat cards are timed to the sentence that contains their `match` text."""
-    items = []
+def _overlay_intervals(scene, timings, dur, timed_photos=()):
+    """Quote, stat and map cards (and photos with `match`) are timed to the sentence containing `match`."""
+    items = [("photo", it) for it in timed_photos]
     if scene.get("quote"):
         items.append(("quote", scene["quote"]))
     for c in scene.get("cards", []) or []:
         items.append(("stat", c))
+    for c in scene.get("maps", []) or []:
+        items.append(("map", c))
     out = []
     sents = timings["sentences"]
     for kind, c in items:
@@ -304,6 +312,10 @@ def _overlay_intervals(scene, timings, dur):
         a, b = max(0.0, sents[hit]["start"] - 0.35), min(dur, sents[last]["end"] + 0.6)
         if kind == "stat":
             b = min(b, a + 6.0)
+        if kind == "map":
+            b = max(b, a + 7.0)       # a route needs time to draw and to be read
+        if kind == "photo":
+            b = min(max(b, a + 5.0), a + 9.0)
         out.append((a, b, kind, c))
     out.sort(key=lambda x: x[0])
     merged = []
@@ -349,12 +361,18 @@ def build_timeline(episode: dict, manifest: dict, timings: dict):
                 for it in used[later["id"]][:1 if later.get("chapter") else 0]:
                     if it["id"] not in {x["id"] for x in pool}:
                         pool.append(it)
+        timed = [it for it in pool if it.get("match")]
+        pool = [it for it in pool if not it.get("match")] or list(timed)
         state = {"queue": list(pool), "details": [] if montage else list(pool), "all": pool}
         kw = dict(target=MONTAGE_SHOT, lo=2.0, hi=4.0) if montage else {}
         cur = 0.0
-        for a, b, kind, c in _overlay_intervals(scene, timings[sid], dur):
+        for a, b, kind, c in _overlay_intervals(scene, timings[sid], dur, timed):
             shots += _photo_shots(pool, t + cur, t + a, state, **kw)
-            shots.append(Shot(t + a, t + b, kind, quote={**c, "bg": imgs[0]["file"]}, seed=_seed(c.get("text", "") + kind)))
+            if kind == "photo":
+                shots.append(Shot(t + a, t + b, "photo", item=c, colorize=bool(c.get("colorize")), credit=credit_line(c),
+                                  seed=_seed(c["id"])))
+            else:
+                shots.append(Shot(t + a, t + b, kind, quote={**c, "bg": imgs[0]["file"]}, seed=_seed(c.get("text", "") + kind)))
             cur = b
         shots += _photo_shots(pool, t + cur, t + dur, state, **kw)
         t += dur
@@ -478,6 +496,9 @@ class Renderer:
                 sh.focus = find_focus(sh.canvas)
         elif sh.kind == "quote":
             sh.canvas = cv2.cvtColor(quote_canvas(CW, CH, sh.quote["text"], sh.quote.get("source", "")), cv2.COLOR_RGB2BGR)
+        elif sh.kind == "map":
+            from .maps import MapShot
+            sh.canvas = MapShot(sh.quote, W, H)     # drawn directly at output size
         elif sh.kind == "stat":
             bg = load_rgb(self.ep_dir / sh.quote["bg"]) if sh.quote.get("bg") else None
             sh.canvas = cv2.cvtColor(stat_canvas(bg, CW, CH, str(sh.quote["big"]), sh.quote.get("text", "")),
@@ -500,6 +521,8 @@ class Renderer:
         W, H, CW, CH = self.W, self.H, self.CW, self.CH
         span = (sh.end - sh.start) + XF
         p = float(np.clip((t - sh.start + XF / 2) / span, 0, 1))
+        if sh.kind == "map":
+            return sh.canvas.frame(float(np.clip((t - sh.start) / max(sh.end - sh.start, 0.1), 0, 1)))
         z, cx, cy, zin = motion(sh, p, CW, CH)
         s = z * W / CW
         M = np.float32([[s, 0, W / 2 - s * cx], [0, s, H / 2 - s * cy]])
@@ -521,6 +544,29 @@ class Renderer:
             my = (self.Y - sy * k - self.Yc * (dolly * k)).astype(np.float32, copy=False)
             f = cv2.remap(f, mx, my, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
         return f
+
+
+class FilmLook:
+    """Subtle old-film texture on archive photos: grain, a faint flicker, now and then a dust speck."""
+
+    def __init__(self, W, H, seed=3):
+        rng = np.random.default_rng(seed)
+        self.grain = [rng.normal(0, 1, (H, W)).astype(np.float32) for _ in range(6)]
+        self.grain = [cv2.GaussianBlur(g, (0, 0), 0.7)[..., None] for g in self.grain]
+        self.rng = np.random.default_rng(seed + 1)
+        self.W, self.H = W, H
+        self.flick = rng.normal(0, 0.012, 100000).astype(np.float32)
+
+    def apply(self, frame, fi, alpha=1.0):
+        f = frame.astype(np.float32)
+        f *= 1 + self.flick[fi % len(self.flick)] * alpha
+        f += self.grain[fi % len(self.grain)] * (5.5 * alpha)
+        if self.rng.random() < 0.035 * alpha:           # ~1 speck a second, one frame each
+            x, y = int(self.rng.uniform(0, self.W)), int(self.rng.uniform(0, self.H))
+            r = int(self.rng.uniform(1, 3.5) * self.W / 1920)
+            col = 235 if self.rng.random() < 0.5 else 25
+            cv2.circle(f, (x, y), max(1, r), (col, col, col), -1, cv2.LINE_AA)
+        return np.clip(f, 0, 255).astype(np.uint8)
 
 
 def vignette(W, H):
@@ -642,6 +688,7 @@ def render(ep_dir: Path, episode: dict, preview: bool = False, parallax: bool = 
         stdin=subprocess.PIPE)
 
     R = Renderer(ep_dir, W, H, CW, CH, parallax)
+    film = FilmLook(W, H) if episode.get("film_look", True) else None
     vig = vignette(W, H)
     credits = {}
 
@@ -675,6 +722,8 @@ def render(ep_dir: Path, episode: dict, preview: bool = False, parallax: bool = 
             frame = cv2.addWeighted(frame, 1 - w, R.frame(nxt, t), w, 0)
             a_cur = 1 - w
         frame = ((frame.astype(np.uint16) * vig) >> 8).astype(np.uint8)
+        if film is not None and sh.kind == "photo":
+            frame = film.apply(frame, fi, a_cur)
         for s_, a_ in ((sh, a_cur), (nxt, 1 - a_cur)):
             if s_ is None or s_.kind != "photo" or a_ <= 0.02:
                 continue

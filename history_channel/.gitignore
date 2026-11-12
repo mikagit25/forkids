@@ -5,3 +5,4 @@ episodes/*/media/
 episodes/*/build/
 episodes/*/contact_sheet.html
 episodes/*/audio/
+.env

@@ -17,9 +17,9 @@ from pathlib import Path
 
 import numpy as np
 
-from PIL import Image
+from PIL import Image, ImageOps
 
-from .archives import DEFAULT_SOURCES, SESSION, commons_file, search_all
+from .archives import DEFAULT_SOURCES, SESSION, commons_file, museum_object, search_all
 
 ALTERNATES = 3  # extra candidates kept per query for the reviewer
 
@@ -36,6 +36,7 @@ def _download(c: dict, media: Path) -> Path | None:
                 continue
             im = Image.open(io.BytesIO(r.content))
             im.load()
+            im = ImageOps.exif_transpose(im)      # phone/camera photos stored sideways with an EXIF flag
             if im.width < 700:
                 return None
             if im.mode != "RGB":
@@ -88,7 +89,15 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
     for si, scene in enumerate(episode["scenes"]):
         sid = scene["id"]
         _scale_counts(scene, later_chapters(si))
-        if sid in old.get("scenes", {}) and all((ep_dir / i["file"]).exists() for i in old["scenes"][sid]):
+        sig = hashlib.md5(json.dumps(scene.get("images", []), sort_keys=True).encode()).hexdigest()[:12]
+        manifest.setdefault("sig", {})[sid] = sig
+        unchanged = old.get("sig", {}).get(sid, sig) == sig   # manifests from before this check count as unchanged
+        want_rot = sum(1 for q in scene.get("images", []) if q.get("rotate"))
+        have_rot = sum(1 for i in old.get("scenes", {}).get(sid, []) if i.get("rotate"))
+        unchanged = unchanged and want_rot == have_rot
+        if not unchanged:
+            print(f"[{sid}] images changed in episode.yaml -> fetching this scene again")
+        if unchanged and sid in old.get("scenes", {}) and all((ep_dir / i["file"]).exists() for i in old["scenes"][sid]):
             manifest["scenes"][sid] = old["scenes"][sid]
             col = {q["query"]: bool(q.get("colorize")) for q in scene.get("images", []) if "query" in q}
             for it in manifest["scenes"][sid]:   # pick up colorize flags added to the script later
@@ -97,25 +106,48 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
             print(f"[{sid}] kept {sum(i['use'] for i in old['scenes'][sid])} images from previous run")
             continue
         chosen = []
+        # 0) newspaper clippings: a crop of a scanned page (public domain: published before 1929)
+        for q in scene.get("images", []):
+            if not (q.get("newspaper") or q.get("paperspast")):
+                continue
+            c = paperspast_clipping(q, media, ep_dir) if q.get("paperspast") else newspaper_clipping(q, media, ep_dir)
+            if c and q.get("match"):
+                c["match"] = q["match"]
+            if c:
+                hashes.append(select.phash(ep_dir / c["file"]))
+                chosen.append(c)
+                print(f"[{sid}] clipping: {c['title'][:70]}")
         # 1) photos picked by hand (exact Commons files) always come first, in script order
         for q in scene.get("images", []):
             if not q.get("file"):
                 continue
-            c = commons_file(q["file"])
+            ref = q["file"]
+            prefix = ref.split(":", 1)[0]
+            if prefix in ("met", "aic", "cleveland"):
+                c = museum_object(ref)
+            elif prefix in ("curid", "File") or ref.startswith("File:"):
+                c = commons_file(ref)
+            else:   # smithsonian:, europeana:, wellcome:, loc:, commons: ... picked from a candidate sheet
+                c = _from_candidates(ep_dir, ref)
             if not c:
                 continue
             path = _download(c, media)
             if not path:
                 continue
+            if q.get("rotate"):
+                path = _rotated(path, int(q["rotate"]))
+                c["rotate"] = int(q["rotate"])
             c.update(file=str(path.relative_to(ep_dir)), use=True, query=q.get("note", q["file"]),
                      colorize=bool(q.get("colorize")), picked=True, score=1.0)
+            if q.get("match"):
+                c["match"] = q["match"]
             hashes.append(select.phash(path))
             seen.add(c["id"])
             chosen.append(c)
             print(f"[{sid}] picked: {c['title'][:70]}")
         # 2) automatic search for anything still described only by a query
         for q in scene.get("images", []):
-            if q.get("file"):
+            if q.get("file") or q.get("newspaper") or q.get("paperspast"):
                 continue
             want = q.get("count", 1)
             print(f"[{sid}] searching: {q['query']}")
@@ -161,11 +193,164 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
                       f"({len(pool)} downloaded) - consider another query")
         manifest["scenes"][sid] = chosen
 
+    auto_colorize(ep_dir, episode, manifest)
     man_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False))
     write_contact_sheet(ep_dir, episode, manifest)
     n = sum(i["use"] for v in manifest["scenes"].values() for i in v)
     print(f"\nmanifest: {n} images selected. Review: {ep_dir / 'contact_sheet.html'}")
     return manifest
+
+
+def _from_candidates(ep_dir: Path, ref: str) -> dict | None:
+    from .archives import license_ok
+    idx = ep_dir / "candidates" / "index.json"
+    if not idx.exists():
+        print(f"   ! {ref}: run the candidates step first (no candidates/index.json)")
+        return None
+    rec = json.loads(idx.read_text()).get(ref)
+    if not rec:
+        print(f"   ! {ref}: not in candidates/index.json")
+        return None
+    rec = dict(rec)
+    lic = rec.get("license", "")
+    if not (license_ok(lic) or lic.startswith("CC0") or "No known restrictions" in lic):
+        print(f"   ! {ref}: licence not allowed ({lic})")
+        return None
+    for k in ("meta", "query", "size_from_thumb"):
+        rec.pop(k, None)
+    rec["width"] = rec["height"] = 0
+    return rec
+
+
+def _rotated(path: Path, deg: int) -> Path:
+    """rotate: 90 = turn clockwise, -90 = counter-clockwise, 180 = upside down. Cached as a separate file."""
+    out = path.with_name(f"{path.stem}_r{deg % 360}.jpg")
+    if not out.exists():
+        with Image.open(path) as im:
+            im.rotate(-deg, expand=True).save(out, "JPEG", quality=92)   # PIL rotates counter-clockwise
+    return out
+
+
+def newspaper_clipping(q: dict, media: Path, ep_dir: Path) -> dict | None:
+    """q = {newspaper: <page image url>, crop: [x0, y0, x1, y1] (fractions of the page), paper: "...",
+            date: "1918-10-05", page_url: "<link for the description>"}"""
+    date = str(q.get("date", ""))
+    if not date[:4].isdigit() or int(date[:4]) >= 1929:
+        print(f"   ! clipping skipped: needs a publication date before 1929 ({date or 'no date'})")
+        return None
+    url = q["newspaper"]
+    if "/iiif/" in url and url.rstrip("/").endswith("default.jpg"):
+        parts = url.split("/")
+        parts[-3] = "3000,"   # ask the IIIF server for a large render of the whole page
+        parts[-4] = "full"
+        url = "/".join(parts)
+    key = hashlib.md5((url + str(q.get("crop"))).encode()).hexdigest()[:10]
+    dest = media / f"news_{key}.jpg"
+    if not dest.exists():
+        try:
+            r = SESSION.get(url, timeout=120)
+            r.raise_for_status()
+            im = Image.open(io.BytesIO(r.content)).convert("RGB")
+        except Exception as e:
+            print(f"   ! clipping download failed: {e}")
+            return None
+        if q.get("crop"):
+            x0, y0, x1, y1 = q["crop"]
+            W, H = im.size
+            im = im.crop((int(x0 * W), int(y0 * H), int(x1 * W), int(y1 * H)))
+        im.save(dest, "JPEG", quality=92)
+    paper = q.get("paper", "Newspaper")
+    return {"source": "newspaper", "id": f"news:{key}", "title": f"{paper}, {date}", "description": q.get("note", ""),
+            "date": date, "page_url": q.get("page_url") or q["newspaper"], "download_url": q["newspaper"],
+            "license": "Public domain (published before 1929)", "credit": f"{paper}, {date}",
+            "width": 0, "height": 0, "file": str(dest.relative_to(ep_dir)), "use": True, "query": "newspaper",
+            "colorize": False, "picked": True, "score": 1.0}
+
+
+def paperspast_clipping(q: dict, media: Path, ep_dir: Path) -> dict | None:
+    """A whole article from Papers Past (New Zealand), stitched from its column images.
+    q = {paperspast: "NOT19190129.2.34.3", areas: [1, 2] (optional), paper: "...", date: "1919-01-29"}
+    Articles whose page says the paper is not available for commercial use are refused."""
+    import base64
+    import re as _re
+    oid = q["paperspast"]
+    page = f"https://paperspast.natlib.govt.nz/newspapers/{oid}"
+    dest = media / f"pp_{oid.replace('.', '_')}.jpg"
+    date = str(q.get("date", ""))
+    if not dest.exists():
+        try:
+            html_ = SESSION.get(page, timeout=60).text
+        except Exception as e:
+            print(f"   ! Papers Past {oid}: {e}")
+            return None
+        if "not available for commercial use" in html_.lower():
+            print(f"   ! Papers Past {oid}: newspaper not available for commercial use, skipped")
+            return None
+        found = {}
+        for enc in _re.findall(r"imageserver/newspapers/([A-Za-z0-9=+/]+)", html_):
+            try:
+                dec = base64.b64decode(enc + "=" * (-len(enc) % 4)).decode("utf-8", "ignore")
+            except Exception:
+                continue
+            m = _re.search(r"area=(\d+)", dec)
+            if oid in dec and m:
+                found[int(m.group(1))] = dec
+        areas = q.get("areas") or sorted(found)
+        parts = []
+        for a in areas:
+            if a not in found:
+                continue
+            spec = _re.sub(r"width=\d+", "width=1200", found[a])
+            url = "https://paperspast.natlib.govt.nz/imageserver/newspapers/" + base64.b64encode(spec.encode()).decode()
+            try:
+                r = SESSION.get(url, timeout=60)
+                r.raise_for_status()
+                parts.append(Image.open(io.BytesIO(r.content)).convert("RGB"))
+            except Exception as e:
+                print(f"   ! Papers Past {oid} area {a}: {e}")
+        if not parts:
+            return None
+        W = max(p.width for p in parts)
+        H = sum(p.height for p in parts)
+        im = Image.new("RGB", (W, H), (255, 255, 255))
+        y = 0
+        for p in parts:
+            im.paste(p, ((W - p.width) // 2, y))
+            y += p.height
+        # warm the white a little, like aged newsprint
+        im = Image.blend(im, Image.new("RGB", im.size, (236, 228, 208)), 0.18)
+        im.save(dest, "JPEG", quality=92)
+    paper = q.get("paper", "Newspaper")
+    return {"source": "newspaper", "id": f"paperspast:{oid}", "title": f"{paper}, {date}", "description": q.get("note", ""),
+            "date": date, "page_url": page, "download_url": page,
+            "license": "Out of copyright (Papers Past, National Library of New Zealand)",
+            "credit": f"{paper}, {date} · Papers Past", "width": 0, "height": 0,
+            "file": str(dest.relative_to(ep_dir)), "use": True, "query": "newspaper",
+            "colorize": False, "picked": True, "score": 1.0}
+
+
+def auto_colorize(ep_dir: Path, episode: dict, manifest: dict):
+    """`colorize_per_scene: N` in episode.yaml marks N black-and-white photos per scene for the
+    original-then-colour reveal, if the script did not mark any. Prefers large, wide photos."""
+    import cv2
+    from .vision import is_grayscale
+    n = int(episode.get("colorize_per_scene", 0) or 0)
+    if not n:
+        return
+    for scene in episode["scenes"]:
+        if scene.get("montage"):
+            continue
+        items = [i for i in manifest["scenes"].get(scene["id"], []) if i["use"]]
+        if any(i.get("colorize") for i in items):
+            continue
+        cands = []
+        for it in items:
+            im = cv2.imread(str(ep_dir / it["file"]))
+            if im is not None and is_grayscale(im):
+                h, w = im.shape[:2]
+                cands.append((-(w >= h * 1.2), -w * h, it))
+        for _, _, it in sorted(cands, key=lambda x: (x[0], x[1]))[:n]:
+            it["colorize"] = True
 
 
 def write_contact_sheet(ep_dir: Path, episode: dict, manifest: dict):
