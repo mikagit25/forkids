@@ -29,19 +29,185 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 
-# Primary: local Ollama (short timeout — fail fast if stuck)
-OLLAMA_URL      = "http://localhost:11434/api/generate"
-OLLAMA_MODEL    = "qwen3:8b"
-OLLAMA_TIMEOUT  = 8    # seconds — if loaded it's fast; skip if not
-_ollama_alive   = True  # circuit breaker: set False after first timeout
+# ── Native title templates (research-based, no LLM needed for known styles) ──
+_NATIVE_TITLES_FILE = ROOT / "sacred_drift" / "config" / "native_titles.yaml"
+_NATIVE_TITLES: dict = {}
+if _NATIVE_TITLES_FILE.exists():
+    try:
+        _NATIVE_TITLES = yaml.safe_load(_NATIVE_TITLES_FILE.read_text()) or {}
+    except Exception:
+        pass
 
-# Fallback: Groq cloud (openai/gpt-oss-20b reasoning model — high quality)
-GROQ_CHAT_URL  = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_MODEL     = "openai/gpt-oss-20b"
+import random as _rnd
+
+def _native_duration(dur_en: str, lang: str) -> str:
+    """Convert English duration like '3 Hours' / '1 Hour' / '8 Hours' to native string."""
+    import re
+    m = re.match(r'(\d+)\s+Hours?', dur_en.strip(), re.IGNORECASE)
+    if not m:
+        return dur_en  # unknown format — pass through as-is
+    n = int(m.group(1))
+    fmts = {
+        "ru":       {1: "1 час",    3: "3 часа",    8: "8 часов"},
+        "ar":       {1: "ساعة واحدة", 3: "3 ساعات", 8: "8 ساعات"},
+        "ja":       {1: "1時間",    3: "3時間",      8: "8時間"},
+        "ko":       {1: "1시간",    3: "3시간",      8: "8시간"},
+        "zh-Hans":  {1: "1小时",    3: "3小时",      8: "8小时"},
+        "de":       {1: "1 Stunde", 3: "3 Stunden",  8: "8 Stunden"},
+        "it":       {1: "1 ora",    3: "3 ore",       8: "8 ore"},
+        "es":       {1: "1 hora",   3: "3 horas",     8: "8 horas"},
+        "fr":       {1: "1 heure",  3: "3 heures",    8: "8 heures"},
+        "pt":       {1: "1 hora",   3: "3 horas",     8: "8 horas"},
+        "id":       {1: "1 jam",    3: "3 jam",       8: "8 jam"},
+    }
+    lang_fmts = fmts.get(lang, {})
+    if n in lang_fmts:
+        return lang_fmts[n]
+    # Generic fallback for other hour counts
+    suffixes = {"ru": "часов", "de": "Stunden", "it": "ore", "es": "horas",
+                "fr": "heures", "pt": "horas", "id": "jam",
+                "ja": "時間", "ko": "시간", "zh-Hans": "小时",
+                "ar": "ساعات"}
+    s = suffixes.get(lang, "Hours")
+    return f"{n} {s}"
+
+
+def _native_title(style: str, lang: str, params: dict, duration: str) -> str | None:
+    """Return a pre-researched native title for known style+lang combos.
+    Falls back to None → LLM translation used instead."""
+    lang_data = _NATIVE_TITLES.get(lang, {})
+    # Map binaural/theta solfeggio sub-styles
+    effective_style = style
+    if style == "solfeggio" and params.get("binaural_beat_hz"):
+        effective_style = "binaural"
+    style_data = lang_data.get(effective_style)
+    if not style_data:
+        return None
+    variants = style_data.get("long_variants", [])
+    if not variants:
+        return None
+    template = _rnd.choice(variants)
+    hz = params.get("hz", "")
+    template = template.replace("{hz}", str(int(hz)) if hz else "")
+    template = template.replace("{dur}", duration)
+    return template
+
+
+# ── LLM provider list — tried in order, skipped on permanent failure (403) ────
+#
+# Priority: Ollama (free, local, GPU when available) → Groq keys → Together.ai
+#   → Pollinations.ai (free, no auth, always works as last resort)
+#
+# On 403 (invalid/expired key) → mark provider dead for this session, skip
+# On 429 (rate limit) → wait and retry same provider
+# On timeout/5xx → fall through to next provider
+
+OLLAMA_URL   = "http://localhost:11434/api/generate"
+OLLAMA_MODEL = "qwen3:1.7b"   # 1.4GB — fast on GPU; slow but functional on CPU
+
 _GROQ_KEY_FILE = Path(__file__).resolve().parent.parent / "credentials" / "groq_api_keys.txt"
 GROQ_KEYS = [k.strip() for k in _GROQ_KEY_FILE.read_text().splitlines() if k.strip()] if _GROQ_KEY_FILE.exists() else []
-_groq_idx = 0
-GROQ_CALL_DELAY = 1.0  # seconds between Groq calls to stay within rate limits (~60 RPM / 3 keys)
+
+_TOGETHER_KEY_FILE = Path(__file__).resolve().parent.parent / "credentials" / "together_api_key.txt"
+TOGETHER_KEY = _TOGETHER_KEY_FILE.read_text().strip() if _TOGETHER_KEY_FILE.exists() else ""
+
+# Build provider list at import time
+_PROVIDERS: list[dict] = []
+_PROVIDERS.append({"name": "ollama",  "type": "ollama"})
+for i, k in enumerate(GROQ_KEYS):
+    _PROVIDERS.append({"name": f"groq[{i}]", "type": "openai_compat",
+                        "url": "https://api.groq.com/openai/v1/chat/completions",
+                        "model": "meta-llama/llama-4-maverick-17b-128e-instruct",
+                        "key": k, "ratelimit_wait": 65})
+if TOGETHER_KEY:
+    _PROVIDERS.append({"name": "together", "type": "openai_compat",
+                        "url": "https://api.together.xyz/v1/chat/completions",
+                        "model": "meta-llama/Llama-3.3-70B-Instruct-Turbo",
+                        "key": TOGETHER_KEY, "ratelimit_wait": 10})
+# Pollinations.ai — free, no auth, OpenAI-compatible endpoint; has per-IP rate limits
+_PROVIDERS.append({"name": "pollinations", "type": "openai_compat",
+                    "url": "https://text.pollinations.ai/openai",
+                    "model": "openai", "key": "", "ratelimit_wait": 20, "pre_delay": 3})
+
+_dead_providers: set[str] = set()   # 403 → skip for rest of session
+
+
+def _call_llm(system: str, user: str, max_tokens: int = 3000) -> str:
+    """Try providers in order. Skip dead ones. Return first successful response."""
+    import time as _t
+    import urllib.parse as _up
+
+    for prov in _PROVIDERS:
+        name = prov["name"]
+        if name in _dead_providers:
+            continue
+
+        # ── Ollama ────────────────────────────────────────────────────────────
+        if prov["type"] == "ollama":
+            try:
+                payload = json.dumps({
+                    "model": OLLAMA_MODEL,
+                    "prompt": system + "\n\n" + user,
+                    "stream": False, "think": False,
+                    "options": {"temperature": 0.3, "num_predict": max_tokens},
+                }).encode()
+                req = urllib.request.Request(
+                    OLLAMA_URL, data=payload,
+                    headers={"Content-Type": "application/json"}, method="POST",
+                )
+                with urllib.request.urlopen(req, timeout=8) as resp:
+                    data = json.loads(resp.read())
+                result = data.get("response", "").strip()
+                if result:
+                    return result
+            except (ConnectionRefusedError, TimeoutError):
+                _dead_providers.add(name)
+                print(f"    [{name}] not available (CPU-only or not running) — skipped for session")
+            except Exception as e:
+                print(f"    [{name}] {e.__class__.__name__} — trying next provider")
+            continue
+
+        # ── OpenAI-compatible (Groq, Together.ai, Pollinations) ───────────────
+        messages = [{"role": "system", "content": system}, {"role": "user", "content": user}]
+        payload = json.dumps({
+            "model": prov["model"],
+            "messages": messages,
+            "temperature": 0.3,
+            "max_tokens": max_tokens,
+        }).encode()
+        headers = {"Content-Type": "application/json"}
+        if prov["key"]:
+            headers["Authorization"] = f"Bearer {prov['key']}"
+        req = urllib.request.Request(prov["url"], data=payload, headers=headers, method="POST")
+        pre = prov.get("pre_delay", 0.5)
+        for attempt in range(4):
+            try:
+                _t.sleep(pre)
+                with urllib.request.urlopen(req, timeout=60) as resp:
+                    data = json.loads(resp.read())
+                return data["choices"][0]["message"]["content"].strip()
+            except urllib.error.HTTPError as e:
+                body = e.read().decode(errors="ignore")[:200]
+                if e.code == 403 or e.code == 401:
+                    _dead_providers.add(name)
+                    print(f"    [{name}] 403/401 (key expired?) — provider disabled for this session")
+                    break
+                elif e.code in (429, 402):
+                    w = prov.get("ratelimit_wait", 30) * (attempt + 1)
+                    print(f"    [{name}] {e.code} rate-limit, waiting {w}s...")
+                    _t.sleep(w)
+                else:
+                    print(f"    [{name}] HTTP {e.code}: {body[:80]} — trying next provider")
+                    break
+            except Exception as e:
+                if attempt < 2:
+                    print(f"    [{name}] {e.__class__.__name__} — retrying ({attempt+1}/3)...")
+                    _t.sleep(prov.get("ratelimit_wait", 5))
+                    continue
+                print(f"    [{name}] {e.__class__.__name__} — trying next provider")
+                break
+
+    raise RuntimeError(f"All providers failed: {[p['name'] for p in _PROVIDERS]}")
 
 # BCP-47 codes and display names for YouTube localizations
 LANG_MAP = {
@@ -165,8 +331,72 @@ def _composer_hint(lang: str) -> str:
     return f"Use standard transliterations for composer names: {examples}. "
 
 
+# Per-language natural-language guidance for meditation/wellness content (used in descriptions)
+_LANG_STYLE: dict[str, str] = {
+    "ru": (
+        "Write as a native Russian speaker would naturally search on YouTube. "
+        "Standard chakra terms: корневая чакра, сакральная чакра, солнечное сплетение, "
+        "сердечная чакра, горловая чакра, третий глаз, коронная чакра (NOT коронарная). "
+        "Solfeggio: частоты Солфеджио. Binaural: бинауральные ритмы. "
+        "Duration: use only whole hours — '• 1 час', '• 3 часа', '• 8 часов' (no minutes). "
+    ),
+    "ar": (
+        "Use Modern Standard Arabic (فصحى). "
+        "Duration: '• ساعة واحدة', '• 3 ساعات', '• 8 ساعات'. "
+    ),
+    "ja": (
+        "Write naturally in Japanese for YouTube search. "
+        "Duration: '• 1時間', '• 3時間'. "
+    ),
+    "ko": (
+        "Write naturally in Korean for YouTube search. "
+        "Duration: '• 1시간', '• 3시간'. "
+    ),
+    "zh-Hans": (
+        "Write in Simplified Chinese naturally for YouTube search. "
+        "Duration: '• 1小时', '• 3小时'. "
+    ),
+    "de": "Write naturally in German for YouTube. Duration format: '• 1 Stunde', '• 3 Stunden'. ",
+    "it": "Write naturally in Italian for YouTube. Duration: '• 1 ora', '• 3 ore'. ",
+    "es": "Write naturally in Spanish for YouTube. Duration: '• 1 hora', '• 3 horas'. ",
+    "fr": "Write naturally in French for YouTube. Duration: '• 1 heure', '• 3 heures'. ",
+    "pt": "Write naturally in Brazilian Portuguese for YouTube. Duration: '• 1 hora', '• 3 horas'. ",
+    "id": "Write naturally in Indonesian for YouTube. Duration: '• 1 jam', '• 3 jam'. ",
+}
+
+# Duration label format per language — used when rewriting adult titles structurally
+_LANG_DUR: dict[str, str] = {
+    "ru":      "• 1 час  /  • 3 часа  /  • 8 часов",
+    "ar":      "• ساعة واحدة  /  • 3 ساعات  /  • 8 ساعات",
+    "ja":      "• 1時間  /  • 3時間  /  • 8時間",
+    "ko":      "• 1시간  /  • 3시간  /  • 8시간",
+    "zh-Hans": "• 1小时  /  • 3小时  /  • 8小时",
+    "de":      "• 1 Stunde  /  • 3 Stunden  /  • 8 Stunden",
+    "it":      "• 1 ora  /  • 3 ore  /  • 8 ore",
+    "es":      "• 1 hora  /  • 3 horas  /  • 8 horas",
+    "fr":      "• 1 heure  /  • 3 heures  /  • 8 heures",
+    "pt":      "• 1 hora  /  • 3 horas  /  • 8 horas",
+    "id":      "• 1 jam  /  • 3 jam  /  • 8 jam",
+}
+
+# Suffix patterns to strip from titles before translation (channel name in title)
+_TITLE_STRIP_SUFFIXES = [
+    " | Sacred Drift", " | Happy Bear Kids", " | Calm Classics",
+    " | Classical Night Relax", " | @SacredDrift",
+]
+
+
+def _clean_title(text: str) -> str:
+    """Remove channel-name suffixes from title — we don't put channel name in translated titles."""
+    for s in _TITLE_STRIP_SUFFIXES:
+        if text.endswith(s):
+            text = text[: -len(s)].rstrip()
+    return text
+
+
 def translate_field(text: str, target_lang: str, field: str,
-                    api_key: str = None, channel_type: str = "kids") -> str:
+                    api_key: str = None, channel_type: str = "kids",
+                    meta: dict = None) -> str:
     lang_name = LANG_MAP[target_lang]
     lang_code = LANG_CODES.get(target_lang, target_lang)
     is_arabic = target_lang == "ar"
@@ -174,123 +404,92 @@ def translate_field(text: str, target_lang: str, field: str,
     composer_hint = _composer_hint(target_lang) if non_latin else (
         "Do not translate instrument names (Cello, Piano, Violin) or composer names. "
     )
+    lang_style = _LANG_STYLE.get(target_lang, "")
+
+    # For adult titles: use pre-researched native search terms when style is known
+    # This bypasses LLM entirely — native keywords are more accurate than translation
+    if field == "title" and channel_type == "adult" and meta:
+        style = meta.get("style") or meta.get("genre")
+        params = meta.get("params", {})
+        # Extract duration from the English title (everything after " • ")
+        dur_en = text.rsplit(" • ", 1)[-1] if " • " in text else ""
+        # Convert "3 Hours" → native format
+        native_dur = _native_duration(dur_en, target_lang)
+        if style and native_dur:
+            native = _native_title(style, target_lang, params, native_dur)
+            if native:
+                return native
+
+    # Strip channel name suffix from titles
+    if field == "title":
+        text = _clean_title(text)
+
+    # Brand-name protection — always added for both field types
+    brand_rule = (
+        "IMPORTANT: Never translate brand names — keep exactly as-is in English: "
+        "'Sacred Drift', 'Happy Bear Kids', 'Calm Classics'. "
+        "Never translate channel handles: @SacredDrift, @HappyBearKids1. "
+    )
 
     if field == "title":
         if channel_type == "adult":
+            dur_fmt = _LANG_DUR.get(target_lang, "")
             extra = (
-                "Keep under 100 chars. Keep emojis unchanged. "
+                f"IMPORTANT: Do NOT translate word-for-word. "
+                f"Instead, REWRITE this YouTube title in {lang_name} for maximum search appeal. "
+                f"Follow the same structure as the English original: "
+                f"[benefit or problem phrase] + [instrument or sound] + [emoji] • [duration]. "
+                f"Write exactly as a native {lang_name} YouTube creator would write it — "
+                f"using the keywords people actually search for in {lang_name}. "
+                + (f"Duration format: {dur_fmt}. " if dur_fmt else "")
+                + "Keep emojis unchanged. Keep under 100 characters. "
+                + brand_rule
                 + composer_hint
-                + ("Use Modern Standard Arabic (فصحى). " if is_arabic else "")
-                + "Return only the translated title."
+                + "Return ONLY the title, nothing else."
             )
         else:
             extra = (
                 "Keep under 100 chars. Keep emojis unchanged. "
-                + ("Use Modern Standard Arabic (فصحى). " if is_arabic else "")
-                + "Return only the translated title."
+                + brand_rule
+                + lang_style
+                + "Return only the translated title, nothing else."
             )
     else:
         if channel_type == "adult":
             extra = (
                 "Keep the same structure and emojis. "
+                + brand_rule
                 + composer_hint
                 + "Keep opus numbers (Op., No.) unchanged. "
                 + "Keep all hashtags in English unchanged at the end. "
-                + "Keep channel handles (e.g. @ClassicalNightRelax) unchanged. "
-                + ("Use Modern Standard Arabic (فصحى). " if is_arabic else "")
+                + "Keep channel handles unchanged. "
+                + lang_style
                 + "Return only the translated text."
             )
         else:
             extra = (
                 "Keep the same structure and emojis. "
-                "Keep hashtags in English unchanged at the end. "
-                "Keep channel handles unchanged. "
-                + ("Use Modern Standard Arabic (فصحى). " if is_arabic else "")
+                + brand_rule
+                + "Keep hashtags in English unchanged at the end. "
+                + "Keep channel handles unchanged. "
+                + lang_style
                 + "Return only the translated text."
             )
 
-    prompt = (
-        f"You are a professional English (en) to {lang_name} ({lang_code}) translator. {extra}"
-        f"\n\n\n{text}"
-    )
-    instruction = prompt.rsplit("\n\n\n", 1)[0]
-
-    # Try Ollama first (qwen3:8b with think=false — fast when loaded)
-    global _ollama_alive
-    if _ollama_alive:
-        try:
-            payload = json.dumps({
-                "model": OLLAMA_MODEL,
-                "prompt": prompt,
-                "stream": False,
-                "think": False,
-                "options": {"temperature": 0.1, "num_predict": 1500},
-            }).encode()
-            req = urllib.request.Request(
-                OLLAMA_URL, data=payload,
-                headers={"Content-Type": "application/json"}, method="POST",
-            )
-            with urllib.request.urlopen(req, timeout=OLLAMA_TIMEOUT) as resp:
-                data = json.loads(resp.read())
-            result = data.get("response", "").strip()
-            if result:
-                return _fix_composer_names(result, target_lang)
-            raise ValueError("empty response")
-        except Exception as ollama_err:
-            _ollama_alive = False
-            print(f"    Ollama unavailable ({ollama_err.__class__.__name__}), using Groq for this session...")
-
-    # Groq cloud (openai/gpt-oss-20b — reasoning model, high-quality translation)
-    groq_messages = [
-        {"role": "system", "content": instruction},
-        {"role": "user",   "content": text},
-    ]
-    import time as _t
-    # Up to 8 full key cycles; long sleep between cycles
-    wait_s = [2, 2, 65, 90, 90, 120, 120, 120]
-    for attempt in range(len(GROQ_KEYS) * 8):
-        groq_key = _next_groq_key()
-        payload = json.dumps({
-            "model": GROQ_MODEL,
-            "messages": groq_messages,
-            "temperature": 0.3,
-            "max_tokens": 3000,
-        }).encode()
-        req = urllib.request.Request(
-            GROQ_CHAT_URL,
-            data=payload,
-            headers={
-                "Authorization": f"Bearer {groq_key}",
-                "Content-Type": "application/json",
-                "User-Agent": "python-requests/2.31.0",
-            },
-            method="POST",
-        )
-        try:
-            _t.sleep(GROQ_CALL_DELAY)
-            with urllib.request.urlopen(req, timeout=60) as resp:
-                data = json.loads(resp.read())
-            return _fix_composer_names(data["choices"][0]["message"]["content"].strip(), target_lang)
-        except urllib.error.HTTPError as e:
-            body = e.read().decode(errors="ignore")[:200]
-            if e.code == 429:
-                cycle = attempt // len(GROQ_KEYS)
-                w = wait_s[min(cycle, len(wait_s) - 1)]
-                print(f"    429 rate-limit (key {attempt % len(GROQ_KEYS)+1}/{len(GROQ_KEYS)}, cycle {cycle+1}), waiting {w}s...")
-                _t.sleep(w)
-            else:
-                raise RuntimeError(f"Groq HTTP {e.code}: {body}") from e
-    raise RuntimeError("All Groq keys exhausted after 8 cycles")
+    instruction = f"You are a professional English (en) to {lang_name} ({lang_code}) translator specializing in meditation, relaxation and wellness content for YouTube. {extra}"
+    result = _call_llm(instruction, text, max_tokens=3000 if field == "description" else 200)
+    return _fix_composer_names(result, target_lang)
 
 
 def translate_meta(title: str, description: str, langs: list[str],
-                   api_key: str = None, channel_type: str = "kids") -> dict:
+                   api_key: str = None, channel_type: str = "kids",
+                   meta: dict = None) -> dict:
     """Return {lang_code: {title, description}} for all requested langs."""
     result = {}
     for lang in langs:
         print(f"  Translating → {lang} ({LANG_MAP[lang]})...")
-        t_title = translate_field(title, lang, "title", api_key, channel_type)
-        t_desc  = translate_field(description, lang, "description", api_key, channel_type)
+        t_title = translate_field(title, lang, "title", api_key, channel_type, meta=meta)
+        t_desc  = translate_field(description, lang, "description", api_key, channel_type, meta=meta)
         result[lang] = {"title": t_title, "description": t_desc}
         print(f"    Title: {t_title[:60]}...")
     return result
@@ -427,7 +626,8 @@ def process_one(video_id: str, title: str, description: str,
     print(f"\nVideo: {video_id}  [{channel} / {channel_type}]")
     print(f"Title: {title[:70]}")
 
-    localizations = translate_meta(title, description, langs, channel_type=channel_type)
+    meta_data = yaml.safe_load(meta_path.read_text()) if meta_path and meta_path.exists() else {}
+    localizations = translate_meta(title, description, langs, channel_type=channel_type, meta=meta_data)
     push_localizations(video_id, localizations, channel=channel, dry_run=dry_run)
 
     if meta_path and not dry_run:
@@ -455,9 +655,14 @@ def main():
     parser.add_argument("--description", help="Description override (only with --video-id)")
     parser.add_argument("--dry-run", action="store_true",
                         help="Show translations without updating YouTube")
+    parser.add_argument("--shorts-only", action="store_true",
+                        help="With --queue: process only is_short=true videos")
+    parser.add_argument("--force", action="store_true",
+                        help="Re-translate even if langs already in localized_langs (re-runs with improved prompts)")
     args = parser.parse_args()
 
     channel = args.channel
+    force   = args.force
     default_langs = CHANNEL_CONFIG[channel]["default_langs"]
     raw_langs = args.langs if args.langs else ",".join(default_langs)
     langs = [l.strip() for l in raw_langs.split(",") if l.strip() in LANG_MAP]
@@ -481,7 +686,7 @@ def main():
             print(f"Error: no youtube_id in {meta_path}")
             sys.exit(1)
         already = set(meta.get("localized_langs", []))
-        todo = [l for l in langs if l not in already]
+        todo = langs if force else [l for l in langs if l not in already]
         if not todo:
             print(f"All requested langs already localized: {langs}")
             return
@@ -491,10 +696,6 @@ def main():
     elif args.queue:
         queue_dir = CHANNEL_CONFIG[channel]["queue_dir"]
         uploaded_dir = ROOT / "uploaded"
-        # uploaded/ mixes all channels — filter by channel-specific signals:
-        # - sd: filename prefix meta_sd_* (Sacred Drift procedural videos)
-        # - id: made_for_kids=False AND NOT sd_ prefix (Calm Classics)
-        # - en: made_for_kids=True
         if channel == "sd":
             metas_queue    = find_queue_metas_with_id([queue_dir])
             metas_uploaded = [p for p in sorted(uploaded_dir.glob("meta_sd_*.yaml"))
@@ -507,13 +708,15 @@ def main():
             metas_queue    = find_queue_metas_with_id([queue_dir])
             metas_uploaded = find_queue_metas_with_id([uploaded_dir])
         metas = metas_queue + metas_uploaded
+        if args.shorts_only:
+            metas = [p for p in metas if load_meta(p).get("is_short")]
         print(f"Found {len(metas)} meta files with youtube_id "
               f"({len(metas_queue)} in {queue_dir.name}, {len(metas_uploaded)} in uploaded/) [{channel}]")
         ok = err = skip = 0
         for meta_path in metas:
             meta = load_meta(meta_path)
             already = set(meta.get("localized_langs", []))
-            todo = [l for l in langs if l not in already]
+            todo = langs if force else [l for l in langs if l not in already]
             if not todo:
                 skip += 1
                 continue
@@ -563,7 +766,7 @@ def main():
                 continue
 
             try:
-                new_locs = translate_meta(title, description, todo, channel_type=channel_type)
+                new_locs = translate_meta(title, description, todo, channel_type=channel_type, meta=meta)
                 existing_locs.update(new_locs)
                 meta["localizations"] = existing_locs
                 with open(meta_path, "w", encoding="utf-8") as f:

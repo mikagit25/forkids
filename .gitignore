@@ -17,3 +17,4 @@ __pycache__/
 .claude/
 remotion/public/backgrounds/
 remotion/public/music/
+.env

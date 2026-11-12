@@ -29,7 +29,7 @@ CHANNELS = {
     },
     "sd": {
         "token":      ROOT / "credentials" / "youtube_token_ar.json",
-        "channel_id": "UC43gnMYXiO9IAmB3gw12DSw",
+        "channel_id": "UCTAAc0Ih4PpwY9agi2tT8Gg",
         "queue":      ROOT / "sacred_drift" / "output" / "queue",
         "uploaded":   ROOT / "uploaded",
     },

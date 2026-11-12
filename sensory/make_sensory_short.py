@@ -149,18 +149,9 @@ def make_thumbnail(path: Path, character: str, label: str, seed: int):
     img.save(path, "PNG", optimize=True)
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--genre", choices=list(GENRE_LABEL), default=None)
-    ap.add_argument("--seed", type=int, default=None)
-    ap.add_argument("--queue-dir", default=str(QUEUE))
-    a = ap.parse_args()
-
-    seed = a.seed if a.seed is not None else int(datetime.datetime.now().timestamp()) % 100000
+def _make_one(seed: int, genre: str | None, q: Path) -> None:
     rnd = random.Random(seed)
-    genre = a.genre or rnd.choice(list(GENRE_LABEL))
-    q = Path(a.queue_dir)
-    q.mkdir(parents=True, exist_ok=True)
+    genre = genre or rnd.choice(list(GENRE_LABEL))
     today = f"{datetime.date.today():%Y%m%d}"
     stem = f"sensory_short_{genre}_{today}_{seed}"
 
@@ -219,6 +210,23 @@ def main():
 
     print(f"✅ {mp4}")
     print(f"   {meta['title']}")
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--genre", choices=list(GENRE_LABEL), default=None)
+    ap.add_argument("--seed", type=int, default=None)
+    ap.add_argument("--count", type=int, default=1, help="Number of shorts to generate")
+    ap.add_argument("--queue-dir", default=str(QUEUE))
+    a = ap.parse_args()
+
+    base_seed = a.seed if a.seed is not None else int(datetime.datetime.now().timestamp()) % 100000
+    q = Path(a.queue_dir)
+    q.mkdir(parents=True, exist_ok=True)
+
+    for i in range(a.count):
+        seed = base_seed + i * 9973  # deterministic but different seeds
+        _make_one(seed, a.genre if i == 0 else None, q)
 
 
 if __name__ == "__main__":

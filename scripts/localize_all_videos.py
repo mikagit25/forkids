@@ -20,9 +20,9 @@ OLLAMA_MODEL    = "qwen3:8b"
 OLLAMA_TIMEOUT  = 8    # seconds — circuit breaker after first timeout
 _ollama_alive   = True
 
-# Groq cloud — openai/gpt-oss-20b reasoning model (high quality)
+# Groq cloud — qwen/qwen3.8-27b (fast, high quality, higher rate limits)
 GROQ_CHAT_URL   = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_MODEL      = "openai/gpt-oss-20b"
+GROQ_MODEL      = "qwen/qwen3.8-27b"
 GROQ_CALL_DELAY = 1.0  # seconds between calls to stay within rate limits
 _GROQ_KEY_FILE  = Path(__file__).resolve().parent.parent / "credentials" / "groq_api_keys.txt"
 GROQ_KEYS = [k.strip() for k in _GROQ_KEY_FILE.read_text().splitlines() if k.strip()] if _GROQ_KEY_FILE.exists() else []

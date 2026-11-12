@@ -392,6 +392,43 @@ def search_cleveland(query: str, limit: int = 12) -> list[dict]:
             "page_url": c.get("url"), "download_url": img["url"], "license": "CC0 (Cleveland Museum of Art)",
             "credit": "Cleveland Museum of Art", "width": int(img.get("width") or 0), "height": int(img.get("height") or 0),
         })
+        if len(out) >= limit:
+            break
+    return out
+
+
+# ---------------------------------------------------------------- DPLA (Digital Public Library of America)
+def search_dpla(query: str, limit: int = 20) -> list[dict]:
+    key = os.environ.get("DPLA_API_KEY", "")
+    if not key:
+        return []
+    data = _get("https://api.dp.la/v2/items",
+                {"q": query, "api_key": key, "page_size": str(limit),
+                 "fields": "id,originalRecord,object,rights,isShownAt,dataProvider,sourceResource"}).json()
+    out = []
+    for doc in data.get("docs", []):
+        src = doc.get("sourceResource", {})
+        rights = " ".join(src.get("rights") or [])
+        if not license_ok(rights) and "no known copyright" not in rights.lower() \
+                and "public domain" not in rights.lower():
+            continue
+        url = doc.get("object") or ""
+        if not url or not url.startswith("http"):
+            continue
+        dates = src.get("date") or [{}]
+        date_str = dates[0].get("displayDate", "") if isinstance(dates[0], dict) else str(dates[0])
+        out.append({
+            "source": "dpla",
+            "id": f"dpla:{doc.get('id', '')}",
+            "title": (src.get("title") or [""])[0][:200] if isinstance(src.get("title"), list) else str(src.get("title", ""))[:200],
+            "description": "",
+            "date": date_str,
+            "page_url": doc.get("isShownAt") or "https://dp.la",
+            "download_url": url,
+            "license": rights[:100] or "Public domain",
+            "credit": f"{(doc.get('dataProvider') or ['DPLA'])[0]} via DPLA",
+            "width": 0, "height": 0,
+        })
     return out
 
 
@@ -428,9 +465,10 @@ def museum_object(ref: str) -> dict | None:
     return None
 
 
-SOURCES = {"commons": search_commons, "met": search_met, "aic": search_aic, "cleveland": search_cleveland, "smithsonian": search_smithsonian, "europeana": search_europeana,
-           "wellcome": search_wellcome, "loc": search_loc}
-DEFAULT_SOURCES = ("commons", "smithsonian", "europeana", "wellcome", "met", "aic", "cleveland", "loc")
+SOURCES = {"commons": search_commons, "met": search_met, "aic": search_aic, "cleveland": search_cleveland,
+           "smithsonian": search_smithsonian, "europeana": search_europeana,
+           "wellcome": search_wellcome, "loc": search_loc, "dpla": search_dpla}
+DEFAULT_SOURCES = ("commons", "smithsonian", "europeana", "wellcome", "met", "aic", "cleveland", "loc", "dpla")
 
 
 DISABLED: set[str] = set()

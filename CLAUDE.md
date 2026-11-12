@@ -14,7 +14,7 @@ GitHub: https://github.com/mikagit25/forkids
 | Канал | Тип | Хэндл | Channel ID | Токен | Очередь |
 |-------|-----|--------|------------|-------|---------|
 | **Happy Bear Kids** | Детский EN | @HappyBearKids1 | UCIOerrKr02oTAAk2_oOg0Xg | `credentials/youtube_token.json` | `output/queue/` |
-| **Sacred Drift** *(бывш. AR)* | Взрослый EN | @SacredDrift | UC43gnMYXiO9IAmB3gw12DSw | `credentials/youtube_token_ar.json` | `sacred_drift/output/queue/` |
+| **Sacred Drift** *(бывш. AR)* | Взрослый EN | @SacredDrift | UCTAAc0Ih4PpwY9agi2tT8Gg | `credentials/youtube_token_ar.json` | `sacred_drift/output/queue/` |
 | **Calm Classics** *(бывш. ID)* | Взрослый EN | @happybearkidsin | UCOozTZwjXgkfYiTAzSzePAA | `credentials/youtube_token_id.json` | `output/queue_id/` |
 
 > ⚠️ `youtube_token_ar.json` — это токен Sacred Drift (взрослый канал медитации), НЕ детский AR!  

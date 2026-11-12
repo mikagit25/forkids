@@ -6,3 +6,4 @@ episodes/*/build/
 episodes/*/contact_sheet.html
 episodes/*/audio/
 .env
+youtube_token.json

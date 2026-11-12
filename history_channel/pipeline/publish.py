@@ -161,7 +161,10 @@ def upload(ep_dir: Path, episode: dict, client_secret: str = "client_secret.json
     }
     vid = yt.videos().insert(part="snippet,status", body=body,
                              media_body=MediaFileUpload(str(b / f"{episode['slug']}.mp4"), resumable=True)).execute()["id"]
-    yt.thumbnails().set(videoId=vid, media_body=MediaFileUpload(str(b / "thumbnail.jpg"))).execute()
+    try:
+        yt.thumbnails().set(videoId=vid, media_body=MediaFileUpload(str(b / "thumbnail.jpg"))).execute()
+    except Exception as e:
+        print(f"   ! thumbnail upload skipped ({e.__class__.__name__}: {e}) — set manually in YouTube Studio")
     yt.captions().insert(part="snippet", body={"snippet": {"videoId": vid, "language": "en", "name": "English"}},
                          media_body=MediaFileUpload(str(b / "subtitles.en.srt"))).execute()
     print(f"uploaded as PRIVATE: https://youtu.be/{vid}  (review, then publish in YouTube Studio)")
