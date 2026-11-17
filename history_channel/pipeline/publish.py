@@ -152,6 +152,14 @@ def upload(ep_dir: Path, episode: dict, client_secret: str = "client_secret.json
             creds = InstalledAppFlow.from_client_secrets_file(client_secret, scopes).run_local_server(port=0)
         tok.write_text(creds.to_json())
     yt = build("youtube", "v3", credentials=creds)
+    # never upload to the wrong channel: the token must belong to youtube_channel_id from channel.yaml
+    # (until 11.2026 youtube_token.json here was a copy of the Sacred Drift token)
+    want = episode.get("youtube_channel_id")
+    me = yt.channels().list(part="snippet", mine=True).execute().get("items", [])
+    have = me[0]["id"] if me else None
+    if not want or have != want:
+        raise SystemExit(f"   !! upload stopped: token belongs to {have} "
+                         f"({me[0]['snippet']['title'] if me else '?'}), channel.yaml youtube_channel_id = {want}")
     b = ep_dir / "build"
     body = {
         "snippet": {"title": episode["title"][:100], "description": (b / "description.txt").read_text()[:5000],
