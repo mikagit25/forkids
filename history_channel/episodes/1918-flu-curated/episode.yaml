@@ -28,19 +28,12 @@ music:
 scenes:
   - id: cold-open
     montage: true          # fast cuts + one teaser photo from every chapter
+    speed: 1.0             # RULES.md: the hook is read a little faster than the body (0.93); keep it under 30 s
     narration: >
       In the autumn of 1918, a city threw a parade for two hundred thousand people. Within days, every hospital bed was full.
-      Healthy young soldiers felt fine at breakfast and were dead by nightfall. Nurses ran out of beds, doctors ran out of answers, and cities ran out of coffins.
-      On two islands in the Pacific, one governor closed the harbour and the other did not, and the difference was counted in thousands of lives.
-      And in a frozen grave in Alaska, the virus waited for almost eighty years.
-      Children even sang about it in the street. I had a little bird, its name was Enza. I opened the window, and in-flew-Enza.
-      It infected around five hundred million people, one in three humans alive, and killed at least fifty million.
-      This is the story of the 1918 influenza pandemic, told through the photographs and documents it left behind.
-    quote:
-      text: "I had a little bird,\nIts name was Enza.\nI opened the window,\nAnd in-flu-enza."
-      source: "Children's skipping rhyme, United States, 1918"
-      match: "I had a little bird"
-      sentences: 2           # the rhyme is read as two sentences
+      Healthy young soldiers felt fine at breakfast and were dead by nightfall.
+      Two islands in the Pacific made two different decisions, and the difference was counted in thousands of lives.
+      In the end, one in three people alive caught it, and at least fifty million died.
     images:
       - {file: "curid:15677879"}
       - {file: "curid:109932599"}
@@ -62,9 +55,9 @@ scenes:
       - {file: "curid:25513204", colorize: true}
       - {file: "curid:108658111"}
       - {file: "curid:95964964"}
-      - {file: "curid:33536385"}
+      - {file: "curid:33536385", zoom: [2.6, 2.6], pan: [[0.27, 0.5], [0.73, 0.5]]}   # very wide panorama of the camp: slow pan along it instead of a thin strip
       - {file: "curid:80764806"}
-      - {file: "curid:62438308"}
+      - {file: "curid:62438308", zoom: [1.3, 1.36], frame: [0.5, 0.55]}   # crop away the scanner colour bar and frame
       - {file: "curid:31602643"}
 
   - id: name
@@ -109,8 +102,8 @@ scenes:
           - [-13.23, 8.48, "Freetown, Sierra Leone"]
           - [-71.06, 42.36, "Boston, USA"]
     images:
-      - {file: "curid:98404173"}
       - {file: "curid:95962027"}
+      - {file: "curid:98404173"}
       - {file: "curid:88235885"}
       - {file: "curid:6213331"}
       - {file: "curid:68050116"}
@@ -130,10 +123,16 @@ scenes:
       More than twelve thousand Philadelphians died.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "200,000", text: "people packed the parade route", match: "More than two hundred thousand people"}
+    candidates: ["Liberty Loan parade Philadelphia 1918", "Philadelphia Navy Yard 1918", "Broad Street Philadelphia 1918", "influenza coffins 1918", "Philadelphia 1918 street crowd"]   # 16.11: more photos, no repeats
     images:
       - {file: "curid:91404830"}
+      - {file: "curid:67442462"}     # marines at League Island Navy Yard, Philadelphia - "sailors at the navy yard"
+      - {file: "curid:62573795", crop: [0.28, 0.07, 0.945, 0.83]}   # Liberty Loan float, Philadelphia (NARA card -> photo only)
+      - {file: "curid:62582415", crop: [0.29, 0.06, 0.95, 0.78]}   # Liberty Loan parade, Philadelphia (first loan, 1917: atmosphere)
+      - {file: "curid:62614892", crop: [0.28, 0.06, 0.97, 0.80]}   # Philadelphia crowd packed in the street, 1917-18
+      - {file: "curid:47175240"}     # Broad Street Station, Philadelphia (city of the time)
       - {file: "curid:92542818"}
-      - {file: "curid:104910096", rotate: -90}   # the archive scan is sideways; this is a vertical photo
+      - {file: "curid:104910096", rotate: -90}   # sideways scan; checked 16.11 by eye: -90 = upright (buildings at top-right, NAVY LEAGUE sign readable). +90 was upside down
       - {file: "curid:108658107"}
 
   - id: nurses
@@ -145,12 +144,20 @@ scenes:
       At the height of the crisis, anyone who had completed a single Red Cross nursing course could be sent to the wards.
       Thousands of nurses fell ill. Hundreds died. The army decided that nurses who died of influenza, even those who never left the country, had died in the line of duty.
       The crisis also cracked an old barrier. The Army Nurse Corps had refused to employ Black nurses. In the final months of 1918, a handful were finally admitted, among them Aileen Cole, who had spent the epidemic nursing miners in West Virginia.
+    candidates: ["Red Cross nurses 1918 influenza", "Army Nurse Corps 1918", "Aileen Cole Stewart", "Red Cross nursing appeal 1918 poster", "student nurses 1918", "emergency hospital 1918 influenza nurses"]   # 16.11: more photos, no repeats
     images:
       - {file: "curid:88516049"}
       - {file: "curid:6652749"}
+      - {file: "smithsonian:CHSDM-163439_01"}   # Red Cross War Fund poster "Hold up your end!" - the national appeal
+      - {file: "smithsonian:NMAH-AHB550298"}    # Red Cross poster
+      - {file: "curid:62713294", crop: [0.36, 0.07, 0.95, 0.85]}   # Vassar: call for war nurses answered (training)
+      - {file: "curid:62621733", crop: [0.38, 0.05, 0.92, 0.75]}   # Walter Reed: training war nurses
       - {file: "curid:6645133"}
       - {file: "curid:6648648"}
       - {file: "curid:88235393"}
+      - {file: "curid:62613105", crop: [0.36, 0.07, 0.96, 0.70]}   # volunteer nurses, Red Cross emergency hospital, influenza 1918
+      - {file: "curid:62582689", crop: [0.35, 0.08, 0.97, 0.62]}   # nurses at a Red Cross emergency hospital, influenza 1918
+      - {file: "curid:39632120"}     # medical services on the home front
       - {file: "curid:88516078", colorize: true}
 
   - id: who-it-killed
@@ -162,11 +169,17 @@ scenes:
       Another is that older people had been exposed to a similar virus decades earlier, and kept some protection.
       Whatever the reason, the effect was staggering. Families lost both parents in a single week. Orphanages filled.
       In the United States, life expectancy fell by more than ten years in a single year, and October 1918 became the deadliest month in American history.
+    candidates: ["orphans 1918 influenza", "funeral 1918 influenza", "orphanage 1910s children", "young soldiers 1918 hospital pneumonia", "family mourning 1918", "influenza victims grave 1918"]   # 16.11: more photos, no repeats
     images:
       - {file: "curid:28908990"}
       - {file: "curid:88523612"}
-      - {query: "1918 influenza victims", count: 1}
-      - {query: "1918 influenza soldiers hospital", count: 2}
+      - {file: "curid:6648032"}
+      - {file: "curid:62654215", crop: [0.43, 0.14, 0.93, 0.66]}   # graves of U.S. soldiers who died of influenza
+      - {file: "curid:62609220", crop: [0.40, 0.14, 0.92, 0.62]}   # military funeral 1918
+      - {file: "curid:62646009", crop: [0.27, 0.03, 0.97, 0.98]}   # funeral, US Army at Archangel 1918-19
+      - {file: "curid:34370957"}     # children at a meal table, before 1925 - "Orphanages filled" (atmosphere)
+      - {file: "curid:62723586", crop: [0.325, 0.095, 0.92, 0.765], rotate: -90}   # NARA card: photo only, it lies on its side (heads to the right) -> -90; checked 17.11
+      - {file: "curid:108658129"}
 
   - id: masks
     chapter: "VII. Masks and Rebels"
@@ -175,10 +188,17 @@ scenes:
       Doctors in 1918 had no vaccine against influenza, and no antibiotics to treat the bacterial pneumonia that killed so many patients.
       They did not even know that the disease was caused by a virus. That would not be discovered until the 1930s.
       So cities fought back with the only tools they had: closing schools, churches and theatres, banning public gatherings, and ordering people to wear gauze masks.
+      Children turned the fear into a skipping rhyme. I had a little bird, its name was Enza. I opened the window, and in-flew-Enza.
       San Francisco went furthest. From the twenty-fifth of October 1918, everyone in public had to wear a mask. People who refused could be fined or jailed. Even the mayor and the city's health officer were fined, after being caught without masks at a boxing match.
       The order was lifted in November. When cases rose again, it returned in January 1919, and this time many residents had had enough.
       An Anti-Mask League was formed, and around four and a half thousand people came to its first public meeting. A week later, the order was lifted for good.
       Studies of the pandemic later showed that cities which acted early and kept their measures in place, like St. Louis, saw far lower peaks of death than cities that hesitated.
+    quote:
+      text: "I had a little bird,\nIts name was Enza.\nI opened the window,\nAnd in-flu-enza."
+      source: "Children's skipping rhyme, United States, 1918"
+      match: "I had a little bird"
+      sentences: 2           # the rhyme is read as two sentences
+    candidates: ["influenza mask 1918", "San Francisco 1918 masks", "influenza 1918 theatre closed", "gauze mask Red Cross 1918", "Market Street San Francisco 1918", "influenza ordinance 1918 notice", "St. Louis 1918 influenza", "Anti-Mask League"]   # 16.11: more photos, no repeats
     images:
       - {file: "curid:88467690"}
       - {file: "curid:98981971"}
@@ -213,6 +233,7 @@ scenes:
         points:
           - [-171.76, -13.83, "Apia, Western Samoa"]
           - [-170.70, -14.28, "Pago Pago, American Samoa"]
+    candidates: ["Apia Samoa 1910s", "Western Samoa New Zealand administration 1918", "Pago Pago naval station", "Fita Fita guard American Samoa", "John Martin Poyer governor", "Samoan village fale", "Tutuila 1910s", "SS Talune"]   # 16.11: more photos, no repeats
     images:
       # newspapers of the time (Papers Past, out of copyright), shown when the narrator reaches them
       - {paperspast: "LT19181122.2.57", areas: [1, 2], paper: "Lyttelton Times", date: "1918-11-22", match: "a New Zealand newspaper reported"}
@@ -224,7 +245,7 @@ scenes:
       - {file: "curid:16928912"}
       - {file: "curid:16834536"}
       - {file: "curid:97703694"}
-      - {file: "curid:144925497"}
+      - {file: "curid:144925497", zoom: [2.0, 2.05], pan: [[0.25, 0.55], [0.27, 0.52]]}   # stereograph: show only the left half
 
   - id: world
     chapter: "IX. Around the World"
@@ -234,10 +255,11 @@ scenes:
       Historians estimate that at least twelve million Indians died, and possibly far more. That may be a quarter or more of all the deaths in the world.
       In Brazil, the virus did not spare the powerful. Rodrigues Alves, elected president in 1918, fell ill and died in January 1919, before he could take office.
       From the Arctic to South Africa, from Brazil to China, the pattern repeated. Almost no inhabited place on Earth escaped.
+    candidates: ["Bombay 1918", "Indian railway station 1910s", "India famine 1918", "Rodrigues Alves", "Rio de Janeiro 1918 gripe espanhola", "influenza 1918 South Africa", "Japan influenza 1918 masks", "Cape Town 1918"]   # 16.11: more photos, no repeats
     images:
       - {file: "curid:123691817"}
       - {file: "curid:130482342"}
-      - {file: "curid:131698417"}
+      - {file: "curid:131698417", zoom: [1.8, 1.85], pan: [[0.33, 0.47], [0.67, 0.47]]}   # panorama in an open book: pan along the harbour
       - {file: "curid:5121071"}
       - {file: "curid:5122452"}
       - {file: "curid:2953443"}
@@ -262,13 +284,14 @@ scenes:
         points:
           - [-166.48, 64.43, "Nome"]
           - [-166.08, 65.33, "Brevig Mission"]
+    candidates: ["Brevig Mission Alaska", "Teller Alaska 1918", "Nome Alaska 1918", "Johan Hultin", "Inupiat village 1910s Alaska"]   # 16.11: more photos, no repeats
     images:
-      - {file: "curid:159119438"}
-      - {file: "curid:44326448"}
-      - {file: "curid:12436436"}
+      - {file: "curid:12436436"}     # Teller 1908, the nearest settlement
+      - {file: "curid:161244690"}    # Seward Peninsula map
       - {file: "curid:80192562"}
-      - {file: "curid:161244690"}
-      - {file: "curid:19050774"}
+      - {file: "curid:159119438"}    # coast near Brevig Mission, 2015 - when the story reaches Hultin's return
+      - {file: "curid:44326448"}     # Teller today
+      - {file: "curid:19050774"}     # permafrost
 
   - id: resurrection
     chapter: "XI. Bringing It Back"
@@ -280,10 +303,22 @@ scenes:
       What he found explained a great deal. Some infected mice died within three days. Four days after infection, their lungs held thirty-nine thousand times more virus than mice infected with a comparison strain.
       When he swapped out individual genes, the virus became far less deadly. It was the combination of all eight genes together that made the 1918 virus so exceptionally virulent.
       For the first time since 1918, the virus existed again, so that researchers could finally ask what made it so lethal, and how to recognise the next one before it spreads.
+    candidates: ["Taubenberger influenza", "Terrence Tumpey", "CDC laboratory biosafety", "influenza virus electron micrograph", "Armed Forces Institute of Pathology", "Centers for Disease Control Atlanta", "laboratory mice influenza research", "reconstructed 1918 influenza virus"]   # 16.11: more photos, no repeats
+    era: [1990, 2026]      # candidate search: this scene is about 1997-2005
     images:
-      - {file: "curid:1314479"}
-      - {file: "curid:593472"}
+      - {file: "curid:88468474"}     # Jeffery Taubenberger and Ann Reid
+      - {file: "curid:111367027"}    # Armed Forces Institute of Pathology, where the 1918 tissue samples were kept (1964)
+      - {file: "curid:26840361"}     # CDC headquarters, Atlanta
+      - {file: "curid:1314479"}      # Terrence Tumpey at work, 2005
+      - {file: "curid:37849721"}     # CDC maximum containment laboratory
+      - {file: "curid:37130747"}     # sealed laboratory door
+      - {file: "curid:37145602"}     # positive-pressure suit
+      - {file: "curid:1983300"}      # oseltamivir (Tamiflu) - "an antiviral drug every day"
+      - {file: "curid:27399728"}     # laboratory mice
+      - {file: "curid:20066404"}     # growing influenza virus in eggs, CDC
+      - {file: "curid:593472"}       # the reconstructed 1918 virus
       - {file: "curid:82983798"}
+      - {file: "curid:180237727"}    # influenza A (H1N1) today
 
   - id: closing
     chapter: "Epilogue"
@@ -293,9 +328,13 @@ scenes:
       And they came back into focus every time a new virus began to spread.
       The children who sang about a little bird named Enza grew up, and many of them never forgot why.
       If you enjoyed this story from the archives, subscribe for more forgotten chapters of medical history.
+    candidates: ["Armistice Day 1918 celebration crowd", "armistice 1918 New York celebration", "influenza 1918 cemetery grave", "St. Louis 1918 Red Cross", "children 1918 street", "1918 influenza memorial"]   # 16.11: more photos, no repeats
     images:
       - {file: "curid:1240267"}
+      - {file: "curid:15998536"}     # crowd at Times Square, peace rumour, November 1918
       - {file: "curid:27680046"}
+      - {file: "curid:41533199"}     # Armistice Day, Glen Innes, Australia
+      - {file: "curid:173056594"}    # St. Louis Red Cross card, 1918
       - {file: "curid:30885698"}
 
 thumbnail:

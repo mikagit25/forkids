@@ -13,6 +13,7 @@ import hashlib
 import html
 import io
 import json
+import time
 from pathlib import Path
 
 import numpy as np
@@ -31,8 +32,16 @@ def _download(c: dict, media: Path) -> Path | None:
         return dest
     for url in [c["download_url"], *c.get("download_fallbacks", [])]:
         try:
-            r = SESSION.get(url, timeout=90)
+            for attempt in range(5):
+                time.sleep(1.5)                     # be polite: upload.wikimedia.org rate-limits bursts (HTTP 429)
+                r = SESSION.get(url, timeout=90)
+                if r.status_code != 429:
+                    break
+                wait = min(int(r.headers.get("retry-after", 60) or 60), 120) * (attempt + 1)
+                print(f"   … rate-limited (429), waiting {wait}s and retrying")
+                time.sleep(wait)
             if r.status_code != 200:
+                print(f"   ! HTTP {r.status_code} for {url[:90]}")
                 continue
             im = Image.open(io.BytesIO(r.content))
             im.load()
@@ -80,6 +89,7 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
     rel = select.Relevance()
     seen: set[str] = set()
     hashes: list = []
+    missing: list = []     # hand-picked refs that could not be fetched -> loud summary at the end
 
     for sid, items in old.get("scenes", {}).items():
         for it in items:
@@ -89,12 +99,21 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
     for si, scene in enumerate(episode["scenes"]):
         sid = scene["id"]
         _scale_counts(scene, later_chapters(si))
-        sig = hashlib.md5(json.dumps(scene.get("images", []), sort_keys=True).encode()).hexdigest()[:12]
+        # framing keys (frame/zoom/pan/detail) only matter to render: changing them must not re-download
+        sig_imgs = [{k: v for k, v in q.items() if k not in ("frame", "zoom", "pan", "detail")}
+                    for q in scene.get("images", []) or []]
+        sig = hashlib.md5(json.dumps(sig_imgs, sort_keys=True).encode()).hexdigest()[:12]
         manifest.setdefault("sig", {})[sid] = sig
         unchanged = old.get("sig", {}).get(sid, sig) == sig   # manifests from before this check count as unchanged
         want_rot = sum(1 for q in scene.get("images", []) if q.get("rotate"))
         have_rot = sum(1 for i in old.get("scenes", {}).get(sid, []) if i.get("rotate"))
         unchanged = unchanged and want_rot == have_rot
+        # every hand-picked photo / clipping in the script must already be in the manifest, otherwise fetch again
+        want_refs = sum(1 for q in scene.get("images", []) if q.get("file") or q.get("newspaper") or q.get("paperspast"))
+        have_refs = sum(1 for i in old.get("scenes", {}).get(sid, []) if i.get("picked") or i.get("source") == "newspaper")
+        if want_refs > have_refs:
+            print(f"[{sid}] only {have_refs}/{want_refs} picked photos downloaded -> fetching this scene again")
+            unchanged = False
         if not unchanged:
             print(f"[{sid}] images changed in episode.yaml -> fetching this scene again")
         if unchanged and sid in old.get("scenes", {}) and all((ep_dir / i["file"]).exists() for i in old["scenes"][sid]):
@@ -130,14 +149,21 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
             else:   # smithsonian:, europeana:, wellcome:, loc:, commons: ... picked from a candidate sheet
                 c = _from_candidates(ep_dir, ref)
             if not c:
+                print(f"   !! {ref}: not found / licence not allowed")
+                missing.append((sid, ref, "not found"))
                 continue
             path = _download(c, media)
             if not path:
+                print(f"   !! {ref}: download failed")
+                missing.append((sid, ref, "download failed"))
                 continue
+            if q.get("crop"):     # [x0, y0, x1, y1] fractions: e.g. the photo inside an archive card
+                path = _cropped(path, q["crop"])
+                c["crop"] = list(q["crop"])
             if q.get("rotate"):
                 path = _rotated(path, int(q["rotate"]))
                 c["rotate"] = int(q["rotate"])
-            c.update(file=str(path.relative_to(ep_dir)), use=True, query=q.get("note", q["file"]),
+            c.update(file=str(path.relative_to(ep_dir)), use=True, query=q.get("note", q["file"]), ref=q["file"],
                      colorize=bool(q.get("colorize")), picked=True, score=1.0)
             if q.get("match"):
                 c["match"] = q["match"]
@@ -198,6 +224,10 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
     write_contact_sheet(ep_dir, episode, manifest)
     n = sum(i["use"] for v in manifest["scenes"].values() for i in v)
     print(f"\nmanifest: {n} images selected. Review: {ep_dir / 'contact_sheet.html'}")
+    if missing:
+        print(f"\n!! {len(missing)} hand-picked photos are MISSING (replace them in episode.yaml before rendering):")
+        for sid, ref, why in missing:
+            print(f"   {sid}: {ref} ({why})")
     return manifest
 
 
@@ -222,8 +252,20 @@ def _from_candidates(ep_dir: Path, ref: str) -> dict | None:
     return rec
 
 
+def _cropped(path: Path, box) -> Path:
+    """crop: [x0, y0, x1, y1] as fractions of the original. Cached as a separate file; check it by eye."""
+    tag = "_".join(f"{int(round(v * 1000)):03d}" for v in box)
+    out = path.with_name(f"{path.stem}_c{tag}.jpg")
+    if not out.exists():
+        with Image.open(path) as im:
+            w, h = im.size
+            im.convert("RGB").crop((int(box[0] * w), int(box[1] * h), int(box[2] * w), int(box[3] * h))).save(out, "JPEG", quality=92)
+    return out
+
+
 def _rotated(path: Path, deg: int) -> Path:
-    """rotate: 90 = turn clockwise, -90 = counter-clockwise, 180 = upside down. Cached as a separate file."""
+    """rotate: 90 = turn clockwise, -90 = counter-clockwise, 180 = upside down. Cached as a separate file.
+    Check the result by eye (Read the *_r<deg>.jpg file): text and people must be upright."""
     out = path.with_name(f"{path.stem}_r{deg % 360}.jpg")
     if not out.exists():
         with Image.open(path) as im:

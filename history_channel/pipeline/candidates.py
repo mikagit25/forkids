@@ -81,7 +81,8 @@ def _search(source, query):
 def scene_candidates(scene: dict, episode: dict, seen_ids: set) -> list[dict]:
     queries = [q["query"] for q in scene.get("images", []) if q.get("query")]
     queries += scene.get("candidates", []) or []
-    era = tuple(episode["era"]) if episode.get("era") else None
+    # a scene about later events (e.g. a 2005 lab) can set its own `era: [1990, 2026]`
+    era = tuple(scene.get("era") or episode.get("era") or ()) or None
     jobs = [(s, q) for q in queries for s in DEFAULT_SOURCES]
     out = []
     with ThreadPoolExecutor(max_workers=4) as ex:   # one query per archive at a time, politely

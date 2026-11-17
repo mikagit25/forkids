@@ -9,6 +9,7 @@
   python run.py episodes/1918-flu all        # fetch, voice, render, publish
   python run.py episodes/1918-flu candidates # numbered contact sheets from all archives, for picking by eye
   python run.py episodes/1918-flu research   # newspaper headlines of the time -> research/newspapers.md
+  python run.py episodes/1918-flu framing    # BEFORE render: how each photo is cropped/moved -> build/framing/
   python run.py episodes/1918-flu review     # contact sheets of all photos for review (episodes/<ep>/review/)
   python run.py episodes/1918-flu upload     # upload as PRIVATE (needs client_secret.json)
 """
@@ -17,7 +18,7 @@ from pathlib import Path
 
 import yaml
 
-from pipeline import candidates, fetch, publish, render, research, review, tts
+from pipeline import candidates, fetch, framing, publish, render, research, review, tts
 
 
 def main():
@@ -38,7 +39,8 @@ def main():
         elif step == "voice":
             tts.voice_episode(ep_dir, episode)
         elif step in ("render", "preview"):
-            render.render(ep_dir, episode, preview=step == "preview", parallax="--no-parallax" not in sys.argv)
+            render.render(ep_dir, episode, preview=step == "preview", parallax="--no-parallax" not in sys.argv,
+                          allow_short="--allow-short" in sys.argv)
         elif step == "publish":
             publish.thumbnail(ep_dir, episode)
             publish.description(ep_dir, episode)
@@ -48,6 +50,8 @@ def main():
             break
         elif step == "research":
             research.research(ep_dir, episode)
+        elif step == "framing":
+            framing.framing_sheets(ep_dir, episode)
         elif step == "review":
             review.review_pack(ep_dir, episode)
         elif step == "upload":

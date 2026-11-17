@@ -260,35 +260,79 @@ SHOT_MAX = 10.0
 MONTAGE_SHOT = 2.6  # cold-open montage cut length
 
 
-def _photo_shots(imgs, t0, t1, state, target=SHOT_TARGET, lo=SHOT_MIN, hi=SHOT_MAX):
-    """Fill [t0, t1] with photos without ever showing the same framing twice in a scene.
+def _photo_shots(t0, t1, state, n):
+    """Fill [t0, t1] with the scene's photos, each shown ONCE, in script order.
 
-    state["queue"]: photos not shown yet in this scene; state["details"]: photos that may get one
-    close-up "detail" shot. If the scene still runs out of pictures, shots simply last longer.
+    No automatic close-ups and no repeats (user review 16.11: auto "most detailed region" crops showed
+    rafters, a headless king, a side table). A close-up exists only if episode.yaml asks for it with
+    `detail: [x, y, zoom]`; it is queued right after its wide shot as its own entry.
+    `n` comes from _allocate (photos spread over the gaps between cards/maps by their length).
     """
     dur = t1 - t0
-    if dur <= 0.05:
+    if dur <= 0.05 or n <= 0:
         return []
-    n = max(1, min(round(dur / target), int(dur // lo)))
-    avail = len(state["queue"]) + len(state["details"])
-    if n > avail:                       # not enough fresh pictures: hold each one longer, up to `hi`
-        n = max(avail, int(np.ceil(dur / hi)), 1)
-    out, last = [], state.get("last")
+    out = []
     for k in range(n):
         if state["queue"]:
-            it, detail = state["queue"].pop(0), False
-        elif state["details"]:
-            # never put a detail right after its own wide shot
-            j = next((i for i, x in enumerate(state["details"]) if x["id"] != last), 0)
-            it, detail = state["details"].pop(j), True
-        else:
-            it, detail = state["all"][k % len(state["all"])], True
+            it, det = state["queue"].pop(0)
+        else:   # nothing left at all: keep the last picture (flagged above, render will stop)
+            it, det = state["last_item"]
         a, b = t0 + k * dur / n, t0 + (k + 1) * dur / n
-        out.append(Shot(a, b, "photo", item=it, colorize=bool(it.get("colorize")) and not detail, detail=detail,
-                        credit=credit_line(it), seed=(_seed(it["id"]) + (7 if detail else 0)) & 0xffff))
-        last = it["id"]
-    state["last"] = last
+        out.append(Shot(a, b, "photo", item=it, colorize=bool(it.get("colorize")) and det is None,
+                        detail=det is not None, focus=tuple(det) if det else None,
+                        credit=credit_line(it), seed=(_seed(it["id"]) + (7 if det else 0)) & 0xffff))
+        state["last_item"] = (it, det)
     return out
+
+
+def _allocate(gaps, avail, target, lo, hi):
+    """How many photos go into each gap. Wants ~dur/target each; with fewer photos than wanted they are
+    spread by gap length (largest remainder). Returns (counts, shortfall) - shortfall > 0 means some
+    photo would stay longer than `hi` seconds."""
+    want = [max(1, min(round(d / target), int(d // lo) or 1)) if d > 0.05 else 0 for d in gaps]
+    if sum(want) <= avail:
+        return want, 0
+    tot = sum(d for d in gaps if d > 0.05) or 1
+    raw = [avail * d / tot if d > 0.05 else 0 for d in gaps]
+    cnt = [max(1, int(r)) if d > 0.05 else 0 for r, d in zip(raw, gaps)]
+    for i in sorted(range(len(gaps)), key=lambda i: -(raw[i] - int(raw[i]))):
+        if sum(cnt) >= avail:
+            break
+        if gaps[i] > 0.05:
+            cnt[i] += 1
+    need = sum(int(np.ceil(d / hi)) for d in gaps if d > 0.05)
+    return cnt, max(0, need - avail)
+
+
+def _framing(scene: dict) -> dict:
+    """Hand-set framing from episode.yaml, keyed by image ref: frame / zoom / pan / detail."""
+    out = {}
+    for q in scene.get("images", []) or []:
+        ref = q.get("file")
+        if ref and any(k in q for k in ("frame", "zoom", "pan", "detail")):
+            out[ref] = {k: q[k] for k in ("frame", "zoom", "pan", "detail") if k in q}
+    return out
+
+
+def _attach_framing(it: dict, framing: dict) -> dict:
+    """Manifest ids look like commons:N while the script says curid:N -> match by ref, then by number."""
+    for ref, fr in framing.items():
+        if ref in (it.get("ref"), it.get("query")) or ref.split(":")[-1] == str(it["id"]).split(":")[-1]:
+            return {**it, **fr}
+    return it
+
+
+def _queue(items):
+    """Wide shot of every photo, plus its explicit close-up(s) right after it."""
+    q = []
+    for it in items:
+        q.append((it, None))
+        dets = it.get("detail")
+        if dets:
+            dets = [dets] if isinstance(dets[0], (int, float)) else dets
+            for d in dets:
+                q.append((it, (float(d[0]), float(d[1]), float(d[2]) if len(d) > 2 else 1.8)))
+    return q
 
 
 def _overlay_intervals(scene, timings, dur, timed_photos=()):
@@ -335,6 +379,7 @@ def _overlay_intervals(scene, timings, dur, timed_photos=()):
 
 def build_timeline(episode: dict, manifest: dict, timings: dict):
     shots, audio_marks, chapters = [], [], []
+    shortfalls = build_timeline.shortfalls = []   # (scene, seconds, photos, photos wanted) -> render refuses
     t = 0.0
     used = {sc["id"]: [i for i in manifest["scenes"].get(sc["id"], []) if i["use"]] for sc in episode["scenes"]}
     for idx, scene in enumerate(episode["scenes"]):
@@ -355,7 +400,8 @@ def build_timeline(episode: dict, manifest: dict, timings: dict):
         audio_marks.append((t, sid))
 
         montage = bool(scene.get("montage"))
-        pool = list(imgs)
+        framing = _framing(scene)
+        pool = [_attach_framing(i, framing) for i in imgs]
         if montage:   # cold open: this scene's photos plus the strongest photo of every later chapter
             for later in episode["scenes"][idx + 1:]:
                 for it in used[later["id"]][:1 if later.get("chapter") else 0]:
@@ -363,18 +409,25 @@ def build_timeline(episode: dict, manifest: dict, timings: dict):
                         pool.append(it)
         timed = [it for it in pool if it.get("match")]
         pool = [it for it in pool if not it.get("match")] or list(timed)
-        state = {"queue": list(pool), "details": [] if montage else list(pool), "all": pool}
-        kw = dict(target=MONTAGE_SHOT, lo=2.0, hi=4.0) if montage else {}
-        cur = 0.0
-        for a, b, kind, c in _overlay_intervals(scene, timings[sid], dur, timed):
-            shots += _photo_shots(pool, t + cur, t + a, state, **kw)
+        state = {"queue": _queue(pool)}
+        overlays = _overlay_intervals(scene, timings[sid], dur, timed)
+        edges = [0.0] + [x for a, b, _, _ in overlays for x in (a, b)] + [dur]
+        gaps = [max(0.0, edges[2 * i + 1] - edges[2 * i]) for i in range(len(overlays) + 1)]
+        target, lo, hi = (MONTAGE_SHOT, 2.0, 4.0) if montage else (SHOT_TARGET, SHOT_MIN, SHOT_MAX)
+        counts, short = _allocate(gaps, len(state["queue"]), target, lo, hi)
+        if short:
+            shortfalls.append((sid, round(sum(gaps), 1), len(state["queue"]),
+                               sum(max(1, round(g / target)) for g in gaps if g > 0.05)))
+        for i in range(len(overlays) + 1):
+            shots += _photo_shots(t + edges[2 * i], t + edges[2 * i + 1], state, counts[i])
+            if i == len(overlays):
+                break
+            a, b, kind, c = overlays[i]
             if kind == "photo":
                 shots.append(Shot(t + a, t + b, "photo", item=c, colorize=bool(c.get("colorize")), credit=credit_line(c),
                                   seed=_seed(c["id"])))
             else:
                 shots.append(Shot(t + a, t + b, kind, quote={**c, "bg": imgs[0]["file"]}, seed=_seed(c.get("text", "") + kind)))
-            cur = b
-        shots += _photo_shots(pool, t + cur, t + dur, state, **kw)
         t += dur
         if idx == 0:
             shots.append(Shot(t, t + TITLE, "card", card={"bg": imgs[0]["file"], "kicker": "", "title": episode["title"],
@@ -392,37 +445,40 @@ def smooth(p):
     return p * p * (3 - 2 * p)
 
 
-def find_focus(canvas: np.ndarray) -> tuple[float, float]:
-    """Most detailed region of a photo (edge energy), as relative x, y. Used to frame detail shots."""
-    g = cv2.cvtColor(cv2.resize(canvas, (192, 108), interpolation=cv2.INTER_AREA), cv2.COLOR_BGR2GRAY).astype(np.float32)
-    e = np.abs(cv2.Sobel(g, cv2.CV_32F, 1, 0)) + np.abs(cv2.Sobel(g, cv2.CV_32F, 0, 1))
-    e = cv2.GaussianBlur(e, (0, 0), 9)
-    e[:, :30] = e[:, -30:] = 0
-    e[:22, :] = e[-22:, :] = 0
-    y, x = np.unravel_index(int(np.argmax(e)), e.shape)
-    return x / 192, y / 108
-
-
 def motion(shot: Shot, p: float, CW, CH):
     rnd = random.Random(shot.seed)
     zin = True
     if shot.kind != "photo":
         z0, z1, (ax, ay), (bx, by) = 1.0, 1.035, (0.5, 0.5), (0.5, 0.5)
     elif shot.detail:
-        fx0, fy0 = shot.focus or (0.5, 0.45)
-        zbase = 1.65 if shot.full_bleed else 1.85
-        z0, z1 = zbase, zbase + 0.12
-        ax, ay = fx0 + rnd.uniform(-0.03, 0.03), fy0 + rnd.uniform(-0.03, 0.03)
-        bx, by = fx0, fy0
+        # explicit close-up only: detail: [x, y, zoom] in episode.yaml (fractions of the frame)
+        fx0, fy0, zbase = shot.focus
+        z0, z1 = zbase, zbase * 1.07
+        ax, ay, bx, by = fx0, fy0, fx0, fy0
     else:
-        zin = rnd.random() < 0.6
-        zmax = 1.14 if shot.full_bleed else 1.06
-        z0, z1 = (1.0, zmax) if zin else (zmax, 1.0)
-        if shot.full_bleed:
-            ax, ay = rnd.uniform(0.3, 0.7), rnd.uniform(0.32, 0.58)
-            bx, by = rnd.uniform(0.3, 0.7), rnd.uniform(0.32, 0.58)
+        it = shot.item or {}
+        fx, fy = (it.get("frame") or (0.5, 0.5))[:2]          # point of interest (default: centre)
+        zmax = 1.10 if shot.full_bleed else 1.05
+        zoom = it.get("zoom")
+        if isinstance(zoom, (list, tuple)):
+            z0, z1 = float(zoom[0]), float(zoom[1])
+        elif zoom == "out":
+            z0, z1 = zmax, 1.0
+        elif zoom == "none":
+            z0, z1 = 1.02, 1.02
+        elif zoom == "in":
+            z0, z1 = 1.0, zmax
         else:
-            ax, ay, bx, by = 0.5, 0.5, 0.5 + rnd.uniform(-0.03, 0.03), 0.5 + rnd.uniform(-0.03, 0.03)
+            z0, z1 = (1.0, zmax) if rnd.random() < 0.6 else (zmax, 1.0)
+        zin = z1 >= z0
+        if it.get("pan"):
+            (ax, ay), (bx, by) = it["pan"]
+        else:
+            # whole photo stays in view: the camera only drifts a little toward the point of interest
+            ax, ay = 0.5 + (fx - 0.5) * 0.3, 0.5 + (fy - 0.5) * 0.3
+            bx, by = fx, fy
+            if not zin:
+                ax, ay, bx, by = bx, by, ax, ay
     e = smooth(p)
     z = z0 + (z1 - z0) * e
     fx, fy = ax + (bx - ax) * e, ay + (by - ay) * e
@@ -492,8 +548,6 @@ class Renderer:
             sh.canvas, sh.depth, sh.color, sh.full_bleed = self.cache[key]
             if sh.color is None:
                 sh.colorize = False
-            if sh.detail and sh.focus is None:
-                sh.focus = find_focus(sh.canvas)
         elif sh.kind == "quote":
             sh.canvas = cv2.cvtColor(quote_canvas(CW, CH, sh.quote["text"], sh.quote.get("source", "")), cv2.COLOR_RGB2BGR)
         elif sh.kind == "map":
@@ -657,7 +711,19 @@ def fmt_ts(t):
 
 
 # ------------------------------------------------------------------ main
-def render(ep_dir: Path, episode: dict, preview: bool = False, parallax: bool = True):
+def check_coverage(allow_short=False):
+    """Stop before a long render if some scene would hold one photo too long or repeat it."""
+    sf_ = build_timeline.shortfalls
+    if not sf_:
+        return
+    print("\n   !! not enough photos (no repeats allowed, max %.0f s per photo):" % SHOT_MAX)
+    for sid, sec, n, want in sf_:
+        print(f"      {sid:20s} {sec:6.1f} s   has {n:2d}   needs ~{want:2d}  (+{max(want - n, 1)})")
+    if not allow_short:
+        raise SystemExit("   add photos to episode.yaml (or pass --allow-short for a draft)")
+
+
+def render(ep_dir: Path, episode: dict, preview: bool = False, parallax: bool = True, allow_short: bool = False):
     manifest = json.loads((ep_dir / "manifest.json").read_text())
     timings = json.loads((ep_dir / "audio" / "timings.json").read_text())
     build = ep_dir / "build"
@@ -669,13 +735,15 @@ def render(ep_dir: Path, episode: dict, preview: bool = False, parallax: bool = 
         parallax = False
 
     shots, audio_marks, chapters, total = build_timeline(episode, manifest, timings)
+    check_coverage(allow_short)
     music = music_track(episode, total, chapters)
     mix = build_audio(ep_dir, audio_marks, total, music)
     write_srt(audio_marks, timings, build / "subtitles.en.srt")
     (build / "chapters.txt").write_text("\n".join(f"{fmt_ts(a)} {b}" for a, b in chapters))
     (build / "timeline.json").write_text(json.dumps(
         [{"start": round(s.start, 2), "end": round(s.end, 2), "kind": s.kind,
-          "id": s.item["id"] if s.item else None, "colorized": bool(s.item and s.item.get("colorize"))} for s in shots],
+          "id": s.item["id"] if s.item else None, "colorized": s.colorize, "detail": s.focus if s.detail else None}
+         for s in shots],
         indent=1))
 
     out = build / (f"{episode['slug']}_preview.mp4" if preview else f"{episode['slug']}.mp4")
