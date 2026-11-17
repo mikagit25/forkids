@@ -89,6 +89,7 @@ SD_DAILY_THEMES = {
 }
 
 SD_THEME_DISPLAY = {
+    "sleep":     ("Deep Sleep & Rain 🌧️",               "sleep"),   # Monday; was missing -> KeyError every Monday (fixed 17.11.2026)
     "classical": ("Classical Night 🎻",                 "sleep"),
     "healing":   ("Deep Healing Journey ✨",             "healing"),
     "nature":    ("Nature & Earth Sounds 🌿",            "nature"),
@@ -132,6 +133,7 @@ SD_CAT_KEYWORDS: dict[str, list[str]] = {
 # Per-theme category weights: higher = more of this category in the stream
 # Primary (1.0) fills ~40-50% of stream, secondary (0.5) ~25%, filler (0.2) ~15%
 SD_THEME_WEIGHTS: dict[str, dict[str, float]] = {
+    "sleep":     {"sleep": 1.0, "nature": 0.7, "comp": 0.3, "cosmic": 0.2},   # Monday: storm / rain / deep sleep
     "classical": {"classical": 1.0, "sleep": 0.4, "comp": 0.3, "nature": 0.1},
     "healing":   {"hz_freq": 1.0, "chakra": 0.8, "reiki": 0.6,
                   "tibetan": 0.5, "mantra": 0.4, "comp": 0.3},

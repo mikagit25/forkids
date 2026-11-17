@@ -35,7 +35,7 @@ python3 scripts/reauth_youtube.py --channel id # Calm Classics канал
 ### Sacred Drift — отдельная инфраструктура
 - Конфиг: `sacred_drift/config/channel_metadata_sd.yaml`
 - Очередь: `sacred_drift/output/queue/` → `--queue sd`
-- Живые стримы: 21:00–07:00 UTC ежедневно (`live_stream.py --channel sd --slot eu`)
+- Живые стримы: 21:00–07:00 UTC, Пн/Ср/Пт/Вс (временно с 17.11.2026, против однообразия) (`live_stream.py --channel sd --slot eu`)
 - **ЗАПРЕЩЕНО стримить классику (Musopen)** — Content ID риск на весь канал; все `*_classics_*` мета имеют `stream_safe: false`
 - Генерация: `generate_sd_compilation.py`, `generate_sacred_drift.py`
 - YouTube категория 10 (Music), `made_for_kids: false`
@@ -48,14 +48,15 @@ python3 scripts/reauth_youtube.py --channel id # Calm Classics канал
 |-------|-----|-------|--------|
 | EN (Happy Bear) | длинные | ежедневно 18:00 UTC | 7/нед |
 | EN (Happy Bear) | шортсы | ежедневно 10:30 UTC, до 3 шт | 7/нед |
-| **Sacred Drift** | длинные | ежедневно 20:00 UTC | 7/нед |
-| **Sacred Drift** | шортсы | ежедневно 10:00 UTC | 7/нед |
-| **Sacred Drift** | **live stream** | 21:00–07:00 UTC ежедневно | ежедневно |
+| **Sacred Drift** | длинные | 20:00 UTC, кроме Вт и Пт (с 17.11.2026) | 5/нед |
+| **Sacred Drift** | шортсы | ежедневно 10:00 UTC, по 2 | 14/нед |
+| **Sacred Drift** | **live stream** | 21:00–07:00 UTC, Пн/Ср/Пт/Вс (с 17.11.2026) | 4/нед |
 | Calm Classics | длинные | по мере генерации | по наличию |
 
 **AR канал заморожен** — `queue_ar/` не трогать, AR контент не генерировать.  
-Sacred Drift — программа v2.3 по дню ПУБЛИКАЦИИ (см. 7в): Пн=гроза 8 ч (тёмный экран), Вт=частота 3 ч, Ср=чаши «от overthinking» 3 ч,
-Чт=тета-бинауральные для учёбы 3 ч, Пт=дождь в обстановке (крыша/палатка/машина/камин) 3 ч, Сб=космос 3 ч, Вс=Sacred Drift Sleep #NN 10 ч (тёмный экран).
+Sacred Drift — программа v2.3 по дню ПУБЛИКАЦИИ (см. 7в): Пн=гроза 8 ч (тёмный экран), ~~Вт=частота 3 ч~~, Ср=чаши «от overthinking» 3 ч,
+Чт=тета-бинауральные для учёбы 3 ч, ~~Пт=дождь в обстановке 3 ч~~, Сб=космос 3 ч, Вс=Sacred Drift Sleep #NN 10 ч (тёмный экран).
+С 17.11.2026 Вт и Пт — без длинных видео (похожие программы, риск «однообразного контента»); генерация на эти дни отключена в cron.
 
 ---
 
