@@ -6,6 +6,7 @@ import socketserver
 import os
 import io
 import mimetypes
+import re
 import email.parser
 import email.policy
 import yaml
@@ -601,9 +602,28 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 return
             mime = mimetypes.guess_type(str(full))[0] or 'application/octet-stream'
             size = full.stat().st_size
-            self.send_response(200)
+            # HTTP Range: browsers (Safari / phones) need it to play or seek audio and video
+            start, end = 0, size - 1
+            rng = self.headers.get('Range', '')
+            m = re.match(r'bytes=(\d*)-(\d*)$', rng.strip()) if rng else None
+            if m and (m.group(1) or m.group(2)):
+                if m.group(1):
+                    start = int(m.group(1))
+                    end = min(int(m.group(2)), size - 1) if m.group(2) else size - 1
+                else:                                   # suffix range: last N bytes
+                    start = max(size - int(m.group(2)), 0)
+                if start >= size or start > end:
+                    self.send_response(416)
+                    self.send_header('Content-Range', f'bytes */{size}')
+                    self.end_headers()
+                    return
+                self.send_response(206)
+                self.send_header('Content-Range', f'bytes {start}-{end}/{size}')
+            else:
+                self.send_response(200)
+            self.send_header('Accept-Ranges', 'bytes')
             self.send_header('Content-Type', mime)
-            self.send_header('Content-Length', size)
+            self.send_header('Content-Length', end - start + 1)
             # Inline for audio/video/image, attachment for download
             if full.suffix.lower() in {'.mp4', '.mp3', '.wav', '.ogg', '.png', '.jpg', '.jpeg', '.webp', '.gif'}:
                 self.send_header('Content-Disposition', f'inline; filename="{full.name}"')
@@ -612,9 +632,15 @@ class Handler(http.server.BaseHTTPRequestHandler):
             if need_cookie:
                 self.send_header('Set-Cookie', f'pw={PASSWORD}; Path=/; Max-Age=604800')
             self.end_headers()
-            with open(full, 'rb') as f:
-                while chunk := f.read(1 << 20):
-                    self.wfile.write(chunk)
+            try:
+                with open(full, 'rb') as f:
+                    f.seek(start)
+                    left = end - start + 1
+                    while left > 0 and (chunk := f.read(min(1 << 20, left))):
+                        self.wfile.write(chunk)
+                        left -= len(chunk)
+            except (BrokenPipeError, ConnectionResetError):
+                pass          # the player closed the connection (normal when seeking)
             return
 
         # Directory browser
