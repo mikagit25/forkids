@@ -18,3 +18,4 @@ __pycache__/
 remotion/public/backgrounds/
 remotion/public/music/
 .env
+assets/soundfonts/
