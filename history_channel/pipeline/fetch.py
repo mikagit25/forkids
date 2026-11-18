@@ -13,6 +13,7 @@ import hashlib
 import html
 import io
 import json
+import re
 import time
 from pathlib import Path
 
@@ -146,6 +147,10 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
                 c = museum_object(ref)
             elif prefix in ("curid", "File") or ref.startswith("File:"):
                 c = commons_file(ref)
+            elif prefix == "loc" and q.get("image"):
+                c = _loc_manual(ref, q)
+            elif prefix == "loc" and not _from_candidates(ep_dir, ref):
+                c = _loc_by_lccn(ref.split(":", 1)[1])
             else:   # smithsonian:, europeana:, wellcome:, loc:, commons: ... picked from a candidate sheet
                 c = _from_candidates(ep_dir, ref)
             if not c:
@@ -424,3 +429,35 @@ a{{color:#8bf}} .n{{color:#999;max-width:900px}}</style>
 <h1>{html.escape(episode['title'])}</h1>
 <p>Green = will be used. Faded = alternates. To swap, edit <code>"use"</code> in manifest.json.</p>
 {''.join(rows)}""")
+
+
+def _loc_manual(ref: str, q: dict) -> dict | None:
+    """A Library of Congress item picked by hand in a browser (loc.gov search is closed to servers by a
+    Cloudflare bot check; the image server tile.loc.gov is open). episode.yaml:
+      - {file: "loc:2013646123", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/.../....jpg",
+         title: "...", date: "1915", rights: "No known restrictions on publication."}
+    Only items whose loc.gov "Rights Advisory" says no known restrictions / public domain may be used."""
+    rights = q.get("rights", "")
+    if not re.search(r"no known restrictions|public domain|no known copyright", rights, re.I):
+        print(f"   !! {ref}: rights '{rights}' — need 'No known restrictions' from the loc.gov item page")
+        return None
+    if not q["image"].startswith("https://tile.loc.gov/"):
+        print(f"   !! {ref}: image must be a tile.loc.gov link (the 'Download JPEG' link on the item page)")
+        return None
+    lccn = ref.split(":", 1)[1]
+    return {"source": "loc", "id": ref, "title": q.get("title", ref), "description": q.get("note", ""),
+            "date": q.get("date", ""), "page_url": f"https://www.loc.gov/item/{lccn}/", "download_url": q["image"],
+            "license": "No known restrictions on publication (Library of Congress)",
+            "credit": f"Library of Congress, LCCN {lccn}", "width": q.get("width"), "height": q.get("height")}
+
+
+def _loc_by_lccn(lccn: str) -> dict | None:
+    """loc:<LCCN> without an image link: take the Commons copy of that LoC item, if there is one."""
+    from .archives import search_commons
+    hits = [h for h in search_commons(f'"LCCN{lccn}" OR "{lccn}" insource:"loc.gov"', 10)
+            if lccn in h["title"] or lccn in h.get("description", "")]
+    if not hits:
+        return None
+    h = max(hits, key=lambda x: x.get("width") or 0)
+    h["credit"] = f"Library of Congress, LCCN {lccn} (via Wikimedia Commons)"
+    return h
