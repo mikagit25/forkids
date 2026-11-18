@@ -134,16 +134,15 @@ def description(ep_dir: Path, episode: dict) -> Path:
     return out
 
 
-def upload(ep_dir: Path, episode: dict, client_secret: str = "client_secret.json"):
-    """Uploads as PRIVATE with captions + thumbnail. Needs a Google Cloud OAuth client (YouTube Data API v3)."""
+def youtube_client(episode: dict, client_secret: str = "client_secret.json"):
+    """YouTube API client for the Archive Tales token; refuses any other channel."""
     from google.auth.transport.requests import Request
     from google.oauth2.credentials import Credentials
     from google_auth_oauthlib.flow import InstalledAppFlow
     from googleapiclient.discovery import build
-    from googleapiclient.http import MediaFileUpload
 
     scopes = ["https://www.googleapis.com/auth/youtube.upload", "https://www.googleapis.com/auth/youtube.force-ssl"]
-    tok = Path("youtube_token.json")
+    tok = Path(__file__).resolve().parent.parent / "youtube_token.json"
     creds = Credentials.from_authorized_user_file(tok, scopes) if tok.exists() else None
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
@@ -160,6 +159,28 @@ def upload(ep_dir: Path, episode: dict, client_secret: str = "client_secret.json
     if not want or have != want:
         raise SystemExit(f"   !! upload stopped: token belongs to {have} "
                          f"({me[0]['snippet']['title'] if me else '?'}), channel.yaml youtube_channel_id = {want}")
+    return yt
+
+
+def next_slot(root: Path, gap_days: int = 2, hour: int = 18):
+    """Next long-video slot: every other day at 18:00 UTC, after the latest scheduled episode and >= 2 days ahead
+    (time for the owner to review and switch it to a Premiere in YouTube Studio)."""
+    import datetime as dt
+    now = dt.datetime.now(dt.timezone.utc)
+    when = (now + dt.timedelta(days=2)).replace(hour=hour, minute=0, second=0, microsecond=0)
+    for f in (root / "episodes").glob("*/build/publish_at.txt"):
+        last = dt.datetime.fromisoformat(f.read_text().strip().replace("Z", "+00:00"))
+        when = max(when, last + dt.timedelta(days=gap_days))
+    when = when.replace(hour=hour, minute=0, second=0)
+    return when.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def upload(ep_dir: Path, episode: dict, client_secret: str = "client_secret.json", publish_at: str | None = None):
+    """Uploads as PRIVATE with captions + thumbnail, scheduled to go public at publish_at (default: next free slot,
+    every other day). The owner normally turns it into a Premiere in Studio; if not, it still goes public then."""
+    from googleapiclient.http import MediaFileUpload
+
+    yt = youtube_client(episode, client_secret)
     b = ep_dir / "build"
     body = {
         "snippet": {"title": episode["title"][:100], "description": (b / "description.txt").read_text()[:5000],
@@ -167,13 +188,20 @@ def upload(ep_dir: Path, episode: dict, client_secret: str = "client_secret.json
                     "defaultAudioLanguage": episode.get("language", "en")},
         "status": {"privacyStatus": "private", "selfDeclaredMadeForKids": False, "containsSyntheticMedia": False},
     }
+    if publish_at != "none":
+        publish_at = publish_at or next_slot(ep_dir.parent.parent)
+        body["status"]["publishAt"] = publish_at
     vid = yt.videos().insert(part="snippet,status", body=body,
                              media_body=MediaFileUpload(str(b / f"{episode['slug']}.mp4"), resumable=True)).execute()["id"]
+    if publish_at != "none":
+        (b / "publish_at.txt").write_text(publish_at + "\n")
     try:
         yt.thumbnails().set(videoId=vid, media_body=MediaFileUpload(str(b / "thumbnail.jpg"))).execute()
     except Exception as e:
         print(f"   ! thumbnail upload skipped ({e.__class__.__name__}: {e}) — set manually in YouTube Studio")
     yt.captions().insert(part="snippet", body={"snippet": {"videoId": vid, "language": "en", "name": "English"}},
                          media_body=MediaFileUpload(str(b / "subtitles.en.srt"))).execute()
-    print(f"uploaded as PRIVATE: https://youtu.be/{vid}  (review, then publish in YouTube Studio)")
+    (b / "youtube_id.txt").write_text(vid + "\n")      # Shorts link back to the full episode
+    print(f"uploaded as PRIVATE: https://youtu.be/{vid}  goes public {publish_at} unless changed "
+          f"(set it as a Premiere in YouTube Studio)")
     return vid

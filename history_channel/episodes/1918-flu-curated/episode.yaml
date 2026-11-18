@@ -356,3 +356,11 @@ research:                # newspapers of the time: python run.py episodes/1918-f
   - {q: "influenza masks San Francisco", from: 1918-10-20, to: 1919-02-10, sources: [chronam, nyt]}
   - {q: "Spanish influenza epidemic", from: 1918-09-01, to: 1918-11-30, sources: [chronam, nyt, trove, europeana]}
   - {q: "Samoa influenza Talune", from: 1918-11-01, to: 1919-03-31, sources: [digitalnz, trove, nyt]}
+
+# Shorts cut from the finished render (sentence numbers from `run.py … shorts --suggest`)
+shorts:
+  - {from: 51, to: 61, hook: "The parade that filled every hospital", title: "Philadelphia Held a Parade in a Pandemic. 12,000 Died"}
+  - {from: 102, to: 112, hook: "Fined for not wearing a mask — in 1918", title: "San Francisco's 1918 Mask Law and the Anti-Mask League"}
+  - {from: 124, to: 134, hook: "Same virus. Two islands. Opposite fates.", title: "Two Samoas, One Pandemic: 8,500 Dead vs Zero"}
+  - {from: 148, to: 157, hook: "The virus waited 79 years in the ice", title: "The 1918 Flu Was Found in an Alaskan Grave"}
+  - {from: 161, to: 173, hook: "They brought the 1918 virus back to life", title: "How Scientists Rebuilt the Deadliest Flu Virus"}
