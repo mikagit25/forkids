@@ -194,8 +194,34 @@ def _loc_best_image(data: dict) -> tuple[str | None, int, int]:
     return best
 
 
+def search_loc_mirror(query: str, limit: int = 20) -> list[dict]:
+    """Library of Congress photos via their Wikimedia Commons copies (bulk-uploaded with LCCN / loc.gov links).
+    Used because the loc.gov search API sits behind a Cloudflare bot check for servers; we never try to get past
+    such checks. The image files themselves (tile.loc.gov) stay reachable."""
+    out = []
+    for it in search_commons(f'{query} insource:"loc.gov"', limit):
+        m = re.search(r"LCCN\s?(\d{8,12})", it["title"]) or re.search(r"loc\.gov/(?:pictures/)?item/(\d{8,12})",
+                                                                     it.get("description", ""))
+        it["credit"] = "Library of Congress" + (f", LCCN {m.group(1)}" if m else "") + " (via Wikimedia Commons)"
+        it["archive"] = "loc"
+        it["lccn"] = m.group(1) if m else None
+        out.append(it)
+    best = {}                        # Commons often holds 2-3 scans of one LoC item: keep the largest
+    for it in out:
+        k = it["lccn"] or it["id"]
+        if k not in best or (it.get("width") or 0) > (best[k].get("width") or 0):
+            best[k] = it
+    return [it for it in out if best.get(it["lccn"] or it["id"]) is it]
+
+
 def search_loc(query: str, limit: int = 15) -> list[dict]:
-    data = _get("https://www.loc.gov/photos/", {"q": query, "fo": "json", "c": str(limit)}).json()
+    try:
+        resp = _get("https://www.loc.gov/photos/", {"q": query, "fo": "json", "c": str(limit)}, retries=1)
+    except Exception as e:
+        if "403" in str(e):          # Cloudflare bot check -> use the Commons mirror of LoC photos
+            return search_loc_mirror(query)
+        raise
+    data = resp.json()
     out = []
     for r in data.get("results", []):
         item_url = r.get("url") or r.get("id")
@@ -404,7 +430,7 @@ def search_dpla(query: str, limit: int = 20) -> list[dict]:
         return []
     data = _get("https://api.dp.la/v2/items",
                 {"q": query, "api_key": key, "page_size": str(limit),
-                 "fields": "id,originalRecord,object,rights,isShownAt,dataProvider,sourceResource"}).json()
+                 "sourceResource.type": "image"}).json()
     out = []
     for doc in data.get("docs", []):
         src = doc.get("sourceResource", {})
