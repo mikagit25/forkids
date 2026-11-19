@@ -1,0 +1,127 @@
+# Chronicling America clippings (halifax-1917-news), picked in a Claude in Chrome session 2026-11-19.
+# Crops measured from each page's ALTO word coordinates and checked by eye on tile.loc.gov.
+
+- scene: cold-open
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:au:batch_au_bolden_ver01:data:sn85038485:0034058272A:1917120701:0594/full/pct:100/0/default.jpg
+  crop:
+  - 0.01
+  - 0.025
+  - 0.99
+  - 0.18
+  page_url: https://www.loc.gov/resource/sn85038485/1917-12-07/ed-1/?sp=1
+  date: '1917-12-07'
+  paper: The Birmingham Age-Herald (Birmingham, Ala.)
+  note: 'Full-width front-page banner: death toll in Halifax from the explosion may go over 2,000.'
+
+- scene: blast
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_gonzo_ver01:data:sn83045462:00280658315:1917120601:0563/full/pct:100/0/default.jpg
+  crop:
+  - 0.0
+  - 0.098
+  - 0.385
+  - 0.185
+  page_url: https://www.loc.gov/resource/sn83045462/1917-12-06/ed-1/?sp=1
+  date: '1917-12-06'
+  paper: Evening Star (Washington, D.C.)
+  match: the Mont-Blanc exploded
+  note: 'Same-day front page: hundreds killed and a thousand injured when a ship blows up at Halifax.'
+
+- scene: ships
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:mthi:batch_mthi_indigobunting_ver02:data:sn83025316:00295860224:1917120901:1111/full/pct:100/0/default.jpg
+  crop:
+  - 0.042
+  - 0.132
+  - 0.178
+  - 0.318
+  page_url: https://www.loc.gov/resource/sn83025316/1917-12-09/ed-1/?sp=1
+  date: '1917-12-09'
+  paper: The Daily Missoulian (Missoula, Mont.)
+  match: two ships were heading for the Narrows
+  note: No trace of an enemy plot; a mistake in signals between the ships is believed to be the cause.
+
+- scene: aftermath
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:pst:batch_pst_davey_ver01:data:sn83045211:00237287666:1917120701:0470/full/pct:100/0/default.jpg
+  crop:
+  - 0.012
+  - 0.102
+  - 0.27
+  - 0.29
+  page_url: https://www.loc.gov/resource/sn83045211/1917-12-07/ed-1/?sp=1
+  date: '1917-12-07'
+  paper: Evening Public Ledger (Philadelphia, Pa.)
+  match: Nearly two thousand people were killed
+  note: 'Halifax horror grows as ruins are searched: dead estimated in the thousands, thousands homeless, temporary morgues in churches and schools.'
+
+- scene: aftermath
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:iune:batch_iune_edition_ver02:data:sn92053934:00295872615:1917120701:0464/full/pct:100/0/default.jpg
+  crop:
+  - 0.145
+  - 0.17
+  - 0.285
+  - 0.272
+  page_url: https://www.loc.gov/resource/sn92053934/1917-12-07/ed-1/?sp=1
+  date: '1917-12-07'
+  paper: Rock Island Argus (Rock Island, Ill.)
+  match: The cruellest injuries came from glass
+  note: About two thousand dead and as many injured, two-thirds of them suffering from cuts from flying glass.
+
+- scene: blizzard
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:mohi:batch_mohi_boone_ver01:data:sn89066315:00211109555:1917120701:0647/full/pct:100/0/default.jpg
+  crop:
+  - 0.035
+  - 0.105
+  - 0.342
+  - 0.207
+  page_url: https://www.loc.gov/resource/sn89066315/1917-12-07/ed-1/?sp=1
+  date: '1917-12-07'
+  paper: The Evening Missourian (Columbia, Mo.)
+  match: a blizzard struck
+  note: More than 2,000 killed in Halifax; a snow storm interferes with rescue work after the Imo and Mont-Blanc collide.
+
+- scene: boston
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:mthi:batch_mthi_leopardfrog_ver01:data:sn85053058:00295861320:1917120801:0896/full/pct:100/0/default.jpg
+  crop:
+  - 0.272
+  - 0.183
+  - 0.962
+  - 0.24
+  page_url: https://www.loc.gov/resource/sn85053058/1917-12-08/ed-1/?sp=1
+  date: '1917-12-08'
+  paper: The Butte Daily Post (Butte, Mont.)
+  match: Boston sent a relief train
+  note: 20,000 people destitute in the devastated city; the first of the relief trains arrives bringing supplies.
+
+- scene: rescue
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_keddy_ver01:data:sn83030193:00280766173:1917120701:0942/full/pct:100/0/default.jpg
+  crop:
+  - 0.03
+  - 0.045
+  - 0.96
+  - 0.285
+  page_url: https://www.loc.gov/resource/sn83030193/1917-12-07/ed-1/?sp=2
+  date: '1917-12-07'
+  paper: The Evening World (New York, N.Y.)
+  match: The first rescuers were the survivors themselves
+  note: Dead piled in heaps in temporary morgues; two photographs of the Halifax waterfront and harbour shipping.
+
+- scene: blame
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:ct:batch_ct_haddam_ver01:data:sn92051227:00415620925:1918020501:0435/full/pct:100/0/default.jpg
+  crop:
+  - 0.695
+  - 0.836
+  - 0.962
+  - 0.948
+  page_url: https://www.loc.gov/resource/sn92051227/1918-02-05/ed-1/?sp=1
+  date: '1918-02-05'
+  paper: The Bridgeport Times and Evening Farmer (Bridgeport, Conn.)
+  match: An official inquiry blamed
+  note: Pilot Mackey and Captain Le Medec of the Mont-Blanc charged with manslaughter; examination officer Wyatt arrested after the Drysdale inquiry censured him.

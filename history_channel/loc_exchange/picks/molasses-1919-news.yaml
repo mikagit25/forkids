@@ -1,0 +1,97 @@
+# Chronicling America clippings (molasses-1919-news), picked in a Claude in Chrome session 2026-11-19.
+# Crops measured from each page's ALTO word coordinates and checked by eye on tile.loc.gov.
+
+- scene: cold-open
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:okhi:batch_okhi_jenks_ver02:data:sn86064187:00200295134:1919011501:0322/full/pct:100/0/default.jpg
+  crop:
+  - 0.12
+  - 0.183
+  - 0.36
+  - 0.238
+  page_url: https://www.loc.gov/resource/sn86064187/1919-01-15/ed-1/?sp=1
+  date: '1919-01-15'
+  paper: Oklahoma City Times (Oklahoma City, Okla.)
+  note: 'Same-day front page: molasses tank blows up, ten persons known dead.'
+
+- scene: noon
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_leopold_ver01:data:sn83030193:00280766197:1919011501:0197/full/pct:100/0/default.jpg
+  crop:
+  - 0.27
+  - 0.272
+  - 0.392
+  - 0.493
+  page_url: https://www.loc.gov/resource/sn83030193/1919-01-15/ed-1/?sp=1
+  date: '1919-01-15'
+  paper: The Evening World (New York, N.Y.)
+  match: At about half past twelve
+  note: Molasses blowup kills 20 and wrecks Boston buildings; elevated railway supports demolished, sticky flood hampers rescuers.
+
+- scene: noon
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_pielou_ver01:data:sn83030431:0021247440A:1919011601:0323/full/pct:100/0/default.jpg
+  crop:
+  - 0.155
+  - 0.288
+  - 0.278
+  - 0.363
+  page_url: https://www.loc.gov/resource/sn83030431/1919-01-16/ed-1/?sp=1
+  date: '1919-01-16'
+  paper: The Sun (New York, N.Y.)
+  note: 'Molasses tank blast kills 9: huge container in Boston bursts, injuring fifty and wrecking buildings.'
+
+- scene: wave
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:mthi:batch_mthi_alderfly_ver01:data:sn84024808:00212477400:1919011601:0247/full/pct:100/0/default.jpg
+  crop:
+  - 0.548
+  - 0.418
+  - 0.685
+  - 0.716
+  page_url: https://www.loc.gov/resource/sn84024808/1919-01-16/ed-1/?sp=1
+  date: '1919-01-16'
+  paper: Great Falls Daily Tribune (Great Falls, Mont.)
+  match: The wave smashed through everything
+  note: 'Two million gallons immerse ruins of houses: the fire house crushed, elevated railway pillars blown away, about a dozen horses killed.'
+
+- scene: victims
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:ct:batch_ct_berlin_ver01:data:sn82014086:00295866214:1919011601:0155/full/pct:100/0/default.jpg
+  crop:
+  - 0.27
+  - 0.164
+  - 0.392
+  - 0.321
+  page_url: https://www.loc.gov/resource/sn82014086/1919-01-16/ed-1/?sp=1
+  date: '1919-01-16'
+  paper: Norwich Bulletin (Norwich, Conn.)
+  match: The dead came from every part
+  note: 'Nine killed in Boston: list of the identified dead, among them city laborers, a fireman and a blacksmith.'
+
+- scene: victims
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_forestcity_ver02:data:sn82014248:00513682906:1919011701:0146/full/pct:100/0/default.jpg
+  crop:
+  - 0.233
+  - 0.252
+  - 0.36
+  - 0.524
+  page_url: https://www.loc.gov/resource/sn82014248/1919-01-17/ed-1/?sp=1
+  date: '1919-01-17'
+  paper: Daily Kennebec Journal (Augusta, Me.)
+  note: 12 known dead; investigators believe the tank walls gave way under the weight of the molasses; police search for missing expressmen and a boy.
+
+- scene: trial
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:au:batch_au_carver_ver01:data:sn85038485:00340582792:1919011601:0221/full/pct:100/0/default.jpg
+  crop:
+  - 0.7
+  - 0.545
+  - 0.842
+  - 0.623
+  page_url: https://www.loc.gov/resource/sn85038485/1919-01-16/ed-1/?sp=1
+  date: '1919-01-16'
+  paper: The Birmingham Age-Herald (Birmingham, Ala.)
+  match: The Trial
+  note: 'Owned by alcohol firm: the tank belonged to Purity Distilling, a subsidiary of U.S. Industrial Alcohol; its wall split and two million gallons rushed over the streets.'
