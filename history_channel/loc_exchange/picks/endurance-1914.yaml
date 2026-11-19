@@ -1,0 +1,117 @@
+# LoC picks for endurance-1914 (Claude in Chrome session, 2026-11-19)
+# Image links: the Download menu on loc.gov offers only 640px JPEGs for these cph prints
+# (bigger = TIFF). So `image` is the tile.loc.gov IIIF JPEG rendered from the master TIFF:
+# full size, 1536 px wide, short side 917-1302 px (checked with info.json).
+# All rights strings copied from each item's "Rights Advisory".
+
+- scene: cold-open
+  lccn: "2013646125"
+  image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a11000:3a11300:3a11347u/full/pct:100/0/default.jpg"
+  rights: "No known restrictions on publication."
+  title: "Shackleton's expedition to the Antarctic a titanic upheaval."
+  date: "1916"
+  note: "huge blocks of pack ice framing the trapped Endurance in the distance: the whole story in one frame"
+
+- scene: plan
+  lccn: "2009633384"
+  image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a30000:3a30000:3a30700:3a30750u/full/pct:100/0/default.jpg"
+  rights: "No known restrictions on publication."
+  title: "Camp at the South Pole"
+  date: "1912"
+  note: "Scott, Wilson, Oates, Bowers and Evans at the Pole in 1912: the pole is taken, so Shackleton aims for the crossing"
+
+- scene: beset
+  lccn: "2013646123"
+  image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a19000:3a19300:3a19373u/full/pct:100/0/default.jpg"
+  rights: "No known restrictions on publication."
+  title: "Shackleton's expedition to the Antarctic Endurance squeezed between an ice jam."
+  date: "1916"
+  note: "the ship leaning, locked in pack ice of the Weddell Sea: 'the ice closed around her'"
+
+- scene: beset
+  lccn: "2013646122"
+  image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a50000:3a52000:3a52100:3a52119u/full/pct:100/0/default.jpg"
+  rights: "No known restrictions on publication."
+  title: "Shackleton's expedition to the Antarctic terrors of the Weddell Sea."
+  date: "1916"
+  note: "man and dog team on the floe, the stuck Endurance far behind: the men now live on the ice around her"
+
+- scene: winter
+  lccn: "2013646120"
+  image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a50000:3a52000:3a52100:3a52120u/full/pct:100/0/default.jpg"
+  rights: "No known restrictions on publication."
+  title: "Shackleton's expedition to the Antarctic winter flashlight scene in the Weddell Sea, showing Endurance stuck fast."
+  date: "1915"
+  note: "Hurley's famous night flash photo of the ship in the polar night: matches 'when the polar night' text"
+
+- scene: winter
+  lccn: "2013646119"
+  image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a50000:3a52000:3a52100:3a52115u/full/pct:100/0/default.jpg"
+  rights: "No known restrictions on publication."
+  title: "Shackleton's expedition to the Antarctic faithful dogs being fed in the ice kennel, while Endurance was stuck fast."
+  date: "1916"
+  note: "dogs fed in ice kennels beside the ship: daily life and dog teams during the long winter"
+
+- scene: crushed
+  lccn: "2013646115"
+  image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a19000:3a19300:3a19377u/full/pct:100/0/default.jpg"
+  rights: "No known restrictions on publication."
+  title: "Shackleton's expedition to the Antarctic Endurance for two months before she sank in the Weddell Sea on Oct. 27, 1915."
+  date: "1916"
+  note: "the ship tilted and propped up with planks as the pressure builds, before abandon-ship"
+
+- scene: crushed
+  lccn: "2013646113"
+  image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a19000:3a19300:3a19376u/full/pct:100/0/default.jpg"
+  rights: "No known restrictions on publication."
+  title: "Shackleton's expedition to the Antarctic last moments of the Endurance."
+  date: "1916"
+  note: "the Endurance in her last moments in the floe"
+
+- scene: crushed
+  lccn: "2013646126"
+  image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a12000:3a12700:3a12748u/full/pct:100/0/default.jpg"
+  rights: "No known restrictions on publication."
+  title: "Shackleton's expedition to the Antarctic Endurance after ice pressure was released."
+  date: "1916"
+  note: "broken hull, smashed mastheads, still held upright by the floe: 'the broken hull stayed upright'"
+
+- scene: plates
+  lccn: "2013646121"
+  image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a50000:3a52000:3a52100:3a52110u/full/pct:100/0/default.jpg"
+  rights: "No known restrictions on publication."
+  title: "Shackleton's expedition to the Antarctic ocean camp."
+  date: "1916"
+  note: "Shackleton and men at camp on the ice (titled Ocean Camp, where the plates were sorted); LoC summary says Elephant Island, check by eye"
+
+- scene: drift
+  lccn: "2013646114"
+  image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a11000:3a11300:3a11312u/full/pct:100/0/default.jpg"
+  rights: "No known restrictions on publication."
+  title: "Shackleton's expedition to the Antarctic ocean camp."
+  date: "1916"
+  note: "Shackleton and Frank Wild by the blubber stove made of oil drums (in 'South' captioned Patience Camp): life on the drifting floe"
+
+- scene: elephant
+  lccn: "2013646118"
+  image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a12000:3a12700:3a12747u/full/pct:100/0/default.jpg"
+  rights: "No known restrictions on publication."
+  title: "Shackleton's expedition to the Antarctic ice hole on Elephant Island where the lost party first attempted to live."
+  date: "1916"
+  note: "men digging an ice cave for shelter on Elephant Island, the bare rock they landed on"
+
+- scene: caird
+  lccn: "2013646116"
+  image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a11000:3a11900:3a11986u/full/pct:100/0/default.jpg"
+  rights: "No known restrictions on publication."
+  title: "Shackleton's expedition to the Antarctic Sir Ernest Shackleton to the rescue."
+  date: "1916"
+  note: "men pushing the boat into the sea; in 'South' this print is 'Launching the James Caird'"
+
+- scene: rescue
+  lccn: "2013646124"
+  image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a12000:3a12700:3a12746u/full/pct:100/0/default.jpg"
+  rights: "No known restrictions on publication."
+  title: "Shackleton's expedition to the Antarctic lost party on Elephant Island saved at last."
+  date: "1916"
+  note: "the men on the icy shore waving to the approaching rescue boat, 30 August 1916"
