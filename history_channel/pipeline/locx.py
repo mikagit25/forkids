@@ -59,8 +59,17 @@ def import_picks(ep_dir: Path, episode: dict):
     # a page may give several clippings: a newspaper pick is a duplicate only with the same page AND crop
     have = {q.get("file") or (q.get("newspaper"), tuple(round(float(c), 3) for c in q.get("crop") or []))
             for s in data["scenes"] for q in s.get("images", [])}
+    # picks already imported once (the crop may have been adjusted by hand since): never add them again
+    seen_f = X / "picks" / f".imported-{slug}.json"
+    seen = set(json.loads(seen_f.read_text())) if seen_f.exists() else set()
+    sig = lambda p: f"{p.get('lccn') or p.get('image')}|{p.get('crop')}"
+    for p in picks:            # everything that is in episode.yaml now counts as imported
+        if p.get("kind") == "newspaper" and (p.get("image"), tuple(round(float(c), 3) for c in p.get("crop") or [])) in have:
+            seen.add(sig(p))
     added, bad = [], []
     for p in picks:
+        if sig(p) in seen:
+            continue
         if p.get("kind") == "newspaper":
             why = None
             crop = p.get("crop")
@@ -109,6 +118,8 @@ def import_picks(ep_dir: Path, episode: dict):
                 ref[k] = str(p[k])
         added.append((p["scene"], ref))
         have.add(ref["file"])
+    seen |= {sig(p) for p in picks if p.get("kind") == "newspaper" or f"loc:{p.get('lccn')}" in have}
+    seen_f.write_text(json.dumps(sorted(seen), indent=0))
     if not added:
         print("nothing new to add"); [print(f"   skipped {l}: {w}") for l, w in bad]
         return
@@ -131,6 +142,7 @@ def import_picks(ep_dir: Path, episode: dict):
         indent = " " * (len(lines[img]) - len(lines[img].lstrip()) + 2)
         lines.insert(last + 1, f"{indent}- {flow}   # LoC via Chrome")
     ep_yaml.write_text("\n".join(lines) + "\n")
+    seen_f.write_text(json.dumps(sorted(seen | {sig(p) for p in picks}), indent=0))
     yaml.safe_load(ep_yaml.read_text())        # must still parse
     for sid, ref in added:
         print(f"   + [{sid}] {ref.get('file') or ref.get('paper', 'newspaper') + ' ' + ref.get('date', '')}  "
