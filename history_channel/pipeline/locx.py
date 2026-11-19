@@ -56,7 +56,9 @@ def import_picks(ep_dir: Path, episode: dict):
     text = ep_yaml.read_text()
     data = yaml.safe_load(text)
     scenes = {s["id"]: s for s in data["scenes"]}
-    have = {q.get("file") or q.get("newspaper") for s in data["scenes"] for q in s.get("images", [])}
+    # a page may give several clippings: a newspaper pick is a duplicate only with the same page AND crop
+    have = {q.get("file") or (q.get("newspaper"), tuple(round(float(c), 3) for c in q.get("crop") or []))
+            for s in data["scenes"] for q in s.get("images", [])}
     added, bad = [], []
     for p in picks:
         if p.get("kind") == "newspaper":
@@ -72,7 +74,7 @@ def import_picks(ep_dir: Path, episode: dict):
             elif not (isinstance(crop, list) and len(crop) == 4 and all(0 <= float(c) <= 1 for c in crop)
                       and crop[0] < crop[2] and crop[1] < crop[3]):
                 why = f"bad crop {crop}"
-            elif p["image"] in have:
+            elif (p["image"], tuple(round(float(c), 3) for c in crop)) in have:
                 why = "already in episode.yaml"
             if why:
                 bad.append((p.get("page_url", "?"), why))
@@ -84,7 +86,7 @@ def import_picks(ep_dir: Path, episode: dict):
             if p.get("note"):
                 ref["note"] = p["note"]
             added.append((p["scene"], ref))
-            have.add(p["image"])
+            have.add((p["image"], tuple(ref["crop"])))
             continue
         lccn = str(p.get("lccn", "")).strip()
         why = None

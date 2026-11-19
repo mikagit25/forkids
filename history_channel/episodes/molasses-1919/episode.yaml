@@ -29,6 +29,7 @@ scenes:
     images:
       - {query: "Molasses Flood", count: 2, colorize: true}
       - {query: "North End Boston", count: 1}
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:okhi:batch_okhi_jenks_ver02:data:sn86064187:00200295134:1919011501:0322/full/pct:100/0/default.jpg", date: "1919-01-15", paper: "Oklahoma City Times (Oklahoma City, Okla.)", page_url: "https://www.loc.gov/resource/sn86064187/1919-01-15/ed-1/?sp=1", crop: [0.12, 0.183, 0.36, 0.238], note: "Same-day front page: molasses tank blows up, ten persons known dead."}   # LoC via Chrome
 
   - id: north-end
     chapter: "I. The North End"
@@ -79,6 +80,8 @@ scenes:
     images:
       - {query: "Molasses Flood", count: 2}
       - {query: "Boston 1919 street", count: 1}
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_leopold_ver01:data:sn83030193:00280766197:1919011501:0197/full/pct:100/0/default.jpg", date: "1919-01-15", paper: "The Evening World (New York, N.Y.)", page_url: "https://www.loc.gov/resource/sn83030193/1919-01-15/ed-1/?sp=1", crop: [0.27, 0.272, 0.392, 0.493], match: "At about half past twelve", note: "Molasses blowup kills 20 and wrecks Boston buildings; elevated railway supports demolished, sticky flood hampers rescuers."}   # LoC via Chrome
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_pielou_ver01:data:sn83030431:0021247440A:1919011601:0323/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "The Sun (New York, N.Y.)", page_url: "https://www.loc.gov/resource/sn83030431/1919-01-16/ed-1/?sp=1", crop: [0.1550, 0.2880, 0.2694, 0.3630], note: "Molasses tank blast kills 9: huge container in Boston bursts, injuring fifty and wrecking buildings."}   # LoC via Chrome
 
   - id: wave
     chapter: "V. The Wave"
@@ -91,6 +94,7 @@ scenes:
     images:
       - {query: "Boston molasses disaster", count: 2, colorize: true}
       - {query: "Molasses Flood", count: 1}
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:mthi:batch_mthi_alderfly_ver01:data:sn84024808:00212477400:1919011601:0247/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "Great Falls Daily Tribune (Great Falls, Mont.)", page_url: "https://www.loc.gov/resource/sn84024808/1919-01-16/ed-1/?sp=1", crop: [0.548, 0.418, 0.685, 0.716], match: "The wave smashed through everything", note: "Two million gallons immerse ruins of houses: the fire house crushed, elevated railway pillars blown away, about a dozen horses killed."}   # LoC via Chrome
 
 
   - id: victims
@@ -103,6 +107,8 @@ scenes:
     images:
       - {query: "North End Boston", count: 1}
       - {query: "North End Boston tenements", count: 2}
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:ct:batch_ct_berlin_ver01:data:sn82014086:00295866214:1919011601:0155/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "Norwich Bulletin (Norwich, Conn.)", page_url: "https://www.loc.gov/resource/sn82014086/1919-01-16/ed-1/?sp=1", crop: [0.27, 0.164, 0.392, 0.321], match: "The dead came from every part", note: "Nine killed in Boston: list of the identified dead, among them city laborers, a fireman and a blacksmith."}   # LoC via Chrome
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_forestcity_ver02:data:sn82014248:00513682906:1919011701:0146/full/pct:100/0/default.jpg", date: "1919-01-17", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1919-01-17/ed-1/?sp=1", crop: [0.233, 0.252, 0.36, 0.524], note: "12 known dead; investigators believe the tank walls gave way under the weight of the molasses; police search for missing expressmen and a boy."}   # LoC via Chrome
 
   - id: science
     chapter: "VII. Why It Was So Deadly"
@@ -141,6 +147,7 @@ scenes:
       - {query: "Boston 1910s", count: 1}
       - {query: "anarchist bombing 1919", count: 1}
       - {query: "Molasses Flood", count: 1}
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:au:batch_au_carver_ver01:data:sn85038485:00340582792:1919011601:0221/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "The Birmingham Age-Herald (Birmingham, Ala.)", page_url: "https://www.loc.gov/resource/sn85038485/1919-01-16/ed-1/?sp=1", crop: [0.7000, 0.5477, 0.8320, 0.6230], match: "The Trial", note: "Owned by alcohol firm: the tank belonged to Purity Distilling, a subsidiary of U.S. Industrial Alcohol; its wall split and two million gallons rushed over the streets."}   # LoC via Chrome
 
   - id: legacy
     chapter: "Epilogue"

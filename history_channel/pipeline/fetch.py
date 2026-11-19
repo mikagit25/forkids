@@ -286,23 +286,36 @@ def newspaper_clipping(q: dict, media: Path, ep_dir: Path) -> dict | None:
         print(f"   ! clipping skipped: needs a publication date before 1929 ({date or 'no date'})")
         return None
     url = q["newspaper"]
+    local_crop = q.get("crop")
     if "/iiif/" in url and url.rstrip("/").endswith("default.jpg"):
         parts = url.split("/")
-        parts[-3] = "3000,"   # ask the IIIF server for a large render of the whole page
-        parts[-4] = "full"
+        if local_crop:        # ask the IIIF server for just the clipping, at full scan resolution
+            x0, y0, x1, y1 = (float(c) * 100 for c in local_crop)
+            parts[-4] = f"pct:{x0:.2f},{y0:.2f},{x1 - x0:.2f},{y1 - y0:.2f}"
+            parts[-3] = "full"
+            local_crop = None
+        else:
+            parts[-4] = "full"
+            parts[-3] = "3000,"   # whole page: a large render is enough
         url = "/".join(parts)
     key = hashlib.md5((url + str(q.get("crop"))).encode()).hexdigest()[:10]
     dest = media / f"news_{key}.jpg"
     if not dest.exists():
-        try:
-            r = SESSION.get(url, timeout=120)
-            r.raise_for_status()
-            im = Image.open(io.BytesIO(r.content)).convert("RGB")
-        except Exception as e:
-            print(f"   ! clipping download failed: {e}")
+        im = None
+        for attempt in range(4):          # tile.loc.gov sometimes drops the connection mid-transfer
+            try:
+                r = SESSION.get(url, timeout=180)
+                r.raise_for_status()
+                im = Image.open(io.BytesIO(r.content)).convert("RGB")
+                break
+            except Exception as e:
+                err = e
+                time.sleep(5 * (attempt + 1))
+        if im is None:
+            print(f"   ! clipping download failed: {err}")
             return None
-        if q.get("crop"):
-            x0, y0, x1, y1 = q["crop"]
+        if local_crop:
+            x0, y0, x1, y1 = local_crop
             W, H = im.size
             im = im.crop((int(x0 * W), int(y0 * H), int(x1 * W), int(y1 * H)))
         im.save(dest, "JPEG", quality=92)
