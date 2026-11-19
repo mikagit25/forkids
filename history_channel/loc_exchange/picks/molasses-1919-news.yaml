@@ -95,3 +95,47 @@
   paper: The Birmingham Age-Herald (Birmingham, Ala.)
   match: The Trial
   note: 'Owned by alcohol firm: the tank belonged to Purity Distilling, a subsidiary of U.S. Industrial Alcohol; its wall split and two million gallons rushed over the streets.'
+
+# Added 2026-11-19 (second pass): cleanup photo, bomb claim, Ogden award.
+
+- scene: cleanup
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:iune:batch_iune_feature_ver01:data:sn92053934:00295873334:1919011801:0202/full/pct:100/0/default.jpg
+  crop:
+  - 0.16
+  - 0.068
+  - 0.508
+  - 0.34
+  page_url: https://www.loc.gov/resource/sn92053934/1919-01-18/ed-1/?sp=2
+  date: '1919-01-18'
+  paper: Rock Island Argus (Rock Island, Ill.)
+  match: The cleanup took weeks
+  note: 'Photograph: wreckage of the tank site on the waterfront, with sailors from warships at work on the railway tracks; streets and wharf littered with wreckage.'
+
+- scene: trial
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_hale_ver01:data:sn82014248:00513683303:1925041401:0466/full/pct:100/0/default.jpg
+  crop:
+  - 0.838
+  - 0.692
+  - 0.968
+  - 0.828
+  page_url: https://www.loc.gov/resource/sn82014248/1925-04-14/ed-1/?sp=1
+  date: '1925-04-14'
+  paper: Daily Kennebec Journal (Augusta, Me.)
+  match: It claimed that anarchists had blown up the tank
+  note: Plaintiffs protest low awards in the molasses tank case against U.S. Industrial Alcohol; the defence had claimed a bomb explosion destroyed the tank.
+
+- scene: trial
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_hale_ver01:data:sn82014248:00513683303:1925041401:0466/full/pct:100/0/default.jpg
+  crop:
+  - 0.838
+  - 0.758
+  - 0.968
+  - 0.814
+  page_url: https://www.loc.gov/resource/sn82014248/1925-04-14/ed-1/?sp=1
+  date: '1925-04-14'
+  paper: Daily Kennebec Journal (Augusta, Me.)
+  match: The verdict
+  note: Auditor Hugh W. Ogden heard the cases from 1919 to 1923, with 920 witnesses, and awarded about $300,000 to 119 plaintiffs.
