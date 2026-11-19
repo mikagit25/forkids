@@ -95,6 +95,7 @@ scenes:
       - {query: "Boston molasses disaster", count: 2, colorize: true}
       - {query: "Molasses Flood", count: 1}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:mthi:batch_mthi_alderfly_ver01:data:sn84024808:00212477400:1919011601:0247/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "Great Falls Daily Tribune (Great Falls, Mont.)", page_url: "https://www.loc.gov/resource/sn84024808/1919-01-16/ed-1/?sp=1", crop: [0.548, 0.418, 0.685, 0.716], match: "The wave smashed through everything", note: "Two million gallons immerse ruins of houses: the fire house crushed, elevated railway pillars blown away, about a dozen horses killed."}   # LoC via Chrome
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:iune:batch_iune_feature_ver01:data:sn92053934:00295873334:1919011801:0202/full/pct:100/0/default.jpg", date: "1919-01-18", paper: "Rock Island Argus (Rock Island, Ill.)", page_url: "https://www.loc.gov/resource/sn92053934/1919-01-18/ed-1/?sp=2", crop: [0.16, 0.068, 0.508, 0.34], match: "The cleanup took weeks", note: "Photograph: wreckage of the tank site on the waterfront, with sailors from warships at work on the railway tracks; streets and wharf littered with wreckage."}   # LoC via Chrome (photo of the wreckage, moved from cleanup)
 
 
   - id: victims
@@ -148,6 +149,7 @@ scenes:
       - {query: "anarchist bombing 1919", count: 1}
       - {query: "Molasses Flood", count: 1}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:au:batch_au_carver_ver01:data:sn85038485:00340582792:1919011601:0221/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "The Birmingham Age-Herald (Birmingham, Ala.)", page_url: "https://www.loc.gov/resource/sn85038485/1919-01-16/ed-1/?sp=1", crop: [0.7000, 0.5477, 0.8320, 0.6230], match: "The Trial", note: "Owned by alcohol firm: the tank belonged to Purity Distilling, a subsidiary of U.S. Industrial Alcohol; its wall split and two million gallons rushed over the streets."}   # LoC via Chrome
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_hale_ver01:data:sn82014248:00513683303:1925041401:0466/full/pct:100/0/default.jpg", date: "1925-04-14", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1925-04-14/ed-1/?sp=1", crop: [0.838, 0.692, 0.968, 0.828], match: "It claimed that anarchists had blown up the tank", note: "Plaintiffs protest low awards in the molasses tank case against U.S. Industrial Alcohol; the defence had claimed a bomb explosion destroyed the tank."}   # LoC via Chrome
 
   - id: legacy
     chapter: "Epilogue"
