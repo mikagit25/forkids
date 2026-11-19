@@ -1,0 +1,31 @@
+# Library of Congress exchange (server ⇄ Chrome session, through this repo)
+
+The loc.gov search is closed to our server by a Cloudflare bot check (we never try to get past it).
+A person or Claude in Chrome searches loc.gov in a normal browser and hands the results back here.
+
+## Flow
+1. Server: `python run.py episodes/<ep> loc-request` → `requests/<ep>.md` (what to look for, per scene), pushed to GitHub.
+2. Chrome session: open `history_channel/loc_exchange/requests/<ep>.md` on GitHub
+   (https://github.com/mikagit25/forkids/tree/main/history_channel/loc_exchange), search https://www.loc.gov/photos/,
+   and write `picks/<ep>.yaml` (commit to `main`; or paste the yaml into the chat with the server Claude).
+3. Server: `python run.py episodes/<ep> loc-import` → checks every pick and adds it to the episode; then fetch, review.
+
+## picks/<ep>.yaml format
+```yaml
+- scene: beset                       # scene id from the request
+  lccn: "2013646120"                 # item page https://www.loc.gov/item/2013646120/ -> the number
+  image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/.../12345v.jpg"   # "Download" -> largest JPEG link
+  rights: "No known restrictions on publication."                                    # copy of "Rights Advisory"
+  title: "Endurance stuck fast in the ice, winter flashlight scene"
+  date: "1915"
+  note: "why it fits: ship in the ice at night, matches the 'long night' text"
+```
+
+## Rules for picking (the server rejects picks that break them)
+- **Rights Advisory** must say *No known restrictions on publication* or *public domain*. Anything else
+  ("Rights status not evaluated", "Publication may be restricted", © …) → do not pick.
+- `image` must be a `https://tile.loc.gov/…` link, the largest JPEG offered (not the thumbnail, not TIFF if > 50 MB).
+- Short side at least ~900 px; no cropped thumbnails, no watermarks.
+- The photo must fit the time and place of the scene (do not pass a 1930 photo for 1915).
+- Prefer variety: people, places, objects, documents; no near-duplicates of one shot.
+- No people's private data in notes. This repo is public.

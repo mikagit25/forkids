@@ -13,6 +13,8 @@
   python run.py episodes/1918-flu review     # contact sheets of all photos for review (episodes/<ep>/review/)
   python run.py episodes/1918-flu upload [--at 2026-11-22T18:00:00Z|none]  # PRIVATE, auto-public at the next
                                              # every-other-day slot (owner switches it to a Premiere in Studio)
+  python run.py episodes/1918-flu loc-request [scene ...]   # what to find on loc.gov -> loc_exchange/ (GitHub)
+  python run.py episodes/1918-flu loc-import  # take Chrome-session picks from loc_exchange/picks/<ep>.yaml
   python run.py episodes/1918-flu shorts --suggest   # numbered sentences -> choose `shorts:` windows in episode.yaml
   python run.py episodes/1918-flu shorts [N ...]     # vertical Shorts from the finished render -> build/shorts/
   python run.py episodes/1918-flu shorts-upload 2026-11-21T16:00:00Z [hours]   # PRIVATE, scheduled every 24 h
@@ -22,7 +24,7 @@ from pathlib import Path
 
 import yaml
 
-from pipeline import candidates, fetch, framing, publish, render, research, review, shorts, tts
+from pipeline import candidates, fetch, framing, locx, publish, render, research, review, shorts, tts
 
 
 def main():
@@ -58,6 +60,12 @@ def main():
             framing.framing_sheets(ep_dir, episode)
         elif step == "review":
             review.review_pack(ep_dir, episode)
+        elif step == "loc-request":
+            locx.request(ep_dir, episode, [a for a in sys.argv[sys.argv.index("loc-request") + 1:]
+                                           if not a.startswith("--")] or None)
+            break
+        elif step == "loc-import":
+            locx.import_picks(ep_dir, episode)
         elif step == "shorts":
             if "--suggest" in sys.argv:
                 shorts.suggest(ep_dir)
