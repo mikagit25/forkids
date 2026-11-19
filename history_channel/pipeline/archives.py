@@ -424,23 +424,41 @@ def search_cleveland(query: str, limit: int = 12) -> list[dict]:
 
 
 # ---------------------------------------------------------------- DPLA (Digital Public Library of America)
+def _dpla_provider(doc: dict) -> str:
+    p = doc.get("dataProvider") or "DPLA"
+    if isinstance(p, list):
+        p = p[0] if p else "DPLA"
+    return p.get("name", "DPLA") if isinstance(p, dict) else str(p)
+
+
 def search_dpla(query: str, limit: int = 20) -> list[dict]:
     key = os.environ.get("DPLA_API_KEY", "")
     if not key:
         return []
     data = _get("https://api.dp.la/v2/items",
                 {"q": query, "api_key": key, "page_size": str(limit),
-                 "sourceResource.type": "image"}).json()
+                 "sourceResource.type": "image", "rightsCategory": "Unlimited Re-Use"}).json()
     out = []
     for doc in data.get("docs", []):
         src = doc.get("sourceResource", {})
-        rights = " ".join(src.get("rights") or [])
-        if not license_ok(rights) and "no known copyright" not in rights.lower() \
+        # the licence is a rightsstatements.org / creativecommons URI in the top-level `rights`
+        uri = doc.get("rights") if isinstance(doc.get("rights"), str) else ""
+        rights = uri or " ".join(src.get("rights") or [])
+        ok_uri = re.search(r"rightsstatements\.org/vocab/(NoC-US|NKC)|creativecommons\.org/(publicdomain|licenses/by/)",
+                           uri or "")
+        if not ok_uri and not license_ok(rights) and "no known copyright" not in rights.lower() \
                 and "public domain" not in rights.lower():
             continue
         url = doc.get("object") or ""
         if not url or not url.startswith("http"):
             continue
+        # `object` is a thumbnail; CONTENTdm sites serve the full image through IIIF
+        m = re.match(r"(https?://[^/]+)/utils/getthumbnail/collection/([^/]+)/id/(\d+)", url)
+        if m:
+            url = f"{m.group(1)}/digital/iiif/{m.group(2)}/{m.group(3)}/full/full/0/default.jpg"
+        if ok_uri:
+            rights = {"NoC-US": "No Copyright - United States", "NKC": "No known copyright"}.get(
+                (re.search(r"vocab/([A-Za-z-]+)/", uri) or [None, ""])[1], uri)
         dates = src.get("date") or [{}]
         date_str = dates[0].get("displayDate", "") if isinstance(dates[0], dict) else str(dates[0])
         out.append({
@@ -452,7 +470,7 @@ def search_dpla(query: str, limit: int = 20) -> list[dict]:
             "page_url": doc.get("isShownAt") or "https://dp.la",
             "download_url": url,
             "license": rights[:100] or "Public domain",
-            "credit": f"{(doc.get('dataProvider') or ['DPLA'])[0]} via DPLA",
+            "credit": f"{_dpla_provider(doc)} via DPLA",
             "width": 0, "height": 0,
         })
     return out
