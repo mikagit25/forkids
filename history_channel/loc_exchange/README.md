@@ -29,3 +29,18 @@ A person or Claude in Chrome searches loc.gov in a normal browser and hands the 
 - The photo must fit the time and place of the scene (do not pass a 1930 photo for 1915).
 - Prefer variety: people, places, objects, documents; no near-duplicates of one shot.
 - No people's private data in notes. This repo is public.
+
+## Newspaper clippings (Chronicling America) — picks/<ep>-news.yaml
+```yaml
+- scene: blast
+  kind: newspaper
+  image: "https://tile.loc.gov/storage-services/service/ndnp/.../0123.jp2/full/pct:100/0/default.jpg"  # full-size page JPEG
+  crop: [0.05, 0.02, 0.62, 0.30]     # x0, y0, x1, y1 as fractions of the page: the headline / article only
+  page_url: "https://www.loc.gov/resource/sn83045462/1917-12-06/ed-1/?sp=1"
+  date: "1917-12-06"
+  paper: "Evening Star (Washington, D.C.)"
+  match: "the Mont-Blanc exploded"   # narrator phrase the clipping belongs to (from the request)
+  note: "Front-page banner: Halifax wrecked by munitions ship explosion, hundreds dead"
+```
+- Pages up to 1928 only. No `rights` line needed (US newspapers before 1929 are public domain).
+- The crop must contain the whole headline/article and be readable; leave a little margin.

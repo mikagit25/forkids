@@ -9,6 +9,7 @@ Protocol and rules for the Chrome side: loc_exchange/README.md
 """
 from __future__ import annotations
 
+import json
 import re
 import subprocess
 from pathlib import Path
@@ -47,17 +48,44 @@ def request(ep_dir: Path, episode: dict, only: list[str] | None = None):
 def import_picks(ep_dir: Path, episode: dict):
     subprocess.run(["git", "-C", str(ROOT), "pull", "--rebase", "--autostash", "-q"], check=False)
     slug = episode["slug"]
-    pf = X / "picks" / f"{slug}.yaml"
-    if not pf.exists():
-        raise SystemExit(f"{pf} not there yet")
-    picks = yaml.safe_load(pf.read_text()) or []
+    files = [f for f in (X / "picks" / f"{slug}.yaml", X / "picks" / f"{slug}-news.yaml") if f.exists()]
+    if not files:
+        raise SystemExit(f"no picks/{slug}.yaml or picks/{slug}-news.yaml yet")
+    picks = [p for f in files for p in (yaml.safe_load(f.read_text()) or [])]
     ep_yaml = ep_dir / "episode.yaml"
     text = ep_yaml.read_text()
     data = yaml.safe_load(text)
     scenes = {s["id"]: s for s in data["scenes"]}
-    have = {q.get("file") for s in data["scenes"] for q in s.get("images", [])}
+    have = {q.get("file") or q.get("newspaper") for s in data["scenes"] for q in s.get("images", [])}
     added, bad = [], []
     for p in picks:
+        if p.get("kind") == "newspaper":
+            why = None
+            crop = p.get("crop")
+            year = int(str(p.get("date", "0"))[:4] or 0)
+            if p.get("scene") not in scenes:
+                why = f"unknown scene {p.get('scene')}"
+            elif not str(p.get("image", "")).startswith("https://tile.loc.gov/"):
+                why = "image link is not tile.loc.gov"
+            elif not (1800 <= year <= 1928):
+                why = f"date {p.get('date')} (only pages up to 1928)"
+            elif not (isinstance(crop, list) and len(crop) == 4 and all(0 <= float(c) <= 1 for c in crop)
+                      and crop[0] < crop[2] and crop[1] < crop[3]):
+                why = f"bad crop {crop}"
+            elif p["image"] in have:
+                why = "already in episode.yaml"
+            if why:
+                bad.append((p.get("page_url", "?"), why))
+                continue
+            ref = {"newspaper": p["image"], "date": str(p["date"]), "paper": p.get("paper", ""),
+                   "page_url": p.get("page_url", ""), "crop": [round(float(c), 3) for c in crop]}
+            if p.get("match"):
+                ref["match"] = p["match"]
+            if p.get("note"):
+                ref["note"] = p["note"]
+            added.append((p["scene"], ref))
+            have.add(p["image"])
+            continue
         lccn = str(p.get("lccn", "")).strip()
         why = None
         if p.get("scene") not in scenes:
@@ -85,7 +113,8 @@ def import_picks(ep_dir: Path, episode: dict):
     # append as flow-style lines at the end of each scene's images: keeps the hand-written yaml as it is
     lines = text.splitlines()
     for sid, ref in added:
-        flow = "{" + ", ".join(f'{k}: {yaml.safe_dump(v, default_style=chr(34), width=10**6).strip()}'
+        flow = "{" + ", ".join(f'{k}: ' + (json.dumps(v) if isinstance(v, list) else
+                                           yaml.safe_dump(v, default_style=chr(34), width=10**6).strip())
                                 for k, v in ref.items()) + "}"
         i = next(n for n, l in enumerate(lines) if re.match(rf"\s*- id: {re.escape(sid)}\s*$", l))
         j = next((n for n in range(i + 1, len(lines)) if re.match(r"\s*- id: ", lines[n])), len(lines))
@@ -102,7 +131,8 @@ def import_picks(ep_dir: Path, episode: dict):
     ep_yaml.write_text("\n".join(lines) + "\n")
     yaml.safe_load(ep_yaml.read_text())        # must still parse
     for sid, ref in added:
-        print(f"   + [{sid}] {ref['file']}  {ref.get('title', '')[:60]}")
+        print(f"   + [{sid}] {ref.get('file') or ref.get('paper', 'newspaper') + ' ' + ref.get('date', '')}  "
+              f"{(ref.get('title') or ref.get('note', ''))[:60]}")
     for l, w in bad:
         print(f"   skipped {l}: {w}")
     print("next: python run.py episodes/%s fetch  (then framing / review)" % slug)
