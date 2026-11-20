@@ -61,3 +61,29 @@
   title: Boston. North End
   date: '1925'
   note: the North End in 1925, the year the case ended
+
+# Added from loc.gov (event search: 1919-1920 anarchist bombings). Palmer house photo skipped: 'Publication may be restricted'.
+
+- scene: trial
+  lccn: '2014711458'
+  image: https://tile.loc.gov/storage-services/service/pnp/ggbain/31300/31303v.jpg
+  rights: No known restrictions on publication.
+  title: Wall St. bomb
+  date: '1920'
+  note: 'the 1920 Wall Street anarchist bombing: the climate in which the company''s bomb theory was believable'
+
+- scene: trial
+  lccn: '2014711453'
+  image: https://tile.loc.gov/storage-services/service/pnp/ggbain/31200/31298v.jpg
+  rights: No known restrictions on publication.
+  title: Wall St. bomb
+  date: '1920'
+  note: second view of the Wall Street bombing aftermath (different shot)
+
+- scene: trial
+  lccn: '2008675780'
+  image: https://tile.loc.gov/storage-services/service/pnp/cph/3c30000/3c37000/3c37900/3c37980v.jpg
+  rights: No known restrictions on publication.
+  title: City chemists analyze Wall Street bomb parts
+  date: '1920'
+  note: investigators examining bomb fragments, as experts did in the molasses case
