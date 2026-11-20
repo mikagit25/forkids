@@ -1,0 +1,115 @@
+# halifax-1917 photo picks (Claude in Chrome, 2026-11-20). LoC, all 'No known restrictions on publication.'
+# Largest JPEG LoC offers for these is 1024 px wide (short side 533-828 px); the master TIFFs do not render through IIIF.
+# Nova Scotia Archives not used: no public-domain statement, commercial use needs a paid licence.
+
+- scene: cold-open
+  lccn: '2014706063'
+  image: https://tile.loc.gov/storage-services/service/pnp/ggbain/25800/25894v.jpg
+  rights: No known restrictions on publication.
+  title: Halifax explosion
+  date: '1917'
+  note: Bain News Service glass negative of the explosion's aftermath
+
+- scene: port
+  lccn: '2002722524'
+  image: https://tile.loc.gov/storage-services/service/pnp/cph/3c30000/3c32000/3c32300/3c32355v.jpg
+  rights: No known restrictions on publication.
+  title: Canada, Nova Scotia, Halifax--View of waterfront
+  date: 1917 (LoC date)
+  note: the busy Halifax waterfront of the war years
+
+- scene: port
+  lccn: '2002735755'
+  image: https://tile.loc.gov/storage-services/service/pnp/cph/3c30000/3c32000/3c32300/3c32361v.jpg
+  rights: No known restrictions on publication.
+  title: The harbor of Halifax where the "Titanic" victims were taken
+  date: 'c. 1912 (LoC: 1917)'
+  note: Halifax harbour before the disaster; title refers to 1912, so the photo is probably from then
+
+- scene: port
+  lccn: '2019634208'
+  image: https://tile.loc.gov/storage-services/service/pnp/stereo/1s10000/1s18000/1s18200/1s18236v.jpg
+  rights: No known restrictions on publication.
+  title: Entrance to Halifax Harbor, Nova Scotia, Canada
+  date: c. 1920 (stereograph)
+  note: the harbour entrance the convoys used (half of a stereo card, 1024x533)
+
+- scene: blast
+  lccn: '2014706066'
+  image: https://tile.loc.gov/storage-services/service/pnp/ggbain/25800/25897v.jpg
+  rights: No known restrictions on publication.
+  title: Exposition bldg., Halifax [wreckage]
+  date: '1917'
+  note: a large building wrecked by the blast
+
+- scene: aftermath
+  lccn: '2014706067'
+  image: https://tile.loc.gov/storage-services/service/pnp/ggbain/25800/25898v.jpg
+  rights: No known restrictions on publication.
+  title: Dead at Halifax
+  date: '1917'
+  note: 'the human cost: victims of the explosion (check by eye before use)'
+
+- scene: aftermath
+  lccn: '2017670297'
+  image: https://tile.loc.gov/storage-services/service/pnp/anrc/04300/04353v.jpg
+  rights: No known restrictions on publication.
+  title: American Red Cross taking injured to the hospital after the terrible explosion at Halifax
+  date: '1917'
+  note: carrying the injured to hospital
+
+- scene: rescue
+  lccn: '2017670302'
+  image: https://tile.loc.gov/storage-services/service/pnp/anrc/04300/04358v.jpg
+  rights: No known restrictions on publication.
+  title: American Red Cross ambulances at Halifax, N.S. after the terrible explosion
+  date: '1917'
+  note: ambulances in the ruined city
+
+- scene: rescue
+  lccn: '2017670301'
+  image: https://tile.loc.gov/storage-services/service/pnp/anrc/04300/04357v.jpg
+  rights: No known restrictions on publication.
+  title: American Red Cross Canteen Service on duty after the great explosion at Halifax
+  date: '1917'
+  note: volunteers feeding rescuers and survivors
+
+- scene: rescue
+  lccn: '2017670300'
+  image: https://tile.loc.gov/storage-services/service/pnp/anrc/04300/04356v.jpg
+  rights: No known restrictions on publication.
+  title: American Red Cross Canteen Service on duty after the great explosion at Halifax
+  date: '1917'
+  note: second canteen scene (different shot)
+
+- scene: blizzard
+  lccn: '2017678347'
+  image: https://tile.loc.gov/storage-services/service/pnp/anrc/12900/12921v.jpg
+  rights: No known restrictions on publication.
+  title: The great disaster at Halifax, Nova Scotia. Searching the ruins. Despite a severe blizzard ...
+  date: '1917 (LoC: 1920)'
+  note: 'rescuers searching ruins in the blizzard: exactly the scene'
+
+- scene: boston
+  lccn: '2017670296'
+  image: https://tile.loc.gov/storage-services/service/pnp/anrc/04300/04352v.jpg
+  rights: No known restrictions on publication.
+  title: American Red Cross Motor Corps in Halifax, N.S., after the great disaster
+  date: '1917'
+  note: American relief workers arriving to help
+
+- scene: boston
+  lccn: '2017670298'
+  image: https://tile.loc.gov/storage-services/service/pnp/anrc/04300/04354v.jpg
+  rights: No known restrictions on publication.
+  title: American Red Cross Motor Corps at Halifax, N.S., after the great disaster
+  date: '1917'
+  note: US motor corps vehicles in Halifax
+
+- scene: boston
+  lccn: '2017670299'
+  image: https://tile.loc.gov/storage-services/service/pnp/anrc/04300/04355v.jpg
+  rights: No known restrictions on publication.
+  title: American Red Cross Motor Corps removing supplies from boat after the terrible explosion
+  date: '1917'
+  note: unloading relief supplies sent from the US
