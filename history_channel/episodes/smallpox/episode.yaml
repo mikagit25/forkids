@@ -28,9 +28,14 @@ scenes:
       And in 1980, for the first and only time in history, the world declared a human disease eradicated.
       This is the biography of smallpox.
     images:
-      - {query: "smallpox", count: 4}
-      - {query: "smallpox vaccination", count: 2}
-      - {query: "Edward Jenner", count: 1}
+      - {file: "curid:4394235"}
+      - {file: "curid:3288444"}
+      - {file: "europeana:9200579/esjvd38y"}
+      - {file: "europeana:9200579/aabjun7u"}
+      - {file: "curid:50993917"}
+      - {file: "curid:174772612"}
+      - {file: "europeana:9200579/nqve4rvq"}
+      - {file: "web:nlm:101392841", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101392841-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101392841-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Smallpox: keep out of this house", date: "191-", note: "quarantine placard: the fear smallpox caused in every town"}   # LoC via Chrome
 
   - id: ancient
     chapter: "I. The Speckled Monster"
@@ -40,9 +45,11 @@ scenes:
       Its origins are ancient. Rash-like scars on Egyptian mummies suggest that smallpox has existed for at least three thousand years, and the mummy of the pharaoh Ramses the Fifth is often cited as a possible early victim.
       Written descriptions of a smallpox-like disease appear in China in the fourth century, and in India by the seventh.
     images:
-      - {query: "Ramses V mummy", count: 1}
-      - {query: "smallpox patient", count: 2}
+      - {file: "curid:9541702"}
+      - {file: "europeana:9200579/g84jpb4x"}
+      - {file: "europeana:9200579/cw96j99k"}
       - {query: "variola virus", count: 1, modern: true}
+      - {file: "web:nlm:101434085", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101434085-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101434085-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Confluent Small-Pox", date: "undated (19th c.)", note: "medical illustration of the disease at its worst"}   # LoC via Chrome
 
   - id: killer
     chapter: "II. A Killer of Kings"
@@ -52,9 +59,13 @@ scenes:
       In Europe, it struck royal families as easily as anyone. It killed a king of France, Louis the Fifteenth, in 1774, and an emperor of Austria, and changed the line of succession in several countries.
       In eighteenth-century Europe, it is estimated to have killed around four hundred thousand people every year.
     images:
-      - {query: "Florentine Codex smallpox", count: 2}
-      - {query: "Louis XV", count: 1}
-      - {query: "smallpox 18th century", count: 1}
+      - {file: "curid:12442514"}
+      - {file: "curid:181371497"}
+      - {file: "met:310663"}
+      - {file: "curid:92979493"}
+      - {file: "europeana:9200579/ch966872"}
+      - {file: "europeana:9200579/rcazpuky"}
+      - {file: "web:nlm:101455857", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101455857-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101455857-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Canada, the recent smallpox epidemic in Montreal", date: "1885", note: "newspaper engraving of the 1885 Montreal epidemic"}   # LoC via Chrome
 
   - id: variolation
     chapter: "III. Fighting Fire with Fire"
@@ -65,9 +76,13 @@ scenes:
       In 1721, Lady Mary Wortley Montagu, who had seen variolation in Constantinople and survived smallpox herself, had her daughter variolated in London. That same year in Boston, an enslaved African man named Onesimus told the minister Cotton Mather about the practice from his homeland, and it was tried during an epidemic there.
       Variolation worked, but it was risky. A few people died, and the variolated could spread the full disease to others.
     images:
-      - {query: "Lady Mary Wortley Montagu", count: 2, colorize: true}
-      - {query: "Cotton Mather", count: 1}
-      - {query: "inoculation 18th century", count: 1}
+      - {file: "europeana:9200579/he2ey8yg", colorize: true}
+      - {file: "europeana:9200579/n648jdnf"}
+      - {file: "wellcome:nqebtmwp"}
+      - {file: "curid:47196640"}
+      - {file: "europeana:2020903/KKSgb11325"}
+      - {file: "web:nlm:101436481", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101436481-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101436481-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Smallpox: Brief rule to guide the common people of New England]", date: "1721", note: "the 1721 Boston epidemic, the year inoculation was first tried in America"}   # LoC via Chrome
+      - {file: "web:nlm:101435286", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101435286-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101435286-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Smallpox: Instruments for inoculation and developing pustule]", date: "undated (18th-19th c.)", note: "the tools and the pustule of inoculation"}   # LoC via Chrome
 
   - id: jenner
     chapter: "IV. The Milkmaid's Secret"
@@ -81,9 +96,12 @@ scenes:
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "14 May 1796", text: "the first vaccination", match: "On the fourteenth of May 1796"}
     images:
-      - {query: "Edward Jenner vaccination James Phipps", count: 2, colorize: true}
-      - {query: "cowpox", count: 1}
-      - {query: "Edward Jenner portrait", count: 1}
+      - {file: "curid:90129751", colorize: true}
+      - {file: "europeana:9200579/hhd759xh"}
+      - {file: "europeana:9200579/wsmqn2at"}
+      - {file: "curid:36131125"}
+      - {file: "web:nlm:101449258", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101449258-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101449258-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "The First Vaccination - Dr. Jenner", date: "undated (19th c. print)", note: "Jenner vaccinating James Phipps, 1796"}   # LoC via Chrome
+      - {file: "web:nlm:101419633", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101419633-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101419633-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Edward Jenner", date: "18--", note: "portrait of Jenner"}   # LoC via Chrome
 
   - id: mockery
     chapter: "V. Cows and Cartoons"
@@ -92,9 +110,11 @@ scenes:
       In 1802, the caricaturist James Gillray drew a famous cartoon showing Jenner vaccinating a crowd of frightened patients, with tiny cows bursting out of their arms and faces.
       But vaccination was far safer than variolation, and it spread rapidly. Jenner's work was translated into several languages within a few years. Bavaria made vaccination compulsory for army recruits in 1807.
     images:
-      - {query: "Gillray Cow-Pock", count: 1}
-      - {query: "anti-vaccination 19th century", count: 2}
-      - {query: "vaccination 19th century", count: 1}
+      - {file: "curid:2289666"}
+      - {file: "europeana:9200579/rb9k8r59"}
+      - {file: "curid:52461725"}
+      - {file: "europeana:133/S_UVLM_photo_Vlm_A4653"}
+      - {file: "web:nlm:101395166", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101395166-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101395166-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "The Cow Pock - or - the Wonderful Effects of the New Inoculation!", date: "1802", note: "Gillray's cartoon: vaccinated people sprouting cows"}   # LoC via Chrome
 
   - id: balmis
     chapter: "VI. A Living Chain"
@@ -104,8 +124,20 @@ scenes:
       In 1803, the Spanish Crown found an extraordinary solution. A doctor named Francisco Javier de Balmis sailed for the Americas with a group of orphan boys.
       Before departure, two boys were vaccinated. As the sores developed, material from them was used to vaccinate the next two, and so on, keeping the vaccine alive, child to child, across the Atlantic.
       The expedition carried smallpox vaccination to Spanish America and on to the Philippines.
+    maps:
+      - match: "sailed for the Americas"
+        style: spread
+        title: "Royal Expedition of the Vaccine, 1803–1806"
+        region: [-130, -20, 140, 50]
+        points:
+          - [-8.70, 42.55, "La Coruña, Spain"]
+          - [-17.07, 28.10, "Canary Islands"]
+          - [-66.93, 10.48, "Caracas, Venezuela"]
+          - [-99.13, 19.43, "Mexico City"]
+          - [120.98, 14.60, "Manila, Philippines"]
     images:
-      - {query: "Balmis expedition", count: 2}
+      - {file: "wellcome:swbj56cs"}
+      - {file: "wellcome:m8xc5bg2"}
       - {query: "Francisco Javier de Balmis", count: 1}
 
   - id: century
@@ -117,8 +149,13 @@ scenes:
     cards:
       - {big: "≈300 million", text: "deaths in the 20th century", match: "Historians estimate that smallpox killed"}
     images:
-      - {query: "smallpox vaccination 1900s", count: 2}
-      - {query: "smallpox hospital 1900s", count: 2}
+      - {file: "curid:39376261"}
+      - {file: "curid:16859482"}
+      - {file: "curid:16859488"}
+      - {file: "europeana:9200579/tgfzc2h3"}
+      - {file: "web:nlm:101392773", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101392773-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101392773-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Vaccinating the poor", date: "1873", note: "public vaccination in a 19th-century city"}   # LoC via Chrome
+      - {file: "web:nlm:101430419", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101430419-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101430419-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Small Pox and Vaccination Hospital, London, England: Front view", date: "undated (19th c.)", note: "a hospital built just for smallpox"}   # LoC via Chrome
+      - {file: "web:nlm:101420979", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420979-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420979-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Smallpox patients at Military Hospital No. 45, an isolation hospital, Gungalin]", date: "undated (c. 1910s?)", note: "isolation of smallpox patients in the 20th century"}   # LoC via Chrome
 
   - id: eradication
     chapter: "VIII. The Last Campaign"
@@ -129,9 +166,13 @@ scenes:
       A simple bifurcated needle, with two prongs, made vaccination quick and cheap, using a fraction of the vaccine.
       Country after country became free of the disease. In October 1977, in the town of Merca, in Somalia, a hospital cook named Ali Maow Maalin developed the last naturally occurring case of smallpox in the world. He survived.
     images:
-      - {query: "smallpox eradication programme", count: 2, colorize: true}
-      - {query: "bifurcated needle", count: 1}
+      - {file: "curid:37542373", colorize: true}
+      - {file: "curid:8098834"}
+      - {file: "curid:3156882"}
+      - {file: "curid:367791"}
       - {query: "Ali Maow Maalin", count: 1}
+      - {file: "web:nlm:101447579", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447579-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447579-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Staff physician of the WHO vaccinates a youngster against smallpox by means of a jet injector]", date: "1970", note: "WHO eradication campaign in the field"}   # LoC via Chrome
+      - {file: "web:nlm:101447295", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447295-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447295-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Schematic world maps showing the areas in which smallpox had been eradicated in 1966, 1972 ...", date: "1966-1976", note: "maps of the disease shrinking during the campaign"}   # LoC via Chrome
 
   - id: last-death
     chapter: "IX. The Last Victim"
@@ -146,6 +187,7 @@ scenes:
     images:
       - {query: "smallpox eradication 1980", count: 2}
       - {query: "World Health Organization 1980", count: 1}
+      - {file: "web:nlm:101447293", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447293-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447293-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Three former directors of CDC's smallpox eradication efforts", date: "undated (c. 1980?)", note: "the people who ran the eradication programme"}   # LoC via Chrome
 
   - id: today
     chapter: "Epilogue"
@@ -154,7 +196,9 @@ scenes:
       Smallpox vaccination ended around the world in the years after eradication. And Edward Jenner's idea, that the body can be trained to recognise a disease before it strikes, became the foundation of every vaccine we use today.
       If you enjoyed this biography of a disease, subscribe for the next one.
     images:
-      - {query: "Edward Jenner statue", count: 1, modern: true}
+      - {file: "europeana:9200579/t6gg83yk"}
+      - {file: "wellcome:crux6ytk"}
+      - {file: "europeana:9200579/bcjsxdft"}
       - {query: "smallpox", count: 1}
 
 thumbnail:

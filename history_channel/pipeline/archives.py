@@ -23,7 +23,7 @@ import time
 
 import requests
 
-UA = "ArchiveHistoryPipeline/0.1 (educational YouTube channel; contact: set CONTACT_EMAIL)"
+UA = "ArchiveTalesPipeline/0.2 (educational history channel; https://github.com/mikagit25/forkids) python-requests"
 SESSION = requests.Session()
 SESSION.headers["User-Agent"] = UA
 MIN_WIDTH = 900
@@ -119,6 +119,47 @@ def search_commons(query: str, limit: int = 30) -> list[dict]:
             "credit": ", ".join(x for x in (artist, credit) if x)[:200] or "Wikimedia Commons",
             "width": ii.get("width"), "height": ii.get("height"),
         })
+    return out
+
+
+def _commons_record(p: dict) -> dict | None:
+    ii = (p.get("imageinfo") or [{}])[0]
+    if not ii:
+        return None
+    md = ii.get("extmetadata", {})
+    lic = _strip_html(md.get("LicenseShortName", {}).get("value")) or _strip_html(md.get("License", {}).get("value"))
+    if not lic or not license_ok(lic):
+        return None
+    artist = _strip_html(md.get("Artist", {}).get("value"))
+    credit = _strip_html(md.get("Credit", {}).get("value"))
+    return {
+        "source": "commons", "id": f"commons:{p['pageid']}",
+        "title": p["title"].removeprefix("File:").rsplit(".", 1)[0],
+        "description": _strip_html(md.get("ImageDescription", {}).get("value"))[:400],
+        "date": _strip_html(md.get("DateTimeOriginal", {}).get("value")),
+        "page_url": ii.get("descriptionurl"), "download_url": ii.get("thumburl") or ii.get("url"),
+        "license": lic, "credit": ", ".join(x for x in (artist, credit) if x)[:200] or "Wikimedia Commons",
+        "width": ii.get("width"), "height": ii.get("height"),
+    }
+
+
+def commons_files(pageids: list[str]) -> list[dict]:
+    """Many Commons files in batches of 50 page ids per request (one request per file gets rate-limited, 429)."""
+    out = []
+    for i in range(0, len(pageids), 50):
+        params = {"action": "query", "format": "json", "formatversion": "2", "pageids": "|".join(pageids[i:i + 50]),
+                  "prop": "imageinfo", "iiprop": "url|size|mime|extmetadata", "iiurlwidth": "3000"}
+        for attempt in range(6):
+            r = _get("https://commons.wikimedia.org/w/api.php", params)
+            data = r.json() if r is not None else {"error": "429"}
+            if "error" not in data:
+                break
+            time.sleep(15 * (attempt + 1))
+        for p in data.get("query", {}).get("pages", []):
+            c = _commons_record(p)
+            if c:
+                out.append(c)
+        time.sleep(1.0)
     return out
 
 

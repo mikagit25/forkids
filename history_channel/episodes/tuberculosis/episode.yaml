@@ -31,6 +31,8 @@ scenes:
       - {query: "tuberculosis sanatorium", count: 4}
       - {query: "tuberculosis poster", count: 2}
       - {query: "Robert Koch", count: 1}
+      - {file: "web:nlm:101395536", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101395536-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101395536-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Tents for Consumptives, Fort Stanton Sanatorium", date: "undated (c. 1900s?)", note: "rows of tents where TB patients lived in the open air: the 'cure' at a glance"}   # LoC via Chrome
+      - {file: "web:nlm:101444771", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101444771-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101444771-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "The next to go", date: "1919", note: "Red Cross poster: tuberculosis shown as the next scourge to be driven out"}   # LoC via Chrome
 
   - id: ancient
     chapter: "I. Older Than History"
@@ -57,6 +59,8 @@ scenes:
       - {query: "Victorian slum", count: 2}
       - {query: "industrial revolution city 19th century", count: 2}
       - {query: "consumption patient 19th century", count: 1}
+      - {file: "web:nlm:101446857", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101446857-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101446857-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Family stricken by tuberculosis", date: "undated (c. 1900s)", note: "a poor family posing at home, the disease as a household tragedy"}   # LoC via Chrome
+      - {file: "web:nlm:101444537", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101444537-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101444537-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "A Case of Consumption", date: "undated", note: "a consumptive patient: the face of the 'white plague'"}   # LoC via Chrome
 
   - id: romantic
     chapter: "III. The Romantic Disease"
@@ -81,6 +85,8 @@ scenes:
     images:
       - {query: "Laennec stethoscope", count: 2, colorize: true}
       - {query: "René Laennec", count: 1}
+      - {file: "web:nlm:101420951", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420951-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420951-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "La\xEBnnec \xE0 l'H\xF4pital Necker ausculte un phtisique", date: "19th c. (print after painting)", note: "Laennec at a patient's bedside listening to the chest"}   # LoC via Chrome
+      - {file: "web:nlm:101420947", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420947-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420947-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Laennec]", date: "1824", note: "caricature of Laennec from his lifetime"}   # LoC via Chrome
 
   - id: koch
     chapter: "V. Koch's Discovery"
@@ -96,6 +102,9 @@ scenes:
       - {query: "Robert Koch laboratory", count: 2}
       - {query: "Robert Koch", count: 1}
       - {query: "tubercle bacillus Koch drawing", count: 1}
+      - {file: "web:nlm:101435630", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101435630-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101435630-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Professor Robert Koch, of Berlin", date: "undated (c. 1890?)", note: "print portrait of Koch at the height of his fame"}   # LoC via Chrome
+      - {file: "web:nlm:101420776", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420776-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420776-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Robert Koch's first post graduate course]", date: "1891", note: "Koch seated among his students in Berlin: the lab that found the bacillus"}   # LoC via Chrome
+      - {file: "web:nlm:101420778", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420778-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420778-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Robert Koch", date: "1910", note: "head-and-shoulders portrait (Lehmann, Munich)"}   # LoC via Chrome
 
   - id: sanatorium
     chapter: "VI. The Sanatorium"
@@ -109,6 +118,11 @@ scenes:
       - {query: "sanatorium porch patients", count: 2, colorize: true}
       - {query: "Saranac Lake cure porch", count: 2}
       - {query: "Görbersdorf sanatorium", count: 1}
+      - {file: "web:nlm:101404218", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101404218-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101404218-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Westbrook Sanatorium, Richmond, VA: men's ward/porch", date: "undated (c. 1910s?)", note: "a sanatorium building for men patients (exterior)"}   # LoC via Chrome
+      - {file: "web:nlm:101404217", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101404217-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101404217-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Westbrook Sanatorium, Richmond, VA: women's ward/porch", date: "undated (c. 1910s?)", note: "the women's building of the same sanatorium"}   # LoC via Chrome
+      - {file: "web:nlm:101407487", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101407487-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101407487-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[American Red Cross Hospital, Toul, France]: [Sunbath for children with tuberculosis]", date: "undated (WWI, 1918?)", note: "children with TB taking a sun cure in the open air"}   # LoC via Chrome
+      - {file: "web:nlm:101395538", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101395538-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101395538-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Tent occupied by consumptive medical officer", date: "undated (c. 1900s?)", note: "a doctor with TB living in a tent: rest and fresh air"}   # LoC via Chrome
+      - {file: "web:nlm:101612320", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101612320-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101612320-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Doctor and nurses' open-air treatment", date: "1914-1918?", note: "postcard: patient in bed outdoors with doctor and nurses"}   # LoC via Chrome
 
   - id: public-health
     chapter: "VII. Don't Spit"
@@ -122,6 +136,11 @@ scenes:
       - {query: "do not spit sign", count: 1}
       - {query: "Christmas seal tuberculosis", count: 1}
       - {query: "chest X-ray screening 1940s", count: 1}
+      - {file: "web:nlm:101611462", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101611462-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101611462-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Do not spit", date: "undated (c. 1900s?)", note: "postcard of the National Association for the Prevention of Consumption: the 'don't spit' campaign"}   # LoC via Chrome
+      - {file: "web:nlm:101449533", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101449533-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101449533-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "\"Stamp\" out tuberculosis", date: "1924", note: "National Tuberculosis Association Christmas Seal poster"}   # LoC via Chrome
+      - {file: "web:nlm:101615193", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101615193-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101615193-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "\"The community nurse\": buy Red Cross seals", date: "1914", note: "Red Cross Christmas Seals postcard with a visiting nurse"}   # LoC via Chrome
+      - {file: "web:nlm:101447543", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447543-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447543-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[A woman getting X-rayed for tuberculosis]", date: "1959", note: "mass chest X-ray screening"}   # LoC via Chrome
+      - {file: "web:nlm:101453495", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101453495-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101453495-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Tuberculosis undiscovered endangers you: danger signs", date: "1940", note: "National Tuberculosis Association poster on early signs"}   # LoC via Chrome
 
   - id: cure
     chapter: "VIII. The First Cure"
@@ -136,6 +155,8 @@ scenes:
       - {query: "Albert Calmette", count: 1}
       - {query: "streptomycin", count: 1}
       - {query: "BCG vaccination", count: 1}
+      - {file: "web:nlm:101411517", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101411517-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101411517-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Albert Calmette]", date: "1920", note: "Calmette, co-creator of the BCG vaccine"}   # LoC via Chrome
+      - {file: "web:nlm:101440676", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101440676-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101440676-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[1948 Awards Ceremony]: [Dr. Selman Waksman]", date: "1948", note: "Waksman, discoverer of streptomycin, being honoured"}   # LoC via Chrome
 
   - id: today
     chapter: "IX. Not Gone"
@@ -147,6 +168,7 @@ scenes:
     images:
       - {query: "tuberculosis treatment", count: 1, modern: true}
       - {query: "tuberculosis", count: 2}
+      - {file: "web:nlm:101437276", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101437276-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101437276-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Traditional hospitals and sanatoria are now judged unnecessary for most tuberculosis patients", date: "1978", note: "WHO photo: the sanatorium era ends with drug treatment at home"}   # LoC via Chrome
 
   - id: closing
     chapter: "Epilogue"

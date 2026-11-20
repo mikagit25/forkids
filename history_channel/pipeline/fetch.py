@@ -33,14 +33,17 @@ def _download(c: dict, media: Path) -> Path | None:
         return dest
     for url in [c["download_url"], *c.get("download_fallbacks", [])]:
         try:
-            for attempt in range(5):
-                time.sleep(1.5)                     # be polite: upload.wikimedia.org rate-limits bursts (HTTP 429)
-                r = SESSION.get(url, timeout=90)
-                if r.status_code != 429:
-                    break
-                wait = min(int(r.headers.get("retry-after", 60) or 60), 120) * (attempt + 1)
-                print(f"   … rate-limited (429), waiting {wait}s and retrying")
-                time.sleep(wait)
+            if url.startswith("file://"):        # handed over by a person (archive behind a bot check)
+                r = type("R", (), {"status_code": 200, "content": Path(url[7:]).read_bytes()})()
+            else:
+              for attempt in range(5):
+                  time.sleep(1.5)                     # be polite: upload.wikimedia.org rate-limits bursts (HTTP 429)
+                  r = SESSION.get(url, timeout=90)
+                  if r.status_code != 429:
+                      break
+                  wait = min(int(r.headers.get("retry-after", 60) or 60), 120) * (attempt + 1)
+                  print(f"   … rate-limited (429), waiting {wait}s and retrying")
+                  time.sleep(wait)
             if r.status_code != 200:
                 print(f"   ! HTTP {r.status_code} for {url[:90]}")
                 continue
@@ -472,6 +475,9 @@ WEB_HOSTS = {"nsarchives": ("archives.novascotia.ca",), "nlm": ("collections.nlm
              "nara": ("catalog.archives.gov", "s3.amazonaws.com/NARAprodstorage")}
 
 
+INBOX = Path(__file__).resolve().parent.parent / "loc_exchange" / "inbox"
+
+
 def _web_manual(ref: str, q: dict) -> dict | None:
     """- {file: "web:nsarchives:<id>", image: "<largest JPEG>", page_url: "...", rights: "...", title, date}
     Picked by hand on an archive site (loc_exchange). Rights must say public domain / no known restrictions."""
@@ -484,8 +490,14 @@ def _web_manual(ref: str, q: dict) -> dict | None:
         print(f"   !! {ref}: rights '{rights}' not allowed"); return None
     if not any(h in q.get("image", "") for h in WEB_HOSTS[src]):
         print(f"   !! {ref}: image link is not on {WEB_HOSTS[src][0]}"); return None
+    # sites behind a bot check (NLM uses an AWS WAF challenge): the image is downloaded by a person in a
+    # normal browser and dropped into loc_exchange/inbox/<src>-<id>.jpg (we never try to pass the check)
+    pid = ref.split(":", 2)[2]
+    local = next((f for f in (sorted(INBOX.rglob(f"*{pid}*")) if INBOX.exists() else [])
+                  if f.suffix.lower() in (".jpg", ".jpeg", ".png", ".tif", ".tiff")), None)   # any name containing the id
+    url = f"file://{local}" if local else q["image"]
     return {"source": src, "id": ref, "title": q.get("title", ref), "description": q.get("note", ""),
-            "date": q.get("date", ""), "page_url": q.get("page_url", ""), "download_url": q["image"],
+            "date": q.get("date", ""), "page_url": q.get("page_url", ""), "download_url": url,
             "license": rights[:80], "credit": q.get("credit") or src, "width": None, "height": None}
 
 

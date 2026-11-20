@@ -30,6 +30,7 @@ scenes:
       - {query: "Molasses Flood", count: 2, colorize: true}
       - {query: "North End Boston", count: 1}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:okhi:batch_okhi_jenks_ver02:data:sn86064187:00200295134:1919011501:0322/full/pct:100/0/default.jpg", date: "1919-01-15", paper: "Oklahoma City Times (Oklahoma City, Okla.)", page_url: "https://www.loc.gov/resource/sn86064187/1919-01-15/ed-1/?sp=1", crop: [0.12, 0.183, 0.36, 0.238], note: "Same-day front page: molasses tank blows up, ten persons known dead."}   # LoC via Chrome
+      - {file: "web:bpl:fj237v091", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj237v10s/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj237v091", rights: "No known copyright restrictions.", title: "Waterfront, North End", date: "ca. 1918-1925", note: "oblique view from the Custom House tower over the North End waterfront, where the tank stood"}   # LoC via Chrome
 
   - id: north-end
     chapter: "I. The North End"
@@ -44,6 +45,7 @@ scenes:
     images:
       - {query: "Commercial Street Boston 1910s", count: 2}
       - {query: "Atlantic Avenue elevated Boston", count: 1}
+      - {file: "web:bpl:8k71nw33h", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:8k71nw34s/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:8k71nw33h", rights: "No known copyright restrictions.", title: "Commercial Street", date: "ca. 1913-1915", note: "Commercial Street a few years before the flood"}   # LoC via Chrome
 
   - id: why
     chapter: "II. Why Molasses?"
@@ -57,6 +59,7 @@ scenes:
       - {query: "Boston molasses disaster", count: 1}
       - {query: "Boston 1910s", count: 1}
       - {query: "Boston 1910s", count: 1}
+      - {file: "web:bpl:fj236n06s", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj236n072/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj236n06s", rights: "No known copyright restrictions.", title: "Commercial St. and Custom House, Boston, Mass.", date: "1920-07-13", note: "Commercial Street the year after the flood"}   # LoC via Chrome
 
   - id: warnings
     chapter: "III. The Leaking Tank"
@@ -110,6 +113,8 @@ scenes:
       - {query: "North End Boston tenements", count: 2}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:ct:batch_ct_berlin_ver01:data:sn82014086:00295866214:1919011601:0155/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "Norwich Bulletin (Norwich, Conn.)", page_url: "https://www.loc.gov/resource/sn82014086/1919-01-16/ed-1/?sp=1", crop: [0.27, 0.164, 0.392, 0.321], match: "The dead came from every part", note: "Nine killed in Boston: list of the identified dead, among them city laborers, a fireman and a blacksmith."}   # LoC via Chrome
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_forestcity_ver02:data:sn82014248:00513682906:1919011701:0146/full/pct:100/0/default.jpg", date: "1919-01-17", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1919-01-17/ed-1/?sp=1", crop: [0.233, 0.252, 0.36, 0.524], note: "12 known dead; investigators believe the tank walls gave way under the weight of the molasses; police search for missing expressmen and a boy."}   # LoC via Chrome
+      - {file: "web:bpl:c534n655p", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:vd672h762/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:c534n655p", rights: "No known copyright restrictions.", title: "Delivery wagon, horses, and driver", date: "1875-1915", note: "teamsters and horses like those caught in the wave"}   # LoC via Chrome
+      - {file: "web:bpl:zk51wb76p", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:zk51wb77z/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:zk51wb76p", rights: "No known copyright restrictions.", title: "Men and fire engine, Boston Fire", date: "ca. 1872-1920", note: "Boston firemen: the fire station on Commercial Street was crushed"}   # LoC via Chrome
 
   - id: science
     chapter: "VII. Why It Was So Deadly"
@@ -150,6 +155,9 @@ scenes:
       - {query: "Molasses Flood", count: 1}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:au:batch_au_carver_ver01:data:sn85038485:00340582792:1919011601:0221/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "The Birmingham Age-Herald (Birmingham, Ala.)", page_url: "https://www.loc.gov/resource/sn85038485/1919-01-16/ed-1/?sp=1", crop: [0.7000, 0.5477, 0.8320, 0.6230], match: "The Trial", note: "Owned by alcohol firm: the tank belonged to Purity Distilling, a subsidiary of U.S. Industrial Alcohol; its wall split and two million gallons rushed over the streets."}   # LoC via Chrome
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_hale_ver01:data:sn82014248:00513683303:1925041401:0466/full/pct:100/0/default.jpg", date: "1925-04-14", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1925-04-14/ed-1/?sp=1", crop: [0.838, 0.692, 0.968, 0.828], match: "It claimed that anarchists had blown up the tank", note: "Plaintiffs protest low awards in the molasses tank case against U.S. Industrial Alcohol; the defence had claimed a bomb explosion destroyed the tank."}   # LoC via Chrome
+      - {file: "loc:2014711458", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/31300/31303v.jpg", rights: "No known restrictions on publication.", title: "Wall St. bomb", date: "1920", note: "the 1920 Wall Street anarchist bombing: the climate in which the company's bomb theory was believable"}   # LoC via Chrome
+      - {file: "loc:2014711453", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/31200/31298v.jpg", rights: "No known restrictions on publication.", title: "Wall St. bomb", date: "1920", note: "second view of the Wall Street bombing aftermath (different shot)"}   # LoC via Chrome
+      - {file: "loc:2008675780", image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c30000/3c37000/3c37900/3c37980v.jpg", rights: "No known restrictions on publication.", title: "City chemists analyze Wall Street bomb parts", date: "1920", note: "investigators examining bomb fragments, as experts did in the molasses case"}   # LoC via Chrome
 
   - id: legacy
     chapter: "Epilogue"
@@ -161,6 +169,7 @@ scenes:
     images:
       - {query: "Great Molasses Flood plaque", modern: true, count: 1}
       - {query: "Molasses Flood", count: 1}
+      - {file: "web:bpl:8k71nz656", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:8k71nz66g/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:8k71nz656", rights: "No known copyright restrictions.", title: "Boston. North End", date: "1925", note: "the North End in 1925, the year the case ended"}   # LoC via Chrome
 
 thumbnail:
   scene: wave

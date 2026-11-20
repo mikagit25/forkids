@@ -37,7 +37,15 @@ def thumb_url(c: dict) -> str:
     u = c.get("download_url") or ""
     s = c["source"]
     if s == "commons":
-        return re.sub(r"/\d+px-", "/400px-", u)
+        u = u.split("?")[0]
+        if "/thumb/" in u:
+            return re.sub(r"/\d+px-", "/500px-", u)
+        m = re.match(r"(https://upload\.wikimedia\.org/wikipedia/commons)/(\w/\w\w)/([^/]+)$", u)
+        if m:     # original (narrower than 3000 px): ask for the cached 500 px thumbnail, not the full file
+            name = m.group(3)
+            suffix = ".jpg" if name.lower().endswith((".tif", ".tiff")) else ""
+            return f"{m.group(1)}/thumb/{m.group(2)}/{name}/500px-{name}{suffix}"
+        return u
     if s == "met":
         return u.replace("/original/", "/web-large/")
     if s == "cleveland":
@@ -54,7 +62,11 @@ def _thumb(c: dict) -> Image.Image | None:
         if not url:
             continue
         try:
-            r = SESSION.get(url, timeout=40)
+            for attempt in range(4):
+                r = SESSION.get(url, timeout=40)
+                if r.status_code != 429:
+                    break
+                time.sleep(min(int(r.headers.get("retry-after") or 30), 180) + 5)   # upload.wikimedia.org limit
             if r.status_code != 200:
                 continue
             im = Image.open(io.BytesIO(r.content))
@@ -197,18 +209,22 @@ def _category_files(cat: str, depth: int = 1, seen_cats: set | None = None) -> l
 def pool(ep_dir: Path, name: str, categories: list[str], depth: int = 1):
     """One numbered pool from whole Commons categories (an expedition photographer's work, a ship...):
     candidates/pool-<name>_NN.jpg + pool-<name>.md. Licence and size are checked like everywhere else."""
-    from .archives import commons_file
+    from .archives import commons_files
     out_dir = ep_dir / "candidates"
     out_dir.mkdir(exist_ok=True)
     idx_path = out_dir / "index.json"
     index = json.loads(idx_path.read_text()) if idx_path.exists() else {}
     ids = list(dict.fromkeys(i for c in categories for i in _category_files(c, depth)))
     print(f"[pool-{name}] {len(ids)} files in {len(categories)} categories")
-    with ThreadPoolExecutor(max_workers=3) as ex:
-        cands = [c for c in ex.map(lambda i: commons_file("curid:" + i), ids) if c]
+    cands = commons_files(ids)
+    print(f"[pool-{name}] {len(cands)} with an allowed licence")
     cands = [c for c in cands if min(c.get("width") or 0, c.get("height") or 0) >= 700]
-    with ThreadPoolExecutor(max_workers=6) as ex:
-        thumbs = list(ex.map(_thumb, cands))
+    thumbs = []                                        # one at a time: upload.wikimedia.org rate-limits bursts
+    for k, c in enumerate(cands):
+        thumbs.append(_thumb(c))
+        time.sleep(0.5)
+        if k % 50 == 49:
+            print(f"   thumbnails {k + 1}/{len(cands)}")
     rows, hashes = [], []
     for c, im in sorted(zip(cands, thumbs), key=lambda t: t[0]["title"]):
         if im is None:

@@ -79,8 +79,10 @@ def voice_episode(ep_dir: Path, episode: dict):
     cache = out / "cache"
     cache.mkdir(parents=True, exist_ok=True)
     timings = {}
+    base_voice = voice
     for scene in episode["scenes"]:
         sid = scene["id"]
+        voice = {**base_voice, "speed": scene["speed"]} if scene.get("speed") else base_voice   # e.g. a faster cold open
         chunks, sents, t = [], [], 0.0
         for s in split_sentences(scene["narration"]):
             key = hashlib.md5(json.dumps([s, voice], sort_keys=True).encode()).hexdigest()[:16]

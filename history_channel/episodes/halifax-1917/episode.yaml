@@ -30,6 +30,7 @@ scenes:
       - {query: "Halifax explosion damage", count: 2}
       - {query: "Halifax harbour", count: 1}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:au:batch_au_bolden_ver01:data:sn85038485:0034058272A:1917120701:0594/full/pct:100/0/default.jpg", date: "1917-12-07", paper: "The Birmingham Age-Herald (Birmingham, Ala.)", page_url: "https://www.loc.gov/resource/sn85038485/1917-12-07/ed-1/?sp=1", crop: [0.01, 0.025, 0.99, 0.18], note: "Full-width front-page banner: death toll in Halifax from the explosion may go over 2,000."}   # LoC via Chrome
+      - {file: "loc:2014706063", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/25800/25894v.jpg", rights: "No known restrictions on publication.", title: "Halifax explosion", date: "1917", note: "Bain News Service glass negative of the explosion's aftermath"}   # LoC via Chrome
 
   - id: port
     chapter: "I. A City at War"
@@ -45,6 +46,9 @@ scenes:
     images:
       - {query: "Halifax explosion map", count: 2}
       - {query: "Halifax Nova Scotia 1910s", count: 1}
+      - {file: "loc:2002722524", image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c30000/3c32000/3c32300/3c32355v.jpg", rights: "No known restrictions on publication.", title: "Canada, Nova Scotia, Halifax--View of waterfront", date: "1917 (LoC date)", note: "the busy Halifax waterfront of the war years"}   # LoC via Chrome
+      - {file: "loc:2002735755", image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c30000/3c32000/3c32300/3c32361v.jpg", rights: "No known restrictions on publication.", title: "The harbor of Halifax where the \"Titanic\" victims were taken", date: "c. 1912 (LoC: 1917)", note: "Halifax harbour before the disaster; title refers to 1912, so the photo is probably from then"}   # LoC via Chrome
+      - {file: "loc:2019634208", image: "https://tile.loc.gov/storage-services/service/pnp/stereo/1s10000/1s18000/1s18200/1s18236v.jpg", rights: "No known restrictions on publication.", title: "Entrance to Halifax Harbor, Nova Scotia, Canada", date: "c. 1920 (stereograph)", note: "the harbour entrance the convoys used (half of a stereo card, 1024x533)"}   # LoC via Chrome
 
   - id: ships
     chapter: "II. Two Ships"
@@ -106,6 +110,7 @@ scenes:
       - {query: "Halifax explosion ruins", count: 2, colorize: true}
       - {query: "Halifax explosion Dartmouth", count: 1}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_gonzo_ver01:data:sn83045462:00280658315:1917120601:0563/full/pct:100/0/default.jpg", date: "1917-12-06", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1917-12-06/ed-1/?sp=1", crop: [0.0, 0.098, 0.385, 0.185], match: "the Mont-Blanc exploded", note: "Same-day front page: hundreds killed and a thousand injured when a ship blows up at Halifax."}   # LoC via Chrome
+      - {file: "loc:2014706066", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/25800/25897v.jpg", rights: "No known restrictions on publication.", title: "Exposition bldg., Halifax [wreckage]", date: "1917", note: "a large building wrecked by the blast"}   # LoC via Chrome
 
   - id: aftermath
     chapter: "VI. The Wounded City"
@@ -122,6 +127,8 @@ scenes:
       - {query: "Halifax explosion children", count: 2}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:pst:batch_pst_davey_ver01:data:sn83045211:00237287666:1917120701:0470/full/pct:100/0/default.jpg", date: "1917-12-07", paper: "Evening Public Ledger (Philadelphia, Pa.)", page_url: "https://www.loc.gov/resource/sn83045211/1917-12-07/ed-1/?sp=1", crop: [0.012, 0.102, 0.27, 0.29], match: "Nearly two thousand people were killed", note: "Halifax horror grows as ruins are searched: dead estimated in the thousands, thousands homeless, temporary morgues in churches and schools."}   # LoC via Chrome
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:iune:batch_iune_edition_ver02:data:sn92053934:00295872615:1917120701:0464/full/pct:100/0/default.jpg", date: "1917-12-07", paper: "Rock Island Argus (Rock Island, Ill.)", page_url: "https://www.loc.gov/resource/sn92053934/1917-12-07/ed-1/?sp=1", crop: [0.145, 0.17, 0.285, 0.272], match: "The cruellest injuries came from glass", note: "About two thousand dead and as many injured, two-thirds of them suffering from cuts from flying glass."}   # LoC via Chrome
+      - {file: "loc:2014706067", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/25800/25898v.jpg", rights: "No known restrictions on publication.", title: "Dead at Halifax", date: "1917", note: "the human cost: victims of the explosion (check by eye before use)"}   # LoC via Chrome
+      - {file: "loc:2017670297", image: "https://tile.loc.gov/storage-services/service/pnp/anrc/04300/04353v.jpg", rights: "No known restrictions on publication.", title: "American Red Cross taking injured to the hospital after the terrible explosion at Halifax", date: "1917", note: "carrying the injured to hospital"}   # LoC via Chrome
 
 
   - id: rescue
@@ -137,6 +144,9 @@ scenes:
       - {query: "Halifax explosion ruins", count: 1}
       - {query: "Halifax explosion hospital", count: 1, colorize: true}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_keddy_ver01:data:sn83030193:00280766173:1917120701:0942/full/pct:100/0/default.jpg", date: "1917-12-07", paper: "The Evening World (New York, N.Y.)", page_url: "https://www.loc.gov/resource/sn83030193/1917-12-07/ed-1/?sp=2", crop: [0.03, 0.045, 0.96, 0.285], match: "The first rescuers were the survivors themselves", note: "Dead piled in heaps in temporary morgues; two photographs of the Halifax waterfront and harbour shipping."}   # LoC via Chrome
+      - {file: "loc:2017670302", image: "https://tile.loc.gov/storage-services/service/pnp/anrc/04300/04358v.jpg", rights: "No known restrictions on publication.", title: "American Red Cross ambulances at Halifax, N.S. after the terrible explosion", date: "1917", note: "ambulances in the ruined city"}   # LoC via Chrome
+      - {file: "loc:2017670301", image: "https://tile.loc.gov/storage-services/service/pnp/anrc/04300/04357v.jpg", rights: "No known restrictions on publication.", title: "American Red Cross Canteen Service on duty after the great explosion at Halifax", date: "1917", note: "volunteers feeding rescuers and survivors"}   # LoC via Chrome
+      - {file: "loc:2017670300", image: "https://tile.loc.gov/storage-services/service/pnp/anrc/04300/04356v.jpg", rights: "No known restrictions on publication.", title: "American Red Cross Canteen Service on duty after the great explosion at Halifax", date: "1917", note: "second canteen scene (different shot)"}   # LoC via Chrome
 
   - id: blizzard
     chapter: "VIII. The Blizzard"
@@ -149,6 +159,7 @@ scenes:
       - {query: "Halifax explosion damage", count: 2, colorize: true}
       - {query: "Halifax explosion", count: 1}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:mohi:batch_mohi_boone_ver01:data:sn89066315:00211109555:1917120701:0647/full/pct:100/0/default.jpg", date: "1917-12-07", paper: "The Evening Missourian (Columbia, Mo.)", page_url: "https://www.loc.gov/resource/sn89066315/1917-12-07/ed-1/?sp=1", crop: [0.035, 0.105, 0.342, 0.207], match: "a blizzard struck", note: "More than 2,000 killed in Halifax; a snow storm interferes with rescue work after the Imo and Mont-Blanc collide."}   # LoC via Chrome
+      - {file: "loc:2017678347", image: "https://tile.loc.gov/storage-services/service/pnp/anrc/12900/12921v.jpg", rights: "No known restrictions on publication.", title: "The great disaster at Halifax, Nova Scotia. Searching the ruins. Despite a severe blizzard ...", date: "1917 (LoC: 1920)", note: "rescuers searching ruins in the blizzard: exactly the scene"}   # LoC via Chrome
 
   - id: boston
     chapter: "IX. Help from Boston"
@@ -162,6 +173,9 @@ scenes:
       - {query: "Halifax explosion", count: 2}
       - {query: "Halifax explosion", count: 1}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:mthi:batch_mthi_leopardfrog_ver01:data:sn85053058:00295861320:1917120801:0896/full/pct:100/0/default.jpg", date: "1917-12-08", paper: "The Butte Daily Post (Butte, Mont.)", page_url: "https://www.loc.gov/resource/sn85053058/1917-12-08/ed-1/?sp=1", crop: [0.272, 0.183, 0.962, 0.24], match: "Boston sent a relief train", note: "20,000 people destitute in the devastated city; the first of the relief trains arrives bringing supplies."}   # LoC via Chrome
+      - {file: "loc:2017670296", image: "https://tile.loc.gov/storage-services/service/pnp/anrc/04300/04352v.jpg", rights: "No known restrictions on publication.", title: "American Red Cross Motor Corps in Halifax, N.S., after the great disaster", date: "1917", note: "American relief workers arriving to help"}   # LoC via Chrome
+      - {file: "loc:2017670298", image: "https://tile.loc.gov/storage-services/service/pnp/anrc/04300/04354v.jpg", rights: "No known restrictions on publication.", title: "American Red Cross Motor Corps at Halifax, N.S., after the great disaster", date: "1917", note: "US motor corps vehicles in Halifax"}   # LoC via Chrome
+      - {file: "loc:2017670299", image: "https://tile.loc.gov/storage-services/service/pnp/anrc/04300/04355v.jpg", rights: "No known restrictions on publication.", title: "American Red Cross Motor Corps removing supplies from boat after the terrible explosion", date: "1917", note: "unloading relief supplies sent from the US"}   # LoC via Chrome
 
   - id: blame
     chapter: "X. Who Was to Blame?"
