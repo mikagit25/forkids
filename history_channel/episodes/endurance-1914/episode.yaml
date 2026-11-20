@@ -26,9 +26,8 @@ scenes:
       For five months they lived on floating ice. Six of them crossed eight hundred miles of the worst ocean on Earth in a lifeboat.
       Nobody in the world knew where they were. And every one of them came home.
     images:
-      - {query: "Endurance ship ice Hurley", count: 2}
-      - {query: "Shackleton expedition camp ice 1915", count: 1}
       - {file: "loc:2013646125", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a11000:3a11300:3a11347u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic a titanic upheaval.", date: "1916", note: "huge blocks of pack ice framing the trapped Endurance in the distance: the whole story in one frame"}   # LoC via Chrome
+      - {file: "curid:83466858"}
 
   - id: plan
     chapter: "I. The Last Great Journey"
@@ -39,9 +38,16 @@ scenes:
       His plan needed two ships. The Endurance would carry his party to the Weddell Sea. A second ship, the Aurora, would land men on the other side of Antarctica to lay supply depots along the final stretch of the route.
       The Endurance left Plymouth on the eighth of August 1914, just days after Britain entered the First World War. Shackleton offered to put his ship and crew at the Navy's disposal. The reply came back in one word: proceed.
     images:
-      - {query: "Ernest Shackleton portrait", count: 1}
-      - {query: "Endurance ship Shackleton", count: 2}
       - {file: "loc:2009633384", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a30000:3a30000:3a30700:3a30750u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Camp at the South Pole", date: "1912", note: "Scott, Wilson, Oates, Bowers and Evans at the Pole in 1912: the pole is taken, so Shackleton aims for the crossing"}   # LoC via Chrome
+      - {file: "curid:50083780"}
+      - {file: "curid:141436903"}
+      - {file: "curid:4705741"}
+      - {file: "curid:2772863"}
+      - {file: "curid:31173208"}
+      - {file: "curid:176202498"}
+      - {file: "curid:24290995"}
+      - {file: "curid:64500498"}
+      - {file: "curid:63821193"}
 
 
   - id: crew
@@ -53,8 +59,14 @@ scenes:
       There were sailors and scientists, a physicist, a geologist, a biologist, two surgeons, an artist and a photographer.
       And there was one man nobody had chosen. When the Endurance left Buenos Aires, a young Welsh sailor named Perce Blackborow was found hiding aboard as a stowaway. Shackleton was furious, then signed him on as a steward.
     images:
-      - {query: "Shackleton expedition", count: 2}
-      - {query: "Shackleton expedition", count: 1}
+      - {file: "curid:52403347"}
+      - {file: "curid:122463176"}
+      - {file: "curid:55023963"}
+      - {file: "curid:41531222"}
+      - {file: "curid:3825841"}
+      - {file: "curid:62214474"}
+      - {file: "curid:85391662"}
+      - {file: "curid:84956690"}
 
   - id: beset
     chapter: "III. Frozen In"
@@ -66,10 +78,15 @@ scenes:
       The men tried to cut her free with picks, saws and chisels. On the fourteenth of February, they gave up.
       There was nothing to do but wait for spring. The Endurance had become a prisoner, drifting wherever the ice carried her.
     images:
-      - {query: "Endurance trapped in ice Weddell Sea", count: 2}
-      - {query: "Endurance crushed by ice", count: 1}
-      - {file: "loc:2013646123", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a19000:3a19300:3a19373u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic Endurance squeezed between an ice jam.", date: "1916", note: "the ship leaning, locked in pack ice of the Weddell Sea: 'the ice closed around her'"}   # LoC via Chrome
       - {file: "loc:2013646122", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a50000:3a52000:3a52100:3a52119u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic terrors of the Weddell Sea.", date: "1916", note: "man and dog team on the floe, the stuck Endurance far behind: the men now live on the ice around her"}   # LoC via Chrome
+      - {file: "curid:62214761"}
+      - {file: "curid:62214663"}
+      - {file: "curid:380212"}
+      - {file: "curid:83467224"}
+      - {file: "curid:62214057"}
+      - {file: "curid:85361351"}
+      - {file: "curid:85173194"}
+      - {file: "curid:62255702"}
 
   - id: winter
     chapter: "IV. The Long Night"
@@ -79,11 +96,18 @@ scenes:
       Among them was the expedition photographer, an Australian named Frank Hurley. He climbed the frozen rigging with his heavy camera, and when the polar night came, he lit her with bursts of flash powder to photograph her glowing in the dark.
       Those pictures would one day show the world what these men endured.
     images:
-      - {query: "Endurance night flash photograph Hurley", count: 1}
-      - {query: "Endurance ship ice Hurley", count: 2}
-      - {query: "Frank Hurley camera Antarctica", count: 1, colorize: true}
       - {file: "loc:2013646120", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a50000:3a52000:3a52100:3a52120u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic winter flashlight scene in the Weddell Sea, showing Endurance stuck fast.", date: "1915", note: "Hurley's famous night flash photo of the ship in the polar night: matches 'when the polar night' text"}   # LoC via Chrome
       - {file: "loc:2013646119", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a50000:3a52000:3a52100:3a52115u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic faithful dogs being fed in the ice kennel, while Endurance was stuck fast.", date: "1916", note: "dogs fed in ice kennels beside the ship: daily life and dog teams during the long winter"}   # LoC via Chrome
+      - {file: "curid:156541944"}
+      - {file: "curid:84417589"}
+      - {file: "curid:84434753"}
+      - {file: "curid:62255904"}
+      - {file: "curid:22791835"}
+      - {file: "curid:84388591"}
+      - {file: "curid:84418002"}
+      - {file: "curid:84417727"}
+      - {file: "curid:84388801"}
+      - {file: "curid:84434618"}
 
   - id: crushed
     chapter: "V. The End of the Endurance"
@@ -101,11 +125,18 @@ scenes:
       source: "Ernest Shackleton, South (1919)"
       match: "the connexion had been cut"
     images:
-      - {query: "Endurance crushed by ice", count: 2, colorize: true}
-      - {query: "Endurance wreck ice 1915", count: 1}
       - {file: "loc:2013646115", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a19000:3a19300:3a19377u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic Endurance for two months before she sank in the Weddell Sea on Oct. 27, 1915.", date: "1916", note: "the ship tilted and propped up with planks as the pressure builds, before abandon-ship"}   # LoC via Chrome
       - {file: "loc:2013646113", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a19000:3a19300:3a19376u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic last moments of the Endurance.", date: "1916", note: "the Endurance in her last moments in the floe"}   # LoC via Chrome
       - {file: "loc:2013646126", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a12000:3a12700:3a12748u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic Endurance after ice pressure was released.", date: "1916", note: "broken hull, smashed mastheads, still held upright by the floe: 'the broken hull stayed upright'"}   # LoC via Chrome
+      - {file: "curid:84418298"}
+      - {file: "curid:62214227"}
+      - {file: "curid:84462326"}
+      - {file: "curid:84462151"}
+      - {file: "curid:84434688"}
+      - {file: "curid:84562157"}
+      - {file: "curid:84562436"}
+      - {file: "curid:84532258"}
+      - {file: "curid:1564262"}
 
   - id: plates
     chapter: "VI. What to Leave Behind"
@@ -116,9 +147,12 @@ scenes:
       Hurley smashed the rest on the ice, so that he would never be tempted to go back for them.
       The images he kept are the ones you are seeing now.
     images:
-      - {query: "Hurley Shackleton Patience Camp", count: 2}
-      - {query: "Ocean Camp Shackleton", count: 1}
       - {file: "loc:2013646121", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a50000:3a52000:3a52100:3a52110u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic ocean camp.", date: "1916", note: "Shackleton and men at camp on the ice (titled Ocean Camp, where the plates were sorted); LoC summary says Elephant Island, check by eye"}   # LoC via Chrome
+      - {file: "curid:1731974"}
+      - {file: "curid:164341926"}
+      - {file: "curid:163050283"}
+      - {file: "curid:84586058"}
+      - {file: "curid:84532130"}
 
   - id: drift
     chapter: "VII. Ocean Camp and Patience Camp"
@@ -130,9 +164,17 @@ scenes:
       Slowly, the ice carried them north, towards open sea. Every day the floe beneath them grew smaller and more fragile.
       On the ninth of April 1916, it split apart. Shackleton ordered the three boats into the water.
     images:
-      - {query: "Patience Camp 1916", count: 2}
-      - {query: "Shackleton lifeboats ice", count: 1}
       - {file: "loc:2013646114", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a11000:3a11300:3a11312u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic ocean camp.", date: "1916", note: "Shackleton and Frank Wild by the blubber stove made of oil drums (in 'South' captioned Patience Camp): life on the drifting floe"}   # LoC via Chrome
+      - {file: "curid:84532561"}
+      - {file: "curid:84561708"}
+      - {file: "curid:84586326"}
+      - {file: "curid:84562641"}
+      - {file: "curid:84694657"}
+      - {file: "curid:83420465"}
+      - {file: "curid:62214911"}
+      - {file: "curid:84434553"}
+      - {file: "curid:84586173"}
+      - {file: "curid:52403576"}
 
   - id: elephant
     chapter: "VIII. Elephant Island"
@@ -144,9 +186,16 @@ scenes:
       But nobody would ever look for them there. It was far from any shipping route.
       Shackleton decided that the only hope was to go for help himself, in a twenty-two-foot open boat, across the most dangerous ocean on Earth.
     images:
-      - {query: "Elephant Island Shackleton", count: 2, colorize: true}
-      - {query: "Elephant Island 1916 camp", count: 1}
       - {file: "loc:2013646118", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a12000:3a12700:3a12747u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic ice hole on Elephant Island where the lost party first attempted to live.", date: "1916", note: "men digging an ice cave for shelter on Elephant Island, the bare rock they landed on"}   # LoC via Chrome
+      - {file: "curid:84783183"}
+      - {file: "curid:84783642"}
+      - {file: "curid:84753760"}
+      - {file: "curid:84753847"}
+      - {file: "curid:85006475"}
+      - {file: "curid:84753949"}
+      - {file: "curid:130736861"}
+      - {file: "curid:85006902"}
+      - {file: "curid:83466926"}
 
   - id: caird
     chapter: "IX. Eight Hundred Miles"
@@ -171,9 +220,16 @@ scenes:
           - [-38.0, -54.2, ""]
           - [-37.25, -54.05, "King Haakon Bay, 10 May"]
     images:
-      - {query: "James Caird launch Elephant Island", count: 2}
-      - {query: "James Caird boat", count: 1}
       - {file: "loc:2013646116", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a11000:3a11900:3a11986u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic Sir Ernest Shackleton to the rescue.", date: "1916", note: "men pushing the boat into the sea; in 'South' this print is 'Launching the James Caird'"}   # LoC via Chrome
+      - {file: "curid:13421262", match: "The boat was called the James Caird"}   # the real boat today (Dulwich College)
+      - {file: "curid:121530887", match: "about eight hundred miles away"}   # South Georgia from the ISS (NASA)
+      - {file: "curid:31198361"}
+      - {file: "curid:22791832"}
+      - {file: "curid:84753526"}
+      - {file: "curid:85391892"}
+      - {file: "curid:85074798"}
+      - {file: "curid:84388926"}
+      - {file: "curid:83467107"}
 
   - id: crossing
     chapter: "X. Across the Mountains"
@@ -184,8 +240,15 @@ scenes:
       They walked for about thirty-six hours without sleep. At one point, lost on a ridge as night fell, they sat down together and slid down the mountainside on the coiled rope.
       On the twentieth of May 1916, three filthy, bearded men walked into Stromness. The station manager did not recognise them.
     images:
-      - {query: "South Georgia", count: 2}
-      - {query: "Stromness whaling station", count: 1}
+      - {file: "curid:84817999"}
+      - {file: "curid:84863927"}
+      - {file: "curid:84863964"}
+      - {file: "curid:84817924"}
+      - {file: "curid:84817836"}
+      - {file: "curid:22791792"}
+      - {file: "curid:22791828"}
+      - {file: "curid:22791749"}
+      - {file: "curid:84817748"}
 
   - id: rescue
     chapter: "XI. Not a Life Lost"
@@ -200,9 +263,19 @@ scenes:
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "28 / 28", text: "men of the Endurance came home", match: "Not one member of the Endurance party died"}
     images:
-      - {query: "Elephant Island Shackleton", count: 2}
-      - {query: "Luis Pardo Yelcho", count: 1}
       - {file: "loc:2013646124", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a12000:3a12700:3a12746u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic lost party on Elephant Island saved at last.", date: "1916", note: "the men on the icy shore waving to the approaching rescue boat, 30 August 1916"}   # LoC via Chrome
+      - {file: "curid:107827767"}
+      - {file: "curid:107762440"}
+      - {file: "curid:76216770"}
+      - {file: "curid:50873853"}
+      - {file: "curid:85006637"}
+      - {file: "curid:84864012"}
+      - {file: "curid:41524639"}
+      - {file: "curid:41524630"}
+      - {file: "curid:85074280"}
+      - {file: "curid:84956980"}
+      - {file: "curid:84956847"}
+      - {file: "curid:31016148"}
 
   - id: found
     chapter: "Epilogue"
@@ -215,8 +288,13 @@ scenes:
       And the story of the men who lost her is still told, in large part through the photographs Frank Hurley chose to save.
       If you enjoyed this story from the archives, subscribe for more.
     images:
-      - {query: "Endurance ship Hurley 1915", count: 1}
-      - {query: "Endurance expedition crew portrait", count: 1}
+      - {file: "curid:11991060"}
+      - {file: "curid:22791794"}
+      - {file: "curid:85362112"}
+      - {file: "curid:85361129"}
+      - {file: "curid:85361576"}
+      - {file: "curid:85360761"}
+      - {file: "curid:85391575"}
 
 thumbnail:
   scene: crushed
