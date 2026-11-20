@@ -22,26 +22,6 @@
   date: ca. 1913-1915
   note: Commercial Street a few years before the flood
 
-- scene: north-end
-  source: bpl
-  id: v405t0794
-  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:v405t080w/full/full/0/default.jpg
-  page_url: https://www.digitalcommonwealth.org/search/commonwealth:v405t0794
-  rights: No known copyright restrictions.
-  title: Boston, Charter Street
-  date: ca. 1895-1905
-  note: 'a North End street near Copp''s Hill (a little before the era: check by eye)'
-
-- scene: north-end
-  source: bpl
-  id: v405t0904
-  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:v405t091d/full/full/0/default.jpg
-  page_url: https://www.digitalcommonwealth.org/search/commonwealth:v405t0904
-  rights: No known copyright restrictions.
-  title: Boston, Henchman Street
-  date: ca. 1895-1905
-  note: a narrow North End street off Commercial Street (1180x898)
-
 - scene: why
   source: bpl
   id: fj236n06s
