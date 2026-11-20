@@ -100,7 +100,6 @@ scenes:
       - {file: "loc:2013646119", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a50000:3a52000:3a52100:3a52115u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic faithful dogs being fed in the ice kennel, while Endurance was stuck fast.", date: "1916", note: "dogs fed in ice kennels beside the ship: daily life and dog teams during the long winter"}   # LoC via Chrome
       - {file: "curid:156541944"}
       - {file: "curid:84417589"}
-      - {file: "curid:84434753"}
       - {file: "curid:62255904"}
       - {file: "curid:22791835"}
       - {file: "curid:84388591"}
@@ -130,7 +129,6 @@ scenes:
       - {file: "loc:2013646126", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a12000:3a12700:3a12748u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic Endurance after ice pressure was released.", date: "1916", note: "broken hull, smashed mastheads, still held upright by the floe: 'the broken hull stayed upright'"}   # LoC via Chrome
       - {file: "curid:84418298"}
       - {file: "curid:62214227"}
-      - {file: "curid:84462326"}
       - {file: "curid:84462151"}
       - {file: "curid:84434688"}
       - {file: "curid:84562157"}
@@ -148,7 +146,6 @@ scenes:
       The images he kept are the ones you are seeing now.
     images:
       - {file: "loc:2013646121", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a50000:3a52000:3a52100:3a52110u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic ocean camp.", date: "1916", note: "Shackleton and men at camp on the ice (titled Ocean Camp, where the plates were sorted); LoC summary says Elephant Island, check by eye"}   # LoC via Chrome
-      - {file: "curid:1731974"}
       - {file: "curid:164341926"}
       - {file: "curid:163050283"}
       - {file: "curid:84586058"}
@@ -274,7 +271,6 @@ scenes:
       - {file: "curid:41524630"}
       - {file: "curid:85074280"}
       - {file: "curid:84956980"}
-      - {file: "curid:84956847"}
       - {file: "curid:31016148"}
 
   - id: found
