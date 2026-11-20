@@ -97,6 +97,28 @@ def import_picks(ep_dir: Path, episode: dict):
             added.append((p["scene"], ref))
             have.add((p["image"], tuple(ref["crop"])))
             continue
+        if p.get("source") and p["source"] != "loc":           # Nova Scotia Archives, NLM, CDC ... (see fetch.WEB_HOSTS)
+            from .fetch import WEB_HOSTS
+            src, why = p["source"], None
+            pid = str(p.get("id") or re.sub(r"\W+", "-", str(p.get("page_url", "")).split("//")[-1])[-60:]).strip("-")
+            if p.get("scene") not in scenes:
+                why = f"unknown scene {p.get('scene')}"
+            elif src not in WEB_HOSTS:
+                why = f"unknown source {src}"
+            elif not any(h in str(p.get("image", "")) for h in WEB_HOSTS[src]):
+                why = f"image link is not on {WEB_HOSTS[src][0]}"
+            elif not RIGHTS_OK.search(str(p.get("rights", ""))) and not re.match(r"cc0|cc by \d", str(p.get("rights", "")), re.I):
+                why = f"rights '{p.get('rights')}'"
+            elif f"web:{src}:{pid}" in have:
+                why = "already in episode.yaml"
+            if why:
+                bad.append((p.get("page_url", "?"), why)); continue
+            ref = {"file": f"web:{src}:{pid}"}
+            for k in ("image", "page_url", "rights", "title", "date", "note"):
+                if p.get(k):
+                    ref[k] = str(p[k])
+            added.append((p["scene"], ref)); have.add(ref["file"])
+            continue
         lccn = str(p.get("lccn", "")).strip()
         why = None
         if p.get("scene") not in scenes:
@@ -118,7 +140,9 @@ def import_picks(ep_dir: Path, episode: dict):
                 ref[k] = str(p[k])
         added.append((p["scene"], ref))
         have.add(ref["file"])
-    seen |= {sig(p) for p in picks if p.get("kind") == "newspaper" or f"loc:{p.get('lccn')}" in have}
+    web_have = {r.get("image") for s in data["scenes"] for r in s.get("images", []) if str(r.get("file", "")).startswith("web:")}
+    seen |= {sig(p) for p in picks if p.get("kind") == "newspaper" or f"loc:{p.get('lccn')}" in have
+             or p.get("image") in web_have}
     seen_f.write_text(json.dumps(sorted(seen), indent=0))
     if not added:
         print("nothing new to add"); [print(f"   skipped {l}: {w}") for l, w in bad]

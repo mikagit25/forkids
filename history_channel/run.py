@@ -8,6 +8,7 @@
   python run.py episodes/1918-flu publish    # thumbnail + description
   python run.py episodes/1918-flu all        # fetch, voice, render, publish
   python run.py episodes/1918-flu candidates # numbered contact sheets from all archives, for picking by eye
+  python run.py episodes/<ep> pool hurley "Photographs by Frank Hurley" ...   # sheets of whole Commons categories
   python run.py episodes/1918-flu research   # newspaper headlines of the time -> research/newspapers.md
   python run.py episodes/1918-flu framing    # BEFORE render: how each photo is cropped/moved -> build/framing/
   python run.py episodes/1918-flu review     # contact sheets of all photos for review (episodes/<ep>/review/)
@@ -53,6 +54,10 @@ def main():
         elif step == "candidates":
             only = [a for a in sys.argv[sys.argv.index("candidates") + 1:] if not a.startswith("--")]
             candidates.build(ep_dir, episode, only or None)
+            break
+        elif step == "pool":          # pool <name> "Category A" "Category B" ...  (Commons categories, 1 level deep)
+            a = sys.argv[sys.argv.index("pool") + 1:]
+            candidates.pool(ep_dir, a[0], a[1:])
             break
         elif step == "research":
             research.research(ep_dir, episode)

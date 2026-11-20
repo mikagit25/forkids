@@ -44,3 +44,16 @@ A person or Claude in Chrome searches loc.gov in a normal browser and hands the 
 ```
 - Pages up to 1928 only. No `rights` line needed (US newspapers before 1929 are public domain).
 - The crop must contain the whole headline/article and be readable; leave a little margin.
+
+## Photos from other archives (Nova Scotia Archives, NLM, CDC PHIL, Digital Commonwealth, NARA)
+```yaml
+- scene: ruins
+  source: nsarchives                 # nsarchives | nlm | cdc | bpl | nara
+  id: "201000123"                    # the archive's own item number (from the item page)
+  image: "https://archives.novascotia.ca/.../201000123.jpg"   # largest JPEG, from the archive's own server
+  page_url: "https://archives.novascotia.ca/..."
+  rights: "Public domain"            # copied from the item page; NC / ND / "permission required" -> do not pick
+  title: "Richmond district after the explosion"
+  date: "1917-12"
+  note: "why it fits"
+```

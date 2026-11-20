@@ -149,6 +149,8 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
                 c = commons_file(ref)
             elif prefix == "loc" and q.get("image"):
                 c = _loc_manual(ref, q)
+            elif prefix == "web":
+                c = _web_manual(ref, q)
             elif prefix == "loc" and not _from_candidates(ep_dir, ref):
                 c = _loc_by_lccn(ref.split(":", 1)[1])
             else:   # smithsonian:, europeana:, wellcome:, loc:, commons: ... picked from a candidate sheet
@@ -462,6 +464,29 @@ def _loc_manual(ref: str, q: dict) -> dict | None:
             "date": q.get("date", ""), "page_url": f"https://www.loc.gov/item/{lccn}/", "download_url": q["image"],
             "license": "No known restrictions on publication (Library of Congress)",
             "credit": f"Library of Congress, LCCN {lccn}", "width": q.get("width"), "height": q.get("height")}
+
+
+# archives a person may pick from by hand in Chrome (loc_exchange); the image must come from the archive itself
+WEB_HOSTS = {"nsarchives": ("archives.novascotia.ca",), "nlm": ("collections.nlm.nih.gov", "nlm.nih.gov"),
+             "cdc": ("phil.cdc.gov", "cdc.gov"), "bpl": ("digitalcommonwealth.org", "ark.digitalcommonwealth.org"),
+             "nara": ("catalog.archives.gov", "s3.amazonaws.com/NARAprodstorage")}
+
+
+def _web_manual(ref: str, q: dict) -> dict | None:
+    """- {file: "web:nsarchives:<id>", image: "<largest JPEG>", page_url: "...", rights: "...", title, date}
+    Picked by hand on an archive site (loc_exchange). Rights must say public domain / no known restrictions."""
+    src = ref.split(":")[1] if ref.count(":") >= 2 else ""
+    rights = q.get("rights", "")
+    if src not in WEB_HOSTS:
+        print(f"   !! {ref}: unknown source '{src}' (known: {', '.join(WEB_HOSTS)})"); return None
+    if not re.search(r"no known restrictions|public domain|no known copyright|cc0|^cc by \d", rights, re.I) \
+            or re.search(r"\b(nc|nd)\b|non-?commercial|no derivatives", rights, re.I):
+        print(f"   !! {ref}: rights '{rights}' not allowed"); return None
+    if not any(h in q.get("image", "") for h in WEB_HOSTS[src]):
+        print(f"   !! {ref}: image link is not on {WEB_HOSTS[src][0]}"); return None
+    return {"source": src, "id": ref, "title": q.get("title", ref), "description": q.get("note", ""),
+            "date": q.get("date", ""), "page_url": q.get("page_url", ""), "download_url": q["image"],
+            "license": rights[:80], "credit": q.get("credit") or src, "width": None, "height": None}
 
 
 def _loc_by_lccn(lccn: str) -> dict | None:

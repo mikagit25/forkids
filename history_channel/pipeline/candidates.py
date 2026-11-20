@@ -100,14 +100,50 @@ def scene_candidates(scene: dict, episode: dict, seen_ids: set) -> list[dict]:
     return out
 
 
+def _sheets(out_dir: Path, sid: str, header: str, rows: list, index: dict):
+    from .render import font
+    f_big = font("SourceSans3.ttf", 22, 700)
+    f_sm = font("SourceSans3.ttf", 15, 500)
+    for old in out_dir.glob(f"{sid}_*.jpg"):
+        old.unlink()
+    md = [header, "",
+          "| # | ref | source | date | W×H | licence | title |", "|---|---|---|---|---|---|---|"]
+    per_sheet = COLS * 5
+    for si in range(0, len(rows), per_sheet):
+        chunk = rows[si:si + per_sheet]
+        n_rows = (len(chunk) + COLS - 1) // COLS
+        sheet = Image.new("RGB", (COLS * (TW + 6) + 6, n_rows * (TH + 52) + 6), (18, 18, 18))
+        d = ImageDraw.Draw(sheet)
+        for k, (c, im) in enumerate(chunk):
+            n = si + k + 1
+            x = 6 + (k % COLS) * (TW + 6)
+            y = 6 + (k // COLS) * (TH + 52)
+            t = im.copy()
+            t.thumbnail((TW, TH))
+            sheet.paste(t, (x + (TW - t.width) // 2, y + (TH - t.height) // 2))
+            d.rectangle([x, y, x + 46, y + 26], fill=(0, 0, 0))
+            d.text((x + 5, y + 2), f"{n}", font=f_big, fill=(255, 220, 60))
+            tag = c["source"]
+            d.rectangle([x + TW - 8 - d.textlength(tag, font=f_sm), y, x + TW, y + 20], fill=(0, 50, 100))
+            d.text((x + TW - 4 - d.textlength(tag, font=f_sm), y + 1), tag, font=f_sm, fill=(255, 255, 255))
+            w, h = c.get("width") or 0, c.get("height") or 0
+            orient = "vertical" if h > w * 1.1 else "wide" if w > h * 1.1 else "square"
+            d.text((x, y + TH + 4), f"{(c.get('date') or '')[:12]} · {orient}", font=f_sm, fill=(170, 170, 170))
+            d.text((x, y + TH + 24), (c.get("title") or "")[:40], font=f_sm, fill=(225, 225, 225))
+            ref = "curid:" + c["id"].split(":", 1)[1] if c["source"] == "commons" else c["id"]
+            index[ref] = {k2: v for k2, v in c.items() if k2 not in ("_h",)}
+            md.append(f"| {n} | `{ref}` | {c['source']} | {(c.get('date') or '')[:20]} | {w}×{h} | "
+                      f"{(c.get('license') or '')[:30]} | [{(c.get('title') or '').replace('|', '/')[:70]}]({c.get('page_url')}) |")
+        sheet.save(out_dir / f"{sid}_{si // per_sheet + 1:02d}.jpg", quality=82)
+    (out_dir / f"{sid}.md").write_text("\n".join(md) + "\n")
+
+
 def build(ep_dir: Path, episode: dict, only: list[str] | None = None):
     from .render import font
     out_dir = ep_dir / "candidates"
     out_dir.mkdir(exist_ok=True)
     idx_path = out_dir / "index.json"
     index = json.loads(idx_path.read_text()) if idx_path.exists() else {}
-    f_big = font("SourceSans3.ttf", 22, 700)
-    f_sm = font("SourceSans3.ttf", 15, 500)
     seen: set = set()
     for scene in episode["scenes"]:
         sid = scene["id"]
@@ -126,37 +162,62 @@ def build(ep_dir: Path, episode: dict, only: list[str] | None = None):
                 continue
             hashes.append(h)
             rows.append((c, im))
-        for old in out_dir.glob(f"{sid}_*.jpg"):
-            old.unlink()
-        md = [f"# {sid} — {scene.get('chapter', '')}", "", textwrap.shorten(scene["narration"], 600), "",
-              "| # | ref | source | date | W×H | licence | title |", "|---|---|---|---|---|---|---|"]
-        per_sheet = COLS * 5
-        for si in range(0, len(rows), per_sheet):
-            chunk = rows[si:si + per_sheet]
-            n_rows = (len(chunk) + COLS - 1) // COLS
-            sheet = Image.new("RGB", (COLS * (TW + 6) + 6, n_rows * (TH + 52) + 6), (18, 18, 18))
-            d = ImageDraw.Draw(sheet)
-            for k, (c, im) in enumerate(chunk):
-                n = si + k + 1
-                x = 6 + (k % COLS) * (TW + 6)
-                y = 6 + (k // COLS) * (TH + 52)
-                t = im.copy()
-                t.thumbnail((TW, TH))
-                sheet.paste(t, (x + (TW - t.width) // 2, y + (TH - t.height) // 2))
-                d.rectangle([x, y, x + 46, y + 26], fill=(0, 0, 0))
-                d.text((x + 5, y + 2), f"{n}", font=f_big, fill=(255, 220, 60))
-                tag = c["source"]
-                d.rectangle([x + TW - 8 - d.textlength(tag, font=f_sm), y, x + TW, y + 20], fill=(0, 50, 100))
-                d.text((x + TW - 4 - d.textlength(tag, font=f_sm), y + 1), tag, font=f_sm, fill=(255, 255, 255))
-                w, h = c.get("width") or 0, c.get("height") or 0
-                orient = "vertical" if h > w * 1.1 else "wide" if w > h * 1.1 else "square"
-                d.text((x, y + TH + 4), f"{(c.get('date') or '')[:12]} · {orient}", font=f_sm, fill=(170, 170, 170))
-                d.text((x, y + TH + 24), (c.get("title") or "")[:40], font=f_sm, fill=(225, 225, 225))
-                ref = "curid:" + c["id"].split(":", 1)[1] if c["source"] == "commons" else c["id"]
-                index[ref] = {k2: v for k2, v in c.items() if k2 not in ("_h",)}
-                md.append(f"| {n} | `{ref}` | {c['source']} | {(c.get('date') or '')[:20]} | {w}×{h} | "
-                          f"{(c.get('license') or '')[:30]} | [{(c.get('title') or '').replace('|', '/')[:70]}]({c.get('page_url')}) |")
-            sheet.save(out_dir / f"{sid}_{si // per_sheet + 1:02d}.jpg", quality=82)
-        (out_dir / f"{sid}.md").write_text("\n".join(md) + "\n")
+        _sheets(out_dir, sid, f"# {sid} — {scene.get('chapter', '')}\n\n" + textwrap.shorten(scene["narration"], 600), rows, index)
         print(f"[{sid}] {len(rows)} candidates -> {out_dir}/{sid}_*.jpg")
     idx_path.write_text(json.dumps(index, indent=0, ensure_ascii=False))
+
+
+def _category_files(cat: str, depth: int = 1, seen_cats: set | None = None) -> list[str]:
+    """Page ids of the bitmap files in a Commons category (and its subcategories down to `depth`)."""
+    from .archives import _get
+    seen_cats = seen_cats if seen_cats is not None else set()
+    if cat in seen_cats:
+        return []
+    seen_cats.add(cat)
+    ids, subs, cont = [], [], {}
+    while True:
+        params = {"action": "query", "format": "json", "formatversion": "2", "list": "categorymembers",
+                  "cmtitle": "Category:" + cat, "cmtype": "file|subcat", "cmlimit": "500", **cont}
+        data = _get("https://commons.wikimedia.org/w/api.php", params).json()
+        for m in data.get("query", {}).get("categorymembers", []):
+            if m["ns"] == 6 and m["title"].lower().endswith((".jpg", ".jpeg", ".png", ".tif", ".tiff")):
+                ids.append(str(m["pageid"]))
+            elif m["ns"] == 14:
+                subs.append(m["title"].removeprefix("Category:"))
+        if "continue" not in data:
+            break
+        cont = data["continue"]
+        time.sleep(0.3)
+    if depth > 0:
+        for sc in subs:
+            ids += _category_files(sc, depth - 1, seen_cats)
+    return ids
+
+
+def pool(ep_dir: Path, name: str, categories: list[str], depth: int = 1):
+    """One numbered pool from whole Commons categories (an expedition photographer's work, a ship...):
+    candidates/pool-<name>_NN.jpg + pool-<name>.md. Licence and size are checked like everywhere else."""
+    from .archives import commons_file
+    out_dir = ep_dir / "candidates"
+    out_dir.mkdir(exist_ok=True)
+    idx_path = out_dir / "index.json"
+    index = json.loads(idx_path.read_text()) if idx_path.exists() else {}
+    ids = list(dict.fromkeys(i for c in categories for i in _category_files(c, depth)))
+    print(f"[pool-{name}] {len(ids)} files in {len(categories)} categories")
+    with ThreadPoolExecutor(max_workers=3) as ex:
+        cands = [c for c in ex.map(lambda i: commons_file("curid:" + i), ids) if c]
+    cands = [c for c in cands if min(c.get("width") or 0, c.get("height") or 0) >= 700]
+    with ThreadPoolExecutor(max_workers=6) as ex:
+        thumbs = list(ex.map(_thumb, cands))
+    rows, hashes = [], []
+    for c, im in sorted(zip(cands, thumbs), key=lambda t: t[0]["title"]):
+        if im is None:
+            continue
+        h = select.phash_img(im)
+        if select.is_duplicate(h, hashes, max_dist=8):
+            continue
+        hashes.append(h)
+        rows.append((c, im))
+    _sheets(out_dir, f"pool-{name}", f"# pool {name}: " + ", ".join(categories), rows, index)
+    idx_path.write_text(json.dumps(index, indent=0, ensure_ascii=False))
+    print(f"[pool-{name}] {len(rows)} usable -> {out_dir}/pool-{name}_*.jpg")

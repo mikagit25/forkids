@@ -67,8 +67,10 @@ def license_ok(lic: str) -> bool:
     if "non-commercial" in l or "noncommercial" in l or "no derivatives" in l:
         return False
     good = ("public domain", "pd", "pdm", "cc0", "cc-0", "cc by", "cc-by", "no known restrictions",
-            "no known copyright", "us government", "pd-usgov")
-    return any(l.startswith(g) or g in l for g in good)
+            "no known copyright", "us government", "pd-usgov",
+            "no restrictions",          # Commons {{No restrictions}} = Flickr Commons "no known copyright restrictions"
+            "copyrighted free use")     # Commons {{Copyrighted free use}}: any use, no conditions
+    return any(l.startswith(g) or g in l for g in good) or l.strip() == "attribution"   # {{Attribution}}: credit only
 
 
 # ---------------------------------------------------------------- Wikimedia Commons

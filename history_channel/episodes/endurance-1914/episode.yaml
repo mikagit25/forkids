@@ -1,4 +1,4 @@
-# Status: script draft, fact-check pending (see factcheck.md)
+# Status: fact-checked 20.11.2026 (see factcheck.md), photo selection in progress
 
 title: "Endurance: 28 Men, No Ship, and the Rescue Nobody Expected"
 subtitle: "Shackleton's lost expedition, told through Frank Hurley's original photographs"
@@ -18,29 +18,30 @@ music:
 
 scenes:
   - id: cold-open
+    speed: 1.0             # RULES: cold-open <= 30 s, a bit faster
     montage: true          # fast cuts + one teaser photo from every chapter
     narration: >
       In 1914, twenty-eight men sailed south to cross Antarctica on foot.
-      They never set foot on the continent. Their ship was trapped in the ice, crushed, and dragged to the bottom of the sea.
-      They lived for five months on floating ice, ate their dogs, and smashed hundreds of their own photographs to save weight.
-      Six of them crossed eight hundred miles of the worst ocean on Earth in a lifeboat. Three of them walked over mountains no one had ever crossed.
-      And more than a century later, their ship was found, three kilometres down, with her name still on the stern.
-      Nobody in the world knew where they were. This is how all twenty-eight came home.
+      They never set foot on the continent. The ice crushed their ship and dragged her to the bottom of the sea.
+      For five months they lived on floating ice. Six of them crossed eight hundred miles of the worst ocean on Earth in a lifeboat.
+      Nobody in the world knew where they were. And every one of them came home.
     images:
       - {query: "Endurance ship ice Hurley", count: 2}
       - {query: "Shackleton expedition camp ice 1915", count: 1}
+      - {file: "loc:2013646125", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a11000:3a11300:3a11347u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic a titanic upheaval.", date: "1916", note: "huge blocks of pack ice framing the trapped Endurance in the distance: the whole story in one frame"}   # LoC via Chrome
 
   - id: plan
     chapter: "I. The Last Great Journey"
     date: "August 1914"
     narration: >
       By 1914, the South Pole had already been reached, first by Roald Amundsen, then by Robert Falcon Scott, who died on the way back.
-      Ernest Shackleton, an Anglo-Irish explorer who had come within a hundred miles of the Pole a few years earlier, wanted the one prize left: to cross the entire continent on foot, from sea to sea.
+      Ernest Shackleton, an Anglo-Irish explorer who had come within about a hundred miles of the Pole a few years earlier, wanted the one prize left: to cross the entire continent on foot, from sea to sea.
       His plan needed two ships. The Endurance would carry his party to the Weddell Sea. A second ship, the Aurora, would land men on the other side of Antarctica to lay supply depots along the final stretch of the route.
       The Endurance left Plymouth on the eighth of August 1914, just days after Britain entered the First World War. Shackleton offered to put his ship and crew at the Navy's disposal. The reply came back in one word: proceed.
     images:
       - {query: "Ernest Shackleton portrait", count: 1}
       - {query: "Endurance ship Shackleton", count: 2}
+      - {file: "loc:2009633384", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a30000:3a30000:3a30700:3a30750u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Camp at the South Pole", date: "1912", note: "Scott, Wilson, Oates, Bowers and Evans at the Pole in 1912: the pole is taken, so Shackleton aims for the crossing"}   # LoC via Chrome
 
 
   - id: crew
@@ -67,18 +68,22 @@ scenes:
     images:
       - {query: "Endurance trapped in ice Weddell Sea", count: 2}
       - {query: "Endurance crushed by ice", count: 1}
+      - {file: "loc:2013646123", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a19000:3a19300:3a19373u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic Endurance squeezed between an ice jam.", date: "1916", note: "the ship leaning, locked in pack ice of the Weddell Sea: 'the ice closed around her'"}   # LoC via Chrome
+      - {file: "loc:2013646122", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a50000:3a52000:3a52100:3a52119u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic terrors of the Weddell Sea.", date: "1916", note: "man and dog team on the floe, the stuck Endurance far behind: the men now live on the ice around her"}   # LoC via Chrome
 
   - id: winter
     chapter: "IV. The Long Night"
     narration: >
       The Antarctic winter brought months of darkness. The crew turned the ship into a home. They held football matches on the ice, raced their dog teams, staged concerts and shaved each other's heads for fun.
       Shackleton understood that boredom and despair could kill as surely as cold. He kept everyone busy and treated every man, from the officers to the youngest sailor, the same way.
-      Among them was the expedition photographer, an Australian named Frank Hurley. He climbed the frozen rigging with his heavy camera, and when the polar night came, he lit the ship with flares to photograph her glowing in the dark.
+      Among them was the expedition photographer, an Australian named Frank Hurley. He climbed the frozen rigging with his heavy camera, and when the polar night came, he lit her with bursts of flash powder to photograph her glowing in the dark.
       Those pictures would one day show the world what these men endured.
     images:
       - {query: "Endurance night flash photograph Hurley", count: 1}
       - {query: "Endurance ship ice Hurley", count: 2}
       - {query: "Frank Hurley camera Antarctica", count: 1, colorize: true}
+      - {file: "loc:2013646120", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a50000:3a52000:3a52100:3a52120u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic winter flashlight scene in the Weddell Sea, showing Endurance stuck fast.", date: "1915", note: "Hurley's famous night flash photo of the ship in the polar night: matches 'when the polar night' text"}   # LoC via Chrome
+      - {file: "loc:2013646119", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a50000:3a52000:3a52100:3a52115u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic faithful dogs being fed in the ice kennel, while Endurance was stuck fast.", date: "1916", note: "dogs fed in ice kennels beside the ship: daily life and dog teams during the long winter"}   # LoC via Chrome
 
   - id: crushed
     chapter: "V. The End of the Endurance"
@@ -86,9 +91,9 @@ scenes:
     narration: >
       When spring came, the ice did not release the ship. It began to crush her.
       Huge pressure ridges pushed against the hull. The timbers groaned and cracked. Water poured in faster than the pumps could clear it.
-      On the twenty-seventh of October 1915, in temperatures below minus twenty-six degrees, Shackleton gave the order to abandon ship.
+      On the twenty-seventh of October 1915, in bitter cold, Shackleton gave the order to abandon ship.
       The men dragged their tents, stores and three lifeboats onto the ice. For almost a month the broken hull stayed upright, still held by the floe.
-      There was one painful loss even before the ship sank. The carpenter, Harry McNish, had brought his cat aboard, a tabby the crew called Mrs Chippy. There was no way to feed a cat on the ice, and Shackleton ordered that it be shot, along with the youngest sledge dogs. McNish never forgave him.
+      There was one painful loss even before the ship sank. The carpenter, Harry McNish, had brought his cat aboard, a tabby the crew called Mrs Chippy. There was no way to feed a cat on the ice, and Shackleton ordered that it be shot, along with the youngest sledge dogs. McNish, it is said, never forgave him.
       Then, on the twenty-first of November, she slipped under.
       Shackleton wrote simply that the connexion had been cut.
     quote:
@@ -98,6 +103,9 @@ scenes:
     images:
       - {query: "Endurance crushed by ice", count: 2, colorize: true}
       - {query: "Endurance wreck ice 1915", count: 1}
+      - {file: "loc:2013646115", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a19000:3a19300:3a19377u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic Endurance for two months before she sank in the Weddell Sea on Oct. 27, 1915.", date: "1916", note: "the ship tilted and propped up with planks as the pressure builds, before abandon-ship"}   # LoC via Chrome
+      - {file: "loc:2013646113", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a19000:3a19300:3a19376u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic last moments of the Endurance.", date: "1916", note: "the Endurance in her last moments in the floe"}   # LoC via Chrome
+      - {file: "loc:2013646126", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a12000:3a12700:3a12748u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic Endurance after ice pressure was released.", date: "1916", note: "broken hull, smashed mastheads, still held upright by the floe: 'the broken hull stayed upright'"}   # LoC via Chrome
 
   - id: plates
     chapter: "VI. What to Leave Behind"
@@ -110,6 +118,7 @@ scenes:
     images:
       - {query: "Hurley Shackleton Patience Camp", count: 2}
       - {query: "Ocean Camp Shackleton", count: 1}
+      - {file: "loc:2013646121", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a50000:3a52000:3a52100:3a52110u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic ocean camp.", date: "1916", note: "Shackleton and men at camp on the ice (titled Ocean Camp, where the plates were sorted); LoC summary says Elephant Island, check by eye"}   # LoC via Chrome
 
   - id: drift
     chapter: "VII. Ocean Camp and Patience Camp"
@@ -123,6 +132,7 @@ scenes:
     images:
       - {query: "Patience Camp 1916", count: 2}
       - {query: "Shackleton lifeboats ice", count: 1}
+      - {file: "loc:2013646114", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a11000:3a11300:3a11312u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic ocean camp.", date: "1916", note: "Shackleton and Frank Wild by the blubber stove made of oil drums (in 'South' captioned Patience Camp): life on the drifting floe"}   # LoC via Chrome
 
   - id: elephant
     chapter: "VIII. Elephant Island"
@@ -136,6 +146,7 @@ scenes:
     images:
       - {query: "Elephant Island Shackleton", count: 2, colorize: true}
       - {query: "Elephant Island 1916 camp", count: 1}
+      - {file: "loc:2013646118", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a12000:3a12700:3a12747u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic ice hole on Elephant Island where the lost party first attempted to live.", date: "1916", note: "men digging an ice cave for shelter on Elephant Island, the bare rock they landed on"}   # LoC via Chrome
 
   - id: caird
     chapter: "IX. Eight Hundred Miles"
@@ -162,13 +173,14 @@ scenes:
     images:
       - {query: "James Caird launch Elephant Island", count: 2}
       - {query: "James Caird boat", count: 1}
+      - {file: "loc:2013646116", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a11000:3a11900:3a11986u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic Sir Ernest Shackleton to the rescue.", date: "1916", note: "men pushing the boat into the sea; in 'South' this print is 'Launching the James Caird'"}   # LoC via Chrome
 
   - id: crossing
     chapter: "X. Across the Mountains"
     date: "May 1916"
     narration: >
       The whaling station at Stromness lay on the other side of unmapped, glaciated mountains. No one had ever crossed them.
-      Shackleton, Worsley and Crean set off with a rope, an axe and screws from the boat driven through their boots for grip.
+      Shackleton, Worsley and Crean set off with a rope, a carpenter's adze and screws from the boat driven through their boots for grip.
       They walked for about thirty-six hours without sleep. At one point, lost on a ridge as night fell, they sat down together and slid down the mountainside on the coiled rope.
       On the twentieth of May 1916, three filthy, bearded men walked into Stromness. The station manager did not recognise them.
     images:
@@ -181,7 +193,7 @@ scenes:
     narration: >
       Shackleton immediately went back for the men on Elephant Island. Three times, the pack ice turned his rescue ships away.
       On the fourth attempt, he sailed aboard the Yelcho, a small steam tug of the Chilean Navy commanded by Luis Pardo.
-      On the thirtieth of August 1916, after four and a half months on the island, the twenty-two men left behind saw the ship approaching.
+      On the thirtieth of August 1916, the twenty-two men left behind saw the ship approaching.
       Frank Wild, Shackleton's second in command, had kept them going for four and a half months. They lived under the two upturned lifeboats, eating penguins and seals and burning blubber for warmth. Every morning, Wild told the men to roll up their sleeping bags, because the boss might come today.
       Every one of them was alive.
       Not one member of the Endurance party died. The expedition's other half, the Ross Sea party, was not so lucky: three of its men died laying depots for a crossing that never came.
@@ -190,6 +202,7 @@ scenes:
     images:
       - {query: "Elephant Island Shackleton", count: 2}
       - {query: "Luis Pardo Yelcho", count: 1}
+      - {file: "loc:2013646124", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a12000:3a12700:3a12746u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic lost party on Elephant Island saved at last.", date: "1916", note: "the men on the icy shore waving to the approaching rescue boat, 30 August 1916"}   # LoC via Chrome
 
   - id: found
     chapter: "Epilogue"
