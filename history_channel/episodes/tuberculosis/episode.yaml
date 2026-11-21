@@ -81,7 +81,6 @@ scenes:
       - {file: "curid:6495639", match: "Emily, the author"}
       - {file: "curid:6553928"}
       - {file: "web:nlm:101446857", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101446857-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101446857-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Family stricken by tuberculosis", date: "undated (c. 1900s)", note: "a poor family posing at home, the disease as a household tragedy"}   # LoC via Chrome
-      - {file: "web:nlm:101444537", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101444537-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101444537-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "A Case of Consumption", date: "undated", note: "a consumptive patient: the face of the 'white plague'"}   # LoC via Chrome
 
   - id: vampire
     chapter: "III. The Vampire of Exeter"
@@ -150,9 +149,7 @@ scenes:
       - {file: "curid:36372561", match: "wooden instrument"}
       - {file: "curid:36372563"}
       - {file: "curid:36372567"}
-      - {file: "curid:36423661"}
       - {file: "web:nlm:101420951", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420951-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420951-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "La\xEBnnec \xE0 l'H\xF4pital Necker ausculte un phtisique", date: "19th c. (print after painting)", note: "Laennec at a patient's bedside listening to the chest"}   # LoC via Chrome
-      - {file: "web:nlm:101420947", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420947-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420947-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Laennec]", date: "1824", note: "caricature of Laennec from his lifetime"}   # LoC via Chrome
 
   - id: koch
     chapter: "VI. Koch's Discovery"
@@ -177,11 +174,9 @@ scenes:
       - {file: "curid:36309288"}
       - {file: "curid:36213519", match: "tuberculin"}
       - {file: "curid:36423816"}
-      - {file: "curid:65779697"}
       - {file: "curid:66743672", match: "Nobel Prize"}
       - {file: "web:nlm:101435630", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101435630-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101435630-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Professor Robert Koch, of Berlin", date: "undated (c. 1890?)", note: "print portrait of Koch at the height of his fame"}   # LoC via Chrome
       - {file: "web:nlm:101420776", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420776-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420776-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Robert Koch's first post graduate course]", date: "1891", note: "Koch seated among his students in Berlin: the lab that found the bacillus"}   # LoC via Chrome
-      - {file: "web:nlm:101420778", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420778-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420778-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Robert Koch", date: "1910", note: "head-and-shoulders portrait (Lehmann, Munich)"}   # LoC via Chrome
 
   - id: sanatorium
     chapter: "VII. The Sanatorium"
@@ -200,8 +195,6 @@ scenes:
       - {file: "curid:31329461", match: "Edward Trudeau"}
       - {file: "curid:113662864", match: "porches where patients"}
       - {file: "curid:43026042"}
-      - {file: "curid:43902984"}
-      - {file: "curid:43620959"}
       - {file: "curid:201712410"}
       - {file: "curid:105007537"}
       - {file: "curid:43674275", match: "open verandas"}
@@ -215,7 +208,6 @@ scenes:
       - {file: "curid:36356737"}
       - {file: "web:nlm:101404218", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101404218-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101404218-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Westbrook Sanatorium, Richmond, VA: men's ward/porch", date: "undated (c. 1910s?)", note: "a sanatorium building for men patients (exterior)"}   # LoC via Chrome
       - {file: "web:nlm:101404217", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101404217-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101404217-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Westbrook Sanatorium, Richmond, VA: women's ward/porch", date: "undated (c. 1910s?)", note: "the women's building of the same sanatorium"}   # LoC via Chrome
-      - {file: "web:nlm:101407487", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101407487-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101407487-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[American Red Cross Hospital, Toul, France]: [Sunbath for children with tuberculosis]", date: "undated (WWI, 1918?)", note: "children with TB taking a sun cure in the open air"}   # LoC via Chrome
       - {file: "web:nlm:101395538", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101395538-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101395538-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Tent occupied by consumptive medical officer", date: "undated (c. 1900s?)", note: "a doctor with TB living in a tent: rest and fresh air"}   # LoC via Chrome
       - {file: "web:nlm:101612320", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101612320-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101612320-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Doctor and nurses' open-air treatment", date: "1914-1918?", note: "postcard: patient in bed outdoors with doctor and nurses"}   # LoC via Chrome
 
@@ -230,21 +222,15 @@ scenes:
     images:
       - {file: "curid:92571769", match: "not to spit"}
       - {file: "curid:36214604"}
-      - {file: "curid:67972081"}
       - {file: "curid:84286997", match: "double-barred cross"}
       - {file: "curid:143483161", match: "Einar Holbøll"}
       - {file: "curid:11698726", match: "Emily Bissell"}
       - {file: "curid:142129737"}
-      - {file: "curid:144942922"}
       - {file: "curid:67692086"}
       - {file: "curid:67754856"}
-      - {file: "curid:15873596"}
-      - {file: "curid:31908613"}
       - {file: "web:nlm:101611462", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101611462-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101611462-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Do not spit", date: "undated (c. 1900s?)", note: "postcard of the National Association for the Prevention of Consumption: the 'don't spit' campaign"}   # LoC via Chrome
       - {file: "web:nlm:101449533", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101449533-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101449533-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "\"Stamp\" out tuberculosis", date: "1924", note: "National Tuberculosis Association Christmas Seal poster"}   # LoC via Chrome
-      - {file: "web:nlm:101615193", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101615193-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101615193-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "\"The community nurse\": buy Red Cross seals", date: "1914", note: "Red Cross Christmas Seals postcard with a visiting nurse"}   # LoC via Chrome
-      - {file: "web:nlm:101447543", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447543-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447543-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[A woman getting X-rayed for tuberculosis]", date: "1959", note: "mass chest X-ray screening"}   # LoC via Chrome
-      - {file: "web:nlm:101453495", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101453495-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101453495-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Tuberculosis undiscovered endangers you: danger signs", date: "1940", note: "National Tuberculosis Association poster on early signs"}   # LoC via Chrome
+      - {file: "web:nlm:101447543", match: "mass chest X-ray screening", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447543-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447543-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[A woman getting X-rayed for tuberculosis]", date: "1959", note: "mass chest X-ray screening"}   # LoC via Chrome
 
   - id: cure
     chapter: "IX. The First Cure"
