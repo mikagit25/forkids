@@ -276,3 +276,60 @@ references:
 
 research:                # newspapers of the time: python run.py episodes/halifax-1917 research
   - {q: "Halifax explosion", from: 1917-12-06, to: 1918-01-31, sources: [chronam, nyt, trove, europeana]}
+
+summary: >
+  On the morning of 6 December 1917, a French ship packed with wartime explosives collided with a Norwegian relief ship in
+  the narrows of Halifax harbour. Twenty minutes later the Mont-Blanc blew up with the force of about 2.9 kilotons of TNT,
+  the largest man-made explosion before the atomic bomb. Nearly two thousand people died, nine thousand were injured and a
+  whole district vanished. This is the story of that morning: the railway dispatcher who stayed at his post, the blizzard
+  that followed, the help that came from Boston, the trials that blamed everyone and no one, and the city that rebuilt.
+
+localizations:
+  es:
+    title: "Halifax 1917: la mayor explosión antes de la bomba atómica"
+    subtitle: "Cómo una colisión en un puerto canadiense destruyó una ciudad en un segundo"
+    summary: >
+      La mañana del 6 de diciembre de 1917, un barco francés cargado de explosivos de guerra chocó con un barco noruego de
+      ayuda humanitaria en el estrecho del puerto de Halifax. Veinte minutos después, el Mont-Blanc estalló con una fuerza de
+      unos 2,9 kilotones de TNT, la mayor explosión provocada por el ser humano antes de la bomba atómica. Murieron casi dos
+      mil personas, nueve mil resultaron heridas y un barrio entero desapareció. Esta es la historia de aquella mañana: el
+      telegrafista ferroviario que no abandonó su puesto, la ventisca que vino después, la ayuda que llegó de Boston, los
+      juicios que culparon a todos y a nadie, y la ciudad que se reconstruyó.
+    chapters: ["Introducción", "Una ciudad en guerra", "Dos barcos", "Veinte minutos", "El último mensaje", "9:04:35",
+               "La ciudad herida", "Entre las ruinas", "La ventisca", "Ayuda desde Boston", "¿Quién tuvo la culpa?", "Epílogo"]
+  pt:
+    title: "Halifax 1917: a maior explosão antes da bomba atômica"
+    subtitle: "Como uma colisão num porto canadense destruiu uma cidade em um segundo"
+    summary: >
+      Na manhã de 6 de dezembro de 1917, um navio francês carregado de explosivos de guerra colidiu com um navio norueguês de
+      ajuda humanitária no estreito do porto de Halifax. Vinte minutos depois, o Mont-Blanc explodiu com a força de cerca de
+      2,9 quilotons de TNT, a maior explosão causada pelo homem antes da bomba atômica. Quase duas mil pessoas morreram, nove
+      mil ficaram feridas e um bairro inteiro desapareceu. Esta é a história daquela manhã: o despachante ferroviário que
+      ficou em seu posto, a nevasca que veio a seguir, a ajuda que chegou de Boston, os julgamentos que culparam todos e
+      ninguém, e a cidade que se reconstruiu.
+    chapters: ["Introdução", "Uma cidade em guerra", "Dois navios", "Vinte minutos", "A última mensagem", "9:04:35",
+               "A cidade ferida", "Entre as ruínas", "A nevasca", "Ajuda de Boston", "De quem foi a culpa?", "Epílogo"]
+  fr:
+    title: "Halifax 1917 : la plus grande explosion avant la bombe atomique"
+    subtitle: "Comment une collision dans un port canadien a détruit une ville en une seconde"
+    summary: >
+      Le matin du 6 décembre 1917, un navire français chargé d'explosifs de guerre entre en collision avec un navire
+      humanitaire norvégien dans le goulet du port d'Halifax. Vingt minutes plus tard, le Mont-Blanc explose avec une force
+      d'environ 2,9 kilotonnes de TNT : la plus grande explosion d'origine humaine avant la bombe atomique. Près de deux mille
+      personnes meurent, neuf mille sont blessées et tout un quartier disparaît. Voici l'histoire de cette matinée : le
+      répartiteur ferroviaire resté à son poste, le blizzard qui suivit, l'aide venue de Boston, les procès qui accusèrent
+      tout le monde et personne, et la ville qui se reconstruisit.
+    chapters: ["Introduction", "Une ville en guerre", "Deux navires", "Vingt minutes", "Le dernier message", "9:04:35",
+               "La ville blessée", "Dans les ruines", "Le blizzard", "L'aide de Boston", "À qui la faute ?", "Épilogue"]
+  de:
+    title: "Halifax 1917: Die größte Explosion vor der Atombombe"
+    subtitle: "Wie eine Kollision in einem kanadischen Hafen eine Stadt in einer Sekunde zerstörte"
+    summary: >
+      Am Morgen des 6. Dezember 1917 stieß im engen Hafen von Halifax ein französisches Schiff voller Kriegssprengstoff mit
+      einem norwegischen Hilfsschiff zusammen. Zwanzig Minuten später explodierte die Mont-Blanc mit der Kraft von etwa 2,9
+      Kilotonnen TNT – die größte von Menschen verursachte Explosion vor der Atombombe. Fast zweitausend Menschen starben,
+      neuntausend wurden verletzt, ein ganzer Stadtteil verschwand. Dies ist die Geschichte jenes Morgens: der
+      Eisenbahn-Fahrdienstleiter, der auf seinem Posten blieb, der Schneesturm danach, die Hilfe aus Boston, die Prozesse,
+      die alle und niemanden schuldig sprachen, und die Stadt, die sich neu aufbaute.
+    chapters: ["Einleitung", "Eine Stadt im Krieg", "Zwei Schiffe", "Zwanzig Minuten", "Die letzte Nachricht", "9:04:35",
+               "Die verwundete Stadt", "In den Trümmern", "Der Schneesturm", "Hilfe aus Boston", "Wer war schuld?", "Epilog"]
