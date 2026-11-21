@@ -18,7 +18,11 @@ def thumbnail(ep_dir: Path, episode: dict) -> Path:
     if not hero:
         scene = cfg.get("scene", episode["scenes"][0]["id"])
         cands = [i for i in man["scenes"].get(scene, []) if i["use"]] or used
-        hero = max(cands, key=lambda i: (i["width"] / max(i["height"], 1) >= 1.3, i["width"]))
+        def size(i):     # hand-picked LoC / web items carry no size in the manifest: read the file
+            if not (i.get("width") and i.get("height")):
+                i["width"], i["height"] = Image.open(ep_dir / i["file"]).size
+            return i["width"], i["height"]
+        hero = max(cands, key=lambda i: (size(i)[0] / max(size(i)[1], 1) >= 1.3, size(i)[0]))
     W, H = 1280, 720
     im = Image.open(ep_dir / hero["file"]).convert("L")
     im = ImageOps.autocontrast(im, cutoff=1.5)

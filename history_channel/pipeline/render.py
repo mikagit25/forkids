@@ -291,6 +291,12 @@ def _allocate(gaps, avail, target, lo, hi):
     photo would stay longer than `hi` seconds."""
     want = [max(1, min(round(d / target), int(d // lo) or 1)) if d > 0.05 else 0 for d in gaps]
     if sum(want) <= avail:
+        # every hand-picked photo should be seen: use the spare ones too, as long as no shot gets shorter than `lo`
+        while sum(want) < avail:
+            i = max(range(len(gaps)), key=lambda k: gaps[k] / (want[k] + 1) if gaps[k] > 0.05 else -1)
+            if gaps[i] <= 0.05 or gaps[i] / (want[i] + 1) < lo:
+                break
+            want[i] += 1
         return want, 0
     tot = sum(d for d in gaps if d > 0.05) or 1
     raw = [avail * d / tot if d > 0.05 else 0 for d in gaps]
@@ -361,7 +367,14 @@ def _overlay_intervals(scene, timings, dur, timed_photos=()):
         if kind == "photo":
             b = min(max(b, a + 5.0), a + 9.0)
         out.append((a, b, kind, c))
-    out.sort(key=lambda x: x[0])
+    # quotes, stat cards and maps win over photos with `match` (a photo that loses goes back into the flow)
+    kept = []
+    for it in sorted(out, key=lambda x: (x[2] == "photo", x[0])):
+        if all(it[1] <= o[0] or it[0] >= o[1] for o in kept):
+            kept.append(it)
+        elif it[2] != "photo":
+            print(f"   ! {it[2]} card in '{scene['id']}' overlaps another card, skipped: {str(it[3].get('match'))[:40]}")
+    out = sorted(kept, key=lambda x: x[0])
     merged = []
     for a, b, k, c in out:   # drop overlaps, snap tiny gaps to the card
         if merged and a < merged[-1][1]:
@@ -433,6 +446,9 @@ def build_timeline(episode: dict, manifest: dict, timings: dict):
                                   seed=_seed(c["id"])))
             else:
                 shots.append(Shot(t + a, t + b, kind, quote={**c, "bg": imgs[0]["file"]}, seed=_seed(c.get("text", "") + kind)))
+        left = [it["ref"] for it, _ in state["queue"] if it.get("ref")]
+        if left and not montage:
+            print(f"   ! {sid}: {len(left)} photo(s) do not fit (shots would be < {lo}s): {', '.join(left)}")
         t += dur
         if idx == 0:
             shots.append(Shot(t, t + TITLE, "card", card={"bg": imgs[0]["file"], "kicker": "", "title": episode["title"],
