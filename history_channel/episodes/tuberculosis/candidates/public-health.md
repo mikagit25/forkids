@@ -1,0 +1,40 @@
+# public-health — VII. Don't Spit
+
+Once people knew tuberculosis was spread by germs, governments went to war against it. Public health campaigns urged people not to spit in the street. Spittoons were removed or regulated, streetcars posted warning signs, and cities ran campaigns about ventilation and housing. The double-barred cross became the symbol of the fight against tuberculosis, and Christmas seals were sold to raise money for the cause. In 1895, Wilhelm Röntgen discovered X-rays, and soon mass chest X-ray screening helped find cases early.
+
+| # | ref | source | date | W×H | licence | title |
+|---|---|---|---|---|---|---|
+| 1 | `curid:92571769` | commons | 1905 | 2078×2741 | Public domain | [Notice Do not spit - National Association for the Prevention of Tuberc](https://commons.wikimedia.org/wiki/File:Notice_Do_not_spit_-_National_Association_for_the_Prevention_of_Tuberculosis_Dublin_Branch.jpg) |
+| 2 | `curid:36214604` | commons |  | 4930×3622 | CC BY 4.0 | [Anti-spitting sign, Ireland, 1900-1920 Wellcome L0059914](https://commons.wikimedia.org/wiki/File:Anti-spitting_sign,_Ireland,_1900-1920_Wellcome_L0059914.jpg) |
+| 3 | `europeana:410/S_KPS_object_M174` | europeana |  | 1200×1200 | CC BY 4.0 | [Skåp](https://www.europeana.eu/item/410/S_KPS_object_M174) |
+| 4 | `wellcome:u4tn2cxc` | wellcome |  | 400×509 | Attribution 4.0 International  | [Lepromatous leprosy (LL): multidrug therapy (MDT)](https://wellcomecollection.org/works/jetx2uxk) |
+| 5 | `wellcome:dg6qmsmn` | wellcome |  | 400×585 | Public Domain Mark | [Tutte le infermita che possano venire al cavallo con li soi rimedii.](https://wellcomecollection.org/works/uz7fdnun) |
+| 6 | `wellcome:c4cg9fhu` | wellcome |  | 400×241 | Public Domain Mark | [A man in drag poses wearing delicate attire; curled up on a piece of f](https://wellcomecollection.org/works/z9wss8w9) |
+| 7 | `wellcome:hjtkhckj` | wellcome |  | 400×241 | Public Domain Mark | [A man in drag poses wearing delicate attire; curled up on a piece of f](https://wellcomecollection.org/works/z9wss8w9) |
+| 8 | `wellcome:huswxqst` | wellcome |  | 400×657 | Public Domain Mark | [A young man offers his hand to help a young woman cross a bridge over ](https://wellcomecollection.org/works/xt2bzwjj) |
+| 9 | `wellcome:ec4235qm` | wellcome |  | 400×261 | Attribution 4.0 International  | [Prevention of malnutrition: growth monitoring and promotion](https://wellcomecollection.org/works/hvaffttf) |
+| 10 | `wellcome:ghwr8p9v` | wellcome |  | 400×294 | Public Domain Mark | [An operation for stone in the head. Oil painting by a follower of Jan ](https://wellcomecollection.org/works/n959xysy) |
+| 11 | `wellcome:ghxxb8es` | wellcome |  | 400×294 | Public Domain Mark | [An operation for stone in the head. Oil painting by a follower of Jan ](https://wellcomecollection.org/works/n959xysy) |
+| 12 | `curid:67972081` | commons | 1907 | 1536×1213 | Public domain | [If you expect to rate as a gentleman, you will not expectorate on the ](https://commons.wikimedia.org/wiki/File:If_you_expect_to_rate_as_a_gentleman,_you_will_not_expectorate_on_the_floor_LCCN2013645585.tif) |
+| 13 | `curid:65857854` | commons | 1909 | 5000×3637 | Public domain | [8-30 P.M. Group of newsboys selling at the depot, Hartford, Conn. Smal](https://commons.wikimedia.org/wiki/File:8-30_P.M._Group_of_newsboys_selling_at_the_depot,_Hartford,_Conn._Smallest_boy_11_years_old._LOC_cph.3b00617.jpg) |
+| 14 | `curid:143599132` | commons | 1955 | 1093×420 | Public domain | [US Christmas Seal, 1955 issue](https://commons.wikimedia.org/wiki/File:US_Christmas_Seal,_1955_issue.jpg) |
+| 15 | `curid:146011831` | commons | 1922, 1923 | 1246×948 | Public domain | [Christmas seal postmarks, 1922, 1923](https://commons.wikimedia.org/wiki/File:Christmas_seal_postmarks,_1922,_1923.jpg) |
+| 16 | `curid:145316085` | commons | 1957 | 1195×1357 | Public domain | [Christmas seal on cover, 1957, Santa Claus, IN](https://commons.wikimedia.org/wiki/File:Christmas_seal_on_cover,_1957,_Santa_Claus,_IN.jpg) |
+| 17 | `curid:145346108` | commons | 1920 | 3587×3226 | Public domain | [Christmas seal bonds, $5, 1920 & 1933](https://commons.wikimedia.org/wiki/File:Christmas_seal_bonds,_$5,_1920_%26_1933.jpg) |
+| 18 | `curid:144520984` | commons | 1946 | 1206×677 | Public domain | [Christmas seal, first day cover, 1946](https://commons.wikimedia.org/wiki/File:Christmas_seal,_first_day_cover,_1946.jpg) |
+| 19 | `curid:144942922` | commons | 1913 | 1302×432 | Public domain | [Christmas seals, 1913, type I & II](https://commons.wikimedia.org/wiki/File:Christmas_seals,_1913,_type_I_%26_II.jpg) |
+| 20 | `curid:67851986` | commons | 1929 | 10008×7752 | Public domain | [Santa Claus and health crusader call at Capitol to sell Christmas seal](https://commons.wikimedia.org/wiki/File:Santa_Claus_and_health_crusader_call_at_Capitol_to_sell_Christmas_seals._Vice_President_Curtis_and_Senator_Arthur_Capper_of_Kansas,_buying_a_supply_of_Tuberculosis_Christmas_seals_from_LCCN2016890657.jpg) |
+| 21 | `curid:67754813` | commons | 1921 | 1179×1536 | Public domain | [Little Adrienne Mayer pins the health ribbon on General (John J.) Pers](https://commons.wikimedia.org/wiki/File:Little_Adrienne_Mayer_pins_the_health_ribbon_on_General_(John_J.)_Pershing_and_sells_him_his_Tuberculosis_Christmas_Seals_LCCN92517451.jpg) |
+| 22 | `curid:67585191` | commons | 1929-12-17 | 1024×826 | Public domain | [Mrs. Hoover buying tuberculosis seals, 12-17-29 LCCN2016844363](https://commons.wikimedia.org/wiki/File:Mrs._Hoover_buying_tuberculosis_seals,_12-17-29_LCCN2016844363.jpg) |
+| 23 | `curid:67585179` | commons | 1929-12-17 | 4983×4022 | Public domain | [Mrs. Hoover buying tuberculosis seals, 12-17-29 LCCN2016844362](https://commons.wikimedia.org/wiki/File:Mrs._Hoover_buying_tuberculosis_seals,_12-17-29_LCCN2016844362.jpg) |
+| 24 | `curid:67692110` | commons | 1924-12-01 | 4401×6086 | Public domain | [Pres. Coolidge buys tuberculosis seals, 12-1-24 LCCN2016849783](https://commons.wikimedia.org/wiki/File:Pres._Coolidge_buys_tuberculosis_seals,_12-1-24_LCCN2016849783.jpg) |
+| 25 | `curid:67692086` | commons | 1924-12-01 | 6027×4407 | Public domain | [Pres. Coolidge buys tuberculosis seals, 12-1-24 LCCN2016849782](https://commons.wikimedia.org/wiki/File:Pres._Coolidge_buys_tuberculosis_seals,_12-1-24_LCCN2016849782.jpg) |
+| 26 | `curid:67754856` | commons | 1921 | 1156×1536 | Public domain | [Ethel Barrymore acts as saleslady at the Christmas Seal booth in Washi](https://commons.wikimedia.org/wiki/File:Ethel_Barrymore_acts_as_saleslady_at_the_Christmas_Seal_booth_in_Washington,_D.C._With_Miss_Barrymore_are_Miss_Carlia(%3F)_Campbell_and_Mrs._Sidney_Thomas,_leaders_in_last_years_sales_campaign_LCCN92517487.jpg) |
+| 27 | `smithsonian:NMAAHC-2013_223_38_001` | smithsonian | 1940s 1950s | 400×263 | CC0 | [Postcard for Sugar Ray's Cafe](https://nmaahc.si.edu/object/nmaahc_2013.223.38) |
+| 28 | `smithsonian:NPM-1987_0206_548b` | smithsonian | 1940s 1890s | 400×400 | CC0 | [Sea Post clerk chest badge, number 88](https://postalmuseum.si.edu/object/npm_1987.0206.548) |
+| 29 | `smithsonian:NPM-1992_2025_001` | smithsonian | 1940s 1890s | 400×400 | CC0 | [Sea post clerk chest badge, number 81](https://postalmuseum.si.edu/object/npm_1992.2025.1) |
+| 30 | `smithsonian:NPM-1992_2025_2a` | smithsonian | 1940s 1890s | 346×400 | CC0 | [Sea post clerk chest badge, number 72](https://postalmuseum.si.edu/object/npm_1992.2025.2) |
+| 31 | `smithsonian:NPM-1989_0583_001` | smithsonian | 1940s | 400×400 | CC0 | [RMS clerk chest badge, number 74996](https://postalmuseum.si.edu/object/npm_1989.0583.1) |
+| 32 | `smithsonian:NPM-1992_2002_285a` | smithsonian | 1940s 1945-1989 | 366×400 | CC0 | [RMS clerk chest badge, number 84964](https://postalmuseum.si.edu/object/npm_1985.0059.1) |
+| 33 | `smithsonian:CHSDM-1940-93-63-abMattFlynn` | smithsonian | 1900s 1870s | 385×400 | CC0 | [Coat](https://collection.cooperhewitt.org/view/objects/asitem/id/74281) |
+| 34 | `smithsonian:NMAAHC-2011_36_8` | smithsonian | 1920s 1910s | 273×400 | CC0 | [Photograph of an unidentified man](https://nmaahc.si.edu/object/nmaahc_2011.36.8) |

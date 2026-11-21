@@ -28,9 +28,11 @@ scenes:
       Then, in 1944, a young American scientist found the first cure.
       And yet today, tuberculosis still kills more people than any other infection on Earth.
     images:
-      - {query: "tuberculosis sanatorium", count: 4}
-      - {query: "tuberculosis poster", count: 2}
-      - {query: "Robert Koch", count: 1}
+      - {file: "curid:92572642"}
+      - {file: "curid:36423658"}
+      - {file: "curid:43674275"}
+      - {file: "curid:4900170"}
+      - {file: "curid:6365485"}
       - {file: "web:nlm:101395536", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101395536-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101395536-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Tents for Consumptives, Fort Stanton Sanatorium", date: "undated (c. 1900s?)", note: "rows of tents where TB patients lived in the open air: the 'cure' at a glance"}   # LoC via Chrome
       - {file: "web:nlm:101444771", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101444771-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101444771-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "The next to go", date: "1919", note: "Red Cross poster: tuberculosis shown as the next scourge to be driven out"}   # LoC via Chrome
 
@@ -42,9 +44,20 @@ scenes:
       The oldest confirmed human case comes from Atlit Yam, a submerged village off the coast of Israel, about nine thousand years old. Egyptian mummies show signs of tuberculosis of the spine. The ancient Greeks called it phthisis, the wasting disease. In English it became consumption, because it seemed to consume its victims from within.
       One form of the disease swelled the glands of the neck. In England and France it was called the King's Evil, because people believed a touch from the monarch could cure it. Kings held great ceremonies to lay their hands on the sick, and Charles the Second of England alone touched more than ninety thousand people.
     images:
-      - {query: "Mycobacterium tuberculosis", count: 1, modern: true}
-      - {query: "Egyptian mummy tuberculosis", count: 1}
-      - {query: "Hippocrates", count: 1}
+      - {file: "wellcome:vsk843dn"}
+      - {file: "curid:2740756"}
+      - {file: "curid:36376399", match: "Egyptian mummies"}
+      - {file: "curid:47738340"}
+      - {file: "curid:1332072", match: "The ancient Greeks"}
+      - {file: "curid:35868592"}
+      - {file: "curid:36340775"}
+      - {file: "curid:68133173"}
+      - {file: "curid:68133166"}
+      - {file: "curid:35953616"}
+      - {file: "curid:36047241", match: "King's Evil"}
+      - {file: "curid:75135105", match: "touched more than ninety thousand"}
+      - {file: "curid:36202684"}
+      - {file: "curid:97234936"}
 
   - id: white-plague
     chapter: "II. The White Plague"
@@ -58,9 +71,15 @@ scenes:
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "1 in 4", text: "adult deaths in 19th-century Europe", match: "By the nineteenth century, it was killing"}
     images:
-      - {query: "Victorian slum", count: 2}
-      - {query: "industrial revolution city 19th century", count: 2}
-      - {query: "consumption patient 19th century", count: 1}
+      - {file: "curid:161789978"}
+      - {file: "curid:163179205"}
+      - {file: "curid:2583976"}
+      - {file: "curid:2125337"}
+      - {file: "curid:41585717"}
+      - {file: "curid:6365485", match: "Patrick Brontë"}
+      - {file: "curid:5989245"}
+      - {file: "curid:6495639", match: "Emily, the author"}
+      - {file: "curid:6553928"}
       - {file: "web:nlm:101446857", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101446857-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101446857-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Family stricken by tuberculosis", date: "undated (c. 1900s)", note: "a poor family posing at home, the disease as a household tragedy"}   # LoC via Chrome
       - {file: "web:nlm:101444537", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101444537-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101444537-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "A Case of Consumption", date: "undated", note: "a consumptive patient: the face of the 'white plague'"}   # LoC via Chrome
 
@@ -74,10 +93,18 @@ scenes:
       Mercy's heart and liver were burned, and the ashes were mixed with water and given to Edwin to drink, as a cure. He died two months later.
       Newspapers reported the story, and some historians think it may have reached Bram Stoker while he was writing Dracula.
     images:
-      - {query: "Exeter Rhode Island", count: 2}
-      - {query: "New England farm 1890s", count: 2}
-      - {query: "Mercy Brown grave", count: 1}
-      - {query: "Rhode Island village 19th century", count: 2}
+      - {file: "curid:98182643"}
+      - {file: "curid:98182637"}
+      - {file: "curid:34400011", match: "farming town of Exeter"}
+      - {file: "curid:98960949"}
+      - {file: "curid:157621902"}
+      - {file: "curid:97781728"}
+      - {file: "curid:56630554"}
+      - {file: "curid:4900170", match: "Mercy died"}
+      - {file: "curid:154053118"}
+      - {file: "curid:98183133"}
+      - {file: "curid:15049924", match: "Bram Stoker"}
+      - {file: "curid:99011554"}
 
   - id: romantic
     chapter: "IV. The Romantic Disease"
@@ -90,9 +117,26 @@ scenes:
       In Norway, the painter Edvard Munch lost his older sister Sophie to tuberculosis when she was fifteen, and for more than forty years he painted her deathbed again and again. Anton Chekhov, himself a doctor, coughed blood for years and hid it from his family; he died of tuberculosis in 1904. Franz Kafka died of it in 1924, at forty, after years in sanatoriums.
       The reality was far from romantic. Most victims were poor, and died in misery.
     images:
-      - {query: "Frederic Chopin", count: 1, colorize: true}
-      - {query: "John Keats", count: 1}
-      - {query: "La Traviata Violetta", count: 1}
+      - {file: "wellcome:htf9gzu8", match: "Some fashionable women"}
+      - {file: "curid:6364719", match: "Lord Byron"}
+      - {file: "curid:66652879"}
+      - {file: "curid:41074414", match: "La Traviata"}
+      - {file: "curid:150843724"}
+      - {file: "curid:1082785"}
+      - {file: "curid:113046", match: "Frédéric Chopin"}
+      - {file: "curid:159801995"}
+      - {file: "curid:24900938", match: "George Sand"}
+      - {file: "curid:540277"}
+      - {file: "curid:1086180"}
+      - {file: "curid:10884233"}
+      - {file: "curid:6370362", match: "John Keats"}
+      - {file: "curid:7158740"}
+      - {file: "wellcome:gdytestp", match: "He died in Rome"}
+      - {file: "curid:23384", match: "Edgar Allan Poe"}
+      - {file: "curid:98294437", match: "Edvard Munch"}
+      - {file: "curid:115086406"}
+      - {file: "curid:9353076", match: "Anton Chekhov"}
+      - {file: "curid:117743044", match: "Franz Kafka"}
 
   - id: laennec
     chapter: "V. Listening to the Chest"
@@ -103,8 +147,13 @@ scenes:
       He developed this into a wooden instrument, the stethoscope, and used it to describe the sounds of diseased lungs in remarkable detail.
       Laennec himself died of tuberculosis, at the age of forty-five.
     images:
-      - {query: "Laennec stethoscope", count: 2, colorize: true}
-      - {query: "René Laennec", count: 1}
+      - {file: "curid:9970526"}
+      - {file: "curid:36423658", match: "examining a young woman"}
+      - {file: "curid:36372561", match: "wooden instrument"}
+      - {file: "curid:36372563"}
+      - {file: "curid:36372567"}
+      - {file: "curid:36423661"}
+      - {file: "curid:35954078"}
       - {file: "web:nlm:101420951", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420951-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420951-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "La\xEBnnec \xE0 l'H\xF4pital Necker ausculte un phtisique", date: "19th c. (print after painting)", note: "Laennec at a patient's bedside listening to the chest"}   # LoC via Chrome
       - {file: "web:nlm:101420947", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420947-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420947-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Laennec]", date: "1824", note: "caricature of Laennec from his lifetime"}   # LoC via Chrome
 
@@ -121,9 +170,18 @@ scenes:
     cards:
       - {big: "24 March 1882", text: "Koch announces the cause of TB", match: "On the twenty-fourth of March 1882"}
     images:
-      - {query: "Robert Koch laboratory", count: 2}
-      - {query: "Robert Koch", count: 1}
-      - {query: "tubercle bacillus Koch drawing", count: 1}
+      - {file: "curid:128793472"}
+      - {file: "curid:3209587", match: "in Berlin"}
+      - {file: "curid:3246739"}
+      - {file: "curid:5495887"}
+      - {file: "curid:36038902"}
+      - {file: "curid:36352912", match: "announced that he had found"}
+      - {file: "curid:13310549"}
+      - {file: "curid:36309288"}
+      - {file: "curid:36213519", match: "tuberculin"}
+      - {file: "curid:36423816"}
+      - {file: "curid:65779697"}
+      - {file: "curid:66743672", match: "Nobel Prize"}
       - {file: "web:nlm:101435630", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101435630-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101435630-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Professor Robert Koch, of Berlin", date: "undated (c. 1890?)", note: "print portrait of Koch at the height of his fame"}   # LoC via Chrome
       - {file: "web:nlm:101420776", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420776-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420776-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Robert Koch's first post graduate course]", date: "1891", note: "Koch seated among his students in Berlin: the lab that found the bacillus"}   # LoC via Chrome
       - {file: "web:nlm:101420778", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420778-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420778-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Robert Koch", date: "1910", note: "head-and-shoulders portrait (Lehmann, Munich)"}   # LoC via Chrome
@@ -140,9 +198,24 @@ scenes:
       High in the Swiss Alps, the village of Davos, modelled on Brehmer's sanatorium, became a world-famous resort for the sick. The writer Robert Louis Stevenson spent the winter of 1880 there, and Thomas Mann set his novel The Magic Mountain in a Davos sanatorium, where patients wait for years, measuring their days by the thermometer.
       Surgeons tried more drastic treatments. They deliberately collapsed an infected lung, injecting air into the chest to let it rest and heal, a method pioneered by the Italian physician Carlo Forlanini. But sanatoriums also separated the sick from their families, which helped slow the spread of the disease.
     images:
-      - {query: "sanatorium porch patients", count: 2, colorize: true}
-      - {query: "Saranac Lake cure porch", count: 2}
-      - {query: "Görbersdorf sanatorium", count: 1}
+      - {file: "curid:64896477", match: "Görbersdorf"}
+      - {file: "curid:31416134"}
+      - {file: "curid:31329461", match: "Edward Trudeau"}
+      - {file: "curid:113662864", match: "porches where patients"}
+      - {file: "curid:43026042"}
+      - {file: "curid:43902984"}
+      - {file: "curid:43620959"}
+      - {file: "curid:201712410"}
+      - {file: "curid:105007537"}
+      - {file: "curid:43674275", match: "open verandas"}
+      - {file: "curid:43693559"}
+      - {file: "curid:43362551"}
+      - {file: "wellcome:xcwfq6e7"}
+      - {file: "curid:92231257", match: "Davos"}
+      - {file: "curid:1714188", match: "Robert Louis Stevenson"}
+      - {file: "curid:18883731", match: "The Magic Mountain"}
+      - {file: "curid:36373750", match: "collapsed an infected lung"}
+      - {file: "curid:36356737"}
       - {file: "web:nlm:101404218", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101404218-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101404218-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Westbrook Sanatorium, Richmond, VA: men's ward/porch", date: "undated (c. 1910s?)", note: "a sanatorium building for men patients (exterior)"}   # LoC via Chrome
       - {file: "web:nlm:101404217", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101404217-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101404217-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Westbrook Sanatorium, Richmond, VA: women's ward/porch", date: "undated (c. 1910s?)", note: "the women's building of the same sanatorium"}   # LoC via Chrome
       - {file: "web:nlm:101407487", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101407487-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101407487-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[American Red Cross Hospital, Toul, France]: [Sunbath for children with tuberculosis]", date: "undated (WWI, 1918?)", note: "children with TB taking a sun cure in the open air"}   # LoC via Chrome
@@ -158,10 +231,19 @@ scenes:
       The idea came from a Danish postal clerk, Einar Holbøll. In 1904 he suggested adding a small charity stamp to Christmas mail, to raise money for children with tuberculosis. Three years later, in America, Emily Bissell sold the first Christmas seals to save a small sanatorium in Delaware that needed just three hundred dollars to stay open.
       In 1895, Wilhelm Röntgen discovered X-rays, and soon mass chest X-ray screening helped find cases early.
     images:
-      - {query: "tuberculosis poster", count: 2}
-      - {query: "do not spit sign", count: 1}
-      - {query: "Christmas seal tuberculosis", count: 1}
-      - {query: "chest X-ray screening 1940s", count: 1}
+      - {file: "curid:92571769", match: "not to spit"}
+      - {file: "curid:36214604"}
+      - {file: "curid:67972081"}
+      - {file: "curid:84286997", match: "double-barred cross"}
+      - {file: "curid:143483161", match: "Einar Holbøll"}
+      - {file: "curid:11698726", match: "Emily Bissell"}
+      - {file: "curid:142129737"}
+      - {file: "curid:144942922"}
+      - {file: "curid:67692086"}
+      - {file: "curid:67754856"}
+      - {file: "curid:15873596"}
+      - {file: "curid:31908613"}
+      - {file: "curid:31823860"}
       - {file: "web:nlm:101611462", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101611462-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101611462-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Do not spit", date: "undated (c. 1900s?)", note: "postcard of the National Association for the Prevention of Consumption: the 'don't spit' campaign"}   # LoC via Chrome
       - {file: "web:nlm:101449533", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101449533-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101449533-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "\"Stamp\" out tuberculosis", date: "1924", note: "National Tuberculosis Association Christmas Seal poster"}   # LoC via Chrome
       - {file: "web:nlm:101615193", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101615193-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101615193-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "\"The community nurse\": buy Red Cross seals", date: "1914", note: "Red Cross Christmas Seals postcard with a visiting nurse"}   # LoC via Chrome
@@ -180,10 +262,19 @@ scenes:
       Bacteria soon developed resistance to it. So doctors combined it with other drugs: PAS from 1946, then isoniazid in 1952, and rifampicin in the 1970s.
       For the first time, tuberculosis could be cured. Sanatoriums emptied and closed.
     images:
-      - {query: "Selman Waksman", count: 1}
-      - {query: "Albert Calmette", count: 1}
-      - {query: "streptomycin", count: 1}
-      - {query: "BCG vaccination", count: 1}
+      - {file: "curid:33598465", match: "Albert Calmette"}
+      - {file: "curid:33598510"}
+      - {file: "curid:83368125"}
+      - {file: "curid:24066492", match: "Rutgers University"}
+      - {file: "curid:1306990"}
+      - {file: "curid:24066525"}
+      - {file: "curid:24066194"}
+      - {file: "curid:36371881"}
+      - {file: "curid:2001660", match: "George Orwell"}
+      - {file: "curid:150094734"}
+      - {file: "curid:43776547"}
+      - {file: "curid:34255603", match: "Sanatoriums emptied"}
+      - {file: "curid:34255696"}
       - {file: "web:nlm:101411517", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101411517-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101411517-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Albert Calmette]", date: "1920", note: "Calmette, co-creator of the BCG vaccine"}   # LoC via Chrome
       - {file: "web:nlm:101440676", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101440676-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101440676-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[1948 Awards Ceremony]: [Dr. Selman Waksman]", date: "1948", note: "Waksman, discoverer of streptomycin, being honoured"}   # LoC via Chrome
 
@@ -196,8 +287,15 @@ scenes:
       Ordinary tuberculosis can be cured with a combination of pills taken every day for about six months. The hardest part is not the medicine, but reaching every patient, and making sure no one stops the treatment halfway.
       Multidrug-resistant tuberculosis, which does not respond to the main medicines, remains one of the greatest threats in global health.
     images:
-      - {query: "tuberculosis treatment", count: 1, modern: true}
-      - {query: "tuberculosis", count: 2}
+      - {file: "curid:4347472"}
+      - {file: "curid:21460047"}
+      - {file: "curid:21460052"}
+      - {file: "curid:21461867"}
+      - {file: "curid:70797626"}
+      - {file: "curid:23127005"}
+      - {file: "curid:154186388", match: "Multidrug-resistant"}
+      - {file: "curid:37912440"}
+      - {file: "curid:45902019"}
       - {file: "web:nlm:101437276", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101437276-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101437276-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Traditional hospitals and sanatoria are now judged unnecessary for most tuberculosis patients", date: "1978", note: "WHO photo: the sanatorium era ends with drug treatment at home"}   # LoC via Chrome
 
   - id: closing
@@ -207,8 +305,9 @@ scenes:
       It is a reminder that a disease does not disappear just because we have the tools to stop it. It disappears only when those tools reach everyone.
       If you enjoyed this biography of a disease, subscribe for the next one.
     images:
-      - {query: "tuberculosis sanatorium", count: 1}
-      - {query: "Robert Koch", count: 1}
+      - {file: "curid:143599132"}
+      - {file: "curid:37912436"}
+      - {file: "curid:36143123"}
 
 thumbnail:
   scene: sanatorium

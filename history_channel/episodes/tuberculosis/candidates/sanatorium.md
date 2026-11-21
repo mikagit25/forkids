@@ -1,0 +1,16 @@
+# sanatorium — VI. The Sanatorium
+
+Without a cure, doctors turned to rest and fresh air. In 1854, Hermann Brehmer opened a sanatorium in the mountains of Silesia, in Görbersdorf. In 1884, Edward Trudeau, himself a tuberculosis patient, opened one at Saranac Lake in the Adirondack mountains of New York. Soon there were sanatoriums across Europe and America. Patients lay for hours on open verandas, wrapped in blankets, even in winter. They ate rich food, took their temperature several times a day, and followed strict rules. Some recovered. Many did not. But sanatoriums also separated the sick from their families, which [...]
+
+| # | ref | source | date | W×H | licence | title |
+|---|---|---|---|---|---|---|
+| 1 | `curid:43026042` | commons | 1911 | 3216×2076 | No restrictions | [Tuberculosis hospital and sanatorium construction; (1911) (14594957039](https://commons.wikimedia.org/wiki/File:Tuberculosis_hospital_and_sanatorium_construction;_(1911)_(14594957039).jpg) |
+| 2 | `curid:43019589` | commons | 1911 | 2174×3134 | No restrictions | [Tuberculosis hospital and sanatorium construction; (1911) (14594954500](https://commons.wikimedia.org/wiki/File:Tuberculosis_hospital_and_sanatorium_construction;_(1911)_(14594954500).jpg) |
+| 3 | `curid:43902984` | commons | 1911 | 2008×1700 | No restrictions | [Tuberculosis hospital and sanatorium construction; (1911) (14594933280](https://commons.wikimedia.org/wiki/File:Tuberculosis_hospital_and_sanatorium_construction;_(1911)_(14594933280).jpg) |
+| 4 | `curid:43903324` | commons | 1911 | 2038×1720 | No restrictions | [Tuberculosis hospital and sanatorium construction; (1911) (14595028389](https://commons.wikimedia.org/wiki/File:Tuberculosis_hospital_and_sanatorium_construction;_(1911)_(14595028389).jpg) |
+| 5 | `curid:114451057` | commons | 1911 | 1965×701 | No restrictions | [Tuberculosis hospital and sanatorium construction; (1911) (14594921530](https://commons.wikimedia.org/wiki/File:Tuberculosis_hospital_and_sanatorium_construction;_(1911)_(14594921530)_(back).jpg) |
+| 6 | `curid:43620959` | commons | 1911 | 2028×1750 | No restrictions | [Tuberculosis hospital and sanatorium construction; (1911) (14595033938](https://commons.wikimedia.org/wiki/File:Tuberculosis_hospital_and_sanatorium_construction;_(1911)_(14595033938).jpg) |
+| 7 | `curid:43621077` | commons | 1911 | 2006×2058 | No restrictions | [Tuberculosis hospital and sanatorium construction; (1911) (14594978599](https://commons.wikimedia.org/wiki/File:Tuberculosis_hospital_and_sanatorium_construction;_(1911)_(14594978599).jpg) |
+| 8 | `curid:64896477` | commons | 1921date QS:P571,+19 | 2171×1417 | Public domain | [Görbersdorf, Schlesien - Stadtansicht mit Sanatorium (Zeno Ansichtskar](https://commons.wikimedia.org/wiki/File:G%C3%B6rbersdorf,_Schlesien_-_Stadtansicht_mit_Sanatorium_(Zeno_Ansichtskarten).jpg) |
+| 9 | `curid:64896484` | commons | 1921date QS:P571,+19 | 2171×1414 | Public domain | [Görbersdorf, Schlesien - Stadtansicht mit Sanatorium (back) (Zeno Ansi](https://commons.wikimedia.org/wiki/File:G%C3%B6rbersdorf,_Schlesien_-_Stadtansicht_mit_Sanatorium_(back)_(Zeno_Ansichtskarten).jpg) |
+| 10 | `curid:31416134` | commons |  | 3312×2266 | Public domain | [Die Gartenlaube (1880) b 401](https://commons.wikimedia.org/wiki/File:Die_Gartenlaube_(1880)_b_401.jpg) |
