@@ -364,3 +364,59 @@ shorts:
   - {from: 124, to: 134, hook: "Same virus. Two islands. Opposite fates.", title: "Two Samoas, One Pandemic: 8,500 Dead vs Zero"}
   - {from: 148, to: 157, hook: "The virus waited 79 years in the ice", title: "The 1918 Flu Was Found in an Alaskan Grave"}
   - {from: 161, to: 173, hook: "They brought the 1918 virus back to life", title: "How Scientists Rebuilt the Deadliest Flu Virus"}
+
+summary: >
+  In 1918, a new influenza swept the world in three waves and killed tens of millions of people, more than the war it
+  travelled with. We follow it from an army camp in Kansas to the parade that filled Philadelphia's hospitals, the nurses
+  who fought it without medicine, the masks and the people who refused them, two Pacific islands that made opposite
+  decisions, India's catastrophe, and a village in Alaska whose frozen graves let scientists bring the virus back to life.
+
+localizations:
+  es:
+    title: "1918: la pandemia que se escondió detrás de una guerra"
+    subtitle: "Cómo se propagó la gripe más mortífera de la historia, quién la combatió sin medicinas y cómo la ciencia la devolvió a la vida"
+    summary: >
+      En 1918, una nueva gripe recorrió el mundo en tres oleadas y mató a decenas de millones de personas, más que la guerra
+      con la que viajaba. La seguimos desde un campamento militar en Kansas hasta el desfile que llenó los hospitales de
+      Filadelfia, las enfermeras que la combatieron sin medicinas, las mascarillas y quienes se negaban a llevarlas, dos islas
+      del Pacífico que tomaron decisiones opuestas, la catástrofe de la India y una aldea de Alaska cuyas tumbas heladas
+      permitieron a los científicos devolver el virus a la vida.
+    chapters: ["Introducción", "Un cocinero en Kansas", "El nombre equivocado", "La segunda ola", "El desfile",
+               "Las enfermeras", "Las víctimas inesperadas", "Mascarillas y rebeldes", "Dos islas", "Por todo el mundo",
+               "La aldea en el hielo", "Devolverlo a la vida", "Epílogo"]
+  pt:
+    title: "1918: a pandemia que se escondeu atrás de uma guerra"
+    subtitle: "Como a gripe mais mortal da história se espalhou, quem a enfrentou sem remédios e como a ciência a trouxe de volta à vida"
+    summary: >
+      Em 1918, uma nova gripe varreu o mundo em três ondas e matou dezenas de milhões de pessoas, mais do que a guerra com a
+      qual viajava. Nós a acompanhamos desde um acampamento militar no Kansas até o desfile que lotou os hospitais da
+      Filadélfia, as enfermeiras que a enfrentaram sem remédios, as máscaras e quem se recusava a usá-las, duas ilhas do
+      Pacífico que tomaram decisões opostas, a catástrofe na Índia e uma aldeia do Alasca cujos túmulos congelados permitiram
+      aos cientistas trazer o vírus de volta à vida.
+    chapters: ["Introdução", "Um cozinheiro no Kansas", "O nome errado", "A segunda onda", "O desfile",
+               "As enfermeiras", "As vítimas inesperadas", "Máscaras e rebeldes", "Duas ilhas", "Pelo mundo",
+               "A aldeia no gelo", "Trazendo-o de volta", "Epílogo"]
+  fr:
+    title: "1918 : la pandémie qui se cachait derrière une guerre"
+    subtitle: "Comment la grippe la plus meurtrière de l'histoire s'est propagée, qui l'a combattue sans médicaments et comment la science l'a ramenée à la vie"
+    summary: >
+      En 1918, une nouvelle grippe balaie le monde en trois vagues et tue des dizaines de millions de personnes, davantage que
+      la guerre qu'elle accompagne. Nous la suivons d'un camp militaire du Kansas au défilé qui a rempli les hôpitaux de
+      Philadelphie, des infirmières qui l'ont combattue sans médicaments aux masques et à ceux qui refusaient de les porter,
+      de deux îles du Pacifique aux choix opposés à la catastrophe indienne, jusqu'à un village d'Alaska dont les tombes gelées
+      ont permis aux scientifiques de ramener le virus à la vie.
+    chapters: ["Introduction", "Un cuisinier au Kansas", "Le mauvais nom", "La deuxième vague", "Le défilé",
+               "Les infirmières", "Des victimes inattendues", "Masques et rebelles", "Deux îles", "Autour du monde",
+               "Le village dans la glace", "Le ramener à la vie", "Épilogue"]
+  de:
+    title: "1918: Die Pandemie, die sich hinter einem Krieg versteckte"
+    subtitle: "Wie sich die tödlichste Grippe der Geschichte ausbreitete, wer sie ohne Medikamente bekämpfte und wie die Wissenschaft sie wieder zum Leben erweckte"
+    summary: >
+      1918 fegte eine neue Grippe in drei Wellen um die Welt und tötete Dutzende Millionen Menschen – mehr als der Krieg, mit
+      dem sie reiste. Wir folgen ihr von einem Armeelager in Kansas zur Parade, die Philadelphias Krankenhäuser füllte, zu
+      den Krankenschwestern, die sie ohne Medikamente bekämpften, zu den Masken und denen, die sie verweigerten, zu zwei
+      Pazifikinseln mit gegensätzlichen Entscheidungen, zur Katastrophe in Indien und zu einem Dorf in Alaska, dessen
+      gefrorene Gräber es Forschern ermöglichten, das Virus wieder zum Leben zu erwecken.
+    chapters: ["Einleitung", "Ein Koch in Kansas", "Der falsche Name", "Die zweite Welle", "Die Parade",
+               "Die Krankenschwestern", "Die unerwarteten Opfer", "Masken und Rebellen", "Zwei Inseln", "Rund um die Welt",
+               "Das Dorf im Eis", "Die Rückkehr des Virus", "Epilog"]
