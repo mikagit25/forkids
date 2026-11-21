@@ -55,6 +55,8 @@ def main():
             only = [a for a in sys.argv[sys.argv.index("candidates") + 1:] if not a.startswith("--")]
             candidates.build(ep_dir, episode, only or None)
             break
+        elif step == "localize":      # push episode.yaml `localizations:` to the uploaded video
+            publish.localize(ep_dir, episode)
         elif step == "pool":          # pool <name> "Category A" "Category B" ...  (Commons categories, 1 level deep)
             a = sys.argv[sys.argv.index("pool") + 1:]
             candidates.pool(ep_dir, a[0], a[1:])

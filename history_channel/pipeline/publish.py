@@ -97,7 +97,8 @@ def description(ep_dir: Path, episode: dict) -> Path:
         md += ["", "## Research sources", ""] + [f"- {r}" for r in episode["references"]]
     (ep_dir / "build" / "sources.md").write_text("\n".join(md) + "\n")
 
-    head = [episode.get("subtitle", ""), "", "CHAPTERS", chapters, ""]
+    head = [episode.get("subtitle", ""), ""] + ([episode["summary"].strip(), ""] if episode.get("summary") else []) \
+        + ["CHAPTERS", chapters, ""]
     tail = []
     if episode.get("references"):
         tail += ["", "RESEARCH SOURCES"] + [f"• {r}" for r in episode["references"]]
@@ -206,6 +207,44 @@ def upload(ep_dir: Path, episode: dict, client_secret: str = "client_secret.json
     yt.captions().insert(part="snippet", body={"snippet": {"videoId": vid, "language": "en", "name": "English"}},
                          media_body=MediaFileUpload(str(b / "subtitles.en.srt"))).execute()
     (b / "youtube_id.txt").write_text(vid + "\n")      # Shorts link back to the full episode
+    if episode.get("localizations"):
+        localize(ep_dir, episode, client_secret, vid, yt)
     print(f"uploaded as PRIVATE: https://youtu.be/{vid}  goes public {publish_at} unless changed "
           f"(set it as a Premiere in YouTube Studio)")
     return vid
+
+
+LOC_NOTE = {
+    "es": "Todas las imágenes proceden de archivos públicos (dominio público o licencias abiertas). La lista completa con enlaces a los originales está en la descripción en inglés. Narración con voz sintética; guion documentado y verificado.",
+    "pt": "Todas as imagens vêm de arquivos públicos (domínio público ou licenças abertas). A lista completa com links para os originais está na descrição em inglês. Narração com voz sintética; roteiro pesquisado e verificado.",
+    "fr": "Toutes les images proviennent d'archives publiques (domaine public ou licences libres). La liste complète avec les liens vers les originaux figure dans la description en anglais. Narration par voix de synthèse ; scénario documenté et vérifié.",
+    "de": "Alle Bilder stammen aus öffentlichen Archiven (gemeinfrei oder offen lizenziert). Die vollständige Liste mit Links zu den Originalen steht in der englischen Beschreibung. Erzählt mit synthetischer Stimme; Skript recherchiert und faktengeprüft.",
+}
+CH_WORD = {"es": "CAPÍTULOS", "pt": "CAPÍTULOS", "fr": "CHAPITRES", "de": "KAPITEL"}
+
+
+def localize(ep_dir: Path, episode: dict, client_secret: str = "client_secret.json", vid: str | None = None, yt=None):
+    """Title + description in other languages (episode.yaml `localizations:`), so YouTube shows the video in the
+    viewer's language. Chapter names are translated in order; timestamps come from build/chapters.txt.
+        localizations:
+          es: {title: "...", subtitle: "...", summary: "...", chapters: ["Intro", "...", ...]}"""
+    yt = yt or youtube_client(episode, client_secret)
+    b = ep_dir / "build"
+    vid = vid or (b / "youtube_id.txt").read_text().strip()
+    stamps = [l.split(" ", 1)[0] for l in (b / "chapters.txt").read_text().splitlines() if l.strip()]
+    cur = yt.videos().list(part="localizations,snippet", id=vid).execute()["items"][0]
+    locs = cur.get("localizations", {}) or {}
+    for lang, L in episode["localizations"].items():
+        names = L.get("chapters") or []
+        if len(names) != len(stamps):
+            raise SystemExit(f"{lang}: {len(names)} chapter names for {len(stamps)} chapters")
+        desc = "\n".join([L.get("subtitle", ""), "", L.get("summary", "").strip(), "", CH_WORD.get(lang, "CHAPTERS")]
+                         + [f"{t} {n}" for t, n in zip(stamps, names)] + ["", LOC_NOTE.get(lang, "")]
+                         + (["", " ".join(episode["hashtags"])] if episode.get("hashtags") else []))
+        locs[lang] = {"title": L["title"][:100], "description": desc[:5000]}
+        snip = cur["snippet"]
+        body = {"id": vid, "localizations": locs,
+                "snippet": {"title": snip["title"], "description": snip["description"], "categoryId": snip["categoryId"],
+                            "defaultLanguage": snip.get("defaultLanguage", "en"), "tags": snip.get("tags", [])}}
+        yt.videos().update(part="localizations,snippet", body=body).execute()   # one language per call (fewer 400s)
+        print(f"   localized: {lang} — {L['title'][:70]}")

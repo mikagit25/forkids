@@ -353,3 +353,64 @@ references:
 research:                # newspapers of the time: python run.py episodes/endurance-1914 research
   - {q: "Shackleton", from: 1914-08-01, to: 1914-12-31, sources: [chronam, nyt]}
   - {q: "Shackleton rescued", from: 1916-05-01, to: 1916-10-31, sources: [chronam, nyt, trove]}
+
+summary: >
+  In 1914, Ernest Shackleton and 27 men sailed south to cross Antarctica on foot. Their ship, the Endurance, was trapped
+  in the ice of the Weddell Sea, crushed and sunk. For five months they lived on drifting ice, then reached Elephant Island
+  in three lifeboats. Six men crossed 800 miles of the Southern Ocean in the James Caird, three walked over the unmapped
+  mountains of South Georgia, and every man of the Endurance came home. This is their story, told through Frank Hurley's
+  original photographs, together with the forgotten ordeal of the Ross Sea party and the discovery of the wreck in 2022.
+
+localizations:
+  es:
+    title: "Endurance: 28 hombres, sin barco y el rescate que nadie esperaba"
+    subtitle: "La expedición perdida de Shackleton, contada con las fotografías originales de Frank Hurley"
+    summary: >
+      En 1914, Ernest Shackleton y 27 hombres partieron para cruzar la Antártida a pie. Su barco, el Endurance, quedó
+      atrapado en el hielo del mar de Weddell, fue aplastado y se hundió. Durante cinco meses vivieron sobre el hielo a la
+      deriva y luego alcanzaron la isla Elefante en tres botes salvavidas. Seis hombres cruzaron 1.300 kilómetros del océano
+      Austral en el James Caird, tres atravesaron las montañas sin cartografiar de Georgia del Sur, y todos los hombres del
+      Endurance volvieron a casa. Esta es su historia, contada con las fotografías originales de Frank Hurley, junto con la
+      odisea olvidada del grupo del mar de Ross y el hallazgo del pecio en 2022.
+    chapters: ["Introducción", "El último gran viaje", "La tripulación", "Atrapados en el hielo", "La larga noche",
+               "El fin del Endurance", "Qué dejar atrás", "Ocean Camp y Patience Camp", "Isla Elefante",
+               "Ochocientas millas", "A través de las montañas", "Ni una vida perdida", "La otra mitad", "Epílogo"]
+  pt:
+    title: "Endurance: 28 homens, sem navio e o resgate que ninguém esperava"
+    subtitle: "A expedição perdida de Shackleton, contada com as fotografias originais de Frank Hurley"
+    summary: >
+      Em 1914, Ernest Shackleton e 27 homens partiram para atravessar a Antártida a pé. O navio, o Endurance, ficou preso
+      no gelo do mar de Weddell, foi esmagado e afundou. Durante cinco meses viveram sobre o gelo à deriva e depois chegaram
+      à ilha Elefante em três botes salva-vidas. Seis homens cruzaram 1.300 quilômetros do oceano Antártico no James Caird,
+      três atravessaram as montanhas inexploradas da Geórgia do Sul, e todos os homens do Endurance voltaram para casa.
+      Esta é a história deles, contada com as fotografias originais de Frank Hurley, junto com a odisseia esquecida do grupo
+      do mar de Ross e a descoberta dos destroços em 2022.
+    chapters: ["Introdução", "A última grande jornada", "A tripulação", "Presos no gelo", "A longa noite",
+               "O fim do Endurance", "O que deixar para trás", "Ocean Camp e Patience Camp", "Ilha Elefante",
+               "Oitocentas milhas", "Através das montanhas", "Nenhuma vida perdida", "A outra metade", "Epílogo"]
+  fr:
+    title: "Endurance : 28 hommes, plus de navire et un sauvetage inespéré"
+    subtitle: "L'expédition perdue de Shackleton, racontée à travers les photographies originales de Frank Hurley"
+    summary: >
+      En 1914, Ernest Shackleton et 27 hommes partent traverser l'Antarctique à pied. Leur navire, l'Endurance, est pris
+      dans les glaces de la mer de Weddell, broyé puis englouti. Pendant cinq mois, ils vivent sur la banquise à la dérive,
+      avant d'atteindre l'île de l'Éléphant à bord de trois canots. Six hommes traversent 1 300 kilomètres de l'océan Austral
+      sur le James Caird, trois franchissent les montagnes inexplorées de la Géorgie du Sud, et tous les hommes de
+      l'Endurance rentrent chez eux. Voici leur histoire, racontée à travers les photographies originales de Frank Hurley,
+      avec l'épreuve oubliée du groupe de la mer de Ross et la découverte de l'épave en 2022.
+    chapters: ["Introduction", "Le dernier grand voyage", "L'équipage", "Prisonniers des glaces", "La longue nuit",
+               "La fin de l'Endurance", "Ce qu'il faut abandonner", "Ocean Camp et Patience Camp", "L'île de l'Éléphant",
+               "Huit cents milles", "À travers les montagnes", "Pas une seule vie perdue", "L'autre moitié", "Épilogue"]
+  de:
+    title: "Endurance: 28 Männer, kein Schiff und eine Rettung, mit der niemand rechnete"
+    subtitle: "Shackletons verlorene Expedition, erzählt mit den Originalfotos von Frank Hurley"
+    summary: >
+      1914 brachen Ernest Shackleton und 27 Männer auf, um die Antarktis zu Fuß zu durchqueren. Ihr Schiff, die Endurance,
+      fror im Eis des Weddellmeers fest, wurde zerdrückt und sank. Fünf Monate lebten sie auf treibendem Eis, dann
+      erreichten sie in drei Rettungsbooten Elephant Island. Sechs Männer überquerten in der James Caird 1.300 Kilometer des
+      Südlichen Ozeans, drei überwanden die unkartierten Berge Südgeorgiens – und jeder Mann der Endurance kam nach Hause.
+      Dies ist ihre Geschichte, erzählt mit Frank Hurleys Originalfotos, dazu das vergessene Martyrium der Ross-Meer-Gruppe
+      und die Entdeckung des Wracks im Jahr 2022.
+    chapters: ["Einleitung", "Die letzte große Reise", "Die Mannschaft", "Im Eis gefangen", "Die lange Nacht",
+               "Das Ende der Endurance", "Was zurückbleiben muss", "Ocean Camp und Patience Camp", "Elephant Island",
+               "Achthundert Meilen", "Über die Berge", "Kein einziges Leben verloren", "Die andere Hälfte", "Epilog"]
