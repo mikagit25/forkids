@@ -87,3 +87,85 @@
   title: City chemists analyze Wall Street bomb parts
   date: '1920'
   note: investigators examining bomb fragments, as experts did in the molasses case
+
+# +8 (2026-11-21): Boston 1916-1920 atmosphere — Digital Commonwealth (Leon Abdalian / Boston Pictorial Archive), No known copyright restrictions
+
+- scene: atmosphere
+  source: bpl
+  id: gt54kz262
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:gt54kz27b/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:gt54kz262
+  rights: No known copyright restrictions.
+  title: Whitney Building, Clinton Street and Commercial Street
+  date: June 1920
+  note: Commercial Street in the North End, a few blocks from the molasses tank site, 1920
+
+- scene: atmosphere
+  source: bpl
+  id: fj237v112
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj237v12b/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:fj237v112
+  rights: No known copyright restrictions.
+  title: Aerial view, Boston Harbor, docks
+  date: '1916-05-26'
+  note: Boston harbour and wharves from the air, 1916
+
+- scene: atmosphere
+  source: bpl
+  id: fj237560v
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj2375614/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:fj237560v
+  rights: No known copyright restrictions.
+  title: Dock Square, Exchange Street and Devonshire Street
+  date: '1920-11-01'
+  note: downtown street near Faneuil Hall, 1920
+
+- scene: atmosphere
+  source: bpl
+  id: fj237t035
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj237t04f/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:fj237t035
+  rights: No known copyright restrictions.
+  title: Five Boston Elevated Railway Company employees posing beside streetcar
+  date: '1919'
+  note: Boston Elevated Railway men, 1919 - the company whose line ran along Commercial Street
+
+- scene: atmosphere
+  source: bpl
+  id: fj2370788
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj237079j/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:fj2370788
+  rights: No known copyright restrictions.
+  title: Crowd coming out of the Cathedral of the Holy Cross, Washington Street
+  date: June 1920
+  note: Boston street crowd, 1920
+
+- scene: police_strike
+  source: bpl
+  id: xp68kq91r
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:xp68kq921/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:xp68kq91r
+  rights: No known copyright restrictions.
+  title: Faneuil Hall. Headquarters of National Guard during Police Strike
+  date: '1919'
+  note: 1919 Boston police strike - same year as the flood
+
+- scene: police_strike
+  source: bpl
+  id: xp68kq81h
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:xp68kq82s/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:xp68kq81h
+  rights: No known copyright restrictions.
+  title: Flag raising ceremony on Boston Common, First Motor Corps, Mass. Nat. Guard (possibly police strike of 1919)
+  date: '1919'
+  note: Guard troops on Boston Common, 1919
+
+- scene: firemen
+  source: bpl
+  id: cn69mx50f
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:cn69mx51q/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:cn69mx50f
+  rights: No known copyright restrictions.
+  title: Fire-engine station at Saratoga Street
+  date: ca. 1920
+  note: Boston fire station of the era (East Boston)
