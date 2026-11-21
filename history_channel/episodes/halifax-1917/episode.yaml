@@ -40,7 +40,8 @@ scenes:
       Its deep, sheltered harbour was where convoys gathered before crossing the Atlantic to Europe, carrying soldiers, food and ammunition to the First World War.
       The harbour is shaped like an hourglass. Between the outer harbour and the vast inner basin lies a narrow channel called the Narrows, with the city of Halifax on one side and Dartmouth on the other.
       Every ship going in or out had to pass through it.
-      The war had transformed the city. Its population swelled with soldiers, sailors, dock workers and their families. Warships, troop ships and freighters crowded the harbour every day.
+      German submarines were hunting in the Atlantic, so every night the harbour mouth was closed with steel anti-submarine nets, and every neutral ship bound for North America had to stop at Halifax for inspection. The amount of cargo passing through the port grew almost ninefold.
+      The war had transformed the city. Halifax and Dartmouth together grew to some sixty thousand people, swollen with soldiers, sailors, dock workers and their families. Warships, troop ships and freighters crowded the harbour every day.
       Richmond, in the north end of Halifax, was a working-class district of wooden houses, schools, churches, a sugar refinery and railway yards, built on a hillside that looked straight down onto the Narrows.
       From almost every window in Richmond, you could see the water.
     images:
@@ -56,8 +57,8 @@ scenes:
     narration: >
       That morning, two ships were heading for the Narrows from opposite directions.
       Coming in was the Mont-Blanc, a French cargo ship. Her holds were packed with high explosives: picric acid, TNT and guncotton. On her deck sat barrels of benzol, a highly flammable fuel.
-      Because of wartime secrecy, she flew no flag warning of dangerous cargo.
-      Going out was the Imo, a Norwegian ship on her way to New York to load relief supplies for Belgium. She was running late, and travelling faster than she should have.
+      Before the war, ships carrying explosives had not been allowed into the harbour at all. But the danger from German submarines was greater, and the rules had been relaxed. The harbour pilot who came aboard, Francis Mackey, asked whether there would be any special protection for such a cargo, a guard ship perhaps. There was none. The Mont-Blanc had arrived too late the evening before; the nets were already closed, and she waited outside overnight.
+      Going out was the Imo, a Norwegian ship chartered by the Commission for Relief in Belgium, sailing empty to New York to load food for the starving people of occupied Belgium. Her coal had arrived late the day before, and she too had missed the nets. Now she was in a hurry. The captain of a harbour tug, the Stella Maris, saw her coming through the Narrows far too fast, and steered out of her way.
       The two ships found themselves on the same side of the channel. Signals were exchanged, misunderstood, and exchanged again.
       At about a quarter to nine, the Imo's bow struck the Mont-Blanc.
     images:
@@ -72,6 +73,7 @@ scenes:
       Her crew knew exactly what was in the holds. They abandoned ship, rowing hard for the Dartmouth shore and shouting warnings that few people could understand.
       The burning ship drifted, unmanned, towards the Halifax side, and came to rest against Pier 6 in the Richmond district.
       A fire in the harbour was a spectacle. Crowds gathered along the waterfront. People came to their windows to watch. Firefighters raced to the pier.
+      The crew of Canada's first motorised fire engine, the Patricia, was among the first to arrive. The Stella Maris turned her single fire hose on the burning ship, but the fire was too fierce. Sailors in boats from two warships, the British cruiser Highflyer and the Canadian Niobe, rowed out to try to fasten a line to the Mont-Blanc and tow her away from the pier.
       Almost nobody knew that they were looking at a floating bomb.
     images:
       - {query: "Halifax explosion Richmond", count: 2}
@@ -84,7 +86,7 @@ scenes:
       He could have run. Instead he returned to his telegraph key to warn incoming trains to stop.
       His message is usually recorded like this.
       Munitions ship on fire. Making for Pier 6. Goodbye.
-      Vince Coleman was killed at his post moments later. Accounts differ over how many lives his message saved, but he became one of the best-remembered heroes of that day.
+      Vince Coleman was killed at his post moments later. An overnight express from Saint John, carrying about three hundred passengers, was due within minutes. Whether his warning is what stopped it, historians still debate. But stations all along the line heard him, and help was sent sooner because of it. Accounts differ over how many lives his message saved, but he became one of the best-remembered heroes of that day.
     quote:
       text: "Munitions ship on fire.\nMaking for Pier 6.\nGoodbye."
       source: "Vince Coleman, train dispatcher, telegraph message as commonly recorded"
@@ -120,6 +122,7 @@ scenes:
       Doctors removed two hundred and forty-nine damaged eyes. Sixteen people lost their sight in both eyes. The care of these patients helped shape the treatment of the blind in Canada for decades.
       Across the harbour, the Mi'kmaq settlement at Turtle Grove, on the Dartmouth shore, was wiped out. It was never rebuilt.
       About twenty-five thousand people were left homeless or without proper shelter, in a Canadian December.
+      On the shore of Bedford Basin, the Black community of Africville was shielded from the full force of the blast by a hill, but its people too lost homes and family members. In all, the damage came to about thirty-five million dollars of that time.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "≈2,000", text: "people killed", match: "Nearly two thousand people were killed"}
     images:
@@ -137,7 +140,8 @@ scenes:
       The first rescuers were the survivors themselves: neighbours digging with their bare hands, soldiers from the city's barracks, and sailors from the warships in the harbour.
       Some of the ships had lost men of their own. Sailors who had rowed out to help fight the fire on the Mont-Blanc were caught in the blast.
       Every hospital was overwhelmed within an hour. Doctors operated in corridors, in private homes, in anything with a roof. Volunteers drove the injured through the streets in carts, cars and wagons.
-      A school on Chebucto Road was turned into a morgue. Families came there for days, searching for missing relatives among the dead.
+      A school on Chebucto Road was turned into a morgue.
+      It was run by Arthur Barnstead, using a system for identifying the dead that his father had developed five years earlier, when the bodies of Titanic victims were brought to Halifax. Families came there for days, searching for missing relatives among the dead.
       Many of the victims were children. Schools in Richmond had been about to start their day. Some children were killed on their way to class, others at home, at the windows, watching the fire.
     images:
       - {query: "Halifax explosion damage", count: 2}
@@ -165,10 +169,11 @@ scenes:
     chapter: "IX. Help from Boston"
     narration: >
       Help came quickly from across Canada, from Britain, and above all from the United States.
+      Rescue trains arrived the same day from towns across Nova Scotia and New Brunswick. In Boston, the banker and Red Cross organiser Abraham Ratshesky led the relief effort.
       Boston sent a relief train loaded with doctors, nurses and medical supplies, and the Massachusetts relief committee raised money and materials for months.
       Halifax never forgot it. In 1918, the city sent Boston a Christmas tree as a thank-you.
       The tradition was revived in 1971 and continues today. Every year, a tree from Nova Scotia stands on Boston Common.
-      Help also came in money and materials from across the British Empire. The Halifax Relief Commission was set up to care for the injured, the orphaned and the homeless, and to rebuild what had been destroyed. It went on supporting survivors for decades.
+      The Canadian government gave eighteen million dollars, the British government more than four million, and the state of Massachusetts seven hundred and fifty thousand. The Halifax Relief Commission was set up to care for the injured, the orphaned and the homeless, and to rebuild what had been destroyed. It went on supporting survivors for decades.
     images:
       - {query: "Halifax explosion", count: 2}
       - {query: "Halifax explosion", count: 1}
@@ -180,20 +185,22 @@ scenes:
   - id: blame
     chapter: "X. Who Was to Blame?"
     narration: >
-      Grief quickly turned to anger. An official inquiry blamed the Mont-Blanc's captain and pilot, and the naval officer responsible for harbour traffic.
-      A civil court found the Mont-Blanc entirely at fault. But on appeal, the judges ruled that both ships were equally to blame.
+      Grief quickly turned to anger.
+      In the first hours, many survivors were convinced that German aircraft had bombed the city. Troops manned the guns. Within days, people of German descent in Halifax were rounded up and arrested, until the real cause of the explosion became clear. An official inquiry, led by Justice Arthur Drysdale, blamed the Mont-Blanc's captain, Aimé Le Médec, her pilot, Francis Mackey, and Commander Evan Wyatt, the naval officer responsible for harbour traffic. All three were charged with manslaughter. The charges against the captain and pilot were dropped, and a jury acquitted Wyatt in less than a day.
+      A civil court found the Mont-Blanc entirely at fault. But on appeal, first the Supreme Court of Canada and then, in 1920, the Privy Council in London ruled that both ships were equally to blame.
       No one was ever convicted.
       The disaster did change the rules. Ports around the world began to take the handling of explosive cargo far more seriously.
     images:
       - {query: "Halifax herald explosion", count: 1}
       - {query: "Halifax Nova Scotia 1910s", count: 1}
       - {query: "Halifax explosion damage", count: 1}
-      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:ct:batch_ct_haddam_ver01:data:sn92051227:00415620925:1918020501:0435/full/pct:100/0/default.jpg", date: "1918-02-05", paper: "The Bridgeport Times and Evening Farmer (Bridgeport, Conn.)", page_url: "https://www.loc.gov/resource/sn92051227/1918-02-05/ed-1/?sp=1", crop: [0.695, 0.836, 0.962, 0.948], match: "An official inquiry blamed", note: "Pilot Mackey and Captain Le Medec of the Mont-Blanc charged with manslaughter; examination officer Wyatt arrested after the Drysdale inquiry censured him."}   # LoC via Chrome
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:ct:batch_ct_haddam_ver01:data:sn92051227:00415620925:1918020501:0435/full/pct:100/0/default.jpg", date: "1918-02-05", paper: "The Bridgeport Times and Evening Farmer (Bridgeport, Conn.)", page_url: "https://www.loc.gov/resource/sn92051227/1918-02-05/ed-1/?sp=1", crop: [0.695, 0.836, 0.962, 0.948], match: "All three were charged with manslaughter", note: "Pilot Mackey and Captain Le Medec of the Mont-Blanc charged with manslaughter; examination officer Wyatt arrested after the Drysdale inquiry censured him."}   # LoC via Chrome
 
   - id: rebuild
     chapter: "Epilogue"
     narration: >
-      Richmond was rebuilt. Part of it became the Hydrostone, a neighbourhood of solid concrete-block row houses built by the Halifax Relief Commission, one of Canada's first public housing projects. People still live there today.
+      Richmond was rebuilt. Part of it became the Hydrostone, a neighbourhood of solid concrete-block row houses built by the Halifax Relief Commission, one of Canada's first public housing projects.
+      Its three hundred and twenty-six homes were built of compressed cement blocks called hydrostone, chosen because they would not burn. The first families moved in by March 1919, and that summer the Prince of Wales came to see them. People still live there today.
       Every year on the sixth of December, Halifax remembers the people it lost, at nine o'clock, four minutes and thirty-five seconds.
       If you enjoyed this story from the archives, subscribe for more forgotten chapters of history.
     images:

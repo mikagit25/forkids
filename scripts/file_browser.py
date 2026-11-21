@@ -32,6 +32,8 @@ QUICK_LINKS = [
     ('📤 SD Uploads',       'sacred_drift/audio/uploads'),
     ('🎬 SD Queue',         'sacred_drift/output/queue'),
     ('─────────────', None),
+    ('📷 Archive Tales фото', 'history_channel/loc_exchange/inbox'),
+    ('─────────────', None),
     ('🎬 CC Queue',         'output/queue_id'),
     ('🐻 EN Queue',         'output/queue'),
     ('🎵 Suno Kids',        'assets/audio/suno'),

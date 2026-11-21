@@ -10,3 +10,7 @@ We never try to pass such checks from the server. Instead:
 
 The server matches files to picks by the id in the file name; fetch then uses the local file.
 Rights were already checked when the pick was made (public domain / no known restrictions only).
+
+## Easier: the file browser (no GitHub needed)
+https://medmind.pro/files → sidebar **📷 Archive Tales фото** → open the episode folder (tuberculosis, yellow-fever,
+smallpox, other) → choose files → «Загрузить». Files go straight to this folder on the server.
