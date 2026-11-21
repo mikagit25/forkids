@@ -19,14 +19,14 @@ music:
 
 scenes:
   - id: cold-open
+    speed: 1.0             # RULES: cold-open <= 30 s
     montage: true          # fast cuts + one teaser photo from every chapter
     narration: >
       It has been found in human bones nine thousand years old.
-      In the nineteenth century, it killed about a quarter of Europe's adults. Poets and composers died of it, and people thought it made them beautiful.
-      Doctors prescribed mountain air, rest, and sleeping outdoors in the snow. Whole towns were built around patients waiting to get better, or to die.
-      Then, in 1944, a young American scientist found the first drug that could cure it.
-      And yet today, tuberculosis still kills more people than any other single infection on Earth.
-      This is the biography of the white plague.
+      In the nineteenth century, it killed about a quarter of Europe's adults, and people thought it made its victims beautiful.
+      Families dug up their dead, convinced a vampire was to blame.
+      Then, in 1944, a young American scientist found the first cure.
+      And yet today, tuberculosis still kills more people than any other infection on Earth.
     images:
       - {query: "tuberculosis sanatorium", count: 4}
       - {query: "tuberculosis poster", count: 2}
@@ -40,6 +40,7 @@ scenes:
       Tuberculosis is caused by a slow-growing bacterium, Mycobacterium tuberculosis. It usually attacks the lungs, and spreads through the air when an infected person coughs.
       Genetic studies suggest that it emerged in Africa and spread around the world with human migration.
       The oldest confirmed human case comes from Atlit Yam, a submerged village off the coast of Israel, about nine thousand years old. Egyptian mummies show signs of tuberculosis of the spine. The ancient Greeks called it phthisis, the wasting disease. In English it became consumption, because it seemed to consume its victims from within.
+      One form of the disease swelled the glands of the neck. In England and France it was called the King's Evil, because people believed a touch from the monarch could cure it. Kings held great ceremonies to lay their hands on the sick, and Charles the Second of England alone touched more than ninety thousand people.
     images:
       - {query: "Mycobacterium tuberculosis", count: 1, modern: true}
       - {query: "Egyptian mummy tuberculosis", count: 1}
@@ -53,6 +54,7 @@ scenes:
       Workers lived packed into damp, airless rooms, and the bacterium passed easily from one to the next. By the nineteenth century, it was killing about a quarter of Europe's adult population.
       People called it the white plague, after the deathly pallor of its victims.
       Its symptoms were slow and cruel: a persistent cough, fevers and night sweats, weight loss, and finally coughing up blood. Some patients lived with it for years, slowly fading.
+      No family was safe. At the parsonage in Haworth, in Yorkshire, the Reverend Patrick Brontë lost his two eldest daughters, Maria and Elizabeth, as children, probably to tuberculosis. Years later, within eight months, his son Branwell and his daughters Emily, the author of Wuthering Heights, and Anne died one after another, most likely of the same disease.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "1 in 4", text: "adult deaths in 19th-century Europe", match: "By the nineteenth century, it was killing"}
     images:
@@ -62,12 +64,30 @@ scenes:
       - {file: "web:nlm:101446857", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101446857-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101446857-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Family stricken by tuberculosis", date: "undated (c. 1900s)", note: "a poor family posing at home, the disease as a household tragedy"}   # LoC via Chrome
       - {file: "web:nlm:101444537", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101444537-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101444537-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "A Case of Consumption", date: "undated", note: "a consumptive patient: the face of the 'white plague'"}   # LoC via Chrome
 
+  - id: vampire
+    chapter: "III. The Vampire of Exeter"
+    date: "1892"
+    narration: >
+      Fear of the disease produced stranger beliefs too. In rural New England, when consumption killed one member of a family after another, some people believed that a dead relative was draining the life from the living.
+      In the farming town of Exeter, Rhode Island, George Brown lost his wife in 1883, and then his eldest daughter, Mary Olive. In 1891, his daughter Mercy and his only son, Edwin, fell ill as well. Mercy died.
+      Neighbours persuaded George Brown to let them dig up the bodies. On the seventeenth of March 1892, with a local doctor and a newspaper reporter watching, they opened the graves.
+      Mercy's heart and liver were burned, and the ashes were mixed with water and given to Edwin to drink, as a cure. He died two months later.
+      Newspapers reported the story, and some historians think it may have reached Bram Stoker while he was writing Dracula.
+    images:
+      - {query: "Exeter Rhode Island", count: 2}
+      - {query: "New England farm 1890s", count: 2}
+      - {query: "Mercy Brown grave", count: 1}
+      - {query: "Rhode Island village 19th century", count: 2}
+
   - id: romantic
-    chapter: "III. The Romantic Disease"
+    chapter: "IV. The Romantic Disease"
     narration: >
       Strangely, the nineteenth century also romanticised consumption.
       Because it often struck young people, and slowly made them thin, pale and flushed, it became associated with sensitivity, beauty and artistic genius. Some fashionable women even tried to look consumptive.
+      Lord Byron wrote that he should like to die of consumption. Novels made heroines of consumptive young women, and two of the most famous operas ever written followed them: in Verdi's La Traviata and Puccini's La Bohème, the heroine dies of consumption in the final act.
       The disease took a long list of artists and writers. The composer Frédéric Chopin suffered from chronic lung disease for years, almost certainly tuberculosis, and his letters and the writings of George Sand describe his coughing fits. The poet John Keats, who had trained as a doctor, recognised his own blood on a pillow and knew what it meant.
+      He died in Rome in 1821, at the age of twenty-five. Edgar Allan Poe watched his young wife, Virginia, waste away for five years after she first coughed blood while singing at the piano. She died of tuberculosis in 1847, at twenty-four.
+      In Norway, the painter Edvard Munch lost his older sister Sophie to tuberculosis when she was fifteen, and for more than forty years he painted her deathbed again and again. Anton Chekhov, himself a doctor, coughed blood for years and hid it from his family; he died of tuberculosis in 1904. Franz Kafka died of it in 1924, at forty, after years in sanatoriums.
       The reality was far from romantic. Most victims were poor, and died in misery.
     images:
       - {query: "Frederic Chopin", count: 1, colorize: true}
@@ -75,7 +95,7 @@ scenes:
       - {query: "La Traviata Violetta", count: 1}
 
   - id: laennec
-    chapter: "IV. Listening to the Chest"
+    chapter: "V. Listening to the Chest"
     date: "1816"
     narration: >
       Diagnosis was difficult, until a French doctor named René Laennec had an idea.
@@ -89,12 +109,14 @@ scenes:
       - {file: "web:nlm:101420947", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420947-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420947-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Laennec]", date: "1824", note: "caricature of Laennec from his lifetime"}   # LoC via Chrome
 
   - id: koch
-    chapter: "V. Koch's Discovery"
+    chapter: "VI. Koch's Discovery"
     date: "24 March 1882"
     narration: >
       For centuries, many doctors believed tuberculosis was hereditary, or caused by a weak constitution.
       On the twenty-fourth of March 1882, in Berlin, the German physician Robert Koch stood before the Physiological Society and announced that he had found its cause: a bacterium, which he had managed to stain and see under the microscope, and to grow in the laboratory.
       It was a turning point in medicine. Tuberculosis was infectious. It could be prevented.
+      Koch had already shown that a bacterium caused anthrax, and he would go on to identify the bacterium of cholera.
+      Eight years later Koch announced something even bigger: a remedy, which he called tuberculin. Patients flocked to Berlin. But tuberculin did not cure anyone, and the scandal damaged his reputation. It found its real use later, as a skin test that shows whether a person has been infected. In 1905, Koch received the Nobel Prize for his work on tuberculosis.
       Today, the twenty-fourth of March is World Tuberculosis Day.
     cards:
       - {big: "24 March 1882", text: "Koch announces the cause of TB", match: "On the twenty-fourth of March 1882"}
@@ -107,13 +129,16 @@ scenes:
       - {file: "web:nlm:101420778", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420778-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420778-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Robert Koch", date: "1910", note: "head-and-shoulders portrait (Lehmann, Munich)"}   # LoC via Chrome
 
   - id: sanatorium
-    chapter: "VI. The Sanatorium"
+    chapter: "VII. The Sanatorium"
     date: "1854–1950"
     narration: >
       Without a cure, doctors turned to rest and fresh air.
-      In 1854, Hermann Brehmer opened a sanatorium in the mountains of Silesia, in Görbersdorf. In 1884, Edward Trudeau, himself a tuberculosis patient, opened one at Saranac Lake in the Adirondack mountains of New York.
+      In 1854, Hermann Brehmer opened a sanatorium in the mountains of Silesia, in Görbersdorf. In America, a young New York doctor, Edward Trudeau, was diagnosed with tuberculosis in 1873. He went to the Adirondack mountains expecting to die there, and instead grew stronger. In 1884 he opened a sanatorium at Saranac Lake, starting with a single small cottage called Little Red.
+      The village of Saranac Lake grew from about three hundred people into a little town of eight thousand, its houses built with porches where patients took the cure.
       Soon there were sanatoriums across Europe and America. Patients lay for hours on open verandas, wrapped in blankets, even in winter. They ate rich food, took their temperature several times a day, and followed strict rules.
-      Some recovered. Many did not. But sanatoriums also separated the sick from their families, which helped slow the spread of the disease.
+      Some recovered. Many did not.
+      High in the Swiss Alps, the village of Davos, modelled on Brehmer's sanatorium, became a world-famous resort for the sick. The writer Robert Louis Stevenson spent the winter of 1880 there, and Thomas Mann set his novel The Magic Mountain in a Davos sanatorium, where patients wait for years, measuring their days by the thermometer.
+      Surgeons tried more drastic treatments. They deliberately collapsed an infected lung, injecting air into the chest to let it rest and heal, a method pioneered by the Italian physician Carlo Forlanini. But sanatoriums also separated the sick from their families, which helped slow the spread of the disease.
     images:
       - {query: "sanatorium porch patients", count: 2, colorize: true}
       - {query: "Saranac Lake cure porch", count: 2}
@@ -125,11 +150,12 @@ scenes:
       - {file: "web:nlm:101612320", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101612320-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101612320-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Doctor and nurses' open-air treatment", date: "1914-1918?", note: "postcard: patient in bed outdoors with doctor and nurses"}   # LoC via Chrome
 
   - id: public-health
-    chapter: "VII. Don't Spit"
+    chapter: "VIII. Don't Spit"
     narration: >
       Once people knew tuberculosis was spread by germs, governments went to war against it.
       Public health campaigns urged people not to spit in the street. Spittoons were removed or regulated, streetcars posted warning signs, and cities ran campaigns about ventilation and housing.
       The double-barred cross became the symbol of the fight against tuberculosis, and Christmas seals were sold to raise money for the cause.
+      The idea came from a Danish postal clerk, Einar Holbøll. In 1904 he suggested adding a small charity stamp to Christmas mail, to raise money for children with tuberculosis. Three years later, in America, Emily Bissell sold the first Christmas seals to save a small sanatorium in Delaware that needed just three hundred dollars to stay open.
       In 1895, Wilhelm Röntgen discovered X-rays, and soon mass chest X-ray screening helped find cases early.
     images:
       - {query: "tuberculosis poster", count: 2}
@@ -143,11 +169,14 @@ scenes:
       - {file: "web:nlm:101453495", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101453495-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101453495-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Tuberculosis undiscovered endangers you: danger signs", date: "1940", note: "National Tuberculosis Association poster on early signs"}   # LoC via Chrome
 
   - id: cure
-    chapter: "VIII. The First Cure"
+    chapter: "IX. The First Cure"
     date: "1921–1952"
     narration: >
       The first weapon was a vaccine. In France, Albert Calmette and Camille Guérin spent years weakening a strain of cattle tuberculosis. Their BCG vaccine was first given to a human in 1921, and is still used today, especially to protect children.
+      Its start was marred by tragedy. In the German city of Lübeck, a batch of vaccine accidentally contaminated with live tuberculosis bacteria was given to two hundred and fifty-one newborn babies, and seventy-two of them died.
       But the real breakthrough came in 1944, at Rutgers University, in New Jersey. A young graduate student, Albert Schatz, working in the laboratory of Selman Waksman, isolated a new antibiotic from soil bacteria: streptomycin. It killed the tuberculosis bacterium.
+      The discovery ended in a bitter dispute. Schatz sued his professor, and won a share of the royalties and recognition as co-discoverer. But in 1952 the Nobel Prize went to Waksman alone.
+      In 1948, the British writer George Orwell needed streptomycin so badly that the request to import it went all the way to the Minister of Health. The drug bought him time to finish Nineteen Eighty-Four, but he died of tuberculosis in January 1950, at forty-six.
       Bacteria soon developed resistance to it. So doctors combined it with other drugs: PAS from 1946, then isoniazid in 1952, and rifampicin in the 1970s.
       For the first time, tuberculosis could be cured. Sanatoriums emptied and closed.
     images:
@@ -159,11 +188,12 @@ scenes:
       - {file: "web:nlm:101440676", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101440676-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101440676-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[1948 Awards Ceremony]: [Dr. Selman Waksman]", date: "1948", note: "Waksman, discoverer of streptomycin, being honoured"}   # LoC via Chrome
 
   - id: today
-    chapter: "IX. Not Gone"
+    chapter: "X. Not Gone"
     narration: >
       In wealthy countries, tuberculosis came to seem like a disease of the past. It was not.
       In 1993, the World Health Organization declared tuberculosis a global health emergency. HIV, which weakens the immune system, had fuelled a new wave of cases, and drug-resistant strains were spreading.
-      Today, tuberculosis kills more than a million people every year, more than any other single infectious disease. Most of them live in poorer countries, and most of these deaths are preventable with drugs that already exist.
+      In 2024, more than ten million people fell ill with tuberculosis, and about one point two million died. It is once again the world's deadliest infectious disease. About a quarter of all people alive today carry the bacterium in a dormant form. Most of them live in poorer countries, and most of these deaths are preventable with drugs that already exist.
+      Ordinary tuberculosis can be cured with a combination of pills taken every day for about six months. The hardest part is not the medicine, but reaching every patient, and making sure no one stops the treatment halfway.
       Multidrug-resistant tuberculosis, which does not respond to the main medicines, remains one of the greatest threats in global health.
     images:
       - {query: "tuberculosis treatment", count: 1, modern: true}
