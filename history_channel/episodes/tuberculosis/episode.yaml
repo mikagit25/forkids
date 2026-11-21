@@ -101,7 +101,6 @@ scenes:
       - {file: "curid:97781728"}
       - {file: "curid:56630554"}
       - {file: "curid:4900170", match: "Mercy died"}
-      - {file: "curid:154053118"}
       - {file: "curid:98183133"}
       - {file: "curid:15049924", match: "Bram Stoker"}
       - {file: "curid:99011554"}
@@ -134,7 +133,6 @@ scenes:
       - {file: "wellcome:gdytestp", match: "He died in Rome"}
       - {file: "curid:23384", match: "Edgar Allan Poe"}
       - {file: "curid:98294437", match: "Edvard Munch"}
-      - {file: "curid:115086406"}
       - {file: "curid:9353076", match: "Anton Chekhov"}
       - {file: "curid:117743044", match: "Franz Kafka"}
 
@@ -153,7 +151,6 @@ scenes:
       - {file: "curid:36372563"}
       - {file: "curid:36372567"}
       - {file: "curid:36423661"}
-      - {file: "curid:35954078"}
       - {file: "web:nlm:101420951", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420951-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420951-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "La\xEBnnec \xE0 l'H\xF4pital Necker ausculte un phtisique", date: "19th c. (print after painting)", note: "Laennec at a patient's bedside listening to the chest"}   # LoC via Chrome
       - {file: "web:nlm:101420947", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420947-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420947-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Laennec]", date: "1824", note: "caricature of Laennec from his lifetime"}   # LoC via Chrome
 
@@ -243,7 +240,6 @@ scenes:
       - {file: "curid:67754856"}
       - {file: "curid:15873596"}
       - {file: "curid:31908613"}
-      - {file: "curid:31823860"}
       - {file: "web:nlm:101611462", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101611462-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101611462-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Do not spit", date: "undated (c. 1900s?)", note: "postcard of the National Association for the Prevention of Consumption: the 'don't spit' campaign"}   # LoC via Chrome
       - {file: "web:nlm:101449533", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101449533-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101449533-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "\"Stamp\" out tuberculosis", date: "1924", note: "National Tuberculosis Association Christmas Seal poster"}   # LoC via Chrome
       - {file: "web:nlm:101615193", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101615193-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101615193-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "\"The community nurse\": buy Red Cross seals", date: "1914", note: "Red Cross Christmas Seals postcard with a visiting nurse"}   # LoC via Chrome
@@ -264,15 +260,18 @@ scenes:
     images:
       - {file: "curid:33598465", match: "Albert Calmette"}
       - {file: "curid:33598510"}
+      - {file: "curid:36015835"}
+      - {file: "curid:33598419"}
       - {file: "curid:83368125"}
       - {file: "curid:24066492", match: "Rutgers University"}
       - {file: "curid:1306990"}
       - {file: "curid:24066525"}
       - {file: "curid:24066194"}
+      - {file: "europeana:916118/S_TEK_object_TEKS0028202"}
+      - {file: "curid:35959565"}
       - {file: "curid:36371881"}
       - {file: "curid:2001660", match: "George Orwell"}
       - {file: "curid:150094734"}
-      - {file: "curid:43776547"}
       - {file: "curid:34255603", match: "Sanatoriums emptied"}
       - {file: "curid:34255696"}
       - {file: "web:nlm:101411517", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101411517-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101411517-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Albert Calmette]", date: "1920", note: "Calmette, co-creator of the BCG vaccine"}   # LoC via Chrome
@@ -308,6 +307,8 @@ scenes:
       - {file: "curid:143599132"}
       - {file: "curid:37912436"}
       - {file: "curid:36143123"}
+      - {file: "curid:43693572"}
+      - {file: "curid:34255725"}
 
 thumbnail:
   scene: sanatorium
