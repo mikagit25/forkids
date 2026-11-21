@@ -1,29 +1,27 @@
-# Queue for the Chrome session (updated 2026-11-20)
+# Queue for the Chrome session (updated 2026-11-21 evening)
 
-Work top to bottom. One episode = one commit `loc_exchange: <ep> picks (N)`; then tell the server Claude
-(paste the commit id in the chat). Format and rights rules: `../README.md` — the server rejects anything else.
+Done so far: endurance (14), halifax news (9) + photos (14), molasses news (9) + photos (9), tuberculosis (22 NLM, all
+received), smallpox (14 NLM, received), yellow-fever (16 of 18 NLM received). Thank you!
 
-| # | Episode | Request | Picks file | What matters most |
-|---|---|---|---|---|
-| ✅ | endurance-1914 | endurance-1914.md | picks/endurance-1914.yaml | done (14) |
-| ✅ | halifax-1917 news | halifax-1917-news.md | picks/halifax-1917-news.yaml | done (9) |
-| ✅ | molasses-1919 news | molasses-1919-news.md | picks/molasses-1919-news.yaml | done (9) |
-| 1 | **halifax-1917** photos | halifax-1917.md | picks/halifax-1917.yaml | ruins of Richmond district, relief trains, Boston relief, tents/shelters, blizzard. LoC: Bain, Harris & Ewing, American Red Cross collection |
-| 2 | **tuberculosis** | tuberculosis.md | picks/tuberculosis.yaml | sanatoriums, open-air schools, porch "cure" beds, Christmas Seals, Red Cross / public health posters (LoC "Posters" + "Prints & Photographs"), Koch |
-| 3 | **molasses-1919** photos | molasses-1919.md | picks/molasses-1919.yaml | Boston North End / Commercial Street / elevated railway 1910s, horses & wagons, harbour, Purity tank if any |
-| 4 | **yellow-fever** | yellow-fever.md | picks/yellow-fever.yaml | Walter Reed, Havana 1900, Camp Lazear, Panama Canal (Gorgas, fumigation brigades, Culebra Cut), Memphis/New Orleans 1878 prints |
-| 5 | **smallpox** | smallpox.md | picks/smallpox.yaml | vaccination scenes 1900–1950s, quarantine signs, pest houses, Jenner prints, WHO eradication era (only if "No known restrictions") |
+Picks format and rights rules: `../README.md`. Images a site only gives to a browser → https://medmind.pro/files →
+📷 Archive Tales фото → other (keep the archive id in the file name). Search tip: archives caption by EVENTS of that
+time and place — search the events, then pick the photos that show the street / people / ships we need.
 
-## Other sites worth a look in Chrome (same rules: PD / CC0 / CC BY / "No known restrictions" only)
-- **Nova Scotia Archives** (archives.novascotia.ca) — the largest Halifax explosion photo set. Check the rights line
-  of each image; if it says the photo is public domain / no restrictions, add it to picks/halifax-1917.yaml with
-  `source: "nsarchives"`, `page_url`, `image` (largest JPEG link), `rights` (copied) — the server will check it by hand
-  (no lccn needed for this source).
-- **Digital Commonwealth / Boston Public Library** — molasses flood. ⚠️ The Leslie Jones collection is CC BY-NC-ND →
-  NOT allowed. Only items marked public domain / no known restrictions.
-- **National Library of Medicine Digital Collections** (collections.nlm.nih.gov) — tuberculosis, yellow fever, smallpox
-  posters and photos; most are public domain (check "Rights").
-- **CDC Public Health Image Library** (phil.cdc.gov) — smallpox eradication photos; only those marked "public domain".
+## Open tasks, in this order
 
-## Not needed
-- AI images of any kind. Modern photos (after the episode's era) unless a scene says "today".
+### 1. halifax-1917 — more photos (next episode to render) → `halifax-1917-more.md`
+Scenes short of photos: ships (8–10), fire (6–8), Coleman (4–6), blame (4–6), rebuild (4–6).
+Best sources: **Nova Scotia Archives** (Halifax Explosion collection), LoC (Bain, American Red Cross), Chronicling America
+for the 1917–18 trial coverage (Le Médec, Mackey, Wyatt, Drysdale inquiry).
+
+### 2. yellow-fever — 2 NLM images still missing
+- NLM 101428055 — [Benjamin Rush] portrait
+- NLM 101414988 — [Carlos J. Finlay] portrait
+Download JPEG (largest) on the NLM item page → upload to the file browser (other).
+
+### 3. molasses-1919 — Boston 1919 atmosphere (after Halifax)
+The script needs ~14–15 min of photos. Wanted: Boston North End / Commercial Street / Atlantic Avenue elevated railway
+1915–1922, Boston police strike 1919 (street scenes), Boston harbour & wharves 1910s, horse wagons & trucks of the
+period, firemen of Boston 1910s, Italian immigrants in the North End. LoC (Bain, Detroit Publishing), Digital
+Commonwealth items marked "No known copyright restrictions" only (Leslie Jones = NC → not allowed).
+Write to `picks/molasses-1919.yaml` (append).
