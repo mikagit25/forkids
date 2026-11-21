@@ -18,7 +18,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 X = ROOT / "loc_exchange"
-RIGHTS_OK = re.compile(r"no known restrictions|public domain|no known copyright", re.I)
+RIGHTS_OK = re.compile(r"no known restrictions|public domain|no known copyright|use:? unrestricted", re.I)
 
 
 def request(ep_dir: Path, episode: dict, only: list[str] | None = None):

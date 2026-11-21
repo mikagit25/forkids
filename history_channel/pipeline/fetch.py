@@ -473,7 +473,7 @@ def _loc_manual(ref: str, q: dict) -> dict | None:
 # archives a person may pick from by hand in Chrome (loc_exchange); the image must come from the archive itself
 WEB_HOSTS = {"nsarchives": ("archives.novascotia.ca",), "nlm": ("collections.nlm.nih.gov", "nlm.nih.gov"),
              "cdc": ("phil.cdc.gov", "cdc.gov"), "bpl": ("digitalcommonwealth.org", "ark.digitalcommonwealth.org"),
-             "nara": ("catalog.archives.gov", "s3.amazonaws.com/NARAprodstorage")}
+             "nara": ("catalog.archives.gov", "s3.amazonaws.com/NARAprodstorage", "archives.gov")}
 
 
 INBOX = Path(__file__).resolve().parent.parent / "loc_exchange" / "inbox"
@@ -486,7 +486,7 @@ def _web_manual(ref: str, q: dict) -> dict | None:
     rights = q.get("rights", "")
     if src not in WEB_HOSTS:
         print(f"   !! {ref}: unknown source '{src}' (known: {', '.join(WEB_HOSTS)})"); return None
-    if not re.search(r"no known restrictions|public domain|no known copyright|cc0|^cc by \d", rights, re.I) \
+    if not re.search(r"no known restrictions|public domain|no known copyright|use:? unrestricted|cc0|^cc by \d", rights, re.I) \
             or re.search(r"\b(nc|nd)\b|non-?commercial|no derivatives", rights, re.I):
         print(f"   !! {ref}: rights '{rights}' not allowed"); return None
     if not any(h in q.get("image", "") for h in WEB_HOSTS[src]):

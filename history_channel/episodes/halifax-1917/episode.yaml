@@ -79,6 +79,12 @@ scenes:
       - {file: "curid:30938384"}
       - {file: "curid:145006179"}
       - {file: "curid:67923618"}
+      - {file: "web:nara:45500243", image: "https://catalog.archives.gov/medialz/stillpix/165-ww/Box274/FolderB/165-WW-274B-001.jpg", page_url: "https://catalog.archives.gov/id/45500243", rights: "NARA catalog: Use Unrestricted. Published 1917-1919, public domain in the US.", title: "S.S. Ryndam collides with freighter outside New York harbor (165-WW-274B-1)", date: "1918", note: "real wartime ship collision at a harbor entrance - Mont-Blanc/Imo stand-in"}   # LoC via Chrome
+      - {file: "web:nara:45499928", image: "https://catalog.archives.gov/medialz/stillpix/165-ww/Box273/FolderA/165-WW-273A-011.jpg", page_url: "https://catalog.archives.gov/id/45499928", rights: "NARA catalog: Use Unrestricted. Published 1917-1919, public domain in the US.", title: "American merchant ships on their way to France (165-WW-273A-11)", date: "1917-1918", note: "wartime freighters in convoy, like the ships gathering in Bedford Basin"}   # LoC via Chrome
+      - {file: "web:nara:86731663", image: "https://catalog.archives.gov/medialz/stillpix/111-sc/Box516/111-SC-63470.jpg", page_url: "https://catalog.archives.gov/id/86731663", rights: "NARA catalog: Use Unrestricted. Published 1917-1919, public domain in the US.", title: "Convoy of American ships meeting the U.S.S. George Washington (111-SC-63470)", date: "1918", note: "convoy at sea, end of the war"}   # LoC via Chrome
+      - {file: "loc:2014708950", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/28700/28790v.jpg", rights: "No known restrictions on publication.", title: "NC-3 at Halifax", date: "1919", note: "real Halifax harbour in 1919, US Navy seaplane on the water"}   # LoC via Chrome
+      - {file: "loc:2014708949", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/28700/28789v.jpg", rights: "No known restrictions on publication.", title: "NC-1 & NC-3 at Halifax", date: "1919", note: "Halifax harbour, 1919"}   # LoC via Chrome
+      - {file: "web:nara:31485823", image: "https://catalog.archives.gov/medialz/stillpix/165-ww/Box188/Folder_A/165-ww-188A-017.jpg", page_url: "https://catalog.archives.gov/id/31485823", rights: "NARA catalog: Use Unrestricted. Published 1917-1919, public domain in the US.", title: "Arrival of the NC 1 & 4 at Halifax (165-WW-188A-17)", date: "1919", note: "Halifax harbour 1919, Western Newspaper Union"}   # LoC via Chrome
 
   - id: fire
     chapter: "III. Twenty Minutes"
@@ -92,6 +98,11 @@ scenes:
     images:
       - {file: "curid:24988769"}
       - {file: "curid:1721337"}
+      - {file: "web:nara:31478074", image: "https://catalog.archives.gov/medialz/stillpix/165-ww/Box158/Folder_A/165-ww-158A-015.jpg", page_url: "https://catalog.archives.gov/id/31478074", rights: "NARA catalog: Use Unrestricted. Published 1917-1919, public domain in the US.", title: "Thirteen miles from the Halifax explosion - how it appeared at that distance (165-WW-158A-15)", date: "1917", note: "the explosion cloud seen from 13 miles away - cold open / blast"}   # LoC via Chrome
+      - {file: "web:nara:329569818", image: "https://catalog.archives.gov/medialz/stillpix/111-sc/Batch0015/Box737/111-SC-095794_001.jpg", page_url: "https://catalog.archives.gov/id/329569818", rights: "NARA catalog: Use Unrestricted. Published 1917-1919, public domain in the US.", title: "View of the enormous damage done at Halifax, Nova Scotia, by an explosion of allied ammunition (111-SC-95794)", date: "1917", note: "devastation after the blast (US Signal Corps)"}   # LoC via Chrome
+      - {file: "loc:2014694104", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/14100/14132v.jpg", rights: "No known restrictions on publication.", title: "Motor fire engine", date: "1913", note: "motor pumper of the same type as Halifax's 'Patricia' (1913)"}   # LoC via Chrome
+      - {file: "loc:2014694105", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/14100/14133v.jpg", rights: "No known restrictions on publication.", title: "Testing stream from motor fire engines", date: "1913", note: "firemen with motor engines - firefighting at the pier"}   # LoC via Chrome
+      - {file: "loc:97517195", image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c19000/3c19500/3c19559v.jpg", rights: "No known restrictions on publication.", title: "Firemen posed on fire engine, New York City", date: "1908-1916", note: "fire crew of the era, like the Patricia crew"}   # LoC via Chrome
 
   - id: coleman
     chapter: "IV. The Last Message"
@@ -110,6 +121,7 @@ scenes:
       - {file: "curid:53037159"}
       - {file: "curid:65640709"}
       - {file: "curid:43619218"}
+      - {file: "loc:2014702408", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/22400/22469v.jpg", rights: "No known restrictions on publication.", title: "Telegraph Room", date: "1915", note: "1910s telegraph office with operators - Coleman's last message"}   # LoC via Chrome
 
   - id: blast
     chapter: "V. 9:04:35"
@@ -264,6 +276,7 @@ scenes:
       - {file: "curid:78585937"}
       - {file: "curid:78585927"}
       - {file: "curid:3670253"}
+      - {file: "loc:2014710031", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/29800/29873v.jpg", rights: "No known restrictions on publication.", title: "Prince [of] Wales in N.Y.", date: "1919", note: "Prince of Wales on his 1919 North American tour (visited Halifax in August 1919)"}   # LoC via Chrome
 
 thumbnail:
   scene: blast

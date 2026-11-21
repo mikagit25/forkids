@@ -46,6 +46,7 @@ scenes:
       - {query: "Commercial Street Boston 1910s", count: 2}
       - {query: "Atlantic Avenue elevated Boston", count: 1}
       - {file: "web:bpl:8k71nw33h", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:8k71nw34s/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:8k71nw33h", rights: "No known copyright restrictions.", title: "Commercial Street", date: "ca. 1913-1915", note: "Commercial Street a few years before the flood"}   # LoC via Chrome
+      - {file: "web:bpl:gt54kz262", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:gt54kz27b/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:gt54kz262", rights: "No known copyright restrictions.", title: "Whitney Building, Clinton Street and Commercial Street", date: "June 1920", note: "Commercial Street in the North End, a few blocks from the molasses tank site, 1920"}   # LoC via Chrome
 
   - id: why
     chapter: "II. Why Molasses?"
@@ -60,6 +61,7 @@ scenes:
       - {query: "Boston 1910s", count: 1}
       - {query: "Boston 1910s", count: 1}
       - {file: "web:bpl:fj236n06s", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj236n072/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj236n06s", rights: "No known copyright restrictions.", title: "Commercial St. and Custom House, Boston, Mass.", date: "1920-07-13", note: "Commercial Street the year after the flood"}   # LoC via Chrome
+      - {file: "web:bpl:fj237v112", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj237v12b/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj237v112", rights: "No known copyright restrictions.", title: "Aerial view, Boston Harbor, docks", date: "1916-05-26", note: "Boston harbour and wharves from the air, 1916"}   # LoC via Chrome
 
   - id: warnings
     chapter: "III. The Leaking Tank"
@@ -85,6 +87,7 @@ scenes:
       - {query: "Boston 1919 street", count: 1}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_leopold_ver01:data:sn83030193:00280766197:1919011501:0197/full/pct:100/0/default.jpg", date: "1919-01-15", paper: "The Evening World (New York, N.Y.)", page_url: "https://www.loc.gov/resource/sn83030193/1919-01-15/ed-1/?sp=1", crop: [0.27, 0.272, 0.392, 0.493], match: "At about half past twelve", note: "Molasses blowup kills 20 and wrecks Boston buildings; elevated railway supports demolished, sticky flood hampers rescuers."}   # LoC via Chrome
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_pielou_ver01:data:sn83030431:0021247440A:1919011601:0323/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "The Sun (New York, N.Y.)", page_url: "https://www.loc.gov/resource/sn83030431/1919-01-16/ed-1/?sp=1", crop: [0.1550, 0.2880, 0.2694, 0.3630], note: "Molasses tank blast kills 9: huge container in Boston bursts, injuring fifty and wrecking buildings."}   # LoC via Chrome
+      - {file: "web:bpl:fj237t035", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj237t04f/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj237t035", rights: "No known copyright restrictions.", title: "Five Boston Elevated Railway Company employees posing beside streetcar", date: "1919", note: "Boston Elevated Railway men, 1919 - the company whose line ran along Commercial Street"}   # LoC via Chrome
 
   - id: wave
     chapter: "V. The Wave"
@@ -115,6 +118,7 @@ scenes:
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_forestcity_ver02:data:sn82014248:00513682906:1919011701:0146/full/pct:100/0/default.jpg", date: "1919-01-17", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1919-01-17/ed-1/?sp=1", crop: [0.233, 0.252, 0.36, 0.524], note: "12 known dead; investigators believe the tank walls gave way under the weight of the molasses; police search for missing expressmen and a boy."}   # LoC via Chrome
       - {file: "web:bpl:c534n655p", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:vd672h762/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:c534n655p", rights: "No known copyright restrictions.", title: "Delivery wagon, horses, and driver", date: "1875-1915", note: "teamsters and horses like those caught in the wave"}   # LoC via Chrome
       - {file: "web:bpl:zk51wb76p", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:zk51wb77z/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:zk51wb76p", rights: "No known copyright restrictions.", title: "Men and fire engine, Boston Fire", date: "ca. 1872-1920", note: "Boston firemen: the fire station on Commercial Street was crushed"}   # LoC via Chrome
+      - {file: "web:bpl:cn69mx50f", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:cn69mx51q/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:cn69mx50f", rights: "No known copyright restrictions.", title: "Fire-engine station at Saratoga Street", date: "ca. 1920", note: "Boston fire station of the era (East Boston)"}   # LoC via Chrome
 
   - id: science
     chapter: "VII. Why It Was So Deadly"
@@ -158,6 +162,9 @@ scenes:
       - {file: "loc:2014711458", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/31300/31303v.jpg", rights: "No known restrictions on publication.", title: "Wall St. bomb", date: "1920", note: "the 1920 Wall Street anarchist bombing: the climate in which the company's bomb theory was believable"}   # LoC via Chrome
       - {file: "loc:2014711453", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/31200/31298v.jpg", rights: "No known restrictions on publication.", title: "Wall St. bomb", date: "1920", note: "second view of the Wall Street bombing aftermath (different shot)"}   # LoC via Chrome
       - {file: "loc:2008675780", image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c30000/3c37000/3c37900/3c37980v.jpg", rights: "No known restrictions on publication.", title: "City chemists analyze Wall Street bomb parts", date: "1920", note: "investigators examining bomb fragments, as experts did in the molasses case"}   # LoC via Chrome
+      - {file: "web:bpl:fj237560v", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj2375614/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj237560v", rights: "No known copyright restrictions.", title: "Dock Square, Exchange Street and Devonshire Street", date: "1920-11-01", note: "downtown street near Faneuil Hall, 1920"}   # LoC via Chrome
+      - {file: "web:bpl:xp68kq91r", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:xp68kq921/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:xp68kq91r", rights: "No known copyright restrictions.", title: "Faneuil Hall. Headquarters of National Guard during Police Strike", date: "1919", note: "1919 Boston police strike - same year as the flood"}   # LoC via Chrome
+      - {file: "web:bpl:xp68kq81h", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:xp68kq82s/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:xp68kq81h", rights: "No known copyright restrictions.", title: "Flag raising ceremony on Boston Common, First Motor Corps, Mass. Nat. Guard (possibly police strike of 1919)", date: "1919", note: "Guard troops on Boston Common, 1919"}   # LoC via Chrome
 
   - id: legacy
     chapter: "Epilogue"
@@ -170,6 +177,7 @@ scenes:
       - {query: "Great Molasses Flood plaque", modern: true, count: 1}
       - {query: "Molasses Flood", count: 1}
       - {file: "web:bpl:8k71nz656", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:8k71nz66g/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:8k71nz656", rights: "No known copyright restrictions.", title: "Boston. North End", date: "1925", note: "the North End in 1925, the year the case ended"}   # LoC via Chrome
+      - {file: "web:bpl:fj2370788", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj237079j/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj2370788", rights: "No known copyright restrictions.", title: "Crowd coming out of the Cathedral of the Holy Cross, Washington Street", date: "June 1920", note: "Boston street crowd, 1920"}   # LoC via Chrome
 
 thumbnail:
   scene: wave
