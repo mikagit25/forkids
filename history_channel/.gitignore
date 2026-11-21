@@ -8,3 +8,4 @@ episodes/*/audio/
 .env
 youtube_token.json
 private/
+episodes/*/missing.json

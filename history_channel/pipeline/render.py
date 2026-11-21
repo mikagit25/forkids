@@ -745,6 +745,11 @@ def check_coverage(allow_short=False):
 
 
 def render(ep_dir: Path, episode: dict, preview: bool = False, parallax: bool = True, allow_short: bool = False):
+    miss_f = ep_dir / "missing.json"
+    if not preview and miss_f.exists() and json.loads(miss_f.read_text()):
+        miss = json.loads(miss_f.read_text())
+        raise SystemExit(f"render refused: {len(miss)} hand-picked photos not downloaded yet ({', '.join(m[1] for m in miss[:5])}...)."
+                         " One render per episode (RULES.md): get them (loc_exchange/inbox) and run fetch again.")
     manifest = json.loads((ep_dir / "manifest.json").read_text())
     timings = json.loads((ep_dir / "audio" / "timings.json").read_text())
     build = ep_dir / "build"

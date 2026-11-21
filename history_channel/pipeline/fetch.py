@@ -234,6 +234,7 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
     write_contact_sheet(ep_dir, episode, manifest)
     n = sum(i["use"] for v in manifest["scenes"].values() for i in v)
     print(f"\nmanifest: {n} images selected. Review: {ep_dir / 'contact_sheet.html'}")
+    (ep_dir / "missing.json").write_text(json.dumps([list(m) for m in missing], indent=0))   # render refuses while non-empty
     if missing:
         print(f"\n!! {len(missing)} hand-picked photos are MISSING (replace them in episode.yaml before rendering):")
         for sid, ref, why in missing:
