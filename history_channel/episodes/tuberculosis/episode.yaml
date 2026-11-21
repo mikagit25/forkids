@@ -308,3 +308,63 @@ research:                # newspapers of the time: python run.py episodes/tuberc
   - {q: "Koch tuberculosis bacillus", from: 1882-03-24, to: 1882-12-31, sources: [chronam, nyt]}
   - {q: "tuberculosis sanatorium", from: 1900-01-01, to: 1925-12-31, sources: [chronam, nyt]}
   - {q: "streptomycin tuberculosis", from: 1944-01-01, to: 1950-12-31, sources: [nyt]}
+
+summary: >
+  Tuberculosis has been found in human bones nine thousand years old. In the nineteenth century it killed about a quarter
+  of Europe's adults, turned poets and composers into romantic legends, and drove New England families to dig up their dead
+  in fear of vampires. This is its biography: the King's Evil, the Brontës, Keats and Chopin, Laennec's stethoscope and
+  Koch's discovery, the sanatoriums of Davos and Saranac Lake, Christmas seals, the race to the first cure, and why TB is
+  once again the world's deadliest infectious disease.
+
+localizations:
+  es:
+    title: "Tuberculosis: la peste blanca que nunca se fue"
+    subtitle: "Nueve mil años de tisis, la era de los sanatorios, la primera cura y por qué la tuberculosis sigue matando más que cualquier otra infección"
+    summary: >
+      Se ha encontrado tuberculosis en huesos humanos de nueve mil años. En el siglo XIX mató a cerca de una cuarta parte de
+      los adultos de Europa, convirtió a poetas y compositores en leyendas románticas y llevó a familias de Nueva Inglaterra a
+      desenterrar a sus muertos por miedo a los vampiros. Esta es su biografía: el «mal del rey», las hermanas Brontë, Keats y
+      Chopin, el estetoscopio de Laennec y el descubrimiento de Koch, los sanatorios de Davos y Saranac Lake, los sellos de
+      Navidad, la carrera hacia la primera cura y por qué la tuberculosis vuelve a ser la enfermedad infecciosa más mortífera
+      del mundo.
+    chapters: ["Introducción", "Más antigua que la historia", "La peste blanca", "La vampira de Exeter", "La enfermedad romántica",
+               "Escuchar el pecho", "El descubrimiento de Koch", "El sanatorio", "Prohibido escupir", "La primera cura",
+               "No se ha ido", "Epílogo"]
+  pt:
+    title: "Tuberculose: a peste branca que nunca foi embora"
+    subtitle: "Nove mil anos de tísica, a era dos sanatórios, a primeira cura e por que a tuberculose ainda mata mais do que qualquer outra infecção"
+    summary: >
+      A tuberculose foi encontrada em ossos humanos de nove mil anos. No século XIX matou cerca de um quarto dos adultos da
+      Europa, transformou poetas e compositores em lendas românticas e levou famílias da Nova Inglaterra a desenterrar seus
+      mortos por medo de vampiros. Esta é a sua biografia: o «mal do rei», as irmãs Brontë, Keats e Chopin, o estetoscópio de
+      Laennec e a descoberta de Koch, os sanatórios de Davos e Saranac Lake, os selos de Natal, a corrida pela primeira cura e
+      por que a tuberculose voltou a ser a doença infecciosa mais mortal do mundo.
+    chapters: ["Introdução", "Mais antiga que a história", "A peste branca", "A vampira de Exeter", "A doença romântica",
+               "Ouvindo o peito", "A descoberta de Koch", "O sanatório", "Proibido cuspir", "A primeira cura",
+               "Não foi embora", "Epílogo"]
+  fr:
+    title: "Tuberculose : la peste blanche qui n'est jamais partie"
+    subtitle: "Neuf mille ans de phtisie, l'ère des sanatoriums, le premier remède et pourquoi la tuberculose tue encore plus que toute autre infection"
+    summary: >
+      On a retrouvé la tuberculose dans des os humains vieux de neuf mille ans. Au XIXe siècle, elle tue environ un quart des
+      adultes d'Europe, fait des poètes et des compositeurs des légendes romantiques et pousse des familles de
+      Nouvelle-Angleterre à exhumer leurs morts par peur des vampires. Voici sa biographie : le « mal du roi », les sœurs
+      Brontë, Keats et Chopin, le stéthoscope de Laennec et la découverte de Koch, les sanatoriums de Davos et de Saranac Lake,
+      les timbres de Noël, la course au premier remède et pourquoi la tuberculose est redevenue la maladie infectieuse la plus
+      meurtrière du monde.
+    chapters: ["Introduction", "Plus ancienne que l'histoire", "La peste blanche", "La vampire d'Exeter", "La maladie romantique",
+               "Écouter la poitrine", "La découverte de Koch", "Le sanatorium", "Défense de cracher", "Le premier remède",
+               "Toujours là", "Épilogue"]
+  de:
+    title: "Tuberkulose: Die weiße Pest, die nie verschwand"
+    subtitle: "Neuntausend Jahre Schwindsucht, die Ära der Sanatorien, das erste Heilmittel und warum TB noch immer mehr Menschen tötet als jede andere Infektion"
+    summary: >
+      Tuberkulose wurde in neuntausend Jahre alten menschlichen Knochen gefunden. Im 19. Jahrhundert tötete sie etwa ein
+      Viertel der Erwachsenen in Europa, machte Dichter und Komponisten zu romantischen Legenden und trieb Familien in
+      Neuengland dazu, aus Angst vor Vampiren ihre Toten auszugraben. Dies ist ihre Biografie: das „Königsübel“, die
+      Brontë-Schwestern, Keats und Chopin, Laennecs Stethoskop und Kochs Entdeckung, die Sanatorien von Davos und Saranac
+      Lake, die Weihnachtsmarken, der Wettlauf um das erste Heilmittel und warum Tuberkulose wieder die tödlichste
+      Infektionskrankheit der Welt ist.
+    chapters: ["Einleitung", "Älter als die Geschichte", "Die weiße Pest", "Die Vampirin von Exeter", "Die romantische Krankheit",
+               "Den Brustkorb abhören", "Kochs Entdeckung", "Das Sanatorium", "Nicht spucken!", "Das erste Heilmittel",
+               "Nicht verschwunden", "Epilog"]
