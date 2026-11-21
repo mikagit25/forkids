@@ -309,8 +309,8 @@ def _framing(scene: dict) -> dict:
     out = {}
     for q in scene.get("images", []) or []:
         ref = q.get("file")
-        if ref and any(k in q for k in ("frame", "zoom", "pan", "detail")):
-            out[ref] = {k: q[k] for k in ("frame", "zoom", "pan", "detail") if k in q}
+        if ref and any(k in q for k in ("frame", "zoom", "pan", "detail", "teaser")):
+            out[ref] = {k: q[k] for k in ("frame", "zoom", "pan", "detail", "teaser") if k in q}
     return out
 
 
@@ -404,13 +404,18 @@ def build_timeline(episode: dict, manifest: dict, timings: dict):
         pool = [_attach_framing(i, framing) for i in imgs]
         if montage:   # cold open: this scene's photos plus the strongest photo of every later chapter
             for later in episode["scenes"][idx + 1:]:
-                for it in used[later["id"]][:1 if later.get("chapter") else 0]:
+                lu = [_attach_framing(i, _framing(later)) for i in used[later["id"]]]   # `teaser: true` picks it
+                lu = [i for i in lu if i.get("teaser")][:1] or lu[:1]
+                for it in (lu if later.get("chapter") else []):
                     if it["id"] not in {x["id"] for x in pool}:
-                        pool.append(it)
+                        pool.append({**it, "match": None})   # a teaser is not tied to a sentence of the cold open
         timed = [it for it in pool if it.get("match")]
-        pool = [it for it in pool if not it.get("match")] or list(timed)
-        state = {"queue": _queue(pool)}
         overlays = _overlay_intervals(scene, timings[sid], dur, timed)
+        # a matched photo whose sentence collides with another card/photo is not lost: it goes back into the
+        # regular flow, in its script order
+        shown = {id(c) for _, _, k, c in overlays if k == "photo"}
+        pool = [it for it in pool if not it.get("match") or id(it) not in shown] or list(timed)
+        state = {"queue": _queue(pool)}
         edges = [0.0] + [x for a, b, _, _ in overlays for x in (a, b)] + [dur]
         gaps = [max(0.0, edges[2 * i + 1] - edges[2 * i]) for i in range(len(overlays) + 1)]
         target, lo, hi = (MONTAGE_SHOT, 2.0, 4.0) if montage else (SHOT_TARGET, SHOT_MIN, SHOT_MAX)

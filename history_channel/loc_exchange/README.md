@@ -21,6 +21,12 @@ A person or Claude in Chrome searches loc.gov in a normal browser and hands the 
   note: "why it fits: ship in the ice at night, matches the 'long night' text"
 ```
 
+## How to find era/place photos
+Archives caption photos by the EVENT of the day, not "Boston street 1919". So search events of that time and place
+(parades, strikes, funerals, elections, fires, openings, visits…) and pick photos that show the street, people,
+vehicles, harbour we need — the event itself does not matter. Browsing a whole collection of that place and period
+(e.g. Bain News Service 1915–1920 + city name) also works.
+
 ## Rules for picking (the server rejects picks that break them)
 - **Rights Advisory** must say *No known restrictions on publication* or *public domain*. Anything else
   ("Rights status not evaluated", "Publication may be restricted", © …) → do not pick.

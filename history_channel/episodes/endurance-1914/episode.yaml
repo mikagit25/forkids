@@ -36,6 +36,7 @@ scenes:
       By 1914, the South Pole had already been reached, first by Roald Amundsen, then by Robert Falcon Scott, who died on the way back.
       Ernest Shackleton, an Anglo-Irish explorer who had come within about a hundred miles of the Pole a few years earlier, wanted the one prize left: to cross the entire continent on foot, from sea to sea.
       His plan needed two ships. The Endurance would carry his party to the Weddell Sea. A second ship, the Aurora, would land men on the other side of Antarctica to lay supply depots along the final stretch of the route.
+      The ship had been built in Norway as a yacht for polar tourists, named Polaris. Shackleton bought her and renamed her Endurance, after his family motto: by endurance we conquer.
       The Endurance left Plymouth on the eighth of August 1914, just days after Britain entered the First World War. Shackleton offered to put his ship and crew at the Navy's disposal. The reply came back in one word: proceed.
     images:
       - {file: "loc:2009633384", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a30000:3a30000:3a30700:3a30750u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Camp at the South Pole", date: "1912", note: "Scott, Wilson, Oates, Bowers and Evans at the Pole in 1912: the pole is taken, so Shackleton aims for the crossing"}   # LoC via Chrome
@@ -47,7 +48,7 @@ scenes:
       - {file: "curid:176202498"}
       - {file: "curid:24290995"}
       - {file: "curid:64500498"}
-      - {file: "curid:63821193"}
+      - {file: "curid:63821193", match: "renamed her Endurance", teaser: true}
 
 
   - id: crew
@@ -60,13 +61,13 @@ scenes:
       And there was one man nobody had chosen. When the Endurance left Buenos Aires, a young Welsh sailor named Perce Blackborow was found hiding aboard as a stowaway. Shackleton was furious, then signed him on as a steward.
     images:
       - {file: "curid:52403347"}
-      - {file: "curid:122463176"}
       - {file: "curid:55023963"}
       - {file: "curid:41531222"}
       - {file: "curid:3825841"}
       - {file: "curid:62214474"}
-      - {file: "curid:85391662"}
       - {file: "curid:84956690"}
+      - {file: "curid:22791832"}   # Worsley
+      - {file: "curid:31198361"}   # Tom Crean
 
   - id: beset
     chapter: "III. Frozen In"
@@ -75,6 +76,7 @@ scenes:
       After a last stop at the whaling stations of South Georgia, the Endurance sailed south on the fifth of December 1914.
       The Weddell Sea that year was choked with pack ice. For weeks the ship forced her way through narrow channels of open water.
       Then, in the middle of January 1915, barely a day's sail from the coast where Shackleton planned to land, the ice closed around her.
+      Again and again a lead of open water opened ahead, and within hours new ice spread across it, thin as glass at first, then too thick to break.
       The men tried to cut her free with picks, saws and chisels. On the fourteenth of February, they gave up.
       There was nothing to do but wait for spring. The Endurance had become a prisoner, drifting wherever the ice carried her.
     images:
@@ -93,6 +95,8 @@ scenes:
     narration: >
       The Antarctic winter brought months of darkness. The crew turned the ship into a home. They held football matches on the ice, raced their dog teams, staged concerts and shaved each other's heads for fun.
       Shackleton understood that boredom and despair could kill as surely as cold. He kept everyone busy and treated every man, from the officers to the youngest sailor, the same way.
+      The dogs were moved off the ship into a row of ice kennels the men called dogloos. Tom Crean looked after a litter of puppies born on board.
+      In May the sun sank below the horizon, and it would not rise again for months.
       Among them was the expedition photographer, an Australian named Frank Hurley. He climbed the frozen rigging with his heavy camera, and when the polar night came, he lit her with bursts of flash powder to photograph her glowing in the dark.
       Those pictures would one day show the world what these men endured.
     images:
@@ -103,10 +107,10 @@ scenes:
       - {file: "curid:62255904"}
       - {file: "curid:22791835"}
       - {file: "curid:84388591"}
-      - {file: "curid:84418002"}
-      - {file: "curid:84417727"}
-      - {file: "curid:84388801"}
-      - {file: "curid:84434618"}
+      - {file: "curid:84418002", match: "a litter of puppies"}
+      - {file: "curid:84417727", match: "dogloos"}
+      - {file: "curid:84388801", match: "the sun sank below"}
+      - {file: "curid:84434618", match: "would not rise again"}
 
   - id: crushed
     chapter: "V. The End of the Endurance"
@@ -115,7 +119,7 @@ scenes:
       When spring came, the ice did not release the ship. It began to crush her.
       Huge pressure ridges pushed against the hull. The timbers groaned and cracked. Water poured in faster than the pumps could clear it.
       On the twenty-seventh of October 1915, in bitter cold, Shackleton gave the order to abandon ship.
-      The men dragged their tents, stores and three lifeboats onto the ice. For almost a month the broken hull stayed upright, still held by the floe.
+      The men dragged their tents, stores and three lifeboats onto the ice. For almost a month the broken hull stayed upright, still held by the floe, and Hurley kept photographing her as the ice tore her apart.
       There was one painful loss even before the ship sank. The carpenter, Harry McNish, had brought his cat aboard, a tabby the crew called Mrs Chippy. There was no way to feed a cat on the ice, and Shackleton ordered that it be shot, along with the youngest sledge dogs. McNish, it is said, never forgave him.
       Then, on the twenty-first of November, she slipped under.
       Shackleton wrote simply that the connexion had been cut.
@@ -133,8 +137,8 @@ scenes:
       - {file: "curid:84434688"}
       - {file: "curid:84562157"}
       - {file: "curid:84562436"}
-      - {file: "curid:84532258"}
-      - {file: "curid:1564262"}
+      - {file: "curid:84532258", match: "Hurley kept photographing her"}
+      - {file: "curid:1564262", match: "she slipped under"}
 
   - id: plates
     chapter: "VI. What to Leave Behind"
@@ -156,7 +160,9 @@ scenes:
     date: "1915–1916"
     narration: >
       For five months the men lived on the drifting ice, first at a spot they called Ocean Camp, then at Patience Camp.
-      They hunted seals and penguins for meat and blubber. When food ran short, the dogs had to be shot.
+      They hunted seals and penguins for meat, and burned the blubber for heat and cooking.
+      The pack never stopped moving. Floes rode up over one another and split apart, and a lookout watched day and night for cracks opening near the tents.
+      There was little to do but wait, play cards, and read the few books they had saved. When food ran short, the dogs had to be shot.
       Twice they tried to march towards land, dragging the lifeboats behind them. The snow was so soft that they covered barely a mile a day, and they gave up.
       Slowly, the ice carried them north, towards open sea. Every day the floe beneath them grew smaller and more fragile.
       On the ninth of April 1916, it split apart. Shackleton ordered the three boats into the water.
@@ -180,6 +186,7 @@ scenes:
       For seven days the boats fought through ice and freezing spray. Men were soaked, frostbitten and so thirsty they chewed raw seal meat for its moisture.
       On the fifteenth of April they landed on Elephant Island, a bare, storm-swept rock at the edge of the Antarctic Peninsula.
       It was the first time in four hundred and ninety-seven days that they had stood on solid ground.
+      Their first landing place, Cape Valentine, was flooded at high tide, so the next day they moved seven miles along the coast to a narrow spit of rock and shingle they named Cape Wild. It would be their home for more than four months.
       But nobody would ever look for them there. It was far from any shipping route.
       Shackleton decided that the only hope was to go for help himself, in a twenty-two-foot open boat, across the most dangerous ocean on Earth.
     images:
@@ -191,14 +198,15 @@ scenes:
       - {file: "curid:85006475"}
       - {file: "curid:84753949"}
       - {file: "curid:130736861"}
-      - {file: "curid:85006902"}
-      - {file: "curid:83466926"}
+      - {file: "curid:85006902", match: "Cape Wild"}
+      - {file: "curid:83466926", match: "Cape Valentine"}
 
   - id: caird
     chapter: "IX. Eight Hundred Miles"
     date: "24 April 1916"
     narration: >
       The boat was called the James Caird. Shackleton chose five men to go with him, including the ship's captain, Frank Worsley, a navigator of genius, and the Irish sailor Tom Crean.
+      The carpenter, Harry McNish, raised the boat's sides and built a makeshift deck from canvas, sledge runners and the lids of packing cases, to keep out the sea.
       Their destination was South Georgia, about eight hundred miles away. To miss it meant drifting into the open Atlantic and certain death.
       For sixteen days they sailed through gales and towering waves. Ice built up on the boat until it threatened to capsize her, and the men crawled out to chip it off.
       Worsley could take only four sightings of the sun in the entire journey, bracing himself on the pitching deck while two men held him upright.
@@ -219,9 +227,7 @@ scenes:
     images:
       - {file: "loc:2013646116", image: "https://tile.loc.gov/image-services/iiif/master:pnp:cph:3a10000:3a11000:3a11900:3a11986u/full/pct:100/0/default.jpg", rights: "No known restrictions on publication.", title: "Shackleton's expedition to the Antarctic Sir Ernest Shackleton to the rescue.", date: "1916", note: "men pushing the boat into the sea; in 'South' this print is 'Launching the James Caird'"}   # LoC via Chrome
       - {file: "curid:13421262", match: "The boat was called the James Caird"}   # the real boat today (Dulwich College)
-      - {file: "curid:121530887", match: "about eight hundred miles away"}   # South Georgia from the ISS (NASA)
-      - {file: "curid:31198361"}
-      - {file: "curid:22791832"}
+      - {file: "curid:121530887", match: "To miss it meant drifting"}   # South Georgia from the ISS (NASA)
       - {file: "curid:84753526"}
       - {file: "curid:85391892"}
       - {file: "curid:85074798"}
@@ -232,6 +238,7 @@ scenes:
     chapter: "X. Across the Mountains"
     date: "May 1916"
     narration: >
+      First they rested for several days at King Haakon Bay, sheltering under the upturned boat and eating albatross chicks and seals.
       The whaling station at Stromness lay on the other side of unmapped, glaciated mountains. No one had ever crossed them.
       Shackleton, Worsley and Crean set off with a rope, a carpenter's adze and screws from the boat driven through their boots for grip.
       They walked for about thirty-six hours without sleep. At one point, lost on a ridge as night fell, they sat down together and slid down the mountainside on the coiled rope.
@@ -245,7 +252,7 @@ scenes:
       - {file: "curid:22791792"}
       - {file: "curid:22791828"}
       - {file: "curid:22791749"}
-      - {file: "curid:84817748"}
+      - {file: "curid:84817748", match: "eating albatross chicks"}
 
   - id: rescue
     chapter: "XI. Not a Life Lost"
@@ -255,8 +262,9 @@ scenes:
       On the fourth attempt, he sailed aboard the Yelcho, a small steam tug of the Chilean Navy commanded by Luis Pardo.
       On the thirtieth of August 1916, the twenty-two men left behind saw the ship approaching.
       Frank Wild, Shackleton's second in command, had kept them going for four and a half months. They lived under the two upturned lifeboats, eating penguins and seals and burning blubber for warmth. Every morning, Wild told the men to roll up their sleeping bags, because the boss might come today.
-      Every one of them was alive.
-      Not one member of the Endurance party died. The expedition's other half, the Ross Sea party, was not so lucky: three of its men died laying depots for a crossing that never came.
+      As the boat came close, Shackleton called out: were they all well? Wild shouted back: all safe, all well.
+      Every one of them was alive. Within an hour they were all aboard, and the Yelcho turned north. In Chile, crowds turned out to welcome them.
+      Not one member of the Endurance party died.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "28 / 28", text: "men of the Endurance came home", match: "Not one member of the Endurance party died"}
     images:
@@ -269,23 +277,66 @@ scenes:
       - {file: "curid:84864012"}
       - {file: "curid:41524639"}
       - {file: "curid:41524630"}
-      - {file: "curid:85074280"}
-      - {file: "curid:84956980"}
-      - {file: "curid:31016148"}
+      - {file: "curid:85074280", match: "Wild shouted back"}
+      - {file: "curid:84956980", match: "under the two upturned lifeboats"}
+      - {file: "curid:31016148", match: "crowds turned out"}
+
+  - id: rosssea
+    chapter: "XII. The Other Half"
+    date: "1915 – 1917"
+    narration: >
+      On the other side of Antarctica, the second half of the expedition was living through its own ordeal.
+      The Aurora had landed ten men at Cape Evans, in the hut Captain Scott had built a few years earlier.
+      Their task was to lay depots of food and fuel across the Great Ice Barrier, all the way to the foot of the Beardmore Glacier, for Shackleton's party to find at the end of their crossing.
+      In May 1915, a storm tore the Aurora from her moorings and carried her away in the pack ice.
+      The men ashore were left with only part of their stores and clothing, and with whatever Scott's men had left behind in the hut.
+      They carried on anyway. Hauling the sledges themselves, they laid every depot, not knowing that Shackleton would never come.
+      Arnold Spencer-Smith, the expedition's chaplain, died of scurvy on the way back.
+      Their leader, Aeneas Mackintosh, and Victor Hayward set out across the sea ice in a blizzard and were never seen again.
+      In January 1917, the Aurora returned, with Shackleton aboard, to bring the seven survivors home.
+      The hut at Cape Evans still stands today, and a wooden cross on the hill above it remembers the three men who died.
+    images:
+      - {file: "curid:166383555", match: "The Aurora had landed ten men"}   # the Aurora (photo 1912, Mawson expedition)
+      - {file: "curid:10419878", match: "in the hut Captain Scott had built"}   # Cape Evans hut, 1911
+      - {file: "curid:62209919"}
+      - {file: "curid:180530745", match: "Beardmore Glacier"}
+      - {file: "curid:166383553", match: "a storm tore the Aurora"}
+      - {file: "curid:116577205"}
+      - {file: "curid:79383462"}
+      - {file: "curid:116580997", match: "Hauling the sledges themselves"}
+      - {file: "curid:116581001"}
+      - {file: "curid:116577202"}
+      - {file: "curid:151594357"}
+      - {file: "curid:1113324", match: "set out across the sea ice"}   # Discovery hut at Hut Point, where they set out from
+      - {file: "curid:167516900"}
+      - {file: "curid:151593743", match: "whatever Scott's men had left behind"}   # stores in the hut today
+      - {file: "curid:146305832", match: "The hut at Cape Evans still stands today"}
+      - {file: "curid:151594353"}
+      - {file: "curid:22784966", match: "a wooden cross on the hill"}
 
   - id: found
     chapter: "Epilogue"
     date: "March 2022"
     narration: >
+      Most of the men went from the ice straight into the First World War. Frank Hurley became an official war photographer with the Australian forces at Passchendaele.
+      Two of the sailors who had survived Elephant Island, Tim McCarthy and Alf Cheetham, were killed at sea before it ended.
+      Shackleton went south one last time, in 1921, aboard a small ship called the Quest.
+      On the fifth of January 1922, at South Georgia, he died of a heart attack. He was forty-seven.
+      At his wife's request, he was buried at Grytviken, among the whalers who had once welcomed him back from the dead.
       For more than a century, the Endurance lay somewhere on the floor of the Weddell Sea.
-      In March 2022, an expedition using underwater robots found her, three thousand and eight metres down, about four miles from the position Frank Worsley had recorded in 1915.
+      On the fifth of March 2022, exactly one hundred years after Shackleton's funeral, an expedition using underwater robots found her, three thousand and eight metres down, about four miles from the position Frank Worsley had recorded in 1915.
       She sits upright and remarkably well preserved. Her name can still be read across the stern.
       The wreck is now a protected monument. It will not be raised.
       And the story of the men who lost her is still told, in large part through the photographs Frank Hurley chose to save.
       If you enjoyed this story from the archives, subscribe for more.
     images:
+      - {file: "curid:117971"}   # Ypres 1917, photo by Hurley
+      - {file: "curid:1002811"}   # Hurley, Passchendaele 1917
+      - {file: "curid:146412420"}
+      - {file: "curid:201032407"}   # funeral procession, Montevideo 1922
+      - {file: "curid:127724889"}
+      - {file: "curid:127724860"}
       - {file: "curid:11991060"}
-      - {file: "curid:22791794"}
       - {file: "curid:85362112"}
       - {file: "curid:85361129"}
       - {file: "curid:85361576"}
