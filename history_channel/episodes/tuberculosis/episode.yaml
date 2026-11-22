@@ -309,6 +309,13 @@ research:                # newspapers of the time: python run.py episodes/tuberc
   - {q: "tuberculosis sanatorium", from: 1900-01-01, to: 1925-12-31, sources: [chronam, nyt]}
   - {q: "streptomycin tuberculosis", from: 1944-01-01, to: 1950-12-31, sources: [nyt]}
 
+shorts:
+  - {from: 40, to: 51, hook: "They dug up a girl's grave to stop a vampire", title: "The New England Vampire Panic of 1892"}
+  - {from: 80, to: 87, hook: "The stethoscope began as rolled-up paper", title: "How a Rolled-Up Sheet of Paper Became the Stethoscope"}
+  - {from: 139, to: 145, hook: "Christmas seals were invented to fight TB", title: "Why Christmas Seals Were Invented"}
+  - {from: 157, to: 164, hook: "He found the cure. His professor got the Nobel.", title: "The Student Who Discovered the First Tuberculosis Cure"}
+  - {from: 176, to: 183, hook: "Still the deadliest infection on Earth", title: "Tuberculosis Is Still the World's Deadliest Infection"}
+
 summary: >
   Tuberculosis has been found in human bones nine thousand years old. In the nineteenth century it killed about a quarter
   of Europe's adults, turned poets and composers into romantic legends, and drove New England families to dig up their dead

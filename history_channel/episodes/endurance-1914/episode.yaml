@@ -354,6 +354,13 @@ research:                # newspapers of the time: python run.py episodes/endura
   - {q: "Shackleton", from: 1914-08-01, to: 1914-12-31, sources: [chronam, nyt]}
   - {q: "Shackleton rescued", from: 1916-05-01, to: 1916-10-31, sources: [chronam, nyt, trove]}
 
+shorts:
+  - {from: 24, to: 30, hook: "The famous ad that probably never existed", title: "Shackleton's Famous Crew Advert Was Probably Invented"}
+  - {from: 83, to: 91, hook: "He smashed hundreds of his own photographs", title: "Why Frank Hurley Smashed His Own Photographs on the Ice"}
+  - {from: 127, to: 136, hook: "800 miles of ocean in a 22-foot boat", title: "800 Miles Across the Southern Ocean in a Lifeboat"}
+  - {from: 155, to: 166, hook: "\"The boss might come today\"", title: "All Safe, All Well: The Rescue From Elephant Island"}
+  - {from: 198, to: 206, hook: "Found 3,008 metres down, 107 years later", title: "The Endurance Was Found 107 Years After She Sank"}
+
 summary: >
   In 1914, Ernest Shackleton and 27 men sailed south to cross Antarctica on foot. Their ship, the Endurance, was trapped
   in the ice of the Weddell Sea, crushed and sunk. For five months they lived on drifting ice, then reached Elephant Island
