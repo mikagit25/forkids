@@ -125,3 +125,88 @@
   paper: The Bridgeport Times and Evening Farmer (Bridgeport, Conn.)
   match: An official inquiry blamed
   note: Pilot Mackey and Captain Le Medec of the Mont-Blanc charged with manslaughter; examination officer Wyatt arrested after the Drysdale inquiry censured him.
+
+# +6 (2026-11-22): blame — inquiry, charges, Wyatt indictment, Drysdale ruling, Supreme Court 1919
+
+- scene: blame
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:au:batch_au_dickerson_ver01:data:sn84020645:00517017188:1917121401:1053/full/pct:100/0/default.jpg
+  crop:
+  - 0.0
+  - 0.128
+  - 1.0
+  - 0.165
+  page_url: https://www.loc.gov/resource/sn84020645/1917-12-14/ed-1/?sp=1
+  date: '1917-12-14'
+  paper: The Montgomery Advertiser (Montgomery, Ala.)
+  note: 'Full-width front-page banner: helmsman of the Belgian relief ship held as German spy.'
+
+- scene: blame
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:au:batch_au_dickerson_ver01:data:sn84020645:00517017188:1917121401:1053/full/pct:100/0/default.jpg
+  crop:
+  - 0.01
+  - 0.165
+  - 0.19
+  - 0.73
+  page_url: https://www.loc.gov/resource/sn84020645/1917-12-14/ed-1/?sp=1
+  date: '1917-12-14'
+  paper: The Montgomery Advertiser (Montgomery, Ala.)
+  match: Rumours of German sabotage
+  note: Imo helmsman Johansen arrested as a spy suspect amid wild rumours; the official inquiry opens under Justice Drysdale with lawyers for both ships, the city and the pilots.
+
+- scene: blame
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:khi:batch_khi_bender_ver01:data:sn82016014:00295870096:1918020401:0302/full/pct:100/0/default.jpg
+  crop:
+  - 0.038
+  - 0.803
+  - 0.158
+  - 0.972
+  page_url: https://www.loc.gov/resource/sn82016014/1918-02-04/ed-1/?sp=1
+  date: '1918-02-04'
+  paper: The Topeka State Journal (Topeka, Kan.)
+  match: The inquiry's verdict
+  note: 'Fix blame at Halifax: pilot Mackey and Captain Le Medec held responsible by the commission; both arrested and charged with manslaughter.'
+
+- scene: blame
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:deu:batch_deu_jessicajones_ver01:data:sn87062237:00513684666:1918032001:0594/full/pct:100/0/default.jpg
+  crop:
+  - 0.425
+  - 0.885
+  - 0.559
+  - 0.96
+  page_url: https://www.loc.gov/resource/sn87062237/1918-03-20/ed-1/?sp=1
+  date: '1918-03-20'
+  paper: Every Evening (Wilmington, Del.)
+  match: Wyatt was indicted
+  note: Commander Wyatt, chief examining officer of the port, indicted for manslaughter by the grand jury although the judge said the evidence did not justify it.
+
+- scene: blame
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:iahi:batch_iahi_letts_ver01:data:sn85049554:0029587708A:1918042001:0506/full/pct:100/0/default.jpg
+  crop:
+  - 0.825
+  - 0.874
+  - 0.967
+  - 0.952
+  page_url: https://www.loc.gov/resource/sn85049554/1918-04-20/ed-1/?sp=1
+  date: '1918-04-20'
+  paper: Evening Times-Republican (Marshalltown, Iowa)
+  match: Drysdale ruled for the Imo
+  note: Justice Drysdale's admiralty decision places the whole blame for the collision on the Mont Blanc.
+
+- scene: blame
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:au:batch_au_carver_ver01:data:sn85038485:00340582913:1919052301:0476/full/pct:100/0/default.jpg
+  crop:
+  - 0.303
+  - 0.877
+  - 0.44
+  - 0.973
+  page_url: https://www.loc.gov/resource/sn85038485/1919-05-23/ed-1/?sp=1
+  date: '1919-05-23'
+  paper: The Birmingham Age-Herald (Birmingham, Ala.)
+  match: both ships equally to blame
+  note: 'Supreme Court in Ottawa reverses Drysdale: responsibility rests equally on the Mont Blanc and the Imo; the Imo''s owners will appeal to the Privy Council.'
