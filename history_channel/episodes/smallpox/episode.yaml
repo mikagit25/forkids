@@ -305,6 +305,13 @@ research:                # newspapers of the time: python run.py episodes/smallp
   - {q: "smallpox vaccination", from: 1900-01-01, to: 1925-12-31, sources: [chronam, nyt]}
   - {q: "smallpox epidemic", from: 1901-01-01, to: 1903-12-31, sources: [chronam, nyt]}
 
+shorts:
+  - {from: 72, to: 81, hook: "A milkmaid, a boy and a cow named Blossom", title: "How a Cow Named Blossom Helped Defeat Smallpox"}
+  - {from: 53, to: 62, hook: "Someone threw a bomb through his window", title: "The Bomb Thrown at Cotton Mather Over Smallpox Inoculation"}
+  - {from: 112, to: 120, hook: "22 orphans carried a vaccine across the ocean", title: "The 22 Orphans Who Carried the Smallpox Vaccine Across the Atlantic"}
+  - {from: 174, to: 186, hook: "The last cases of smallpox on Earth", title: "Rahima Banu and Ali Maow Maalin: The Last Natural Smallpox Cases"}
+  - {from: 187, to: 198, hook: "The last person ever killed by smallpox", title: "Janet Parker: The Last Person to Die of Smallpox"}
+
 summary: >
   For three thousand years smallpox killed kings and peasants alike: its marks are suspected on Egyptian mummies, it
   helped topple the empires of the Aztecs and the Inca, and it killed an emperor of Russia and a queen of England. This is
