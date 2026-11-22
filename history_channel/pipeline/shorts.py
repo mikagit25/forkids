@@ -325,7 +325,19 @@ def daily(root: Path, episode_defaults: dict, at_hour: int = 16, per_day: int = 
     if when < now + dt.timedelta(minutes=30):
         when += dt.timedelta(days=1)
     yt = youtube_client({**episode_defaults})
+    def _full_at(ep_dir):                                 # a Short must not go out before its full episode
+        f = ep_dir / "build" / "publish_at.txt"
+        if not f.exists():
+            return None
+        return dt.datetime.strptime(f.read_text().strip(), "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=dt.timezone.utc)
+    pending = [x for x in pending if not _full_at(x[1]) or _full_at(x[1]) <= when]
+    if not pending:
+        print("Shorts are waiting for their full episodes to go public")
+        return
     for _, ep_dir, mp, meta in pending[:per_day]:
+        full_at = _full_at(ep_dir)
+        if full_at and full_at > when:
+            continue
         full = (ep_dir / "build" / "youtube_id.txt").read_text().strip()
         meta["description"] = meta["description"].replace("[link to the full episode]", f"https://youtu.be/{full}")
         body = {"snippet": {"title": meta["title"], "description": meta["description"][:5000], "tags": meta["tags"],
