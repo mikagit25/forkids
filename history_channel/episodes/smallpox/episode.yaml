@@ -44,6 +44,8 @@ scenes:
       After about two weeks of silent incubation came a high fever, then a rash that turned into deep, fluid-filled pustules, spreading over the face, arms and legs.
       Its origins are ancient. Rash-like scars on Egyptian mummies suggest that smallpox has existed for at least three thousand years, and the mummy of the pharaoh Ramses the Fifth is often cited as a possible early victim.
       Written descriptions of a smallpox-like disease appear in China in the fourth century, and in India by the seventh.
+      With no cure, people turned to colour and to magic. In fourteenth-century England, the royal physician John of Gaddesden treated a king's son for smallpox by wrapping him in red cloth and hanging red curtains around his bed. In Japan, the red was believed to frighten away the smallpox demon, and sick children were given red toys and pictures printed in red.
+    candidates: ["smallpox Japanese red print", "hososhin smallpox god", "Ramses V mummy", "smallpox Edo Japan", "Shitala smallpox goddess"]
     images:
       - {file: "curid:9541702"}
       - {file: "europeana:9200579/g84jpb4x"}
@@ -56,8 +58,11 @@ scenes:
     narration: >
       Smallpox shaped history.
       When Europeans arrived in the Americas, they brought smallpox with them. Indigenous peoples had never encountered it, and epidemics devastated the Aztec and Inca empires, helping a few hundred Spanish soldiers conquer them.
+      In 1520, smallpox swept through the Aztec capital, Tenochtitlan, and killed the new emperor, Cuitláhuac, after only eighty days on the throne. In the Andes, an epidemic, probably smallpox, killed the Inca ruler Huayna Capac and his chosen heir a few years later, and the civil war that followed left the empire divided just as Francisco Pizarro arrived.
       In Europe, it struck royal families as easily as anyone. It killed a king of France, Louis the Fifteenth, in 1774, and an emperor of Austria, and changed the line of succession in several countries.
+      In England it killed Queen Mary the Second in 1694, at the age of thirty-two. In Russia it killed the fourteen-year-old Emperor Peter the Second in 1730, just before his wedding, and with him ended the male line of the Romanov dynasty.
       In eighteenth-century Europe, it is estimated to have killed around four hundred thousand people every year.
+    candidates: ["Cuitlahuac", "Florentine Codex smallpox", "Tenochtitlan", "Huayna Capac", "Mary II of England portrait", "Peter II of Russia", "Louis XV deathbed"]
     images:
       - {file: "curid:12442514"}
       - {file: "curid:181371497"}
@@ -74,7 +79,11 @@ scenes:
       Long before anyone understood viruses, people noticed that survivors of smallpox never caught it again.
       In China, India, the Ottoman Empire and parts of Africa, healers practised variolation: taking material from a smallpox sore and introducing it into a small cut on a healthy person, or blowing powdered scabs into the nose. Most people developed a milder case, and were protected for life.
       In 1721, Lady Mary Wortley Montagu, who had seen variolation in Constantinople and survived smallpox herself, had her daughter variolated in London. That same year in Boston, an enslaved African man named Onesimus told the minister Cotton Mather about the practice from his homeland, and it was tried during an epidemic there.
+      The Boston physician Zabdiel Boylston inoculated about two hundred and fifty people. Six of them died. Of the nearly six thousand Bostonians who caught smallpox the natural way that year, more than eight hundred died. The numbers were hard to argue with, but the town was furious, and someone threw a lit bomb through Cotton Mather's window. It failed to explode.
+      Slowly the practice won over the powerful. In 1768, Catherine the Great of Russia invited the English doctor Thomas Dimsdale to Saint Petersburg, and had herself and her son inoculated, to set an example to her subjects.
+      And in early 1777, George Washington, who had survived smallpox as a young man on a voyage to Barbados, ordered every soldier in the Continental Army who had never had the disease to be inoculated.
       Variolation worked, but it was risky. A few people died, and the variolated could spread the full disease to others.
+    candidates: ["Zabdiel Boylston", "Cotton Mather portrait", "Boston 18th century view", "Catherine the Great portrait", "Thomas Dimsdale", "George Washington portrait Peale", "Morristown 1777", "Lady Mary Wortley Montagu", "smallpox inoculation 18th century"]
     images:
       - {file: "europeana:9200579/he2ey8yg", colorize: true}
       - {file: "europeana:9200579/n648jdnf"}
@@ -90,11 +99,13 @@ scenes:
     narration: >
       In the English countryside, there was an old belief that milkmaids who caught cowpox, a mild disease from cows' udders, did not catch smallpox.
       A country doctor in Gloucestershire, Edward Jenner, decided to test it.
-      On the fourteenth of May 1796, he took material from a cowpox sore on the hand of a milkmaid named Sarah Nelmes, and inoculated James Phipps, the eight-year-old son of his gardener.
+      On the fourteenth of May 1796, he took material from a cowpox sore on the hand of a milkmaid named Sarah Nelmes, and inoculated James Phipps, the eight-year-old son of his gardener. Sarah had caught cowpox from a cow named Blossom, whose hide still hangs on the wall of the library at St George's medical school in London.
       Weeks later, Jenner exposed the boy to smallpox. James did not fall ill.
       Jenner published his findings in 1798. The new method was named vaccination, from the Latin word vacca, meaning cow.
+      Jenner was not the first to try it. In 1774, during an epidemic in Dorset, a farmer named Benjamin Jesty scratched material from an infected cow into the arms of his wife and their two eldest sons, using a darning needle. None of them caught smallpox. But Jesty was a farmer, not a doctor, and he never published. Jenner tested, recorded and campaigned, and that is why the world remembers his name.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "14 May 1796", text: "the first vaccination", match: "On the fourteenth of May 1796"}
+    candidates: ["Benjamin Jesty", "Edward Jenner portrait", "Jenner cowpox hand Sarah Nelmes", "Jenner house Berkeley", "milkmaid cow 18th century engraving", "Jenner vaccinating"]
     images:
       - {file: "curid:90129751", colorize: true}
       - {file: "europeana:9200579/hhd759xh"}
@@ -109,6 +120,9 @@ scenes:
       Not everyone was convinced. Some clergymen objected to infecting humans with animal disease. Critics warned that vaccinated people might start to look like cows.
       In 1802, the caricaturist James Gillray drew a famous cartoon showing Jenner vaccinating a crowd of frightened patients, with tiny cows bursting out of their arms and faces.
       But vaccination was far safer than variolation, and it spread rapidly. Jenner's work was translated into several languages within a few years. Bavaria made vaccination compulsory for army recruits in 1807.
+      In America, Thomas Jefferson vaccinated his own family and neighbours, and in 1806 he wrote to Jenner that future nations would know by history only that the loathsome smallpox had existed.
+      In Britain, vaccination of infants became compulsory in 1853. Fines and even prison for refusing provoked fierce resistance. On the twenty-third of March 1885, thousands of people marched through the town of Leicester in one of the largest anti-vaccination demonstrations ever held, and in 1898 the law was changed to allow conscientious objectors to refuse.
+    candidates: ["Thomas Jefferson portrait", "anti-vaccination", "anti-vaccination Leicester 1885", "vaccination 19th century", "calf lymph vaccination", "compulsory vaccination cartoon"]
     images:
       - {file: "curid:2289666"}
       - {file: "europeana:9200579/rb9k8r59"}
@@ -123,6 +137,7 @@ scenes:
       There was a problem. Without refrigeration, the vaccine could not survive long sea voyages.
       In 1803, the Spanish Crown found an extraordinary solution. A doctor named Francisco Javier de Balmis sailed for the Americas with a group of orphan boys.
       Before departure, two boys were vaccinated. As the sores developed, material from them was used to vaccinate the next two, and so on, keeping the vaccine alive, child to child, across the Atlantic.
+      There were twenty-two orphan boys, aged from three to ten. They were cared for on the voyage by Isabel Zendal, the director of their orphanage in A Coruña, who is remembered today as the first nurse ever to take part in an international health mission.
       The expedition carried smallpox vaccination to Spanish America and on to the Philippines.
     maps:
       - match: "sailed for the Americas"
@@ -135,6 +150,7 @@ scenes:
           - [-66.93, 10.48, "Caracas, Venezuela"]
           - [-99.13, 19.43, "Mexico City"]
           - [120.98, 14.60, "Manila, Philippines"]
+    candidates: ["Balmis expedition vaccine", "Isabel Zendal", "La Coruna 19th century", "ship 1803 Spanish corvette", "vaccination Mexico 19th century"]
     images:
       - {file: "wellcome:swbj56cs"}
       - {file: "wellcome:m8xc5bg2"}
@@ -143,11 +159,11 @@ scenes:
   - id: century
     chapter: "VII. Still a Killer"
     narration: >
-      Despite vaccination, smallpox remained one of the great killers of the twentieth century. Vaccination was uneven, especially in poorer countries, and outbreaks continued around the world.
-      Historians estimate that smallpox killed around three hundred million people in the twentieth century alone.
-      By the 1950s, wealthy countries had largely eliminated it at home. But as long as it existed anywhere, it could return anywhere.
+      Even presidents were not safe. In November 1863, Abraham Lincoln was already falling ill when he delivered the Gettysburg Address. Days later, his doctors found that he had smallpox. Two decades later, in Georgia, a small boy named Joseph Stalin caught smallpox, and carried its scars on his face for the rest of his life.
+      Despite vaccination, smallpox remained one of the great killers of the twentieth century. Vaccination was uneven, especially in poorer countries, and outbreaks continued around the world. Historians estimate that smallpox killed around three hundred million people in the twentieth century alone. By the 1950s, wealthy countries had largely eliminated it at home. But as long as it existed anywhere, it could return anywhere. And in 1947, it reached New York. A rug merchant returning by bus from Mexico fell ill and died in a city hospital. Within a month the city had vaccinated more than six million people, five million of them in just two weeks, in queues that stretched around the block. Only twelve people caught smallpox, and two of them died.
     cards:
       - {big: "≈300 million", text: "deaths in the 20th century", match: "Historians estimate that smallpox killed"}
+    candidates: ["Abraham Lincoln 1863 portrait", "Gettysburg 1863", "Stalin 1890s", "smallpox vaccination New York 1947", "vaccination line 1947", "smallpox poster 1940s"]
     images:
       - {file: "curid:39376261"}
       - {file: "curid:16859482"}
@@ -162,9 +178,13 @@ scenes:
     date: "1967–1977"
     narration: >
       In 1967, the World Health Organization launched the Intensified Smallpox Eradication Programme.
-      Teams spread across Africa, South Asia and South America. Instead of vaccinating everyone, they used a clever strategy called surveillance and containment: find every case, vaccinate everyone around it, and close the ring.
+      The idea had come from the Soviet Union. In 1958, its deputy minister of health, the virologist Viktor Zhdanov, asked the World Health Assembly to set out to wipe smallpox from the face of the Earth. The campaign that finally succeeded was directed by an American epidemiologist, Donald Henderson, at the height of the Cold War.
+      Teams spread across Africa, South Asia and South America. Instead of vaccinating everyone, they used a clever strategy called surveillance and containment: find every case, vaccinate everyone around it, and close the ring. Health workers carried picture cards of a child covered in the rash from village to village, asking: have you seen anyone who looks like this? Rewards were offered for every case reported.
       A simple bifurcated needle, with two prongs, made vaccination quick and cheap, using a fraction of the vaccine.
+      In October 1975, on Bhola Island in Bangladesh, a three-year-old girl named Rahima Banu became the last person in the world to catch the deadliest form of the disease, variola major. Her case was reported to the eradication team by an eight-year-old girl from her village. Rahima survived.
       Country after country became free of the disease. In October 1977, in the town of Merca, in Somalia, a hospital cook named Ali Maow Maalin developed the last naturally occurring case of smallpox in the world. He survived.
+      Maalin later worked as a vaccinator himself. In 2013 he died of malaria, while helping a campaign to stop polio in Somalia.
+    candidates: ["smallpox eradication programme", "bifurcated needle", "smallpox recognition card", "Rahima Banu", "Donald Henderson smallpox", "smallpox vaccination Africa", "smallpox Bangladesh", "smallpox vaccination India", "jet injector smallpox"]
     images:
       - {file: "curid:37542373", colorize: true}
       - {file: "curid:8098834"}
@@ -180,10 +200,12 @@ scenes:
     narration: >
       There was one more tragedy. In 1978, a medical photographer named Janet Parker, who worked at Birmingham University Medical School in England, caught smallpox from a laboratory in the building where the virus was being studied.
       She died, the last person known to have been killed by smallpox.
+      The head of the laboratory, the virologist Henry Bedson, blamed himself. While in quarantine at home, he took his own life. Janet Parker's father died while in quarantine too, and her mother caught a mild case of smallpox, but recovered.
       On the eighth of May 1980, the World Health Assembly declared the world free of smallpox.
       It was the first, and is still the only, human disease ever eradicated.
     cards:
       - {big: "8 May 1980", text: "smallpox declared eradicated", match: "On the eighth of May 1980"}
+    candidates: ["Janet Parker smallpox", "Birmingham medical school", "smallpox laboratory", "World Health Assembly"]
     images:
       - {query: "smallpox eradication 1980", count: 2}
       - {query: "World Health Organization 1980", count: 1}
@@ -193,8 +215,10 @@ scenes:
     chapter: "Epilogue"
     narration: >
       The virus still exists, but only in two high-security laboratories, one at the Centers for Disease Control in the United States and one at the VECTOR institute in Russia. Whether to destroy these last stocks is still debated.
+      Strangely, the vaccine that finally defeated smallpox was not cowpox at all. After a century and a half of being passed from arm to arm and grown on the skin of calves, it had become a different virus, called vaccinia. Its genes are closest to horsepox, and its exact origin is still a mystery.
       Smallpox vaccination ended around the world in the years after eradication. And Edward Jenner's idea, that the body can be trained to recognise a disease before it strikes, became the foundation of every vaccine we use today.
       If you enjoyed this biography of a disease, subscribe for the next one.
+    candidates: ["vaccinia virus", "Jenner museum", "smallpox vaccine vial", "Centers for Disease Control Atlanta", "Edward Jenner statue"]
     images:
       - {file: "europeana:9200579/t6gg83yk"}
       - {file: "wellcome:crux6ytk"}
