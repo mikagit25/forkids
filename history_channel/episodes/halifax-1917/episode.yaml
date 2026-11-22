@@ -50,7 +50,6 @@ scenes:
       - {file: "loc:2002735755", image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c30000/3c32000/3c32300/3c32361v.jpg", rights: "No known restrictions on publication.", title: "The harbor of Halifax where the \"Titanic\" victims were taken", date: "c. 1912 (LoC: 1917)", note: "Halifax harbour before the disaster; title refers to 1912, so the photo is probably from then"}   # LoC via Chrome
       - {file: "loc:2019634208", image: "https://tile.loc.gov/storage-services/service/pnp/stereo/1s10000/1s18000/1s18200/1s18236v.jpg", rights: "No known restrictions on publication.", title: "Entrance to Halifax Harbor, Nova Scotia, Canada", date: "c. 1920 (stereograph)", note: "the harbour entrance the convoys used (half of a stereo card, 1024x533)"}   # LoC via Chrome
       - {file: "curid:1721337"}
-      - {file: "curid:1226537"}
       - {file: "curid:159170667"}
       - {file: "curid:73742048"}
       - {file: "curid:46480426"}
@@ -78,6 +77,11 @@ scenes:
       - {file: "curid:91413022"}
       - {file: "curid:30938384"}
       - {file: "curid:145006179"}
+      - {file: "curid:30832417", match: "the nets were already closed"}   # WRNS wiring anti-submarine nets, 1917
+      - {file: "curid:39838965"}   # anti-submarine net cables, Royal Navy 1914-18
+      - {file: "curid:63859047", match: "chartered by the Commission for Relief in Belgium"}   # CRB cargo unloaded, Brussels 1916
+      - {file: "curid:66646333", match: "the starving people of occupied Belgium"}   # Belgian children fed by the CRB
+      - {file: "curid:164970908", match: "Her coal had arrived late"}   # cargo steamer unloading grain, 1914
       - {file: "web:nara:45499928", crop: [0.33, 0.08, 0.96, 0.59], image: "https://catalog.archives.gov/medialz/stillpix/165-ww/Box273/FolderA/165-WW-273A-011.jpg", page_url: "https://catalog.archives.gov/id/45499928", rights: "NARA catalog: Use Unrestricted. Published 1917-1919, public domain in the US.", title: "American merchant ships on their way to France (165-WW-273A-11)", date: "1917-1918", note: "wartime freighters in convoy, like the ships gathering in Bedford Basin"}   # LoC via Chrome
       - {file: "web:nara:86731663", crop: [0.50, 0.07, 0.955, 0.52], image: "https://catalog.archives.gov/medialz/stillpix/111-sc/Box516/111-SC-63470.jpg", page_url: "https://catalog.archives.gov/id/86731663", rights: "NARA catalog: Use Unrestricted. Published 1917-1919, public domain in the US.", title: "Convoy of American ships meeting the U.S.S. George Washington (111-SC-63470)", date: "1918", note: "convoy at sea, end of the war"}   # LoC via Chrome
       - {file: "loc:2014708950", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/28700/28790v.jpg", rights: "No known restrictions on publication.", title: "NC-3 at Halifax", date: "1919", note: "real Halifax harbour in 1919, US Navy seaplane on the water"}   # LoC via Chrome
