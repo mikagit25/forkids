@@ -162,15 +162,18 @@ scenes:
       Lazear himself was less lucky. On the eighth of September, he wrote to his wife: I rather think I am on the track of the real germ. Days later he fell ill, and on the twenty-fifth of September 1900 he died, at the age of thirty-four, leaving a wife and two small children. For decades the official story was that a stray mosquito had bitten him by accident. In 1947, his own notebook revealed the truth: he had let an infected mosquito bite him on purpose.
     candidates: ["Walter Reed", "James Carroll yellow fever", "Jesse William Lazear", "Aristides Agramonte", "Columbia Barracks Cuba", "Havana 1900"]
     images:
-      - {query: "Walter Reed", count: 1, colorize: true}
-      - {query: "Jesse Lazear", count: 1}
-      - {query: "Yellow Fever Commission Cuba", count: 2}
-      - {file: "web:nlm:101426793", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101426793-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101426793-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Walter Reed]", date: "c. 1900", note: "Walter Reed, head of the Yellow Fever Commission"}   # LoC via Chrome
-      - {file: "web:nlm:101421381", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101421381-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101421381-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Jesse W. Lazear, M.D.", date: "c. 1900", note: "Lazear, the commission member who died of yellow fever"}   # LoC via Chrome
-      - {file: "web:nlm:101426807", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101426807-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101426807-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Walter Reed]", date: "c. 1900", note: "Major Walter Reed, head of the commission, dress uniform"}   # LoC via Chrome
-      - {file: "web:nlm:101412298", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101412298-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101412298-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Dr. James Carroll]", date: "c. 1900", note: "James Carroll, commission member, let an infected mosquito bite him"}   # LoC via Chrome
+      - {file: "curid:76738318", match: "yellow fever was killing American soldiers in Cuba"}   # arrival of American troops in Havana, 1899
+      - {file: "curid:67516857"}   # Morro Castle, Havana, 1899 (LoC)
+      - {file: "web:nlm:101426807", match: "commission led by Major Walter Reed", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101426807-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101426807-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Walter Reed]", date: "c. 1900", note: "Major Walter Reed, head of the commission, dress uniform"}   # LoC via Chrome
       - {file: "web:nlm:101409115", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101409115-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101409115-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Aristides Agramonte, M.D: Member of the U.S.A. Yellow Fever Commission", date: "c. 1900", note: "Agramonte, the Cuban-born member of the commission"}   # LoC via Chrome
       - {file: "loc:2016798578", image: "https://tile.loc.gov/storage-services/service/pnp/det/4a00000/4a05000/4a05100/4a05169v.jpg", rights: "No known restrictions on publication.", title: "O'Rielly [i.e. O'Reilly] Street, Havana", date: "1900", note: "Havana in 1900, when fever was killing US soldiers"}   # LoC via Chrome
+      - {file: "curid:5442527"}   # Calle de Habana, c. 1900 (LoC)
+      - {file: "web:nlm:101421381", match: "Dr Jesse Lazear allowed a mosquito", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101421381-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101421381-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Jesse W. Lazear, M.D.", date: "c. 1900", note: "Lazear, the commission member who died of yellow fever"}   # LoC via Chrome
+      - {file: "curid:128371791"}   # Havana, Palace of the Military Governor, 1900
+      - {file: "web:nlm:101412298", match: "James Carroll, also fell gravely ill", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101412298-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101412298-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Dr. James Carroll]", date: "c. 1900", note: "James Carroll, commission member, let an infected mosquito bite him"}   # LoC via Chrome
+      - {file: "curid:36376162", match: "Lazear himself was less lucky"}   # portrait of Jesse William Lazear (Wellcome)
+      - {file: "web:nlm:101426793", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101426793-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101426793-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Walter Reed]", date: "c. 1900", note: "Walter Reed, head of the Yellow Fever Commission"}   # LoC via Chrome
+      - {file: "curid:137994796"}   # Havana Cathedral, 1900
 
   - id: camp
     chapter: "VI. Proof"
@@ -184,11 +187,18 @@ scenes:
       Walter Reed did not live long to enjoy his fame. In November 1902, he died of a ruptured appendix, at the age of fifty-one.
     candidates: ["Camp Lazear", "yellow fever commission experiment", "Clara Maass", "Las Animas hospital Havana", "Walter Reed 1902"]
     images:
-      - {query: "Camp Lazear", count: 2}
-      - {query: "yellow fever experiment Cuba 1900", count: 2}
-      - {file: "web:nlm:101405772", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101405772-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101405772-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "U.S. War of 1898 - Medical and Sanitary Affairs: General view of Camp Lazear (?) near Quemados", date: "1900", note: "the experimental camp in Cuba (NLM marks the identification with a question mark)"}   # LoC via Chrome
+      - {file: "web:nlm:101405772", match: "named Camp Lazear", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101405772-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101405772-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "U.S. War of 1898 - Medical and Sanitary Affairs: General view of Camp Lazear (?) near Quemados", date: "1900", note: "the experimental camp in Cuba (NLM marks the identification with a question mark)"}   # LoC via Chrome
+      - {file: "curid:97333782", match: "volunteers slept for weeks among the soiled bedding"}   # Camp Lazear, infected clothing building
+      - {file: "curid:97333783", match: "In another, clean and well-ventilated"}   # Camp Lazear, mosquito building
       - {file: "web:nlm:101412301", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101412301-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101412301-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Major James Carroll]", date: "c. 1900", note: "Carroll at his desk - the careful experiments"}   # LoC via Chrome
+      - {file: "curid:95961049", match: "signed written consent forms"}   # volunteer's consent contract, English (Nicanor Fernandez), 1900
+      - {file: "curid:95961044"}   # the same contract in Spanish
       - {file: "loc:2016794454", image: "https://tile.loc.gov/storage-services/service/pnp/det/4a00000/4a05000/4a05100/4a05168v.jpg", rights: "No known restrictions on publication.", title: "Havana Street, Havana", date: "1900", note: "Havana around the experimental station, 1900"}   # LoC via Chrome
+      - {file: "curid:192015518"}   # Havana, entrance to the port, 1900
+      - {file: "curid:77669294", match: "One of them was a twenty-five-year-old American nurse"}   # army contract nurses of the Spanish-American War (NLM) — Clara Maass served as one
+      - {file: "curid:108527180"}   # Havana street, c. 1900
+      - {file: "curid:36311746", match: "Walter Reed did not live long"}   # portrait of Major Walter Reed (Wellcome)
+      - {file: "curid:82768414"}   # Walter Reed's grave, Arlington National Cemetery
 
   - id: gorgas
     chapter: "VII. War on the Mosquito"
