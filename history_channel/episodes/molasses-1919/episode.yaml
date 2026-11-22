@@ -36,10 +36,10 @@ scenes:
     chapter: "I. The North End"
     date: "Boston, 1919"
     narration: >
-      Boston's North End was one of the most crowded neighbourhoods in America. Most of its residents were Italian immigrants, along with Irish families, packed into tenements near the harbour.
-      Along Commercial Street ran the docks, warehouses, a fire station and the elevated railway, carrying trains above the street on steel girders.
-      And standing over it all was a giant steel tank, owned by the Purity Distilling Company, a subsidiary of United States Industrial Alcohol.
-      It was fifty feet tall and ninety feet across. It could hold about two point three million gallons of molasses.
+      Boston's North End was one of the most crowded neighbourhoods in America. Wave after wave of newcomers had settled here: first the Irish, then Jewish families from Eastern Europe, and then Italians. By 1910, Italian immigrants alone made up a quarter of all its residents, packed into tenements near the harbour.
+      Along Commercial Street ran the docks, warehouses, a fire station and the Atlantic Avenue elevated railway, opened in 1901, carrying trains above the street on steel girders.
+      And standing over it all was a giant steel tank, owned by the Purity Distilling Company, bought in 1917 by United States Industrial Alcohol.
+      It was fifty feet tall and ninety feet across. It could hold about two point three million gallons of molasses, weighing some twelve thousand tonnes.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "2.3 million", text: "gallons of molasses in one tank", match: "It could hold about two point three million gallons"}
     images:
@@ -57,11 +57,11 @@ scenes:
   - id: why
     chapter: "II. Why Molasses?"
     narration: >
-      Molasses was not just for baking. It could be fermented and distilled into industrial alcohol, a key ingredient in making munitions.
-      During the First World War, demand had soared. Ships from the Caribbean unloaded molasses into the Boston tank, and from there it went by rail to a distillery across the river.
-      By early 1919 the war was over, but another deadline was approaching. The country was about to adopt Prohibition, which would ban the production of alcoholic drinks. Some historians believe the company was hurrying to turn as much molasses as possible into alcohol before the law took effect.
-      The tank had been filled again just days before.
-      The timing was remarkable. The day after the disaster, on the sixteenth of January 1919, enough states ratified the Eighteenth Amendment to make nationwide Prohibition part of the Constitution.
+      Molasses had been part of New England's trade for two centuries. Ships carried it north from the sugar plantations of the Caribbean, where it was distilled into rum — part of the same Atlantic trade that carried enslaved Africans across the ocean. But by 1919, molasses was not just for baking or rum. It could be fermented and distilled into industrial alcohol, a key ingredient in making munitions.
+      During the First World War, demand had soared. Ships from the Caribbean unloaded molasses into the Boston tank, and from there it went by pipeline to the company's alcohol plant in nearby Cambridge.
+      The war had ended with the armistice of the eleventh of November 1918, and by early 1919 the fighting was over, but another deadline was approaching. The country was about to adopt Prohibition, which would ban the production of alcoholic drinks. Some historians believe the company was hurrying to turn as much molasses as possible into alcohol before the law took effect.
+      Just the day before the disaster, a ship had delivered a fresh load, warmed so that it would flow more easily into the tank.
+      The timing was remarkable. The day after the disaster, on the sixteenth of January 1919, Nebraska became the thirty-sixth state to ratify the Eighteenth Amendment, and nationwide Prohibition became part of the Constitution. It took effect one year later.
     images:
       - {query: "Boston molasses disaster", count: 1}
       - {query: "Boston 1910s", count: 1}
@@ -75,10 +75,9 @@ scenes:
   - id: warnings
     chapter: "III. The Leaking Tank"
     narration: >
-      The tank had been built in 1915, in a hurry. The man in charge of its construction was the company's treasurer, Arthur Jell. He could not read a blueprint, and he had no training as an engineer or architect.
-      The tank was never properly tested. Instead of filling it with water to check for leaks, the company filled it with only a few inches.
+      The tank had been built in 1915, in a hurry. The man in charge of its construction was the company's treasurer, Arthur Jell. He had no training as an engineer or architect. The tank was never properly tested with water to check for leaks before the molasses went in.
       From its very first filling, it leaked. Brown streaks ran down its sides. The company's response was to paint the tank brown, so the leaks would not show.
-      Local families came with buckets and cans to collect the molasses that oozed out. Workers reported hearing the tank groan and rumble.
+      Local families came with buckets and cans to collect the molasses that oozed out. Every time it was filled, people heard the tank groan and rumble. Nobody stopped it. In more than three years, it had been filled to the top only eight times, so its walls were stretched and relaxed again and again. Some engineers also think that the molasses inside was slowly fermenting, giving off gas that raised the pressure, and that the final crack began near a manhole cover at the base of the tank.
     images:
       - {query: "Molasses Flood", count: 2}
       - {query: "North End Boston tenements", count: 1}
@@ -88,9 +87,9 @@ scenes:
     date: "15 January 1919"
     narration: >
       The fifteenth of January 1919 was unusually mild. The day before, it had been bitterly cold. Now the temperature rose to around forty degrees Fahrenheit.
-      At about half past twelve, as dock workers ate lunch and children played outside, people nearby heard a deep rumble, followed by sharp cracks, like a machine gun. Rivets were popping out of the tank's steel plates.
+      At about half past twelve, as dock workers ate lunch and children played outside, people nearby heard a deep rumble, followed by sharp cracks, like a machine gun. Others said it felt like the ground was shaking, or that it sounded like a passing elevated train. Rivets were shooting out of the tank's steel plates.
       Then the tank split open.
-      Millions of gallons of molasses burst out in a single wave, around twenty-five feet high at its peak.
+      Millions of gallons of molasses burst out in a single wave, around twenty-five feet high at its peak, rushing through the streets at an estimated thirty-five miles an hour.
     images:
       - {query: "Molasses Flood", count: 2}
       - {query: "Boston 1919 street", count: 1}
@@ -103,10 +102,11 @@ scenes:
     chapter: "V. The Wave"
     narration: >
       The wave smashed through everything in its path.
-      Steel panels from the tank hurtled into the girders of the elevated railway, nearly bringing the tracks down. A streetcar was pushed off its rails. Buildings were knocked from their foundations. A fire station was swept partly into the harbour.
+      Steel panels from the tank hurtled into the girders of the elevated railway, nearly bringing the tracks down. A streetcar was pushed off its rails. Buildings were knocked from their foundations. A truck was picked up and thrown into the harbour. The Boston Globe reported that people were picked up by a rush of air and hurled many feet.
       People and horses were caught in the flood. Molasses is heavy and thick. Once it engulfed someone, they could barely move or breathe.
-      Rescuers arrived within minutes, among them sailors from a training ship in the harbour. They waded into syrup up to their waists, pulling out anyone they could reach.
-      Twenty-one people died. Many were labourers and residents of the neighbourhood. Some of the youngest victims were children who had been playing nearby. About a hundred and fifty more were injured.
+      A newspaper, the Boston Post, described the scene: horses died like so many flies on sticky fly-paper; the more they struggled, the deeper in the mess they were ensnared.
+      The first rescuers were a hundred and sixteen cadets from the USS Nantucket, a training ship of the Massachusetts Nautical School, docked nearby. They ran several blocks and waded into the molasses, pulling out anyone they could reach. Then came police, soldiers, sailors and the Red Cross. Some Red Cross nurses waded into the molasses themselves. Doctors set up a makeshift hospital in a nearby building, and many people worked through the night.
+      Twenty-one people died. Many were labourers and residents of the neighbourhood. Some of the youngest victims were children who had been playing nearby. About a hundred and fifty more were injured, and for days afterwards coughing fits were among the most common complaints. Dogs and horses were among the wounded too.
     images:
       - {query: "Boston molasses disaster", count: 2, colorize: true}
       - {query: "Molasses Flood", count: 1}
@@ -119,9 +119,10 @@ scenes:
     chapter: "VI. The Victims"
     narration: >
       The dead came from every part of the neighbourhood's life.
-      There were labourers working on the docks and in the freight yards, a teamster with his wagon, firemen resting in their station, and city workers eating lunch in a nearby building.
-      Among the youngest was a ten-year-old boy, Pasquale Iantosca, who had been collecting firewood near the tank. Several other children were caught as they played or walked home for lunch.
-      Many of the families were immigrants who had come to Boston for work and a better life. For years afterwards, survivors described the sound of the tank bursting, and the brown wave rolling towards them, as the most frightening thing they had ever known.
+      Six of them worked at the city's paving yard beside the tank: labourers, a paver and two blacksmiths. There were teamsters and drivers with their wagons, a longshoreman, an expressman and a messenger. George Layhe, a firefighter of Engine 31, died when the wave smashed into his firehouse. In a house nearby, sixty-five-year-old Bridget Clougherty was killed when her home was flattened, and Stephen Clougherty, thirty-four, died too. The oldest victim, Michael Sinnott, was seventy-eight. Two of the teamsters, Eric Laird and Peter Shaughnessy, were only seventeen and eighteen.
+      The youngest were two ten-year-olds, Pasquale Iantosca and Maria Di Stasio. Several other children were caught as they played or walked home for lunch.
+      One boy, Anthony di Stasio, was walking home from school with his sisters when the wave picked him up and carried him on its crest, almost as if he were surfing. Then it rolled him like a pebble. He heard his mother calling his name, but his throat was so full of molasses that he could not answer. He passed out, and woke to find three of his four sisters looking down at him. Anthony survived. The fourth, ten-year-old Maria, did not.
+      Many of the families were immigrants who had come to Boston for work and a better life. A hundred years later, their twenty-one names would be read aloud on the spot where the tank had stood.
     images:
       - {query: "North End Boston", count: 1}
       - {query: "North End Boston tenements", count: 2}
@@ -134,10 +135,11 @@ scenes:
   - id: science
     chapter: "VII. Why It Was So Deadly"
     narration: >
-      For decades, people wondered how a liquid used in cookies could kill.
-      In 2016, a team of scientists at Harvard modelled the disaster. They found that the cold made all the difference.
+      For decades, people wondered how a liquid used in cookies could kill. Molasses is about forty per cent denser than water, so a tank full of it held an enormous amount of energy. And it behaves strangely: under pressure it thins and flows fast, then it slows and thickens again.
+      In 2016, a team of scientists and students at Harvard modelled the disaster. They gathered 1919 newspaper reports, old maps and weather records, and flooded a scale model of the neighbourhood with cold corn syrup. They concluded that the reports of the wave's terrible speed were believable. They found that the cold made all the difference. As the magazine Scientific American put it, a wave of molasses is even more devastating than a typical tsunami: it moves fast enough to sweep people up and demolish buildings, then settles into a gelatinous state that keeps them trapped.
       As the molasses spread out into the freezing January air, it cooled quickly and became even thicker. Victims caught in it found themselves trapped, as if in quicksand that was slowly setting around them. That also made the rescue painfully slow.
-      It took days to find all the victims. The last bodies were not recovered for months.
+      It took days to find all the victims. The search went on for four days. Some victims had been swept into the harbour, and were not found until three or four months later.
+      Engineers have studied the tank too. A modern analysis in 2014 found that its steel was only half as thick as it should have been, even by the standards of the time. The steel also lacked manganese, which made it brittle, and the first cracks appear to have formed around the rivet holes.
     images:
       - {query: "Molasses Flood", count: 2}
       - {query: "Boston 1919 street", count: 1}
@@ -145,8 +147,8 @@ scenes:
   - id: cleanup
     chapter: "VIII. Cleaning Up a Sea of Syrup"
     narration: >
-      The cleanup took weeks. Fresh water barely shifted the sticky mass, so crews hosed it down with salt water from the harbour and scraped it off with shovels.
-      Molasses was tracked across the city on boots and carriage wheels, onto trams and into homes. The harbour turned brown.
+      The cleanup took weeks. Fresh water barely shifted the sticky mass, so crews sprayed it with salt water from a fireboat, and spread sand to soak it up. Several hundred people joined the work.
+      Rescuers, workers and sightseers tracked it across the city: onto subway platforms, the seats of trains and streetcars, pay telephones and into homes. As one account put it, everything a Bostonian touched was sticky. The harbour stayed brown until the summer.
       And for decades afterwards, North End residents said that on hot summer days, the neighbourhood still smelled faintly of molasses.
     images:
       - {query: "Boston molasses disaster", count: 2}
@@ -158,11 +160,10 @@ scenes:
     date: "1919–1925"
     narration: >
       The company had a ready explanation. It claimed that anarchists had blown up the tank. In 1919, America was gripped by fear of anarchist bombings, and the story was not as absurd as it sounds today.
-      The company's lawyers pointed to letters and threats, and to the bombings carried out by anarchist groups in other American cities around that time.
+      Later that same year, followers of the Italian anarchist Luigi Galleani mailed dozens of bombs to politicians and officials, and on the second of June 1919 they set off nine large bombs almost at once in eight American cities. One of them wrecked the front of the Attorney General's house in Washington. In September, even Boston's police went on strike, and the city went through nights of riots. The governor who stood firm against the strikers, Calvin Coolidge, became famous across the country for it, and a few years later he was President of the United States. In that atmosphere, a bomb sounded believable.
       But the families did not accept it. One hundred and nineteen residents and businesses joined together in one of the first class-action lawsuits in Massachusetts.
-      For about three years, a court-appointed auditor heard testimony from engineers, workers and witnesses. In the end, he found that the tank had simply been too weak for its load, built without proper calculation and never properly tested.
-      The auditor's report ran to hundreds of pages. He rejected the bomb theory completely. There was no evidence of an explosive, and the failure was exactly what would be expected from a tank that was too weak.
-      United States Industrial Alcohol was held responsible. It paid around six hundred and twenty-eight thousand dollars in damages, roughly seven thousand dollars for each victim's family.
+      For about three years, a court-appointed auditor, Hugh Ogden, heard testimony from engineers, workers and witnesses. In the end, he found that the tank had simply been too weak for its load, built without proper calculation and never properly tested.
+      He rejected the company's bomb story. United States Industrial Alcohol was held responsible. It paid around six hundred and twenty-eight thousand dollars in damages, roughly seven thousand dollars for each victim's family.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "$628,000", text: "paid in damages", match: "It paid around six hundred and twenty-eight thousand dollars"}
     images:
@@ -181,8 +182,9 @@ scenes:
   - id: legacy
     chapter: "Epilogue"
     narration: >
-      The verdict changed the rules. Massachusetts, and then states across the country, began requiring that large structures be designed and approved by licensed engineers and architects, with their calculations on file.
-      Today, a small plaque on Commercial Street marks the spot. The tank is long gone, and a park stands nearby.
+      The case is considered a milestone in the development of modern corporate regulation. The verdict changed the rules. Massachusetts, and then states across the country, began requiring that large structures be designed and approved by licensed engineers and architects, with their calculations on file.
+      The tank was never rebuilt. The site became a yard for the elevated railway, and today it is a city park, Langone Park, with a baseball field, a playground and bocce courts. A small plaque at the entrance to the neighbouring park marks the disaster. It speaks of a forty-foot wave; most modern estimates are closer to twenty-five feet. Much of what we know about the victims comes from the historian Stephen Puleo, who pieced together their stories in his 2004 book, Dark Tide.
+      On the fifteenth of January 2019, a hundred years to the day, people gathered there. Ground-penetrating radar had found the tank's concrete base, still buried about half a metre under the baseball field. They stood in a circle marking the edge of the tank, and the names of the twenty-one people who died were read aloud.
       It is easy to laugh at the idea of a molasses flood. But the people of the North End paid for it with their lives, and every building we trust today owes a little to what Boston learned that day.
       If you enjoyed this story from the archives, subscribe for more forgotten chapters of history.
     images:
