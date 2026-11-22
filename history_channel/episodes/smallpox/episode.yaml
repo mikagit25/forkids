@@ -57,6 +57,8 @@ scenes:
       - {file: "curid:9541621", match: "the pharaoh Ramses the Fifth"}
       - {file: "curid:43216269"}
       - {file: "cleveland:162518"}
+      - {file: "curid:35997701", match: "In Japan, the red was believed"}
+      - {file: "curid:36066605"}
 
   - id: killer
     chapter: "II. A Killer of Kings"
@@ -110,6 +112,8 @@ scenes:
       - {file: "curid:36394803"}
       - {file: "curid:182863295", match: "George Washington, who had survived"}
       - {file: "curid:79704516"}
+      - {file: "curid:6366421", match: "Lady Mary Wortley Montagu"}
+      - {file: "curid:88734210"}
 
   - id: jenner
     chapter: "IV. The Milkmaid's Secret"
@@ -138,6 +142,7 @@ scenes:
       - {file: "curid:36322967"}
       - {file: "curid:36327786"}
       - {file: "curid:36367753"}
+      - {file: "curid:36316062"}
 
   - id: mockery
     chapter: "V. Cows and Cartoons"
@@ -160,6 +165,7 @@ scenes:
       - {file: "curid:158736263"}
       - {file: "curid:158736722"}
       - {file: "curid:68104011"}
+      - {file: "curid:36460206", match: "might start to look like cows"}
 
   - id: balmis
     chapter: "VI. A Living Chain"
@@ -187,6 +193,11 @@ scenes:
       - {file: "wellcome:m8xc5bg2"}
       - {query: "Francisco Javier de Balmis", count: 1}
       - {file: "wellcome:qmqyp66a"}
+      - {file: "curid:92227309"}
+      - {file: "curid:40546427", match: "There were twenty-two orphan boys"}
+      - {file: "curid:40548038"}
+      - {file: "curid:40569424"}
+      - {file: "curid:40570336", match: "They were cared for on the voyage by Isabel Zendal"}
 
   - id: century
     chapter: "VII. Still a Killer"
@@ -208,6 +219,8 @@ scenes:
       - {file: "curid:86974284", match: "delivered the Gettysburg Address"}
       - {file: "curid:67629160"}
       - {file: "curid:8139610"}
+      - {file: "curid:36051102"}
+      - {file: "curid:36058285"}
 
   - id: eradication
     chapter: "VIII. The Last Campaign"
@@ -234,6 +247,7 @@ scenes:
       - {file: "curid:2262195"}
       - {file: "curid:12817459"}
       - {file: "curid:12841800", match: "on Bhola Island in Bangladesh"}
+      - {file: "curid:50816845", match: "an American epidemiologist, Donald Henderson"}
 
   - id: last-death
     chapter: "IX. The Last Victim"
@@ -251,6 +265,9 @@ scenes:
       - {query: "smallpox eradication 1980", count: 2}
       - {query: "World Health Organization 1980", count: 1}
       - {file: "web:nlm:101447293", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447293-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447293-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Three former directors of CDC's smallpox eradication efforts", date: "undated (c. 1980?)", note: "the people who ran the eradication programme"}   # LoC via Chrome
+      - {file: "curid:105949522", match: "It was the first, and is still the only"}
+      - {file: "curid:188918674", match: "who worked at Birmingham University Medical School"}
+      - {file: "curid:18609452", match: "the World Health Assembly declared the world free of smallpox"}
 
   - id: today
     chapter: "Epilogue"
@@ -268,6 +285,10 @@ scenes:
       - {file: "curid:115915390", match: "called vaccinia"}
       - {file: "curid:36117456"}
       - {file: "curid:15717180", match: "Edward Jenner's idea"}
+      - {file: "curid:118315190", match: "Smallpox vaccination ended around the world"}
+      - {file: "curid:51857894", match: "The virus still exists"}
+      - {file: "curid:36211044"}
+      - {file: "curid:181752028"}
 
 thumbnail:
   scene: jenner
