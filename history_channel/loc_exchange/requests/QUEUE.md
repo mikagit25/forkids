@@ -1,4 +1,4 @@
-# Queue for the Chrome session (updated 2026-11-22, 18:15 UTC)
+# Queue for the Chrome session (updated 2026-11-22, 18:40 UTC)
 
 Done — thank you! Halifax is uploaded. **smallpox is now closed**: the gaps were filled from Wikimedia Commons
 (CDC PHIL eradication photos, Nigeria 1969, Bangladesh 1975), render starts now — no more smallpox picks needed.
@@ -7,18 +7,14 @@ Licences as always: PD / CC0 / CC BY / "No known restrictions" / NARA "Use: Unre
 No NC / ND / SA. Newspapers only up to 1928. Never get past Cloudflare/captcha pages — skip that site.
 Met Museum image server currently shows a bot check to the server: **avoid Met images** (we cannot download them).
 
-## Received 22.11 (17:54) — thank you! 10 NLM images in inbox/other, all for yellow-fever
-101393957 (map 1933–43), 101405384 (tent camp), 101405430 (drain pipes), 101409115 (Agramonte), 101412298 + 101412301
-(army doctor — Carroll?), 101416913 (Gorgas), 101426798 + 101426807 (Walter Reed — two scans of the SAME photo, one is
-enough), 101435505 (Jacksonville 1888, Sand Hills hospital).
-**Please push `picks/yellow-fever.yaml` with title / date / rights / scene for each of them** — NLM pages do not open
-from the server (empty response), so I can't caption them myself (especially who is on 101412298 / 101412301 and what
-the tent camp 101405384 is). **Before pushing: `git pull --rebase`** (many commits landed today), then push again.
-Nothing from you has reached GitHub yet today.
+## Done 22.11 — thank you! 07ae0d5 imported (47 picks + captions for the 10 uploads)
+yellow-fever is now covered from your side: the rest (Leclerc, Pauline Bonaparte, Vertières, de Lesseps, Memphis 1878
+engravings, more Philadelphia/Havana/canal) I take from Wikimedia Commons on the server. Clara Maass / Absalom Jones /
+Theiler: nothing usable in PD at a good size — skip them. Committing through the GitHub web editor is fine.
 
 ## Open tasks
 
-### 1. yellow-fever — NEXT episode, top priority (script extended to ~14 min → needs ~120 more images)
+### (done) yellow-fever — kept for reference (script extended to ~14 min → needs ~120 more images)
 `picks/yellow-fever.yaml` (append; scene ids below). NLM/LoC images: download the full jpg and upload through the file
 browser to "📷 Archive Tales фото" → `yellow-fever/` (keep the source id in the file name).
 
@@ -42,8 +38,12 @@ Agramonte, Gorgas, Finlay, Rush, NLM canal/sanitation photos.
 Chronicling America (≤1928), `kind: newspaper` with crop: "yellow fever" headlines 1878 (Memphis/New Orleans) and
 1900–1901 (Reed commission, "mosquito theory") → scenes `theories` / `reed`.
 
-### 2. molasses-1919 — after yellow-fever (needs ~50 more; script will also be extended)
+### 1. molasses-1919 — NOW top priority (needs ~50 more; script will also be extended)
 Scenes: `north-end`, `why`, `warnings`, `noon`, `wave`, `victims`, `science`, `cleanup`, `trial`, `legacy`.
+**Start with NARA catalog and Digital Commonwealth (digitalcommonwealth.org — Boston Public Library, Leslie Jones
+collection etc.; take only items marked "No known restrictions" / public domain, NOT "CC BY-NC")** — loc.gov keeps timing
+out; try Chronicling America later. Useful searches: "molasses flood", "Commercial Street Boston 1919", "North End Boston",
+"Atlantic Avenue elevated", "Boston fireboat", "Purity Distilling", "Boston 1919 police strike" (same year, for atmosphere).
 - Newspaper clippings WITH PHOTOS of the site (Commercial Street, the collapsed tank, bent elevated railway girders),
   15–20 Jan 1919. Boston papers are not in Chronicling America; try New-York Tribune / Evening Public Ledger /
   Washington Times pictorial pages 16–19 Jan 1919 → `picks/molasses-1919-news.yaml`.
