@@ -124,8 +124,10 @@ def _still(ep_dir: Path, item: dict, manifest_files: dict, video: Path, cache: d
     return img
 
 
-def _layers(img: Image.Image):
-    """Blurred, darkened background filling 9:16 + the whole photo fitted into the central area."""
+def _layers(img: Image.Image, whole: bool = False):
+    """Blurred, darkened background filling 9:16 + the whole photo fitted into the central area.
+    whole=True (cards, maps, quotes rendered as episode frames): fit the entire frame to the width, no pan,
+    so a number or a map route is never cut in half."""
     iw, ih = img.size
     s = max(W / iw, H / ih)
     bg = img.resize((int(iw * s) + 1, int(ih * s) + 1), Image.BILINEAR)
@@ -134,7 +136,9 @@ def _layers(img: Image.Image):
     bg = Image.blend(bg, Image.new("RGB", (W, H), (0, 0, 0)), 0.55)
     box_w, box_h = W - 60, 1180                         # photo area between hook (top) and captions (bottom)
     f = min(box_w / iw, box_h / ih)
-    if iw > ih * 1.05:                                  # landscape: show it big and pan across the whole width
+    if whole:
+        f = min(W / iw, box_h / ih)
+    elif iw > ih * 1.05:                                # landscape: show it big and pan across the whole width
         f = max(f, min(1000 / ih, 1.9 * W / iw))
     fg = img.resize((max(1, int(iw * f)), max(1, int(ih * f))), Image.LANCZOS)
     return bg, fg
@@ -173,7 +177,8 @@ def _render_short(ep_dir: Path, spec: dict, idx: int, subs, timeline, manifest_f
         cur = next((x for x in shots if x["start"] <= t < x["end"]), shots[-1])
         k = id(cur)
         if k not in layers:
-            layers[k] = _layers(_still(ep_dir, cur, manifest_files, video, cache))
+            whole = cur.get("kind") != "photo" or not manifest_files.get(cur.get("id"))
+            layers[k] = _layers(_still(ep_dir, cur, manifest_files, video, cache), whole=whole)
         bg, fg = layers[k]
         p = (t - max(cur["start"], t0)) / max(0.5, min(cur["end"], t1) - max(cur["start"], t0))
         p = min(max(p, 0), 1)
