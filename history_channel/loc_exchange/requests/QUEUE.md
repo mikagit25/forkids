@@ -1,4 +1,4 @@
-# Queue for the Chrome session (updated 2026-11-22, evening)
+# Queue for the Chrome session (updated 2026-11-22, 18:15 UTC)
 
 Done — thank you! Halifax is uploaded. **smallpox is now closed**: the gaps were filled from Wikimedia Commons
 (CDC PHIL eradication photos, Nigeria 1969, Bangladesh 1975), render starts now — no more smallpox picks needed.
@@ -6,6 +6,15 @@ Done — thank you! Halifax is uploaded. **smallpox is now closed**: the gaps we
 Licences as always: PD / CC0 / CC BY / "No known restrictions" / NARA "Use: Unrestricted" / NLM "public domain".
 No NC / ND / SA. Newspapers only up to 1928. Never get past Cloudflare/captcha pages — skip that site.
 Met Museum image server currently shows a bot check to the server: **avoid Met images** (we cannot download them).
+
+## Received 22.11 (17:54) — thank you! 10 NLM images in inbox/other, all for yellow-fever
+101393957 (map 1933–43), 101405384 (tent camp), 101405430 (drain pipes), 101409115 (Agramonte), 101412298 + 101412301
+(army doctor — Carroll?), 101416913 (Gorgas), 101426798 + 101426807 (Walter Reed — two scans of the SAME photo, one is
+enough), 101435505 (Jacksonville 1888, Sand Hills hospital).
+**Please push `picks/yellow-fever.yaml` with title / date / rights / scene for each of them** — NLM pages do not open
+from the server (empty response), so I can't caption them myself (especially who is on 101412298 / 101412301 and what
+the tent camp 101405384 is). **Before pushing: `git pull --rebase`** (many commits landed today), then push again.
+Nothing from you has reached GitHub yet today.
 
 ## Open tasks
 
@@ -23,6 +32,12 @@ browser to "📷 Archive Tales фото" → `yellow-fever/` (keep the source id
 | `canal` (1904–1914) | Panama Canal construction (Culebra Cut, Gatun locks, steam shovels, workers); **SS Ancon first transit 15 Aug 1914** — LoC / NARA "Unrestricted" |
 | `vaccine` (1937) | Max Theiler; Rockefeller Foundation yellow fever lab; 17D vaccine production 1930s–40s |
 | `today` | Aedes aegypti (CDC PHIL), WHO / CDC vaccination campaign photos in Africa or South America (PD only) |
+
+**Still missing (most important first):** Clara Maass portrait; Jesse Lazear; James Carroll (confirmed); Camp Lazear
+buildings; Memphis 1878 engravings (Frank Leslie's / Harper's); Bush Hill, Richard Allen, Absalom Jones, Stephen Girard;
+General Leclerc, Pauline Bonaparte, Toussaint Louverture, Battle of Vertières; Ferdinand de Lesseps + French canal
+machinery 1880s; SS Ancon 15 Aug 1914; Max Theiler + Rockefeller lab; Philadelphia 1790s views. Already have: Reed,
+Agramonte, Gorgas, Finlay, Rush, NLM canal/sanitation photos.
 
 Chronicling America (≤1928), `kind: newspaper` with crop: "yellow fever" headlines 1878 (Memphis/New Orleans) and
 1900–1901 (Reed commission, "mosquito theory") → scenes `theories` / `reed`.
