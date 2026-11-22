@@ -37,8 +37,8 @@ scenes:
     chapter: "I. Yellow Jack"
     narration: >
       Yellow fever is caused by a virus, carried by mosquitoes, above all the species Aedes aegypti.
-      It begins like many fevers, with chills, headache and muscle pain. Most patients recover. But in some, after a brief remission, the disease returns violently. The liver fails, turning the skin and eyes yellow. Patients bleed from the gums and stomach, and vomit dark, digested blood, the dreaded black vomit.
-      The virus and its mosquito originally came from Africa. They crossed the Atlantic on slave ships in the seventeenth century, carried in water barrels where mosquitoes bred. In the ports of the Americas, the disease found a new home.
+      It begins like many fevers, with chills, headache and muscle pain. Most patients recover. But about fifteen in every hundred go on to a severe form of the disease. But in some, after a brief remission, the disease returns violently. The liver fails, turning the skin and eyes yellow. Patients bleed from the gums and stomach, and vomit dark, digested blood, the dreaded black vomit.
+      The virus and its mosquito originally came from Africa. They crossed the Atlantic on slave ships in the seventeenth century, carried in water barrels where mosquitoes bred. The first outbreak in the Americas that can be identified with certainty struck the island of Barbados in 1647. A year later, on the Yucatán Peninsula, the Maya gave the illness a name of their own: xekik, blood vomit. In the ports of the Americas, the disease found a new home.
       Sailors called it Yellow Jack, after the yellow quarantine flag flown by ships carrying the sick.
     maps:
       - match: "They crossed the Atlantic on slave ships"
@@ -62,7 +62,9 @@ scenes:
     narration: >
       In the summer of 1793, Philadelphia was the capital of the United States and its largest city.
       That August, yellow fever broke out near the docks. Within weeks it was everywhere.
-      Around twenty thousand people fled the city, including President George Washington and much of the federal government. Those who stayed watched carts carry the dead through empty streets.
+      Around twenty thousand people fled the city, including President George Washington and much of the federal government. Those who stayed watched carts carry the dead through empty streets. People walked with handkerchiefs soaked in vinegar pressed to their noses. In the worst week, in early October, seven hundred and eleven deaths were reported.
+      The mayor, Matthew Clarkson, stayed, and with a small committee of volunteers he turned a mansion outside the city, Bush Hill, into a fever hospital. At first it was a place of horror, described by one witness as a great human slaughter-house. Then a French-born merchant, Stephen Girard, and a barrel maker, Peter Helm, volunteered to run it themselves. They cleaned it, brought in beds and clean water, and hired nurses.
+      The city also asked for help from the Free African Society, founded by two Black ministers, Richard Allen and Absalom Jones. Benjamin Rush believed, wrongly, that people of African descent were immune. They were not. Black volunteers nursed the sick and carried away the dead, and two hundred and forty Black Philadelphians died, at the same rate as white residents. When a publisher, Mathew Carey, later accused some Black nurses of overcharging, Allen and Jones answered with a pamphlet of their own, defending their community.
       Doctors disagreed bitterly about treatment. Benjamin Rush, the most famous physician in America, bled his patients heavily and gave them powerful purges. Others prescribed rest and gentle care.
       By the time cold weather arrived in November and the epidemic ended, around five thousand people had died, about one in ten of the city's population.
     cards:                 # big-number cards, shown while the matching sentence is read
@@ -78,8 +80,9 @@ scenes:
     date: "1802–1803"
     narration: >
       In 1802, Napoleon sent a large army to the Caribbean colony of Saint-Domingue, today's Haiti, to crush the revolution of formerly enslaved people and restore French control.
-      The army fought the Haitian revolutionaries. But it was also attacked by yellow fever. Tens of thousands of French soldiers died, among them the expedition's commander, Napoleon's brother-in-law, General Leclerc.
-      The disaster helped convince Napoleon to give up his ambitions in the Americas. In 1803, he sold the vast Louisiana territory to the United States.
+      The army fought the Haitian revolutionaries. But it was also attacked by yellow fever. By one account, around fifteen thousand French soldiers died of fever in only two months. Tens of thousands died in all, from war and disease, among them the expedition's commander, Napoleon's brother-in-law, General Leclerc. He had taken refuge on the small island of Tortuga to escape the fever, but it found him there, and he died on the first of November 1802. His wife, Pauline Bonaparte, cut off her hair and laid it in his coffin.
+      The revolution's great leader, Toussaint Louverture, had been arrested by the French and shipped to a fortress prison in the mountains of France, where he died in 1803. But his generals fought on. On the eighteenth of November 1803, Jean-Jacques Dessalines defeated the French at the Battle of Vertières, and by the end of the year the last French soldiers had left.
+      The disaster helped convince Napoleon to give up his ambitions in the Americas. In 1803, he sold the vast Louisiana territory to the United States, for fifteen million dollars, less than three cents an acre.
       And on the first of January 1804, Haiti declared its independence, the first nation founded by formerly enslaved people.
     images:
       - {query: "Saint-Domingue expedition", count: 2}
@@ -89,10 +92,10 @@ scenes:
   - id: theories
     chapter: "IV. Filth, Fomites and a Cuban Doctor"
     narration: >
-      Through the nineteenth century, yellow fever struck again and again, from New Orleans to Rio de Janeiro.
+      Through the nineteenth century, yellow fever struck again and again, from New Orleans to Rio de Janeiro. At least twenty-five major outbreaks struck the Americas in the eighteenth and nineteenth centuries, and New Orleans was hit again and again, worst of all in 1833 and 1853.
       Most doctors believed it spread through filth and miasma, or through the clothes and bedding of the sick. Cities burned tar in the streets and fumigated houses.
-      In 1881, a Cuban physician named Carlos Finlay proposed a different idea. He argued that yellow fever was carried by a mosquito.
-      For almost twenty years, few people took him seriously.
+      In 1878, an epidemic swept up the Mississippi Valley and killed an estimated twenty thousand people. In Memphis alone, more than five thousand died, and so many people fled that the city lost its charter. Doctors, priests, nuns, and even the owner of a brothel, Annie Cook, stayed behind to nurse the sick, and many of them died. A riverboat carrying people away from Memphis wandered the Mississippi for two months, because no town would let its passengers come ashore.
+      In 1881, a Cuban physician named Carlos Finlay proposed a different idea. He argued that yellow fever was carried by a mosquito, which bit a sick person and then a healthy one. He presented the idea at an international sanitary conference, where it was received with ridicule. A year later he identified the culprit, the mosquito we now call Aedes aegypti. For almost twenty years, few people took him seriously. Finlay was nominated for the Nobel Prize seven times, but never received it.
     images:
       - {query: "Carlos Finlay", count: 1, colorize: true}
       - {query: "New Orleans yellow fever 1878", count: 2}
@@ -109,7 +112,8 @@ scenes:
       In 1900, after the Spanish-American War, yellow fever was killing American soldiers in Cuba. The US Army sent a commission led by Major Walter Reed to find out why.
       The commission decided to test Finlay's mosquito theory, on human volunteers.
       On the thirty-first of August 1900, Dr Jesse Lazear allowed a mosquito that had fed on yellow fever patients to bite a soldier, Private William Dean. Within days, Dean fell ill. He survived.
-      Lazear himself was less lucky. In September, he developed yellow fever and died. His colleagues believed a mosquito had bitten him during his work.
+      Another member of the commission, James Carroll, also fell gravely ill after a mosquito bite. He recovered, but the illness damaged his heart, and he died seven years later.
+      Lazear himself was less lucky. On the eighth of September, he wrote to his wife: I rather think I am on the track of the real germ. Days later he fell ill, and on the twenty-fifth of September 1900 he died, at the age of thirty-four, leaving a wife and two small children. For decades the official story was that a stray mosquito had bitten him by accident. In 1947, his own notebook revealed the truth: he had let an infected mosquito bite him on purpose.
     images:
       - {query: "Walter Reed", count: 1, colorize: true}
       - {query: "Jesse Lazear", count: 1}
@@ -120,11 +124,13 @@ scenes:
   - id: camp
     chapter: "VI. Proof"
     narration: >
-      To be certain, the commission built an experimental station near Havana and ran a careful series of experiments.
+      To be certain, the commission built an experimental station near Havana, named Camp Lazear in honour of their friend, and ran a careful series of experiments.
       In one building, volunteers slept for weeks among the soiled bedding and clothing of yellow fever patients. None of them caught the disease.
       In another, clean and well-ventilated, volunteers were exposed only to infected mosquitoes. They fell ill.
       For the second phase of testing, volunteers signed written consent forms, among the earliest in medical research, acknowledging that they might die.
       The conclusion was clear. Yellow fever was not spread by filth or bedding. It was spread by mosquitoes.
+      The experiments did not end there. In 1901, in Havana, further tests were made on volunteers who were paid one hundred dollars, and another hundred if they fell ill. One of them was a twenty-five-year-old American nurse, Clara Maass. She was bitten seven times. After the last bite, in August 1901, she developed yellow fever, and she died on the twenty-fourth of August. Her death caused a public outcry, and experiments on human volunteers with yellow fever came to an end.
+      Walter Reed did not live long to enjoy his fame. In November 1902, he died of a ruptured appendix, at the age of fifty-one.
     images:
       - {query: "Camp Lazear", count: 2}
       - {query: "yellow fever experiment Cuba 1900", count: 2}
@@ -134,10 +140,9 @@ scenes:
     chapter: "VII. War on the Mosquito"
     date: "1901–1906"
     narration: >
-      If mosquitoes were the problem, mosquitoes could be fought.
-      In Havana, the army doctor William Gorgas launched a campaign against them in 1901. Water containers were covered, breeding sites destroyed, and houses fumigated by burning pyrethrum powder. Within about a year, yellow fever had disappeared from the city.
-      Then Gorgas went to Panama. Two decades earlier, a French company had tried to dig a canal there. Disease, mostly yellow fever and malaria, had killed thousands of its workers, and the project had collapsed.
-      Now the Americans were trying again. Gorgas led about four thousand workers in a war on mosquitoes: draining standing water, spreading oil on ponds, and putting screens on windows. By December 1905, deaths from yellow fever among canal workers had stopped.
+      If mosquitoes were the problem, mosquitoes could be fought. In Havana, the army doctor William Gorgas launched a campaign against them in 1901. Gorgas knew the disease personally. Years earlier, at an army post in Texas, he had caught yellow fever while caring for a patient, a young woman named Marie Doughty. Both survived, immune for life, and later they married. Water containers were covered, breeding sites destroyed, and houses fumigated by burning pyrethrum powder. Within about a year, the number of cases in Havana fell from hundreds to none.
+      Then Gorgas went to Panama. Two decades earlier, a French company led by Ferdinand de Lesseps, the builder of the Suez Canal, had tried to dig a canal there. Between 1881 and 1889, an estimated twenty-two thousand of its workers died, mostly of yellow fever and malaria. At its peak, in 1888, the French company employed around forty thousand workers, most of them from the islands of the West Indies. One chief engineer, Jules Dingler, lost his entire family to yellow fever and resigned. In 1889 the company went bankrupt, and the savings of some eight hundred thousand investors were lost.
+      Now the Americans were trying again. Gorgas led about four thousand workers in a war on mosquitoes: draining standing water, spreading oil on ponds, and putting screens on windows. By December 1905, deaths from yellow fever among canal workers had stopped. In 1914, Gorgas became Surgeon General of the United States Army.
     maps:
       - match: "Then Gorgas went to Panama"
         style: spread
@@ -160,7 +165,7 @@ scenes:
     date: "1914"
     narration: >
       Without yellow fever, the canal could be built.
-      Tens of thousands of workers dug through mountains, built enormous locks and dammed a river to create a lake. In August 1914, the Panama Canal opened, linking the Atlantic and the Pacific.
+      Tens of thousands of workers dug through mountains, built enormous locks and dammed a river to create a lake. On the fifteenth of August 1914, the steamship Ancon made the first official passage, and the Panama Canal opened, linking the Atlantic and the Pacific. The First World War had begun only days before, and the grand celebrations that had been planned were cancelled.
       It was one of the greatest engineering projects in history. And it was, in part, a victory of medicine over a mosquito.
     images:
       - {query: "Panama Canal construction", count: 2}
@@ -173,8 +178,8 @@ scenes:
     date: "1937"
     narration: >
       Mosquito control worked in cities, but yellow fever also lived in monkeys in the jungles of Africa and South America, so it could never be wiped out that way.
-      In 1937, the South African virologist Max Theiler, working at the Rockefeller Foundation in New York, developed a vaccine called 17D. A single dose gives protection for life. It is still used today.
-      Theiler received the Nobel Prize in Physiology or Medicine in 1951.
+      In 1927, scientists isolated the yellow fever virus in West Africa. Ten years later, in 1937, the South African virologist Max Theiler, working at the Rockefeller Foundation in New York, developed a vaccine called 17D. With his colleague Hugh Smith, he weakened the virus by growing it again and again, more than a hundred times, in chicken embryos, until it no longer caused disease. Between 1940 and 1947 the Rockefeller Foundation produced more than twenty-eight million doses. A single dose gives protection for life. It is still used today.
+      Theiler received the Nobel Prize in Physiology or Medicine in 1951, the first Nobel laureate born in Africa.
     images:
       - {query: "Max Theiler", count: 1}
       - {query: "Rockefeller Foundation laboratory 1930s", count: 2}
@@ -184,7 +189,7 @@ scenes:
   - id: today
     chapter: "Epilogue"
     narration: >
-      Yellow fever has not been defeated. It still circulates in parts of Africa and South America, and causes tens of thousands of deaths in some years, mostly where vaccination coverage is low.
+      Yellow fever has not been defeated. It still circulates in parts of Africa and South America, and causes tens of thousands of deaths in some years, mostly where vaccination coverage is low. Around six hundred million people live in areas where the disease is found. The World Health Organization estimates around two hundred thousand cases a year, about nine in ten of them in Africa. In 2017, an outbreak in Brazil moved toward the crowded Atlantic coast, where most people had not been vaccinated.
       Travellers to these regions are often required to show proof of vaccination, the famous yellow card.
       The story of yellow fever is the story of how science learned that the most dangerous creature in history is not a tiger or a shark, but the mosquito.
       If you enjoyed this biography of a disease, subscribe for the next one.

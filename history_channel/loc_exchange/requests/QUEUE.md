@@ -9,18 +9,18 @@ Met Museum image server currently shows a bot check to the server: **avoid Met i
 
 ## Open tasks
 
-### 1. yellow-fever — NEXT episode, top priority (needs ~60 more images; script is being extended to ~14 min)
+### 1. yellow-fever — NEXT episode, top priority (script extended to ~14 min → needs ~120 more images)
 `picks/yellow-fever.yaml` (append; scene ids below). NLM/LoC images: download the full jpg and upload through the file
 browser to "📷 Archive Tales фото" → `yellow-fever/` (keep the source id in the file name).
 
 | scene | what we need (4–8 each) |
 |---|---|
-| `philadelphia` (1793) | Philadelphia views 1790s (Birch prints "City of Philadelphia" 1800); Benjamin Rush; Stephen Girard; Richard Allen & Absalom Jones (Free African Society nurses); Bush Hill hospital; Mathew Carey's 1793 pamphlet title page; George Washington leaving / Germantown |
-| `haiti` (1802–03) | Charles Leclerc; Toussaint Louverture; Jean-Jacques Dessalines; period prints of Saint-Domingue / Cap-Français; French troops 1802; Louisiana Purchase 1803 document/map |
-| `theories` | New Orleans 1853 / 1878 epidemic prints (Harper's, Frank Leslie's); Memphis 1878 epidemic illustrations; quarantine stations; fumigation; Carlos Finlay (more portraits) |
-| `reed` / `camp` (1900) | Walter Reed, James Carroll, Jesse Lazear, Aristides Agramonte portraits; Camp Lazear buildings ("infected clothing" building, mosquito building); Columbia Barracks Havana 1900; volunteers (John Kissinger, John Moran); Clara Maass |
-| `gorgas` | William Gorgas; mosquito brigades oiling water / screening cisterns in Havana and Panama 1901–1906 |
-| `canal` (1904–1914) | Panama Canal construction 1904–1914 (Culebra Cut, Gatun locks, steam shovels, workers) — LoC has hundreds, NARA "Unrestricted" |
+| `philadelphia` (1793) | Philadelphia views 1790s (Birch prints 1800); Benjamin Rush; Mayor Matthew Clarkson; Stephen Girard; Bush Hill mansion; Richard Allen & Absalom Jones portraits; Allen & Jones 1794 pamphlet "A Narrative of the Proceedings of the Black People…" title page; Mathew Carey's "Short Account of the Malignant Fever" title page |
+| `haiti` (1802–03) | General Leclerc; Pauline Bonaparte; Toussaint Louverture; Fort de Joux; Dessalines; Battle of Vertières prints; Cap-Français / Tortuga c.1800; Louisiana Purchase treaty/map 1803 |
+| `theories` | **Memphis 1878** (Frank Leslie's / Harper's engravings: refugees, Howard Association nurses, burials), Martyrs of Memphis, steamer John D. Porter; New Orleans 1853/1878 prints; Carlos Finlay portraits |
+| `reed` / `camp` (1900–01) | Walter Reed, James Carroll, Jesse Lazear, Aristides Agramonte portraits; Camp Lazear buildings; Columbia Barracks / Las Animas Hospital Havana; **Clara Maass** (portrait, 1976 US stamp is not PD — skip it) |
+| `gorgas` | William Gorgas (+ Marie Doughty Gorgas); mosquito brigades in Havana and Panama 1901–1906; **French canal 1881–1889**: Ferdinand de Lesseps, French excavators/dredges abandoned in the jungle, Culebra 1880s photos |
+| `canal` (1904–1914) | Panama Canal construction (Culebra Cut, Gatun locks, steam shovels, workers); **SS Ancon first transit 15 Aug 1914** — LoC / NARA "Unrestricted" |
 | `vaccine` (1937) | Max Theiler; Rockefeller Foundation yellow fever lab; 17D vaccine production 1930s–40s |
 | `today` | Aedes aegypti (CDC PHIL), WHO / CDC vaccination campaign photos in Africa or South America (PD only) |
 
