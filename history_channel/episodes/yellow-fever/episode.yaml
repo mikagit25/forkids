@@ -220,3 +220,69 @@ research:                # newspapers of the time: python run.py episodes/yellow
   - {q: "yellow fever mosquito Reed", from: 1900-08-01, to: 1901-12-31, sources: [chronam, nyt]}
   - {q: "yellow fever Panama Gorgas", from: 1904-01-01, to: 1906-12-31, sources: [chronam, nyt]}
   - {q: "yellow fever New Orleans", from: 1905-07-01, to: 1905-11-30, sources: [chronam, nyt]}
+
+summary: >
+  In 1793 yellow fever emptied Philadelphia, then the capital of the United States. In 1802 it destroyed Napoleon's army in
+  Saint-Domingue and helped Haiti win its independence. It buried some twenty-two thousand workers on the French attempt to
+  dig a canal across Panama. For a century doctors blamed filth and bedding, until a Cuban physician, Carlos Finlay, blamed
+  a mosquito, and Walter Reed's commission proved him right in Cuba in 1900, at the cost of volunteers' lives, among them
+  Jesse Lazear and the nurse Clara Maass. This is the biography of yellow fever: from Bush Hill and the Free African
+  Society, through Memphis in 1878, to William Gorgas's war on the mosquito, the Panama Canal and Max Theiler's 17D vaccine.
+
+localizations:
+  es:
+    title: "Fiebre amarilla: el mosquito que detuvo imperios"
+    subtitle: "Cómo un virus tropical vació Filadelfia, venció a Napoleón, enterró a los franceses en Panamá y fue finalmente domado"
+    summary: >
+      En 1793 la fiebre amarilla vació Filadelfia, entonces capital de Estados Unidos. En 1802 destruyó el ejército de
+      Napoleón en Saint-Domingue y ayudó a Haití a conquistar su independencia. Se llevó a unos veintidós mil trabajadores
+      del intento francés de abrir un canal en Panamá. Durante un siglo los médicos culparon a la suciedad y a la ropa de
+      cama, hasta que un médico cubano, Carlos Finlay, señaló a un mosquito, y la comisión de Walter Reed lo confirmó en
+      Cuba en 1900, al precio de la vida de voluntarios como Jesse Lazear y la enfermera Clara Maass. Esta es la biografía
+      de la fiebre amarilla: de Bush Hill y la Free African Society a Memphis en 1878, la guerra de William Gorgas contra
+      el mosquito, el Canal de Panamá y la vacuna 17D de Max Theiler.
+    chapters: ["Introducción", "Yellow Jack", "Filadelfia, 1793", "El ejército perdido de Napoleón",
+               "Suciedad, fómites y un médico cubano", "La Comisión Reed", "La prueba", "Guerra al mosquito",
+               "El canal", "La vacuna", "Epílogo"]
+  pt:
+    title: "Febre amarela: o mosquito que deteve impérios"
+    subtitle: "Como um vírus tropical esvaziou a Filadélfia, venceu Napoleão, enterrou os franceses no Panamá e foi finalmente domado"
+    summary: >
+      Em 1793 a febre amarela esvaziou a Filadélfia, então capital dos Estados Unidos. Em 1802 destruiu o exército de
+      Napoleão em Saint-Domingue e ajudou o Haiti a conquistar a independência. Matou cerca de vinte e dois mil
+      trabalhadores na tentativa francesa de abrir um canal no Panamá. Durante um século os médicos culparam a sujeira e
+      as roupas de cama, até que um médico cubano, Carlos Finlay, apontou um mosquito, e a comissão de Walter Reed o
+      confirmou em Cuba em 1900, ao custo da vida de voluntários como Jesse Lazear e a enfermeira Clara Maass. Esta é a
+      biografia da febre amarela: de Bush Hill e da Free African Society a Memphis em 1878, a guerra de William Gorgas
+      contra o mosquito, o Canal do Panamá e a vacina 17D de Max Theiler.
+    chapters: ["Introdução", "Yellow Jack", "Filadélfia, 1793", "O exército perdido de Napoleão",
+               "Sujeira, fômites e um médico cubano", "A Comissão Reed", "A prova", "Guerra ao mosquito",
+               "O canal", "A vacina", "Epílogo"]
+  fr:
+    title: "La fièvre jaune : le moustique qui arrêta des empires"
+    subtitle: "Comment un virus tropical vida Philadelphie, vainquit Napoléon, enterra les Français à Panama et fut enfin maîtrisé"
+    summary: >
+      En 1793, la fièvre jaune vida Philadelphie, alors capitale des États-Unis. En 1802, elle anéantit l'armée de Napoléon
+      à Saint-Domingue et aida Haïti à conquérir son indépendance. Elle tua quelque vingt-deux mille ouvriers lors de la
+      tentative française de percer un canal à Panama. Pendant un siècle, les médecins accusèrent la saleté et la literie,
+      jusqu'à ce qu'un médecin cubain, Carlos Finlay, désigne un moustique, et que la commission de Walter Reed lui donne
+      raison à Cuba en 1900, au prix de la vie de volontaires comme Jesse Lazear et l'infirmière Clara Maass. Voici la
+      biographie de la fièvre jaune : de Bush Hill et de la Free African Society à Memphis en 1878, de la guerre de
+      William Gorgas contre le moustique au canal de Panama et au vaccin 17D de Max Theiler.
+    chapters: ["Introduction", "Yellow Jack", "Philadelphie, 1793", "L'armée perdue de Napoléon",
+               "Saleté, fomites et un médecin cubain", "La commission Reed", "La preuve", "La guerre au moustique",
+               "Le canal", "Le vaccin", "Épilogue"]
+  de:
+    title: "Gelbfieber: Die Mücke, die Imperien aufhielt"
+    subtitle: "Wie ein tropisches Virus Philadelphia leerte, Napoleon besiegte, die Franzosen in Panama begrub und schließlich gezähmt wurde"
+    summary: >
+      1793 leerte das Gelbfieber Philadelphia, damals Hauptstadt der Vereinigten Staaten. 1802 vernichtete es Napoleons
+      Armee in Saint-Domingue und half Haiti, seine Unabhängigkeit zu erringen. Beim französischen Versuch, einen Kanal
+      durch Panama zu graben, starben rund zweiundzwanzigtausend Arbeiter. Ein Jahrhundert lang machten Ärzte Schmutz und
+      Bettzeug verantwortlich, bis der kubanische Arzt Carlos Finlay eine Mücke beschuldigte und Walter Reeds Kommission ihm
+      1900 auf Kuba recht gab – um den Preis des Lebens von Freiwilligen wie Jesse Lazear und der Krankenschwester Clara
+      Maass. Dies ist die Biografie des Gelbfiebers: von Bush Hill und der Free African Society über Memphis 1878 und
+      William Gorgas' Krieg gegen die Mücke bis zum Panamakanal und Max Theilers Impfstoff 17D.
+    chapters: ["Einleitung", "Yellow Jack", "Philadelphia, 1793", "Napoleons verlorene Armee",
+               "Schmutz, Fomiten und ein kubanischer Arzt", "Die Reed-Kommission", "Der Beweis", "Krieg gegen die Mücke",
+               "Der Kanal", "Der Impfstoff", "Epilog"]
