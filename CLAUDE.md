@@ -46,7 +46,7 @@ python3 scripts/reauth_youtube.py --channel id # Calm Classics канал
 
 | Канал | Тип | Слоты | Кол-во |
 |-------|-----|-------|--------|
-| EN (Happy Bear) | длинные | ежедневно 18:00 UTC | 7/нед |
+| EN (Happy Bear) | длинные | 18:00 UTC Пн, Ср, Пт, Вс (с 22.11.2026; генерация sensory тоже 4/нед, cron `#LIMITED-KIDS-4WK#`) | 4/нед |
 | EN (Happy Bear) | шортсы | ежедневно 10:30 UTC, до 3 шт | 7/нед |
 | **Sacred Drift** | длинные | 20:00 UTC, кроме Вт и Пт (с 17.11.2026) | 5/нед |
 | **Sacred Drift** | шортсы | ежедневно 10:00 UTC, по 2 | 14/нед |
