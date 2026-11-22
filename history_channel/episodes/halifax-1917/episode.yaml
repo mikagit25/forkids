@@ -298,6 +298,13 @@ references:
 research:                # newspapers of the time: python run.py episodes/halifax-1917 research
   - {q: "Halifax explosion", from: 1917-12-06, to: 1918-01-31, sources: [chronam, nyt, trove, europeana]}
 
+shorts:
+  - {from: 74, to: 82, hook: "His last message: \"Goodbye.\"", title: "Vince Coleman's Last Telegraph Before the Halifax Explosion"}
+  - {from: 89, to: 99, hook: "The biggest blast before the atomic bomb", title: "Halifax 1917: The Largest Man-Made Explosion Before the A-Bomb"}
+  - {from: 107, to: 113, hook: "They were watching the fire from their windows", title: "Why Hundreds Were Blinded in the Halifax Explosion"}
+  - {from: 150, to: 157, hook: "Why Boston gets a tree from Halifax every year", title: "The Christmas Tree Halifax Sends Boston Every Year"}
+  - {from: 182, to: 190, hook: "A neighbourhood built so it could never burn", title: "The Hydrostone: Rebuilding Halifax After 1917"}
+
 summary: >
   On the morning of 6 December 1917, a French ship packed with wartime explosives collided with a Norwegian relief ship in
   the narrows of Halifax harbour. Twenty minutes later the Mont-Blanc blew up with the force of about 2.9 kilotons of TNT,
