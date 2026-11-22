@@ -234,6 +234,16 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
     write_contact_sheet(ep_dir, episode, manifest)
     n = sum(i["use"] for v in manifest["scenes"].values() for i in v)
     print(f"\nmanifest: {n} images selected. Review: {ep_dir / 'contact_sheet.html'}")
+    seen = {}
+    for sc in episode.get("scenes", []):                  # the same photo picked in two scenes = repeat in the video
+        if sc.get("montage"):                             # cold-open teasers re-use chapter photos on purpose
+            continue
+        for it in sc.get("images") or []:
+            ref = it.get("file") if isinstance(it, dict) else None
+            if ref and ref in seen and seen[ref] != sc["id"]:
+                missing.append((sc["id"], ref, f"DUPLICATE: also picked in scene {seen[ref]}"))
+            elif ref:
+                seen[ref] = sc["id"]
     (ep_dir / "missing.json").write_text(json.dumps([list(m) for m in missing], indent=0))   # render refuses while non-empty
     if missing:
         print(f"\n!! {len(missing)} hand-picked photos are MISSING (replace them in episode.yaml before rendering):")

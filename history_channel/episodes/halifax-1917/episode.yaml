@@ -78,7 +78,6 @@ scenes:
       - {file: "curid:91413022"}
       - {file: "curid:30938384"}
       - {file: "curid:145006179"}
-      - {file: "curid:67923618"}
       - {file: "web:nara:45499928", crop: [0.33, 0.08, 0.96, 0.59], image: "https://catalog.archives.gov/medialz/stillpix/165-ww/Box273/FolderA/165-WW-273A-011.jpg", page_url: "https://catalog.archives.gov/id/45499928", rights: "NARA catalog: Use Unrestricted. Published 1917-1919, public domain in the US.", title: "American merchant ships on their way to France (165-WW-273A-11)", date: "1917-1918", note: "wartime freighters in convoy, like the ships gathering in Bedford Basin"}   # LoC via Chrome
       - {file: "web:nara:86731663", crop: [0.50, 0.07, 0.955, 0.52], image: "https://catalog.archives.gov/medialz/stillpix/111-sc/Box516/111-SC-63470.jpg", page_url: "https://catalog.archives.gov/id/86731663", rights: "NARA catalog: Use Unrestricted. Published 1917-1919, public domain in the US.", title: "Convoy of American ships meeting the U.S.S. George Washington (111-SC-63470)", date: "1918", note: "convoy at sea, end of the war"}   # LoC via Chrome
       - {file: "loc:2014708950", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/28700/28790v.jpg", rights: "No known restrictions on publication.", title: "NC-3 at Halifax", date: "1919", note: "real Halifax harbour in 1919, US Navy seaplane on the water"}   # LoC via Chrome
@@ -96,7 +95,6 @@ scenes:
       Almost nobody knew that they were looking at a floating bomb.
     images:
       - {file: "curid:24988769"}
-      - {file: "curid:1721337"}
       - {file: "web:nara:329569818", crop: [0.40, 0.11, 0.955, 0.70], image: "https://catalog.archives.gov/medialz/stillpix/111-sc/Batch0015/Box737/111-SC-095794_001.jpg", page_url: "https://catalog.archives.gov/id/329569818", rights: "NARA catalog: Use Unrestricted. Published 1917-1919, public domain in the US.", title: "View of the enormous damage done at Halifax, Nova Scotia, by an explosion of allied ammunition (111-SC-95794)", date: "1917", note: "devastation after the blast (US Signal Corps)"}   # LoC via Chrome
       - {file: "loc:2014694104", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/14100/14132v.jpg", rights: "No known restrictions on publication.", title: "Motor fire engine", date: "1913", note: "motor pumper of the same type as Halifax's 'Patricia' (1913)"}   # LoC via Chrome
       - {file: "loc:2014694105", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/14100/14133v.jpg", rights: "No known restrictions on publication.", title: "Testing stream from motor fire engines", date: "1913", note: "firemen with motor engines - firefighting at the pier"}   # LoC via Chrome
