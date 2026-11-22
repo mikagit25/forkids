@@ -1,0 +1,24 @@
+# eradication — VIII. The Last Campaign
+
+In 1967, the World Health Organization launched the Intensified Smallpox Eradication Programme. The idea had come from the Soviet Union. In 1958, its deputy minister of health, the virologist Viktor Zhdanov, asked the World Health Assembly to set out to wipe smallpox from the face of the Earth. The campaign that finally succeeded was directed by an American epidemiologist, Donald Henderson, at the height of the Cold War. Teams spread across Africa, South Asia and South America. Instead of vaccinating everyone, they used a clever strategy called surveillance and containment: find every [...]
+
+| # | ref | source | date | W×H | licence | title |
+|---|---|---|---|---|---|---|
+| 1 | `curid:36588726` | commons |  | 2332×3300 | CC BY 4.0 | [Oswaldo da Silva. Photograph by L.J. Bruce-Chwatt. Wellcome V0028027](https://commons.wikimedia.org/wiki/File:Oswaldo_da_Silva._Photograph_by_L.J._Bruce-Chwatt._Wellcome_V0028027.jpg) |
+| 2 | `curid:8172268` | commons | Taken on 5 March 200 | 2100×1500 | Public domain | [US Navy 030305-N-3235P-513 A Hospital Corpsman dips a bifurcated vacci](https://commons.wikimedia.org/wiki/File:US_Navy_030305-N-3235P-513_A_Hospital_Corpsman_dips_a_bifurcated_vaccinating_needle_into_an_open_vial_of_Small_Pox_Vaccine.jpg) |
+| 3 | `curid:1848401` | commons | 2002 | 3008×1960 | Public domain | [Smallpox vaccine injection](https://commons.wikimedia.org/wiki/File:Smallpox_vaccine_injection.jpg) |
+| 4 | `curid:40021897` | commons | 2010-06-11 11:24 | 3008×2000 | CC BY 2.0 | [Archaeosigillaria fossil land plant (Devonian; Gilboa, southeastern Ne](https://commons.wikimedia.org/wiki/File:Archaeosigillaria_fossil_land_plant_(Devonian;_Gilboa,_southeastern_New_York_State,_USA)_2_(15335065127).jpg) |
+| 5 | `curid:40021899` | commons | 2010-06-11 11:24 | 3008×2000 | CC BY 2.0 | [Archaeosigillaria fossil land plant (Devonian; Gilboa, southeastern Ne](https://commons.wikimedia.org/wiki/File:Archaeosigillaria_fossil_land_plant_(Devonian;_Gilboa,_southeastern_New_York_State,_USA)_3_(15334757749).jpg) |
+| 6 | `curid:40021898` | commons | 2010-06-11 11:24 | 3008×2000 | CC BY 2.0 | [Archaeosigillaria fossil land plant (Devonian; Gilboa, southeastern Ne](https://commons.wikimedia.org/wiki/File:Archaeosigillaria_fossil_land_plant_(Devonian;_Gilboa,_southeastern_New_York_State,_USA)_4_(15334912900).jpg) |
+| 7 | `curid:40021896` | commons | 2010-06-11 11:24 | 3008×2000 | CC BY 2.0 | [Archaeosigillaria fossil land plant (Devonian; Gilboa, southeastern Ne](https://commons.wikimedia.org/wiki/File:Archaeosigillaria_fossil_land_plant_(Devonian;_Gilboa,_southeastern_New_York_State,_USA)_1_(15518491941).jpg) |
+| 8 | `curid:8098834` | commons | 1975 | 1382×2130 | Public domain | [Rahima Banu](https://commons.wikimedia.org/wiki/File:Rahima_Banu.jpg) |
+| 9 | `curid:85680735` | commons | 2000 | 1077×1736 | Public domain | [Rahima Banu 2000](https://commons.wikimedia.org/wiki/File:Rahima_Banu_2000.jpg) |
+| 10 | `curid:2262195` | commons | 1969 | 2124×2750 | Public domain | [Fighting smallpox in Niger, 1969](https://commons.wikimedia.org/wiki/File:Fighting_smallpox_in_Niger,_1969.jpg) |
+| 11 | `curid:52805291` | commons | 2010-09-30 11:06:47 | 3040×2360 | No restrictions | [Vaccinating the poor (5039319130)](https://commons.wikimedia.org/wiki/File:Vaccinating_the_poor_(5039319130).jpg) |
+| 12 | `curid:177830616` | commons | some time between 20 | 4387×5968 | CC BY 4.0 | [Reduction of cases and deaths of vaccine-preventable diseases in the U](https://commons.wikimedia.org/wiki/File:Reduction_of_cases_and_deaths_of_vaccine-preventable_diseases_in_the_United_States_after_introducing_the_vaccine.png) |
+| 13 | `curid:4394235` | commons | 1975 | 1995×3040 | Public domain | [Child with Smallpox Bangladesh](https://commons.wikimedia.org/wiki/File:Child_with_Smallpox_Bangladesh.jpg) |
+| 14 | `curid:26857645` | commons | 2013-06-24 13:24:14 | 1305×979 | Public domain | [Child with Smallpox BangladeshCropped](https://commons.wikimedia.org/wiki/File:Child_with_Smallpox_BangladeshCropped.jpg) |
+| 15 | `curid:12817459` | commons | 1960sdate QS:P,+1960 | 2079×1281 | Public domain | [Researcher injecting smallpox into chicken eggs--Bangledesh](https://commons.wikimedia.org/wiki/File:Researcher_injecting_smallpox_into_chicken_eggs--Bangledesh.jpg) |
+| 16 | `curid:3288467` | commons | 1975 | 1284×2111 | Public domain | [Hemorrhagic smallpox](https://commons.wikimedia.org/wiki/File:Hemorrhagic_smallpox.jpg) |
+| 17 | `curid:12841800` | commons | 1975 | 3015×1997 | Public domain | [Overcrowded ferry boat on Meghna River, Bangladesh](https://commons.wikimedia.org/wiki/File:Overcrowded_ferry_boat_on_Meghna_River,_Bangladesh.jpg) |
+| 18 | `wellcome:krk8j5bq` | wellcome |  | 400×541 | Public Domain Mark | [Gloucester smallpox epidemic, 1896: Ephraim Beard, a smallpox patient.](https://wellcomecollection.org/works/y2xgarem) |

@@ -1,0 +1,24 @@
+# ancient — I. The Speckled Monster
+
+Smallpox was caused by the variola virus, which spread from person to person through the air and through contact. After about two weeks of silent incubation came a high fever, then a rash that turned into deep, fluid-filled pustules, spreading over the face, arms and legs. Its origins are ancient. Rash-like scars on Egyptian mummies suggest that smallpox has existed for at least three thousand years, and the mummy of the pharaoh Ramses the Fifth is often cited as a possible early victim. Written descriptions of a smallpox-like disease appear in China in the fourth century, and in India [...]
+
+| # | ref | source | date | W×H | licence | title |
+|---|---|---|---|---|---|---|
+| 1 | `curid:1214308` | commons | 1975 | 3424×3727 | Public domain | [Smallpox virus virions TEM PHIL 1849](https://commons.wikimedia.org/wiki/File:Smallpox_virus_virions_TEM_PHIL_1849.JPG) |
+| 2 | `curid:3288444` | commons | 1967 | 2934×2144 | Public domain | [Smallpox CAM](https://commons.wikimedia.org/wiki/File:Smallpox_CAM.png) |
+| 3 | `curid:51857894` | commons | 2016-09-29 | 3241×3241 | CC0 | [Smallpox virus virions TEM PHIL 1849 (crop)](https://commons.wikimedia.org/wiki/File:Smallpox_virus_virions_TEM_PHIL_1849_(crop).jpg) |
+| 4 | `curid:43418293` | commons | 1884 | 1728×886 | No restrictions | [Contagious and infectious disease- measures for their prevention and a](https://commons.wikimedia.org/wiki/File:Contagious_and_infectious_disease-_measures_for_their_prevention_and_arrest;_small_pox_(variola);_modified_small_pox_(varioloid);_chicken_pox_(varicella);_cow_pox_(variol%C3%A6_vaccina%C3%A6);_vaccination,_(14762358752).jpg) |
+| 5 | `curid:9664331` | commons | 1913 | 1077×1569 | Public domain | [Spinal Cord Lesions Caused by a Smallpox-Virus Eichhorst 1913](https://commons.wikimedia.org/wiki/File:Spinal_Cord_Lesions_Caused_by_a_Smallpox-Virus_Eichhorst_1913.jpg) |
+| 6 | `curid:820869` | commons |  | 1500×1121 | Public domain | [Smallpox Tissue section containing variola orthopox viruses TEM PHIL 2](https://commons.wikimedia.org/wiki/File:Smallpox_Tissue_section_containing_variola_orthopox_viruses_TEM_PHIL_2291_lores.JPG) |
+| 7 | `curid:76330116` | commons | 2018-03-06 16:20:05 | 1123×1704 | No restrictions | [Smallpox poster 1851 (MH12-5968-2) (38845684690)](https://commons.wikimedia.org/wiki/File:Smallpox_poster_1851_(MH12-5968-2)_(38845684690).jpg) |
+| 8 | `curid:41895410` | commons | 1884 | 2600×3942 | No restrictions | [Contagious and infectious disease- measures for their prevention and a](https://commons.wikimedia.org/wiki/File:Contagious_and_infectious_disease-_measures_for_their_prevention_and_arrest;_small_pox_(variola);_modified_small_pox_(varioloid);_chicken_pox_(varicella);_cow_pox_(variol%C3%A6_vaccina%C3%A6);_vaccination,_(14576047638).jpg) |
+| 9 | `wellcome:tt8ua2um` | wellcome |  | 400×600 | Public Domain Mark | [History and pathology of vaccination / by Edgar M. Crookshank.](https://wellcomecollection.org/works/fktdddss) |
+| 10 | `wellcome:g53ve8hb` | wellcome |  | 400×266 | Public Domain Mark | [[Small, undated handbill printed in red on yellow paper advertising Ja](https://wellcomecollection.org/works/e65p9re4) |
+| 11 | `wellcome:wzx5vfy6` | wellcome |  | 400×302 | Public Domain Mark | [Four fish, and a detail of a fish. Colour lithograph, 1884.](https://wellcomecollection.org/works/dxsnw5gp) |
+| 12 | `wellcome:exwg2d9j` | wellcome |  | 400×293 | Public Domain Mark | [Two fish. Colour lithograph, 1884.](https://wellcomecollection.org/works/fmwp9g7e) |
+| 13 | `wellcome:kxmjng6g` | wellcome |  | 400×525 | Attribution 4.0 International  | [A man in yellow robes seated under a tree; a boy in green and mauve ro](https://wellcomecollection.org/works/m7538z4p) |
+| 14 | `curid:9541621` | commons | 2010-02-22 | 1813×2258 | Public domain | [Ramses V mummy head](https://commons.wikimedia.org/wiki/File:Ramses_V_mummy_head.png) |
+| 15 | `curid:9541702` | commons | 2010-02-22 | 1116×3090 | Public domain | [Ramses V mummy](https://commons.wikimedia.org/wiki/File:Ramses_V_mummy.png) |
+| 16 | `curid:39705388` | commons | 1903date QS:P571,+19 | 2490×3427 | Public domain | [Hermann Struck Grafik JMBerlin GDR 97 3 1025](https://commons.wikimedia.org/wiki/File:Hermann_Struck_Grafik_JMBerlin_GDR_97_3_1025.jpg) |
+| 17 | `curid:43209452` | commons | 1902 | 1828×1188 | No restrictions | [The sacred beetle- a popular treatise on Egyptian scarabs in art and h](https://commons.wikimedia.org/wiki/File:The_sacred_beetle-_a_popular_treatise_on_Egyptian_scarabs_in_art_and_history_(1902)_(14581919520).jpg) |
+| 18 | `curid:43216269` | commons | 1896 | 1378×698 | No restrictions | [The struggle of the nations - Egypt, Syria, and Assyria (1896) (147784](https://commons.wikimedia.org/wiki/File:The_struggle_of_the_nations_-_Egypt,_Syria,_and_Assyria_(1896)_(14778429155).jpg) |
