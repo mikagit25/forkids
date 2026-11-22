@@ -61,9 +61,10 @@ def frame(t, w, h, P):
         ch = P["chars"].setdefault((name, g, i), CHARACTERS[name](seed=g * 10 + i + 1))
         per_i = PERIODS[(i + g) % len(PERIODS)]
         x = w * (0.25 + 0.25 * i) + 30 * math.sin(2 * math.pi * t / (per_i * 2) + i)
-        y = h * 0.52 + 40 * math.sin(2 * math.pi * t / per_i + i * 1.7)
+        # PNG sprites are drawn above their anchor (visual centre ~0.75 r higher) → bring scaled ones back to mid-frame
+        y = h * 0.52 + (0.75 * (h / 1080) * 190 * P["scale"] if P.get("scale", 1.0) > 1 else 0) + 40 * math.sin(2 * math.pi * t / per_i + i * 1.7)
         tilt = 6 * math.sin(2 * math.pi * t / (per_i * 1.5) + i)
-        r = (h / 1080) * 190 * fade * (1 + 0.03 * math.sin(2 * math.pi * t / per_i))
+        r = (h / 1080) * 190 * P.get("scale", 1.0) * fade * (1 + 0.03 * math.sin(2 * math.pi * t / per_i))
         if r < 3:
             continue
         items.append((ch, x, y, r, {"tilt": tilt, "sleepy": True, "smile": 0.3}))
@@ -74,9 +75,10 @@ def frame(t, w, h, P):
 
 
 def render_sleep(out: Path, audio: str, pool: list[str], seed: int, loop_s=240.0, fps=15, w=1920, h=1080,
-                 minutes: float | None = None):
+                 minutes: float | None = None, scale: float = 1.0):
+    """scale: character size factor (PNG animals fill less of r than the code-drawn fruits → ~1.6)"""
     rnd = random.Random(seed)
-    P = {"groups": groups(pool, seed, loop_s), "per": 60.0, "stars": _stars(rnd, w, h), "chars": {}}
+    P = {"groups": groups(pool, seed, loop_s), "per": 60.0, "stars": _stars(rnd, w, h), "chars": {}, "scale": scale}
     dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0",
                                 audio], capture_output=True, text=True).stdout.strip())
     if minutes:

@@ -171,7 +171,7 @@ def lullabies(a, q, seed, today):
     wav = q / f"{stem}.wav"
     info = render_medley(order, wav, seed, bpm=rnd.choice([70, 72, 76]), repeats=3, target_min=a.minutes or 30)
     pool = FAMILIES["animals"]
-    groups = render_sleep(q / f"{stem}.mp4", str(wav), list(pool), seed)
+    groups = render_sleep(q / f"{stem}.mp4", str(wav), list(pool), seed, scale=1.6)
     wav.unlink(missing_ok=True); wav.with_suffix(".json").unlink(missing_ok=True)
     minutes = probe(q / f"{stem}.mp4") / 60
     cast = [c for g in groups for c in g]
