@@ -169,3 +169,136 @@
   title: Fire-engine station at Saratoga Street
   date: ca. 1920
   note: Boston fire station of the era (East Boston)
+
+# --- appended 2026-11-22 (Claude in Chrome): Digital Commonwealth / BPL, rights 'No known copyright restrictions'.
+# Boston City Archives has ~20 molasses-flood site photos (Jan 1919) but marked 'Copyright not evaluated' - not picked.
+
+- scene: north-end
+  source: bpl
+  id: br86b8325
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:br86b833f/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:br86b8325
+  rights: No known copyright restrictions.
+  title: Charter Street, North End
+  date: ca. 1898
+  note: narrow North End street of tenements, the crowded immigrant neighbourhood
+
+- scene: north-end
+  source: bpl
+  id: s46587341
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:wd378k43p/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:s46587341
+  rights: No known copyright restrictions.
+  title: Salem Street?, North End
+  date: ca. 1910
+  note: North End street life around 1910
+
+- scene: north-end
+  source: bpl
+  id: 69701q045
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:0z70cm432/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:69701q045
+  rights: No known copyright restrictions.
+  title: Boston, Massachusetts, a bit of Salem Street
+  date: ca. 1900-1915
+  note: Salem Street, heart of the Italian North End
+
+- scene: north-end
+  source: bpl
+  id: 1544f5998
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:8c97p730j/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:1544f5998
+  rights: No known copyright restrictions.
+  title: Church on Hanover Street
+  date: ca. 1905-1920
+  note: Hanover Street, the North End's main street
+
+- scene: why
+  source: bpl
+  id: br86bb35d
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:br86bb36p/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:br86bb35d
+  rights: No known copyright restrictions.
+  title: Old Boston molasses shed Granite St.
+  date: ca. 1898-1907
+  note: 'molasses storage in Boston: the city''s long trade in Caribbean molasses'
+
+- scene: why
+  source: bpl
+  id: br86bc45v
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:br86bc464/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:br86bc45v
+  rights: No known copyright restrictions.
+  title: Old Molasses Wharf/sugar refinery Mt. Washington Ave.
+  date: ca. 1898-1907
+  note: molasses wharf and refinery - how the cargo came into Boston
+
+- scene: north-end
+  source: bpl
+  id: q811kn97g
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:q811kn98r/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:q811kn97g
+  rights: No known copyright restrictions.
+  title: Lincoln Wharf
+  date: '1900-03-20'
+  note: North End waterfront along Commercial Street, near the tank site
+
+- scene: noon
+  source: bpl
+  id: 37720p648
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:37720p65j/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:37720p648
+  rights: No known copyright restrictions.
+  title: Charlestown Bridge. Draw span.
+  date: '1900-02-14'
+  note: Charlestown Bridge, beside Keany Square where the tank stood
+
+- scene: wave
+  source: bpl
+  id: 37720p605
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:37720p61f/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:37720p605
+  rights: No known copyright restrictions.
+  title: N. end of Charlestown Bridge
+  date: '1900-02-14'
+  note: the bridge approach on Commercial Street, in the path of the wave
+
+- scene: cleanup
+  source: bpl
+  id: 70795m80q
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:70795m810/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:70795m80q
+  rights: No known copyright restrictions.
+  title: A Boston fire boat fighting the fire
+  date: '1908'
+  note: Boston fireboat - fireboats hosed the harbor water over the molasses during the clean-up
+
+- scene: legacy
+  source: bpl
+  id: fj236m82d
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj236m83p/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:fj236m82d
+  rights: No known copyright restrictions.
+  title: Custom House Tower
+  date: '1920-09-01'
+  note: Boston skyline of 1920, the year after the disaster
+
+- scene: why
+  source: bpl
+  id: rx916d758
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:kd17gk304/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:rx916d758
+  rights: No known copyright restrictions.
+  title: T Wharf (left), Long Wharf (right)
+  date: ca. 1900-1913
+  note: Boston's busy harbor wharves, where cargo ships unloaded
+
+- scene: north-end
+  source: bpl
+  id: cn69mt823
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:cn69mt83c/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:cn69mt823
+  rights: No known copyright restrictions.
+  title: Long Wharf
+  date: ca. 1910
+  note: Boston waterfront around 1910
