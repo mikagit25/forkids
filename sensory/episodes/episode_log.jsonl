@@ -30,3 +30,8 @@
 {"stem": "sensory_dance_bounce_20261109_93205", "seed": 93205, "format": "dance", "genre": "bounce", "source": null, "cast": ["apple", "banana", "berry", "blueberry", "lemon", "orange", "pear", "plum"]}
 {"stem": "sensory_dance_disco_20261111_66003", "seed": 66003, "format": "dance", "genre": "disco", "source": null, "cast": ["apple", "banana", "berry", "blueberry", "lemon", "orange", "pear", "plum"]}
 {"stem": "sensory_highcontrast_calypso_20261112_52428", "seed": 52428, "format": "dance", "genre": "calypso", "source": null, "cast": ["apple", "banana", "berry", "blueberry", "lemon", "orange", "pear", "plum"]}
+{"stem": "sensory_dance_bounce_20261113_38809", "seed": 38809, "format": "dance", "genre": "bounce", "source": null, "cast": ["apple", "banana", "berry", "blueberry", "lemon", "orange", "pear", "plum"]}
+{"stem": "sensory_dance_calypso_20261118_70805", "seed": 70805, "format": "dance", "genre": "calypso", "source": null, "cast": ["apple", "banana", "berry", "blueberry", "lemon", "orange", "pear", "plum"]}
+{"stem": "sensory_highcontrast_bounce_20261119_57213", "seed": 57213, "format": "dance", "genre": "bounce", "source": null, "cast": ["apple", "banana", "berry", "blueberry", "lemon", "orange", "pear", "plum"]}
+{"stem": "sensory_dance_calypso_20261120_43605", "seed": 43605, "format": "dance", "genre": "calypso", "source": null, "cast": ["apple", "banana", "berry", "blueberry", "lemon", "orange", "pear", "plum"]}
+{"stem": "sensory_sleep_20261122_16406", "seed": 16406, "format": "sleep", "genre": "sleep", "source": "/opt/kids_channel/assets/audio/suno/Winter Lullaby v6.mp3", "cast": ["apple", "banana", "berry", "blueberry", "pear", "plum"]}
