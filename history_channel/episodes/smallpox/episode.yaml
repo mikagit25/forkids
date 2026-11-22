@@ -34,7 +34,6 @@ scenes:
       - {file: "europeana:9200579/aabjun7u"}
       - {file: "curid:50993917"}
       - {file: "curid:174772612"}
-      - {file: "europeana:9200579/nqve4rvq"}
       - {file: "web:nlm:101392841", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101392841-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101392841-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Smallpox: keep out of this house", date: "191-", note: "quarantine placard: the fear smallpox caused in every town"}   # LoC via Chrome
 
   - id: ancient
@@ -73,7 +72,7 @@ scenes:
     images:
       - {file: "curid:12442514"}
       - {file: "curid:181371497"}
-      - {file: "met:310663"}
+      - {file: "curid:5248965", match: "Louis the Fifteenth"}   # Louis XV by L.-M. van Loo, 1761 (Met image server behind a bot check)
       - {file: "curid:92979493"}
       - {file: "europeana:9200579/ch966872"}
       - {file: "europeana:9200579/rcazpuky"}
@@ -248,6 +247,13 @@ scenes:
       - {file: "curid:12817459"}
       - {file: "curid:12841800", match: "on Bhola Island in Bangladesh"}
       - {file: "curid:50816845", match: "an American epidemiologist, Donald Henderson"}
+      - {file: "curid:61041651", match: "Teams spread across Africa"}   # CDC smallpox investigation, Dekina, Nigeria 1969
+      - {file: "curid:37541715"}   # Dekina village, outbreak site 1969
+      - {file: "curid:85612889", match: "find every case"}   # Nigeria 1966, CDC
+      - {file: "curid:17959557", match: "vaccinate everyone around it"}   # USAID team inoculating, 1966
+      - {file: "curid:12841845", match: "Her case was reported to the eradication team"}   # Patuakhali smallpox office 1975
+      - {file: "curid:58270830"}   # Meghna River, southern Bangladesh, Dec 1975
+      - {file: "curid:178849939", match: "Country after country became free"}   # OWID chart, CC BY
 
   - id: last-death
     chapter: "IX. The Last Victim"
@@ -267,7 +273,9 @@ scenes:
       - {file: "web:nlm:101447293", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447293-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447293-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Three former directors of CDC's smallpox eradication efforts", date: "undated (c. 1980?)", note: "the people who ran the eradication programme"}   # LoC via Chrome
       - {file: "curid:105949522", match: "It was the first, and is still the only"}
       - {file: "curid:188918674", match: "who worked at Birmingham University Medical School"}
+      - {file: "curid:820869", match: "where the virus was being studied"}   # variola virions, CDC PHIL 2291
       - {file: "curid:18609452", match: "the World Health Assembly declared the world free of smallpox"}
+      - {file: "curid:167949477"}   # UN stamp 1978
 
   - id: today
     chapter: "Epilogue"
@@ -302,3 +310,65 @@ references:
 research:                # newspapers of the time: python run.py episodes/smallpox research
   - {q: "smallpox vaccination", from: 1900-01-01, to: 1925-12-31, sources: [chronam, nyt]}
   - {q: "smallpox epidemic", from: 1901-01-01, to: 1903-12-31, sources: [chronam, nyt]}
+
+summary: >
+  For three thousand years smallpox killed kings and peasants alike: its marks are suspected on Egyptian mummies, it
+  helped topple the empires of the Aztecs and the Inca, and it killed an emperor of Russia and a queen of England. This is
+  the biography of the speckled monster: the healers who fought it with its own scabs, Lady Mary Wortley Montagu and
+  Zabdiel Boylston, the milkmaid's secret behind Edward Jenner's cowpox vaccine, the cartoonists who mocked it, the
+  twenty-two orphans who carried the vaccine across the ocean, and the WHO campaign that hunted down the last natural case
+  in Somalia in 1977. It is the only human disease we ever wiped out.
+
+localizations:
+  es:
+    title: "La viruela: la única enfermedad humana que logramos erradicar"
+    subtitle: "Tres mil años del monstruo moteado y cómo el mundo por fin lo venció"
+    summary: >
+      Durante tres mil años la viruela mató por igual a reyes y campesinos: se sospecha su huella en momias egipcias, ayudó a
+      derribar los imperios azteca e inca y mató a un emperador de Rusia y a una reina de Inglaterra. Esta es la biografía
+      del monstruo moteado: los sanadores que lo combatían con sus propias costras, Lady Mary Wortley Montagu y Zabdiel Boylston,
+      el secreto de las lecheras detrás de la vacuna de Edward Jenner, los caricaturistas que se burlaron de ella, los
+      veintidós huérfanos que llevaron la vacuna a través del océano y la campaña de la OMS que encontró el último caso natural en
+      Somalia en 1977. Es la única enfermedad humana que hemos erradicado.
+    chapters: ["Introducción", "El monstruo moteado", "Asesina de reyes", "Combatir el fuego con fuego",
+               "El secreto de la lechera", "Vacas y caricaturas", "Una cadena viva", "Todavía mortal",
+               "La última campaña", "La última víctima", "Epílogo"]
+  pt:
+    title: "Varíola: a única doença humana que conseguimos erradicar"
+    subtitle: "Três mil anos do monstro pintado e como o mundo finalmente o venceu"
+    summary: >
+      Durante três mil anos a varíola matou reis e camponeses: suspeita-se das suas marcas em múmias egípcias, ajudou a
+      derrubar os impérios asteca e inca e matou um imperador da Rússia e uma rainha da Inglaterra. Esta é a biografia do
+      monstro pintado: os curandeiros que o combatiam com as suas próprias crostas, Lady Mary Wortley Montagu e Zabdiel Boylston, o segredo
+      das ordenhadeiras por trás da vacina de Edward Jenner, os caricaturistas que zombaram dela, os vinte e dois órfãos que
+      levaram a vacina através do oceano e a campanha da OMS que encontrou o último caso natural na Somália em 1977. É a única
+      doença humana que já erradicamos.
+    chapters: ["Introdução", "O monstro pintado", "Assassina de reis", "Combater fogo com fogo",
+               "O segredo da ordenhadeira", "Vacas e caricaturas", "Uma corrente viva", "Ainda mortal",
+               "A última campanha", "A última vítima", "Epílogo"]
+  fr:
+    title: "La variole : la seule maladie humaine que nous ayons éradiquée"
+    subtitle: "Trois mille ans du monstre moucheté, et comment le monde l'a enfin vaincu"
+    summary: >
+      Pendant trois mille ans, la variole a tué rois et paysans : on soupçonne ses traces sur des momies égyptiennes, elle
+      a aidé à abattre les empires aztèque et inca et a tué un empereur de Russie et une reine d'Angleterre. Voici la
+      biographie du monstre moucheté : les guérisseurs qui le combattaient avec ses propres croûtes, Lady Mary Wortley Montagu et Zabdiel Boylston,
+      le secret des laitières derrière le vaccin d'Edward Jenner, les caricaturistes qui s'en moquèrent, les vingt-deux
+      orphelins qui portèrent le vaccin de l'autre côté de l'océan, et la campagne de l'OMS qui traqua le dernier cas naturel en
+      Somalie en 1977. C'est la seule maladie humaine jamais éradiquée.
+    chapters: ["Introduction", "Le monstre moucheté", "La tueuse de rois", "Combattre le feu par le feu",
+               "Le secret de la laitière", "Vaches et caricatures", "Une chaîne vivante", "Toujours mortelle",
+               "La dernière campagne", "La dernière victime", "Épilogue"]
+  de:
+    title: "Pocken: Die einzige Menschenkrankheit, die wir je ausgerottet haben"
+    subtitle: "Dreitausend Jahre des gefleckten Monsters – und wie die Welt es endlich besiegte"
+    summary: >
+      Dreitausend Jahre lang töteten die Pocken Könige wie Bauern: Ihre Spuren vermutet man auf ägyptischen Mumien, sie
+      halfen, die Reiche der Azteken und Inka zu stürzen, und töteten einen russischen Kaiser und eine englische Königin.
+      Dies ist die Biografie des gefleckten Monsters: die Heiler, die es mit seinem eigenen Schorf bekämpften, Lady Mary Wortley
+      Montagu und Zabdiel Boylston, das Geheimnis der Melkerinnen hinter Edward Jenners Impfstoff, die Karikaturisten, die
+      ihn verspotteten, die zweiundzwanzig Waisenkinder, die den Impfstoff über den Ozean trugen, und die WHO-Kampagne, die
+      1977 in Somalia den letzten natürlichen Fall aufspürte. Es ist die einzige Menschenkrankheit, die je ausgerottet wurde.
+    chapters: ["Einleitung", "Das gefleckte Monster", "Mörderin der Könige", "Feuer mit Feuer bekämpfen",
+               "Das Geheimnis der Melkerin", "Kühe und Karikaturen", "Eine lebende Kette", "Immer noch tödlich",
+               "Die letzte Kampagne", "Das letzte Opfer", "Epilog"]

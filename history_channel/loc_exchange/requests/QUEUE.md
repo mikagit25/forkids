@@ -1,32 +1,37 @@
-# Queue for the Chrome session (updated 2026-11-22)
+# Queue for the Chrome session (updated 2026-11-22, evening)
 
-Done — thank you! halifax `blame` +6 clippings imported and placed in narrative order (render running now, so no more
-Halifax picks are needed). yellow-fever NLM portraits 101428055 / 101414988 ARE on the server (inbox/other) — nothing to redo.
+Done — thank you! Halifax is uploaded. **smallpox is now closed**: the gaps were filled from Wikimedia Commons
+(CDC PHIL eradication photos, Nigeria 1969, Bangladesh 1975), render starts now — no more smallpox picks needed.
+
+Licences as always: PD / CC0 / CC BY / "No known restrictions" / NARA "Use: Unrestricted" / NLM "public domain".
+No NC / ND / SA. Newspapers only up to 1928. Never get past Cloudflare/captcha pages — skip that site.
+Met Museum image server currently shows a bot check to the server: **avoid Met images** (we cannot download them).
 
 ## Open tasks
 
-### 1. smallpox — NEW, top priority (script extended to ~14 min, needs ~60 more images)
-Format: `picks/smallpox.yaml` (append; scene ids below). Licences as always (PD / CC0 / CC BY / No known restrictions /
-NARA Use Unrestricted; NLM "public domain"). NLM images: download the full jpg and upload through the file browser to
-"📷 Archive Tales фото" → `smallpox/` (keep the NLM id in the file name).
+### 1. yellow-fever — NEXT episode, top priority (needs ~60 more images; script is being extended to ~14 min)
+`picks/yellow-fever.yaml` (append; scene ids below). NLM/LoC images: download the full jpg and upload through the file
+browser to "📷 Archive Tales фото" → `yellow-fever/` (keep the source id in the file name).
 
-| scene | what we need (2–5 each) |
+| scene | what we need (4–8 each) |
 |---|---|
-| `ancient` | Japanese smallpox prints in red (hōsō-e / "red pictures", Edo period) — NLM, Wellcome, Met; Ramses V mummy head |
-| `killer` | Florentine Codex smallpox pages; Cuitláhuac; Huayna Capac; Mary II (1694), Peter II of Russia portraits |
-| `variolation` | Zabdiel Boylston portrait; Cotton Mather; Boston c.1720s view; Catherine the Great + Thomas Dimsdale; Washington at Morristown 1777 |
-| `jenner` | Benjamin Jesty portrait (1805, Michael Sharp); Jenner's cowpox hand plate (Sarah Nelmes, 1798 Inquiry); Jenner's house Berkeley |
-| `mockery` | anti-vaccination posters/cartoons 1870–1900; Leicester demonstration 23 March 1885 (illustrated papers); Jefferson portrait |
-| `balmis` | Balmis portrait; Isabel Zendal (any period depiction, PD); corvette María Pita / A Coruña c.1800 |
-| `century` | Lincoln Nov 1863 (Gettysburg); **New York 1947 smallpox vaccination lines** (LoC NYWT&S collection, "No known restrictions") |
-| `eradication` | CDC PHIL eradication photos (PD): bifurcated needle, recognition card, vaccinators in Africa/India, Rahima Banu, D. A. Henderson, ring vaccination |
-| `last-death` | Birmingham Medical School c.1978; World Health Assembly May 1980 |
-| `today` | Jenner statue / Jenner museum; vaccinia virus micrograph (CDC PHIL) |
+| `philadelphia` (1793) | Philadelphia views 1790s (Birch prints "City of Philadelphia" 1800); Benjamin Rush; Stephen Girard; Richard Allen & Absalom Jones (Free African Society nurses); Bush Hill hospital; Mathew Carey's 1793 pamphlet title page; George Washington leaving / Germantown |
+| `haiti` (1802–03) | Charles Leclerc; Toussaint Louverture; Jean-Jacques Dessalines; period prints of Saint-Domingue / Cap-Français; French troops 1802; Louisiana Purchase 1803 document/map |
+| `theories` | New Orleans 1853 / 1878 epidemic prints (Harper's, Frank Leslie's); Memphis 1878 epidemic illustrations; quarantine stations; fumigation; Carlos Finlay (more portraits) |
+| `reed` / `camp` (1900) | Walter Reed, James Carroll, Jesse Lazear, Aristides Agramonte portraits; Camp Lazear buildings ("infected clothing" building, mosquito building); Columbia Barracks Havana 1900; volunteers (John Kissinger, John Moran); Clara Maass |
+| `gorgas` | William Gorgas; mosquito brigades oiling water / screening cisterns in Havana and Panama 1901–1906 |
+| `canal` (1904–1914) | Panama Canal construction 1904–1914 (Culebra Cut, Gatun locks, steam shovels, workers) — LoC has hundreds, NARA "Unrestricted" |
+| `vaccine` (1937) | Max Theiler; Rockefeller Foundation yellow fever lab; 17D vaccine production 1930s–40s |
+| `today` | Aedes aegypti (CDC PHIL), WHO / CDC vaccination campaign photos in Africa or South America (PD only) |
 
-Chronicling America (pages ≤1928), `kind: newspaper` with crop: smallpox epidemic / compulsory vaccination headlines 1900–1925
-(e.g. "smallpox epidemic", "vaccination riot", "anti-vaccination") → scenes `mockery` / `century`.
+Chronicling America (≤1928), `kind: newspaper` with crop: "yellow fever" headlines 1878 (Memphis/New Orleans) and
+1900–1901 (Reed commission, "mosquito theory") → scenes `theories` / `reed`.
 
-### 2. molasses-1919 — newspaper photos of the flood site (when loc.gov is faster)
-3–5 clippings with PHOTOS (Commercial Street, the collapsed tank, elevated railway girders), 15–20 Jan 1919.
-`picks/molasses-1919-news.yaml`, scenes: wave / victims / cleanup. Tip: Boston papers are not in Chronicling America;
-try New-York Tribune / Evening Public Ledger / Washington Times pictorial pages 16–19 Jan 1919.
+### 2. molasses-1919 — after yellow-fever (needs ~50 more; script will also be extended)
+Scenes: `north-end`, `why`, `warnings`, `noon`, `wave`, `victims`, `science`, `cleanup`, `trial`, `legacy`.
+- Newspaper clippings WITH PHOTOS of the site (Commercial Street, the collapsed tank, bent elevated railway girders),
+  15–20 Jan 1919. Boston papers are not in Chronicling America; try New-York Tribune / Evening Public Ledger /
+  Washington Times pictorial pages 16–19 Jan 1919 → `picks/molasses-1919-news.yaml`.
+- Boston North End 1900–1920 street life (LoC Detroit Publishing, Boston Public Library on Commons / Digital Commonwealth
+  only if "No known restrictions"/PD); Atlantic Avenue elevated railway; Boston harbor fireboats; Purity Distilling /
+  industrial alcohol / WWI munitions; 1919 Boston fire department; anarchist scare 1919 (Galleanists headlines).
