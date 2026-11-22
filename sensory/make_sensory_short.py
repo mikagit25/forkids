@@ -45,7 +45,63 @@ GENRE_LABEL = {
     "bounce":   "Bounce Party",
 }
 
-TITLE_TMPL = "Dancing Fruits — {label} 🍓 Sensory Video for Babies #Shorts"
+TITLE_TMPL = "Dancing Fruits — {label} 🍓 Sensory Video for Babies #Shorts"   # legacy (only 4 titles → all later Shorts were rejected as duplicates)
+
+# Titles must differ from every uploaded/queued title (publish_queue rejects Jaccard >= 0.82 on word sets).
+# Character name + genre wording + ending are combined, and a candidate is accepted only if it stays < TITLE_MAX_SIM
+# from all titles in data/upload_registry.json and in the queue.
+GENRE_WORDS = {
+    "disco":   ["Disco Beat", "Disco Lights", "Disco Groove", "Night Disco", "Disco Party"],
+    "calypso": ["Island Vibes", "Steel Drum Fun", "Calypso Party", "Beach Rhythm", "Tropical Beat"],
+    "march":   ["Toy Parade", "Little March", "Marching Band", "Parade Time", "Drum March"],
+    "bounce":  ["Bounce Party", "Happy Bounce", "Jumping Beat", "Bouncy Groove", "Hop and Bounce"],
+}
+OPENERS = ["Dancing {name}", "{name} Dance Party", "{name} Moves", "Little {name} Dances", "{name} Groove Time",
+           "Happy {name} Dance", "{name} on the Dance Floor"]
+ENDINGS = ["Sensory Video for Babies", "Baby Sensory Dance", "Toddler Sensory Fun", "Visual Stimulation for Babies",
+           "Sensory Fun for Little Ones", "Baby Dance Video", "Colourful Sensory for Toddlers"]
+FRUITS = {"berry", "pear", "plum", "orange", "banana", "lemon", "apple", "blueberry"}
+VEGGIES = {"carrot", "tomato", "corn", "broccoli", "pumpkin"}
+TITLE_MAX_SIM = 0.7
+
+
+def _emoji(character: str) -> str:
+    return "🍓" if character in FRUITS else "🥕" if character in VEGGIES else "🐾"
+
+
+def _known_titles(q: Path) -> list[str]:
+    titles = []
+    try:
+        reg = json.loads((ROOT / "data" / "upload_registry.json").read_text())
+        titles += [e.get("title", "") for e in reg.get("en", [])]
+    except Exception:
+        pass
+    import yaml
+    for m in list(q.glob("meta_*.yaml")) + list((ROOT / "output" / "uploaded").glob("meta_*.yaml")):
+        try:
+            titles.append((yaml.safe_load(m.read_text()) or {}).get("title", ""))
+        except Exception:
+            pass
+    return [t for t in titles if t]
+
+
+def unique_title(character: str, genre: str, seed: int, q: Path, extra: list[str] | None = None) -> str:
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from duplicate_check import title_similarity
+    known = _known_titles(q) + list(extra or [])
+    name = character.replace("_", " ").title()
+    rnd = random.Random(seed)
+    combos = [(o, g, e) for o in OPENERS for g in GENRE_WORDS.get(genre, ["Dance Party"]) for e in ENDINGS]
+    rnd.shuffle(combos)
+    best = None
+    for o, g, e in combos:
+        t = f"{o.format(name=name)} — {g} {_emoji(character)} {e} #Shorts"[:100]
+        sim = max((title_similarity(t, k) for k in known), default=0.0)
+        if sim < TITLE_MAX_SIM:
+            return t
+        if best is None or sim < best[0]:
+            best = (sim, t)
+    return best[1]
 
 DESCRIPTION_TMPL = """🍓 {character_name} dances to cheerful {style} music in this fun sensory short for babies and toddlers!
 
@@ -184,10 +240,11 @@ def _make_one(seed: int, genre: str | None, q: Path) -> None:
 
     # Meta
     import yaml
-    char_name = character.replace("blueberry", "blueberry").title()
+    char_name = character.replace("_", " ").title()
     style_map = {"disco": "disco", "calypso": "steel drum", "march": "marching", "bounce": "dance"}
     meta = {
-        "title": TITLE_TMPL.format(label=label)[:100],
+        "character": character,
+        "title": unique_title(character, genre, seed, q),
         "description": DESCRIPTION_TMPL.format(
             character_name=char_name,
             style=style_map.get(genre, "dance"),
