@@ -72,7 +72,11 @@ def tune_beats(tune: dict) -> float:
     return sum(b for _, b in tune["melody"])
 
 
-def render_medley(order: list[str], out_wav: Path, seed: int, bpm: float = 76, repeats: int = 3, key: int = 60,
+CYCLE_KEY = [0, 5, -3]          # C, then F, then A (lower) — every round of the medley sounds different
+CYCLE_TEMPO = [1.0, 1.06, 1.12]  # beat length factor: each round slower, calmer towards sleep
+
+
+def render_medley(order: list[str], out_wav: Path, seed: int, bpm: float = 76, repeats: int = 3, key0: int = 60,
                   target_min: float | None = None) -> dict:
     """Play the tunes in `order`, each `repeats` times with changing instruments, soft pad chords and a bass
     note per chord; 1 bar of rest between verses. If target_min is set the whole medley repeats until the
@@ -86,11 +90,12 @@ def render_medley(order: list[str], out_wav: Path, seed: int, bpm: float = 76, r
             tune = TUNES[name]
             start = t
             for r in range(repeats):
-                v = VOICES[(r + cycle + len(plan)) % len(VOICES)]
-                plan.append((name, t, v))
-                t += tune_beats(tune) * beat + tune["beats_per_bar"] * beat
+                v = VOICES[(r + cycle) % len(VOICES)]
+                cb = beat * CYCLE_TEMPO[cycle % len(CYCLE_TEMPO)]          # each round of the medley a little slower
+                plan.append((name, t, v, cycle))
+                t += tune_beats(tune) * cb + tune["beats_per_bar"] * cb
             plan_title = (tune["title"], round(start, 2), round(t, 2))
-            plan.append(("__mark__", plan_title, None))
+            plan.append(("__mark__", plan_title, None, None))
         cycle += 1
         if not target_min or t >= target_min * 60:
             break
@@ -106,11 +111,13 @@ def render_medley(order: list[str], out_wav: Path, seed: int, bpm: float = 76, r
         W[i:i + len(sig)] += sig * send
 
     marks = []
-    for name, at, v in plan:
+    for name, at, v, cyc in plan:
         if name == "__mark__":
             marks.append(at)
             continue
         tune = TUNES[name]
+        beat = 60.0 / bpm * CYCLE_TEMPO[cyc % len(CYCLE_TEMPO)]
+        key = key0 + CYCLE_KEY[cyc % len(CYCLE_KEY)]                 # ...and in a different key
         tt = at
         for note, b in tune["melody"]:
             if note is not None:
@@ -127,7 +134,7 @@ def render_medley(order: list[str], out_wav: Path, seed: int, bpm: float = 76, r
             for iv in DEG[deg]:
                 add(M.pad(M.hz(key - 12 + iv), hb * 0.97), hstart + k * hb, 0.07, 0.0, 0.6)
             add(M.bass(M.hz(key - 24 + DEG[deg][0]), hb * 0.8, 0.7), hstart + k * hb, 0.16, 0.0, 0.0)
-    irl, irr = M.hall_ir(rng, 2.6, 3200, (beat * 0.75, 0.35, 4))
+    irl, irr = M.hall_ir(rng, 2.6, 3200, (60.0 / bpm * 0.75, 0.35, 4))
     L = L + 0.5 * fftconvolve(W, irl)[:n]
     R = R + 0.5 * fftconvolve(W, irr)[:n]
     sos = butter(2, 3000, btype="low", fs=M.SR, output="sos")

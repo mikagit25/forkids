@@ -85,7 +85,7 @@ def aquarium(a, q, seed, today):
     words = duration_words(round(minutes))
     desc = f"""🐠 Welcome to the Happy Bear Kids baby aquarium! Colourful fish swim slowly from side to side, pink and blue jellyfish float up through the water, a friendly octopus and a smiling little whale glide past, and soft bubbles rise between swaying seaweed — all to calm, gentle music.
 
-This {words.lower()} underwater video is made for babies and toddlers. Everything moves slowly and smoothly: no sudden movements, no flashing lights, no loud sounds and no talking. The deep blue colours and the soft light rays from the surface make it a peaceful view for quiet time.
+This {int(round(minutes))}-minute underwater video is made for babies and toddlers. Everything moves slowly and smoothly: no sudden movements, no flashing lights, no loud sounds and no talking. The deep blue colours and the soft light rays from the surface make it a peaceful view for quiet time.
 
 How families use it:
 • Calm-down time after a busy day, or before a nap
@@ -131,7 +131,7 @@ def peekaboo(a, q, seed, today):
     names = ", ".join(c.title() for c in cast)
     desc = f"""🙈 Peek-a-boo! Who is hiding behind the gift box? Who is behind the bush and the smiling cloud? Baby animals pop up exactly on the beat, wave hello, dance for a moment and hide again — and when the chorus comes, everybody jumps out together!
 
-This {words.lower()} peek-a-boo video is made for babies and toddlers. Peek-a-boo is one of the first games babies love: it builds attention, anticipation and the idea that things are still there even when we can't see them (object permanence). Every surprise here is gentle and friendly — no scary sounds, no flashing lights and no talking.
+This {int(round(minutes))}-minute peek-a-boo video is made for babies and toddlers. Peek-a-boo is one of the first games babies love: it builds attention, anticipation and the idea that things are still there even when we can't see them (object permanence). Every surprise here is gentle and friendly — no scary sounds, no flashing lights and no talking.
 
 Play along at home:
 • Before each friend pops up, ask: "Who's hiding? Where is it?"
@@ -183,7 +183,7 @@ def lullabies(a, q, seed, today):
         chapters.append(f"{s // 60}:{s % 60:02d} {title}")
     desc = f"""🌙 Gentle music box lullabies for babies: Twinkle Twinkle Little Star, Brahms' Lullaby, Mary Had a Little Lamb, Frère Jacques, Row Row Row Your Boat and London Bridge — slow, soft and warm, while sleepy baby animals float among twinkling stars.
 
-This {words.lower()} bedtime video is made for babies and toddlers. Each tune is played three times — first on a music box, then on a soft felt piano with a gentle flute, then on music box again — over warm, quiet chords. The picture stays dark and slow, with nothing sudden or bright, so it can be part of a calm bedtime routine.
+This {int(round(minutes))}-minute bedtime video is made for babies and toddlers. Each tune is played three times in a row, on a music box, a soft felt piano and a gentle flute, over warm, quiet chords. Then the whole set comes back twice more, each time in a new key and a little slower, so the music grows calmer and calmer towards sleep. The picture stays dark and slow, with nothing sudden or bright, so it can be part of a calm bedtime routine.
 
 Songs:
 {chr(10).join(chapters)}
