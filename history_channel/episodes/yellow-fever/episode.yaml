@@ -27,6 +27,7 @@ scenes:
       The answer turned out to be a mosquito. Proving it cost the lives of brave volunteers.
       And that discovery made the Panama Canal possible.
       This is the biography of yellow fever.
+    candidates: ["yellow fever epidemic engraving", "Panama Canal construction 1913", "Haitian Revolution engraving"]
     images:
       - {query: "yellow fever", count: 4}
       - {query: "Panama Canal construction", count: 2}
@@ -49,6 +50,7 @@ scenes:
           - [-0.2, 5.6, "West Africa"]
           - [-16.0, 14.0, ""]
           - [-61.5, 15.0, "Caribbean, 1600s"]
+    candidates: ["yellow fever patient", "Aedes aegypti", "slave ship 18th century", "Barbados 17th century map", "yellow quarantine flag"]
     images:
       - {query: "yellow fever patient", count: 2}
       - {query: "Aedes aegypti", count: 1, modern: true}
@@ -69,6 +71,7 @@ scenes:
       By the time cold weather arrived in November and the epidemic ended, around five thousand people had died, about one in ten of the city's population.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "1 in 10", text: "Philadelphians died in 1793", match: "By the time cold weather arrived"}
+    candidates: ["Philadelphia 1800 Birch", "Benjamin Rush portrait", "Stephen Girard portrait", "Richard Allen bishop portrait", "Absalom Jones portrait", "Bush Hill Philadelphia", "Matthew Clarkson mayor", "Mathew Carey portrait", "Philadelphia 1793 yellow fever"]
     images:
       - {query: "Philadelphia 1793 yellow fever", count: 2}
       - {query: "Benjamin Rush", count: 1, colorize: true}
@@ -84,6 +87,7 @@ scenes:
       The revolution's great leader, Toussaint Louverture, had been arrested by the French and shipped to a fortress prison in the mountains of France, where he died in 1803. But his generals fought on. On the eighteenth of November 1803, Jean-Jacques Dessalines defeated the French at the Battle of Vertières, and by the end of the year the last French soldiers had left.
       The disaster helped convince Napoleon to give up his ambitions in the Americas. In 1803, he sold the vast Louisiana territory to the United States, for fifteen million dollars, less than three cents an acre.
       And on the first of January 1804, Haiti declared its independence, the first nation founded by formerly enslaved people.
+    candidates: ["Charles Leclerc general portrait", "Pauline Bonaparte portrait", "Toussaint Louverture portrait", "Jean-Jacques Dessalines portrait", "Battle of Vertières", "Saint-Domingue expedition", "Fort de Joux", "Louisiana Purchase 1803", "Cap-Français 1791"]
     images:
       - {query: "Saint-Domingue expedition", count: 2}
       - {query: "Haitian Revolution", count: 2}
@@ -96,6 +100,7 @@ scenes:
       Most doctors believed it spread through filth and miasma, or through the clothes and bedding of the sick. Cities burned tar in the streets and fumigated houses.
       In 1878, an epidemic swept up the Mississippi Valley and killed an estimated twenty thousand people. In Memphis alone, more than five thousand died, and so many people fled that the city lost its charter. Doctors, priests, nuns, and even the owner of a brothel, Annie Cook, stayed behind to nurse the sick, and many of them died. A riverboat carrying people away from Memphis wandered the Mississippi for two months, because no town would let its passengers come ashore.
       In 1881, a Cuban physician named Carlos Finlay proposed a different idea. He argued that yellow fever was carried by a mosquito, which bit a sick person and then a healthy one. He presented the idea at an international sanitary conference, where it was received with ridicule. A year later he identified the culprit, the mosquito we now call Aedes aegypti. For almost twenty years, few people took him seriously. Finlay was nominated for the Nobel Prize seven times, but never received it.
+    candidates: ["Memphis yellow fever 1878", "yellow fever epidemic 1878 Frank Leslie", "New Orleans yellow fever", "Carlos Finlay", "fumigation yellow fever", "yellow fever quarantine station"]
     images:
       - {query: "Carlos Finlay", count: 1, colorize: true}
       - {query: "New Orleans yellow fever 1878", count: 2}
@@ -114,6 +119,7 @@ scenes:
       On the thirty-first of August 1900, Dr Jesse Lazear allowed a mosquito that had fed on yellow fever patients to bite a soldier, Private William Dean. Within days, Dean fell ill. He survived.
       Another member of the commission, James Carroll, also fell gravely ill after a mosquito bite. He recovered, but the illness damaged his heart, and he died seven years later.
       Lazear himself was less lucky. On the eighth of September, he wrote to his wife: I rather think I am on the track of the real germ. Days later he fell ill, and on the twenty-fifth of September 1900 he died, at the age of thirty-four, leaving a wife and two small children. For decades the official story was that a stray mosquito had bitten him by accident. In 1947, his own notebook revealed the truth: he had let an infected mosquito bite him on purpose.
+    candidates: ["Walter Reed", "James Carroll yellow fever", "Jesse William Lazear", "Aristides Agramonte", "Columbia Barracks Cuba", "Havana 1900"]
     images:
       - {query: "Walter Reed", count: 1, colorize: true}
       - {query: "Jesse Lazear", count: 1}
@@ -131,6 +137,7 @@ scenes:
       The conclusion was clear. Yellow fever was not spread by filth or bedding. It was spread by mosquitoes.
       The experiments did not end there. In 1901, in Havana, further tests were made on volunteers who were paid one hundred dollars, and another hundred if they fell ill. One of them was a twenty-five-year-old American nurse, Clara Maass. She was bitten seven times. After the last bite, in August 1901, she developed yellow fever, and she died on the twenty-fourth of August. Her death caused a public outcry, and experiments on human volunteers with yellow fever came to an end.
       Walter Reed did not live long to enjoy his fame. In November 1902, he died of a ruptured appendix, at the age of fifty-one.
+    candidates: ["Camp Lazear", "yellow fever commission experiment", "Clara Maass", "Las Animas hospital Havana", "Walter Reed 1902"]
     images:
       - {query: "Camp Lazear", count: 2}
       - {query: "yellow fever experiment Cuba 1900", count: 2}
@@ -151,6 +158,7 @@ scenes:
         points:
           - [-82.38, 23.13, "Havana, 1901"]
           - [-79.52, 8.98, "Panama, 1904"]
+    candidates: ["William Crawford Gorgas", "Ferdinand de Lesseps", "French Panama Canal excavator", "Panama Canal French 1880s", "mosquito brigade Panama", "Havana 1901 sanitation"]
     images:
       - {query: "William Gorgas", count: 1}
       - {query: "Panama Canal mosquito brigade", count: 2, colorize: true}
@@ -167,6 +175,7 @@ scenes:
       Without yellow fever, the canal could be built.
       Tens of thousands of workers dug through mountains, built enormous locks and dammed a river to create a lake. On the fifteenth of August 1914, the steamship Ancon made the first official passage, and the Panama Canal opened, linking the Atlantic and the Pacific. The First World War had begun only days before, and the grand celebrations that had been planned were cancelled.
       It was one of the greatest engineering projects in history. And it was, in part, a victory of medicine over a mosquito.
+    candidates: ["Culebra Cut", "Gatun locks construction", "SS Ancon Panama Canal 1914", "Panama Canal steam shovel", "Panama Canal workers 1910"]
     images:
       - {query: "Panama Canal construction", count: 2}
       - {query: "Culebra Cut", count: 1}
@@ -180,6 +189,7 @@ scenes:
       Mosquito control worked in cities, but yellow fever also lived in monkeys in the jungles of Africa and South America, so it could never be wiped out that way.
       In 1927, scientists isolated the yellow fever virus in West Africa. Ten years later, in 1937, the South African virologist Max Theiler, working at the Rockefeller Foundation in New York, developed a vaccine called 17D. With his colleague Hugh Smith, he weakened the virus by growing it again and again, more than a hundred times, in chicken embryos, until it no longer caused disease. Between 1940 and 1947 the Rockefeller Foundation produced more than twenty-eight million doses. A single dose gives protection for life. It is still used today.
       Theiler received the Nobel Prize in Physiology or Medicine in 1951, the first Nobel laureate born in Africa.
+    candidates: ["Max Theiler", "Rockefeller Foundation yellow fever laboratory", "yellow fever vaccine 1940", "chicken embryo vaccine production"]
     images:
       - {query: "Max Theiler", count: 1}
       - {query: "Rockefeller Foundation laboratory 1930s", count: 2}
@@ -193,6 +203,7 @@ scenes:
       Travellers to these regions are often required to show proof of vaccination, the famous yellow card.
       The story of yellow fever is the story of how science learned that the most dangerous creature in history is not a tiger or a shark, but the mosquito.
       If you enjoyed this biography of a disease, subscribe for the next one.
+    candidates: ["yellow fever vaccination Africa", "International Certificate of Vaccination yellow fever", "Aedes aegypti mosquito", "yellow fever vaccine vial"]
     images:
       - {query: "yellow fever vaccination", count: 1, modern: true}
       - {query: "yellow fever", count: 1}
