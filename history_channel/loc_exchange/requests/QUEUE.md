@@ -40,6 +40,11 @@ Chronicling America (≤1928), `kind: newspaper` with crop: "yellow fever" headl
 
 ### 1. molasses-1919 — NOW top priority (needs ~50 more; script will also be extended)
 Scenes: `north-end`, `why`, `warnings`, `noon`, `wave`, `victims`, `science`, `cleanup`, `trial`, `legacy`.
+**Script is now ~14 min (22.11 evening).** New things it talks about — pictures welcome: USS Nantucket (training ship of the
+Massachusetts Nautical School) and its cadets; Red Cross nurses 1919; Boston firehouse Engine 31 (Commercial St.);
+Keany Square / Copp's Hill Terrace; 1919 anarchist bombings (A. Mitchell Palmer's house, June 1919; Luigi Galleani);
+Boston Police Strike, Sept 1919 (State Guard on the streets, Gov. Calvin Coolidge) — LoC Bain / Harris & Ewing when
+loc.gov works. I search Wikimedia Commons myself for these too, so only send what you find elsewhere.
 **Start with NARA catalog and Digital Commonwealth (digitalcommonwealth.org — Boston Public Library, Leslie Jones
 collection etc.; take only items marked "No known restrictions" / public domain, NOT "CC BY-NC")** — loc.gov keeps timing
 out; try Chronicling America later. Useful searches: "molasses flood", "Commercial Street Boston 1919", "North End Boston",
