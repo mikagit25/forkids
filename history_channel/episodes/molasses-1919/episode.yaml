@@ -42,6 +42,7 @@ scenes:
       It was fifty feet tall and ninety feet across. It could hold about two point three million gallons of molasses, weighing some twelve thousand tonnes.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "2.3 million", text: "gallons of molasses in one tank", match: "It could hold about two point three million gallons"}
+    candidates: ["North End Boston 1910", "Hanover Street Boston", "Commercial Street Boston", "Atlantic Avenue Elevated", "Boston Elevated Railway 1910", "Copps Hill Boston"]
     images:
       - {query: "Commercial Street Boston 1910s", count: 2}
       - {query: "Atlantic Avenue elevated Boston", count: 1}
@@ -62,6 +63,7 @@ scenes:
       The war had ended with the armistice of the eleventh of November 1918, and by early 1919 the fighting was over, but another deadline was approaching. The country was about to adopt Prohibition, which would ban the production of alcoholic drinks. Some historians believe the company was hurrying to turn as much molasses as possible into alcohol before the law took effect.
       Just the day before the disaster, a ship had delivered a fresh load, warmed so that it would flow more easily into the tank.
       The timing was remarkable. The day after the disaster, on the sixteenth of January 1919, Nebraska became the thirty-sixth state to ratify the Eighteenth Amendment, and nationwide Prohibition became part of the Constitution. It took effect one year later.
+    candidates: ["molasses barrels", "sugar plantation Caribbean 19th century", "munitions factory 1918", "Prohibition 1919", "Eighteenth Amendment", "distillery 1910"]
     images:
       - {query: "Boston molasses disaster", count: 1}
       - {query: "Boston 1910s", count: 1}
@@ -78,6 +80,7 @@ scenes:
       The tank had been built in 1915, in a hurry. The man in charge of its construction was the company's treasurer, Arthur Jell. He had no training as an engineer or architect. The tank was never properly tested with water to check for leaks before the molasses went in.
       From its very first filling, it leaked. Brown streaks ran down its sides. The company's response was to paint the tank brown, so the leaks would not show.
       Local families came with buckets and cans to collect the molasses that oozed out. Every time it was filled, people heard the tank groan and rumble. Nobody stopped it. In more than three years, it had been filled to the top only eight times, so its walls were stretched and relaxed again and again. Some engineers also think that the molasses inside was slowly fermenting, giving off gas that raised the pressure, and that the final crack began near a manhole cover at the base of the tank.
+    candidates: ["riveted steel tank", "storage tank 1915", "oil tank construction 1915"]
     images:
       - {query: "Molasses Flood", count: 2}
       - {query: "North End Boston tenements", count: 1}
@@ -90,6 +93,7 @@ scenes:
       At about half past twelve, as dock workers ate lunch and children played outside, people nearby heard a deep rumble, followed by sharp cracks, like a machine gun. Others said it felt like the ground was shaking, or that it sounded like a passing elevated train. Rivets were shooting out of the tank's steel plates.
       Then the tank split open.
       Millions of gallons of molasses burst out in a single wave, around twenty-five feet high at its peak, rushing through the streets at an estimated thirty-five miles an hour.
+    candidates: ["Boston 1919", "Boston harbor 1919", "Boston street 1919"]
     images:
       - {query: "Molasses Flood", count: 2}
       - {query: "Boston 1919 street", count: 1}
@@ -107,6 +111,7 @@ scenes:
       A newspaper, the Boston Post, described the scene: horses died like so many flies on sticky fly-paper; the more they struggled, the deeper in the mess they were ensnared.
       The first rescuers were a hundred and sixteen cadets from the USS Nantucket, a training ship of the Massachusetts Nautical School, docked nearby. They ran several blocks and waded into the molasses, pulling out anyone they could reach. Then came police, soldiers, sailors and the Red Cross. Some Red Cross nurses waded into the molasses themselves. Doctors set up a makeshift hospital in a nearby building, and many people worked through the night.
       Twenty-one people died. Many were labourers and residents of the neighbourhood. Some of the youngest victims were children who had been playing nearby. About a hundred and fifty more were injured, and for days afterwards coughing fits were among the most common complaints. Dogs and horses were among the wounded too.
+    candidates: ["Great Molasses Flood", "molasses flood 1919", "Boston fireboat", "Boston Elevated train 1919"]
     images:
       - {query: "Boston molasses disaster", count: 2, colorize: true}
       - {query: "Molasses Flood", count: 1}
@@ -123,6 +128,7 @@ scenes:
       The youngest were two ten-year-olds, Pasquale Iantosca and Maria Di Stasio. Several other children were caught as they played or walked home for lunch.
       One boy, Anthony di Stasio, was walking home from school with his sisters when the wave picked him up and carried him on its crest, almost as if he were surfing. Then it rolled him like a pebble. He heard his mother calling his name, but his throat was so full of molasses that he could not answer. He passed out, and woke to find three of his four sisters looking down at him. Anthony survived. The fourth, ten-year-old Maria, did not.
       Many of the families were immigrants who had come to Boston for work and a better life. A hundred years later, their twenty-one names would be read aloud on the spot where the tank had stood.
+    candidates: ["North End Boston children", "Boston teamster horse wagon", "Boston fire engine 1919", "Boston firehouse"]
     images:
       - {query: "North End Boston", count: 1}
       - {query: "North End Boston tenements", count: 2}
@@ -140,6 +146,7 @@ scenes:
       As the molasses spread out into the freezing January air, it cooled quickly and became even thicker. Victims caught in it found themselves trapped, as if in quicksand that was slowly setting around them. That also made the rescue painfully slow.
       It took days to find all the victims. The search went on for four days. Some victims had been swept into the harbour, and were not found until three or four months later.
       Engineers have studied the tank too. A modern analysis in 2014 found that its steel was only half as thick as it should have been, even by the standards of the time. The steel also lacked manganese, which made it brittle, and the first cracks appear to have formed around the rivet holes.
+    candidates: ["molasses", "Harvard University 2016"]
     images:
       - {query: "Molasses Flood", count: 2}
       - {query: "Boston 1919 street", count: 1}
@@ -150,6 +157,7 @@ scenes:
       The cleanup took weeks. Fresh water barely shifted the sticky mass, so crews sprayed it with salt water from a fireboat, and spread sand to soak it up. Several hundred people joined the work.
       Rescuers, workers and sightseers tracked it across the city: onto subway platforms, the seats of trains and streetcars, pay telephones and into homes. As one account put it, everything a Bostonian touched was sticky. The harbour stayed brown until the summer.
       And for decades afterwards, North End residents said that on hot summer days, the neighbourhood still smelled faintly of molasses.
+    candidates: ["Boston fireboat", "Boston harbor", "Boston streetcar 1919"]
     images:
       - {query: "Boston molasses disaster", count: 2}
       - {query: "Boston North End 1920s", count: 1}
@@ -166,6 +174,7 @@ scenes:
       He rejected the company's bomb story. United States Industrial Alcohol was held responsible. It paid around six hundred and twenty-eight thousand dollars in damages, roughly seven thousand dollars for each victim's family.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "$628,000", text: "paid in damages", match: "It paid around six hundred and twenty-eight thousand dollars"}
+    candidates: ["Luigi Galleani", "1919 bombing Palmer house", "Boston police strike 1919", "Calvin Coolidge 1919", "Massachusetts State Guard 1919", "Suffolk County Courthouse Boston"]
     images:
       - {query: "Boston 1910s", count: 1}
       - {query: "anarchist bombing 1919", count: 1}
@@ -187,6 +196,7 @@ scenes:
       On the fifteenth of January 2019, a hundred years to the day, people gathered there. Ground-penetrating radar had found the tank's concrete base, still buried about half a metre under the baseball field. They stood in a circle marking the edge of the tank, and the names of the twenty-one people who died were read aloud.
       It is easy to laugh at the idea of a molasses flood. But the people of the North End paid for it with their lives, and every building we trust today owes a little to what Boston learned that day.
       If you enjoyed this story from the archives, subscribe for more forgotten chapters of history.
+    candidates: ["Langone Park Boston", "Molasses flood plaque", "North End Boston"]
     images:
       - {query: "Great Molasses Flood plaque", modern: true, count: 1}
       - {query: "Molasses Flood", count: 1}
