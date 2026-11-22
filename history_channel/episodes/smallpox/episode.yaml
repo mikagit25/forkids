@@ -49,12 +49,10 @@ scenes:
       - {file: "curid:9541702"}
       - {file: "europeana:9200579/g84jpb4x"}
       - {file: "europeana:9200579/cw96j99k"}
-      - {query: "variola virus", count: 1, modern: true}
       - {file: "web:nlm:101434085", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101434085-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101434085-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Confluent Small-Pox", date: "undated (19th c.)", note: "medical illustration of the disease at its worst"}   # LoC via Chrome
       - {file: "curid:1214308", match: "caused by the variola virus"}
-      - {file: "curid:41895410", match: "fluid-filled pustules"}
       - {file: "curid:9541621", match: "the pharaoh Ramses the Fifth"}
-      - {file: "curid:43216269"}
+      - {file: "curid:43216269", crop: [0, 0.1, 1, 1]}   # book page: cut the caption line at the top
       - {file: "cleveland:162518"}
       - {file: "curid:35997701", match: "In Japan, the red was believed"}
       - {file: "curid:36066605"}
@@ -71,18 +69,16 @@ scenes:
     candidates: ["Cuitlahuac", "Florentine Codex smallpox", "Tenochtitlan", "Huayna Capac", "Mary II of England portrait", "Peter II of Russia", "Louis XV deathbed"]
     images:
       - {file: "curid:12442514"}
-      - {file: "curid:181371497"}
-      - {file: "curid:5248965", match: "Louis the Fifteenth"}   # Louis XV by L.-M. van Loo, 1761 (Met image server behind a bot check)
-      - {file: "curid:92979493"}
-      - {file: "europeana:9200579/ch966872"}
-      - {file: "europeana:9200579/rcazpuky"}
-      - {file: "web:nlm:101455857", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101455857-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101455857-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Canada, the recent smallpox epidemic in Montreal", date: "1885", note: "newspaper engraving of the 1885 Montreal epidemic"}   # LoC via Chrome
-      - {file: "curid:129544231", match: "swept through the Aztec capital"}
-      - {file: "curid:43555733", match: "killed the new emperor"}
       - {file: "curid:6893984"}
+      - {file: "curid:129544231", match: "swept through the Aztec capital"}
+      - {file: "curid:43555733"}
       - {file: "curid:147545907", match: "the Inca ruler Huayna Capac"}
+      - {file: "curid:5248965", match: "Louis the Fifteenth"}
+      - {file: "curid:12277238", match: "and an emperor of Austria"}   # Joseph I, Holy Roman Emperor / Archduke of Austria, died of smallpox 1711
       - {file: "curid:64092718", match: "Queen Mary the Second"}
       - {file: "curid:40094884", match: "Emperor Peter the Second"}
+      - {file: "europeana:9200579/ch966872"}
+      - {file: "web:nlm:101455857", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101455857-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101455857-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Canada, the recent smallpox epidemic in Montreal", date: "1885", note: "newspaper engraving of the 1885 Montreal epidemic"}   # LoC via Chrome
 
   - id: variolation
     chapter: "III. Fighting Fire with Fire"
@@ -131,7 +127,6 @@ scenes:
       - {file: "curid:90129751", colorize: true}
       - {file: "europeana:9200579/hhd759xh"}
       - {file: "europeana:9200579/wsmqn2at"}
-      - {file: "curid:36131125"}
       - {file: "web:nlm:101449258", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101449258-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101449258-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "The First Vaccination - Dr. Jenner", date: "undated (19th c. print)", note: "Jenner vaccinating James Phipps, 1796"}   # LoC via Chrome
       - {file: "web:nlm:101419633", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101419633-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101419633-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Edward Jenner", date: "18--", note: "portrait of Jenner"}   # LoC via Chrome
       - {file: "curid:36141279", match: "a farmer named Benjamin Jesty"}
@@ -154,17 +149,17 @@ scenes:
     candidates: ["Thomas Jefferson portrait", "anti-vaccination", "anti-vaccination Leicester 1885", "vaccination 19th century", "calf lymph vaccination", "compulsory vaccination cartoon"]
     images:
       - {file: "curid:2289666"}
+      - {file: "curid:36460206", match: "might start to look like cows"}
       - {file: "europeana:9200579/rb9k8r59"}
+      - {file: "curid:36460179"}   # G. Cruikshank 1812, "The Cow Pox Tragedy" — attack on vaccination (Wellcome, CC BY)
       - {file: "curid:52461725"}
       - {file: "europeana:133/S_UVLM_photo_Vlm_A4653"}
-      - {file: "web:nlm:101395166", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101395166-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101395166-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "The Cow Pock - or - the Wonderful Effects of the New Inoculation!", date: "1802", note: "Gillray's cartoon: vaccinated people sprouting cows"}   # LoC via Chrome
-      - {file: "curid:36323035"}
+      - {file: "curid:199533203"}   # vaccination in Prague, Illustrirtes Prager Extrablatt 1881
       - {file: "curid:197033295", match: "Thomas Jefferson vaccinated"}
-      - {file: "curid:158792418", match: "provoked fierce resistance"}
+      - {file: "curid:141016118"}   # Paris 5th arrondissement vaccination notice, 1870 (CC0)
       - {file: "curid:158736263"}
       - {file: "curid:158736722"}
       - {file: "curid:68104011"}
-      - {file: "curid:36460206", match: "might start to look like cows"}
 
   - id: balmis
     chapter: "VI. A Living Chain"
@@ -190,7 +185,6 @@ scenes:
     images:
       - {file: "wellcome:swbj56cs"}
       - {file: "wellcome:m8xc5bg2"}
-      - {query: "Francisco Javier de Balmis", count: 1}
       - {file: "wellcome:qmqyp66a"}
       - {file: "curid:92227309"}
       - {file: "curid:40546427", match: "There were twenty-two orphan boys"}
@@ -212,7 +206,6 @@ scenes:
       - {file: "curid:16859488"}
       - {file: "europeana:9200579/tgfzc2h3"}
       - {file: "web:nlm:101392773", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101392773-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101392773-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Vaccinating the poor", date: "1873", note: "public vaccination in a 19th-century city"}   # LoC via Chrome
-      - {file: "web:nlm:101430419", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101430419-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101430419-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Small Pox and Vaccination Hospital, London, England: Front view", date: "undated (19th c.)", note: "a hospital built just for smallpox"}   # LoC via Chrome
       - {file: "web:nlm:101420979", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101420979-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101420979-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Smallpox patients at Military Hospital No. 45, an isolation hospital, Gungalin]", date: "undated (c. 1910s?)", note: "isolation of smallpox patients in the 20th century"}   # LoC via Chrome
       - {file: "curid:611162", match: "Abraham Lincoln was already falling ill"}
       - {file: "curid:86974284", match: "delivered the Gettysburg Address"}
@@ -235,25 +228,24 @@ scenes:
     candidates: ["smallpox eradication programme", "bifurcated needle", "smallpox recognition card", "Rahima Banu", "Donald Henderson smallpox", "smallpox vaccination Africa", "smallpox Bangladesh", "smallpox vaccination India", "jet injector smallpox"]
     images:
       - {file: "curid:37542373", colorize: true}
-      - {file: "curid:8098834"}
-      - {file: "curid:3156882"}
-      - {file: "curid:367791"}
-      - {query: "Ali Maow Maalin", count: 1}
-      - {file: "web:nlm:101447579", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447579-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447579-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Staff physician of the WHO vaccinates a youngster against smallpox by means of a jet injector]", date: "1970", note: "WHO eradication campaign in the field"}   # LoC via Chrome
-      - {file: "web:nlm:101447295", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447295-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447295-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Schematic world maps showing the areas in which smallpox had been eradicated in 1966, 1972 ...", date: "1966-1976", note: "maps of the disease shrinking during the campaign"}   # LoC via Chrome
       - {file: "curid:36035774", match: "asked the World Health Assembly"}
-      - {file: "curid:1848401", match: "A simple bifurcated needle"}
-      - {file: "curid:2262195"}
-      - {file: "curid:12817459"}
-      - {file: "curid:12841800", match: "on Bhola Island in Bangladesh"}
       - {file: "curid:50816845", match: "an American epidemiologist, Donald Henderson"}
       - {file: "curid:61041651", match: "Teams spread across Africa"}   # CDC smallpox investigation, Dekina, Nigeria 1969
       - {file: "curid:37541715"}   # Dekina village, outbreak site 1969
       - {file: "curid:85612889", match: "find every case"}   # Nigeria 1966, CDC
-      - {file: "curid:17959557", match: "vaccinate everyone around it"}   # USAID team inoculating, 1966
+      - {file: "curid:17959557"}   # USAID team inoculating, 1966
+      - {file: "curid:1848401", match: "A simple bifurcated needle"}
+      - {file: "curid:367791"}
+      - {file: "web:nlm:101447579", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447579-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447579-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Staff physician of the WHO vaccinates a youngster against smallpox by means of a jet injector]", date: "1970", note: "WHO eradication campaign in the field"}   # LoC via Chrome
+      - {file: "curid:12817459"}
+      - {file: "curid:12841800", match: "on Bhola Island in Bangladesh"}
+      - {file: "curid:8098834"}
       - {file: "curid:12841845", match: "Her case was reported to the eradication team"}   # Patuakhali smallpox office 1975
       - {file: "curid:58270830"}   # Meghna River, southern Bangladesh, Dec 1975
       - {file: "curid:178849939", match: "Country after country became free"}   # OWID chart, CC BY
+      - {file: "web:nlm:101447295", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447295-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447295-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Schematic world maps showing the areas in which smallpox had been eradicated in 1966, 1972 ...", date: "1966-1976", note: "maps of the disease shrinking during the campaign"}   # LoC via Chrome
+      - {query: "Ali Maow Maalin", count: 1}
+      - {file: "curid:2262195"}
 
   - id: last-death
     chapter: "IX. The Last Victim"
@@ -268,8 +260,6 @@ scenes:
       - {big: "8 May 1980", text: "smallpox declared eradicated", match: "On the eighth of May 1980"}
     candidates: ["Janet Parker smallpox", "Birmingham medical school", "smallpox laboratory", "World Health Assembly"]
     images:
-      - {query: "smallpox eradication 1980", count: 2}
-      - {query: "World Health Organization 1980", count: 1}
       - {file: "web:nlm:101447293", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447293-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447293-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Three former directors of CDC's smallpox eradication efforts", date: "undated (c. 1980?)", note: "the people who ran the eradication programme"}   # LoC via Chrome
       - {file: "curid:105949522", match: "It was the first, and is still the only"}
       - {file: "curid:188918674", match: "who worked at Birmingham University Medical School"}
@@ -289,12 +279,10 @@ scenes:
       - {file: "europeana:9200579/t6gg83yk"}
       - {file: "wellcome:crux6ytk"}
       - {file: "europeana:9200579/bcjsxdft"}
-      - {query: "smallpox", count: 1}
       - {file: "curid:115915390", match: "called vaccinia"}
       - {file: "curid:36117456"}
       - {file: "curid:15717180", match: "Edward Jenner's idea"}
       - {file: "curid:118315190", match: "Smallpox vaccination ended around the world"}
-      - {file: "curid:51857894", match: "The virus still exists"}
       - {file: "curid:36211044"}
       - {file: "curid:181752028"}
 
