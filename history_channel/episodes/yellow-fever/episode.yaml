@@ -81,18 +81,21 @@ scenes:
       - {big: "1 in 10", text: "Philadelphians died in 1793", match: "By the time cold weather arrived"}
     candidates: ["Philadelphia 1800 Birch", "Benjamin Rush portrait", "Stephen Girard portrait", "Richard Allen bishop portrait", "Absalom Jones portrait", "Bush Hill Philadelphia", "Matthew Clarkson mayor", "Mathew Carey portrait", "Philadelphia 1793 yellow fever"]
     images:
-      - {file: "curid:67297436", match: "was the capital of the United States"}   # W. Birch, The City of Philadelphia as it appeared in 1800
+      - {file: "curid:112253919", match: "was the capital of the United States"}   # Birch, City and Port of Philadelphia from Kensington, 1800
       - {file: "curid:112253916", match: "broke out near the docks"}   # Birch, Arch Street Ferry, 1800
+      - {file: "curid:67297519"}   # Birch, High Street with the First Presbyterian Church, 1800
       - {file: "curid:112253918", match: "carts carry the dead through empty streets"}   # Birch, Third Street from Spruce, 1800
       - {file: "loc:2006680261", image: "https://tile.loc.gov/storage-services/service/pnp/ppmsca/11500/11599v.jpg", rights: "No known restrictions on publication.", title: "Schuylkill Bridge, High Street, Philadelphia (Birch)", date: "1805", note: "Philadelphia street scene of the 1790s-1800s, the capital of the epidemic"}   # LoC via Chrome
-      - {file: "curid:67481313", match: "Bush Hill, into a fever hospital"}   # Bush-Hill, seat of William Hamilton, 1793
+      - {file: "curid:148229252", match: "The mayor, Matthew Clarkson"}   # Matthew Clarkson, mayor of Philadelphia in 1793
+      - {file: "curid:67481313", match: "Bush Hill, into a fever hospital"}
       - {file: "loc:2003673095", match: "a French-born merchant, Stephen Girard", image: "https://tile.loc.gov/storage-services/service/pnp/pga/11700/11771v.jpg", rights: "No known restrictions on publication.", title: "Stephen Girard", date: "1832", note: "merchant who personally ran the Bush Hill fever hospital in 1793"}   # LoC via Chrome
+      - {file: "curid:67298025"}   # Birch, Bank of the United States in Third Street, 1800
       - {file: "loc:98501269", match: "Richard Allen and Absalom Jones", image: "https://tile.loc.gov/storage-services/service/pnp/pga/03600/03643v.jpg", rights: "No known restrictions on publication.", title: "Bishops of the A.M.E. Church", date: "1876", note: "Richard Allen (founder, centre) - Free African Society nurses of 1793"}   # LoC via Chrome
       - {file: "curid:85968133"}   # Rev. Richard Allen, engraving
-      - {file: "curid:48606820", match: "a publisher, Mathew Carey"}   # Mathew Carey, 1783 (NYPL)
+      - {file: "curid:48606820", match: "a publisher, Mathew Carey"}
       - {file: "web:nlm:101428055", match: "the most famous physician in America", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101428055-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101428055-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Benjamin Rush]", date: "17--", note: "portrait of Benjamin Rush, the doctor of the 1793 Philadelphia epidemic"}   # LoC via Chrome
       - {file: "loc:2007676891", image: "https://tile.loc.gov/storage-services/service/pnp/pga/13200/13208v.jpg", rights: "No known restrictions on publication.", title: "Benjamin Rush, head-and-shoulders portrait, right profile", date: "1802", note: "Rush, the doctor who bled his patients in 1793"}   # LoC via Chrome
-      - {query: "Philadelphia 1793 yellow fever", count: 2}
+      - {query: "Philadelphia 1793 yellow fever", count: 1}
 
   - id: haiti
     chapter: "III. Napoleon's Lost Army"
@@ -105,17 +108,22 @@ scenes:
       And on the first of January 1804, Haiti declared its independence, the first nation founded by formerly enslaved people.
     candidates: ["Charles Leclerc general portrait", "Pauline Bonaparte portrait", "Toussaint Louverture portrait", "Jean-Jacques Dessalines portrait", "Battle of Vertières", "Saint-Domingue expedition", "Fort de Joux", "Louisiana Purchase 1803", "Cap-Français 1791"]
     images:
-      - {file: "curid:194798063", match: "Napoleon sent a large army"}   # capture of Gros-Morne by Napoleonic troops, Aug 1802 (1836 print)
+      - {file: "curid:194798063", match: "Napoleon sent a large army"}
+      - {file: "curid:142891079"}   # Vue du Cap-Français, 1791
+      - {file: "curid:144791633"}   # Prise du Cap Français par l'Armée Française (Leclerc), 1802
       - {file: "loc:2004669331", image: "https://tile.loc.gov/storage-services/service/pnp/pga/13000/13038v.jpg", rights: "No known restrictions on publication.", title: "Le Gal. Toussaint-L'Ouverture remettant au Gal anglais...", date: "c. 1800s", note: "period French print of the revolution's leader"}   # LoC via Chrome
-      - {file: "curid:66245725"}   # Le Môle Saint-Nicolas, Saint-Domingue, 18th-c. view
+      - {file: "curid:194989022"}   # Napoleonic troops vs. revolted slaves, Saint-Domingue (1836 print)
+      - {file: "curid:66245725"}
       - {file: "loc:2004669330", image: "https://tile.loc.gov/storage-services/service/pnp/pga/13000/13037v.jpg", rights: "No known restrictions on publication.", title: "Le Gal. Toussaint-L'ouverture, a qui Gal. Leclerc avait envoye ses enfants", date: "c. 1800s", note: "French print of Toussaint and Leclerc's expedition, 1802"}   # LoC via Chrome
-      - {file: "curid:2431745", match: "Napoleon's brother-in-law, General Leclerc"}   # Général Charles-Emmanuel Leclerc, 1804
-      - {file: "curid:155868994", match: "His wife, Pauline Bonaparte"}   # Pauline Bonaparte by Robert Lefèvre, 1806
+      - {file: "curid:2431745", match: "Napoleon's brother-in-law, General Leclerc"}
+      - {file: "curid:155868994", match: "His wife, Pauline Bonaparte"}
       - {file: "loc:2014645197", match: "The revolution's great leader, Toussaint Louverture", image: "https://tile.loc.gov/storage-services/service/pnp/pga/05800/05834v.jpg", rights: "No known restrictions on publication.", title: "Toussaint L'Ouverture", date: "1870", note: "leader of the revolution in Saint-Domingue"}   # LoC via Chrome
+      - {file: "europeana:90402/RP_P_OB_70_443", match: "a fortress prison in the mountains of France"}   # Château de Joux (Rijksmuseum)
       - {file: "loc:2004669333", match: "where he died in 1803", image: "https://tile.loc.gov/storage-services/service/pnp/pga/13000/13042v.jpg", rights: "No known restrictions on publication.", title: "Toussaint L'Ouverture meurt dans la prison...", date: "c. 1800s", note: "Toussaint dies in a French prison, 1803 - the end of the war"}   # LoC via Chrome
-      - {file: "curid:27409632", match: "Jean-Jacques Dessalines defeated the French"}   # Dessalines, 1806 print
+      - {file: "curid:27409632", match: "Jean-Jacques Dessalines defeated the French"}
       - {file: "loc:99405282", image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c20000/3c22000/3c22300/3c22358v.jpg", rights: "No known restrictions on publication.", title: "Marble bust of Jean-Jacques Dessalines", date: "1900", note: "Dessalines, who declared Haiti independent on 1 January 1804"}   # LoC via Chrome
-      - {query: "Louisiana Purchase 1803", count: 1}
+      - {file: "curid:201944263", match: "he sold the vast Louisiana territory"}   # Louisiana Purchase treaty, page with signatures, 1803
+      - {file: "curid:3478932"}   # map of Louisiana, 1804
 
   - id: theories
     chapter: "IV. Filth, Fomites and a Cuban Doctor"
@@ -126,19 +134,22 @@ scenes:
       In 1881, a Cuban physician named Carlos Finlay proposed a different idea. He argued that yellow fever was carried by a mosquito, which bit a sick person and then a healthy one. He presented the idea at an international sanitary conference, where it was received with ridicule. A year later he identified the culprit, the mosquito we now call Aedes aegypti. For almost twenty years, few people took him seriously. Finlay was nominated for the Nobel Prize seven times, but never received it.
     candidates: ["Memphis yellow fever 1878", "yellow fever epidemic 1878 Frank Leslie", "New Orleans yellow fever", "Carlos Finlay", "fumigation yellow fever", "yellow fever quarantine station"]
     images:
-      - {query: "Carlos Finlay", count: 1, colorize: true}
-      - {query: "New Orleans yellow fever 1878", count: 2}
-      - {query: "Havana 19th century", count: 1}
-      - {file: "web:nlm:101414988", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101414988-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101414988-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Carlos J. Finlay]", date: "1902", note: "Carlos Finlay, who first blamed the mosquito"}   # LoC via Chrome
       - {file: "web:nlm:101436178", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101436178-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101436178-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Yellow Fever: Penitential Procession at Lisbon]", date: "1858", note: "19th-c. print: an epidemic met with prayer and processions, before anyone knew the cause"}   # LoC via Chrome
-      - {file: "web:nlm:101416878", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101416878-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101416878-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Camp E.A. Perry, yellow fever detention camp]", date: "1888", note: "quarantine camp during the 1888 Florida epidemic: isolation without knowing the carrier"}   # LoC via Chrome
       - {file: "web:nlm:101435504", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101435504-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101435504-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Yellow fever]", date: "1888", note: "newspaper print from the 1888 epidemic"}   # LoC via Chrome
       - {file: "loc:2016648675", image: "https://tile.loc.gov/storage-services/service/pnp/ppmsca/40700/40749v.jpg", rights: "No known restrictions on publication.", title: "Lazaretto, Philada. quarantine station", date: "1856", note: "quarantine station built after the 1793 epidemic - the old answer to fever"}   # LoC via Chrome
       - {file: "loc:2007681326", image: "https://tile.loc.gov/storage-services/service/pnp/pga/03500/03535v.jpg", rights: "No known restrictions on publication.", title: "View of the New York quarantine, Staten Island", date: "1833", note: "19th-century quarantine for ships arriving with fever"}   # LoC via Chrome
-      - {file: "loc:2014681794", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/01700/01799v.jpg", rights: "No known restrictions on publication.", title: "N.Y. Municipal Lodging House: Fumigating clothing", date: "1909", note: "fumigating clothes and bedding - the 'fomites' theory in practice"}   # LoC via Chrome
+      - {file: "loc:2014681794", match: "Cities burned tar in the streets and fumigated houses", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/01700/01799v.jpg", rights: "No known restrictions on publication.", title: "N.Y. Municipal Lodging House: Fumigating clothing", date: "1909", note: "fumigating clothes and bedding - the 'fomites' theory in practice"}   # LoC via Chrome
+      - {file: "curid:44126315", match: "In Memphis alone"}   # "Heroes and heroines of Memphis; or Reminiscences of the yellow fever epidemics", 1887
       - {file: "web:nlm:101405384", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101405384-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101405384-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Epidemics.]: [Yellow Fever Hospital, Franklin, Louisiana]", date: "1898", note: "tent hospital of the U.S. Marine Hospital Service at Franklin, Louisiana, yellow fever epidemic of 1898"}   # LoC via Chrome
       - {file: "web:nlm:101435505", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101435505-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101435505-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Yellow fever]: The Sand Hills Hospital (Jacksonville, Fla.), looking Northeast", date: "1888", note: "epidemic hospital during the Jacksonville outbreak"}   # LoC via Chrome
+      - {file: "web:nlm:101416878", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101416878-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101416878-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Camp E.A. Perry, yellow fever detention camp]", date: "1888", note: "quarantine camp during the 1888 Florida epidemic: isolation without knowing the carrier"}   # LoC via Chrome
+      - {file: "curid:65662235"}   # Harbour and city of Havannah (LoC)
       - {file: "loc:2016798580", image: "https://tile.loc.gov/storage-services/service/pnp/det/4a00000/4a05000/4a05100/4a05171v.jpg", rights: "No known restrictions on publication.", title: "The Prado, Havana", date: "1900", note: "Havana, where Carlos Finlay worked"}   # LoC via Chrome
+      - {file: "web:nlm:101414988", match: "a Cuban physician named Carlos Finlay", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101414988-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101414988-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Carlos J. Finlay]", date: "1902", note: "Carlos Finlay, who first blamed the mosquito"}   # LoC via Chrome
+      - {file: "curid:36579389"}   # Carlos Juan Finlay, photomechanical print (Wellcome)
+      - {file: "curid:35973078"}   # title page of Finlay's "Fiebre amarilla", 1895 (Wellcome)
+      - {file: "curid:185919413", match: "Finlay was nominated for the Nobel Prize seven times"}   # Havana, monument to Dr Finlay, c. 1922
+      - {query: "New Orleans yellow fever 1878", count: 1}
 
   - id: reed
     chapter: "V. The Reed Commission"
