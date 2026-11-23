@@ -27,10 +27,10 @@ scenes:
       And the verdict changed the way buildings are designed across America.
       This is the story of the Great Molasses Flood.
     images:
-      - {query: "Molasses Flood", count: 2, colorize: true}
-      - {query: "North End Boston", count: 1}
+      - {file: "curid:13435914"}   # Boston Post, 16 January 1919
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:okhi:batch_okhi_jenks_ver02:data:sn86064187:00200295134:1919011501:0322/full/pct:100/0/default.jpg", date: "1919-01-15", paper: "Oklahoma City Times (Oklahoma City, Okla.)", page_url: "https://www.loc.gov/resource/sn86064187/1919-01-15/ed-1/?sp=1", crop: [0.12, 0.183, 0.36, 0.238], note: "Same-day front page: molasses tank blows up, ten persons known dead."}   # LoC via Chrome
       - {file: "web:bpl:fj237v091", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj237v10s/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj237v091", rights: "No known copyright restrictions.", title: "Waterfront, North End", date: "ca. 1918-1925", note: "oblique view from the Custom House tower over the North End waterfront, where the tank stood"}   # LoC via Chrome
+      - {file: "curid:5722624"}   # the elevated railway structure after the molasses flood, 1919
 
   - id: north-end
     chapter: "I. The North End"
@@ -44,14 +44,15 @@ scenes:
       - {big: "2.3 million", text: "gallons of molasses in one tank", match: "It could hold about two point three million gallons"}
     candidates: ["North End Boston 1910", "Hanover Street Boston", "Commercial Street Boston", "Atlantic Avenue Elevated", "Boston Elevated Railway 1910", "Copps Hill Boston"]
     images:
-      - {query: "Commercial Street Boston 1910s", count: 2}
-      - {query: "Atlantic Avenue elevated Boston", count: 1}
-      - {file: "web:bpl:8k71nw33h", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:8k71nw34s/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:8k71nw33h", rights: "No known copyright restrictions.", title: "Commercial Street", date: "ca. 1913-1915", note: "Commercial Street a few years before the flood"}   # LoC via Chrome
-      - {file: "web:bpl:gt54kz262", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:gt54kz27b/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:gt54kz262", rights: "No known copyright restrictions.", title: "Whitney Building, Clinton Street and Commercial Street", date: "June 1920", note: "Commercial Street in the North End, a few blocks from the molasses tank site, 1920"}   # LoC via Chrome
+      - {file: "curid:161965465"}   # North End, view from the State House dome, 28 June 1907
       - {file: "web:bpl:br86b8325", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:br86b833f/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:br86b8325", rights: "No known copyright restrictions.", title: "Charter Street, North End", date: "ca. 1898", note: "narrow North End street of tenements, the crowded immigrant neighbourhood"}   # LoC via Chrome
       - {file: "web:bpl:s46587341", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:wd378k43p/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:s46587341", rights: "No known copyright restrictions.", title: "Salem Street?, North End", date: "ca. 1910", note: "North End street life around 1910"}   # LoC via Chrome
       - {file: "web:bpl:69701q045", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:0z70cm432/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:69701q045", rights: "No known copyright restrictions.", title: "Boston, Massachusetts, a bit of Salem Street", date: "ca. 1900-1915", note: "Salem Street, heart of the Italian North End"}   # LoC via Chrome
       - {file: "web:bpl:1544f5998", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:8c97p730j/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:1544f5998", rights: "No known copyright restrictions.", title: "Church on Hanover Street", date: "ca. 1905-1920", note: "Hanover Street, the North End's main street"}   # LoC via Chrome
+      - {file: "web:bpl:8k71nw33h", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:8k71nw34s/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:8k71nw33h", rights: "No known copyright restrictions.", title: "Commercial Street", date: "ca. 1913-1915", note: "Commercial Street a few years before the flood"}   # LoC via Chrome
+      - {file: "curid:38022439", match: "the Atlantic Avenue elevated railway, opened in 1901"}   # Boston Elevated structure, Atlantic Avenue, 1903
+      - {file: "curid:125931"}   # South Station and the Atlantic Avenue Elevated, c. 1904
+      - {file: "web:bpl:gt54kz262", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:gt54kz27b/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:gt54kz262", rights: "No known copyright restrictions.", title: "Whitney Building, Clinton Street and Commercial Street", date: "June 1920", note: "Commercial Street in the North End, a few blocks from the molasses tank site, 1920"}   # LoC via Chrome
       - {file: "web:bpl:q811kn97g", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:q811kn98r/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:q811kn97g", rights: "No known copyright restrictions.", title: "Lincoln Wharf", date: "1900-03-20", note: "North End waterfront along Commercial Street, near the tank site"}   # LoC via Chrome
       - {file: "web:bpl:cn69mt823", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:cn69mt83c/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:cn69mt823", rights: "No known copyright restrictions.", title: "Long Wharf", date: "ca. 1910", note: "Boston waterfront around 1910"}   # LoC via Chrome
 
@@ -65,14 +66,18 @@ scenes:
       The timing was remarkable. The day after the disaster, on the sixteenth of January 1919, Nebraska became the thirty-sixth state to ratify the Eighteenth Amendment, and nationwide Prohibition became part of the Constitution. It took effect one year later.
     candidates: ["molasses barrels", "sugar plantation Caribbean 19th century", "munitions factory 1918", "Prohibition 1919", "Eighteenth Amendment", "distillery 1910"]
     images:
-      - {query: "Boston molasses disaster", count: 1}
-      - {query: "Boston 1910s", count: 1}
-      - {query: "Boston 1910s", count: 1}
-      - {file: "web:bpl:fj236n06s", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj236n072/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj236n06s", rights: "No known copyright restrictions.", title: "Commercial St. and Custom House, Boston, Mass.", date: "1920-07-13", note: "Commercial Street the year after the flood"}   # LoC via Chrome
-      - {file: "web:bpl:fj237v112", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj237v12b/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj237v112", rights: "No known copyright restrictions.", title: "Aerial view, Boston Harbor, docks", date: "1916-05-26", note: "Boston harbour and wharves from the air, 1916"}   # LoC via Chrome
+      - {file: "curid:67396317", match: "Ships carried it north from the sugar plantations"}   # sugar manufacture in the Antilles, 1665 (LoC)
+      - {file: "curid:183443294", match: "part of the same Atlantic trade"}   # enslaved Africans harvesting sugar cane, 19th-c. print
+      - {file: "curid:7874056"}   # cane cutters in Jamaica, 1880s
+      - {file: "curid:17263256"}   # G. H. Hall, Boys Pilfering Molasses, 1853
       - {file: "web:bpl:br86bb35d", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:br86bb36p/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:br86bb35d", rights: "No known copyright restrictions.", title: "Old Boston molasses shed Granite St.", date: "ca. 1898-1907", note: "molasses storage in Boston: the city's long trade in Caribbean molasses"}   # LoC via Chrome
       - {file: "web:bpl:br86bc45v", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:br86bc464/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:br86bc45v", rights: "No known copyright restrictions.", title: "Old Molasses Wharf/sugar refinery Mt. Washington Ave.", date: "ca. 1898-1907", note: "molasses wharf and refinery - how the cargo came into Boston"}   # LoC via Chrome
+      - {file: "curid:63236132", match: "a key ingredient in making munitions"}   # munitions production on the home front, 1914-1918 (IWM)
+      - {file: "curid:31774910"}   # 1918 poster: eat cane syrup & molasses, save sugar
       - {file: "web:bpl:rx916d758", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:kd17gk304/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:rx916d758", rights: "No known copyright restrictions.", title: "T Wharf (left), Long Wharf (right)", date: "ca. 1900-1913", note: "Boston's busy harbor wharves, where cargo ships unloaded"}   # LoC via Chrome
+      - {file: "web:bpl:fj237v112", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj237v12b/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj237v112", rights: "No known copyright restrictions.", title: "Aerial view, Boston Harbor, docks", date: "1916-05-26", note: "Boston harbour and wharves from the air, 1916"}   # LoC via Chrome
+      - {file: "web:bpl:fj236n06s", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj236n072/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj236n06s", rights: "No known copyright restrictions.", title: "Commercial St. and Custom House, Boston, Mass.", date: "1920-07-13", note: "Commercial Street the year after the flood"}   # LoC via Chrome
+      - {file: "curid:64823016", match: "Nebraska became the thirty-sixth state"}   # Boston Daily Globe front page, 16 January 1919
 
   - id: warnings
     chapter: "III. The Leaking Tank"
@@ -82,7 +87,14 @@ scenes:
       Local families came with buckets and cans to collect the molasses that oozed out. Every time it was filled, people heard the tank groan and rumble. Nobody stopped it. In more than three years, it had been filled to the top only eight times, so its walls were stretched and relaxed again and again. Some engineers also think that the molasses inside was slowly fermenting, giving off gas that raised the pressure, and that the final crack began near a manhole cover at the base of the tank.
     candidates: ["riveted steel tank", "storage tank 1915", "oil tank construction 1915"]
     images:
-      - {query: "Molasses Flood", count: 2}
+      - {file: "curid:43077253"}   # W. E. Caldwell Co., manufacturers of all kinds of tanks, 1905 catalogue
+      - {file: "curid:43186622"}   # boiler makers and sheet-metal work, 1907 manual
+      - {file: "curid:42171958"}   # Canadian machinery and metalworking, 1917
+      - {file: "curid:43428712"}   # riveted plate layout, 1907 manual
+      - {file: "curid:159727535", match: "From its very first filling, it leaked"}   # rear-yard tenement, Boston (BPL)
+      - {file: "curid:162243142"}   # Holden Court, North End, 1905-1908
+      - {file: "curid:160076017"}   # Anthony Place, Boston
+      - {file: "curid:159316947"}   # Board Alley, Boston
       - {query: "North End Boston tenements", count: 1}
 
   - id: noon
@@ -95,12 +107,11 @@ scenes:
       Millions of gallons of molasses burst out in a single wave, around twenty-five feet high at its peak, rushing through the streets at an estimated thirty-five miles an hour.
     candidates: ["Boston 1919", "Boston harbor 1919", "Boston street 1919"]
     images:
-      - {query: "Molasses Flood", count: 2}
-      - {query: "Boston 1919 street", count: 1}
-      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_leopold_ver01:data:sn83030193:00280766197:1919011501:0197/full/pct:100/0/default.jpg", date: "1919-01-15", paper: "The Evening World (New York, N.Y.)", page_url: "https://www.loc.gov/resource/sn83030193/1919-01-15/ed-1/?sp=1", crop: [0.27, 0.272, 0.392, 0.493], match: "At about half past twelve", note: "Molasses blowup kills 20 and wrecks Boston buildings; elevated railway supports demolished, sticky flood hampers rescuers."}   # LoC via Chrome
-      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_pielou_ver01:data:sn83030431:0021247440A:1919011601:0323/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "The Sun (New York, N.Y.)", page_url: "https://www.loc.gov/resource/sn83030431/1919-01-16/ed-1/?sp=1", crop: [0.1550, 0.2880, 0.2694, 0.3630], note: "Molasses tank blast kills 9: huge container in Boston bursts, injuring fifty and wrecking buildings."}   # LoC via Chrome
-      - {file: "web:bpl:fj237t035", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj237t04f/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj237t035", rights: "No known copyright restrictions.", title: "Five Boston Elevated Railway Company employees posing beside streetcar", date: "1919", note: "Boston Elevated Railway men, 1919 - the company whose line ran along Commercial Street"}   # LoC via Chrome
       - {file: "web:bpl:37720p648", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:37720p65j/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:37720p648", rights: "No known copyright restrictions.", title: "Charlestown Bridge. Draw span.", date: "1900-02-14", note: "Charlestown Bridge, beside Keany Square where the tank stood"}   # LoC via Chrome
+      - {file: "web:bpl:fj237t035", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj237t04f/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj237t035", rights: "No known copyright restrictions.", title: "Five Boston Elevated Railway Company employees posing beside streetcar", date: "1919", note: "Boston Elevated Railway men, 1919 - the company whose line ran along Commercial Street"}   # LoC via Chrome
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_leopold_ver01:data:sn83030193:00280766197:1919011501:0197/full/pct:100/0/default.jpg", date: "1919-01-15", paper: "The Evening World (New York, N.Y.)", page_url: "https://www.loc.gov/resource/sn83030193/1919-01-15/ed-1/?sp=1", crop: [0.27, 0.272, 0.392, 0.493], match: "At about half past twelve", note: "Molasses blowup kills 20 and wrecks Boston buildings; elevated railway supports demolished, sticky flood hampers rescuers."}   # LoC via Chrome
+      - {file: "curid:145775440", match: "Then the tank split open"}   # Boston Elevated Railway after the Molasses Flood, Jan 1919 (City of Boston Archives, PD-US-expired)
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_pielou_ver01:data:sn83030431:0021247440A:1919011601:0323/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "The Sun (New York, N.Y.)", page_url: "https://www.loc.gov/resource/sn83030431/1919-01-16/ed-1/?sp=1", crop: [0.1550, 0.2880, 0.2694, 0.3630], note: "Molasses tank blast kills 9: huge container in Boston bursts, injuring fifty and wrecking buildings."}   # LoC via Chrome
 
   - id: wave
     chapter: "V. The Wave"
@@ -113,11 +124,15 @@ scenes:
       Twenty-one people died. Many were labourers and residents of the neighbourhood. Some of the youngest victims were children who had been playing nearby. About a hundred and fifty more were injured, and for days afterwards coughing fits were among the most common complaints. Dogs and horses were among the wounded too.
     candidates: ["Great Molasses Flood", "molasses flood 1919", "Boston fireboat", "Boston Elevated train 1919"]
     images:
-      - {query: "Boston molasses disaster", count: 2, colorize: true}
-      - {query: "Molasses Flood", count: 1}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:mthi:batch_mthi_alderfly_ver01:data:sn84024808:00212477400:1919011601:0247/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "Great Falls Daily Tribune (Great Falls, Mont.)", page_url: "https://www.loc.gov/resource/sn84024808/1919-01-16/ed-1/?sp=1", crop: [0.548, 0.418, 0.685, 0.716], match: "The wave smashed through everything", note: "Two million gallons immerse ruins of houses: the fire house crushed, elevated railway pillars blown away, about a dozen horses killed."}   # LoC via Chrome
-      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:iune:batch_iune_feature_ver01:data:sn92053934:00295873334:1919011801:0202/full/pct:100/0/default.jpg", date: "1919-01-18", paper: "Rock Island Argus (Rock Island, Ill.)", page_url: "https://www.loc.gov/resource/sn92053934/1919-01-18/ed-1/?sp=2", crop: [0.16, 0.068, 0.508, 0.34], match: "The cleanup took weeks", note: "Photograph: wreckage of the tank site on the waterfront, with sailors from warships at work on the railway tracks; streets and wharf littered with wreckage."}   # LoC via Chrome (photo of the wreckage, moved from cleanup)
+      - {file: "curid:28584387", match: "into the girders of the elevated railway"}   # wreckage under the elevated tracks, 1919
+      - {file: "curid:145775432"}   # Boston Elevated after the flood, Jan 1919 (City of Boston Archives)
+      - {file: "curid:236987", match: "Buildings were knocked from their foundations"}   # panorama of the disaster site, 15 Jan 1919 (BPL)
       - {file: "web:bpl:37720p605", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:37720p61f/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:37720p605", rights: "No known copyright restrictions.", title: "N. end of Charlestown Bridge", date: "1900-02-14", note: "the bridge approach on Commercial Street, in the path of the wave"}   # LoC via Chrome
+      - {file: "curid:145775433"}   # Boston Elevated after the flood, Jan 1919
+      - {file: "curid:181058540", match: "Then came police, soldiers, sailors and the Red Cross"}   # American Red Cross photo: Boston molasses explosion, Jan 1919 (LoC)
+      - {file: "curid:145775434"}   # Boston Elevated after the flood, Jan 1919
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:iune:batch_iune_feature_ver01:data:sn92053934:00295873334:1919011801:0202/full/pct:100/0/default.jpg", date: "1919-01-18", paper: "Rock Island Argus (Rock Island, Ill.)", page_url: "https://www.loc.gov/resource/sn92053934/1919-01-18/ed-1/?sp=2", crop: [0.16, 0.068, 0.508, 0.34], match: "The cleanup took weeks", note: "Photograph: wreckage of the tank site on the waterfront, with sailors from warships at work on the railway tracks; streets and wharf littered with wreckage."}   # LoC via Chrome (photo of the wreckage, moved from cleanup)
 
 
   - id: victims
@@ -130,13 +145,16 @@ scenes:
       Many of the families were immigrants who had come to Boston for work and a better life. A hundred years later, their twenty-one names would be read aloud on the spot where the tank had stood.
     candidates: ["North End Boston children", "Boston teamster horse wagon", "Boston fire engine 1919", "Boston firehouse"]
     images:
-      - {query: "North End Boston", count: 1}
-      - {query: "North End Boston tenements", count: 2}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:ct:batch_ct_berlin_ver01:data:sn82014086:00295866214:1919011601:0155/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "Norwich Bulletin (Norwich, Conn.)", page_url: "https://www.loc.gov/resource/sn82014086/1919-01-16/ed-1/?sp=1", crop: [0.27, 0.164, 0.392, 0.321], match: "The dead came from every part", note: "Nine killed in Boston: list of the identified dead, among them city laborers, a fireman and a blacksmith."}   # LoC via Chrome
-      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_forestcity_ver02:data:sn82014248:00513682906:1919011701:0146/full/pct:100/0/default.jpg", date: "1919-01-17", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1919-01-17/ed-1/?sp=1", crop: [0.233, 0.252, 0.36, 0.524], note: "12 known dead; investigators believe the tank walls gave way under the weight of the molasses; police search for missing expressmen and a boy."}   # LoC via Chrome
       - {file: "web:bpl:c534n655p", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:vd672h762/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:c534n655p", rights: "No known copyright restrictions.", title: "Delivery wagon, horses, and driver", date: "1875-1915", note: "teamsters and horses like those caught in the wave"}   # LoC via Chrome
       - {file: "web:bpl:zk51wb76p", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:zk51wb77z/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:zk51wb76p", rights: "No known copyright restrictions.", title: "Men and fire engine, Boston Fire", date: "ca. 1872-1920", note: "Boston firemen: the fire station on Commercial Street was crushed"}   # LoC via Chrome
       - {file: "web:bpl:cn69mx50f", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:cn69mx51q/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:cn69mx50f", rights: "No known copyright restrictions.", title: "Fire-engine station at Saratoga Street", date: "ca. 1920", note: "Boston fire station of the era (East Boston)"}   # LoC via Chrome
+      - {file: "curid:158769384"}   # children of the North End Mission, Boston (BPL)
+      - {file: "curid:20179269", match: "walking home from school with his sisters"}   # Michelangelo School, North End (City of Boston Archives)
+      - {file: "curid:161651401"}   # North End Branch library, children's room, 1912-1913
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_forestcity_ver02:data:sn82014248:00513682906:1919011701:0146/full/pct:100/0/default.jpg", date: "1919-01-17", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1919-01-17/ed-1/?sp=1", crop: [0.233, 0.252, 0.36, 0.524], note: "12 known dead; investigators believe the tank walls gave way under the weight of the molasses; police search for missing expressmen and a boy."}   # LoC via Chrome
+      - {file: "curid:145775436"}   # Boston Elevated after the flood, Jan 1919
+      - {query: "North End Boston", count: 1}
 
   - id: science
     chapter: "VII. Why It Was So Deadly"
@@ -148,8 +166,11 @@ scenes:
       Engineers have studied the tank too. A modern analysis in 2014 found that its steel was only half as thick as it should have been, even by the standards of the time. The steel also lacked manganese, which made it brittle, and the first cracks appear to have formed around the rivet holes.
     candidates: ["molasses", "Harvard University 2016"]
     images:
+      - {file: "curid:65695980", match: "Molasses is about forty per cent denser"}   # molasses label, New Orleans 1891 (LoC)
+      - {file: "curid:65696066"}   # molasses label, 1891 (LoC)
+      - {file: "curid:17080163"}   # WWI poster: eat syrup and molasses, save sugar
+      - {file: "curid:145775437", match: "A modern analysis in 2014"}   # wreckage after the flood, Jan 1919
       - {query: "Molasses Flood", count: 2}
-      - {query: "Boston 1919 street", count: 1}
 
   - id: cleanup
     chapter: "VIII. Cleaning Up a Sea of Syrup"
@@ -159,9 +180,10 @@ scenes:
       And for decades afterwards, North End residents said that on hot summer days, the neighbourhood still smelled faintly of molasses.
     candidates: ["Boston fireboat", "Boston harbor", "Boston streetcar 1919"]
     images:
-      - {query: "Boston molasses disaster", count: 2}
-      - {query: "Boston North End 1920s", count: 1}
       - {file: "web:bpl:70795m80q", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:70795m810/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:70795m80q", rights: "No known copyright restrictions.", title: "A Boston fire boat fighting the fire", date: "1908", note: "Boston fireboat - fireboats hosed the harbor water over the molasses during the clean-up"}   # LoC via Chrome
+      - {file: "curid:15761512", match: "sprayed it with salt water from a fireboat"}   # Fireboat 44 in action, Boston, c. 1906
+      - {file: "curid:62611286", match: "the seats of trains and streetcars"}   # Boston streetcar, May 1919
+      - {file: "curid:14691020", match: "The harbour stayed brown until the summer"}   # view map of Boston Harbor, 1899
 
   - id: trial
     chapter: "IX. The Trial"
@@ -176,17 +198,17 @@ scenes:
       - {big: "$628,000", text: "paid in damages", match: "It paid around six hundred and twenty-eight thousand dollars"}
     candidates: ["Luigi Galleani", "1919 bombing Palmer house", "Boston police strike 1919", "Calvin Coolidge 1919", "Massachusetts State Guard 1919", "Suffolk County Courthouse Boston"]
     images:
-      - {query: "Boston 1910s", count: 1}
-      - {query: "anarchist bombing 1919", count: 1}
-      - {query: "Molasses Flood", count: 1}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:au:batch_au_carver_ver01:data:sn85038485:00340582792:1919011601:0221/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "The Birmingham Age-Herald (Birmingham, Ala.)", page_url: "https://www.loc.gov/resource/sn85038485/1919-01-16/ed-1/?sp=1", crop: [0.7000, 0.5477, 0.8320, 0.6230], match: "The Trial", note: "Owned by alcohol firm: the tank belonged to Purity Distilling, a subsidiary of U.S. Industrial Alcohol; its wall split and two million gallons rushed over the streets."}   # LoC via Chrome
-      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_hale_ver01:data:sn82014248:00513683303:1925041401:0466/full/pct:100/0/default.jpg", date: "1925-04-14", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1925-04-14/ed-1/?sp=1", crop: [0.838, 0.692, 0.968, 0.828], match: "It claimed that anarchists had blown up the tank", note: "Plaintiffs protest low awards in the molasses tank case against U.S. Industrial Alcohol; the defence had claimed a bomb explosion destroyed the tank."}   # LoC via Chrome
+      - {file: "curid:79430117", match: "followers of the Italian anarchist Luigi Galleani"}   # New-York Tribune coverage of the June 1919 bombings
+      - {file: "curid:79426583", match: "wrecked the front of the Attorney General's house"}   # A. Mitchell Palmer's house after the bomb, June 1919
+      - {file: "curid:79587657"}   # home of State Rep. Leland W. Powers, Newtonville, Mass., after the bomb, June 1919
       - {file: "loc:2014711458", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/31300/31303v.jpg", rights: "No known restrictions on publication.", title: "Wall St. bomb", date: "1920", note: "the 1920 Wall Street anarchist bombing: the climate in which the company's bomb theory was believable"}   # LoC via Chrome
-      - {file: "loc:2014711453", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/31200/31298v.jpg", rights: "No known restrictions on publication.", title: "Wall St. bomb", date: "1920", note: "second view of the Wall Street bombing aftermath (different shot)"}   # LoC via Chrome
-      - {file: "loc:2008675780", image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c30000/3c37000/3c37900/3c37980v.jpg", rights: "No known restrictions on publication.", title: "City chemists analyze Wall Street bomb parts", date: "1920", note: "investigators examining bomb fragments, as experts did in the molasses case"}   # LoC via Chrome
-      - {file: "web:bpl:fj237560v", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj2375614/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj237560v", rights: "No known copyright restrictions.", title: "Dock Square, Exchange Street and Devonshire Street", date: "1920-11-01", note: "downtown street near Faneuil Hall, 1920"}   # LoC via Chrome
       - {file: "web:bpl:xp68kq91r", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:xp68kq921/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:xp68kq91r", rights: "No known copyright restrictions.", title: "Faneuil Hall. Headquarters of National Guard during Police Strike", date: "1919", note: "1919 Boston police strike - same year as the flood"}   # LoC via Chrome
+      - {file: "curid:124939400"}   # Chestnut Hill pumping station guarded during the Boston police strike, Sept 1919
       - {file: "web:bpl:xp68kq81h", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:xp68kq82s/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:xp68kq81h", rights: "No known copyright restrictions.", title: "Flag raising ceremony on Boston Common, First Motor Corps, Mass. Nat. Guard (possibly police strike of 1919)", date: "1919", note: "Guard troops on Boston Common, 1919"}   # LoC via Chrome
+      - {file: "curid:67018486", match: "The governor who stood firm against the strikers"}   # Gov. Calvin Coolidge, 1919 (LoC)
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_hale_ver01:data:sn82014248:00513683303:1925041401:0466/full/pct:100/0/default.jpg", date: "1925-04-14", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1925-04-14/ed-1/?sp=1", crop: [0.838, 0.692, 0.968, 0.828], match: "It claimed that anarchists had blown up the tank", note: "Plaintiffs protest low awards in the molasses tank case against U.S. Industrial Alcohol; the defence had claimed a bomb explosion destroyed the tank."}   # LoC via Chrome
+      - {file: "web:bpl:fj237560v", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj2375614/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj237560v", rights: "No known copyright restrictions.", title: "Dock Square, Exchange Street and Devonshire Street", date: "1920-11-01", note: "downtown street near Faneuil Hall, 1920"}   # LoC via Chrome
 
   - id: legacy
     chapter: "Epilogue"
@@ -198,11 +220,10 @@ scenes:
       If you enjoyed this story from the archives, subscribe for more forgotten chapters of history.
     candidates: ["Langone Park Boston", "Molasses flood plaque", "North End Boston"]
     images:
-      - {query: "Great Molasses Flood plaque", modern: true, count: 1}
-      - {query: "Molasses Flood", count: 1}
+      - {file: "web:bpl:fj236m82d", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj236m83p/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj236m82d", rights: "No known copyright restrictions.", title: "Custom House Tower", date: "1920-09-01", note: "Boston skyline of 1920, the year after the disaster"}   # LoC via Chrome
       - {file: "web:bpl:8k71nz656", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:8k71nz66g/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:8k71nz656", rights: "No known copyright restrictions.", title: "Boston. North End", date: "1925", note: "the North End in 1925, the year the case ended"}   # LoC via Chrome
       - {file: "web:bpl:fj2370788", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj237079j/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj2370788", rights: "No known copyright restrictions.", title: "Crowd coming out of the Cathedral of the Holy Cross, Washington Street", date: "June 1920", note: "Boston street crowd, 1920"}   # LoC via Chrome
-      - {file: "web:bpl:fj236m82d", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj236m83p/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj236m82d", rights: "No known copyright restrictions.", title: "Custom House Tower", date: "1920-09-01", note: "Boston skyline of 1920, the year after the disaster"}   # LoC via Chrome
+      - {query: "Great Molasses Flood plaque", count: 1}
 
 thumbnail:
   scene: wave
