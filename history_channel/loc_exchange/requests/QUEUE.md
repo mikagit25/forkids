@@ -1,11 +1,42 @@
-# Queue for the Chrome session (updated 2026-11-22, 18:40 UTC)
+# Queue for the Chrome session (updated 2026-11-23, 08:30 UTC)
 
-Done — thank you! Halifax is uploaded. **smallpox is now closed**: the gaps were filled from Wikimedia Commons
-(CDC PHIL eradication photos, Nigeria 1969, Bangladesh 1975), render starts now — no more smallpox picks needed.
+Licences as always: PD / CC0 / CC BY / "No known restrictions" / NARA "Use: Unrestricted" / NLM "public domain" /
+Wellcome "Public Domain Mark" or CC BY. No NC / ND / SA. Newspapers only up to 1928. Never get past Cloudflare/captcha
+pages — skip that site. **Avoid Met Museum images** (bot check on our server).
+yellow-fever is rendered (uploads today). Smallpox, Halifax done. Thank you!
 
-Licences as always: PD / CC0 / CC BY / "No known restrictions" / NARA "Use: Unrestricted" / NLM "public domain".
-No NC / ND / SA. Newspapers only up to 1928. Never get past Cloudflare/captcha pages — skip that site.
-Met Museum image server currently shows a bot check to the server: **avoid Met images** (we cannot download them).
+## NOW 1 — molasses-1919: last gaps before the render (~12 images)
+Framing check 23.11: three scenes are still short. All six City-of-Boston-Archives photos on Commons are already used,
+and the Boston Archives copies on Digital Commonwealth are not usable (rights) — so we need OTHER sources:
+| scene | short by | what fits the narration |
+|---|---|---|
+| `science` | **+6** | riveted steel tanks / boiler-plate riveting 1910s (NARA, LoC Hine "riveter"); steel mill / steel plates 1910s; Boston Harbor in winter 1915–1920 (ice, ships, wharves); Boston snow / frozen streets Jan 1919; Karo **corn syrup** ads ≤1928; a molasses barrel / sugar refinery photo (Boston, Domino, Revere Sugar) |
+| `wave` | **+3** | rescuers / sailors / firemen in Boston 1919; Massachusetts Nautical School ship USS Nantucket (any year ≤1928); Boston Relief Hospital / Haymarket Relief Station; ambulances 1919 |
+| `noon` | **+1** | Atlantic Avenue elevated / Keany Square / Commercial Street at noon, 1910s |
+Also any 1919 magazine page with a photo of the wreck (Literary Digest Feb 1919, Scientific American, Popular
+Mechanics, Engineering News-Record 1919 "molasses tank failure" — archive.org scans, PD) → `science`.
+→ `picks/molasses-1919.yaml` (append, same format as before).
+
+## NOW 2 — next episode: cholera-1854 (John Snow, London) — start collecting
+Scenes: `blue-death`, `snow`, `outbreak`, `map`, `handle`, `experiment`, `source`, `rejected`, `stink`, `sewers`,
+`proof`, `closing`. Best sources: **Wellcome Collection** (PDM/CC BY), British Library on Flickr (no known
+restrictions), LoC, NLM. Need ~120 images, 6–12 per scene:
+- `blue-death`: cholera 1832/1849 prints and broadsides (Board of Health notices, "Cholera prevention" placards),
+  "A Court for King Cholera" (Punch 1852), "Monster Soup" (Heath 1828), cholera victim illustrations.
+- `snow`: John Snow portraits; Snow's 1849/1855 "On the Mode of Communication of Cholera" title pages; chloroform /
+  Queen Victoria anaesthesia 1853; Frith Street / Sackville Street.
+- `outbreak` / `map` / `handle`: Soho & Broad Street (Broadwick St) 1850s views; Snow's cholera map 1854 (hi-res),
+  Broad Street pump replica; St Luke's church, Rev. Henry Whitehead portrait; the workhouse and Lion Brewery (Poland St).
+- `experiment`: Southwark & Vauxhall vs Lambeth water companies — Thames intakes, water carts, "Dirty Father Thames"
+  (Punch 1848), Thames at Battersea/Vauxhall 1850s.
+- `source` / `rejected`: miasma cartoons, William Farr portrait, General Board of Health report 1854/55 pages.
+- `stink` / `sewers`: Great Stink 1858 Punch cartoons ("The Silent Highwayman", "Father Thames introducing his
+  offspring"), Joseph Bazalgette portraits, sewer construction 1859–1866 photos (Crossness, Abbey Mills, Victoria
+  Embankment construction), Illustrated London News engravings.
+- `proof`: Robert Koch (1883 Egypt/India expedition), Filippo Pacini 1854, Vibrio cholerae micrographs (CDC PHIL PD).
+- `closing`: Hamburg 1892 cholera photos; modern WHO/CDC cholera-prevention photos (PD only).
+Newspapers ≤1928: none needed from US papers; Illustrated London News pages on Commons/Wellcome are fine.
+→ new file `picks/cholera-1854.yaml` (same format; NLM/Wellcome full jpg → file browser folder `cholera-1854/`).
 
 ## Done 22.11 — thank you! 07ae0d5 imported (47 picks + captions for the 10 uploads)
 yellow-fever is now covered from your side: the rest (Leclerc, Pauline Bonaparte, Vertières, de Lesseps, Memphis 1878
