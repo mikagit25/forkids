@@ -88,8 +88,8 @@ def frame(t, bmap, P, w, h):
     beat, ph = beatmap_phase(bmap, t)
     sec_beat = int(round((t - sec["start"]) / bmap["beat_s"] - ph))
     xs = (0.2 * w, 0.5 * w, 0.8 * w)
-    base_y = h * 0.78
-    hw, hh = w * 0.24, h * 0.36
+    base_y = h * 0.76
+    hw, hh = w * 0.27, h * 0.42
     items = []
     for i in range(3):
         slot_beat = sec_beat % 8
@@ -116,7 +116,7 @@ def frame(t, bmap, P, w, h):
         cname = sec["cast"][i]
         ch = P["chars"].setdefault((cname, i), CHARACTERS[cname](seed=i + 1))
         pose = dance_pose(beat, ph, "bounce", amp=0.6) if vis >= 1.0 else {"smile": 1.3, "happy": True}
-        r = h * 0.17                                           # hidden: whole friend behind the hiding place
+        r = h * 0.2                                           # hidden: whole friend behind the hiding place
         # sprite spans about (y - 1.65 r) .. (y + 0.13 r); hidden = sprite fully behind the hiding place,
         # A: peeks out with the lower half still hidden; B (chorus): stands on top of it
         htop = base_y - hh / 2

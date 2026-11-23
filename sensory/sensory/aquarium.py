@@ -166,7 +166,7 @@ def frame(t, w, h, S):
         u = ((t / 120.0) + i * 0.5) % 1.0
         x = (-0.2 + u * 1.4) * w if i == 0 else (1.2 - u * 1.4) * w
         y = h * (0.42 + 0.18 * i) + 30 * math.sin(2 * math.pi * t / 12.0 + i)
-        items.append((ch, x, y, h * 0.13, {"tilt": 4 * math.sin(2 * math.pi * t / 10.0 + i), "smile": 0.8}))
+        items.append((ch, x, y + h * 0.04, h * 0.21, {"tilt": 4 * math.sin(2 * math.pi * t / 10.0 + i), "smile": 0.8}))
     rgba = compose(items, w, h, t, rgba=True)
     out = rgba[..., :3] * 255 + out * (1 - rgba[..., 3:4])
     return np.clip(out, 0, 255).astype(np.uint8)
