@@ -5,6 +5,9 @@
    subtitles.en.srt; description newer than the video) and that has no build/youtube_id.txt yet is uploaded PRIVATE,
    scheduled for the next free slot (every other day, 18:00 UTC — publish.next_slot). The owner turns it into a
    Premiere in YouTube Studio when it is its turn. At most one upload per run (shared API quota).
+1b. weekly series ("100 Years Ago": `series: 100-years-ago` in episode.yaml): uploaded straight to PUBLIC, only on
+   Saturday or Sunday after 15:00 UTC, at most one per 5 days, oldest slug first; they do not take a long-video slot.
+   The owner does not review these (decision 23.11.2026).
 2. check: if a scheduled time has passed by more than 2 hours and the video is still private (no Premiere was set
    and YouTube did not publish it), it is made public — so a forgotten Premiere never leaves a slot empty.
 
@@ -53,12 +56,41 @@ def ready(ep_dir, ep):
     return age > 300 and (b / "description.txt").stat().st_mtime >= mp4.stat().st_mtime and not busy(ep_dir.name)
 
 
+WEEKLY = "100-years-ago"
+
+
+def weekly_due(eps):
+    """Saturday/Sunday after 15:00 UTC and no weekly episode uploaded in the last 5 days."""
+    now = dt.datetime.now(dt.timezone.utc)
+    if now.weekday() not in (5, 6) or now.hour < 15:
+        return False
+    for p in eps:
+        f = p / "build" / "uploaded_at.txt"
+        if f.exists() and now - dt.datetime.fromisoformat(f.read_text().strip()) < dt.timedelta(days=5):
+            return False
+    return True
+
+
 def main():
     research.load_env()
     eps = sorted(p for p in (ROOT / "episodes").iterdir() if (p / "episode.yaml").exists())
-    # 1. upload finished episodes (oldest render first)
-    todo = [(p, load(p)) for p in eps]
-    todo = sorted([(p, e) for p, e in todo if ready(p, e)], key=lambda t: (t[0] / "build" / f"{t[1]['slug']}.mp4").stat().st_mtime)
+    allep = [(p, load(p)) for p in eps]
+    # 1b. weekly "100 Years Ago": public at once, weekends only
+    wk = [(p, e) for p, e in allep if e.get("series") == WEEKLY]
+    wready = [(p, e) for p, e in wk if ready(p, e)]
+    if wready and weekly_due([p for p, _ in wk]):
+        p, e = sorted(wready, key=lambda t: t[0].name)[0]
+        if DRY:
+            log(f"would upload PUBLIC weekly episode {p.name}")
+        else:
+            log(f"uploading weekly episode {p.name} (public)")
+            vid = publish.upload(p, e, client_secret=str(ROOT / "client_secret.json"), public=True)
+            (p / "build" / "uploaded_at.txt").write_text(dt.datetime.now(dt.timezone.utc).isoformat() + "\n")
+            log(f"{p.name} -> https://youtu.be/{vid} (public)")
+        return                                   # one upload per run
+    # 1. upload finished long episodes (oldest render first)
+    todo = sorted([(p, e) for p, e in allep if e.get("series") != WEEKLY and ready(p, e)],
+                  key=lambda t: (t[0] / "build" / f"{t[1]['slug']}.mp4").stat().st_mtime)
     if todo:
         p, e = todo[0]
         if DRY:

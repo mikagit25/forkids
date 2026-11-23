@@ -5,6 +5,20 @@ Wellcome "Public Domain Mark" or CC BY. No NC / ND / SA. Newspapers only up to 1
 pages — skip that site. **Avoid Met Museum images** (bot check on our server).
 yellow-fever is rendered (uploads today). Smallpox, Halifax done. Thank you!
 
+## UPDATE 23.11 (owner): "100 Years Ago" is WEEKLY, not monthly
+One episode every weekend: what the papers said **this week 100 years ago** (Sat/Sun upload, public at once — the cron
+does it, the owner does not review it). Slugs: `news-1926-12-w1` (1–7 Dec 1926), `news-1926-12-w2` (8–14 Dec),
+`news-1926-12-w3` (15–21 Dec), `news-1926-12-w4` (22–31 Dec), then `news-1927-01-w1`…
+Please put clippings into `picks/news-1926-12-w1-news.yaml` etc. (one file per week, scene: tbd). 5–8 stories a week
++ 1–2 ads. Stories I already have from other sources for December 1926 (find their front pages/headlines first):
+w1: Agatha Christie vanishes (3 Dec); Hall–Mills trial acquittal (3 Dec); Mussolini's bachelor tax (6 Dec); Coolidge's
+State of the Union (7 Dec); "Battleship Potemkin" US premiere (5 Dec). w2: Nobel prizes (10 Dec); Christie found in
+Harrogate (14 Dec); Mussolini's recorded voice on WGN Chicago (14 Dec). w3: Landis re-elected (16 Dec); Condé diamond
+found in an apple (19 Dec); Linseed King sinks in the Hudson, 51+ dead (20 Dec); Hornsby traded (20 Dec); Cobb–Speaker
+scandal (21 Dec). w4: Wheaties radio jingle (24 Dec); Emperor Taishō dies, Hirohito (25 Dec); first TV demo in Japan
+(25 Dec); Nashville flood (26 Dec); Aimee Semple McPherson charges dropped (29 Dec); play "Chicago" opens (30 Dec);
+Turkey adopts the Gregorian calendar; BBC becomes a corporation (31 Dec–1 Jan); Académie française: animals have souls.
+
 ## NEW SERIES (user decision 23.11): "100 Years Ago" — monthly review of old newspapers & magazines
 Details in TOPICS.md (section «100 лет назад»). Pilot: **December 1926** (slug proposal `news-1926-12`), 8–10 min,
 5–7 stories + ads/prices, clippings with crop + full page for atmosphere + era photos; 3–4 Shorts from single stories.

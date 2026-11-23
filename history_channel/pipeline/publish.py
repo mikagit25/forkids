@@ -180,7 +180,8 @@ def next_slot(root: Path, gap_days: int = 2, hour: int = 18):
     return when.strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def upload(ep_dir: Path, episode: dict, client_secret: str = "client_secret.json", publish_at: str | None = None):
+def upload(ep_dir: Path, episode: dict, client_secret: str = "client_secret.json", publish_at: str | None = None,
+           public: bool = False):
     """Uploads as PRIVATE with captions + thumbnail, scheduled to go public at publish_at (default: next free slot,
     every other day). The owner normally turns it into a Premiere in Studio; if not, it still goes public then."""
     from googleapiclient.http import MediaFileUpload
@@ -191,8 +192,11 @@ def upload(ep_dir: Path, episode: dict, client_secret: str = "client_secret.json
         "snippet": {"title": episode["title"][:100], "description": (b / "description.txt").read_text()[:5000],
                     "tags": episode.get("tags", []), "categoryId": "27", "defaultLanguage": episode.get("language", "en"),
                     "defaultAudioLanguage": episode.get("language", "en")},
-        "status": {"privacyStatus": "private", "selfDeclaredMadeForKids": False, "containsSyntheticMedia": False},
+        "status": {"privacyStatus": "public" if public else "private", "selfDeclaredMadeForKids": False,
+                   "containsSyntheticMedia": False},
     }
+    if public:              # e.g. the weekly "100 Years Ago" episodes: straight to public, no slot
+        publish_at = "none"
     if publish_at != "none":
         publish_at = publish_at or next_slot(ep_dir.parent.parent)
         body["status"]["publishAt"] = publish_at
@@ -209,8 +213,11 @@ def upload(ep_dir: Path, episode: dict, client_secret: str = "client_secret.json
     (b / "youtube_id.txt").write_text(vid + "\n")      # Shorts link back to the full episode
     if episode.get("localizations"):
         localize(ep_dir, episode, client_secret, vid, yt)
-    print(f"uploaded as PRIVATE: https://youtu.be/{vid}  goes public {publish_at} unless changed "
-          f"(set it as a Premiere in YouTube Studio)")
+    if public:
+        print(f"uploaded as PUBLIC: https://youtu.be/{vid}")
+    else:
+        print(f"uploaded as PRIVATE: https://youtu.be/{vid}  goes public {publish_at} unless changed "
+              f"(set it as a Premiere in YouTube Studio)")
     return vid
 
 
