@@ -1,0 +1,187 @@
+# Status: script draft v1 (23.11.2026), fact-checked against factcheck.md; images: candidates + Chrome picks pending
+
+title: "Krakatoa 1883: The Loudest Sound in History"
+subtitle: "The volcano that was heard 4,800 km away, turned the sunsets red and wiped 165 villages off the map"
+slug: krakatoa-1883
+language: en
+era: [1870, 1935]        # photos dated far outside this range are skipped (except 'today' scenes)
+visual_context: "Krakatoa eruption 1883 Sunda Strait Java"
+voice:
+  backend: kokoro
+  name: bm_george
+  lang: en-gb
+  speed: 0.95
+music:
+  generate: true
+  seed: 1883
+  mood: tense
+
+scenes:
+  - id: cold-open
+    montage: true
+    narration: >
+      At two minutes past ten on the morning of the twenty-seventh of August 1883, a volcano in the Dutch East Indies made the loudest sound in recorded history.
+      It was heard in Australia, more than three thousand kilometres away. On a small island in the Indian Ocean, nearly five thousand kilometres away, people thought it was the guns of a ship in distress.
+      The pressure wave went around the whole Earth three and a half times. Waves more than thirty metres high swept away towns and villages. At least thirty-six thousand people died.
+      For months afterwards, sunsets around the world glowed so red that fire brigades in New York were called out to fight fires that did not exist.
+      This is the story of Krakatoa.
+    candidates: ["Krakatoa eruption 1883", "Krakatoa lithograph", "Royal Society Krakatoa sunset", "Anjer 1883"]
+    images:
+      - {query: "Krakatoa 1883", count: 3}
+
+  - id: island
+    chapter: "I. The Island in the Strait"
+    narration: >
+      Krakatoa lay in the Sunda Strait, the narrow sea between the islands of Java and Sumatra, in what was then the Dutch East Indies and is today Indonesia.
+      The strait was one of the great shipping lanes of the world. For centuries, ships had used it as the gateway to the Spice Islands, and on the coast of Java, facing the strait, stood the busy port of Anjer.
+      The island itself was green and quiet. It had three volcanic cones joined together: Rakata, the highest, about eight hundred metres tall, in the south; Danan in the centre; and the low cone of Perboewatan in the north.
+      It had erupted before. In 1681, a Dutch mining engineer named Johann Wilhelm Vogel sailed past and wrote that the island had erupted the previous year, in May 1680. After that, it slept for two centuries.
+      In 1880, a Dutch geologist, Rogier Verbeek, studied the island and examined a lava flow on Perboewatan. In the years before 1883 there were strong earthquakes in the region; one of them, in 1880, damaged a lighthouse. Few people paid much attention.
+    candidates: ["Sunda Strait map", "Anjer Java", "Dutch East Indies 1880s", "Batavia 1880s", "steamship 1880s", "Krakatoa before 1883"]
+    images:
+      - {query: "Dutch East Indies 1880", count: 2}
+
+  - id: awakening
+    chapter: "II. The Awakening"
+    date: "May – August 1883"
+    narration: >
+      On the twentieth of May 1883, Perboewatan woke up. Steam and ash rose about six kilometres into the sky. The explosions could be heard in Batavia, the colonial capital, a hundred and sixty kilometres away, where they rattled windows and doors.
+      The colonial authorities were curious rather than afraid. On the twenty-sixth of May, an excursion party was sent out to the island to have a look. They found the island covered in fine white dust, and watched Perboewatan explode every five to ten minutes, throwing out pumice.
+      Then the eruption seemed to calm down. But in the middle of June there were loud explosions again, and a thick black cloud covered the islands for five days. When the wind cleared it, people saw that the summit of Perboewatan was gone. New vents had opened. The sea around the island rose and fell so strangely that ships at anchor had to be moored with chains.
+      In early August, a Dutch army topographer, Captain Ferzenaar, landed on Krakatoa to map it. He counted three large columns of ash and at least eleven other vents giving off steam. The ash on the ground was half a metre thick, and every tree had been destroyed, leaving only stumps. He advised that nobody should land there again.
+    candidates: ["Krakatoa May 1883 photograph", "volcano steam eruption 19th century", "Dutch East Indies steamer", "Batavia harbour"]
+    images:
+      - {query: "Krakatoa eruption", count: 2}
+
+  - id: climax
+    chapter: "III. Sunday, the Twenty-Sixth"
+    date: "26 August 1883"
+    narration: >
+      On Sunday the twenty-sixth of August, at about one o'clock in the afternoon, the eruption entered its final, violent phase.
+      By two o'clock, a black cloud of ash stood twenty-seven kilometres high. The explosions came every ten minutes, then almost without stopping. By five in the afternoon they could be heard all over Java.
+      Ships in the strait were caught in the darkness. Within twenty kilometres of the volcano, pieces of hot pumice as big as a fist rained down on their decks. Waves about a metre high began to batter the coasts of Java and Sumatra, and they went on all night. Between seven and eight in the evening, a small tsunami struck the shore forty kilometres away.
+      Nobody knew what was coming in the morning.
+    candidates: ["ship ash eruption", "Sunda Strait ship 1883", "night eruption lithograph", "lightning volcano"]
+    images:
+      - {query: "volcanic eruption lithograph 19th century", count: 2}
+
+  - id: explosions
+    chapter: "IV. The Loudest Sound"
+    date: "27 August 1883"
+    narration: >
+      On Monday the twenty-seventh of August came the great explosions.
+      The first great explosion came at about half past five in the morning. The second followed at a quarter to seven. The third, at two minutes past ten, was the biggest of all.
+      It was heard three thousand one hundred kilometres away in Perth, in Western Australia. On the island of Rodrigues, near Mauritius, nearly five thousand kilometres away, people thought it was cannon fire from a ship nearby. The sound had taken about four hours to travel there. It was the loudest sound ever measured, and one of the farthest that any sound has ever been heard.
+      Closer to the volcano, the noise was overwhelming. On the British ship Norham Castle, about sixty kilometres away, sailors' eardrums burst. At the gasworks in Batavia, a hundred and sixty kilometres away, the pressure wave pushed the needle of a gauge off the scale. Windows shattered and walls cracked.
+      Then the pressure wave kept going. Barographs, instruments that record air pressure, picked it up all over the world. Some recorded it seven times over five days, as the wave travelled to the far side of the Earth and back, again and again. It went around the planet three and a half times.
+      Scientists have estimated the energy of the eruption at about two hundred megatons, roughly four times more powerful than the largest hydrogen bomb ever tested.
+      At about twenty to eleven, much of what was left of the island collapsed into the emptied chamber of the volcano beneath it. Two thirds of Krakatoa had disappeared.
+    candidates: ["barograph record Krakatoa", "Rodrigues island", "Perth 1883", "Norham Castle ship", "Batavia gasworks"]
+    images:
+      - {query: "Krakatoa explosion", count: 2}
+
+  - id: waves
+    chapter: "V. The Waves"
+    narration: >
+      The explosions themselves killed few people. The sea killed tens of thousands.
+      As huge masses of hot ash and rock fell back into the strait, they pushed the water outwards in a series of giant waves. The largest followed the third explosion. At Merak, on the north-western tip of Java, the wave was estimated at forty-six metres high, as tall as a fifteen-storey building. The town was destroyed. Along the west coast of Java the waves reached more than forty metres, and along the south coast of Sumatra more than twenty.
+      The port of Anjer, where so many ships had stopped for supplies, was wiped out.
+      Across the strait, the steamer Loudon was anchored near the town of Telok Betong, in Sumatra. Its passengers saw a gigantic wave of prodigious height advancing toward the seashore. The crew turned the ship to face it, and the Loudon was lifted up with dizzying speed, rode over the crest and down the other side. Then, the passengers wrote, they watched as the sea in a single sweeping motion consumed the town. There, where an instant before had lain the town of Telok Betong, nothing remained but the open sea.
+      A farm worker near Merak remembered seeing a great black thing, a long way off, coming towards us. It was very high and very strong, and we soon saw that it was water. People ran for a steep hillside. There was a terrible crush at the one place where they could climb, and the water came too fast for most of them. You can see the marks on the hillside, he said, where the fight for life took place.
+      Some eighty kilometres away, the low Thousand Islands off Batavia were covered by two metres of water, and people climbed trees to survive. The waves crossed the Indian Ocean; one person was killed in Ceylon, and ships as far as South Africa were rocked. Small waves even showed up on tide gauges in the English Channel.
+    candidates: ["tsunami 1883 lithograph", "Telok Betong", "Merak", "Anjer destroyed", "Loudon steamer", "Thousand Islands Batavia"]
+    images:
+      - {query: "Krakatoa tsunami", count: 2}
+
+  - id: ashes
+    chapter: "VI. The Burning Ashes"
+    narration: >
+      There was another killer. Clouds of incredibly hot gas, ash and pumice, called pyroclastic flows, poured down the sides of the volcano and raced across the sea on a cushion of steam. They travelled forty kilometres across the strait and reached the coast of Sumatra, where they burned villages and forests.
+      Around noon, a rain of hot ash fell on the district of Ketimbang. It became known as the Burning Ashes of Ketimbang. About a thousand people died.
+      One survivor, Mrs Beyerinck of Ketimbang, later described what happened in her house. Suddenly, it became pitch dark. The last thing I saw was the ash being pushed up through the cracks in the floorboards, like a fountain. She felt a heavy pressure throw her to the ground, and it seemed that all the air was being sucked away. She stumbled outside into the darkness, through hot ash that pricked like needles. Only later did she notice that her skin was hanging off in strips. I did not know I had been burnt, she said.
+      On the island of Sebesi, north of the volcano, about three thousand people lived. There were no survivors.
+    candidates: ["Sumatra village 1880s", "Lampung", "pumice", "volcanic ash", "Sebesi"]
+    images:
+      - {query: "Sumatra 1880s village", count: 2}
+
+  - id: aftermath
+    chapter: "VII. After the Darkness"
+    narration: >
+      Darkness covered the strait until the twenty-ninth of August. When the light returned, the coastline was unrecognisable.
+      The official death toll was thirty-six thousand four hundred and seventeen. According to the records of the Dutch colony, a hundred and sixty-five villages and towns had been destroyed, and a hundred and thirty-two more were badly damaged.
+      Two weeks after the eruption, an observer described the site of one village: Thousands of corpses of human beings and also carcasses of animals still await burial, and make their presence apparent by the indescribable stench.
+      Huge rafts of floating pumice drifted across the Indian Ocean for months. On some of them were human skeletons, and some washed up on the east coast of Africa, up to a year after the eruption.
+      A stretch of the coast of western Java was never resettled. The jungle grew back over it. Today it is the Ujung Kulon National Park, a World Heritage site and the last home of the rare Javan rhinoceros.
+      And Krakatoa itself was gone. Only the southern third of the island remained, the half-cone of Rakata, cut off by a cliff two hundred and fifty metres high. Where the rest of the island had stood, the sea was now two to three hundred metres deep.
+    candidates: ["Krakatoa after eruption 1883", "Rakata cliff", "Ujung Kulon", "Javan rhinoceros", "pumice raft"]
+    images:
+      - {query: "Krakatoa after 1883", count: 2}
+
+  - id: news
+    chapter: "VIII. News Travels Fast"
+    narration: >
+      In earlier centuries, news of a disaster like this would have taken weeks or months to reach Europe. But by 1883, telegraph cables connected Java to the rest of the world. The news of Krakatoa spread faster than the news of any earlier disaster, even faster than the news of the assassination of Abraham Lincoln.
+      Within days, the story was in newspapers around the world. It was one of the first truly global news events.
+      In the Dutch East Indies, the government asked Rogier Verbeek, the geologist who had studied the island three years earlier, to investigate. Verbeek had lived through the eruption himself at his home in Buitenzorg, on Java. On the orders of the Governor-General, he investigated the eruption, and in 1884 and 1885 published a detailed study of the eruption. It helped to make volcanology a modern science.
+    candidates: ["telegraph cable 1880s", "newspaper Krakatoa 1883", "Verbeek Krakatau 1885 plates", "Buitenzorg"]
+    images:
+      - {query: "Krakatau Verbeek", count: 2}
+
+  - id: sky
+    chapter: "IX. The Red Sunsets"
+    narration: >
+      The eruption had blasted ash and gas as high as eighty kilometres into the sky. High winds carried it around the whole planet.
+      In the months that followed, people all over the world saw extraordinary sunsets: deep red, purple and gold, lasting long after the sun had gone down. In late 1883, the sky glowed so red that fire engines were called out in New York, Poughkeepsie and New Haven to fight what looked like enormous fires.
+      In London, the painter William Ascroft regularly sketched the sky at sunset over Chelsea. He made more than five hundred colour sketches of the strange skies, at a time when there was no colour photography. In 2010, an astronomer recognised among them some of the earliest pictures of noctilucent clouds, glowing night clouds high in the atmosphere.
+      For years, people reported a blue or even green moon, and lavender suns. Weather watchers tracked how the haze moved, and called it the equatorial smoke stream. It was the first identification of what we now call the jet stream.
+      The haze also reflected sunlight back into space. In the year after the eruption, summers in the northern hemisphere were about four tenths of a degree cooler.
+    candidates: ["Ascroft sunset sketch Krakatoa", "red sunset 1883", "Royal Society Krakatoa report 1888 plates", "Chelsea Thames 1880s"]
+    images:
+      - {query: "sunset painting 1883", count: 2}
+
+  - id: scream
+    chapter: "X. A Blood-Red Sky"
+    narration: >
+      In Norway, the painter Edvard Munch wrote about a walk he once took at sunset. I was walking along the road with two friends. The sun was setting. Suddenly the sky turned blood red. I paused, feeling exhausted, and leaned on the fence. There was blood and tongues of fire above the blue-black fjord and the city. My friends walked on, and I stood there trembling with anxiety, and I sensed an infinite scream passing through nature.
+      In 1893, Munch turned that memory into one of the most famous paintings in the world: The Scream.
+      In 2004, an astronomer suggested that the blood-red sky Munch remembered may have been one of the Krakatoa sunsets, which coloured skies in many parts of the world for months in 1883 and 1884. Not everyone agrees. Other scholars think the colours came from Munch's own state of mind; his sister had been committed to an asylum nearby. But it is possible that the most famous scream in art began with a volcano on the other side of the world.
+    candidates: ["Munch The Scream", "Oslo fjord 1880s", "Kristiania 1880s"]
+    images:
+      - {query: "Edvard Munch Scream", count: 2}
+
+  - id: child
+    chapter: "XI. The Child of Krakatoa"
+    narration: >
+      For more than forty years, the sea over the old volcano was quiet. Then, in early 1927, signs of volcanic activity appeared in the middle of the caldera, between where the cones of Perboewatan and Danan had once stood.
+      On the twenty-ninth of December 1927, a new island broke the surface. Waves washed it away. It appeared again, and was washed away again. Finally, on the eleventh of August 1930, it rose permanently above the sea. It was named Anak Krakatau, the child of Krakatoa.
+      The child kept growing, eruption by eruption, until it was more than three hundred metres high. In 2012, volcanologists warned that its steep side could one day collapse into the sea and cause a tsunami.
+      On the twenty-second of December 2018, during an eruption, a large part of Anak Krakatau slid into the sea. Waves up to five metres high struck the coasts of Java and Sumatra at night, with no warning, during the holiday season. More than four hundred people died, in some of the same places struck in 1883. After the disaster, Indonesia installed new early-warning systems along the coasts.
+    candidates: ["Anak Krakatau 1930", "Anak Krakatau eruption", "Anak Krakatau 1929 photograph", "Sunda Strait 2018 tsunami"]
+    images:
+      - {query: "Anak Krakatau", count: 2}
+
+  - id: closing
+    chapter: "Epilogue"
+    narration: >
+      Krakatoa was not the largest eruption in history. But it was the first great natural disaster that the whole world experienced almost at once: by telegraph, in its newspapers, in the sound that crossed the oceans, in the needles of its barographs, and in its own blood-red evening skies.
+      Today, the remains of the old island, Rakata, Sertung and Panjang, ring the caldera, and in the middle, the child of Krakatoa is still active. Many people live on the coasts around the Sunda Strait, within reach of its waves.
+      If you enjoyed this story from the archives, subscribe for more.
+    candidates: ["Krakatoa today", "Sunda Strait today", "Anak Krakatau aerial"]
+    images:
+      - {query: "Krakatoa caldera", modern: true, count: 2}
+
+thumbnail:
+  scene: explosions
+  big: "1883"
+  small: "THE LOUDEST SOUND IN HISTORY"
+tags: ["Krakatoa", "Krakatau", "1883", "volcano", "volcanic eruption", "tsunami", "loudest sound", "The Scream", "history documentary", "natural disasters"]
+references:
+  - "Wikipedia, 1883 eruption of Krakatoa: https://en.wikipedia.org/wiki/1883_eruption_of_Krakatoa"
+  - "Wikipedia, Krakatoa: https://en.wikipedia.org/wiki/Krakatoa"
+  - "Wikipedia, Anak Krakatoa: https://en.wikipedia.org/wiki/Anak_Krakatoa"
+  - "Verbeek, R. D. M., Krakatau (Batavia, 1885)"
+  - "Simkin & Fiske (eds.), Krakatau 1883: the volcanic eruption and its effects (Smithsonian, 1983)"
+
+research:
+  - {q: "Krakatoa", from: 1883-08-26, to: 1884-03-31, sources: [chronam, trove, europeana]}
+  - {q: "Java volcano", from: 1883-08-26, to: 1883-10-31, sources: [chronam]}
