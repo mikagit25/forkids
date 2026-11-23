@@ -71,6 +71,11 @@ scenes:
       - {file: "web:wellcome:L0063432", image: "https://iiif.wellcomecollection.org/image/L0063432/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/uqa27qrt", rights: "Public Domain Mark (public domain)", title: "On the mode of communication of cholera / by John Snow (2nd ed.)", date: "1855", note: "Snow's cholera book, 1855"}   # LoC via Chrome
       - {file: "web:wellcome:L0063431", image: "https://iiif.wellcomecollection.org/image/L0063431/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/uqa27qrt", rights: "Public Domain Mark (public domain)", title: "On the mode of communication of cholera / by John Snow (2nd ed.)", date: "1855", note: "Snow's cholera book, another page"}   # LoC via Chrome
       - {file: "curid:36339979", match: "John Snow was born in York"}   # John Snow, 1856 (Wellcome M0009238, CC BY 4.0)
+      - {file: "curid:43265579"}   # Views on the Newcastle and Carlisle Railway, 1836 (Snow apprenticed near Newcastle)
+      - {file: "curid:35984684", match: "Snow was an expert in ether and chloroform"}   # Snow's chloroform inhaler (Wellcome L0018260, CC BY 4.0)
+      - {file: "curid:68203843", match: "he gave chloroform to Queen Victoria"}   # Queen Victoria and family, Windsor, 1848 (LoC, PD)
+      - {file: "curid:36337436"}   # John Snow's M.R.C.P. certificate (Wellcome, CC BY 4.0)
+      - {file: "curid:36342556"}   # plaster cast of a sculpture of John Snow (Wellcome, CC BY 4.0)
 
   - id: outbreak
     chapter: "III. Broad Street"
@@ -87,6 +92,10 @@ scenes:
       - {file: "web:wellcome:L0072150", image: "https://iiif.wellcomecollection.org/image/L0072150/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/j6bgbzq4", rights: "Public Domain Mark (public domain)", title: "Report on the cholera outbreak in the Parish of St. James, Westminster (Cholera Inquiry Committee)", date: "1855", note: "official report on the Broad Street outbreak"}   # LoC via Chrome
       - {file: "web:wellcome:L0072151", image: "https://iiif.wellcomecollection.org/image/L0072151/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/vffmj95g", rights: "Public Domain Mark (public domain)", title: "Report on the cholera outbreak in the Parish of St. James, Westminster", date: "1855", note: "report page on the outbreak"}   # LoC via Chrome
       - {file: "web:wellcome:V0020282F2", image: "https://iiif.wellcomecollection.org/image/V0020282F2/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/sch942qp", rights: "Public Domain Mark (public domain)", title: "Overcrowding and poor living conditions in London, 1862: eleven scenes. Wood engraving", date: "1862", note: "crowded London courts of the period"}   # LoC via Chrome
+      - {file: "curid:36026461"}   # Broad Street (Broadwick Street), Soho (Wellcome, CC BY 4.0)
+      - {file: "curid:35953655"}   # Plan showing the deaths from cholera, London 1854 (Wellcome L0011183, CC BY 4.0)
+      - {file: "curid:35868601", match: "Many of the sick were carried to the Middlesex Hospital"}   # The Middlesex Hospital (Wellcome, CC BY 4.0)
+      - {file: "curid:31232275", match: "Florence Nightingale, came to help"}   # Florence Nightingale, lithograph by R. J. Lane, 1854 (Wellcome, CC BY)
 
   - id: map
     chapter: "IV. The Map"
@@ -107,6 +116,8 @@ scenes:
       - {file: "web:wellcome:L0071628", image: "https://iiif.wellcomecollection.org/image/L0071628/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/nwvzx5ge", rights: "Public Domain Mark (public domain)", title: "Map exhibiting the progress of the late epidemic cholera", date: "1850s", note: "cholera mapping of the era"}   # LoC via Chrome
       - {file: "curid:36226949", match: "He marked each death on a map"}   # Snow: map of deaths in Broad Street (Wellcome L0063431, CC BY 4.0)
       - {file: "curid:36273733"}   # Plan showing the ascertained deaths from cholera (Wellcome L0072142, CC BY 4.0)
+      - {file: "curid:36281892"}   # map from a report by Dr John Snow (Wellcome L0072917, CC BY 4.0)
+      - {file: "curid:36485073", match: "A large workhouse nearby"}   # The Workhouse, Poland Street, Soho (Microcosm of London; Wellcome, CC BY 4.0)
 
   - id: handle
     chapter: "V. The Pump Handle"
@@ -122,6 +133,10 @@ scenes:
       - {file: "web:wellcome:L0072154", image: "https://iiif.wellcomecollection.org/image/L0072154/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/yabjhvd4", rights: "Public Domain Mark (public domain)", title: "Report on the cholera outbreak in the Parish of St. James", date: "1855", note: "report page (pump / water evidence)"}   # LoC via Chrome
       - {file: "web:wellcome:L0072155", image: "https://iiif.wellcomecollection.org/image/L0072155/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/c5jsey2m", rights: "Public Domain Mark (public domain)", title: "Report on the cholera outbreak in the Parish of St. James", date: "1855", note: "report page (pump / water evidence)"}   # LoC via Chrome
       - {file: "web:wellcome:V0020216", image: "https://iiif.wellcomecollection.org/image/V0020216/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/jvtf72bj", rights: "Public Domain Mark (public domain)", title: "A water pump near Bishopsgate Street, London. Etching", date: "1791", note: "what a London street pump looked like"}   # LoC via Chrome
+      - {file: "curid:36273884"}   # Report on the cholera outbreak in the Parish of St. James, Westminster (Wellcome, CC BY 4.0)
+      - {file: "curid:36273909"}   # Report on the cholera outbreak in the Parish of St. James (Wellcome, CC BY 4.0)
+      - {file: "curid:36345709"}   # The Aldgate Pump in 1874 (Wellcome M0010341, CC BY 4.0): a London street pump
+      - {file: "curid:87937244"}   # Otto Bache, a child playing at a water pump, 1876 (PD)
 
 
   - id: experiment
@@ -144,6 +159,10 @@ scenes:
       - {file: "web:wellcome:V0039406", image: "https://iiif.wellcomecollection.org/image/V0039406/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/u5kyd33t", rights: "Public Domain Mark (public domain)", title: "Map of London showing the river Thames and the major parks. Coloured engraving", date: "19th c.", note: "south London water districts on the Thames"}   # LoC via Chrome
       - {file: "web:wellcome:L0023693", image: "https://iiif.wellcomecollection.org/image/L0023693/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/d5nm6u4b", rights: "Public Domain Mark (public domain)", title: "London and the River Thames seen from the south, Westminster to Greenwich. Wood engraving by F.J. Smyth", date: "1845", note: "the Thames from the south bank, where the water companies drew"}   # LoC via Chrome
       - {file: "web:wellcome:V0019367", image: "https://iiif.wellcomecollection.org/image/V0019367/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/euqbv4ck", rights: "Public Domain Mark (public domain)", title: "Barclay and Perkins brewery, Southwark. Wood engraving", date: "1847", note: "Southwark 1840s"}   # LoC via Chrome
+      - {file: "curid:36226981", match: "whose pipes ran down the very same streets"}   # Snow: map showing the intimate mixture of the water supply (Wellcome L0063..., CC BY 4.0)
+      - {file: "curid:163763473", match: "had moved its intake upriver"}   # Opening of the new works of the Lambeth Water Company, Seething Wells, 3 April 1852 (ILN, PD)
+      - {file: "curid:84956444"}   # the water-cart, London, ca. 1871 (Rijksmuseum, CC0)
+      - {file: "curid:52006564"}   # Street Life in London, 1877, John Thomson & Adolphe Smith (no restrictions)
 
   - id: source
     chapter: "VII. The Cesspit"
