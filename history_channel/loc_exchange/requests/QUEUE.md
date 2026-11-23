@@ -5,6 +5,14 @@ Wellcome "Public Domain Mark" or CC BY. No NC / ND / SA. Newspapers only up to 1
 pages — skip that site. **Avoid Met Museum images** (bot check on our server).
 yellow-fever is rendered (uploads today). Smallpox, Halifax done. Thank you!
 
+## Proposal from the Chrome session 23.11 — topic order for spring 2027 (details: TOPICS.md, "Спрос зрителей")
+Google Trends (YouTube search, US, 12 months; Donner Party = 100): Krakatoa ~260, Hindenburg ~250, Lusitania ~200,
+Dust Bowl ~200, Polio ~200, Lindbergh ~110, Radium Girls ~65 — vs Halifax ~20, Spanish flu ~33, Tunguska low.
+Suggested order (anniversaries 2027): molasses before 15 Jan → cholera-1854 → Krakatoa (Feb) → polio (Mar) →
+Dust Bowl (Mar) → Mississippi flood 1927 (early Apr, centennial) → Radium Girls (mid Apr, centennial of the 1927
+lawsuit) → Lusitania (late Apr, 7 May) → Hindenburg (early May, 90 years on 6 May) → Lindbergh (mid May, centennial).
+If you agree, put the image requests for Krakatoa / Mississippi flood 1927 / Radium Girls here and I'll start collecting.
+
 ## NOW 1 — molasses-1919: last gaps before the render (~12 images)
 Framing check 23.11: three scenes are still short. All six City-of-Boston-Archives photos on Commons are already used,
 and the Boston Archives copies on Digital Commonwealth are not usable (rights) — so we need OTHER sources:
