@@ -1,0 +1,118 @@
+# polio picks - Chrome session 2026-11-23, NLM Digital Collections (public domain only)
+# Episode/scenes not written yet -> scene: tbd; the server assigns scene ids after the script.
+# NLM blocks the server (AWS WAF): images will be downloaded in Chrome and put into inbox/ (file name keeps the id).
+# Era/atmosphere photos still needed (LoC rate-limited the Chrome session on 23.11 - retry later slowly).
+
+- scene: tbd
+  source: nlm
+  id: '101392842'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101392842-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101392842-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "Acute anterior poliomyelitis: keep out of this house (Board of Health quarantine card, San Francisco)"
+  date: 'c. 1910'
+  note: "quarantine placard on a family's door - early epidemics, 1910s"
+
+- scene: tbd
+  source: nlm
+  id: '101444408'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101444408-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101444408-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "Quarantine Poliomyelitis (placard)"
+  note: "quarantine notice - the 1916 epidemic era"
+
+- scene: tbd
+  source: nlm
+  id: '101444157'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101444157-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101444157-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "Infantile Paralysis: This Notice is Posted in Compliance with Law"
+  note: "legal quarantine notice for 'infantile paralysis'"
+
+- scene: tbd
+  source: nlm
+  id: '101434141'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101434141-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101434141-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "Poliomyelitis Anterior Acuta (photomechanical plate)"
+  note: "early medical plate of a paralysed patient"
+
+- scene: tbd
+  source: nlm
+  id: '101434140'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101434140-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101434140-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "Poliomyelitis Anterior Acuta (photomechanical plate)"
+  note: "second plate of the same series"
+
+- scene: tbd
+  source: nlm
+  id: '101407761'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101407761-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101407761-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "[Patient in iron lung] - a nurse and two corpsmen attend a polio patient, US Army"
+  date: '1949'
+  note: "the iron lung - key image of the polio era"
+
+- scene: tbd
+  source: nlm
+  id: '101442594'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101442594-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101442594-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "Sgt. Clarence Stewart demonstrates an iron lung to visitors, Armed Forces Day, Denver"
+  date: '1960'
+  note: "boys touching an iron lung - fear and fascination"
+
+- scene: tbd
+  source: nlm
+  id: '101403745'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101403745-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101403745-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "[Poliomyelitis patient in Hubbard Tub] with a physiotherapist"
+  date: '1948'
+  note: "rehabilitation in the 1940s"
+
+- scene: tbd
+  source: nlm
+  id: '101442825'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101442825-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101442825-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "[Lowering a poliomyelitis patient into a pool for exercise]"
+  note: "hydrotherapy - Warm Springs style treatment"
+
+- scene: tbd
+  source: nlm
+  id: '101442826'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101442826-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101442826-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "Group of poliomyelitis and arthritic patients on the sun deck"
+  note: "rows of beds on a hospital roof deck"
+
+- scene: tbd
+  source: nlm
+  id: '101440666'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101440666-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101440666-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "[Mary Lasker and Dr. Jonas Salk]"
+  date: '1950s'
+  note: "Salk - the vaccine man"
+
+- scene: tbd
+  source: nlm
+  id: '101447553'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447553-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447553-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "[Providing oral polio vaccine to children in Africa]"
+  date: '1982'
+  note: "oral vaccine campaigns - the eradication drive (closing)"
