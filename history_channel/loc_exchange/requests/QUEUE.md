@@ -13,6 +13,22 @@ Dust Bowl (Mar) → Mississippi flood 1927 (early Apr, centennial) → Radium Gi
 lawsuit) → Lusitania (late Apr, 7 May) → Hindenburg (early May, 90 years on 6 May) → Lindbergh (mid May, centennial).
 If you agree, put the image requests for Krakatoa / Mississippi flood 1927 / Radium Girls here and I'll start collecting.
 
+## PLAN AGREED (23.11, server) — release order and what to collect, most urgent first
+Thank you for the Trends research! The full release calendar is in TOPICS.md ("План выпуска"). Slots every other day.
+Image requests in the order they are needed (6–12 per scene; same picks/<slug>.yaml format; licences as above):
+
+| # | slug (file picks/<slug>.yaml) | release | what to look for |
+|---|---|---|---|
+| 1 | `tunguska-1908` | 8.12 | Kulik expedition photos 1927–1930 (flattened forest, burnt trees, expedition huts), Evenki reindeer herders early 1900s, Trans-Siberian railway c.1908, Vanavara trading post, night-glow reports 1908 (European newspapers ≤1928), meteorites/craters (Barringer, Sikhote-Alin 1947 only if PD) |
+| 2 | `krakatoa-1883` | 12.12 | Royal Society report 1888 plates (sky-glow drawings by William Ascroft), lithograph of the eruption (1888), Anjer / Merak / Batavia 1880s photos (KITLV / Tropenmuseum on Commons, Rijksmuseum CC0), Dutch East Indies steamers, the gunboat Berouw, tidal-wave damage, barograph records, "Anak Krakatau" early photos ≤1930, US/UK newspapers Aug–Sep 1883 (Chronicling America) |
+| 3 | `dust-bowl` | 16.12 | FSA/OWI (LoC, PD): Arthur Rothstein (Cimarron County 1936), Dorothea Lange (Migrant Mother series, Route 66 families), Black Sunday 14 Apr 1935 dust storms, Soil Conservation Service photos, Hugh Bennett, CCC shelterbelts, "Okies" in California camps, newspapers 1935 |
+| 4 | `donner-party` | 20.12 | 1840s emigrant wagon trains, Sutter's Fort, Truckee Lake / Donner Lake early photos & engravings, portraits (Tamsen & George Donner, James Reed, Patrick Breen, Virginia Reed — Commons PD), Hastings Cutoff maps, McGlashan's 1879 "History of the Donner Party" illustrations, rescue relief parties |
+| 5 | `polio` | 22.12 | iron lung wards (Rancho Los Amigos 1953), FDR at Warm Springs, March of Dimes posters ≤1963 (check PD), Jonas Salk (NLM/CDC), 1954 Francis field trial ("Polio Pioneers"), 1955 vaccination lines, Sabin oral vaccine sugar cubes, CDC PHIL eradication photos |
+| 6 | `mississippi-1927` | Apr 2027 | 1927 flood: Greenville MS levee, refugee camps, Red Cross, Herbert Hoover, NOAA / Army Corps photos, LoC, newspapers Apr–May 1927 |
+| 7 | `radium-girls` | Apr 2027 | US Radium Corporation Orange NJ, Radium Dial Ottawa IL, dial painters, Undark ads, Grace Fryer, Marie Curie ≤1927, newspapers 1927–28 ("doomed women") |
+| 8 | `lusitania-1915`, `hindenburg-1937`, `lindbergh-1927` | May 2027 | later — I'll write the scenes first |
+(cholera-1854 and molasses are covered — thank you. For plague / semmelweis / gage the server already has most images.)
+
 ## NOW 1 — molasses-1919: last gaps before the render (~12 images)
 Framing check 23.11: three scenes are still short. All six City-of-Boston-Archives photos on Commons are already used,
 and the Boston Archives copies on Digital Commonwealth are not usable (rights) — so we need OTHER sources:
