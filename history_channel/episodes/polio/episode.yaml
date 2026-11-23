@@ -1,0 +1,212 @@
+# Status: script draft v1 (23.11.2026); facts in factcheck.md; images: Chrome picks (NLM, 12 so far) + candidates
+
+title: "Polio: The Summer Plague and the Race for a Vaccine"
+subtitle: "From the panic of 1916 and the iron lung to the dimes that paid for a cure, and the last two countries"
+slug: polio
+language: en
+era: [1890, 1990]
+visual_context: "poliomyelitis polio epidemic iron lung vaccine"
+voice:
+  backend: kokoro
+  name: bf_emma
+  lang: en-gb
+  speed: 0.95
+music:
+  generate: true
+  seed: 1955
+  mood: hopeful
+
+scenes:
+  - id: cold-open
+    montage: true
+    narration: >
+      Every summer, for half a century, parents in America and Europe were afraid. Swimming pools closed. Cinemas stood empty. Children were kept indoors, away from fountains and beaches and other children.
+      A disease came with the warm weather, and nobody knew how to stop it. Most of the people it infected never noticed a thing. But some woke up unable to move their legs. Some could not breathe, and spent months, years, or the rest of their lives inside a metal machine that breathed for them.
+      Then, on the twelfth of April 1955, a scientist in Michigan stepped up to a microphone and changed everything.
+      This is the biography of polio.
+    candidates: ["iron lung ward", "polio epidemic 1916", "polio vaccine 1955", "polio quarantine placard"]
+    images:
+      - {query: "iron lung polio", count: 2}
+
+  - id: ancient
+    chapter: "I. An Old Disease"
+    narration: >
+      Polio is caused by a virus that lives in the human gut. It spreads mostly through contaminated food and water, by what doctors call the faecal–oral route. About three quarters of infections cause no symptoms at all. Some people get a sore throat and a fever, and recover. But in a small proportion of cases, the virus attacks the nerve cells of the spinal cord that control the muscles, and the result is paralysis.
+      The disease is very old. Ancient Egyptian paintings and carvings show otherwise healthy people with withered limbs, and young children walking with canes.
+      One of the earliest detailed cases is the Scottish novelist Sir Walter Scott. In 1773, as a small child, he was said to have developed a severe teething fever which deprived him of the power of his right leg. He limped for the rest of his life.
+      For a long time the disease had no single name. It was called dental paralysis, infantile spinal paralysis, creeping paralysis, and the paralysis of the morning. In 1789, a British doctor, Michael Underwood, gave the first clinical description. In 1840, the German doctor Jakob Heine wrote the first medical report, and in 1890 the Swedish doctor Karl Oskar Medin was the first to study an epidemic. For a time it was known as Heine–Medin disease.
+    candidates: ["Egyptian stele polio withered leg", "Walter Scott portrait", "Jakob Heine", "Karl Oskar Medin", "infantile paralysis 19th century"]
+    images:
+      - {query: "infantile paralysis", count: 2}
+
+  - id: paradox
+    chapter: "II. A Disease of Clean Cities"
+    narration: >
+      Here is the strange thing. For thousands of years polio was a quiet, scattered disease. Large epidemics began only around 1900, in the richest countries in the world.
+      The first report of several cases together came from Louisiana, in 1841. In 1894, Vermont had the first recognised epidemic in the United States: a hundred and thirty-two cases and eighteen deaths. By 1907, New York City reported about two and a half thousand cases.
+      The explanation, as scientists later understood it, was cleanliness. In earlier centuries, almost every child met the virus very early, before the age of four. In young children the infection was usually mild, and it left them immune for life.
+      Then cities built sewers and clean water supplies. Babies no longer met the virus so early. They caught it later, as older children or adults, when it was much more likely to cause paralysis. In children, paralysis comes in about one case in a thousand; in adults, about one in seventy-five.
+      Polio had become a disease of modern, sanitary cities. And it struck in summer.
+    candidates: ["New York tenement 1900s", "city water works 1900", "Vermont 1894", "summer children street 1910s"]
+    images:
+      - {query: "New York 1910s children street", count: 2}
+
+  - id: brooklyn
+    chapter: "III. The Summer of 1916"
+    date: "1916"
+    narration: >
+      On Saturday the seventeenth of June 1916, the health authorities of New York announced an epidemic of infantile paralysis in Brooklyn. Most of the first cases were in the old South Brooklyn district, in Italian immigrant neighbourhoods. Within ten days there were more than two hundred cases.
+      It became the worst polio epidemic the world had yet seen. That year, the United States recorded more than twenty-seven thousand cases and over seven thousand deaths. More than two thousand people died in New York City alone.
+      The city fought back with the only tools it had. The names and addresses of sick children were printed in the newspapers every day. Their homes were marked with placards, and families were quarantined inside. Thousands of people fled the city for the mountains. Cinemas were closed, meetings cancelled, and children were warned to stay away from water fountains, amusement parks, swimming pools and beaches.
+      Doctors had no cure. A report on the epidemic listed some of the remedies that were suggested: oxygen given through the legs by positive electricity, baths in almond meal, poultices of mustard and chamomile, radium water and chloride of gold. None of them worked.
+      From then on, polio returned almost every summer, somewhere in the country.
+    candidates: ["polio quarantine placard 1916", "Brooklyn 1916", "New York Board of Health 1916", "infantile paralysis 1916 newspaper"]
+    images:
+      - {query: "infantile paralysis 1916", count: 2}
+
+  - id: fdr
+    chapter: "IV. The President in the Wheelchair"
+    date: "1921"
+    narration: >
+      In August 1921, a thirty-nine-year-old lawyer and rising politician went on holiday with his family to Campobello, a Canadian island off the coast of Maine. His name was Franklin Delano Roosevelt. During the trip he fell into the cold waters of the Bay of Fundy. A few days later he had a high fever, and then he could no longer move his legs.
+      Doctors diagnosed polio. Some modern researchers think it may have been a different illness, Guillain–Barré syndrome. Either way, Roosevelt was left paralysed from the waist down for the rest of his life.
+      He refused to give up politics, and he refused to give up hope. He believed that warm water helped his legs, and in 1926 he bought a run-down resort at Warm Springs, in Georgia, and turned it into a centre where people with polio could swim, exercise and rebuild their strength. It became the first modern rehabilitation centre for polio patients.
+      In 1933, Roosevelt became President of the United States, and he held the office until his death in 1945. He never forgot the disease.
+    candidates: ["Franklin D. Roosevelt Warm Springs", "Campobello 1920s", "Roosevelt wheelchair 1941", "Warm Springs pool polio"]
+    images:
+      - {query: "Roosevelt Warm Springs", count: 2}
+
+  - id: dimes
+    chapter: "V. A Dime for Every Child"
+    date: "1938"
+    narration: >
+      In 1938, Roosevelt helped found the National Foundation for Infantile Paralysis. Its fundraising campaign got a name from the entertainer Eddie Cantor, as a pun on a popular newsreel called The March of Time. He called it the March of Dimes, and asked Americans to send a dime, ten cents, straight to the White House.
+      At first only a few dimes arrived. Then came the flood. Within days, the White House mail room was receiving forty to fifty thousand letters a day, so many that the President's official mail was buried under them. In the end, two million six hundred and eighty thousand dimes were sent in.
+      The March of Dimes changed how charities raised money. Instead of large gifts from a few rich donors, it asked for small gifts from millions of ordinary people. It raised more than any other American charity of its time except the Red Cross. It paid for the treatment of more than eighty per cent of the country's polio patients, and it funded the research that would lead to a vaccine.
+    candidates: ["March of Dimes poster", "dimes White House mail 1938", "Eddie Cantor", "March of Dimes 1940s"]
+    images:
+      - {query: "March of Dimes", count: 2}
+
+  - id: lung
+    chapter: "VI. The Iron Lung"
+    narration: >
+      Polio's most frightening form attacked the muscles used for breathing. Patients slowly suffocated.
+      In 1928, at Harvard, Philip Drinker and Louis Agassiz Shaw built a machine to breathe for them. The first iron lung was tested on the twelfth of October 1928 at the Children's Hospital in Boston. It was powered by an electric motor and two vacuum cleaners. The patient lay inside a sealed metal tank with only the head outside. When the air pressure inside dropped, the chest expanded and air rushed into the lungs; when the pressure rose, the air was pushed out.
+      The iron lung saved many thousands of lives. But it was huge, noisy and expensive. In the 1930s, one machine cost about fifteen hundred dollars, roughly the price of a house. During the worst epidemics, hospital wards were filled with rows of them, each with a child's head sticking out at one end. Patients often stayed inside for months, sometimes for years. Even with an iron lung, more than nine out of ten patients with the worst form of the disease died.
+      Some never left. Paul Alexander, from Dallas, caught polio at the age of six in 1952. He lived in an iron lung for seventy-two years. He taught himself a special breathing technique that let him leave the machine for short periods. He finished school from home, earned a law degree from the University of Texas, and represented clients in court. He spent eight years writing a memoir, tapping the keys with a stick held in his mouth. He died in March 2024, at the age of seventy-eight.
+    candidates: ["iron lung ward 1950s", "Drinker respirator 1928", "iron lung patient mirror", "Emerson iron lung"]
+    images:
+      - {query: "iron lung", count: 3}
+
+  - id: copenhagen
+    chapter: "VII. Copenhagen, 1952"
+    date: "1952"
+    narration: >
+      In the summer of 1952, polio hit Copenhagen. The city's hospital for infectious diseases had just one iron lung and a few other breathing devices. Within weeks it was overwhelmed with paralysed patients, many of them young children. Nine out of ten patients with the worst form of the disease were dying.
+      An anaesthetist, Bjørn Ibsen, noticed something. The patients were not only failing to breathe. Their swallowing muscles were paralysed too, and they were drowning in their own saliva. He suggested a different approach: make a small opening in the windpipe, insert a tube, and push air into the lungs directly, by hand, with a rubber bag.
+      The first patient saved this way was a twelve-year-old girl, Vivi Ebert. Soon, medical students, and anyone else who could help, worked in shifts, squeezing bags day and night to keep patients alive. The death rate fell from about ninety per cent to forty per cent almost overnight, and to eleven per cent within a month.
+      Ibsen went on to build a machine to do the work. It was the beginning of the modern ventilator, and Ibsen's respiratory centre in Copenhagen was the forerunner of today's intensive care units.
+    candidates: ["Copenhagen 1952 polio", "Blegdam hospital", "medical students hand ventilation", "intensive care 1950s"]
+    images:
+      - {query: "Copenhagen 1952 hospital", count: 2}
+
+  - id: kenny
+    chapter: "VIII. Sister Kenny"
+    narration: >
+      For those who survived, the standard treatment was rest. Paralysed limbs were put in splints, and many patients lay in plaster body casts for months. Often the muscles only grew weaker.
+      In 1940, an Australian bush nurse arrived in North America with a very different idea. Her name was Elizabeth Kenny, and she had treated polio in the rural outback of Queensland. Instead of immobilising limbs, she wrapped them in hot, moist packs to relieve the painful spasms, and then moved and exercised the muscles as early as possible.
+      Many doctors resisted. But her results were hard to argue with. She settled in Minnesota, founded an institute, and slowly her method became the standard treatment. Hydrotherapy pools, braces, crutches and new rehabilitation hospitals followed, built for a generation of children who had to learn to walk again.
+    candidates: ["Elizabeth Kenny nurse", "Sister Kenny Institute", "polio hot packs therapy", "polio patient Hubbard tank", "polio braces crutches child"]
+    images:
+      - {query: "Sister Kenny", count: 2}
+
+  - id: race
+    chapter: "IX. The Race for a Vaccine"
+    narration: >
+      The first attempts at a vaccine ended badly. In 1935, a young researcher in New York, Maurice Brodie, made a vaccine from virus grown in monkey spinal cords and killed with formaldehyde. He tested it on himself and his assistants, and then on three thousand children. Many had allergic reactions, and none of them became immune.
+      The breakthrough came in Boston at the end of the 1940s. John Enders, Thomas Weller and Frederick Robbins found a way to grow the poliovirus in human tissue in the laboratory, instead of in live monkeys. For the first time, the virus could be produced in large amounts. They received the Nobel Prize in 1954.
+      Meanwhile, the epidemics grew worse. In 1952, the United States had its worst polio year ever: fifty-seven thousand six hundred and twenty-eight cases. Three thousand one hundred and forty-five people died, and more than twenty-one thousand were left with some degree of paralysis.
+      At the University of Pittsburgh, a young doctor named Jonas Salk was working on a vaccine made from virus that had been killed, so that it could no longer cause disease, but still taught the body to recognise it.
+    candidates: ["Jonas Salk laboratory", "John Enders Nobel", "University of Pittsburgh 1950s", "poliovirus tissue culture", "polio 1952 epidemic"]
+    images:
+      - {query: "Jonas Salk", count: 2}
+
+  - id: trial
+    chapter: "X. The Polio Pioneers"
+    date: "1954–1955"
+    narration: >
+      In 1954, Salk's vaccine was put to the test in the largest medical experiment the world had ever seen. It was designed and led by Thomas Francis, Salk's former teacher, at the University of Michigan, and paid for by the March of Dimes. One point eight million American children took part. They were called the Polio Pioneers. About four hundred and forty thousand received the vaccine, about two hundred and ten thousand received a harmless placebo, and more than a million were simply observed, to see who caught polio.
+      On the twelfth of April 1955, ten years to the day after Roosevelt's death, Francis announced the results in Ann Arbor. The vaccine was safe and effective. Salk was hailed as a miracle worker. The television presenter Edward R. Murrow told him: Young man, a great tragedy has befallen you. You've lost your anonymity.
+      When Murrow asked him who owned the patent, Salk replied: Well, the people, I would say. There is no patent.
+      Salk never made money from the vaccine.
+    candidates: ["Polio Pioneers 1954", "Thomas Francis Ann Arbor 1955", "polio vaccination line 1955", "Salk vaccine injection children", "Jonas Salk 1955"]
+    images:
+      - {query: "polio vaccine 1955", count: 3}
+
+  - id: cutter
+    chapter: "XI. The Cutter Incident"
+    date: "April 1955"
+    narration: >
+      The triumph was followed almost immediately by a disaster.
+      Several companies had been licensed to make the vaccine, and had already produced large stocks. At one of them, Cutter Laboratories in California, some batches contained live poliovirus that had not been properly killed, even though they had passed the required safety tests.
+      About a hundred and twenty thousand doses of this vaccine were given to children. Forty thousand developed a mild form of polio. Fifty-six were paralysed, and five died. The virus spread to their families and neighbours, paralysing a hundred and thirteen more people, and killing five.
+      Cutter withdrew its vaccine on the twenty-seventh of April. A congressional hearing in June 1955 concluded that the main failure was weak oversight by the government laboratory responsible for checking vaccines. Senior health officials lost their jobs, including the director of the National Institutes of Health.
+      The vaccination campaign continued. By 1957, the number of polio cases in the United States had fallen from nearly fifty-eight thousand a year to about five thousand six hundred.
+    candidates: ["Cutter Laboratories Berkeley", "vaccine production laboratory 1955", "polio vaccine vials 1955"]
+    images:
+      - {query: "vaccine laboratory 1950s", count: 2}
+
+  - id: sabin
+    chapter: "XII. Sugar Cubes"
+    narration: >
+      Salk's rival, Albert Sabin, believed there was a better way: a vaccine made from live but weakened virus, swallowed instead of injected. It would protect not only the person who took it, but also stop the virus spreading in the community.
+      Sabin's vaccine needed a huge trial, and in the middle of the Cold War, he found it in the Soviet Union. From 1956, he worked with Soviet scientists, who organised the first mass production. By 1961, his oral vaccine had been given to more than ninety million people in the Soviet Union, Eastern Europe, Singapore, Mexico and the Netherlands.
+      It was cheap and easy to give: a few drops on a sugar cube, to hide the bitter taste. Mass vaccination had already pushed polio in the United States down to just a hundred and sixty-one cases in 1961, and Sabin's vaccine was licensed there in 1962. The last cases caused by polio spreading naturally in the United States came in 1979.
+    candidates: ["Albert Sabin", "oral polio vaccine sugar cube", "polio vaccination Soviet Union", "Sabin Sunday"]
+    images:
+      - {query: "Albert Sabin", count: 2}
+
+  - id: legacy
+    chapter: "XIII. What Polio Left Behind"
+    narration: >
+      Polio left behind millions of survivors. The World Health Organization estimated in 2001 that there were between ten and twenty million of them around the world.
+      Many grew up in a world that was not built for them. There were no ramps, and few buses or schools that a wheelchair could enter. Children were sent to separate institutions, or carried up and down stairs.
+      As they grew older, polio survivors began to demand equal rights. They were often at the front of the disability rights movement in the United States, which won the Rehabilitation Act of 1973 and the Americans with Disabilities Act of 1990.
+      Polio also changed medicine. It gave us the March of Dimes model of fundraising, modern rehabilitation therapy, the ventilator and the intensive care unit, and the largest field trial ever held.
+    candidates: ["polio survivor wheelchair 1950s", "disability rights protest 1970s", "rehabilitation center polio children", "Shriners hospital polio"]
+    images:
+      - {query: "polio rehabilitation children", count: 2}
+
+  - id: eradication
+    chapter: "XIV. The Last Two Countries"
+    narration: >
+      In 1988, the World Health Assembly voted to eradicate polio from the planet, just as smallpox had been. The Global Polio Eradication Initiative, led by the World Health Organization with Rotary International, UNICEF, the CDC and later the Gates Foundation, became the largest international public health effort in history.
+      That year, polio paralysed an estimated three hundred and fifty thousand people in a hundred and twenty-five countries. Vaccinators went door to door, village to village, with drops of oral vaccine.
+      Two of the three types of wild poliovirus have now been declared eradicated, type two in 2015 and type three in 2019. In 2022, there were only thirty confirmed cases of wild polio in the whole world.
+      Today, wild poliovirus survives in only two countries, Pakistan and Afghanistan.
+    candidates: ["polio vaccination Africa", "oral polio vaccine drops child", "polio eradication campaign", "Rotary polio"]
+    images:
+      - {query: "polio vaccination campaign", modern: true, count: 2}
+
+  - id: closing
+    chapter: "Epilogue"
+    narration: >
+      For most families today, polio is a word from their grandparents' stories: iron lungs, leg braces, closed swimming pools, and the long fearful summers.
+      That is exactly what the vaccine was for. The disease that once paralysed half a million people a year is now on the edge of disappearing, thanks to scientists, nurses and medical students, and millions of dimes sent by ordinary people.
+      If you enjoyed this biography of a disease, subscribe for the next one.
+    candidates: ["polio vaccine child smiling", "Salk Institute", "polio survivors"]
+    images:
+      - {query: "Jonas Salk", count: 1}
+
+thumbnail:
+  scene: lung
+  big: "POLIO"
+  small: "THE SUMMER PLAGUE"
+tags: ["polio", "poliomyelitis", "iron lung", "Jonas Salk", "Albert Sabin", "March of Dimes", "vaccine history", "medical history", "history documentary", "epidemic"]
+references:
+  - "Wikipedia, History of polio: https://en.wikipedia.org/wiki/History_of_polio"
+  - "Wikipedia, Polio vaccine; Iron lung; Jonas Salk; Albert Sabin; Cutter Laboratories; March of Dimes; 1916 New York City polio epidemic; Franklin D. Roosevelt's paralytic illness; Global Polio Eradication Initiative"
+  - "Oshinsky, D. M., Polio: An American Story (Oxford, 2005)"
+
+research:
+  - {q: "infantile paralysis", from: 1916-06-15, to: 1916-10-31, sources: [chronam]}
