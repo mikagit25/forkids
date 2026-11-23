@@ -61,7 +61,7 @@ scenes:
     chapter: "II. Why Molasses?"
     narration: >
       Molasses had been part of New England's trade for two centuries. Ships carried it north from the sugar plantations of the Caribbean, where it was distilled into rum — part of the same Atlantic trade that carried enslaved Africans across the ocean. But by 1919, molasses was not just for baking or rum. It could be fermented and distilled into industrial alcohol, a key ingredient in making munitions.
-      During the First World War, demand had soared. Ships from the Caribbean unloaded molasses into the Boston tank, and from there it went by pipeline to the company's alcohol plant in nearby Cambridge.
+      During the First World War, demand had soared. Ships from the Caribbean unloaded molasses into the Boston tank, and from there it was carried to the company's alcohol plant in nearby Cambridge.
       The war had ended with the armistice of the eleventh of November 1918, and by early 1919 the fighting was over, but another deadline was approaching. The country was about to adopt Prohibition, which would ban the production of alcoholic drinks. Some historians believe the company was hurrying to turn as much molasses as possible into alcohol before the law took effect.
       Just the day before the disaster, a ship had delivered a fresh load, warmed so that it would flow more easily into the tank.
       The timing was remarkable. The day after the disaster, on the sixteenth of January 1919, Nebraska became the thirty-sixth state to ratify the Eighteenth Amendment, and nationwide Prohibition became part of the Constitution. It took effect one year later.
@@ -93,10 +93,7 @@ scenes:
       - {file: "curid:42171958"}   # Canadian machinery and metalworking, 1917
       - {file: "curid:43428712"}   # riveted plate layout, 1907 manual
       - {file: "curid:159727535", match: "From its very first filling, it leaked"}   # rear-yard tenement, Boston (BPL)
-      - {file: "curid:162243142"}   # Holden Court, North End, 1905-1908
-      - {file: "curid:160076017"}   # Anthony Place, Boston
       - {file: "curid:159316947"}   # Board Alley, Boston
-      - {query: "North End Boston tenements", count: 1}
 
   - id: noon
     chapter: "IV. 12:30 p.m."
@@ -114,6 +111,7 @@ scenes:
       - {file: "curid:145775440", match: "Then the tank split open"}   # Boston Elevated Railway after the Molasses Flood, Jan 1919 (City of Boston Archives, PD-US-expired)
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_pielou_ver01:data:sn83030431:0021247440A:1919011601:0323/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "The Sun (New York, N.Y.)", page_url: "https://www.loc.gov/resource/sn83030431/1919-01-16/ed-1/?sp=1", crop: [0.1550, 0.2880, 0.2694, 0.3630], note: "Molasses tank blast kills 9: huge container in Boston bursts, injuring fifty and wrecking buildings."}   # LoC via Chrome
       - {file: "curid:108375316"}   # Boston streetcar, 1919 postcard
+      - {file: "web:ia:enr82-fig1", image: "https://archive.org/download/engineeringnewsr82newy/page/n1003.jpg", page_url: "https://archive.org/details/engineeringnewsr82newy/page/n1003/mode/1up", rights: "Public domain (published 1919)", credit: "Engineering News-Record, vol. 82 (1919), via Internet Archive", title: "Fig. 1. Layout of devastated region near molasses tank", date: "1919-05-15", crop: [0.02, 0.605, 0.5, 0.99]}   # Engineering News-Record vol. 82, 15 May 1919 site plan
 
   - id: wave
     chapter: "V. The Wave"
@@ -127,9 +125,10 @@ scenes:
     candidates: ["Great Molasses Flood", "molasses flood 1919", "Boston fireboat", "Boston Elevated train 1919"]
     images:
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:mthi:batch_mthi_alderfly_ver01:data:sn84024808:00212477400:1919011601:0247/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "Great Falls Daily Tribune (Great Falls, Mont.)", page_url: "https://www.loc.gov/resource/sn84024808/1919-01-16/ed-1/?sp=1", crop: [0.548, 0.418, 0.685, 0.716], match: "The wave smashed through everything", note: "Two million gallons immerse ruins of houses: the fire house crushed, elevated railway pillars blown away, about a dozen horses killed."}   # LoC via Chrome
-      - {file: "curid:28584387", match: "into the girders of the elevated railway"}   # wreckage under the elevated tracks, 1919
+      - {file: "curid:28584387"}   # wreckage under the elevated tracks, 1919
       - {file: "curid:145775432"}   # Boston Elevated after the flood, Jan 1919 (City of Boston Archives)
-      - {file: "curid:236987", match: "Buildings were knocked from their foundations"}   # panorama of the disaster site, 15 Jan 1919 (BPL)
+      - {file: "web:commons:43868372", image: "https://upload.wikimedia.org/wikipedia/commons/a/a4/The_literary_digest_%281890%29_%2814596805188%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original", page_url: "https://commons.wikimedia.org/?curid=43868372", rights: "No known copyright restrictions (Internet Archive Book Images)", credit: "The Literary Digest, 1919 (Underwood & Underwood), via Wikimedia Commons", title: "Wreck of the molasses tank, Boston (Underwood & Underwood), The Literary Digest vol. 60", date: "1919", match: "Buildings were knocked from their foundations"}   # Literary Digest vol. 60 (Jan-Mar 1919); Commons wrongly dates it 1890
+      - {file: "curid:236987"}   # panorama of the disaster site, 15 Jan 1919 (BPL)
       - {file: "curid:28388481"}   # Boston Elevated Railway lines, 1910 map
       - {file: "web:bpl:37720p605", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:37720p61f/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:37720p605", rights: "No known copyright restrictions.", title: "N. end of Charlestown Bridge", date: "1900-02-14", note: "the bridge approach on Commercial Street, in the path of the wave"}   # LoC via Chrome
       - {file: "curid:145775433"}   # Boston Elevated after the flood, Jan 1919
@@ -138,6 +137,8 @@ scenes:
       - {file: "curid:62640554", match: "Some Red Cross nurses waded"}   # American Red Cross nurses, 1917-1919
       - {file: "curid:62321098"}   # nurse in American Red Cross uniform, 1919 (NARA)
       - {file: "curid:145775434"}   # Boston Elevated after the flood, Jan 1919
+      - {file: "web:ia:enr82-fig3", image: "https://archive.org/download/engineeringnewsr82newy/page/n1004.jpg", page_url: "https://archive.org/details/engineeringnewsr82newy/page/n1004/mode/1up", rights: "Public domain (published 1919)", credit: "Engineering News-Record, vol. 82 (1919), via Internet Archive", title: "Fig. 3. Elevated-railway column sheared off near base", date: "1919-05-15", crop: [0.03, 0.08, 0.49, 0.27], match: "into the girders of the elevated railway"}   # Engineering News-Record vol. 82, 15 May 1919 
+      - {file: "web:ia:enr82-fig5", image: "https://archive.org/download/engineeringnewsr82newy/page/n1004.jpg", page_url: "https://archive.org/details/engineeringnewsr82newy/page/n1004/mode/1up", rights: "Public domain (published 1919)", credit: "Engineering News-Record, vol. 82 (1919), via Internet Archive", title: "Fig. 5. Steel shell and elevated railway wrecked", date: "1919-05-15", crop: [0.505, 0.34, 0.965, 0.578]}   # Engineering News-Record vol. 82, 15 May 1919 
 
 
   - id: victims
@@ -159,7 +160,6 @@ scenes:
       - {file: "curid:161651401"}   # North End Branch library, children's room, 1912-1913
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_forestcity_ver02:data:sn82014248:00513682906:1919011701:0146/full/pct:100/0/default.jpg", date: "1919-01-17", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1919-01-17/ed-1/?sp=1", crop: [0.233, 0.252, 0.36, 0.524], note: "12 known dead; investigators believe the tank walls gave way under the weight of the molasses; police search for missing expressmen and a boy."}   # LoC via Chrome
       - {file: "curid:145775436"}   # Boston Elevated after the flood, Jan 1919
-      - {query: "North End Boston", count: 1}
 
   - id: science
     chapter: "VII. Why It Was So Deadly"
@@ -168,7 +168,7 @@ scenes:
       In 2016, a team of scientists and students at Harvard modelled the disaster. They gathered 1919 newspaper reports, old maps and weather records, and flooded a scale model of the neighbourhood with cold corn syrup. They concluded that the reports of the wave's terrible speed were believable. They found that the cold made all the difference. As the magazine Scientific American put it, a wave of molasses is even more devastating than a typical tsunami: it moves fast enough to sweep people up and demolish buildings, then settles into a gelatinous state that keeps them trapped.
       As the molasses spread out into the freezing January air, it cooled quickly and became even thicker. Victims caught in it found themselves trapped, as if in quicksand that was slowly setting around them. That also made the rescue painfully slow.
       It took days to find all the victims. The search went on for four days. Some victims had been swept into the harbour, and were not found until three or four months later.
-      Engineers have studied the tank too. A modern analysis in 2014 found that its steel was only half as thick as it should have been, even by the standards of the time. The steel also lacked manganese, which made it brittle, and the first cracks appear to have formed around the rivet holes.
+      Engineers have studied the tank too. Already in May 1919, an engineering journal calculated that its rivets had been carrying more than twice the load allowed by Boston's own building rules. A modern analysis in 2014 found that its steel was only half as thick as it should have been, even by the standards of the time. The steel also lacked manganese, which made it brittle, and the first cracks appear to have formed around the rivet holes.
     candidates: ["molasses", "Harvard University 2016"]
     images:
       - {file: "curid:65695980", match: "Molasses is about forty per cent denser"}   # molasses label, New Orleans 1891 (LoC)
@@ -180,7 +180,11 @@ scenes:
       - {file: "curid:25753", match: "Some victims had been swept into the harbour"}   # USS Walker in Boston harbour, 1 February 1919
       - {file: "curid:33490463"}   # Charlestown waterfront, Boston, 1910 (LoC)
       - {file: "curid:9486055"}   # USS Welles at Boston, September 1919
-      - {query: "Molasses Flood", count: 2}
+      - {file: "web:ia:enr82-head", image: "https://archive.org/download/engineeringnewsr82newy/page/n1003.jpg", page_url: "https://archive.org/details/engineeringnewsr82newy/page/n1003/mode/1up", rights: "Public domain (published 1919)", credit: "Engineering News-Record, vol. 82 (1919), via Internet Archive", title: "Details of the Failure of a 90-Foot Molasses Tank (B. S. Brown)", date: "1919-05-15", crop: [0.015, 0.345, 0.5, 0.49], match: "Engineers have studied the tank too"}   # Engineering News-Record vol. 82, 15 May 1919 
+      - {file: "web:ia:enr82-fig2", image: "https://archive.org/download/engineeringnewsr82newy/page/n1003.jpg", page_url: "https://archive.org/details/engineeringnewsr82newy/page/n1003/mode/1up", rights: "Public domain (published 1919)", credit: "Engineering News-Record, vol. 82 (1919), via Internet Archive", title: "Fig. 2. Riveted joints of tank and section of elevated columns", date: "1919-05-15", crop: [0.5, 0.465, 0.99, 0.7], match: "around the rivet holes"}   # Engineering News-Record vol. 82, 15 May 1919 
+      - {file: "web:ia:enr82-fig4", image: "https://archive.org/download/engineeringnewsr82newy/page/n1004.jpg", page_url: "https://archive.org/details/engineeringnewsr82newy/page/n1004/mode/1up", rights: "Public domain (published 1919)", credit: "Engineering News-Record, vol. 82 (1919), via Internet Archive", title: "Fig. 4. View of wreckage, showing roof and base of collapsed tank", date: "1919-05-15", crop: [0.03, 0.625, 0.49, 0.843]}   # Engineering News-Record vol. 82, 15 May 1919 
+      - {file: "web:ia:enr82-fig6", image: "https://archive.org/download/engineeringnewsr82newy/page/n1004.jpg", page_url: "https://archive.org/details/engineeringnewsr82newy/page/n1004/mode/1up", rights: "Public domain (published 1919)", credit: "Engineering News-Record, vol. 82 (1919), via Internet Archive", title: "Fig. 6. Steel plates wrapped around column", date: "1919-05-15", crop: [0.505, 0.815, 0.965, 0.96]}   # Engineering News-Record vol. 82, 15 May 1919 
+      - {file: "curid:31299255", match: "cold corn syrup"}   # Karo corn syrup advertisement, 1917 (PD)
 
   - id: cleanup
     chapter: "VIII. Cleaning Up a Sea of Syrup"

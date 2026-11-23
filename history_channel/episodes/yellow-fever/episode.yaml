@@ -299,6 +299,13 @@ research:                # newspapers of the time: python run.py episodes/yellow
   - {q: "yellow fever Panama Gorgas", from: 1904-01-01, to: 1906-12-31, sources: [chronam, nyt]}
   - {q: "yellow fever New Orleans", from: 1905-07-01, to: 1905-11-30, sources: [chronam, nyt]}
 
+shorts:
+  - {from: 29, to: 37, hook: "Yellow fever drove George Washington out of the capital", title: "When Yellow Fever Drove George Washington Out of Philadelphia"}
+  - {from: 59, to: 70, hook: "A mosquito destroyed Napoleon's army", title: "How Yellow Fever Destroyed Napoleon's Army in Haiti"}
+  - {from: 110, to: 124, hook: "He let an infected mosquito bite him on purpose", title: "Jesse Lazear: The Doctor Who Let a Mosquito Bite Him on Purpose"}
+  - {from: 139, to: 148, hook: "She was bitten seven times", title: "Clara Maass: The Nurse Who Died Proving the Mosquito Theory"}
+  - {from: 190, to: 202, hook: "He caught yellow fever while making the vaccine", title: "Max Theiler and the Yellow Fever Vaccine That Won a Nobel Prize"}
+
 summary: >
   In 1793 yellow fever emptied Philadelphia, then the capital of the United States. In 1802 it destroyed Napoleon's army in
   Saint-Domingue and helped Haiti win its independence. It buried some twenty-two thousand workers on the French attempt to

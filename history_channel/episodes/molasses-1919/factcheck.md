@@ -83,3 +83,5 @@
 | 51 | Забастовка полиции: 1 117 из 1 544 не вышли; несколько ночей беззакония; порядок восстановили несколько тысяч бойцов Massachusetts State Guard; 9 погибших | «Boston Police Strike» |
 | 52 | Уборка остального Бостона и пригородов заняла больше времени | «Great Molasses Flood» (Cleanup) |
 | 53 | Эстакада Atlantic Avenue работала до 1938, затем снесена | «Atlantic Avenue Elevated» |
+| 54 | Транспорт патоки в Кембридж: ENR 15.05.1919 (B. S. Brown) — «drawn into trolley tank cars and transported to the Cambridge plant»; Wikipedia — по трубопроводу. Источники расходятся → в тексте нейтрально «was carried». Там же: бак 90 ft × ~50 ft, построен 1915–16 Hammond Iron Works, листы 0.5–0.67 in, заклёпки перегружены в 2.2 раза; 44 °F в день аварии | Engineering News-Record vol. 82 (1919) pp. 974–975, archive.org/details/engineeringnewsr82newy |
+| 55 | ENR 1919: заклёпки вертикальных швов перегружены ~2.2 раза на срез (1.92 на смятие) относительно допусков строительного закона Бостона | Engineering News-Record vol. 82, 15.05.1919, p. 975 |

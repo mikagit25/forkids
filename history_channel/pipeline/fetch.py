@@ -483,7 +483,9 @@ def _loc_manual(ref: str, q: dict) -> dict | None:
 # archives a person may pick from by hand in Chrome (loc_exchange); the image must come from the archive itself
 WEB_HOSTS = {"nsarchives": ("archives.novascotia.ca",), "nlm": ("collections.nlm.nih.gov", "nlm.nih.gov"),
              "cdc": ("phil.cdc.gov", "cdc.gov"), "bpl": ("digitalcommonwealth.org", "ark.digitalcommonwealth.org"),
-             "nara": ("catalog.archives.gov", "s3.amazonaws.com/NARAprodstorage", "archives.gov")}
+             "nara": ("catalog.archives.gov", "s3.amazonaws.com/NARAprodstorage", "archives.gov"),
+             "ia": ("archive.org",),            # Internet Archive scans of pre-1929 periodicals (crop: the figure)
+             "commons": ("upload.wikimedia.org",)}   # a Commons file whose Commons date/title is wrong
 
 
 INBOX = Path(__file__).resolve().parent.parent / "loc_exchange" / "inbox"
