@@ -236,3 +236,65 @@ references:
 research:                # newspapers of the time: python run.py episodes/molasses-1919 research
   - {q: "molasses tank explosion Boston", from: 1919-01-15, to: 1919-02-28, sources: [chronam, nyt]}
   - {q: "molasses verdict", from: 1925-01-01, to: 1925-12-31, sources: [nyt]}
+
+summary: >
+  On 15 January 1919, a giant steel tank on Boston's waterfront split open and released more than two million gallons of
+  molasses. A wave some twenty-five feet high rushed through the crowded North End, bent the girders of the elevated
+  railway, flattened buildings and killed twenty-one people, among them two ten-year-old children. This is the story of
+  the Great Molasses Flood: a tank built in a hurry and painted brown to hide its leaks, the race to beat Prohibition,
+  the cadets who waded in to rescue the trapped, the company that blamed anarchists in the year of the bombings and the
+  police strike, and the three-year hearing that changed how America builds.
+
+localizations:
+  es:
+    title: "La gran inundación de melaza: el desastre más extraño de Boston"
+    subtitle: "Una ola de jarabe, 21 muertos y el juicio que cambió la forma de construir en Estados Unidos"
+    summary: >
+      El 15 de enero de 1919, un enorme tanque de acero en el puerto de Boston se partió y liberó más de dos millones de
+      galones de melaza. Una ola de unos ocho metros de altura recorrió el populoso barrio del North End, dobló las vigas
+      del ferrocarril elevado, derribó edificios y mató a veintiuna personas, entre ellas dos niños de diez años. Esta es
+      la historia de la gran inundación de melaza: un tanque construido con prisa y pintado de marrón para ocultar sus
+      fugas, la carrera contra la Ley Seca, los cadetes que entraron en la melaza para rescatar a los atrapados, la
+      empresa que culpó a los anarquistas en el año de las bombas y de la huelga policial, y el proceso de tres años que
+      cambió la forma de construir en Estados Unidos.
+    chapters: ["Introducción", "El North End", "¿Por qué melaza?", "El tanque que goteaba", "12:30", "La ola",
+               "Las víctimas", "Por qué fue tan mortal", "Limpiar un mar de jarabe", "El juicio", "Epílogo"]
+  pt:
+    title: "A grande inundação de melaço: o desastre mais estranho de Boston"
+    subtitle: "Uma onda de xarope, 21 mortos e o julgamento que mudou a forma de construir nos Estados Unidos"
+    summary: >
+      Em 15 de janeiro de 1919, um enorme tanque de aço no porto de Boston se rompeu e liberou mais de dois milhões de
+      galões de melaço. Uma onda de cerca de oito metros de altura atravessou o populoso bairro do North End, entortou as
+      vigas da ferrovia elevada, derrubou prédios e matou vinte e uma pessoas, entre elas duas crianças de dez anos. Esta
+      é a história da grande inundação de melaço: um tanque construído às pressas e pintado de marrom para esconder os
+      vazamentos, a corrida contra a Lei Seca, os cadetes que entraram no melaço para resgatar os presos, a empresa que
+      culpou os anarquistas no ano das bombas e da greve da polícia, e o processo de três anos que mudou a forma de
+      construir nos Estados Unidos.
+    chapters: ["Introdução", "O North End", "Por que melaço?", "O tanque que vazava", "12h30", "A onda",
+               "As vítimas", "Por que foi tão mortal", "Limpando um mar de xarope", "O julgamento", "Epílogo"]
+  fr:
+    title: "La grande inondation de mélasse : la catastrophe la plus étrange de Boston"
+    subtitle: "Une vague de sirop, 21 morts et le procès qui a changé la façon de construire en Amérique"
+    summary: >
+      Le 15 janvier 1919, une immense cuve d'acier du port de Boston s'est fendue et a libéré plus de deux millions de
+      gallons de mélasse. Une vague d'environ huit mètres de haut a déferlé sur le quartier populaire du North End, tordu
+      les poutres du métro aérien, renversé des bâtiments et tué vingt et une personnes, dont deux enfants de dix ans.
+      Voici l'histoire de la grande inondation de mélasse : une cuve construite à la hâte et peinte en brun pour cacher
+      ses fuites, la course contre la Prohibition, les cadets qui se sont jetés dans la mélasse pour secourir les
+      victimes, l'entreprise qui accusa les anarchistes l'année des attentats et de la grève de la police, et la
+      procédure de trois ans qui a changé la façon de construire en Amérique.
+    chapters: ["Introduction", "Le North End", "Pourquoi la mélasse ?", "La cuve qui fuyait", "12 h 30", "La vague",
+               "Les victimes", "Pourquoi si meurtrière", "Nettoyer une mer de sirop", "Le procès", "Épilogue"]
+  de:
+    title: "Die große Melasseflut: Bostons seltsamste Katastrophe"
+    subtitle: "Eine Welle aus Sirup, 21 Tote und der Prozess, der Amerikas Bauregeln veränderte"
+    summary: >
+      Am 15. Januar 1919 riss im Hafen von Boston ein riesiger Stahltank auf und setzte mehr als zwei Millionen Gallonen
+      Melasse frei. Eine etwa acht Meter hohe Welle wälzte sich durch das dicht bewohnte Viertel North End, verbog die
+      Träger der Hochbahn, warf Gebäude um und tötete einundzwanzig Menschen, darunter zwei zehnjährige Kinder. Dies ist
+      die Geschichte der großen Melasseflut: ein in Eile gebauter Tank, braun gestrichen, damit man seine Lecks nicht sah,
+      das Wettrennen gegen die Prohibition, die Kadetten, die in die Melasse wateten, um Eingeschlossene zu retten, die
+      Firma, die im Jahr der Bombenanschläge und des Polizeistreiks Anarchisten beschuldigte, und das dreijährige
+      Verfahren, das veränderte, wie Amerika baut.
+    chapters: ["Einleitung", "Das North End", "Warum Melasse?", "Der undichte Tank", "12:30 Uhr", "Die Welle",
+               "Die Opfer", "Warum sie so tödlich war", "Ein Meer aus Sirup", "Der Prozess", "Epilog"]
