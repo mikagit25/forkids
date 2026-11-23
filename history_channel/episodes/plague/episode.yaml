@@ -43,7 +43,7 @@ scenes:
     chapter: "I. Out of Asia"
     narration: >
       The plague is caused by a bacterium, Yersinia pestis. It lives in wild rodents and is spread among them by fleas. When infected rodents die, their hungry fleas look for new hosts, and sometimes those hosts are human.
-      Ancient DNA has shown that plague infected people thousands of years ago, and one great pandemic, the Plague of Justinian, struck the Mediterranean in the sixth century.
+      Ancient DNA has shown that plague infected people thousands of years ago, and one great pandemic, the Plague of Justinian, struck the Mediterranean in the sixth century. It appeared in 541 at the Egyptian port of Pelusium, and reached Constantinople the following year. The historian Procopius wrote that at its peak it was killing ten thousand people a day in the capital, a figure modern historians treat with caution. The emperor Justinian himself caught it, and survived. In 2013, DNA from victims of that pandemic confirmed that it was caused by the same bacterium.
       The strain behind the Black Death seems to have emerged in Central Asia. In 2022, scientists studying gravestones and remains from the 1330s near Lake Issyk-Kul, in what is now Kyrgyzstan, identified the direct ancestor of the bacterium that would devastate Europe.
       From there, it travelled west along the trade routes of the Mongol world.
     maps:
@@ -85,10 +85,10 @@ scenes:
     chapter: "III. The Great Mortality"
     date: "1347–1351"
     narration: >
-      In October 1347, the plague reached Sicily. From there it spread with terrifying speed: to Italy, France, Spain and England by the summer of 1348, then Germany, Scandinavia and finally Russia.
+      In October 1347, the plague reached Sicily. From there it spread with terrifying speed: to Italy, France, Spain and England by the summer of 1348, then Germany, Scandinavia and finally Russia. In England, the first known case was a sailor who landed at Weymouth, in Dorset, in June 1348. By the autumn it was in London, and by the following summer it covered the whole country.
       Most victims developed the bubonic form. A high fever was followed by painful swellings, called buboes, in the groin, armpits or neck. Many died within days.
       Some caught the pneumonic form, which attacks the lungs and spreads from person to person through coughing. It was almost always fatal.
-      Whole villages were emptied. Cities dug mass graves when the churchyards were full. In Florence, the writer Giovanni Boccaccio described people falling dead in the streets, and families abandoning each other in fear.
+      Whole villages were emptied. Cities dug mass graves when the churchyards were full. In Florence, the writer Giovanni Boccaccio described people falling dead in the streets, and families abandoning each other in fear. In Siena, a chronicler named Agnolo di Tura wrote: I buried my five children with my own hands. There was no one who wept for any death, for all awaited death. And so many died that all believed it was the end of the world. In London, the dead were laid in rows in new emergency cemeteries such as East Smithfield, where, more than six hundred years later, scientists recovered the bacterium's DNA from the victims' teeth. Across Europe, the Black Death killed perhaps thirty to sixty per cent of the population, up to fifty million people, in about five years.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "25–50 million", text: "Europeans dead, 30–60% of the population", match: "Whole villages were emptied"}
     maps:
@@ -123,7 +123,7 @@ scenes:
       Medieval people tried desperately to understand what was happening.
       In 1348, the medical faculty of the University of Paris produced a report for the King of France. It blamed an unlucky conjunction of the planets Saturn, Jupiter and Mars, which had corrupted the air.
       Most doctors believed in miasma, poisonous air. People carried posies of flowers and herbs, burned aromatic woods, and avoided the south wind.
-      Others saw the plague as God's punishment. Groups of flagellants marched from town to town, whipping themselves in public to atone for the sins of the world.
+      Others saw the plague as God's punishment. Groups of flagellants marched from town to town, whipping themselves in public to atone for the sins of the world. In Germany and the Low Countries, the Brothers of the Cross wore white robes and processed through the streets for thirty-three days at a time, one day for each year of Christ's life. At first crowds welcomed them. But the movement grew out of the Church's control, and in October 1349 Pope Clement the Sixth condemned it and ordered it suppressed.
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:15395317"}
@@ -139,8 +139,7 @@ scenes:
     chapter: "V. Scapegoats"
     narration: >
       Fear turned to hatred. Across Europe, Jewish communities were falsely accused of poisoning wells to spread the disease.
-      Pope Clement the Sixth condemned the accusations, pointing out that Jews were dying of the plague like everyone else. It made little difference.
-      In Strasbourg, in February 1349, around two thousand Jews were murdered. Hundreds of communities in Germany and beyond were attacked or destroyed.
+      Pope Clement the Sixth issued two papal bulls in 1348 condemning the accusations. His own physician, Guy de Chauliac, who had treated plague victims himself, argued that Jews were not to blame, and that they were dying of the plague like everyone else. It made little difference. On the fourteenth of February 1349, in Strasbourg, around two thousand Jews were burned alive, before the plague had even reached the city. The new emperor, Charles the Fourth, declared that the property of Jews killed in riots would be forfeit, which gave local rulers a reason to look away. Hundreds of communities in Germany and beyond were attacked or destroyed.
       It is one of the darkest chapters of the pandemic, and a warning that epidemics do not only spread disease.
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
@@ -158,7 +157,7 @@ scenes:
     narration: >
       What could doctors actually do? Very little.
       They let blood, to rebalance the body's humours. They lanced buboes. They prescribed theriac, an ancient compound medicine with dozens of ingredients, sometimes including viper flesh. The wealthy were advised to flee early, go far, and return late.
-      The most famous image of the plague doctor, with a long beaked mask stuffed with herbs, a waxed coat and a stick, does not actually come from the Black Death. It appeared in the seventeenth century, during later outbreaks.
+      The most famous image of the plague doctor, with a long beaked mask stuffed with herbs, a waxed coat and a stick, does not actually come from the Black Death. It appeared in the seventeenth century, during later outbreaks. The mask had glass eyes, and its beak was stuffed with dried flowers, herbs, camphor or a sponge soaked in vinegar, to filter the poisonous air. The doctor wore a waxed linen robe, gloves and boots, and carried a stick to examine patients without touching them.
       But one measure did work. In 1377, the city of Ragusa, today's Dubrovnik, ordered ships from plague areas to wait thirty days before landing. The period was later extended to forty days, quaranta giorni in Italian. That is where our word quarantine comes from.
     cards:
       - {big: "40 days", text: "quaranta giorni: the origin of 'quarantine'", match: "The period was later extended to forty days"}
@@ -187,7 +186,7 @@ scenes:
     chapter: "VII. A Changed World"
     narration: >
       The Black Death transformed European society.
-      With so many workers dead, survivors could demand higher wages and better conditions. Landowners and governments tried to freeze wages by law, which fed anger that later exploded in revolts such as the English Peasants' Revolt of 1381.
+      With so many workers dead, survivors could demand higher wages and better conditions. Landowners and governments tried to freeze wages by law. In England, King Edward the Third issued the Ordinance of Labourers in 1349, fixing wages at their level before the plague, and Parliament confirmed it with the Statute of Labourers in 1351. Landlords who needed tenants began to accept rents in money instead of labour in their fields. The tension between what workers could demand and what the law allowed fed anger that later exploded in revolts such as the English Peasants' Revolt of 1381.
       Art became haunted by death. The Dance of Death, with skeletons leading kings, bishops and peasants alike to the grave, became a favourite theme of painters across Europe.
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
@@ -211,8 +210,9 @@ scenes:
     date: "1348–1720"
     narration: >
       The plague never really left. It came back to Europe every few years for nearly four centuries.
-      In 1665, the Great Plague of London killed around a hundred thousand people, perhaps a quarter of the city. Weekly bills of mortality listed the dead parish by parish. Doors of infected houses were marked with a red cross and the words, Lord have mercy upon us.
-      In 1720, a ship brought plague to Marseille, and about half the city's population died.
+      It began quietly. On the thirtieth of April 1665, Samuel Pepys noted in his diary the first cases in the city. The Great Plague of London went on to kill around a hundred thousand people, almost a quarter of the city, in eighteen months. Weekly bills of mortality listed the dead parish by parish; they recorded sixty-eight thousand plague deaths, and the real number was certainly higher. Doors of infected houses were marked with a red cross and the words, Lord have mercy upon us, and a watchman stood outside. The city ordered dogs and cats to be killed. Those who could, fled. Daniel Defoe, in his Journal of the Plague Year, described the roads out of the city: nothing was to be seen but wagons and carts, with goods, women, servants, children, all hurrying away. Pepys, who stayed in London, wrote: Lord! How empty the streets are, and how melancholy.
+      That autumn, a bundle of cloth from London was delivered to a tailor in the village of Eyam, in Derbyshire. His assistant, George Viccars, opened it, found it damp, and hung it by the fire. Within days he was dead. As the plague spread, the rector, William Mompesson, persuaded the villagers to do something extraordinary: to seal themselves off, so the disease would not spread to the towns around them. Neighbouring villages left food at boundary stones, and the villagers paid with coins left in holes filled with vinegar. The plague lasted fourteen months. At least two hundred and sixty villagers died. One woman, Elizabeth Hancock, buried her husband and six of her children in eight days. The rector's own wife, Catherine Mompesson, was among the dead. Every year, on Plague Sunday, a wreath is still laid on her grave.
+      In May 1720, a merchant ship, the Grand Saint Antoine, arrived in Marseille from the eastern Mediterranean, carrying silk and cotton and the plague. Powerful merchants wanted the cargo in time for a great fair, and pressured the authorities to cut the quarantine short. About fifty thousand of the city's ninety thousand people died, and fifty thousand more in the surrounding region. To stop the disease, the authorities built a wall across the countryside of Provence, the plague wall. Marseille's population did not recover until 1765. It was the last great outbreak of plague in Western Europe.
       Then, slowly and for reasons still debated, plague retreated from Western Europe.
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
@@ -235,10 +235,9 @@ scenes:
     chapter: "IX. Hong Kong, 1894"
     date: "1894"
     narration: >
-      At the end of the nineteenth century, a third great plague pandemic began in China. In 1894 it reached Hong Kong.
-      Two scientists raced to find its cause. One was the Japanese bacteriologist Kitasato Shibasaburō. The other was a Swiss-born French doctor from the Pasteur Institute, Alexandre Yersin, working from a bamboo hut.
-      Yersin found the bacterium in the buboes of victims, and correctly described it. It was later named after him: Yersinia pestis.
-      A few years later, researchers proved the role of rat fleas in carrying it. After more than five centuries, the killer finally had a name and a route.
+      At the end of the nineteenth century, a third great plague pandemic began in China. In 1894 it reached Hong Kong. The first case was found on the eighth of May, a young hospital worker, and two days later the colony was declared an infected port.
+      Two scientists raced to find its cause. One was the Japanese bacteriologist Kitasato Shibasaburō, sent by his government, who arrived on the twelfth of June with a team of five, and was given access to the bodies at the city's hospital. The other was a Swiss-born French doctor from the Pasteur Institute, Alexandre Yersin. He arrived alone three days later, with a microscope and a sterilizer in his luggage. The British doctor in charge saw France as a rival and gave him no help: the bodies were reserved for Kitasato. So Yersin bribed the English sailors whose job was to take away the dead, and took samples from the swellings of the victims. On the twenty-third of June he saw the bacterium. Kitasato found it too, but his description was confused, and his samples were probably contaminated. Yersin sealed a specimen in a glass tube and posted it to Paris, where his colleagues confirmed it. He also found the same bacterium in dead rats. After several changes of name, the bacterium was finally called after him, around 1970: Yersinia pestis.
+      A few years later, in 1898, another Pasteur Institute doctor, Paul-Louis Simond, working in Karachi, put a dying plague-infected rat with fleas into a glass jar, and lowered a healthy rat into the jar, separated from it by a wire mesh. Five days later, the healthy rat was dead of plague. The fleas had carried it. This third pandemic had begun in the Chinese province of Yunnan in the 1850s, and spread by steamship to ports all over the world. It killed at least fifteen million people, ten to twelve million of them in British India. In 1900 it reached San Francisco, where the governor of California denied that there was any plague at all, to protect business. In Chinatown, a hundred and nineteen people died. In Manchuria in 1910, a pneumonic plague outbreak killed some sixty thousand people. A Cambridge-trained Chinese doctor, Wu Lien-teh, organised quarantines and persuaded doctors, nurses and patients to wear cloth face masks, one of the first times masks were used to fight an epidemic. After more than five centuries, the killer finally had a name and a route.
     maps:
       - match: "In 1894 it reached Hong Kong"
         style: route
@@ -263,7 +262,7 @@ scenes:
     narration: >
       Today, the plague is treatable. Antibiotics such as streptomycin cure most patients if they are treated early.
       But the bacterium still lives in wild rodents on several continents, including the western United States. Every year there are human cases, most of them in Africa, especially Madagascar.
-      In 2017, an outbreak of pneumonic plague in Madagascar caused more than two thousand cases and over two hundred deaths before it was brought under control.
+      In 2017, an outbreak of pneumonic plague in Madagascar caused more than two thousand cases and around two hundred deaths before it was brought under control. In the United States, a handful of people still catch it every year, in rural areas of the West, where the bacterium circulates among wild rodents such as ground squirrels.
       The disease that once killed half of Europe is now rare, and usually curable. But it has never been eradicated.
     images:
       - {query: "Madagascar plague", count: 1, modern: true}
