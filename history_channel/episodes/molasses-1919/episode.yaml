@@ -94,6 +94,10 @@ scenes:
       - {file: "curid:43428712"}   # riveted plate layout, 1907 manual
       - {file: "curid:159727535", match: "From its very first filling, it leaked"}   # rear-yard tenement, Boston (BPL)
       - {file: "curid:159316947"}   # Board Alley, Boston
+      - {file: "curid:160633897"}   # reaming rivet holes for a steel tank, Bellevue Reservoir, Boston, 13 Nov 1914 (Boston City Archives via DPLA, PD)
+      - {file: "web:ia:enr82-built", image: "https://archive.org/download/engineeringnewsr82newy/page/n1003.jpg", page_url: "https://archive.org/details/engineeringnewsr82newy/page/n1003/mode/1up", rights: "Public domain (published 1919)", credit: "Engineering News-Record, vol. 82 (1919), via Internet Archive", title: "This tank, 90 ft. in diameter and about 50 ft. high, was built in 1915-16", date: "1919-05-15", crop: [0.02, 0.553, 0.5, 0.603], match: "The tank had been built in 1915"}   # ENR 1919-05-15
+      - {file: "web:ia:enr82-safety", image: "https://archive.org/download/engineeringnewsr82newy/page/n1003.jpg", page_url: "https://archive.org/details/engineeringnewsr82newy/page/n1003/mode/1up", rights: "Public domain (published 1919)", credit: "Engineering News-Record, vol. 82 (1919), via Internet Archive", title: "It was thought that a factor of safety of 3 was used", date: "1919-05-15", crop: [0.5, 0.343, 0.99, 0.478]}   # ENR 1919-05-15
+      - {file: "web:ia:enr82-bolster", image: "https://archive.org/download/engineeringnewsr82newy/page/n380.jpg", page_url: "https://archive.org/details/engineeringnewsr82newy/page/n380/mode/1up", rights: "Public domain (published 1919)", credit: "Engineering News-Record, vol. 82 (1919), via Internet Archive", title: "Bursting of Molasses Tank in Boston Charged to Bad Design", date: "1919-02-13", crop: [0.03, 0.065, 0.36, 0.475]}   # ENR 1919-02-13
 
   - id: noon
     chapter: "IV. 12:30 p.m."
@@ -160,6 +164,10 @@ scenes:
       - {file: "curid:161651401"}   # North End Branch library, children's room, 1912-1913
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_forestcity_ver02:data:sn82014248:00513682906:1919011701:0146/full/pct:100/0/default.jpg", date: "1919-01-17", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1919-01-17/ed-1/?sp=1", crop: [0.233, 0.252, 0.36, 0.524], note: "12 known dead; investigators believe the tank walls gave way under the weight of the molasses; police search for missing expressmen and a boy."}   # LoC via Chrome
       - {file: "curid:145775436"}   # Boston Elevated after the flood, Jan 1919
+      - {file: "curid:158723808"}   # North End Branch library, children's room (BPL via DPLA, PD)
+      - {file: "curid:161388573"}   # flashlight photo of the North End library, December 1910 (BPL via DPLA, PD)
+      - {file: "curid:136845211"}   # fire truck, 1919 (DPLA, PD)
+      - {file: "curid:158605146"}   # fire department test, 1919 (DPLA, PD)
 
   - id: science
     chapter: "VII. Why It Was So Deadly"
@@ -185,6 +193,8 @@ scenes:
       - {file: "web:ia:enr82-fig4", image: "https://archive.org/download/engineeringnewsr82newy/page/n1004.jpg", page_url: "https://archive.org/details/engineeringnewsr82newy/page/n1004/mode/1up", rights: "Public domain (published 1919)", credit: "Engineering News-Record, vol. 82 (1919), via Internet Archive", title: "Fig. 4. View of wreckage, showing roof and base of collapsed tank", date: "1919-05-15", crop: [0.03, 0.625, 0.49, 0.843]}   # Engineering News-Record vol. 82, 15 May 1919 
       - {file: "web:ia:enr82-fig6", image: "https://archive.org/download/engineeringnewsr82newy/page/n1004.jpg", page_url: "https://archive.org/details/engineeringnewsr82newy/page/n1004/mode/1up", rights: "Public domain (published 1919)", credit: "Engineering News-Record, vol. 82 (1919), via Internet Archive", title: "Fig. 6. Steel plates wrapped around column", date: "1919-05-15", crop: [0.505, 0.815, 0.965, 0.96]}   # Engineering News-Record vol. 82, 15 May 1919 
       - {file: "curid:31299255", match: "cold corn syrup"}   # Karo corn syrup advertisement, 1917 (PD)
+      - {file: "curid:65696040"}   # Duck brand molasses label, New Orleans 1891 (LoC)
+      - {file: "web:ia:enr82-rivets", image: "https://archive.org/download/engineeringnewsr82newy/page/n1004.jpg", page_url: "https://archive.org/details/engineeringnewsr82newy/page/n1004/mode/1up", rights: "Public domain (published 1919)", credit: "Engineering News-Record, vol. 82 (1919), via Internet Archive", title: "The rivets are overstressed about 2.2 times in shear", date: "1919-05-15", crop: [0.505, 0.083, 0.97, 0.3], match: "more than twice the load"}   # ENR 1919-05-15
 
   - id: cleanup
     chapter: "VIII. Cleaning Up a Sea of Syrup"
