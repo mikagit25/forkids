@@ -36,9 +36,6 @@ scenes:
       - {file: "curid:87121914"}
       - {file: "curid:471772"}
       # automatic search tops up the rest:
-      - {query: "Black Death", count: 4}
-      - {query: "danse macabre", count: 2}
-      - {query: "plague doctor", count: 1}
 
   - id: origin
     chapter: "I. Out of Asia"
@@ -62,10 +59,14 @@ scenes:
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:539827"}
+      - {file: "curid:2555007"}   # Yersinia pestis, micrograph (PD)
+      - {file: "curid:726374"}   # Xenopsylla cheopis, the rat flea (CDC PHIL, 1948, PD)
+      - {file: "curid:9966996"}   # Xenopsylla cheopis, drawing 1915 (PD)
+      - {file: "curid:7469101"}   # flea, scanning electron micrograph (PD)
+      - {file: "curid:98503132", match: "The emperor Justinian himself caught it"}   # Justinian I, mosaic in San Vitale, Ravenna, 6th century (PD)
+      - {file: "curid:1011181", match: "travelled west along the trade routes"}   # caravan on the Silk Road, Catalan Atlas, 1375 (PD)
+      - {file: "curid:13348450"}   # the Catalan Atlas, 1375, sheet (PD)
       # automatic search tops up the rest:
-      - {query: "Yersinia pestis", count: 1, modern: true}
-      - {query: "Silk Road caravan medieval", count: 2}
-      - {query: "Issyk-Kul gravestone", count: 1, modern: true}
 
   - id: caffa
     chapter: "II. The Siege of Caffa"
@@ -80,9 +81,11 @@ scenes:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:50084154"}
       - {file: "curid:6262537"}
+      - {file: "curid:81959231"}   # view of Kaffa from the north, watercolour by M. Ivanov, 1783 (PD)
+      - {file: "curid:90146865"}   # Caffa in ruins, 1788 (PD)
+      - {file: "curid:112305741"}   # Feodosia (Caffa), 1830s (PD)
+      - {file: "curid:73927794", match: "Genoese ships fled Caffa"}   # fleet of Genoese galleys, 13th-14th centuries (1907 illustration, PD)
       # automatic search tops up the rest:
-      - {query: "Caffa Feodosia", count: 2}
-      - {query: "medieval siege catapult", count: 2}
 
   - id: arrival
     chapter: "III. The Great Mortality"
@@ -116,10 +119,12 @@ scenes:
       - {file: "curid:2401762"}
       - {file: "curid:35866769"}
       - {file: "curid:36273766"}
+      - {file: "curid:134726234"}   # Decameron miniature, c. 1425-1450 (ÖNB, PD)
+      - {file: "curid:47809857", match: "the writer Giovanni Boccaccio"}   # Boccaccio, Decameron, Venice 1492 (PD)
+      - {file: "curid:35422945", match: "In Siena, a chronicler"}   # Madonna and Child, Siena, 14th century (CC0)
+      - {file: "curid:36454947"}   # men burying the bodies of plague victims in a pit, engraving (Wellcome, CC BY 4.0)
+      - {file: "curid:36476418"}   # the pest house and plague pit, Moorfields, London (Wellcome, CC BY 4.0)
       # automatic search tops up the rest:
-      - {query: "Black Death burial Tournai", count: 2, colorize: true}
-      - {query: "plague 14th century manuscript", count: 2}
-      - {query: "Boccaccio plague Florence", count: 1}
 
   - id: explanations
     chapter: "IV. Stars, Air and Sin"
@@ -135,10 +140,12 @@ scenes:
       - {file: "curid:98844273"}
       - {file: "met:396158"}
       - {file: "met:812666"}
+      - {file: "curid:31578274"}   # encyclopedic manuscript with medical drawings, 1410 (PD)
+      - {file: "curid:44768580", match: "conjunction of the planets"}   # the Zodiac Man, medieval astrological medicine (CC0)
+      - {file: "curid:36380792"}   # physician with urine flask, medieval manuscript (Wellcome, CC BY 4.0)
+      - {file: "curid:2401762", match: "Groups of flagellants marched"}   # the flagellants at Doornik (Tournai) in 1349 (1902 illustration, PD)
+      - {file: "curid:12291543"}   # flagellants, 1349 (PD)
       # automatic search tops up the rest:
-      - {query: "flagellants medieval", count: 2}
-      - {query: "medieval astrology manuscript", count: 1}
-      - {query: "medieval physician manuscript", count: 1}
 
   - id: persecution
     chapter: "V. Scapegoats"
@@ -153,10 +160,12 @@ scenes:
       - {file: "curid:59392497"}
       - {file: "curid:174105154"}
       - {file: "curid:9096873"}
+      - {file: "curid:18524848", match: "in Strasbourg, around two thousand Jews"}   # the Strasbourg pogrom of 1349 (illustration 1894, PD)
+      - {file: "curid:4364606"}   # burning of Jews, Nuremberg Chronicle 1493 (PD)
+      - {file: "curid:9096873", match: "Pope Clement the Sixth issued"}   # Pope Clement VI, 14th-century fresco, Palais des Papes, Avignon (PD)
+      - {file: "curid:76860349"}   # lead bulla of Clement VI, 1342-52 (CC BY 2.0)
+      - {file: "curid:8104966", match: "Guy de Chauliac"}   # Guy de Chauliac (PD)
       # automatic search tops up the rest:
-      - {query: "Strasbourg 1349", count: 1}
-      - {query: "Pope Clement VI", count: 1}
-      - {query: "medieval Jewish community manuscript", count: 1}
 
   - id: treatments
     chapter: "VI. Bleeding and Theriac"
@@ -184,10 +193,12 @@ scenes:
       - {file: "curid:112318826"}
       - {file: "met:436332"}
       - {file: "met:341122"}
+      - {file: "curid:36074689", match: "They let blood"}   # Blood-letting Man, 14th century (Wellcome L0037339, CC BY 4.0)
+      - {file: "curid:36351342", match: "They prescribed theriac"}   # the prescription for Theriaca Andromachi (Wellcome, CC BY 4.0)
+      - {file: "curid:36507606"}   # the manufacture of theriac at Bologna, gouache (Wellcome, CC BY 4.0)
+      - {file: "curid:36004941", match: "The most famous image of the plague doctor"}   # plague doctor (Wellcome L0025223, CC BY 4.0)
+      - {file: "curid:36313946"}   # plague doctors, various costumes (Wellcome M0002803, CC BY 4.0)
       # automatic search tops up the rest:
-      - {query: "plague doctor 17th century", count: 2, colorize: true}
-      - {query: "bloodletting medieval", count: 1}
-      - {query: "Dubrovnik old town walls", count: 1, modern: true}
 
   - id: aftermath
     chapter: "VII. A Changed World"
@@ -210,8 +221,6 @@ scenes:
       - {file: "cleveland:110605"}
       - {file: "aic:7385"}
       # automatic search tops up the rest:
-      - {query: "danse macabre", count: 2}
-      - {query: "Peasants' Revolt 1381", count: 2}
 
   - id: returns
     chapter: "VIII. The Plague Returns"
@@ -235,10 +244,23 @@ scenes:
       - {file: "curid:22485933"}
       - {file: "curid:36346087"}
       - {file: "met:436257"}
+      - {file: "curid:210769", match: "Samuel Pepys noted in his diary"}   # Samuel Pepys by John Hayls, 1666 (PD)
+      - {file: "curid:36326593"}   # Plague in London, 1665 (Wellcome M0005746, CC BY 4.0)
+      - {file: "curid:36107844", match: "Weekly bills of mortality listed the dead"}   # Bill of Mortality, 15-22 August 1665 (Wellcome, CC BY 4.0)
+      - {file: "curid:1258647"}   # Great Plague of London, table of funerals, 1665 (PD)
+      - {file: "curid:35860808"}   # The fatal effect of the plague, 1665, engraving (Wellcome, CC BY 4.0)
+      - {file: "curid:36026024"}   # Certain necessary directions... for the plague, 1665 (Wellcome, CC BY 4.0)
+      - {file: "curid:93862127", match: "Daniel Defoe, in his Journal of the Plague Year"}   # George Cruikshank, The Great Pit in Aldgate (Defoe), before 1876 (PD)
+      - {file: "curid:36346543"}   # Plague in London, 1665 (Wellcome M0010582, CC BY 4.0)
+      - {file: "curid:5950295"}   # Samuel Pepys's diary manuscript volumes (photo 1899, PD)
+      - {file: "curid:36346087"}   # chart of distribution of the Great Plague, 1665 (Wellcome, CC BY 4.0)
+      - {file: "curid:33227345", match: "a tailor in the village of Eyam"}   # Eyam church, Derbyshire, c. 1890-1900 (LoC photochrom, PD)
+      - {file: "curid:112833585"}   # Cucklet Delph, Eyam, where Mompesson held open-air services (CC BY 2.0)
+      - {file: "curid:56832600", match: "arrived in Marseille from the eastern Mediterranean"}   # Michel Serre, the Cours Belsunce during the plague of 1720 (1721, PD)
+      - {file: "curid:35939897"}   # the port of Marseille during the plague of 1720, etching (Wellcome, PD)
+      - {file: "curid:36455478"}   # the main thoroughfare of Marseille during the plague of 1720 (Wellcome, CC BY 4.0)
+      - {file: "curid:87121914"}   # costume of a doctor of the Marseille lazaret in 1720 (1826, PD)
       # automatic search tops up the rest:
-      - {query: "Great Plague of London 1665", count: 2}
-      - {query: "bill of mortality 1665", count: 1}
-      - {query: "plague Marseille 1720", count: 2}
 
   - id: yersin
     chapter: "IX. Hong Kong, 1894"
@@ -262,10 +284,29 @@ scenes:
       - {file: "curid:35997474"}
       - {file: "curid:149173692"}
       - {file: "curid:36202067"}
+      - {file: "curid:35997474", match: "In 1894 it reached Hong Kong"}   # Staffordshire Regiment cleaning plague houses, Hong Kong, 1894 (Wellcome, CC BY 4.0)
+      - {file: "curid:35997471"}   # Staffordshire Regiment cleaning plague houses, Hong Kong (Wellcome, CC BY 4.0)
+      - {file: "curid:149173692", match: "Kitasato Shibasaburō, sent by his government"}   # Kitasato Shibasaburō, 1910 (PD)
+      - {file: "curid:35954264"}   # signed photograph of Kitasato (Wellcome, CC BY 4.0)
+      - {file: "curid:36585162", match: "Alexandre Yersin"}   # Alexandre Yersin, photograph by Kaufmann-Fabry (Wellcome, CC BY 4.0)
+      - {file: "curid:36377310"}   # portrait of A. E. J. Yersin (Wellcome, CC BY 4.0)
+      - {file: "curid:36202067"}   # Hong Kong plague medal, 1894 (Wellcome, CC BY 4.0)
+      - {file: "curid:6752595"}   # Yersin House, Nha Trang, 1910 (PD)
+      - {file: "curid:35984326", match: "working in Karachi"}   # plague epidemic in Karachi, 1897 (Wellcome, CC BY 4.0)
+      - {file: "curid:35967049", match: "killed at least fifteen million people"}   # plague epidemic, Bombay, 1896-7 (Wellcome, CC BY 4.0)
+      - {file: "curid:35967072"}   # plague epidemic, Bombay, 1896-7 (Wellcome, CC BY 4.0)
+      - {file: "curid:36064252"}   # temporary hospital for plague victims, Bombay (Wellcome, CC BY 4.0)
+      - {file: "curid:116176489"}   # scenes of the plague in Bombay, 1896-97 (CC0)
+      - {file: "curid:36595416"}   # a man being inoculated during the bubonic plague outbreak (Wellcome, CC BY 4.0)
+      - {file: "curid:35983061"}   # a plague patient transported on a hand-propelled trolley (Wellcome, CC BY 4.0)
+      - {file: "curid:451747", match: "In Manchuria in 1910"}   # Manchurian plague victims, 1910-11 (PD)
+      - {file: "curid:112194228"}   # plague hand-bill, Manchurian plague 1910-11 (PD)
+      - {file: "curid:30906970"}   # plague workers, Mukden, Manchuria (PD)
+      - {file: "curid:106437405"}   # anti-plague work in Fujiadian, Harbin, 1910-11 (PD)
+      - {file: "curid:106437420"}   # coffins being cremated, Harbin, 1910-11 (PD)
+      - {file: "curid:17997456", match: "Wu Lien-teh"}   # Wu Lien-teh, c. 1910-1915 (PD)
+      - {file: "curid:36310240", match: "cloth face masks"}   # doctors' protective costume for pneumonic plague (Wellcome, CC BY 4.0)
       # automatic search tops up the rest:
-      - {query: "Hong Kong plague 1894", count: 2}
-      - {query: "Alexandre Yersin", count: 1}
-      - {query: "Kitasato Shibasaburo", count: 1}
 
   - id: today
     chapter: "X. Plague Today"
@@ -276,10 +317,11 @@ scenes:
       The disease that once killed half of Europe is now rare, and usually curable. But it has never been eradicated.
     candidates: ["Madagascar plague", "streptomycin", "prairie dog", "plague CDC"]
     images:
-      - {query: "Madagascar plague", count: 1, modern: true}
-      - {query: "prairie dog", count: 1, modern: true}
-      - {query: "Yersinia pestis micrograph", count: 1, modern: true}
-
+      - {file: "curid:24066194", match: "streptomycin"}   # streptomycin assay (PD)
+      - {file: "curid:129215610"}   # prairie dog, 1917 (PD)
+      - {file: "curid:66416258"}   # US Public Health poster, 1918: bubonic plague, yellow fever, tuberculosis (LoC, PD)
+      - {file: "curid:66731662"}   # Plague Hospital, Bombay, 1922 (LoC, PD)
+      - {file: "dpla:66bea23bd405e9e1c8f23a48c7a48ef5"}   # prairie dog (Digital South Dakota, no copyright)
   - id: closing
     chapter: "Epilogue"
     narration: >
@@ -289,9 +331,10 @@ scenes:
       Subscribe so you don't miss it.
     candidates: ["quarantine flag", "plague memorial column", "Pests\u00e4ule Vienna"]
     images:
-      - {query: "danse macabre", count: 1}
-      - {query: "Black Death", count: 1}
-
+      - {file: "curid:108862644"}   # Vienna, Holy Trinity plague column for the plague of 1679 (CC0)
+      - {file: "curid:82935476"}   # the Quarantine Hospital on Staten Island, 1858 (PD)
+      - {file: "curid:68417085"}   # Lazaretto, Philadelphia quarantine station, 1856 (LoC, PD)
+      - {file: "curid:11159591"}   # the Graben, Vienna, with the plague column, c. 1895 (CC BY 2.0)
 thumbnail:
   scene: arrival
   big: "1347"
