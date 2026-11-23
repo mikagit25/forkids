@@ -1,0 +1,72 @@
+# radium-girls-1927 picks - Chrome session 2026-11-23, NLM Digital Collections (public domain only)
+# Episode/scenes not written yet -> scene: tbd; the server assigns scene ids after the script.
+# NLM blocks the server (AWS WAF): images will be downloaded in Chrome and put into inbox/ (file name keeps the id).
+# Era/atmosphere photos still needed (LoC rate-limited the Chrome session on 23.11 - retry later slowly).
+
+- scene: tbd
+  source: nlm
+  id: '101447250'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447250-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447250-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "[Incidence of cancer among luminous watch dial painters] - women at work tables painting dials, eyes masked"
+  date: '1920s'
+  note: "THE Radium Girls image: dial-painting workroom (US Public Health Service study)"
+
+- scene: tbd
+  source: nlm
+  id: '101393688'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101393688-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101393688-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "Radium - caricature of Pierre and Marie Curie"
+  date: '1904'
+  note: "the radium craze begins"
+
+- scene: tbd
+  source: nlm
+  id: '101460234'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101460234-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101460234-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "The discoverer of radium and a great experimenter in conference"
+  date: '1903'
+  note: "radium as the wonder element, 1903"
+
+- scene: tbd
+  source: nlm
+  id: '101459367'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101459367-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101459367-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "Une nouvelle decouverte, le radium - the Curies in their laboratory"
+  date: '1904'
+  note: "discovery of radium, popular print"
+
+- scene: tbd
+  source: nlm
+  id: '101448039'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101448039-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101448039-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "M. and Mme. Curie experimenting with radium"
+  note: "the Curies at work"
+
+- scene: tbd
+  source: nlm
+  id: '101435939'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101435939-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101435939-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "[Treating patient with radium] - Dr. Danlos, St. Louis Hospital, Paris"
+  date: '1904'
+  note: "radium as medicine - why it seemed safe"
+
+- scene: tbd
+  source: nlm
+  id: '101449731'
+  image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101449731-img
+  page_url: https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101449731-img
+  rights: The National Library of Medicine believes this item to be in the public domain.
+  title: "Only x-ray, radium, surgery ever cured cancer - US Public Health Service poster"
+  note: "later: radium in cancer treatment"
