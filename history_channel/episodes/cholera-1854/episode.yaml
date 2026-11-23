@@ -203,6 +203,9 @@ scenes:
       - {file: "web:wellcome:L0072137", image: "https://iiif.wellcomecollection.org/image/L0072137/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/y4ygj2n6", rights: "Public Domain Mark (public domain)", title: "Cholera map showing intensity of cholera attack in sections", date: "1850s", note: "official 'cholera intensity' map"}   # LoC via Chrome
       - {file: "web:wellcome:L0071632", image: "https://iiif.wellcomecollection.org/image/L0071632/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/p8sesxnt", rights: "Public Domain Mark (public domain)", title: "Map of the parish of Bethnal Green showing the 'cholera mist' in 1848-1849", date: "1849", note: "a map of the 'cholera mist' - miasma thinking on paper"}   # LoC via Chrome
       - {file: "curid:36352630", match: "Michael Faraday took a boat trip"}   # Punch 1855: Faraday giving his card to Father Thames (Wellcome, PD)
+      - {file: "curid:35874518", match: "John Simon, called Snow's theory peculiar"}   # Sir John Simon (?), first Medical Officer of Health (Wellcome, CC BY 4.0)
+      - {file: "curid:36582112", match: "the anatomist Filippo Pacini"}   # Filippo Pacini, photograph by A. Hautmann (Wellcome V0026955, CC BY 4.0)
+      - {file: "curid:463384"}   # Michael Faraday, oil by Thomas Phillips, 1842 (PD)
 
   - id: stink
     chapter: "IX. The Great Stink"
@@ -218,6 +221,8 @@ scenes:
       - {file: "web:wellcome:V0013571", image: "https://iiif.wellcomecollection.org/image/V0013571/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/tsymxueb", rights: "Public Domain Mark (public domain)", title: "Saint Thomas's Hospital, Lambeth, viewed from the north bank of the Thames. Engraving", date: "c. 1868", note: "the Thames at Westminster/Lambeth"}   # LoC via Chrome
       - {file: "curid:4465060"}   # Punch, 10 July 1858: The Silent Highwayman
       - {file: "curid:4465030", match: "The newspapers called it the Great Stink"}   # Punch, 3 July 1858: Father Thames introducing his offspring to the fair city of London
+      - {file: "curid:28634812", match: "Benjamin Disraeli, the future prime minister"}   # Benjamin Disraeli, 1860s (PD)
+      - {file: "curid:38219223"}   # Punch, 31 July 1858: How Dirty Old Father Thames was Whitewashed (PD)
 
   - id: sewers
     chapter: "X. Bazalgette's Sewers"
@@ -240,6 +245,10 @@ scenes:
       - {file: "web:wellcome:V0024484", image: "https://iiif.wellcomecollection.org/image/V0024484/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/zgekf63d", rights: "Public Domain Mark (public domain)", title: "Engineering: a large pumping station. Coloured lithograph", date: "after 1875", note: "Victorian sewage pumping station"}   # LoC via Chrome
       - {file: "curid:36372691", match: "The job went to the engineer Joseph Bazalgette"}   # Sir Joseph Bazalgette (Wellcome M0016460, PD)
       - {file: "curid:84888703"}   # Joseph Bazalgette, ca. 1871-76 (Rijksmuseum, CC0)
+      - {file: "curid:158134881", match: "The Metropolitan Board of Works could borrow"}   # Metropolitan Board of Works meeting, January 1856 (ILN, PD)
+      - {file: "curid:6615686", match: "a pleasure steamer, the Princess Alice"}   # the Princess Alice collision on the Thames, 1878 (PD)
+      - {file: "curid:74196140"}   # The Great Disaster on the Thames: recovering bodies from the Princess Alice, 14 Sept 1878 (PD)
+      - {file: "curid:74204024"}   # the after-part of the Princess Alice on the shore below Woolwich, 1878 (PD)
 
   - id: proof
     chapter: "XI. Proof"
@@ -256,6 +265,10 @@ scenes:
       - {file: "web:wellcome:V0026955", image: "https://iiif.wellcomecollection.org/image/V0026955/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/pd42n72q", rights: "Public Domain Mark (public domain)", title: "Filippo Pacini. Photograph by A. Hautmann", note: "Pacini saw the cholera bacterium in 1854"}   # LoC via Chrome
       - {file: "web:wellcome:V0010305ER", image: "https://iiif.wellcomecollection.org/image/V0010305ER/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/ak2muhcn", rights: "Public Domain Mark (public domain)", title: "A stomach showing cholera asiatica, with bacteria as seen under a microscope. Chromolithograph by W. Gummelt", date: "c. 1897", note: "the cholera germ under the microscope"}   # LoC via Chrome
       - {file: "web:wellcome:V0010306ER", image: "https://iiif.wellcomecollection.org/image/V0010306ER/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/t37qgj5j", rights: "Public Domain Mark (public domain)", title: "Diseased intestine showing cholera asiatica, with a microscopic section. Chromolithograph by W. Gummelt", date: "c. 1897", note: "what cholera does to the gut"}   # LoC via Chrome
+      - {file: "curid:20378013", match: "Even William Farr"}   # William Farr, c. 1850 (PD)
+      - {file: "curid:2919771", match: "the German scientist Robert Koch"}   # Robert Koch (PD)
+      - {file: "curid:237126"}   # Vibrio cholerae, micrograph (PD)
+      - {file: "curid:55897136"}   # Die Gartenlaube, 1884: Koch's cholera expedition (PD)
 
   - id: closing
     chapter: "Epilogue"
@@ -272,6 +285,7 @@ scenes:
       - {file: "web:wellcome:V0026503", image: "https://iiif.wellcomecollection.org/image/V0026503/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/as9gafvt", rights: "Public Domain Mark (public domain)", title: "Waldemar Haffkine. Photograph", note: "creator of the first cholera vaccine"}   # LoC via Chrome
       - {file: "web:wellcome:V0014190", image: "https://iiif.wellcomecollection.org/image/V0014190/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/yabe6gje", rights: "Public Domain Mark (public domain)", title: "Cholera Hospital, Oxford, near the Oxford Canal. Line engraving after T. Taylor jun.", date: "1850s", note: "cholera hospitals of the era"}   # LoC via Chrome
       - {file: "web:wellcome:L0003764", image: "https://iiif.wellcomecollection.org/image/L0003764/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/atrhuzyx", rights: "CC BY 4.0 (Wellcome Collection)", title: "Water filter designed by C. Chamberland", note: "clean water - the lasting lesson"}   # LoC via Chrome
+      - {file: "curid:36208738"}   # three glass ampoules of cholera vaccine, Paris 1924 (Wellcome, CC BY 4.0)
 
 thumbnail:
   scene: map
