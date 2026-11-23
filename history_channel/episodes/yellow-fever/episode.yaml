@@ -54,7 +54,6 @@ scenes:
           - [-61.5, 15.0, "Caribbean, 1600s"]
     candidates: ["yellow fever patient", "Aedes aegypti", "slave ship 18th century", "Barbados 17th century map", "yellow quarantine flag"]
     images:
-      - {query: "Aedes aegypti", count: 1, modern: true}
       - {file: "web:nlm:101405744", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101405744-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101405744-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Mosquito in biting position]", date: "c. 1900s", note: "the mosquito that carries the virus (photograph)"}   # LoC via Chrome
       - {file: "web:nlm:101395282", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101395282-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101395282-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Yellow fever ward, Las Animas, Cuba", date: "c. 1900", note: "hospital ward of yellow-fever patients in Havana"}   # LoC via Chrome
       - {file: "europeana:9200579/m6n6c8a2"}   # yellow fever patient in hospital bed, 1880/1910 (Wellcome, CC BY)
@@ -87,8 +86,8 @@ scenes:
       - {file: "curid:81314306", match: "including President George Washington"}   # Gilbert Stuart, George Washington (Vaughan portrait), 1795 (NGA, CC0)
       - {file: "curid:112253918", match: "carts carry the dead through empty streets"}   # Birch, Third Street from Spruce, 1800
       - {file: "curid:67298342"}   # Birch, the Water Works in Centre Square, Philadelphia, 1800
+      - {file: "curid:66359597"}   # Birch, back of the State House (Independence Hall), Philadelphia
       - {file: "loc:2006680261", image: "https://tile.loc.gov/storage-services/service/pnp/ppmsca/11500/11599v.jpg", rights: "No known restrictions on publication.", title: "Schuylkill Bridge, High Street, Philadelphia (Birch)", date: "1805", note: "Philadelphia street scene of the 1790s-1800s, the capital of the epidemic"}   # LoC via Chrome
-      - {file: "curid:148229252", match: "The mayor, Matthew Clarkson"}   # Matthew Clarkson, mayor of Philadelphia in 1793
       - {file: "curid:67481313", match: "Bush Hill, into a fever hospital"}
       - {file: "loc:2003673095", match: "a French-born merchant, Stephen Girard", image: "https://tile.loc.gov/storage-services/service/pnp/pga/11700/11771v.jpg", rights: "No known restrictions on publication.", title: "Stephen Girard", date: "1832", note: "merchant who personally ran the Bush Hill fever hospital in 1793"}   # LoC via Chrome
       - {file: "curid:9759961"}   # Stephen Girard by J. R. Lambdin
@@ -114,14 +113,13 @@ scenes:
       - {file: "curid:142891079"}   # Vue du Cap-Français, 1791
       - {file: "curid:144791633"}   # Prise du Cap Français par l'Armée Française (Leclerc), 1802
       - {file: "loc:2004669331", image: "https://tile.loc.gov/storage-services/service/pnp/pga/13000/13038v.jpg", rights: "No known restrictions on publication.", title: "Le Gal. Toussaint-L'Ouverture remettant au Gal anglais...", date: "c. 1800s", note: "period French print of the revolution's leader"}   # LoC via Chrome
-      - {file: "curid:194989022"}   # Napoleonic troops vs. revolted slaves, Saint-Domingue (1836 print)
       - {file: "curid:66245725"}
       - {file: "loc:2004669330", image: "https://tile.loc.gov/storage-services/service/pnp/pga/13000/13037v.jpg", rights: "No known restrictions on publication.", title: "Le Gal. Toussaint-L'ouverture, a qui Gal. Leclerc avait envoye ses enfants", date: "c. 1800s", note: "French print of Toussaint and Leclerc's expedition, 1802"}   # LoC via Chrome
       - {file: "curid:2431745", match: "Napoleon's brother-in-law, General Leclerc"}
       - {file: "curid:155868994", match: "His wife, Pauline Bonaparte"}
       - {file: "loc:2014645197", match: "The revolution's great leader, Toussaint Louverture", image: "https://tile.loc.gov/storage-services/service/pnp/pga/05800/05834v.jpg", rights: "No known restrictions on publication.", title: "Toussaint L'Ouverture", date: "1870", note: "leader of the revolution in Saint-Domingue"}   # LoC via Chrome
-      - {file: "europeana:90402/RP_P_OB_70_443", match: "a fortress prison in the mountains of France"}   # Château de Joux (Rijksmuseum)
-      - {file: "loc:2004669333", match: "where he died in 1803", image: "https://tile.loc.gov/storage-services/service/pnp/pga/13000/13042v.jpg", rights: "No known restrictions on publication.", title: "Toussaint L'Ouverture meurt dans la prison...", date: "c. 1800s", note: "Toussaint dies in a French prison, 1803 - the end of the war"}   # LoC via Chrome
+      - {file: "europeana:90402/RP_P_OB_70_443"}   # Château de Joux (Rijksmuseum)
+      - {file: "loc:2004669333", image: "https://tile.loc.gov/storage-services/service/pnp/pga/13000/13042v.jpg", rights: "No known restrictions on publication.", title: "Toussaint L'Ouverture meurt dans la prison...", date: "c. 1800s", note: "Toussaint dies in a French prison, 1803 - the end of the war"}   # LoC via Chrome
       - {file: "curid:27409632", match: "Jean-Jacques Dessalines defeated the French"}
       - {file: "loc:99405282", image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c20000/3c22000/3c22300/3c22358v.jpg", rights: "No known restrictions on publication.", title: "Marble bust of Jean-Jacques Dessalines", date: "1900", note: "Dessalines, who declared Haiti independent on 1 January 1804"}   # LoC via Chrome
       - {file: "curid:201944263", match: "he sold the vast Louisiana territory"}   # Louisiana Purchase treaty, page with signatures, 1803
@@ -140,11 +138,11 @@ scenes:
       - {file: "loc:2016648675", image: "https://tile.loc.gov/storage-services/service/pnp/ppmsca/40700/40749v.jpg", rights: "No known restrictions on publication.", title: "Lazaretto, Philada. quarantine station", date: "1856", note: "quarantine station built after the 1793 epidemic - the old answer to fever"}   # LoC via Chrome
       - {file: "loc:2007681326", image: "https://tile.loc.gov/storage-services/service/pnp/pga/03500/03535v.jpg", rights: "No known restrictions on publication.", title: "View of the New York quarantine, Staten Island", date: "1833", note: "19th-century quarantine for ships arriving with fever"}   # LoC via Chrome
       - {file: "loc:2014681794", match: "Cities burned tar in the streets and fumigated houses", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/01700/01799v.jpg", rights: "No known restrictions on publication.", title: "N.Y. Municipal Lodging House: Fumigating clothing", date: "1909", note: "fumigating clothes and bedding - the 'fomites' theory in practice"}   # LoC via Chrome
-      - {file: "curid:44126315", match: "In Memphis alone"}   # "Heroes and heroines of Memphis; or Reminiscences of the yellow fever epidemics", 1887
       - {file: "web:nlm:101405384", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101405384-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101405384-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Epidemics.]: [Yellow Fever Hospital, Franklin, Louisiana]", date: "1898", note: "tent hospital of the U.S. Marine Hospital Service at Franklin, Louisiana, yellow fever epidemic of 1898"}   # LoC via Chrome
       - {file: "web:nlm:101435505", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101435505-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101435505-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Yellow fever]: The Sand Hills Hospital (Jacksonville, Fla.), looking Northeast", date: "1888", note: "epidemic hospital during the Jacksonville outbreak"}   # LoC via Chrome
       - {file: "web:nlm:101416878", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101416878-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101416878-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Camp E.A. Perry, yellow fever detention camp]", date: "1888", note: "quarantine camp during the 1888 Florida epidemic: isolation without knowing the carrier"}   # LoC via Chrome
       - {file: "curid:65662235"}   # Harbour and city of Havannah (LoC)
+      - {file: "curid:117497216"}   # Havana, harbour and Morro Castle, c. 1860
       - {file: "loc:2016798580", image: "https://tile.loc.gov/storage-services/service/pnp/det/4a00000/4a05000/4a05100/4a05171v.jpg", rights: "No known restrictions on publication.", title: "The Prado, Havana", date: "1900", note: "Havana, where Carlos Finlay worked"}   # LoC via Chrome
       - {file: "web:nlm:101414988", match: "a Cuban physician named Carlos Finlay", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101414988-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101414988-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Carlos J. Finlay]", date: "1902", note: "Carlos Finlay, who first blamed the mosquito"}   # LoC via Chrome
       - {file: "curid:36579389"}   # Carlos Juan Finlay, photomechanical print (Wellcome)
@@ -163,16 +161,16 @@ scenes:
       Lazear himself was less lucky. On the eighth of September, he wrote to his wife: I rather think I am on the track of the real germ. Days later he fell ill, and on the twenty-fifth of September 1900 he died, at the age of thirty-four, leaving a wife and two small children. For decades the official story was that a stray mosquito had bitten him by accident. In 1947, his own notebook revealed the truth: he had let an infected mosquito bite him on purpose.
     candidates: ["Walter Reed", "James Carroll yellow fever", "Jesse William Lazear", "Aristides Agramonte", "Columbia Barracks Cuba", "Havana 1900"]
     images:
-      - {file: "curid:76738318", match: "yellow fever was killing American soldiers in Cuba"}   # arrival of American troops in Havana, 1899
+      - {file: "curid:119383777"}   # USS Maine entering Havana harbour, 1898
+      - {file: "curid:76738318"}   # arrival of American troops in Havana, 1899
       - {file: "curid:67516857"}   # Morro Castle, Havana, 1899 (LoC)
       - {file: "web:nlm:101426807", match: "commission led by Major Walter Reed", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101426807-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101426807-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Walter Reed]", date: "c. 1900", note: "Major Walter Reed, head of the commission, dress uniform"}   # LoC via Chrome
       - {file: "web:nlm:101409115", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101409115-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101409115-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Aristides Agramonte, M.D: Member of the U.S.A. Yellow Fever Commission", date: "c. 1900", note: "Agramonte, the Cuban-born member of the commission"}   # LoC via Chrome
       - {file: "loc:2016798578", image: "https://tile.loc.gov/storage-services/service/pnp/det/4a00000/4a05000/4a05100/4a05169v.jpg", rights: "No known restrictions on publication.", title: "O'Rielly [i.e. O'Reilly] Street, Havana", date: "1900", note: "Havana in 1900, when fever was killing US soldiers"}   # LoC via Chrome
       - {file: "curid:5442527"}   # Calle de Habana, c. 1900 (LoC)
-      - {file: "web:nlm:101421381", match: "Dr Jesse Lazear allowed a mosquito", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101421381-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101421381-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Jesse W. Lazear, M.D.", date: "c. 1900", note: "Lazear, the commission member who died of yellow fever"}   # LoC via Chrome
+      - {file: "web:nlm:101421381", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101421381-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101421381-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Jesse W. Lazear, M.D.", date: "c. 1900", note: "Lazear, the commission member who died of yellow fever"}   # LoC via Chrome
       - {file: "curid:128371791"}   # Havana, Palace of the Military Governor, 1900
       - {file: "web:nlm:101412298", match: "James Carroll, also fell gravely ill", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101412298-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101412298-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Dr. James Carroll]", date: "c. 1900", note: "James Carroll, commission member, let an infected mosquito bite him"}   # LoC via Chrome
-      - {file: "curid:36376162", match: "Lazear himself was less lucky"}   # portrait of Jesse William Lazear (Wellcome)
       - {file: "web:nlm:101426793", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101426793-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101426793-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Walter Reed]", date: "c. 1900", note: "Walter Reed, head of the Yellow Fever Commission"}   # LoC via Chrome
       - {file: "curid:137994796"}   # Havana Cathedral, 1900
 
@@ -270,7 +268,6 @@ scenes:
       - {file: "web:nlm:101584931X102", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101584931X102-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101584931X102-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Yellow Fever Laboratory, Bahia, Brazil", date: "1934", note: "Rockefeller Foundation yellow-fever lab of the vaccine era"}   # LoC via Chrome
       - {file: "curid:133464639", match: "the South African virologist Max Theiler"}   # Max Theiler, National Portrait Gallery (CC0)
       - {file: "web:nlm:101584931X104", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101584931X104-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101584931X104-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Workers in the Yellow Fever Laboratory at Bahia, Brazil", date: "1934", note: "lab staff at work, the years leading to Theiler's 17D vaccine"}   # LoC via Chrome
-      - {file: "curid:36586159"}   # Max Theiler, photograph by Pach Bros., c. 1951 (Wellcome, CC BY)
       - {file: "curid:76836633", match: "he weakened the virus"}   # yellow fever virus, TEM, CDC PHIL 2176
       - {file: "curid:18735036", match: "Physiology or Medicine in 1951"}   # Max Theiler, 1951 (Nobel portrait with signature)
 
