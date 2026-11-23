@@ -28,6 +28,7 @@ scenes:
       The same disease came back again and again for four hundred years. It was finally identified only in 1894, in Hong Kong.
       And it has never completely gone away.
       This is the biography of the plague.
+    candidates: ["Black Death miniature", "plague 1348", "Tournai plague burial", "plague doctor engraving"]
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:74450965"}
@@ -57,6 +58,7 @@ scenes:
           - [51.5, 45.0, ""]
           - [44.5, 46.3, "Golden Horde lands"]
           - [35.4, 45.0, "Caffa, Crimea"]
+    candidates: ["Yersinia pestis", "rat flea", "Issyk-Kul gravestone", "Justinian Constantinople mosaic", "Procopius", "Silk Road caravan"]
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:539827"}
@@ -73,6 +75,7 @@ scenes:
       Then plague broke out among the besiegers.
       According to an account written soon afterwards by the Italian lawyer Gabriele de' Mussis, the attackers hurled the corpses of plague victims over the city walls with catapults.
       Whether or not it happened exactly this way, the disease entered the city. Genoese ships fled Caffa, and carried the plague with them across the sea, to Constantinople and then to the Mediterranean.
+    candidates: ["Caffa Crimea", "Feodosia fortress", "Golden Horde", "Genoese galley", "trebuchet medieval"]
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:50084154"}
@@ -106,6 +109,7 @@ scenes:
           - [-2.45, 50.61, "Melcombe, England, June 1348"]
           - [5.32, 60.39, "Bergen, Norway, 1349"]
           - [37.62, 55.75, "Moscow, 1353"]
+    candidates: ["Messina 1347", "Black Death Florence", "Boccaccio Decameron illustration", "mass grave plague", "Siena 14th century", "Weymouth Melcombe"]
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:108925"}
@@ -124,6 +128,7 @@ scenes:
       In 1348, the medical faculty of the University of Paris produced a report for the King of France. It blamed an unlucky conjunction of the planets Saturn, Jupiter and Mars, which had corrupted the air.
       Most doctors believed in miasma, poisonous air. People carried posies of flowers and herbs, burned aromatic woods, and avoided the south wind.
       Others saw the plague as God's punishment. Groups of flagellants marched from town to town, whipping themselves in public to atone for the sins of the world. In Germany and the Low Countries, the Brothers of the Cross wore white robes and processed through the streets for thirty-three days at a time, one day for each year of Christ's life. At first crowds welcomed them. But the movement grew out of the Church's control, and in October 1349 Pope Clement the Sixth condemned it and ordered it suppressed.
+    candidates: ["flagellants 1349", "medieval astrology Saturn Jupiter Mars", "miasma", "University of Paris medieval", "pomander"]
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:15395317"}
@@ -141,6 +146,7 @@ scenes:
       Fear turned to hatred. Across Europe, Jewish communities were falsely accused of poisoning wells to spread the disease.
       Pope Clement the Sixth issued two papal bulls in 1348 condemning the accusations. His own physician, Guy de Chauliac, who had treated plague victims himself, argued that Jews were not to blame, and that they were dying of the plague like everyone else. It made little difference. On the fourteenth of February 1349, in Strasbourg, around two thousand Jews were burned alive, before the plague had even reached the city. The new emperor, Charles the Fourth, declared that the property of Jews killed in riots would be forfeit, which gave local rulers a reason to look away. Hundreds of communities in Germany and beyond were attacked or destroyed.
       It is one of the darkest chapters of the pandemic, and a warning that epidemics do not only spread disease.
+    candidates: ["Strasbourg 1349 Jews", "burning of Jews Black Death", "Pope Clement VI", "Guy de Chauliac", "Charles IV Holy Roman Emperor"]
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:18524848"}
@@ -168,6 +174,7 @@ scenes:
         region: [10, 38, 24, 47]
         points:
           - [18.09, 42.65, "Ragusa: the first quarantine"]
+    candidates: ["bloodletting medieval", "theriac", "plague doctor costume", "Dubrovnik Ragusa quarantine", "lazaretto"]
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:36030033"}
@@ -188,6 +195,7 @@ scenes:
       The Black Death transformed European society.
       With so many workers dead, survivors could demand higher wages and better conditions. Landowners and governments tried to freeze wages by law. In England, King Edward the Third issued the Ordinance of Labourers in 1349, fixing wages at their level before the plague, and Parliament confirmed it with the Statute of Labourers in 1351. Landlords who needed tenants began to accept rents in money instead of labour in their fields. The tension between what workers could demand and what the law allowed fed anger that later exploded in revolts such as the English Peasants' Revolt of 1381.
       Art became haunted by death. The Dance of Death, with skeletons leading kings, bishops and peasants alike to the grave, became a favourite theme of painters across Europe.
+    candidates: ["Dance of Death", "danse macabre", "Peasants' Revolt 1381", "Wat Tyler", "medieval peasants harvest"]
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:16824845"}
@@ -214,6 +222,7 @@ scenes:
       That autumn, a bundle of cloth from London was delivered to a tailor in the village of Eyam, in Derbyshire. His assistant, George Viccars, opened it, found it damp, and hung it by the fire. Within days he was dead. As the plague spread, the rector, William Mompesson, persuaded the villagers to do something extraordinary: to seal themselves off, so the disease would not spread to the towns around them. Neighbouring villages left food at boundary stones, and the villagers paid with coins left in holes filled with vinegar. The plague lasted fourteen months. At least two hundred and sixty villagers died. One woman, Elizabeth Hancock, buried her husband and six of her children in eight days. The rector's own wife, Catherine Mompesson, was among the dead. Every year, on Plague Sunday, a wreath is still laid on her grave.
       In May 1720, a merchant ship, the Grand Saint Antoine, arrived in Marseille from the eastern Mediterranean, carrying silk and cotton and the plague. Powerful merchants wanted the cargo in time for a great fair, and pressured the authorities to cut the quarantine short. About fifty thousand of the city's ninety thousand people died, and fifty thousand more in the surrounding region. To stop the disease, the authorities built a wall across the countryside of Provence, the plague wall. Marseille's population did not recover until 1765. It was the last great outbreak of plague in Western Europe.
       Then, slowly and for reasons still debated, plague retreated from Western Europe.
+    candidates: ["Great Plague of London 1665", "bill of mortality 1665", "Samuel Pepys", "Daniel Defoe Journal of the Plague Year", "Eyam plague village", "William Mompesson", "Marseille plague 1720", "Grand Saint Antoine", "plague wall Provence"]
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:51090209"}
@@ -247,6 +256,7 @@ scenes:
           - [102.7, 25.0, "Yunnan, 1855"]
           - [113.26, 23.13, "Canton, early 1894"]
           - [114.17, 22.28, "Hong Kong, May 1894"]
+    candidates: ["Hong Kong plague 1894", "Alexandre Yersin", "Kitasato Shibasaburo", "Paul-Louis Simond", "Bombay plague 1896", "San Francisco Chinatown plague 1900", "Manchurian plague 1910", "Wu Lien-teh"]
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:35997474"}
@@ -264,6 +274,7 @@ scenes:
       But the bacterium still lives in wild rodents on several continents, including the western United States. Every year there are human cases, most of them in Africa, especially Madagascar.
       In 2017, an outbreak of pneumonic plague in Madagascar caused more than two thousand cases and around two hundred deaths before it was brought under control. In the United States, a handful of people still catch it every year, in rural areas of the West, where the bacterium circulates among wild rodents such as ground squirrels.
       The disease that once killed half of Europe is now rare, and usually curable. But it has never been eradicated.
+    candidates: ["Madagascar plague", "streptomycin", "prairie dog", "plague CDC"]
     images:
       - {query: "Madagascar plague", count: 1, modern: true}
       - {query: "prairie dog", count: 1, modern: true}
@@ -276,6 +287,7 @@ scenes:
       Nearly seven hundred years after the Black Death, both lessons still matter.
       In the next story from the history of disease, we look at a killer that humans actually managed to wipe from the face of the Earth.
       Subscribe so you don't miss it.
+    candidates: ["quarantine flag", "plague memorial column", "Pests\u00e4ule Vienna"]
     images:
       - {query: "danse macabre", count: 1}
       - {query: "Black Death", count: 1}

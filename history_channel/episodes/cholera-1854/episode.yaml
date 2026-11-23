@@ -25,10 +25,9 @@ scenes:
       The experts blamed foul air. One doctor blamed the water, and set out to prove it with a street map, a lot of knocking on doors, and the handle of a water pump.
       The authorities ignored him. It took a river so foul that Parliament could not breathe, eighty-two miles of brick sewers, and another epidemic to prove him right.
       This is the story of John Snow, the Broad Street pump, and the Great Stink of London.
+    candidates: ["cholera 1832 London", "Broad Street pump", "Great Stink Punch", "Thames 1858"]
     images:
-      - {query: "John Snow cholera map 1854", count: 1}
-      - {query: "Soho London 1850s", count: 1}
-      - {query: "cholera", count: 1}
+      - {file: "curid:35864691"}   # Map of Soho showing deaths from cholera, 1854 (Wellcome L0003055, CC BY 4.0)
 
   - id: blue-death
     chapter: "I. The Blue Death"
@@ -37,9 +36,8 @@ scenes:
       It was a horrifying disease. Doctors described the diarrhoea as rice water: an untreated patient could lose ten to twenty litres of fluid in a day. Victims lost so much fluid that their skin turned bluish and wrinkled, and they could die within hours.
       Most doctors believed it was caused by miasma, poisonous air given off by rotting matter. It seemed to make sense. The poorest districts, where cholera struck hardest, were also the ones that stank the most.
       London in the 1850s stank a great deal. Human waste collected in cesspits under houses, overflowed into streets, and drained into the River Thames, the same river that much of the city drank from.
+    candidates: ["cholera 1832 broadside", "cholera victim lithograph", "Sunderland 1831", "Board of Health cholera notice"]
     images:
-      - {query: "Punch Thames", count: 2}
-      - {query: "Victorian London slum", count: 1}
       - {file: "web:wellcome:V0010896", image: "https://iiif.wellcomecollection.org/image/V0010896/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/d7994mnn", rights: "Public Domain Mark (public domain)", title: "London Board of Health searching the city for cholera during the 1832 epidemic. Lithograph", date: "1832", note: "1832 epidemic: officials hunting the city for cholera"}   # LoC via Chrome
       - {file: "web:wellcome:L0003053", image: "https://iiif.wellcomecollection.org/image/L0003053/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/p7hx4397", rights: "Public Domain Mark (public domain)", title: "Doctors parade a dummy with a skeleton's head representing cholera; people run screaming. Coloured lithograph by H. Heath", date: "1832", note: "cholera panic cartoon, 1832"}   # LoC via Chrome
       - {file: "web:wellcome:L0003052", image: "https://iiif.wellcomecollection.org/image/L0003052/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/ebp6me9z", rights: "Public Domain Mark (public domain)", title: "John Bull defending Britain against the invasion of cholera. Coloured lithograph", date: "c. 1832", note: "Britain bracing for the new disease from India"}   # LoC via Chrome
@@ -64,10 +62,8 @@ scenes:
       He was best known for something else entirely: anaesthesia. Snow was an expert in ether and chloroform, and on the seventh of April 1853 he gave chloroform to Queen Victoria during the birth of her son, Prince Leopold. Four years later, she asked for him again, for the birth of Princess Beatrice.
       But he had also been thinking hard about cholera. The disease attacked the gut, not the lungs. To Snow, that suggested it was swallowed, not breathed in.
       In 1849, he published a short essay arguing that cholera spread through contaminated water. Almost nobody was convinced. He needed proof.
+    candidates: ["John Snow physician", "York 1820s", "Newcastle upon Tyne 1830s", "chloroform inhaler", "Queen Victoria 1853", "Frith Street Soho"]
     images:
-      - {query: "John Snow physician portrait", count: 1, colorize: true}
-      - {query: "John Snow", count: 1}
-      - {query: "Queen Victoria 1850s portrait", count: 1}
       - {file: "web:wellcome:L0026842", image: "https://iiif.wellcomecollection.org/image/L0026842/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/q3w4pset", rights: "CC BY 4.0 (Wellcome Collection)", title: "John Snow's residence at 18 Sackville Street, London, with plaque. Photograph", note: "Snow's home in Soho/Mayfair, close to Broad Street"}   # LoC via Chrome
       - {file: "web:wellcome:L0018260", image: "https://iiif.wellcomecollection.org/image/L0018260/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/chbyh6yj", rights: "CC BY 4.0 (Wellcome Collection)", title: "Snow's chloroform inhaler", note: "Snow the anaesthetist (chloroform for Queen Victoria, 1853)"}   # LoC via Chrome
       - {file: "web:wellcome:M0009923", image: "https://iiif.wellcomecollection.org/image/M0009923/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/kgju9hsr", rights: "CC BY 4.0 (Wellcome Collection)", title: "John Snow's inhaler", note: "Snow's own anaesthesia apparatus"}   # LoC via Chrome
@@ -84,9 +80,8 @@ scenes:
       Snow lived nearby. He suspected the water at once, and his suspicion fell on a public pump on Broad Street, a popular well in the heart of the outbreak.
       He took samples of the water. It looked fairly clean. Under the microscope he saw some white particles, but nothing conclusive.
       So he did something else. He went from door to door.
+    candidates: ["Soho 1850s", "Golden Square London", "Middlesex Hospital", "Florence Nightingale 1854", "Broad Street Soho"]
     images:
-      - {query: "Soho 1854 cholera", count: 2}
-      - {query: "Soho London 1850s", count: 1}
       - {file: "web:wellcome:L0028567", image: "https://iiif.wellcomecollection.org/image/L0028567/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/eu4yv86b", rights: "Public Domain Mark (public domain)", title: "Broad Street (now Broadwick Street), Soho, with the replica of the Broad Street pump. Photograph", note: "the street of the 1854 outbreak today"}   # LoC via Chrome
       - {file: "web:wellcome:V0013836", image: "https://iiif.wellcomecollection.org/image/V0013836/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/aff7jbjn", rights: "Public Domain Mark (public domain)", title: "The Workhouse, Poland Street, Soho: the interior. Coloured aquatint after Pugin and Rowlandson", date: "1809", note: "the Poland Street workhouse - almost no deaths: it had its own well"}   # LoC via Chrome
       - {file: "web:wellcome:L0072150", image: "https://iiif.wellcomecollection.org/image/L0072150/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/j6bgbzq4", rights: "Public Domain Mark (public domain)", title: "Report on the cholera outbreak in the Parish of St. James, Westminster (Cholera Inquiry Committee)", date: "1855", note: "official report on the Broad Street outbreak"}   # LoC via Chrome
@@ -102,9 +97,8 @@ scenes:
       A brewery stood right next to the pump. None of its workers caught cholera. They were given a daily allowance of beer, and drank that instead of water from the well.
       A large workhouse nearby, home to hundreds of poor people, had very few cases. It had its own well.
       And some victims lived far away from Broad Street. When Snow investigated, he found that they too had drunk the pump's water. Some families simply preferred its taste. A few of the victims were children who went to school near the pump. In Snow's own words, there had been no particular outbreak of cholera in this part of London, except among the persons who were in the habit of drinking the water of the pump.
+    candidates: ["John Snow map", "Henry Whitehead", "St Luke's Berwick Street", "Poland Street workhouse", "Lion Brewery Broad Street"]
     images:
-      - {query: "Snow cholera map Broad Street", count: 2}
-      - {query: "London 1850s", count: 1}
       - {file: "web:wellcome:L0072917", image: "https://iiif.wellcomecollection.org/image/L0072917/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/uxgfjt62", rights: "Public Domain Mark (public domain)", title: "A map taken from a report by Dr. John Snow (deaths around the Broad Street pump)", date: "1854-1855", note: "Snow's cholera map"}   # LoC via Chrome
       - {file: "web:wellcome:L0072142", image: "https://iiif.wellcomecollection.org/image/L0072142/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/dx4prdbj", rights: "Public Domain Mark (public domain)", title: "Plan showing the ascertained deaths from cholera (Broad Street, 1854)", date: "1855", note: "death map of the Golden Square area"}   # LoC via Chrome
       - {file: "web:wellcome:L0071633", image: "https://iiif.wellcomecollection.org/image/L0071633/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/k2ezznay", rights: "Public Domain Mark (public domain)", title: "Plan showing the ascertained deaths from cholera", date: "1855", note: "second copy / version of the death plan"}   # LoC via Chrome
@@ -122,9 +116,8 @@ scenes:
       They were sceptical. But they agreed to act. The next day, the pump was put out of use. According to the famous story, its handle was removed.
       The outbreak was probably already fading by then, as people fled and the source weakened. Snow himself admitted it.
       But the investigation had done something more important than stopping one outbreak. It showed, with names, addresses and a map, where the disease was coming from. Yet once the danger had passed, the authorities put the handle back. Across London, the epidemic of that year went on to kill thousands more.
+    candidates: ["St James parish vestry", "water pump London 19th century", "street pump Victorian", "Board of Guardians"]
     images:
-      - {query: "John Snow pump replica Broadwick Street", modern: true, count: 1}
-      - {query: "John Snow pub Broadwick Street", modern: true, count: 2}
       - {file: "web:wellcome:L0011181", image: "https://iiif.wellcomecollection.org/image/L0011181/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/r62e8ty8", rights: "CC BY 4.0 (Wellcome Collection)", title: "Water from a pump in Broad Street, Golden Square, London", note: "the Broad Street pump water"}   # LoC via Chrome
       - {file: "web:wellcome:L0072154", image: "https://iiif.wellcomecollection.org/image/L0072154/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/yabjhvd4", rights: "Public Domain Mark (public domain)", title: "Report on the cholera outbreak in the Parish of St. James", date: "1855", note: "report page (pump / water evidence)"}   # LoC via Chrome
       - {file: "web:wellcome:L0072155", image: "https://iiif.wellcomecollection.org/image/L0072155/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/c5jsey2m", rights: "Public Domain Mark (public domain)", title: "Report on the cholera outbreak in the Parish of St. James", date: "1855", note: "report page (pump / water evidence)"}   # LoC via Chrome
@@ -140,10 +133,8 @@ scenes:
       Snow went from house to house, checking which company supplied each home where someone had died. He even tested the water's salt content to tell the two supplies apart. Another doctor, Arthur Hill Hassall, examined the filtered water of the south London companies under the microscope, and found animal hair among other foul things.
       The result was striking. Households supplied by Southwark and Vauxhall suffered many times more cholera deaths than those supplied by Lambeth.
       Snow called it an experiment on the grandest scale. In his words, no fewer than three hundred thousand people, of every age and occupation, and of every rank and station, were divided into two groups, without their choice, and in most cases without their knowledge.
+    candidates: ["Southwark and Vauxhall water company", "Lambeth water works", "Thames water supply 1850s", "Arthur Hill Hassall microscope", "water cart London"]
     images:
-      - {query: "Thames 1850s river", count: 1}
-      - {query: "London 1850s", count: 1}
-      - {query: "Southwark 1850s", count: 1}
       - {file: "web:wellcome:L0014334", image: "https://iiif.wellcomecollection.org/image/L0014334/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/jxd9xknr", rights: "Public Domain Mark (public domain)", title: "Water of Southwark & Vauxhall Co. (microscopic view)", date: "1850s", note: "the company drawing sewage-laden Thames water"}   # LoC via Chrome
       - {file: "web:wellcome:L0023147", image: "https://iiif.wellcomecollection.org/image/L0023147/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/rj25qedd", rights: "Public Domain Mark (public domain)", title: "A microscopic examination of the water supplied to the inhabitants of London (Hassall), plate", date: "1850", note: "what was in London's water, 1850"}   # LoC via Chrome
       - {file: "web:wellcome:L0023146", image: "https://iiif.wellcomecollection.org/image/L0023146/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/rj25qedd", rights: "Public Domain Mark (public domain)", title: "A microscopic examination of the water supplied to the inhabitants of London (Hassall), plate", date: "1850", note: "London water under the microscope"}   # LoC via Chrome
@@ -162,10 +153,8 @@ scenes:
       At a house on Broad Street, a baby had fallen ill with cholera just before the outbreak. Her mother had washed the baby's nappies, and poured the water into a cesspit at the front of the house.
       That cesspit lay only about three feet from the well, and its brickwork was leaking.
       The water people trusted most had been mixing with sewage all along.
+    candidates: ["cesspool London 1850s", "Henry Whitehead curate", "Victorian slum courtyard"]
     images:
-      - {query: "Soho 1854 cholera", count: 1}
-      - {query: "cholera", count: 1}
-      - {query: "Soho 1854 cholera", count: 1}
       - {file: "web:wellcome:L0027123", image: "https://iiif.wellcomecollection.org/image/L0027123/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/frn4rd67", rights: "CC BY 4.0 (Wellcome Collection)", title: "A man holding his nose to avoid breathing in a miasma. Drawing", note: "miasma theory: disease from bad air"}   # LoC via Chrome
       - {file: "web:wellcome:L0032745", image: "https://iiif.wellcomecollection.org/image/L0032745/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/pz96auum", rights: "CC BY 4.0 (Wellcome Collection)", title: "A jester (disinfectant Papier d'Armenie) scourges cholera, typhoid, diphtheria and smallpox. Colour lithograph", date: "c. 1890", note: "'bad air' disinfectants"}   # LoC via Chrome
       - {file: "web:wellcome:L0039175", image: "https://iiif.wellcomecollection.org/image/L0039175/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/acv8r4bv", rights: "Public Domain Mark (public domain)", title: "Report on the mortality of cholera in England, 1848-49 (William Farr)", date: "1852", note: "Farr's statistics - elevation and 'miasma'"}   # LoC via Chrome
@@ -185,10 +174,8 @@ scenes:
       text: "The whole river was for the time a real sewer."
       source: "Michael Faraday, letter to The Times, July 1855"
       match: "whole river was, for the time"
+    candidates: ["John Simon medical officer", "William Farr", "Filippo Pacini", "Michael Faraday", "miasma cartoon"]
     images:
-      - {query: "Faraday Punch 1855 Father Thames", count: 1}
-      - {query: "Filippo Pacini", count: 1}
-      - {query: "Thames 1850s river", count: 1}
       - {file: "web:wellcome:L0011182", image: "https://iiif.wellcomecollection.org/image/L0011182/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/a9jnzz9w", rights: "Public Domain Mark (public domain)", title: "Report of the Committee for Scientific Inquiries in relation to the cholera epidemic of 1854", date: "1855", note: "the official committee that rejected Snow's water theory"}   # LoC via Chrome
       - {file: "web:wellcome:L0014336", image: "https://iiif.wellcomecollection.org/image/L0014336/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/rtnnd2mq", rights: "Public Domain Mark (public domain)", title: "Appendix to report of the committee for scientific inquiries ... cholera epidemic of 1854", date: "1855", note: "appendix page"}   # LoC via Chrome
       - {file: "web:wellcome:L0014335", image: "https://iiif.wellcomecollection.org/image/L0014335/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/rtnnd2mq", rights: "Public Domain Mark (public domain)", title: "Appendix to report of the committee for scientific inquiries ... cholera epidemic of 1854", date: "1855", note: "appendix plate"}   # LoC via Chrome
@@ -206,10 +193,8 @@ scenes:
       The smell became unbearable. It was so bad that inside the Houses of Parliament, beside the river, curtains were soaked in chloride of lime in an attempt to block it out. Members even discussed moving Parliament out of London. A newspaper reported that Benjamin Disraeli, the future prime minister, hurried out of a committee room with a mass of papers in one hand and his handkerchief pressed to his nose. He called the Thames a Stygian pool, reeking with ineffable and intolerable horrors. As The Times put it, Parliament was all but compelled to act by the force of sheer stench.
       The newspapers called it the Great Stink.
       John Snow did not live to see what happened next. On the tenth of June he suffered a stroke while working, and six days later he died, at the age of forty-five. The medical journal The Lancet gave him a short obituary that praised his work on chloroform, and said nothing about cholera. In 2013, a hundred and fifty-five years later, it published a correction.
+    candidates: ["Great Stink 1858", "Houses of Parliament 1858", "Benjamin Disraeli", "Punch 1858 Thames", "Silent Highwayman"]
     images:
-      - {query: "Great Stink", count: 1}
-      - {query: "Father Thames Punch 1858", count: 1}
-      - {query: "Great Stink", count: 1}
       - {file: "web:wellcome:V0020282ER", image: "https://iiif.wellcomecollection.org/image/V0020282ER/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/makuwh3r", rights: "Public Domain Mark (public domain)", title: "Poor sanitary conditions in London in 1862: four scenes. Wood engraving by W.E. Hodgkin", date: "1862", note: "London filth of the Great Stink years"}   # LoC via Chrome
       - {file: "web:wellcome:V0013571", image: "https://iiif.wellcomecollection.org/image/V0013571/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/tsymxueb", rights: "Public Domain Mark (public domain)", title: "Saint Thomas's Hospital, Lambeth, viewed from the north bank of the Thames. Engraving", date: "c. 1868", note: "the Thames at Westminster/Lambeth"}   # LoC via Chrome
       - {file: "curid:4465060"}   # Punch, 10 July 1858: The Silent Highwayman
@@ -224,10 +209,8 @@ scenes:
       Bazalgette built it to deal with the smell. But in doing so, he also cut off cholera's main route into the city's water. The new sewers still emptied into the Thames, further downstream, without treatment. In 1878, a pleasure steamer, the Princess Alice, sank close to the outfalls, and more than six hundred and fifty people died. Newspapers asked whether the sewage had killed some of them. Over the following years, London began to treat its sewage, and ships carried the sludge out to sea, a practice that continued until 1998.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "82 miles", text: "of main sewers, still in use", match: "about eighty-two miles of huge brick sewers"}
+    candidates: ["Joseph Bazalgette", "Crossness pumping station", "Abbey Mills pumping station", "Victoria Embankment construction", "sewer construction London 1860s", "Metropolitan Board of Works"]
     images:
-      - {query: "Bazalgette", count: 2, colorize: true}
-      - {query: "Victoria Embankment construction", count: 1}
-      - {query: "Joseph Bazalgette portrait", count: 1}
       - {file: "web:wellcome:L0006722", image: "https://iiif.wellcomecollection.org/image/L0006722/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/xk8wv6vj", rights: "Public Domain Mark (public domain)", title: "The engine-house at Crossness and the outfall of the southern Metropolitan sewerage. Wood engraving by J.M. Williams", date: "1865", note: "Bazalgette's Crossness pumping station"}   # LoC via Chrome
       - {file: "web:wellcome:V0020287", image: "https://iiif.wellcomecollection.org/image/V0020287/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/fkyzgak9", rights: "Public Domain Mark (public domain)", title: "The southern outfall works and sewage at Crossness, London. Wood engraving", date: "1860s", note: "Crossness outfall"}   # LoC via Chrome
       - {file: "web:wellcome:V0020257", image: "https://iiif.wellcomecollection.org/image/V0020257/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/vmvb5mm9", rights: "Public Domain Mark (public domain)", title: "The construction of the great sewage tunnels near Old Ford, Bow. Wood engraving after F. Thompson", date: "1859", note: "building Bazalgette's sewers, 1859"}   # LoC via Chrome
@@ -247,10 +230,8 @@ scenes:
       This time the outbreak was confined almost entirely to one part of the East End, between Aldgate and Bow, one of the few areas not yet connected to Bazalgette's system. Its water came from a company that had been releasing contaminated water into the supply.
       The pattern was impossible to explain with bad air. Even William Farr, the government statistician and one of Snow's chief opponents, now saw it. He ordered that no unboiled water should be drunk. It was exactly what John Snow had predicted.
       In 1883, the German scientist Robert Koch identified the cholera bacterium again, this time convincing the world. The miasma theory was finished.
+    candidates: ["cholera 1866 East London", "Robert Koch", "Vibrio cholerae", "Bromley by Bow 1866", "William Farr"]
     images:
-      - {query: "cholera", count: 1}
-      - {query: "Robert Koch", count: 1}
-      - {query: "Vibrio cholerae", modern: true, count: 1}
       - {file: "web:wellcome:V0003256", image: "https://iiif.wellcomecollection.org/image/V0003256/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/gnd6jpy2", rights: "Public Domain Mark (public domain)", title: "Robert Koch. Lithograph", date: "1891", note: "Koch identified Vibrio cholerae in 1883-84"}   # LoC via Chrome
       - {file: "web:wellcome:L0010412", image: "https://iiif.wellcomecollection.org/image/L0010412/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/bd47crst", rights: "Public Domain Mark (public domain)", title: "Robert Koch. Wood engraving by P. Naumann", date: "1890", note: "Robert Koch"}   # LoC via Chrome
       - {file: "web:wellcome:V0026955", image: "https://iiif.wellcomecollection.org/image/V0026955/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/pd42n72q", rights: "Public Domain Mark (public domain)", title: "Filippo Pacini. Photograph by A. Hautmann", note: "Pacini saw the cholera bacterium in 1854"}   # LoC via Chrome
@@ -263,9 +244,8 @@ scenes:
       Today, John Snow is considered one of the founders of epidemiology, the science of tracking how diseases spread. His method is still taught to every new generation of public health students: find the cases, map them, and pay attention to the exceptions.
       Cholera has not gone away. It still infects an estimated three to five million people a year and kills tens of thousands, almost always where people lack clean water and sanitation. On what is now Broadwick Street in Soho, a replica of the pump, without a handle, was put up near the original site in 1992. The spot where the real pump stood is marked by a red granite stone, beside a pub named after John Snow.
       If you enjoyed this story from the archives, subscribe for more forgotten chapters of medical history.
+    candidates: ["John Snow pub", "Broadwick Street pump", "cholera vaccine", "Princess Alice disaster 1878"]
     images:
-      - {query: "John Snow pub Broadwick Street", modern: true, count: 1}
-      - {query: "John Snow", count: 1}
       - {file: "web:wellcome:L0025760", image: "https://iiif.wellcomecollection.org/image/L0025760/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/n2ykxrzm", rights: "CC BY 4.0 (Wellcome Collection)", title: "Broadsheet: Cholera and Water, 1866", date: "1866", note: "by 1866 the warning was 'boil your water' - Snow's idea accepted"}   # LoC via Chrome
       - {file: "web:wellcome:L0007311", image: "https://iiif.wellcomecollection.org/image/L0007311/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/nh6nj7cy", rights: "CC BY 4.0 (Wellcome Collection)", title: "Anti-cholera vaccines, 3 September 1892", date: "1892", note: "1892 (Hamburg year) cholera vaccines"}   # LoC via Chrome
       - {file: "web:wellcome:L0037330", image: "https://iiif.wellcomecollection.org/image/L0037330/full/max/0/default.jpg", page_url: "https://wellcomecollection.org/works/xcv33yck", rights: "Public Domain Mark (public domain)", title: "Anti-cholera inoculation: report to the Government of India / by W.M. Haffkine", date: "1895", note: "first cholera vaccine"}   # LoC via Chrome
