@@ -1,0 +1,27 @@
+# science — VII. Why It Was So Deadly
+
+For decades, people wondered how a liquid used in cookies could kill. Molasses is about forty per cent denser than water, so a tank full of it held an enormous amount of energy. And it behaves strangely: under pressure it thins and flows fast, then it slows and thickens again. In 2016, a team of scientists and students at Harvard modelled the disaster. They gathered 1919 newspaper reports, old maps and weather records, and flooded a scale model of the neighbourhood with cold corn syrup. They concluded that the reports of the wave's terrible speed were believable. They found that the cold [...]
+
+| # | ref | source | date | W×H | licence | title |
+|---|---|---|---|---|---|---|
+| 1 | `curid:194020678` | commons | 1931-04 | 1062×1002 | Public domain | [Molasses crumb pie](https://commons.wikimedia.org/wiki/File:Molasses_crumb_pie.png) |
+| 2 | `curid:17080163` | commons | between circa 1917 a | 2038×3000 | Public domain | ["Eat Syrup and Molasses. Save Sugar by Using Best Louisiana Molasses a](https://commons.wikimedia.org/wiki/File:%22Eat_Syrup_and_Molasses._Save_Sugar_by_Using_Best_Louisiana_Molasses_and_Sugar_Cane_Syrup.%22_-_NARA_-_512531.jpg) |
+| 3 | `europeana:07101/G_10562` | europeana |  | 3506×3020 | Public domain | [Melasa](https://www.europeana.eu/item/07101/G_10562) |
+| 4 | `europeana:282/gab6834` | europeana |  | 1024×778 | CC BY 4.0 | [CANAL OF BALON - FROM LANINO, TORINO/VIEW OF THE MOLASSES CANAL FROM L](https://www.europeana.eu/item/282/gab6834) |
+| 5 | `europeana:282/gab6845` | europeana |  | 762×1024 | CC BY 4.0 | [CANAL OF THE BALON - VIA DEL FIANDO - TOWARDS TANNERIES. ROAR/VIEW OF ](https://www.europeana.eu/item/282/gab6845) |
+| 6 | `wellcome:v6255tv6` | wellcome |  | 400×229 | Public Domain Mark | [West Indian sugar-growers making gin for the British market at the exp](https://wellcomecollection.org/works/zbu3cbhg) |
+| 7 | `curid:65695980` | commons | 1891 | 3704×4048 | Public domain | [Crow brand molasses. Bryan Bro's New Orleans LCCN2003667053](https://commons.wikimedia.org/wiki/File:Crow_brand_molasses._Bryan_Bro%27s_New_Orleans_LCCN2003667053.jpg) |
+| 8 | `curid:65696066` | commons | 1891 | 3624×4048 | Public domain | [Eagle brand molasses. Bryan Bros. New Orleans LCCN2003667055](https://commons.wikimedia.org/wiki/File:Eagle_brand_molasses._Bryan_Bros._New_Orleans_LCCN2003667055.jpg) |
+| 9 | `curid:65696121` | commons | 1891 | 3720×4224 | Public domain | [Rooster brand molasses. Bryan Bro's. New Orleans LCCN2003667057](https://commons.wikimedia.org/wiki/File:Rooster_brand_molasses._Bryan_Bro%27s._New_Orleans_LCCN2003667057.jpg) |
+| 10 | `curid:65696148` | commons | 1891 | 3672×4080 | Public domain | [Turkey brand molasses. Bryan Bro's. New Orleans LCCN2003667058](https://commons.wikimedia.org/wiki/File:Turkey_brand_molasses._Bryan_Bro%27s._New_Orleans_LCCN2003667058.jpg) |
+| 11 | `curid:65696040` | commons | 1891 | 3728×4056 | Public domain | [Duck brand molasses. Bryan Bro's New Orleans LCCN2003667054](https://commons.wikimedia.org/wiki/File:Duck_brand_molasses._Bryan_Bro%27s_New_Orleans_LCCN2003667054.jpg) |
+| 12 | `curid:31774910` | commons | 1918 | 3790×4735 | Public domain | [Eat cane syrup & molasses, save sugar by using best Louisiana molasses](https://commons.wikimedia.org/wiki/File:Eat_cane_syrup_%26_molasses,_save_sugar_by_using_best_Louisiana_molasses_and_sugar_cane_syrup_LCCN00653193.jpg) |
+| 13 | `dpla:2278a86306ded6325c1501753bb41555` | dpla | 1887 | 68×150 | No Copyright - United States | [Molasses.](https://digitalcollections.nypl.org/items/3c98c3f0-c6b5-012f-891b-3c075448cc4b) |
+| 14 | `dpla:09b1a0a8e2ba6b85789c03b9e7924d33` | dpla | 1894 | 400×320 | http://creativecommons.org/pub | [Making molasses](https://www.lib.uidaho.edu/digital/ott/items/ott621.html) |
+| 15 | `curid:51229573` | commons | 2011-01-01 00:00 | 1024×748 | Public domain | [Harvard University drill squad LOC 16476631894](https://commons.wikimedia.org/wiki/File:Harvard_University_drill_squad_LOC_16476631894.jpg) |
+| 16 | `europeana:91639/SMVK_MM_objekt_3400019` | europeana |  | 424×445 | CC0 | [Axe, Yxa](https://www.europeana.eu/item/91639/SMVK_MM_objekt_3400019) |
+| 17 | `curid:53632989` | commons | 1911-01-01 00:00:00 | 1024×768 | No restrictions | [Harvard varsity LOC 2163483806](https://commons.wikimedia.org/wiki/File:Harvard_varsity_LOC_2163483806.jpg) |
+| 18 | `curid:51229613` | commons | 2011-01-01 00:00 | 1024×749 | Public domain | [Harvard, Military motor cycle squad LOC 16911289048](https://commons.wikimedia.org/wiki/File:Harvard,_Military_motor_cycle_squad_LOC_16911289048.jpg) |
+| 19 | `curid:53635552` | commons | 1911-01-01 00:00:00 | 1024×755 | No restrictions | [Departure Yale - Harvard Athletes 6-24-11 LOC 2162714209](https://commons.wikimedia.org/wiki/File:Departure_Yale_-_Harvard_Athletes_6-24-11_LOC_2162714209.jpg) |
+| 20 | `curid:53657053` | commons | 1909-06-27 00:00:00 | 2048×2855 | No restrictions | [Yale and Harvard will row in their annual contest at New London this w](https://commons.wikimedia.org/wiki/File:Yale_and_Harvard_will_row_in_their_annual_contest_at_New_London_this_week_LOC_3608455948.jpg) |
+| 21 | `curid:66620719` | commons | between 1860 and 186 | 1980×3071 | Public domain | [Edward Everett, politician, orator, and president of Harvard Universit](https://commons.wikimedia.org/wiki/File:Edward_Everett,_politician,_orator,_and_president_of_Harvard_University)_-_J.W._Black,_173_Washington_St.,_Boston_LCCN2017660618.jpg) |

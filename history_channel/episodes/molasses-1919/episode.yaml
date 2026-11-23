@@ -36,7 +36,7 @@ scenes:
     chapter: "I. The North End"
     date: "Boston, 1919"
     narration: >
-      Boston's North End was one of the most crowded neighbourhoods in America. Wave after wave of newcomers had settled here: first the Irish, then Jewish families from Eastern Europe, and then Italians. By 1910, Italian immigrants alone made up a quarter of all its residents, packed into tenements near the harbour.
+      Boston's North End is the city's oldest neighbourhood, settled in the 1630s. It was the home of Paul Revere. By 1919 it was one of the most crowded neighbourhoods in America. Wave after wave of newcomers had settled here: first the Irish, then Jewish families from Eastern Europe, and then Italians. By 1910, Italian immigrants alone made up a quarter of all its residents, packed into tenements near the harbour.
       Along Commercial Street ran the docks, warehouses, a fire station and the Atlantic Avenue elevated railway, opened in 1901, carrying trains above the street on steel girders.
       And standing over it all was a giant steel tank, owned by the Purity Distilling Company, bought in 1917 by United States Industrial Alcohol.
       It was fifty feet tall and ninety feet across. It could hold about two point three million gallons of molasses, weighing some twelve thousand tonnes.
@@ -45,6 +45,7 @@ scenes:
     candidates: ["North End Boston 1910", "Hanover Street Boston", "Commercial Street Boston", "Atlantic Avenue Elevated", "Boston Elevated Railway 1910", "Copps Hill Boston"]
     images:
       - {file: "curid:161965465"}   # North End, view from the State House dome, 28 June 1907
+      - {file: "curid:168306011", match: "It was the home of Paul Revere"}   # Old North Church, Boston, interior c. 1910-1920
       - {file: "web:bpl:br86b8325", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:br86b833f/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:br86b8325", rights: "No known copyright restrictions.", title: "Charter Street, North End", date: "ca. 1898", note: "narrow North End street of tenements, the crowded immigrant neighbourhood"}   # LoC via Chrome
       - {file: "web:bpl:s46587341", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:wd378k43p/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:s46587341", rights: "No known copyright restrictions.", title: "Salem Street?, North End", date: "ca. 1910", note: "North End street life around 1910"}   # LoC via Chrome
       - {file: "web:bpl:69701q045", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:0z70cm432/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:69701q045", rights: "No known copyright restrictions.", title: "Boston, Massachusetts, a bit of Salem Street", date: "ca. 1900-1915", note: "Salem Street, heart of the Italian North End"}   # LoC via Chrome
@@ -102,7 +103,7 @@ scenes:
     date: "15 January 1919"
     narration: >
       The fifteenth of January 1919 was unusually mild. The day before, it had been bitterly cold. Now the temperature rose to around forty degrees Fahrenheit.
-      At about half past twelve, as dock workers ate lunch and children played outside, people nearby heard a deep rumble, followed by sharp cracks, like a machine gun. Others said it felt like the ground was shaking, or that it sounded like a passing elevated train. Rivets were shooting out of the tank's steel plates.
+      At about half past twelve, as dock workers ate lunch and children played outside, people nearby heard a deep rumble, followed by sharp cracks, like a machine gun. Others described a tremendous crash, a deep growl, a bang like a clap of thunder. Some said it felt like the ground was shaking, or that it sounded like a passing elevated train. Rivets were shooting out of the tank's steel plates.
       Then the tank split open.
       Millions of gallons of molasses burst out in a single wave, around twenty-five feet high at its peak, rushing through the streets at an estimated thirty-five miles an hour.
     candidates: ["Boston 1919", "Boston harbor 1919", "Boston street 1919"]
@@ -112,12 +113,13 @@ scenes:
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_leopold_ver01:data:sn83030193:00280766197:1919011501:0197/full/pct:100/0/default.jpg", date: "1919-01-15", paper: "The Evening World (New York, N.Y.)", page_url: "https://www.loc.gov/resource/sn83030193/1919-01-15/ed-1/?sp=1", crop: [0.27, 0.272, 0.392, 0.493], match: "At about half past twelve", note: "Molasses blowup kills 20 and wrecks Boston buildings; elevated railway supports demolished, sticky flood hampers rescuers."}   # LoC via Chrome
       - {file: "curid:145775440", match: "Then the tank split open"}   # Boston Elevated Railway after the Molasses Flood, Jan 1919 (City of Boston Archives, PD-US-expired)
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_pielou_ver01:data:sn83030431:0021247440A:1919011601:0323/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "The Sun (New York, N.Y.)", page_url: "https://www.loc.gov/resource/sn83030431/1919-01-16/ed-1/?sp=1", crop: [0.1550, 0.2880, 0.2694, 0.3630], note: "Molasses tank blast kills 9: huge container in Boston bursts, injuring fifty and wrecking buildings."}   # LoC via Chrome
+      - {file: "curid:108375316"}   # Boston streetcar, 1919 postcard
 
   - id: wave
     chapter: "V. The Wave"
     narration: >
       The wave smashed through everything in its path.
-      Steel panels from the tank hurtled into the girders of the elevated railway, nearly bringing the tracks down. A streetcar was pushed off its rails. Buildings were knocked from their foundations. A truck was picked up and thrown into the harbour. The Boston Globe reported that people were picked up by a rush of air and hurled many feet.
+      Steel panels from the tank hurtled into the girders of the elevated railway, nearly bringing the tracks down. A streetcar was pushed off its rails. Buildings were knocked from their foundations and crushed. Several blocks were flooded two to three feet deep in molasses. A truck was picked up and thrown into the harbour. The Boston Globe reported that people were picked up by a rush of air and hurled many feet.
       People and horses were caught in the flood. Molasses is heavy and thick. Once it engulfed someone, they could barely move or breathe.
       A newspaper, the Boston Post, described the scene: horses died like so many flies on sticky fly-paper; the more they struggled, the deeper in the mess they were ensnared.
       The first rescuers were a hundred and sixteen cadets from the USS Nantucket, a training ship of the Massachusetts Nautical School, docked nearby. They ran several blocks and waded into the molasses, pulling out anyone they could reach. Then came police, soldiers, sailors and the Red Cross. Some Red Cross nurses waded into the molasses themselves. Doctors set up a makeshift hospital in a nearby building, and many people worked through the night.
@@ -128,11 +130,14 @@ scenes:
       - {file: "curid:28584387", match: "into the girders of the elevated railway"}   # wreckage under the elevated tracks, 1919
       - {file: "curid:145775432"}   # Boston Elevated after the flood, Jan 1919 (City of Boston Archives)
       - {file: "curid:236987", match: "Buildings were knocked from their foundations"}   # panorama of the disaster site, 15 Jan 1919 (BPL)
+      - {file: "curid:28388481"}   # Boston Elevated Railway lines, 1910 map
       - {file: "web:bpl:37720p605", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:37720p61f/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:37720p605", rights: "No known copyright restrictions.", title: "N. end of Charlestown Bridge", date: "1900-02-14", note: "the bridge approach on Commercial Street, in the path of the wave"}   # LoC via Chrome
       - {file: "curid:145775433"}   # Boston Elevated after the flood, Jan 1919
       - {file: "curid:181058540", match: "Then came police, soldiers, sailors and the Red Cross"}   # American Red Cross photo: Boston molasses explosion, Jan 1919 (LoC)
+      - {file: "curid:67653937", match: "a hundred and sixteen cadets from the USS Nantucket"}   # cadets of the Massachusetts Nautical School (with Gov. Coolidge), 1923 (LoC)
+      - {file: "curid:62640554", match: "Some Red Cross nurses waded"}   # American Red Cross nurses, 1917-1919
+      - {file: "curid:62321098"}   # nurse in American Red Cross uniform, 1919 (NARA)
       - {file: "curid:145775434"}   # Boston Elevated after the flood, Jan 1919
-      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:iune:batch_iune_feature_ver01:data:sn92053934:00295873334:1919011801:0202/full/pct:100/0/default.jpg", date: "1919-01-18", paper: "Rock Island Argus (Rock Island, Ill.)", page_url: "https://www.loc.gov/resource/sn92053934/1919-01-18/ed-1/?sp=2", crop: [0.16, 0.068, 0.508, 0.34], match: "The cleanup took weeks", note: "Photograph: wreckage of the tank site on the waterfront, with sailors from warships at work on the railway tracks; streets and wharf littered with wreckage."}   # LoC via Chrome (photo of the wreckage, moved from cleanup)
 
 
   - id: victims
@@ -142,7 +147,7 @@ scenes:
       Six of them worked at the city's paving yard beside the tank: labourers, a paver and two blacksmiths. There were teamsters and drivers with their wagons, a longshoreman, an expressman and a messenger. George Layhe, a firefighter of Engine 31, died when the wave smashed into his firehouse. In a house nearby, sixty-five-year-old Bridget Clougherty was killed when her home was flattened, and Stephen Clougherty, thirty-four, died too. The oldest victim, Michael Sinnott, was seventy-eight. Two of the teamsters, Eric Laird and Peter Shaughnessy, were only seventeen and eighteen.
       The youngest were two ten-year-olds, Pasquale Iantosca and Maria Di Stasio. Several other children were caught as they played or walked home for lunch.
       One boy, Anthony di Stasio, was walking home from school with his sisters when the wave picked him up and carried him on its crest, almost as if he were surfing. Then it rolled him like a pebble. He heard his mother calling his name, but his throat was so full of molasses that he could not answer. He passed out, and woke to find three of his four sisters looking down at him. Anthony survived. The fourth, ten-year-old Maria, did not.
-      Many of the families were immigrants who had come to Boston for work and a better life. A hundred years later, their twenty-one names would be read aloud on the spot where the tank had stood.
+      Many of the families were immigrants who had come to Boston for work and a better life. Many of the families were immigrants who had come to Boston for work and a better life. A hundred years later, their twenty-one names would be read aloud on the spot where the tank had stood.
     candidates: ["North End Boston children", "Boston teamster horse wagon", "Boston fire engine 1919", "Boston firehouse"]
     images:
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:ct:batch_ct_berlin_ver01:data:sn82014086:00295866214:1919011601:0155/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "Norwich Bulletin (Norwich, Conn.)", page_url: "https://www.loc.gov/resource/sn82014086/1919-01-16/ed-1/?sp=1", crop: [0.27, 0.164, 0.392, 0.321], match: "The dead came from every part", note: "Nine killed in Boston: list of the identified dead, among them city laborers, a fireman and a blacksmith."}   # LoC via Chrome
@@ -170,27 +175,34 @@ scenes:
       - {file: "curid:65696066"}   # molasses label, 1891 (LoC)
       - {file: "curid:17080163"}   # WWI poster: eat syrup and molasses, save sugar
       - {file: "curid:145775437", match: "A modern analysis in 2014"}   # wreckage after the flood, Jan 1919
+      - {file: "curid:65696121"}   # molasses label, New Orleans 1891 (LoC)
+      - {file: "curid:65696148"}   # molasses label, 1891 (LoC)
+      - {file: "curid:25753", match: "Some victims had been swept into the harbour"}   # USS Walker in Boston harbour, 1 February 1919
+      - {file: "curid:33490463"}   # Charlestown waterfront, Boston, 1910 (LoC)
+      - {file: "curid:9486055"}   # USS Welles at Boston, September 1919
       - {query: "Molasses Flood", count: 2}
 
   - id: cleanup
     chapter: "VIII. Cleaning Up a Sea of Syrup"
     narration: >
-      The cleanup took weeks. Fresh water barely shifted the sticky mass, so crews sprayed it with salt water from a fireboat, and spread sand to soak it up. Several hundred people joined the work.
+      The cleanup took weeks. Fresh water barely shifted the sticky mass, so crews sprayed it with salt water from a fireboat, and spread sand to soak it up. Several hundred people joined the work, and it took far longer to clean the rest of Boston and its suburbs.
       Rescuers, workers and sightseers tracked it across the city: onto subway platforms, the seats of trains and streetcars, pay telephones and into homes. As one account put it, everything a Bostonian touched was sticky. The harbour stayed brown until the summer.
       And for decades afterwards, North End residents said that on hot summer days, the neighbourhood still smelled faintly of molasses.
     candidates: ["Boston fireboat", "Boston harbor", "Boston streetcar 1919"]
     images:
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:iune:batch_iune_feature_ver01:data:sn92053934:00295873334:1919011801:0202/full/pct:100/0/default.jpg", date: "1919-01-18", paper: "Rock Island Argus (Rock Island, Ill.)", page_url: "https://www.loc.gov/resource/sn92053934/1919-01-18/ed-1/?sp=2", crop: [0.16, 0.068, 0.508, 0.34], match: "Fresh water barely shifted the sticky mass", note: "Photograph: wreckage of the tank site on the waterfront, with sailors from warships at work on the railway tracks; streets and wharf littered with wreckage."}   # LoC via Chrome (photo of the wreckage, moved from cleanup)
       - {file: "web:bpl:70795m80q", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:70795m810/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:70795m80q", rights: "No known copyright restrictions.", title: "A Boston fire boat fighting the fire", date: "1908", note: "Boston fireboat - fireboats hosed the harbor water over the molasses during the clean-up"}   # LoC via Chrome
       - {file: "curid:15761512", match: "sprayed it with salt water from a fireboat"}   # Fireboat 44 in action, Boston, c. 1906
       - {file: "curid:62611286", match: "the seats of trains and streetcars"}   # Boston streetcar, May 1919
       - {file: "curid:14691020", match: "The harbour stayed brown until the summer"}   # view map of Boston Harbor, 1899
+      - {file: "curid:62587813"}   # streetcar tracks near Boston, May 1919
 
   - id: trial
     chapter: "IX. The Trial"
     date: "1919–1925"
     narration: >
-      The company had a ready explanation. It claimed that anarchists had blown up the tank. In 1919, America was gripped by fear of anarchist bombings, and the story was not as absurd as it sounds today.
-      Later that same year, followers of the Italian anarchist Luigi Galleani mailed dozens of bombs to politicians and officials, and on the second of June 1919 they set off nine large bombs almost at once in eight American cities. One of them wrecked the front of the Attorney General's house in Washington. In September, even Boston's police went on strike, and the city went through nights of riots. The governor who stood firm against the strikers, Calvin Coolidge, became famous across the country for it, and a few years later he was President of the United States. In that atmosphere, a bomb sounded believable.
+      The company had a ready explanation. It claimed that anarchists had blown up the tank. Some of the alcohol made from the molasses was meant for munitions, the company argued, so it was a natural target. In 1919, America was gripped by fear of anarchist bombings, and the story was not as absurd as it sounds today.
+      Later that same year, followers of the Italian anarchist Luigi Galleani mailed dozens of bombs to politicians and officials, and on the second of June 1919 they set off nine large bombs almost at once in eight American cities. One of them wrecked the front of the Attorney General's house in Washington. In September, even Boston's police went on strike: one thousand one hundred and seventeen of its fifteen hundred officers walked off the job. For several nights the city was lawless, and several thousand men of the Massachusetts State Guard restored order by force. Nine people were killed. The governor who stood firm against the strikers, Calvin Coolidge, became famous across the country for it, and a few years later he was President of the United States. In that atmosphere, a bomb sounded believable.
       But the families did not accept it. One hundred and nineteen residents and businesses joined together in one of the first class-action lawsuits in Massachusetts.
       For about three years, a court-appointed auditor, Hugh Ogden, heard testimony from engineers, workers and witnesses. In the end, he found that the tank had simply been too weak for its load, built without proper calculation and never properly tested.
       He rejected the company's bomb story. United States Industrial Alcohol was held responsible. It paid around six hundred and twenty-eight thousand dollars in damages, roughly seven thousand dollars for each victim's family.
@@ -198,13 +210,15 @@ scenes:
       - {big: "$628,000", text: "paid in damages", match: "It paid around six hundred and twenty-eight thousand dollars"}
     candidates: ["Luigi Galleani", "1919 bombing Palmer house", "Boston police strike 1919", "Calvin Coolidge 1919", "Massachusetts State Guard 1919", "Suffolk County Courthouse Boston"]
     images:
-      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:au:batch_au_carver_ver01:data:sn85038485:00340582792:1919011601:0221/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "The Birmingham Age-Herald (Birmingham, Ala.)", page_url: "https://www.loc.gov/resource/sn85038485/1919-01-16/ed-1/?sp=1", crop: [0.7000, 0.5477, 0.8320, 0.6230], match: "The Trial", note: "Owned by alcohol firm: the tank belonged to Purity Distilling, a subsidiary of U.S. Industrial Alcohol; its wall split and two million gallons rushed over the streets."}   # LoC via Chrome
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:au:batch_au_carver_ver01:data:sn85038485:00340582792:1919011601:0221/full/pct:100/0/default.jpg", date: "1919-01-16", paper: "The Birmingham Age-Herald (Birmingham, Ala.)", page_url: "https://www.loc.gov/resource/sn85038485/1919-01-16/ed-1/?sp=1", crop: [0.7000, 0.5477, 0.8320, 0.6230], match: "The company had a ready explanation", note: "Owned by alcohol firm: the tank belonged to Purity Distilling, a subsidiary of U.S. Industrial Alcohol; its wall split and two million gallons rushed over the streets."}   # LoC via Chrome
       - {file: "curid:79430117", match: "followers of the Italian anarchist Luigi Galleani"}   # New-York Tribune coverage of the June 1919 bombings
       - {file: "curid:79426583", match: "wrecked the front of the Attorney General's house"}   # A. Mitchell Palmer's house after the bomb, June 1919
       - {file: "curid:79587657"}   # home of State Rep. Leland W. Powers, Newtonville, Mass., after the bomb, June 1919
       - {file: "loc:2014711458", image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/31300/31303v.jpg", rights: "No known restrictions on publication.", title: "Wall St. bomb", date: "1920", note: "the 1920 Wall Street anarchist bombing: the climate in which the company's bomb theory was believable"}   # LoC via Chrome
       - {file: "web:bpl:xp68kq91r", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:xp68kq921/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:xp68kq91r", rights: "No known copyright restrictions.", title: "Faneuil Hall. Headquarters of National Guard during Police Strike", date: "1919", note: "1919 Boston police strike - same year as the flood"}   # LoC via Chrome
       - {file: "curid:124939400"}   # Chestnut Hill pumping station guarded during the Boston police strike, Sept 1919
+      - {file: "curid:2468487", match: "several thousand men of the Massachusetts State Guard"}   # Gov. Coolidge inspects the militia, 1919
+      - {file: "curid:78382767"}   # Boston Police Strike plaque (CC0)
       - {file: "web:bpl:xp68kq81h", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:xp68kq82s/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:xp68kq81h", rights: "No known copyright restrictions.", title: "Flag raising ceremony on Boston Common, First Motor Corps, Mass. Nat. Guard (possibly police strike of 1919)", date: "1919", note: "Guard troops on Boston Common, 1919"}   # LoC via Chrome
       - {file: "curid:67018486", match: "The governor who stood firm against the strikers"}   # Gov. Calvin Coolidge, 1919 (LoC)
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_hale_ver01:data:sn82014248:00513683303:1925041401:0466/full/pct:100/0/default.jpg", date: "1925-04-14", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1925-04-14/ed-1/?sp=1", crop: [0.838, 0.692, 0.968, 0.828], match: "It claimed that anarchists had blown up the tank", note: "Plaintiffs protest low awards in the molasses tank case against U.S. Industrial Alcohol; the defence had claimed a bomb explosion destroyed the tank."}   # LoC via Chrome
@@ -214,7 +228,7 @@ scenes:
     chapter: "Epilogue"
     narration: >
       The case is considered a milestone in the development of modern corporate regulation. The verdict changed the rules. Massachusetts, and then states across the country, began requiring that large structures be designed and approved by licensed engineers and architects, with their calculations on file.
-      The tank was never rebuilt. The site became a yard for the elevated railway, and today it is a city park, Langone Park, with a baseball field, a playground and bocce courts. A small plaque at the entrance to the neighbouring park marks the disaster. It speaks of a forty-foot wave; most modern estimates are closer to twenty-five feet. Much of what we know about the victims comes from the historian Stephen Puleo, who pieced together their stories in his 2004 book, Dark Tide.
+      The tank was never rebuilt. The elevated railway whose girders it bent kept running for almost twenty more years; it closed in 1938 and was torn down. The site became a yard for the elevated railway, and today it is a city park, Langone Park, with a baseball field, a playground and bocce courts. A small plaque at the entrance to the neighbouring park marks the disaster. It speaks of a forty-foot wave; most modern estimates are closer to twenty-five feet. Much of what we know about the victims comes from the historian Stephen Puleo, who pieced together their stories in his 2004 book, Dark Tide.
       On the fifteenth of January 2019, a hundred years to the day, people gathered there. Ground-penetrating radar had found the tank's concrete base, still buried about half a metre under the baseball field. They stood in a circle marking the edge of the tank, and the names of the twenty-one people who died were read aloud.
       It is easy to laugh at the idea of a molasses flood. But the people of the North End paid for it with their lives, and every building we trust today owes a little to what Boston learned that day.
       If you enjoyed this story from the archives, subscribe for more forgotten chapters of history.
@@ -223,7 +237,13 @@ scenes:
       - {file: "web:bpl:fj236m82d", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj236m83p/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj236m82d", rights: "No known copyright restrictions.", title: "Custom House Tower", date: "1920-09-01", note: "Boston skyline of 1920, the year after the disaster"}   # LoC via Chrome
       - {file: "web:bpl:8k71nz656", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:8k71nz66g/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:8k71nz656", rights: "No known copyright restrictions.", title: "Boston. North End", date: "1925", note: "the North End in 1925, the year the case ended"}   # LoC via Chrome
       - {file: "web:bpl:fj2370788", image: "https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:fj237079j/full/full/0/default.jpg", page_url: "https://www.digitalcommonwealth.org/search/commonwealth:fj2370788", rights: "No known copyright restrictions.", title: "Crowd coming out of the Cathedral of the Holy Cross, Washington Street", date: "June 1920", note: "Boston street crowd, 1920"}   # LoC via Chrome
-      - {query: "Great Molasses Flood plaque", count: 1}
+      - {file: "curid:190480466", match: "today it is a city park"}   # Atlantic Avenue and Commercial Street today, beside the site (CC0)
+      - {file: "curid:30597890"}   # Commercial Street, Boston, 2009 (CC0)
+      - {file: "curid:62242706"}   # the North End today (CC0)
+      - {file: "curid:5275607"}   # Copp's Hill Burying Ground, above the flood site
+      - {file: "curid:36925682"}   # Copp's Hill Burying Ground, 2006
+      - {file: "curid:32244278"}   # Paul Revere House, North End (CC BY 2.0)
+      - {file: "curid:198179370"}   # Old North Church today (CC BY 4.0)
 
 thumbnail:
   scene: wave
