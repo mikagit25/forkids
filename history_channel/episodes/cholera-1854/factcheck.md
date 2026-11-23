@@ -42,3 +42,29 @@
 | 33 | У клиентов S&V смертность во много раз выше (по Сноу ~8–9 раз) | проверить цифры | — |
 
 Фото: карта Сноу (1854/1855), карикатуры Punch (1855, 1858), гравюры — общественное достояние. Современные фото колонки и паба брать только с лицензией CC0/CC BY (не BY-SA).
+
+## Расширение до ~14 мин (23.11.2026) — источники: Wikipedia (1854 Broad Street cholera outbreak; John Snow; Great Stink; Joseph Bazalgette; Filippo Pacini; Cholera; Second cholera pandemic; Cholera outbreaks and pandemics; Broadwick Street)
+
+| # | Утверждение | Статус | Источник |
+|---|---|---|---|
+| 34 | Первая пандемия из Бенгалии с 1817; в Британию — октябрь 1831, Сандерленд, корабль с Балтики | ✅ | Cholera outbreaks and pandemics; Second cholera pandemic |
+| 35 | Лондонские эпидемии 1832 и 1849 — 14 137 умерших | ✅ | 1854 Broad Street… (Background) |
+| 36 | «Рисовый отвар», 10–20 л жидкости в сутки без лечения | ✅ | Cholera |
+| 37 | Сноу — первый из 9 детей; отец — рабочий угольного склада; ученик хирурга в 14 (Ньюкасл); 1832 — холера в Киллингворте; вегетарианец, трезвенник, пил кипячёную воду | ✅ | John Snow |
+| 38 | Хлороформ королеве 7.04.1853 (Леопольд), повторно 1857 (Беатриса) | ✅ (закрывает п.7) | John Snow |
+| 39 | За неделю бежали 3/4 жителей; к 10.09 — более 300 умерших; цитата Сноу «the most terrible outbreak…» | ✅ (закрывает п.9) | 1854 Broad Street… |
+| 40 | Найтингейл в Middlesex Hospital, письмо Элизабет Гаскелл («up night and day») | ✅ | 1854 Broad Street… |
+| 41 | Цитата Сноу «no particular outbreak… except among the persons who were in the habit of drinking the water…» | ✅ | Snow 1855, цит. по Wikipedia |
+| 42 | После эпидемии ручку вернули; эпидемия 1854 по Лондону — почти 3000 жизней («thousands more») | ✅ | 1854 Broad Street… |
+| 43 | Хассалл нашёл в фильтрованной воде шерсть животных | ✅ | 1854 Broad Street… |
+| 44 | Цитата Сноу о 300 000 людей, «without their choice… without their knowledge» | ✅ | Snow 1855, цит. по Wikipedia |
+| 45 | Джон Саймон назвал теорию «peculiar»; учёные Совета видели «vibriones», но не сочли причиной | ✅ | 1854 Broad Street… |
+| 46 | Пачини умер почти без средств в 1883; 1965 — название Vibrio cholerae Pacini 1854 | ✅ (закрывает п.20: статья 1854) | Filippo Pacini |
+| 47 | Дизраэли с бумагами и платком у носа (The Examiner); «a Stygian pool, reeking with ineffable and intolerable horrors»; The Times: «all but compelled… by the force of sheer stench» | ✅ | Great Stink |
+| 48 | Сноу: инсульт 10.06.1858, смерть 16.06.1858, 45 лет; Lancet — краткий некролог (хлороформ, без холеры); исправление 2013 | ✅ (закрывает п.24; текст некролога — по общеизвестной цитате) | John Snow |
+| 49 | Заём £3 млн, сбор с домохозяйств на 40 лет | ✅ | Great Stink |
+| 50 | 318 млн кирпичей; Crossness открыта принцем Уэльским в апреле 1865; Victoria Embankment — июль 1870; рыцарство Базалджетта 1875 | ✅ | Great Stink; Joseph Bazalgette |
+| 51 | Princess Alice 1878, >650 погибших, у выпусков; пресса спрашивала про стоки; очистка с 1880-х; иловые суда до декабря 1998 | ✅ | Great Stink; Joseph Bazalgette |
+| 52 | Фарр в 1866 (Bromley-by-Bow) приказал не пить некипячёную воду | ✅ | John Snow |
+| 53 | Холера сегодня: 3–5 млн заболевших, десятки тысяч смертей в год | ✅ (28 800–130 000) | Cholera |
+| 54 | Реплика колонки поставлена в 1992; место — красный гранит; паб John Snow | ✅ (закрывает п.30; после 2015 статус реплики не утверждаем) | Broadwick Street; 1854 Broad Street… |

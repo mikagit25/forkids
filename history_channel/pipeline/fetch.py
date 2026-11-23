@@ -485,7 +485,8 @@ WEB_HOSTS = {"nsarchives": ("archives.novascotia.ca",), "nlm": ("collections.nlm
              "cdc": ("phil.cdc.gov", "cdc.gov"), "bpl": ("digitalcommonwealth.org", "ark.digitalcommonwealth.org"),
              "nara": ("catalog.archives.gov", "s3.amazonaws.com/NARAprodstorage", "archives.gov"),
              "ia": ("archive.org",),            # Internet Archive scans of pre-1929 periodicals (crop: the figure)
-             "commons": ("upload.wikimedia.org",)}   # a Commons file whose Commons date/title is wrong
+             "commons": ("upload.wikimedia.org",),      # a Commons file whose Commons date/title is wrong
+             "wellcome": ("iiif.wellcomecollection.org", "wellcomecollection.org")}
 
 
 INBOX = Path(__file__).resolve().parent.parent / "loc_exchange" / "inbox"
