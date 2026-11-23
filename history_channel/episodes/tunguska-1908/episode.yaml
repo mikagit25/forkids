@@ -25,6 +25,7 @@ scenes:
       A man sixty kilometres away felt as if his shirt was on fire. Barometers in Britain twitched. For nights afterwards, Europeans could read the newspaper outdoors at midnight.
       When a scientist finally reached the site, nineteen years later, he found no crater at all, only a forest of standing, burnt, branchless trees.
       What happened at Tunguska, and could it happen again?
+    candidates: ["Tunguska", "Kulik expedition 1927", "fallen trees Siberia"]
     images:
       - {query: "Tunguska", count: 2, colorize: true}
       - {query: "Tunguska Kulik", count: 1}
@@ -36,7 +37,8 @@ scenes:
       The date was the thirtieth of June 1908, by the modern calendar. In the Russian Empire, which still used the old Julian calendar, it was the seventeenth.
       Shortly after seven in the morning local time, people scattered across the vast forests of central Siberia saw a column of blue-white light move across the sky, almost as bright as the sun.
       Then came a flash, and a sound like artillery fire, rolling on and on.
-      The explosion happened above one of the emptiest places on Earth, near the Podkamennaya Tunguska river, a tributary of the Yenisei. The nearest settlements were small trading posts and the camps of Evenk reindeer herders.
+      The explosion happened above one of the emptiest places on Earth, near the Podkamennaya Tunguska river, a tributary of the Yenisei. The nearest settlements were small trading posts and the camps of Evenk reindeer herders. The Evenks lived in small family groups, in conical tents called chums, herding reindeer, hunting and fishing, and paying their taxes to the Tsar in furs. Witnesses later described an object brighter than the sun crossing the sky from the south-east, leaving a thin white trail. It was seen from hundreds of kilometres away. After the flash, a column of fire and a cloud of smoke rose tens of kilometres into the sky.
+    candidates: ["Evenki reindeer herders", "Siberia taiga 1900s", "Yenisei river 1900s", "Evenk chum tent"]
     images:
       - {query: "Yenisei river", modern: true, count: 2}
       - {query: "taiga Siberia", modern: true, count: 1}
@@ -45,14 +47,13 @@ scenes:
     chapter: "II. The Trading Post"
     narration: >
       About sixty kilometres to the south, at the Vanavara trading post, a man named Semyon Semyonov was sitting on his porch.
-      Years later, he described what he felt to investigators. A sudden, terrible heat from the north, so intense that it seemed his shirt was burning.
-      As if my shirt had caught fire.
-      Then a blast threw him several metres from the porch, and he briefly lost consciousness. Windows shattered. The ground shook.
-      Among the Evenk herders closer to the blast, at least three people are believed to have died. Whole herds of reindeer were lost, and storehouses were burned.
+      Years later, he described what he felt to investigators. He had just raised his axe to hoop a barrel when, as he put it, the sky was split in two, and high above the forest the whole northern part of the sky appeared to be covered with fire. At that moment I felt great heat, as if my shirt had caught fire. I wanted to pull off my shirt and throw it away, but at that moment there was a bang in the sky, and a mighty crash was heard. The blast threw him about six metres from the porch, and he briefly lost consciousness. His wife ran out and carried him into the hut. The crash was followed by a noise like stones falling from the sky, or guns firing. Windows shattered. The ground shook.
+      Further north, much closer to the blast, an Evenk herder named Chuchan was asleep in his tent with his brother. Something pushed them awake. The tent was knocked down on top of them. When they crawled out, the trees were falling, their needles burning, the reindeer moss burning, and above the hills, he said, it was as if a second sun had appeared. At least three Evenks died. One of them, Ivan Machakugyr, was thrown against a tree and broke his arm, and died of the infection. Another, Lurbuman, died of shock. The third was a shaman named Uiban. Many Evenks believed the blast was the anger of Ogdy, their god of fire and thunder, and for years they avoided the place. Some Orthodox Christians in the region thought the end of the world had come, and put on their burial clothes. Whole herds of reindeer were lost, and storehouses were burned.
     quote:
       text: "As if my shirt had caught fire."
       source: "Semyon Semyonov, Vanavara trading post, recalling 30 June 1908"
       match: "As if my shirt had caught fire"
+    candidates: ["Siberian trading post 1900s", "Siberian peasants 1900s", "Evenks shaman"]
     images:
       - {query: "Siberia 1908", count: 1}
       - {query: "reindeer Siberia", modern: true, count: 2}
@@ -61,9 +62,9 @@ scenes:
     chapter: "III. Bright Nights"
     narration: >
       The rest of the world did not know where the explosion had happened. But it noticed.
-      Seismic stations as far away as Irkutsk, Tashkent, Tiflis and Jena recorded the shock as if it were a moderate earthquake. Barographs across the world, including in London, registered the pressure wave as it travelled around the planet.
-      And for several nights, from the thirtieth of June to early July, the skies over Europe and western Asia stayed strangely bright. People wrote to newspapers about glowing clouds and midnight twilight.
-      Nobody connected these reports to a remote corner of Siberia.
+      Seismic stations as far away as Irkutsk, Tashkent, Tiflis and Jena recorded the shock as if it were a moderate earthquake. Barographs across the world, including in London, registered the pressure wave as it travelled around the planet. It was recorded in Berlin and Potsdam, in Zagreb, and as far away as Batavia, in the Dutch East Indies, and Washington.
+      And for several nights, from the thirtieth of June to early July, the skies over Europe and western Asia stayed strangely bright. People wrote to newspapers about glowing clouds and midnight twilight. The Times in London printed letter after letter. The bright nights were seen from Bordeaux to Tashkent, and from Aberdeen to Stockholm. In England, the astronomer William Denning had to give up his observations, because the sky was simply too bright. In some places it was possible to read a newspaper outdoors at midnight. Nobody connected these reports to a remote corner of Siberia. Only in 1925 did a scientific paper link the old earthquake records to Tunguska, and the world's barograph traces were matched to it only in the 1930s.
+    candidates: ["noctilucent clouds", "barograph", "seismograph 1900s", "The Times 1908 sky glow", "midnight twilight London 1908"]
     images:
       - {query: "seismograph", modern: true, count: 1}
       - {query: "barograph", modern: true, count: 1}
@@ -74,12 +75,13 @@ scenes:
     date: "1921–1927"
     narration: >
       The Russian Empire had other concerns. Then came the First World War, the revolution and the civil war.
-      It was not until 1921 that a scientist went looking. His name was Leonid Kulik, a mineralogist who specialised in meteorites.
+      It was not until 1921 that a scientist went looking. His name was Leonid Kulik, a mineralogist who specialised in meteorites. Kulik had lived an eventful life. Born in 1883 in what is now Estonia, he had served in the Russo-Japanese War, spent time in jail for revolutionary activity, and fought again in the First World War, before becoming a teacher of mineralogy and then a researcher at the Mineralogical Museum in Petrograd.
       Kulik became convinced that a giant iron meteorite had fallen in the Tunguska region. If he could find it, he believed, it would be worth a fortune to Soviet industry.
       His first expedition in 1921 never reached the central area.
       In 1927, he tried again. This time he had the support of the Soviet Academy of Sciences.
       The journey was brutal. There were no roads, only swamps, rivers and endless forest. Some local Evenk people were reluctant to guide him. For them, the place of the blast carried a dark meaning, and stories of that day had been passed around for years.
       Kulik pressed on, by sledge, on horseback and finally on foot, and in April 1927, he finally reached the edge of the devastated zone.
+    candidates: ["Leonid Kulik", "Mineralogical Museum St Petersburg", "Siberia expedition 1920s raft", "Soviet Academy of Sciences 1920s"]
     images:
       - {query: "Leonid Kulik", count: 2}
       - {query: "Tunguska Kulik", count: 1}
@@ -92,7 +94,8 @@ scenes:
       For kilometres in every direction, the trees lay flat, their trunks pointing away from the centre, like spokes of a giant wheel.
       But when he reached the centre itself, he found something stranger still. The trees there were still standing upright, scorched and stripped of their branches, like a forest of telegraph poles.
       And there was no crater. No hole in the ground, no giant meteorite. Nothing.
-      Kulik spent years searching. He dug into bogs he thought might be impact craters and drained swamps. He never found the meteorite he was looking for.
+      Kulik spent years searching. He found dozens of small round bogs, and was sure that some of them were meteorite craters. His team spent weeks draining one of them, known as Suslov's crater. At the bottom they found an old tree stump. It had been a bog for a very long time, and it was no crater. He never found the meteorite he was looking for.
+    candidates: ["Tunguska fallen forest", "Kulik Tunguska 1929", "burnt forest standing trees", "Siberian bog swamp"]
     images:
       - {query: "Tunguska", count: 2, colorize: true}
       - {query: "Tunguska", count: 1}
@@ -101,10 +104,11 @@ scenes:
   - id: expeditions
     chapter: "VI. The Search Goes On"
     narration: >
-      Kulik returned again and again. In 1928 and 1929, with larger teams, he mapped the fallen forest and photographed the damage. Those photographs are the ones that made Tunguska famous around the world.
-      After Kulik's death, other scientists took up the work. In the 1950s and 1960s, Soviet expeditions sifted the soil of the area and found tiny spheres of melted rock and metal, microscopic droplets that could have come from a vaporised space object.
-      Researchers also mapped the direction of tens of thousands of fallen trees. The pattern looked like the wings of a butterfly, and from its shape they could work out the angle and direction from which the object came in.
-      In 2007, an Italian team proposed that a small lake near the area, Lake Cheko, might be a crater made by a surviving fragment. Other scientists disagree, and the debate continues.
+      Kulik returned again and again. In 1928 and 1929, with larger teams, he mapped the fallen forest and photographed the damage. Those photographs are the ones that made Tunguska famous around the world. In 1938 he arranged an aerial survey, and fifteen hundred photographs of the flattened forest were taken from the air. Decades later, in 1975, the original negatives were burned on official orders, because the old nitrate film was a fire hazard. Fortunately, prints had been kept in the city of Tomsk.
+      After Kulik's death, other scientists took up the work. In the 1950s and 1960s, Soviet expeditions sifted the soil of the area and found tiny spheres of melted rock and metal, microscopic droplets that could have come from a vaporised space object. Chemical analysis showed that they were rich in nickel compared with iron, just like meteorites. Later expeditions found the same tiny spheres trapped in the resin of trees that had lived through the blast.
+      Researchers also mapped the direction of tens of thousands of fallen trees. The flattened area covered about two thousand one hundred and fifty square kilometres. Its shape looked like the wings of a butterfly, seventy kilometres from wingtip to wingtip. In the 1960s, Soviet scientists built model forests out of matches stuck in boards, and set off small charges above them on sloping wires. The matches fell in the same butterfly pattern. From its shape they could work out that the object had come in at a shallow angle, about thirty degrees above the horizon.
+      In 2007, an Italian team proposed that a small lake near the area, Lake Cheko, might be a crater made by a surviving fragment. Other scientists disagree. In 2017, a Russian study of the lake's sediments concluded that the lake is at least two hundred and eighty years old, much older than the explosion. The debate continues.
+    candidates: ["Tunguska expedition", "aerial photograph forest 1938", "Lake Cheko", "meteorite microscope spherules"]
     images:
       - {query: "Siberia 1908", count: 2}
       - {query: "Tunguska", count: 1}
@@ -114,8 +118,9 @@ scenes:
     narration: >
       A mystery with no crater attracted every kind of explanation.
       Over the decades, people proposed a comet, a chunk of antimatter, a tiny black hole, a natural gas explosion from beneath the ground, and, inevitably, a crashed alien spaceship.
-      Most of these ideas fall apart under the evidence. But they kept Tunguska famous, long after Kulik's expeditions ended.
-      Kulik himself never got a final answer. He volunteered to defend Moscow in the Second World War, was captured, and died in a German prison camp in 1942.
+      Most of these ideas fall apart under the evidence. The serious debate was between two candidates. In 1934, the British meteorologist Francis Whipple suggested a small comet, a ball of ice and dust that would vaporise completely in the air and leave nothing behind. That might also explain the glowing nights, with dust and ice spread through the upper atmosphere. The date fitted too: the Tunguska explosion came at the peak of the Beta Taurids, a meteor shower linked to Comet Encke. For decades, Soviet researchers favoured the comet. Others argued for a stony asteroid. In the 1990s, Italian scientists extracted resin from the trees that had survived the blast, and found particles of material common in rocky asteroids and rare in comets. A study in 2001 calculated that the object had most probably come from the asteroid belt. More than seven hundred eyewitness accounts and around a thousand scientific papers later, the question is still not completely closed. Meanwhile, the wilder theories kept Tunguska famous, long after Kulik's expeditions ended.
+      Kulik himself never got a final answer. When Germany invaded the Soviet Union, Kulik, nearly sixty years old, joined the people's militia. He was captured, and in 1942 he died of typhus in a German prisoner-of-war camp. A crater on the Moon and an asteroid are named after him.
+    candidates: ["comet 1910 photograph", "Halley's comet 1910", "Comet Encke", "asteroid"]
     images:
       - {query: "comet 1910 photograph", count: 1}
       - {query: "Tunguska event map", count: 1}
@@ -129,10 +134,11 @@ scenes:
       That is why there was no crater. The object never hit the ground. Its energy was released in the air, as a blast wave and a flash of heat.
       The upright trees at the centre had been directly underneath. The blast came straight down on them, snapping off their branches but leaving the trunks standing. Further out, the wave struck at an angle and knocked the trees flat.
       Estimates of the energy range from around three to thirty megatons, hundreds of times more powerful than the bomb dropped on Hiroshima.
-      Objects this size are thought to hit the Earth's atmosphere only rarely, perhaps once every few hundred years. Most of the time they fall over oceans or empty land, and nobody notices at all.
+      Space rocks strike the atmosphere at a minimum of eleven kilometres per second. Most burn up harmlessly. Objects the size of the Tunguska body are thought to arrive only rarely, perhaps once every few hundred years, or even once in a thousand. Most of the time they fall over oceans or empty land, and nobody notices at all.
       In 1908, it fell over one of the emptiest places on the planet. That was luck, and nothing more.
     cards:                 # big-number cards, shown while the matching sentence is read
       - {big: "3–30 Mt", text: "estimated energy of the blast", match: "Estimates of the energy range"}
+    candidates: ["meteor fireball", "nuclear test fireball", "asteroid NASA", "bolide"]
     images:
       - {query: "meteor airburst", modern: true, count: 1}
       - {query: "Tunguska", count: 2}
@@ -143,8 +149,9 @@ scenes:
     narration: >
       For a long time, Tunguska seemed like a once-in-a-millennium event.
       Then, on the fifteenth of February 2013, a much smaller asteroid, about eighteen metres across, exploded over the Russian city of Chelyabinsk.
-      This time thousands of cameras were watching. The blast released around half a megaton of energy. It shattered windows across the city and injured more than a thousand people, almost all of them from flying glass.
+      This time thousands of cameras were watching. The blast released around half a megaton of energy. The flash was brighter than the sun. Minutes later, the shock wave arrived. It shattered windows across the city, and one thousand four hundred and ninety-one people sought medical help, almost all of them hurt by flying glass. Scientists used the data from Chelyabinsk to model Tunguska again, and concluded that the 1908 object had probably been a stony body fifty to eighty metres across.
       The Chelyabinsk object was a fraction of the size of the Tunguska one. Had the 1908 explosion happened over a city instead of the empty taiga, the result would have been a catastrophe.
+    candidates: ["Chelyabinsk meteor", "Chelyabinsk meteorite fragment", "Chebarkul lake meteorite"]
     images:
       - {query: "Chelyabinsk meteor", modern: true, count: 1}
       - {query: "Bennu", modern: true, count: 2}
@@ -152,10 +159,11 @@ scenes:
   - id: closing
     chapter: "Epilogue"
     narration: >
-      Today, the thirtieth of June is marked around the world as Asteroid Day, chosen in memory of Tunguska.
-      Space agencies now track thousands of near-Earth objects. In 2022, NASA's DART mission deliberately crashed a spacecraft into a small asteroid and changed its orbit, the first test of how we might one day defend ourselves.
+      Today, the thirtieth of June is marked around the world as Asteroid Day, chosen in memory of Tunguska. It was founded in 2014 by a group that included the physicist Stephen Hawking and the astrophysicist and Queen guitarist Brian May, and in 2016 the United Nations proclaimed it an international day.
+      Space agencies now track thousands of near-Earth objects. On the twenty-sixth of September 2022, NASA's DART mission deliberately crashed a spacecraft into a small asteroid moon called Dimorphos. The impact shortened its orbit by thirty-two minutes, the first real test of how we might one day defend ourselves. The site of the explosion is now protected as a nature reserve.
       The forest at Tunguska has grown back. But if you walk there today, you can still find the old fallen trunks, all pointing away from the place where the sky exploded.
       If you enjoyed this story from the archives, subscribe for more.
+    candidates: ["DART spacecraft Dimorphos", "NASA asteroid", "Tunguska today forest", "near-Earth object"]
     images:
       - {query: "DART Dimorphos", modern: true, count: 1}
       - {query: "taiga Siberia", modern: true, count: 1}
