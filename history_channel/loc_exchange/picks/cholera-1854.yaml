@@ -1,0 +1,786 @@
+# cholera-1854 picks, Chrome session 2026-11-23 - Wellcome Collection (images API, licence pdm / cc-by only)
+# NOTE for the server: 'wellcome' is not yet in fetch.WEB_HOSTS -> please add
+#   "wellcome": ("iiif.wellcomecollection.org", "wellcomecollection.org")
+# id = Wellcome image number (L.../V.../M...), page_url = the work page, image = IIIF full/max.
+# Not found in PD on Wellcome (please take from Commons): John Snow portrait (1856/57 photo), Punch cartoons
+# (A Court for King Cholera 1852, Dirty Father Thames 1848, The Silent Highwayman 1858, Faraday & Father Thames 1855),
+# Whitehead, Bazalgette portrait, Abbey Mills, Hamburg 1892 photos, Vibrio micrographs (CDC PHIL).
+
+- scene: blue-death
+  source: wellcome
+  id: V0010896
+  image: "https://iiif.wellcomecollection.org/image/V0010896/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/d7994mnn"
+  rights: "Public Domain Mark (public domain)"
+  title: "London Board of Health searching the city for cholera during the 1832 epidemic. Lithograph"
+  date: "1832"
+  note: "1832 epidemic: officials hunting the city for cholera"
+
+- scene: blue-death
+  source: wellcome
+  id: L0003053
+  image: "https://iiif.wellcomecollection.org/image/L0003053/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/p7hx4397"
+  rights: "Public Domain Mark (public domain)"
+  title: "Doctors parade a dummy with a skeleton's head representing cholera; people run screaming. Coloured lithograph by H. Heath"
+  date: "1832"
+  note: "cholera panic cartoon, 1832"
+
+- scene: blue-death
+  source: wellcome
+  id: L0003052
+  image: "https://iiif.wellcomecollection.org/image/L0003052/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/ebp6me9z"
+  rights: "Public Domain Mark (public domain)"
+  title: "John Bull defending Britain against the invasion of cholera. Coloured lithograph"
+  date: "c. 1832"
+  note: "Britain bracing for the new disease from India"
+
+- scene: blue-death
+  source: wellcome
+  id: L0033930
+  image: "https://iiif.wellcomecollection.org/image/L0033930/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/qccmq8fe"
+  rights: "Public Domain Mark (public domain)"
+  title: "John Bull examined by eight doctors who diagnose cholera. Lithograph"
+  date: "c. 1832"
+  note: "nobody agreed what cholera was"
+
+- scene: blue-death
+  source: wellcome
+  id: L0008696
+  image: "https://iiif.wellcomecollection.org/image/L0008696/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/saezcmsj"
+  rights: "Public Domain Mark (public domain)"
+  title: "Monster Soup: a horrified old woman sees the contents of a drop of water through a microscope. Coloured lithograph (after W. Heath)"
+  date: "1828-1835"
+  note: "London's dirty drinking water, Thames 'monster soup'"
+
+- scene: blue-death
+  source: wellcome
+  id: V0010484
+  image: "https://iiif.wellcomecollection.org/image/V0010484/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/v85vg2ka"
+  rights: "Public Domain Mark (public domain)"
+  title: "A dead victim of cholera at Sunderland in 1832. Coloured lithograph attributed to J.W. Gear"
+  date: "1832"
+  note: "the 'blue death': victim's blue-grey skin"
+
+- scene: blue-death
+  source: wellcome
+  id: L0040131
+  image: "https://iiif.wellcomecollection.org/image/L0040131/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/rf7sxqs6"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "Blue stage of the spasmodic cholera of a girl who died in Sunderland, November 1831"
+  date: "1831"
+  note: "the 'blue death' - first British epidemic, Sunderland"
+
+- scene: blue-death
+  source: wellcome
+  id: L0089527
+  image: "https://iiif.wellcomecollection.org/image/L0089527/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/zcmmdhw5"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "Cholera Morbus notice"
+  date: "1830s"
+  note: "public cholera notice / placard"
+
+- scene: blue-death
+  source: wellcome
+  id: L0089525
+  image: "https://iiif.wellcomecollection.org/image/L0089525/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/gvhdvb66"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "Parish of Clerkenwell notice of Indian Cholera"
+  date: "1830s"
+  note: "London parish placard warning of 'Indian cholera'"
+
+- scene: blue-death
+  source: wellcome
+  id: V0011732
+  image: "https://iiif.wellcomecollection.org/image/V0011732/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/whstetyh"
+  rights: "Public Domain Mark (public domain)"
+  title: "A man dressed in absurd protective clothing against the cholera epidemic. Etching"
+  date: "c. 1832"
+  note: "fear and quack protection"
+
+- scene: blue-death
+  source: wellcome
+  id: L0003051
+  image: "https://iiif.wellcomecollection.org/image/L0003051/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/fsfbejss"
+  rights: "Public Domain Mark (public domain)"
+  title: "A cholera patient experimenting with remedies. Coloured etching by R.I. Cruikshank"
+  date: "1832"
+  note: "useless remedies of the time"
+
+- scene: blue-death
+  source: wellcome
+  id: V0030459
+  image: "https://iiif.wellcomecollection.org/image/V0030459/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/twee76wv"
+  rights: "Public Domain Mark (public domain)"
+  title: "A cholera victim with the typical facial appearance. Watercolour after Robert Froriep (c. 1831)"
+  date: "c. 1831 (copy 1920-1950)"
+  note: "face of a cholera patient"
+
+- scene: blue-death
+  source: wellcome
+  id: V0011935
+  image: "https://iiif.wellcomecollection.org/image/V0011935/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/h5zh4qy7"
+  rights: "Public Domain Mark (public domain)"
+  title: "A woman extravagantly equipped against the cholera epidemic of 1832. Etching"
+  date: "c. 1832"
+  note: "dubious advice on fighting cholera"
+
+- scene: blue-death
+  source: wellcome
+  id: V0011123
+  image: "https://iiif.wellcomecollection.org/image/V0011123/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/nee3jsp3"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "A figure dressed in a cholera safety suit. Coloured etching after J. Petzl"
+  date: "c. 1832"
+  note: "cholera protective suit satire"
+
+- scene: snow
+  source: wellcome
+  id: L0026842
+  image: "https://iiif.wellcomecollection.org/image/L0026842/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/q3w4pset"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "John Snow's residence at 18 Sackville Street, London, with plaque. Photograph"
+  note: "Snow's home in Soho/Mayfair, close to Broad Street"
+
+- scene: snow
+  source: wellcome
+  id: L0018260
+  image: "https://iiif.wellcomecollection.org/image/L0018260/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/chbyh6yj"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "Snow's chloroform inhaler"
+  note: "Snow the anaesthetist (chloroform for Queen Victoria, 1853)"
+
+- scene: snow
+  source: wellcome
+  id: M0009923
+  image: "https://iiif.wellcomecollection.org/image/M0009923/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/kgju9hsr"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "John Snow's inhaler"
+  note: "Snow's own anaesthesia apparatus"
+
+- scene: snow
+  source: wellcome
+  id: L0006022
+  image: "https://iiif.wellcomecollection.org/image/L0006022/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/q25bcrhx"
+  rights: "Public Domain Mark (public domain)"
+  title: "On chloroform and other anaesthetics / by John Snow (title page)"
+  date: "1858"
+  note: "Snow's anaesthesia book"
+
+- scene: snow
+  source: wellcome
+  id: L0063432
+  image: "https://iiif.wellcomecollection.org/image/L0063432/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/uqa27qrt"
+  rights: "Public Domain Mark (public domain)"
+  title: "On the mode of communication of cholera / by John Snow (2nd ed.)"
+  date: "1855"
+  note: "Snow's cholera book, 1855"
+
+- scene: snow
+  source: wellcome
+  id: L0063431
+  image: "https://iiif.wellcomecollection.org/image/L0063431/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/uqa27qrt"
+  rights: "Public Domain Mark (public domain)"
+  title: "On the mode of communication of cholera / by John Snow (2nd ed.)"
+  date: "1855"
+  note: "Snow's cholera book, another page"
+
+- scene: outbreak
+  source: wellcome
+  id: L0028567
+  image: "https://iiif.wellcomecollection.org/image/L0028567/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/eu4yv86b"
+  rights: "Public Domain Mark (public domain)"
+  title: "Broad Street (now Broadwick Street), Soho, with the replica of the Broad Street pump. Photograph"
+  note: "the street of the 1854 outbreak today"
+
+- scene: outbreak
+  source: wellcome
+  id: V0013836
+  image: "https://iiif.wellcomecollection.org/image/V0013836/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/aff7jbjn"
+  rights: "Public Domain Mark (public domain)"
+  title: "The Workhouse, Poland Street, Soho: the interior. Coloured aquatint after Pugin and Rowlandson"
+  date: "1809"
+  note: "the Poland Street workhouse - almost no deaths: it had its own well"
+
+- scene: outbreak
+  source: wellcome
+  id: L0072150
+  image: "https://iiif.wellcomecollection.org/image/L0072150/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/j6bgbzq4"
+  rights: "Public Domain Mark (public domain)"
+  title: "Report on the cholera outbreak in the Parish of St. James, Westminster (Cholera Inquiry Committee)"
+  date: "1855"
+  note: "official report on the Broad Street outbreak"
+
+- scene: outbreak
+  source: wellcome
+  id: L0072151
+  image: "https://iiif.wellcomecollection.org/image/L0072151/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/vffmj95g"
+  rights: "Public Domain Mark (public domain)"
+  title: "Report on the cholera outbreak in the Parish of St. James, Westminster"
+  date: "1855"
+  note: "report page on the outbreak"
+
+- scene: outbreak
+  source: wellcome
+  id: V0020282F2
+  image: "https://iiif.wellcomecollection.org/image/V0020282F2/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/sch942qp"
+  rights: "Public Domain Mark (public domain)"
+  title: "Overcrowding and poor living conditions in London, 1862: eleven scenes. Wood engraving"
+  date: "1862"
+  note: "crowded London courts of the period"
+
+- scene: map
+  source: wellcome
+  id: L0072917
+  image: "https://iiif.wellcomecollection.org/image/L0072917/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/uxgfjt62"
+  rights: "Public Domain Mark (public domain)"
+  title: "A map taken from a report by Dr. John Snow (deaths around the Broad Street pump)"
+  date: "1854-1855"
+  note: "Snow's cholera map"
+
+- scene: map
+  source: wellcome
+  id: L0072142
+  image: "https://iiif.wellcomecollection.org/image/L0072142/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/dx4prdbj"
+  rights: "Public Domain Mark (public domain)"
+  title: "Plan showing the ascertained deaths from cholera (Broad Street, 1854)"
+  date: "1855"
+  note: "death map of the Golden Square area"
+
+- scene: map
+  source: wellcome
+  id: L0071633
+  image: "https://iiif.wellcomecollection.org/image/L0071633/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/k2ezznay"
+  rights: "Public Domain Mark (public domain)"
+  title: "Plan showing the ascertained deaths from cholera"
+  date: "1855"
+  note: "second copy / version of the death plan"
+
+- scene: map
+  source: wellcome
+  id: L0072152
+  image: "https://iiif.wellcomecollection.org/image/L0072152/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/q4tc3var"
+  rights: "Public Domain Mark (public domain)"
+  title: "Report on the cholera outbreak in the Parish of St. James - map plate"
+  date: "1855"
+  note: "Broad Street outbreak map plate"
+
+- scene: map
+  source: wellcome
+  id: L0072153
+  image: "https://iiif.wellcomecollection.org/image/L0072153/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/w7gef2ey"
+  rights: "Public Domain Mark (public domain)"
+  title: "Report on the cholera outbreak in the Parish of St. James - map plate"
+  date: "1855"
+  note: "Broad Street outbreak map plate"
+
+- scene: map
+  source: wellcome
+  id: L0071628
+  image: "https://iiif.wellcomecollection.org/image/L0071628/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/nwvzx5ge"
+  rights: "Public Domain Mark (public domain)"
+  title: "Map exhibiting the progress of the late epidemic cholera"
+  date: "1850s"
+  note: "cholera mapping of the era"
+
+- scene: handle
+  source: wellcome
+  id: L0011181
+  image: "https://iiif.wellcomecollection.org/image/L0011181/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/r62e8ty8"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "Water from a pump in Broad Street, Golden Square, London"
+  note: "the Broad Street pump water"
+
+- scene: handle
+  source: wellcome
+  id: L0072154
+  image: "https://iiif.wellcomecollection.org/image/L0072154/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/yabjhvd4"
+  rights: "Public Domain Mark (public domain)"
+  title: "Report on the cholera outbreak in the Parish of St. James"
+  date: "1855"
+  note: "report page (pump / water evidence)"
+
+- scene: handle
+  source: wellcome
+  id: L0072155
+  image: "https://iiif.wellcomecollection.org/image/L0072155/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/c5jsey2m"
+  rights: "Public Domain Mark (public domain)"
+  title: "Report on the cholera outbreak in the Parish of St. James"
+  date: "1855"
+  note: "report page (pump / water evidence)"
+
+- scene: handle
+  source: wellcome
+  id: V0020216
+  image: "https://iiif.wellcomecollection.org/image/V0020216/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/jvtf72bj"
+  rights: "Public Domain Mark (public domain)"
+  title: "A water pump near Bishopsgate Street, London. Etching"
+  date: "1791"
+  note: "what a London street pump looked like"
+
+- scene: experiment
+  source: wellcome
+  id: L0014334
+  image: "https://iiif.wellcomecollection.org/image/L0014334/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/jxd9xknr"
+  rights: "Public Domain Mark (public domain)"
+  title: "Water of Southwark & Vauxhall Co. (microscopic view)"
+  date: "1850s"
+  note: "the company drawing sewage-laden Thames water"
+
+- scene: experiment
+  source: wellcome
+  id: L0023147
+  image: "https://iiif.wellcomecollection.org/image/L0023147/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/rj25qedd"
+  rights: "Public Domain Mark (public domain)"
+  title: "A microscopic examination of the water supplied to the inhabitants of London (Hassall), plate"
+  date: "1850"
+  note: "what was in London's water, 1850"
+
+- scene: experiment
+  source: wellcome
+  id: L0023146
+  image: "https://iiif.wellcomecollection.org/image/L0023146/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/rj25qedd"
+  rights: "Public Domain Mark (public domain)"
+  title: "A microscopic examination of the water supplied to the inhabitants of London (Hassall), plate"
+  date: "1850"
+  note: "London water under the microscope"
+
+- scene: experiment
+  source: wellcome
+  id: V0020253
+  image: "https://iiif.wellcomecollection.org/image/V0020253/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/uh2w6vdk"
+  rights: "Public Domain Mark (public domain)"
+  title: "New River waterworks, Stoke Newington. Wood engraving"
+  date: "1856"
+  note: "London water companies of the 1850s"
+
+- scene: experiment
+  source: wellcome
+  id: V0020247ER
+  image: "https://iiif.wellcomecollection.org/image/V0020247ER/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/y3t9e3d6"
+  rights: "Public Domain Mark (public domain)"
+  title: "Paddle-driven beam-engine pump raising Thames water at London Bridge. Engraving after J. Farey"
+  date: "1820"
+  note: "pumping water straight from the Thames"
+
+- scene: experiment
+  source: wellcome
+  id: L0010277
+  image: "https://iiif.wellcomecollection.org/image/L0010277/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/pfyq5nk7"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "Danchell's patent water testing apparatus"
+  note: "testing water quality, 19th c."
+
+- scene: experiment
+  source: wellcome
+  id: V0039406
+  image: "https://iiif.wellcomecollection.org/image/V0039406/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/u5kyd33t"
+  rights: "Public Domain Mark (public domain)"
+  title: "Map of London showing the river Thames and the major parks. Coloured engraving"
+  date: "19th c."
+  note: "south London water districts on the Thames"
+
+- scene: experiment
+  source: wellcome
+  id: L0023693
+  image: "https://iiif.wellcomecollection.org/image/L0023693/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/d5nm6u4b"
+  rights: "Public Domain Mark (public domain)"
+  title: "London and the River Thames seen from the south, Westminster to Greenwich. Wood engraving by F.J. Smyth"
+  date: "1845"
+  note: "the Thames from the south bank, where the water companies drew"
+
+- scene: experiment
+  source: wellcome
+  id: V0019367
+  image: "https://iiif.wellcomecollection.org/image/V0019367/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/euqbv4ck"
+  rights: "Public Domain Mark (public domain)"
+  title: "Barclay and Perkins brewery, Southwark. Wood engraving"
+  date: "1847"
+  note: "Southwark 1840s"
+
+- scene: source
+  source: wellcome
+  id: L0027123
+  image: "https://iiif.wellcomecollection.org/image/L0027123/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/frn4rd67"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "A man holding his nose to avoid breathing in a miasma. Drawing"
+  note: "miasma theory: disease from bad air"
+
+- scene: source
+  source: wellcome
+  id: L0032745
+  image: "https://iiif.wellcomecollection.org/image/L0032745/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/pz96auum"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "A jester (disinfectant Papier d'Armenie) scourges cholera, typhoid, diphtheria and smallpox. Colour lithograph"
+  date: "c. 1890"
+  note: "'bad air' disinfectants"
+
+- scene: source
+  source: wellcome
+  id: L0039175
+  image: "https://iiif.wellcomecollection.org/image/L0039175/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/acv8r4bv"
+  rights: "Public Domain Mark (public domain)"
+  title: "Report on the mortality of cholera in England, 1848-49 (William Farr)"
+  date: "1852"
+  note: "Farr's statistics - elevation and 'miasma'"
+
+- scene: source
+  source: wellcome
+  id: L0016434
+  image: "https://iiif.wellcomecollection.org/image/L0016434/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/acv8r4bv"
+  rights: "Public Domain Mark (public domain)"
+  title: "Report on the mortality of cholera in England, 1848-49 (William Farr), title page"
+  date: "1852"
+  note: "Farr's report"
+
+- scene: source
+  source: wellcome
+  id: L0015341
+  image: "https://iiif.wellcomecollection.org/image/L0015341/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/rrtgankr"
+  rights: "Public Domain Mark (public domain)"
+  title: "Vital statistics: selections from the reports and writings of William Farr"
+  date: "1885"
+  note: "William Farr"
+
+- scene: source
+  source: wellcome
+  id: L0000064
+  image: "https://iiif.wellcomecollection.org/image/L0000064/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/eduz3fhk"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "Edwin Chadwick"
+  note: "sanitary reformer and miasma believer ('all smell is disease')"
+
+- scene: rejected
+  source: wellcome
+  id: L0011182
+  image: "https://iiif.wellcomecollection.org/image/L0011182/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/a9jnzz9w"
+  rights: "Public Domain Mark (public domain)"
+  title: "Report of the Committee for Scientific Inquiries in relation to the cholera epidemic of 1854"
+  date: "1855"
+  note: "the official committee that rejected Snow's water theory"
+
+- scene: rejected
+  source: wellcome
+  id: L0014336
+  image: "https://iiif.wellcomecollection.org/image/L0014336/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/rtnnd2mq"
+  rights: "Public Domain Mark (public domain)"
+  title: "Appendix to report of the committee for scientific inquiries ... cholera epidemic of 1854"
+  date: "1855"
+  note: "appendix page"
+
+- scene: rejected
+  source: wellcome
+  id: L0014335
+  image: "https://iiif.wellcomecollection.org/image/L0014335/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/rtnnd2mq"
+  rights: "Public Domain Mark (public domain)"
+  title: "Appendix to report of the committee for scientific inquiries ... cholera epidemic of 1854"
+  date: "1855"
+  note: "appendix plate"
+
+- scene: rejected
+  source: wellcome
+  id: L0071630
+  image: "https://iiif.wellcomecollection.org/image/L0071630/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/w27auneh"
+  rights: "Public Domain Mark (public domain)"
+  title: "Report of the General Board of Health on the epidemic cholera of 1848 and 1849"
+  date: "1850"
+  note: "the Board of Health's miasma view"
+
+- scene: rejected
+  source: wellcome
+  id: L0008365
+  image: "https://iiif.wellcomecollection.org/image/L0008365/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/vkgc9vqv"
+  rights: "Public Domain Mark (public domain)"
+  title: "Report on the epidemic cholera, 1848-1849, title page"
+  date: "1850"
+  note: "official report title page"
+
+- scene: rejected
+  source: wellcome
+  id: L0072137
+  image: "https://iiif.wellcomecollection.org/image/L0072137/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/y4ygj2n6"
+  rights: "Public Domain Mark (public domain)"
+  title: "Cholera map showing intensity of cholera attack in sections"
+  date: "1850s"
+  note: "official 'cholera intensity' map"
+
+- scene: rejected
+  source: wellcome
+  id: L0071632
+  image: "https://iiif.wellcomecollection.org/image/L0071632/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/p8sesxnt"
+  rights: "Public Domain Mark (public domain)"
+  title: "Map of the parish of Bethnal Green showing the 'cholera mist' in 1848-1849"
+  date: "1849"
+  note: "a map of the 'cholera mist' - miasma thinking on paper"
+
+- scene: stink
+  source: wellcome
+  id: V0020282ER
+  image: "https://iiif.wellcomecollection.org/image/V0020282ER/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/makuwh3r"
+  rights: "Public Domain Mark (public domain)"
+  title: "Poor sanitary conditions in London in 1862: four scenes. Wood engraving by W.E. Hodgkin"
+  date: "1862"
+  note: "London filth of the Great Stink years"
+
+- scene: stink
+  source: wellcome
+  id: V0013571
+  image: "https://iiif.wellcomecollection.org/image/V0013571/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/tsymxueb"
+  rights: "Public Domain Mark (public domain)"
+  title: "Saint Thomas's Hospital, Lambeth, viewed from the north bank of the Thames. Engraving"
+  date: "c. 1868"
+  note: "the Thames at Westminster/Lambeth"
+
+- scene: sewers
+  source: wellcome
+  id: L0006722
+  image: "https://iiif.wellcomecollection.org/image/L0006722/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/xk8wv6vj"
+  rights: "Public Domain Mark (public domain)"
+  title: "The engine-house at Crossness and the outfall of the southern Metropolitan sewerage. Wood engraving by J.M. Williams"
+  date: "1865"
+  note: "Bazalgette's Crossness pumping station"
+
+- scene: sewers
+  source: wellcome
+  id: V0020287
+  image: "https://iiif.wellcomecollection.org/image/V0020287/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/fkyzgak9"
+  rights: "Public Domain Mark (public domain)"
+  title: "The southern outfall works and sewage at Crossness, London. Wood engraving"
+  date: "1860s"
+  note: "Crossness outfall"
+
+- scene: sewers
+  source: wellcome
+  id: V0020257
+  image: "https://iiif.wellcomecollection.org/image/V0020257/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/vmvb5mm9"
+  rights: "Public Domain Mark (public domain)"
+  title: "The construction of the great sewage tunnels near Old Ford, Bow. Wood engraving after F. Thompson"
+  date: "1859"
+  note: "building Bazalgette's sewers, 1859"
+
+- scene: sewers
+  source: wellcome
+  id: V0024379
+  image: "https://iiif.wellcomecollection.org/image/V0024379/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/s5xhugxk"
+  rights: "Public Domain Mark (public domain)"
+  title: "Plan of the Thames Embankment, Blackfriars to Westminster, with sections. Lithograph after Sir J. Bazalgette"
+  date: "1860s"
+  note: "Embankment with the sewer inside it"
+
+- scene: sewers
+  source: wellcome
+  id: V0024386
+  image: "https://iiif.wellcomecollection.org/image/V0024386/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/uv3mugch"
+  rights: "Public Domain Mark (public domain)"
+  title: "Construction drawings for the Thames Embankment. Coloured drawing after Sir J. Bazalgette"
+  date: "1865"
+  note: "Embankment construction plans"
+
+- scene: sewers
+  source: wellcome
+  id: V0024387
+  image: "https://iiif.wellcomecollection.org/image/V0024387/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/h6aa2t4q"
+  rights: "Public Domain Mark (public domain)"
+  title: "Construction drawings for the Thames Embankment. Coloured drawing"
+  date: "1865"
+  note: "Embankment construction plans"
+
+- scene: sewers
+  source: wellcome
+  id: L0034429
+  image: "https://iiif.wellcomecollection.org/image/L0034429/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/bqcwb93h"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "Designs for public water-closets and urinals. Metropolitan Sewers, 15 March 1849"
+  date: "1849"
+  note: "Metropolitan Commission of Sewers"
+
+- scene: sewers
+  source: wellcome
+  id: V0024484
+  image: "https://iiif.wellcomecollection.org/image/V0024484/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/zgekf63d"
+  rights: "Public Domain Mark (public domain)"
+  title: "Engineering: a large pumping station. Coloured lithograph"
+  date: "after 1875"
+  note: "Victorian sewage pumping station"
+
+- scene: proof
+  source: wellcome
+  id: V0003256
+  image: "https://iiif.wellcomecollection.org/image/V0003256/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/gnd6jpy2"
+  rights: "Public Domain Mark (public domain)"
+  title: "Robert Koch. Lithograph"
+  date: "1891"
+  note: "Koch identified Vibrio cholerae in 1883-84"
+
+- scene: proof
+  source: wellcome
+  id: L0010412
+  image: "https://iiif.wellcomecollection.org/image/L0010412/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/bd47crst"
+  rights: "Public Domain Mark (public domain)"
+  title: "Robert Koch. Wood engraving by P. Naumann"
+  date: "1890"
+  note: "Robert Koch"
+
+- scene: proof
+  source: wellcome
+  id: V0026955
+  image: "https://iiif.wellcomecollection.org/image/V0026955/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/pd42n72q"
+  rights: "Public Domain Mark (public domain)"
+  title: "Filippo Pacini. Photograph by A. Hautmann"
+  note: "Pacini saw the cholera bacterium in 1854"
+
+- scene: proof
+  source: wellcome
+  id: V0010305ER
+  image: "https://iiif.wellcomecollection.org/image/V0010305ER/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/ak2muhcn"
+  rights: "Public Domain Mark (public domain)"
+  title: "A stomach showing cholera asiatica, with bacteria as seen under a microscope. Chromolithograph by W. Gummelt"
+  date: "c. 1897"
+  note: "the cholera germ under the microscope"
+
+- scene: proof
+  source: wellcome
+  id: V0010306ER
+  image: "https://iiif.wellcomecollection.org/image/V0010306ER/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/t37qgj5j"
+  rights: "Public Domain Mark (public domain)"
+  title: "Diseased intestine showing cholera asiatica, with a microscopic section. Chromolithograph by W. Gummelt"
+  date: "c. 1897"
+  note: "what cholera does to the gut"
+
+- scene: closing
+  source: wellcome
+  id: L0025760
+  image: "https://iiif.wellcomecollection.org/image/L0025760/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/n2ykxrzm"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "Broadsheet: Cholera and Water, 1866"
+  date: "1866"
+  note: "by 1866 the warning was 'boil your water' - Snow's idea accepted"
+
+- scene: closing
+  source: wellcome
+  id: L0007311
+  image: "https://iiif.wellcomecollection.org/image/L0007311/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/nh6nj7cy"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "Anti-cholera vaccines, 3 September 1892"
+  date: "1892"
+  note: "1892 (Hamburg year) cholera vaccines"
+
+- scene: closing
+  source: wellcome
+  id: L0037330
+  image: "https://iiif.wellcomecollection.org/image/L0037330/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/xcv33yck"
+  rights: "Public Domain Mark (public domain)"
+  title: "Anti-cholera inoculation: report to the Government of India / by W.M. Haffkine"
+  date: "1895"
+  note: "first cholera vaccine"
+
+- scene: closing
+  source: wellcome
+  id: L0012301
+  image: "https://iiif.wellcomecollection.org/image/L0012301/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/t4uhq8a5"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "Cholera vaccination of the Third Gurkhas in India, 1893 epidemic. Wood engraving reproduction"
+  date: "1894"
+  note: "vaccination campaign 1893"
+
+- scene: closing
+  source: wellcome
+  id: V0026503
+  image: "https://iiif.wellcomecollection.org/image/V0026503/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/as9gafvt"
+  rights: "Public Domain Mark (public domain)"
+  title: "Waldemar Haffkine. Photograph"
+  note: "creator of the first cholera vaccine"
+
+- scene: closing
+  source: wellcome
+  id: V0014190
+  image: "https://iiif.wellcomecollection.org/image/V0014190/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/yabe6gje"
+  rights: "Public Domain Mark (public domain)"
+  title: "Cholera Hospital, Oxford, near the Oxford Canal. Line engraving after T. Taylor jun."
+  date: "1850s"
+  note: "cholera hospitals of the era"
+
+- scene: closing
+  source: wellcome
+  id: L0003764
+  image: "https://iiif.wellcomecollection.org/image/L0003764/full/max/0/default.jpg"
+  page_url: "https://wellcomecollection.org/works/atrhuzyx"
+  rights: "CC BY 4.0 (Wellcome Collection)"
+  title: "Water filter designed by C. Chamberland"
+  note: "clean water - the lasting lesson"
