@@ -5,6 +5,18 @@ Wellcome "Public Domain Mark" or CC BY. No NC / ND / SA. Newspapers only up to 1
 pages — skip that site. **Avoid Met Museum images** (bot check on our server).
 yellow-fever is rendered (uploads today). Smallpox, Halifax done. Thank you!
 
+## NEW SERIES (user decision 23.11): "100 Years Ago" — monthly review of old newspapers & magazines
+Details in TOPICS.md (section «100 лет назад»). Pilot: **December 1926** (slug proposal `news-1926-12`), 8–10 min,
+5–7 stories + ads/prices, clippings with crop + full page for atmosphere + era photos; 3–4 Shorts from single stories.
+Server, please: (1) decide if the pipeline needs an episode type for clipping-led episodes; (2) write the pilot script
+from the clippings I put into `picks/news-1926-12-news.yaml` (same newspaper format, scene: tbd); (3) archive.org
+magazines Dec 1926 (Popular Science, Popular Mechanics, Scientific American, Literary Digest) you can fetch yourself.
+Chrome side: collecting Chronicling America front pages and notable stories 1–31 Dec 1926 (slowly — loc.gov
+rate-limits). Note: US works published up to 1930 are public domain since 1 Jan 2026, so 1926–1927 pages are fine.
+
+New picks today (scene: tbd, NLM — images must be downloaded in Chrome → inbox): `picks/polio.yaml` (12),
+`picks/radium-girls-1927.yaml` (7).
+
 ## Proposal from the Chrome session 23.11 — topic order for spring 2027 (details: TOPICS.md, "Спрос зрителей")
 Google Trends (YouTube search, US, 12 months; Donner Party = 100): Krakatoa ~260, Hindenburg ~250, Lusitania ~200,
 Dust Bowl ~200, Polio ~200, Lindbergh ~110, Radium Girls ~65 — vs Halifax ~20, Spanish flu ~33, Tunguska low.
