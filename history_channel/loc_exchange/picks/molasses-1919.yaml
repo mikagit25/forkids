@@ -302,3 +302,94 @@
   title: Long Wharf
   date: ca. 1910
   note: Boston waterfront around 1910
+
+# --- Chrome session 2026-11-23: last gaps (science +5, wave +3, noon +1), Digital Commonwealth / NARA via DC
+- scene: science
+  source: bpl
+  id: 7d279j267
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:7d279j27h/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:7d279j267
+  rights: No known copyright restrictions.
+  title: Bellevue Reservoir, reaming rivet holes for steel tank, Bellevue Hill, West Roxbury, Mass., Nov. 13, 1914
+  date: '1914-11-13'
+  note: workers on a riveted steel storage tank in Boston, same era and construction as the molasses tank (Massachusetts Archives)
+
+- scene: science
+  source: bpl
+  id: 7d279j445
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:7d279j45f/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:7d279j445
+  rights: No known copyright restrictions.
+  title: Bellevue Reservoir, riveting east side of steel tank, West Roxbury, Mass., Dec. 23, 1914
+  date: '1914-12-23'
+  note: riveting the steel plates of a big Boston tank, 1914
+
+- scene: science
+  source: bpl
+  id: 7d279j488
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:7d279j49j/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:7d279j488
+  rights: No known copyright restrictions.
+  title: Bellevue Reservoir, riveting west side of steel tank, West Roxbury, Mass., Dec. 23, 1914
+  date: '1914-12-23'
+  note: riveted seams of a steel tank - the kind of joint that failed
+
+- scene: science
+  source: bpl
+  id: 7d279j46q
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:7d279j470/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:7d279j46q
+  rights: No known copyright restrictions.
+  title: Bellevue Reservoir, riveting south side of steel tank, West Roxbury, Mass., Dec. 23, 1914
+  date: '1914-12-23'
+  note: steel tank walls in winter, Boston 1914
+
+- scene: science
+  source: bpl
+  id: pc28c979p
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:pc28c980f/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:pc28c979p
+  rights: No known copyright restrictions.
+  title: The riveters (Joseph Pennell lithograph, "American War Work" series)
+  date: '1917'
+  note: WWI-era riveters on steel plate, same years as the tank (built 1915)
+
+- scene: wave
+  source: bpl
+  id: qj72rz81m
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:ks65m363g/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:qj72rz81m
+  rights: No known copyright restrictions.
+  title: Boston Relief Station, Haymarket Sq.
+  date: '1902-01-08'
+  note: Haymarket Relief Station in the snow - where the molasses victims were taken
+
+- scene: wave
+  source: bpl
+  id: 70797z94g
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:3x819b34c/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:70797z94g
+  rights: No known copyright restrictions.
+  title: Boston City Hospital Relief Station, Haymarket Sq.
+  date: ca. 1905-1910
+  note: the Haymarket Relief Station, closer to 1919
+
+- scene: wave
+  source: bpl
+  id: 2n49tr43h
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:2n49tr44s/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:2n49tr43h
+  rights: Public domain (CC0); National Archives at Boston via Digital Commonwealth, Use Unrestricted
+  title: Fire department test, 1919
+  date: '1919'
+  note: 1919 firemen with hoses beside a rail tank car and barrels (New England, exact place not given) - rescuers of the same year
+
+- scene: noon
+  source: bpl
+  id: cf95jm14q
+  image: https://iiif.digitalcommonwealth.org/iiif/2/commonwealth:cf95jm150/full/full/0/default.jpg
+  page_url: https://www.digitalcommonwealth.org/search/commonwealth:cf95jm14q
+  rights: No known copyright restrictions.
+  title: Nos. 661-675 Atlantic Avenue
+  date: ca. 1900
+  note: Atlantic Avenue at street level, cobbles and rails - the waterfront street under the elevated
