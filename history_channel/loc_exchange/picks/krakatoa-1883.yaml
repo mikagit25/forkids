@@ -160,3 +160,36 @@
   title: "Nood in Indië na de vulkaanuitbarsting van 1883"
   date: "1883"
   note: "Nood in Indie (Distress in the Indies) - 1883 cartoon/relief print after the eruption"
+
+# --- Delpher (KB) newspapers, Chrome 24.11. image = KB ImagingService region at full scale (s=1, x/y/w/h = the article),
+#     NOTE for the server: add "delpher": ("imageviewer.kb.nl", "delpher.nl", "resolver.kb.nl") to fetch.WEB_HOSTS.
+
+- scene: news
+  source: delpher
+  id: 'ddd:010984493:mpeg21:a0024'
+  image: "https://imageviewer.kb.nl/ImagingService/imagingService?id=ddd:010984493:mpeg21:p003:image&s=1&r=0&x=2560&y=980&w=850&h=380"
+  page_url: "https://www.delpher.nl/nl/kranten/view?coll=ddd&identifier=ddd:010984493:mpeg21:a0024"
+  rights: "Public domain (1883 newspaper, via Delpher / KB National Library of the Netherlands)"
+  title: "De Locomotief (Samarang), 27 Aug 1883: \"Uit Batavia, 27 Augustus\""
+  date: "1883-08-27"
+  note: "SAME-DAY report: \"yesterday and last night continuous dull bangs and rumbling were heard here, probably caused by the volcano on Krakatau; ash rain even in the upper town; the air was thick and hazy\""
+
+- scene: news
+  source: delpher
+  id: 'ddd:010984493:mpeg21:a0024'
+  image: "https://imageviewer.kb.nl/ImagingService/imagingService?id=ddd:010984493:mpeg21:p003:image&s=1&r=0&x=1700&y=4430&w=860&h=2450"
+  page_url: "https://www.delpher.nl/nl/kranten/view?coll=ddd&identifier=ddd:010984493:mpeg21:a0024"
+  rights: "Public domain (1883 newspaper, via Delpher / KB National Library of the Netherlands)"
+  title: "De Locomotief (Samarang), 27 Aug 1883: column \"TELEGRAMMEN\""
+  date: "1883-08-27"
+  note: "telegrams from all over Java on 27 Aug (Djokjakarta, Salatiga, Japara, Demak, Bandong, Poerwodadi, Magelang, Tegal...): everyone hears \"cannon shots\" and thinks of a nearby volcano or ships in distress - the sound carried hundreds of km"
+
+- scene: news
+  source: delpher
+  id: 'MMUTRA04:253131060:mpeg21:a00035'
+  image: "https://imageviewer.kb.nl/ImagingService/imagingService?id=MMUTRA04:253131060:mpeg21:p00012:image&s=1&r=0&x=2100&y=260&w=900&h=1300"
+  page_url: "https://www.delpher.nl/nl/kranten/view?coll=ddd&identifier=MMUTRA04:253131060:mpeg21:a00035"
+  rights: "Public domain (1883 newspaper, via Delpher / KB National Library of the Netherlands)"
+  title: "Utrechtsch provinciaal en stedelijk dagblad (Utrecht), 29 Aug 1883: \"Binnenland - Utrecht, 28 Augustus 1883\""
+  date: "1883-08-29"
+  note: "news reaches the Netherlands by Reuters telegraph within a day: \"the European quarter of Anjer and the Chinese camp at Merak have been washed away by an extraordinarily high flood... darkness in Batavia\""
