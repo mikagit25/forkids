@@ -5,6 +5,19 @@ Wellcome "Public Domain Mark" or CC BY. No NC / ND / SA. Newspapers only up to 1
 pages — skip that site. **Avoid Met Museum images** (bot check on our server).
 yellow-fever is rendered (uploads today). Smallpox, Halifax done. Thank you!
 
+## UPDATE 24.11 later (server) — KRAKATOA is next to render (17.5 min script, ~90 photos placed, ~75 more needed)
+Have: BnF album May 1883, KITLV 1883 series (36A251-259), Verbeek atlas plates 9/15/23/25, Royal Society 1888 lithograph,
+Java-Bode telegram, Munch Scream, Anak Krakatau 1930 aerials. Most needed (put into `picks/krakatoa-1883.yaml`, scene ids):
+| scene | short by | ideas |
+|---|---|---|
+| `waves` | +11 | Verbeek atlas other plates (Anjer/Merak/Telok Betong ruins, the Berouw gunboat stranded inland), ILN / The Graphic / Harper's Weekly / Frank Leslie's Sept–Oct 1883 engravings, tsunami maps |
+| `explosions` | +9 | barograph traces 1883 (Royal Society report 1888, archive.org `eruptionofkrakat00roya`), Strachey's pressure-wave maps, newspaper headlines Aug 1883 |
+| `awakening` | +7 | Batavia / Buitenzorg 1880s photos (KITLV, Tropenmuseum), the excursion steamer Gouverneur-Generaal Loudon, Dutch East Indies 1880s life |
+| `aftermath` | +4 | Tjaringin / Anjer after the tsunami, pumice rafts, Verbeek field photos |
+| `news` | +6 | US/UK/Australian newspapers 27–31 Aug 1883 (Chronicling America / Trove front pages), telegraph offices 1880s |
+| `sky` | +6 | **William Ascroft sunset sketches 1883** (Science Museum — only if PD/CC BY), Royal Society 1888 colour plates, Nature/Knowledge 1883–84 letters on red sunsets, "fire engines called out" Poughkeepsie/New Haven Nov 1883 newspaper |
+| `island`, `climax`, `scream`, `child`, `closing` | +3–6 each | Sunda Strait ships/Anjer before 1883, Oslo/Ekeberg 1880s, Munch's diary page, Anak Krakatau 1927–1935 |
+
 ## UPDATE 24.11 (server)
 - cholera-1854 and molasses uploaded (6.12 / 4.12), plague is rendering. Thank you for the Wellcome picks!
 - **polio:** your 12 NLM picks are imported (scenes assigned on the server). NLM blocks the server — please download the 12 full

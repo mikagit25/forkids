@@ -157,6 +157,11 @@ scenes:
       - {file: "curid:152302073", match: "the half-cone of Rakata"}   # Rakata, the remnant of Krakatau, aerial photograph July 1930 (CC0)
       - {file: "curid:17203550", match: "the rare Javan rhinoceros"}   # Javan rhinoceros, c. 1900 (PD)
       - {file: "curid:2923798"}   # Javan rhinoceros, Zimmermann 1861 (PD)
+      - {file: "curid:105275835", match: "cut off by a cliff two hundred and fifty metres high"}   # Rakata's sheared cliff after the collapse (albumen print, KITLV 3778, CC BY 4.0)
+      - {file: "curid:105087893"}   # the cliff of Rakata after 1883 (KITLV 3080, CC BY 4.0)
+      - {file: "curid:105262987"}   # Krakatau between Java and Sumatra, the remnant of Rakata (KITLV 3077, CC BY 4.0)
+      - {file: "curid:105314075"}   # the remnant of Krakatau (KITLV 3079, CC BY 4.0)
+      - {file: "curid:87640653"}   # Verbeek atlas plate 15-16: Steers island; kampong Tampang devastated (PD)
 
   - id: news
     chapter: "VIII. News Travels Fast"
@@ -168,7 +173,6 @@ scenes:
     images:
       - {file: "curid:152159698", match: "telegraph cables connected Java"}   # newspaper publication of the first telegram about the eruption, Java-Bode, 27 Aug 1883 (CC0)
       - {file: "curid:163369809"}   # New York Herald on Krakatoa, 1895 (PD)
-      - {file: "curid:43199103", match: "the government asked Rogier Verbeek"}   # R. D. M. Verbeek (PD)
       - {file: "curid:44007233"}   # telegraph cable manufacturer, 1884 (no restrictions)
       - {file: "curid:105115143"}   # scientific investigation in the crater of Krakatau (KITLV, CC BY 4.0)
 
@@ -222,6 +226,8 @@ scenes:
       - {file: "curid:152128562"}   # eruption at Krakatau, aerial photograph July 1930 (CC0)
       - {file: "curid:152164079"}   # Anak Krakatau, aerial photograph May 1938 (CC0)
       - {file: "curid:146142057"}   # the smoking Krakatau, 1928 (PD)
+      - {file: "curid:105195661"}   # Krakatau in the Sunda Strait, eruption seen from the sea (KITLV 5827, CC BY 4.0)
+      - {file: "curid:105222919"}   # Krakatau eruption seen from a ship's deck (KITLV 5828, CC BY 4.0)
 
   - id: closing
     chapter: "Epilogue"
@@ -233,6 +239,8 @@ scenes:
     images:
       - {file: "curid:97211742"}   # Anak Krakatau, April 2020 (CC BY 2.0)
       - {file: "curid:104785349"}   # Anak Krakatau volcano, 2021 (CC BY 2.0)
+      - {file: "curid:99159116"}   # Krakatau between Java and Sumatra (KITLV 82189, CC BY 4.0)
+      - {file: "curid:99275031"}   # Krakatau in the Sunda Strait (KITLV 94581, CC BY 4.0)
 
 thumbnail:
   scene: explosions
