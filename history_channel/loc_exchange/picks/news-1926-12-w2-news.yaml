@@ -1,0 +1,33 @@
+# 100 Years Ago - w2 picks (Chrome session). Owner 23.11 20:35 to the Chrome session: stories need NOT be exactly
+# 100 years old - any year roughly 1880-1930 whose date falls in this week is fine (more interesting material);
+# 1926 stories from the server's list come first. scene: tbd. crop = x0,y0,x1,y1 fractions, checked visually.
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:mthi:batch_mthi_indianpaintbrush_ver01:data:sn83025316:00212476730:1913121301:1007/full/pct:100/0/default.jpg
+  crop: [0.04, 0.135, 0.205, 0.4]
+  page_url: https://www.loc.gov/resource/sn83025316/1913-12-13/ed-1/?sp=1
+  date: '1913-12-13'
+  paper: The Daily Missoulian (Missoula, Mont.)
+  match: Mona Lisa
+  note: 'STORY monalisa-1913: front page ''"Mona Lisa" is at last found - discovered in Florence - stolen two years ago'' (Peruggia, the Louvre theft of 1911)'
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926121301:0476/full/pct:100/0/default.jpg
+  crop: [0.358, 0.413, 0.48, 0.52]
+  page_url: https://www.loc.gov/resource/sn82014248/1926-12-13/ed-1/?sp=1
+  date: '1926-12-13'
+  paper: Daily Kennebec Journal (Augusta, Me.)
+  match: Agatha Christie
+  note: "STORY christie-1926 (server list): 'British sleuths baffled in search missing novelist' - and the paper calls her 'Mrs. Agatha Christie, American novelist' (wrong!) - she was found next day in Harrogate"
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926121301:0476/full/pct:100/0/default.jpg
+  crop: [0.007, 0.54, 0.355, 0.975]
+  page_url: https://www.loc.gov/resource/sn82014248/1926-12-13/ed-1/?sp=1
+  date: '1926-12-13'
+  paper: Daily Kennebec Journal (Augusta, Me.)
+  match: Christmas Club
+  note: "PRICES & ADS: front-page ad with Santa - '1927 Christmas Club now open - pays 4% interest' (save 25c-$5 a week for next Christmas), State Trust Co."
