@@ -1,0 +1,353 @@
+# pompeii picks - Chrome session 2026-11-24, Rijksmuseum (data.rijksmuseum.nl; not reachable by the server API). scene: tbd.
+# 19th-c. photos of the ruins, Fiorelli plaster casts of victims, Herculaneum, Vesuvius eruptions 1872 (the volcano is still alive).
+# NOTE for server: fetch.WEB_HOSTS needs  "rijks": ("iiif.micr.io", "rijksmuseum.nl")
+
+- scene: tbd
+  source: rijks
+  id: "200146477"
+  image: "https://iiif.micr.io/MUVeh/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200146477"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Afgietsel van een slachtoffer van de uitbarsting van de Vesuvius in het Antiquarium te Pompei"
+  date: "1864 - 1881"
+  note: "plaster cast of a victim (Fiorelli's casts) in the Pompeii Antiquarium"
+
+- scene: tbd
+  source: rijks
+  id: "200359443"
+  image: "https://iiif.micr.io/jgJan/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200359443"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Afgietsel van een slachtoffer van de uitbarsting van de Vesuvius in 79"
+  date: "1860 - 1900"
+  note: "plaster cast of a victim of 79 AD"
+
+- scene: tbd
+  source: rijks
+  id: "200142680"
+  image: "https://iiif.micr.io/eAsBv/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200142680"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Via delle Tombe in Pompei, op de achtergrond de Vesuvius"
+  date: "1870 - 1900"
+  note: "Street of Tombs with Vesuvius behind"
+
+- scene: tbd
+  source: rijks
+  id: "200146474"
+  image: "https://iiif.micr.io/xsLew/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200146474"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Gezicht op Pompei met op de achtergrond de Vesuvius"
+  date: "1864 - 1881"
+  note: "Pompeii and Vesuvius"
+
+- scene: tbd
+  source: rijks
+  id: "200738104"
+  image: "https://iiif.micr.io/xoySK/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200738104"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Gezicht op de ruines van Pompei met de Vesuvius op de achtergrond"
+  date: "1879"
+  note: "ruins and the volcano, 1879"
+
+- scene: tbd
+  source: rijks
+  id: "200744429"
+  image: "https://iiif.micr.io/NMmAB/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200744429"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Twee gezichten te Pompei met de Vesuvius op de achtergrond"
+  date: "1895 - 1905"
+  note: "two views of Pompeii"
+
+- scene: tbd
+  source: rijks
+  id: "200332949"
+  image: "https://iiif.micr.io/mUWgr/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200332949"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Forum van Pompei, met de Vesuvius op de achtergrond"
+  date: "1861 - 1878"
+  note: "the Forum"
+
+- scene: tbd
+  source: rijks
+  id: "200359442"
+  image: "https://iiif.micr.io/PJCjz/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200359442"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Amfitheater te Pompei met op de achtergrond de Vesuvius"
+  date: "1860 - 1900"
+  note: "the amphitheatre"
+
+- scene: tbd
+  source: rijks
+  id: "200325483"
+  image: "https://iiif.micr.io/OARiz/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200325483"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Restanten van een straat in Pompei, gezien richting de Vesuvius"
+  date: "1857 - 1914"
+  note: "a street towards Vesuvius"
+
+- scene: tbd
+  source: rijks
+  id: "200325471"
+  image: "https://iiif.micr.io/RMzql/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200325471"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Restanten van de Herculaneumpoort te Pompei"
+  date: "1851 - 1900"
+  note: "Herculaneum Gate"
+
+- scene: tbd
+  source: rijks
+  id: "200325472"
+  image: "https://iiif.micr.io/NJpNe/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200325472"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Gezicht door de Herculaneumpoort te Pompei"
+  date: "1851 - 1900"
+  note: "through the Herculaneum Gate"
+
+- scene: tbd
+  source: rijks
+  id: "200534190"
+  image: "https://iiif.micr.io/MEVMG/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200534190"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Pompei, Casa scoperta nei nuovi scavi del 1892"
+  date: "1896"
+  note: "a house found in the new excavations of 1892"
+
+- scene: tbd
+  source: rijks
+  id: "200174134"
+  image: "https://iiif.micr.io/cbCvX/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200174134"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Badhuis in de opgedolven stad Pompeii buiten Napels"
+  date: "1800"
+  note: "bath house - print of 1800, early excavations"
+
+- scene: tbd
+  source: rijks
+  id: "200213494"
+  image: "https://iiif.micr.io/VjECO/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200213494"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Gezicht op Pompeii"
+  date: "1809 - 1857"
+  note: "view of Pompeii, early 19th c."
+
+- scene: tbd
+  source: rijks
+  id: "200213803"
+  image: "https://iiif.micr.io/oDHCZ/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200213803"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Gezicht op Pompeii"
+  date: "1809 - 1857"
+  note: "view of Pompeii, early 19th c."
+
+- scene: tbd
+  source: rijks
+  id: "200142804"
+  image: "https://iiif.micr.io/BlqDX/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200142804"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Huizen in Herculaneum"
+  date: "1860 - 1889"
+  note: "Herculaneum houses"
+
+- scene: tbd
+  source: rijks
+  id: "200142807"
+  image: "https://iiif.micr.io/KOUZn/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200142807"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Opgegraven huizen in Herculaneum"
+  date: "1860 - 1889"
+  note: "excavated houses, Herculaneum"
+
+- scene: tbd
+  source: rijks
+  id: "200142809"
+  image: "https://iiif.micr.io/CBAjq/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200142809"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Casa d'Argo te Herculaneum"
+  date: "1860 - 1889"
+  note: "House of Argus, Herculaneum"
+
+- scene: tbd
+  source: rijks
+  id: "200146478"
+  image: "https://iiif.micr.io/GZnFo/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200146478"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Gezicht op Herculaneum"
+  date: "1864 - 1881"
+  note: "Herculaneum"
+
+- scene: tbd
+  source: rijks
+  id: "200146684"
+  image: "https://iiif.micr.io/SuQNq/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200146684"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Ruines te Herculaneum"
+  date: "1857 - 1875"
+  note: "Herculaneum ruins"
+
+- scene: tbd
+  source: rijks
+  id: "200325459"
+  image: "https://iiif.micr.io/GDGQP/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200325459"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Restanten van het huis van Aristide te Herculaneum"
+  date: "1851 - 1900"
+  note: "House of Aristides, Herculaneum"
+
+- scene: tbd
+  source: rijks
+  id: "200625187"
+  image: "https://iiif.micr.io/hDnmE/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200625187"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Sculptuur van een gesluierde vrouw, afkomstig van Herculaneum"
+  date: "1896"
+  note: "sculpture from Herculaneum"
+
+- scene: tbd
+  source: rijks
+  id: "200325291"
+  image: "https://iiif.micr.io/UYfeS/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200325291"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Uitbarsting van de Vesuvius in 1872"
+  date: "1872"
+  note: "Vesuvius erupting, 1872 (photo) - the volcano is still alive"
+
+- scene: tbd
+  source: rijks
+  id: "200608043"
+  image: "https://iiif.micr.io/oNuGL/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200608043"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Eruptie van de Vesuvius in 1872"
+  date: "1872"
+  note: "eruption of 1872"
+
+- scene: tbd
+  source: rijks
+  id: "200868463"
+  image: "https://iiif.micr.io/eRndo/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200868463"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Gezicht op de uitbarsting van de Vesuvius in 1872"
+  date: "1892 - 1904"
+  note: "eruption of 1872"
+
+- scene: tbd
+  source: rijks
+  id: "200325289"
+  image: "https://iiif.micr.io/UipZb/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200325289"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Krater van de Vesuvius na de eruptie van 1872"
+  date: "1873"
+  note: "crater after 1872"
+
+- scene: tbd
+  source: rijks
+  id: "200143816"
+  image: "https://iiif.micr.io/AbBfe/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200143816"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Krater van de Vesuvius"
+  date: "1880 - 1881"
+  note: "the crater"
+
+- scene: tbd
+  source: rijks
+  id: "200143810"
+  image: "https://iiif.micr.io/htJqk/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200143810"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Vesuvius met kabelspoorbaan"
+  date: "1880 - 1881"
+  note: "the funicular up Vesuvius (1880) - tourism"
+
+- scene: tbd
+  source: rijks
+  id: "200824017"
+  image: "https://iiif.micr.io/HNsVB/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200824017"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Tandradbaan op de Vesuvius"
+  date: "1880 - c. 1890"
+  note: "Vesuvius railway"
+
+- scene: tbd
+  source: rijks
+  id: "200332928"
+  image: "https://iiif.micr.io/jVHqj/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200332928"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Napels met de baai en de Vesuvius"
+  date: "1861 - 1878"
+  note: "Naples and the bay"
+
+- scene: tbd
+  source: rijks
+  id: "200384946"
+  image: "https://iiif.micr.io/KeBEx/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200384946"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Keizer Wilhelm op den Vesuvius"
+  date: "1896-04-12"
+  note: "Kaiser Wilhelm II on Vesuvius, 1896"
+
+- scene: tbd
+  source: rijks
+  id: "200747533"
+  image: "https://iiif.micr.io/HUKwH/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200747533"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Man en vrouw op het geharde lava na een uitbarsting van de Vesuvius"
+  date: "1874 - 1879"
+  note: "tourists on hardened lava"
+
+- scene: tbd
+  source: rijks
+  id: "200747536"
+  image: "https://iiif.micr.io/gnGrw/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200747536"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Fotoreproductie van een prent van mensen die de Vesuvius beklimmen"
+  date: "1874 - 1879"
+  note: "climbing Vesuvius"
+
+- scene: tbd
+  source: rijks
+  id: "200710954"
+  image: "https://iiif.micr.io/Telqe/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200710954"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "The ruins of Pompeii : a series of eighteen photographic views"
+  date: "1867"
+  note: "Victorian photo album of Pompeii"
+
+- scene: tbd
+  source: rijks
+  id: "200718236"
+  image: "https://iiif.micr.io/spbWQ/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200718236"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Pompeii, past and present"
+  date: "1895"
+  note: "Victorian guidebook"
