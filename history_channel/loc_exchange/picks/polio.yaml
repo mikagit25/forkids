@@ -306,3 +306,185 @@
   title: "[1965 Award Winner - Albert B. Sabin]"
   date: '1965'
   note: "Albert Sabin"
+
+# --- CDC PHIL (public domain), Chrome 24.11 evening. image = full-resolution TIFF; _lores.jpg exists too (small).
+
+- scene: sabin
+  source: cdc
+  id: '28084'
+  image: "https://phil.cdc.gov/PHIL_Images/28084/28084.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=28084"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Public health worker giving oral polio vaccine to a toddler in a highchair, mother holding her head"
+  date: '1960'
+  note: "oral vaccine arrives in the US (1960)"
+
+- scene: sabin
+  source: cdc
+  id: '29591'
+  image: "https://phil.cdc.gov/PHIL_Images/29591/29591.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=29591"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Interior of a Sabin oral polio vaccine clinic, Atlanta, Georgia, June 1961"
+  date: '1961'
+  note: "\"Sabin Sundays\" - children get their drops"
+
+- scene: sabin
+  source: cdc
+  id: '29582'
+  image: "https://phil.cdc.gov/PHIL_Images/29582/29582.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=29582"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Line of women at a makeshift polio immunization station outside a dairy cooperative, Columbus, Georgia, April 1961"
+  date: '1961'
+  note: "mass campaign: everyone queues"
+
+- scene: sabin
+  source: cdc
+  id: '25794'
+  image: "https://phil.cdc.gov/PHIL_Images/25794/25794.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=25794"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Mass oral polio vaccination campaign, DeKalb County, Georgia: mother and daughter, nurse preparing oral vaccine"
+  date: '1961'
+  note: "the community vaccine Sabin promised"
+
+- scene: sabin
+  source: cdc
+  id: '25791'
+  image: "https://phil.cdc.gov/PHIL_Images/25791/25791.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=25791"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Mass oral polio vaccination campaign, DeKalb County, Georgia"
+  date: '1961'
+  note: "crowds at a vaccination site"
+
+- scene: sabin
+  source: cdc
+  id: '29613'
+  image: "https://phil.cdc.gov/PHIL_Images/29613/29613.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=29613"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Mass polio vaccination event in Georgia during an oral vaccination campaign"
+  date: '1961'
+  note: "oral vaccine day"
+
+- scene: sabin
+  source: cdc
+  id: '29615'
+  image: "https://phil.cdc.gov/PHIL_Images/29615/29615.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=29615"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Long line for polio vaccine in Laredo, Texas, May 1962"
+  date: '1962'
+  note: "queues that stretch down the street"
+
+- scene: sabin
+  source: cdc
+  id: '29612'
+  image: "https://phil.cdc.gov/PHIL_Images/29612/29612.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=29612"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "A mother brings her three children for polio vaccine, Carver Homes, Atlanta, 1962"
+  date: '1962'
+  note: "families together"
+
+- scene: sabin
+  source: cdc
+  id: '29621'
+  image: "https://phil.cdc.gov/PHIL_Images/29621/29621.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=29621"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Holiday Inn sign in Jasper, Alabama, announcing a polio vaccine day, August 1963"
+  date: '1963'
+  note: "even motel signs joined in"
+
+- scene: sabin
+  source: cdc
+  id: '29559'
+  image: "https://phil.cdc.gov/PHIL_Images/29559/29559.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=29559"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Handwritten poster announcing free oral polio vaccine"
+  date: '1963'
+  note: "\"free\" - cheap and easy to give"
+
+- scene: sabin
+  source: cdc
+  id: '2448'
+  image: "https://phil.cdc.gov/PHIL_Images/2448/2448.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=2448"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Alabama National Guard loading polio vaccine at Birmingham airport, 1963"
+  date: '1963'
+  note: "vaccine flown across the state"
+
+- scene: sabin
+  source: cdc
+  id: '1625'
+  image: "https://phil.cdc.gov/PHIL_Images/1625/1625.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=1625"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Health worker giving oral polio vaccine to a child"
+  date: '1963'
+  note: "the drops (often on a sugar cube)"
+
+- scene: sabin
+  source: cdc
+  id: '29580'
+  image: "https://phil.cdc.gov/PHIL_Images/29580/29580.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=29580"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Shop-window display promoting the polio immunization campaign, Columbus, Georgia, April 1961"
+  date: '1961'
+  note: "mannequin family in a store window - the campaign everywhere"
+
+- scene: legacy
+  source: cdc
+  id: '29630'
+  image: "https://phil.cdc.gov/PHIL_Images/29630/29630.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=29630"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Father at home with his two sons during the Rhode Island polio epidemic, 1960"
+  date: '1960'
+  note: "one of the last big US epidemics - a family hit by polio"
+
+- scene: legacy
+  source: cdc
+  id: '29629'
+  image: "https://phil.cdc.gov/PHIL_Images/29629/29629.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=29629"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Young boy in a crib in hospital during the Rhode Island polio epidemic, 1960"
+  date: '1960'
+  note: "a child patient, 1960"
+
+- scene: legacy
+  source: cdc
+  id: '29628'
+  image: "https://phil.cdc.gov/PHIL_Images/29628/29628.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=29628"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Doctor examining a young girl, mother beside her, Rhode Island polio epidemic, 1960"
+  date: '1960'
+  note: "examination during the epidemic"
+
+- scene: legacy
+  source: cdc
+  id: '29626'
+  image: "https://phil.cdc.gov/PHIL_Images/29626/29626.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=29626"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "Young boy in a hospital crib, Rhode Island polio epidemic, 1960"
+  date: '1960'
+  note: "a child patient, 1960"
+
+- scene: race
+  source: cdc
+  id: '31901'
+  image: "https://phil.cdc.gov/PHIL_Images/31901/31901.tif"
+  page_url: "https://phil.cdc.gov/Details.aspx?pid=31901"
+  rights: "Public domain - CDC Public Health Image Library (PHIL): permission not required for public domain images"
+  title: "CDC bacteriologist Alan Bernstein examining suckling mice in the virus laboratory, Montgomery, Alabama, 3 April 1957"
+  date: '1957'
+  note: "virus research in the 1950s lab (mice used to grow and test viruses)"
