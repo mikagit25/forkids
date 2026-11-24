@@ -15,3 +15,4 @@
 | 11 | Летаргический энцефалит: появился во время WWI, ~1 млн заболевших, сотни тысяч умерших; лечения не нашли; Оливер Сакс «Пробуждения» | Wikipedia: Encephalitis lethargica |
 | 12 | «Броненосец Потёмкин» — премьера в США 5.12.1926, Biltmore Theatre; запрещался в ряде стран, включая СССР | Wikipedia: Battleship Potemkin |
 | 13 | Реклама Doan's Pills 60c (Daily Kennebec Journal 7.12.1926); мясник: ветчина 25c/фунт, ягнёнок 30c (Pleasantville Press, 2.12.1927 — в тексте «год спустя») | Chrome clippings |
+| 14 | Шутка Houston Post-Dispatch о налоге на холостяков; реклама Whippet («Now Whippet driving is the vogue»; «women prefer to drive») | Literary Digest 25.12.1926, n9 и n1 |

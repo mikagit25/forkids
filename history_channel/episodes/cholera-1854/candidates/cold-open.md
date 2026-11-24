@@ -1,0 +1,35 @@
+# cold-open — 
+
+At the end of August 1854, in the heart of London, people began to die at a terrifying rate. In three days, about a hundred and twenty-seven people on or near one street were dead. The experts blamed foul air. One doctor blamed the water, and set out to prove it with a street map, a lot of knocking on doors, and the handle of a water pump. The authorities ignored him. It took a river so foul that Parliament could not breathe, eighty-two miles of brick sewers, and another epidemic to prove him right. This is the story of John Snow, the Broad Street pump, and the Great Stink of London.
+
+| # | ref | source | date | W×H | licence | title |
+|---|---|---|---|---|---|---|
+| 1 | `curid:35856845` | commons |  | 1066×1794 | CC BY 4.0 | [Remedies for cholera, 1832 Wellcome L0000612](https://commons.wikimedia.org/wiki/File:Remedies_for_cholera,_1832_Wellcome_L0000612.jpg) |
+| 2 | `curid:31233907` | commons |  | 3429×2266 | CC BY 2.0 | [London Board of Health searching the city for cholera Wellcome V001089](https://commons.wikimedia.org/wiki/File:London_Board_of_Health_searching_the_city_for_cholera_Wellcome_V0010896.jpg) |
+| 3 | `curid:90127892` | commons | 1832date QS:P571,+18 | 1600×1200 | Public domain | [Elegant preventive of the cholera. (BM 1868,0808.12313)](https://commons.wikimedia.org/wiki/File:Elegant_preventive_of_the_cholera._(BM_1868,0808.12313).jpg) |
+| 4 | `curid:36273733` | commons |  | 5777×7749 | CC BY 4.0 | [Plan Showing the Ascertained Deaths from Cholera Wellcome L0072142](https://commons.wikimedia.org/wiki/File:Plan_Showing_the_Ascertained_Deaths_from_Cholera_Wellcome_L0072142.jpg) |
+| 5 | `curid:36273897` | commons |  | 7833×3448 | CC BY 4.0 | [Report on the cholera outbreak in the Parish of St. James... Wellcome ](https://commons.wikimedia.org/wiki/File:Report_on_the_cholera_outbreak_in_the_Parish_of_St._James..._Wellcome_L0072152.jpg) |
+| 6 | `curid:36273922` | commons |  | 6051×3453 | CC BY 4.0 | [Report on the cholera outbreak in the Parish of St. James... Wellcome ](https://commons.wikimedia.org/wiki/File:Report_on_the_cholera_outbreak_in_the_Parish_of_St._James..._Wellcome_L0072155.jpg) |
+| 7 | `curid:36273913` | commons |  | 6018×3425 | CC BY 4.0 | [Report on the cholera outbreak in the Parish of St. James... Wellcome ](https://commons.wikimedia.org/wiki/File:Report_on_the_cholera_outbreak_in_the_Parish_of_St._James..._Wellcome_L0072154.jpg) |
+| 8 | `wellcome:exrfmbtm` | wellcome |  | 400×176 | Public Domain Mark | [Report on the cholera outbreak in the Parish of St. James...](https://wellcomecollection.org/works/w7gef2ey) |
+| 9 | `wellcome:q4bsqx88` | wellcome |  | 400×175 | Public Domain Mark | [Report on the cholera outbreak in the Parish of St. James...](https://wellcomecollection.org/works/vffmj95g) |
+| 10 | `wellcome:d4gnqhwy` | wellcome |  | 400×371 | Public Domain Mark | [A map taken from a report by Dr. John Snow](https://wellcomecollection.org/works/uxgfjt62) |
+| 11 | `wellcome:f7bwecfz` | wellcome |  | 400×175 | Public Domain Mark | [Report on the cholera outbreak in the Parish of St. James...](https://wellcomecollection.org/works/j6bgbzq4) |
+| 12 | `curid:2278605` | commons | 1854 | 20124×18877 | Public domain | [Snow-cholera-map-1](https://commons.wikimedia.org/wiki/File:Snow-cholera-map-1.jpg) |
+| 13 | `curid:35870833` | commons |  | 2900×3804 | CC BY 4.0 | [Area around Golden Square during Cholera Epidemic. Wellcome L0005796](https://commons.wikimedia.org/wiki/File:Area_around_Golden_Square_during_Cholera_Epidemic._Wellcome_L0005796.jpg) |
+| 14 | `europeana:9200579/r62e8ty8` | europeana |  | 400×537 | CC BY 4.0 | [Water from a pump in Broad Street, Golden Square, London.](https://www.europeana.eu/item/9200579/r62e8ty8) |
+| 15 | `wellcome:nkgzeyvc` | wellcome |  | 400×539 | Public Domain Mark | [Broad Street (latterly Broadwick Street), Soho, with a white silhouett](https://wellcomecollection.org/works/eu4yv86b) |
+| 16 | `dpla:fbe8faf8bfab0f14e13267eb11857e0a` | dpla | July 22, 1909 | 3596×4555 | No known copyright | [Ahrens Continental fire engine](http://digital-collections.columbuslibrary.org/cdm/ref/collection/cofm/id/67) |
+| 17 | `curid:38219223` | commons | 1858-07-31 | 1115×949 | Public domain | [How Dirty Old Father Thames was Whitewashed](https://commons.wikimedia.org/wiki/File:How_Dirty_Old_Father_Thames_was_Whitewashed.JPG) |
+| 18 | `curid:3096711` | commons | 21 July 1855date QS: | 956×1296 | Public domain | [FaradayFatherThames](https://commons.wikimedia.org/wiki/File:FaradayFatherThames.jpg) |
+| 19 | `curid:4465060` | commons | 1858-07-10 | 975×745 | Public domain | [The silent highwayman](https://commons.wikimedia.org/wiki/File:The_silent_highwayman.jpg) |
+| 20 | `curid:97161346` | commons | 1858 | 996×731 | Public domain | [The Austrian steam-yacht 'Fantasie' 1858 - ILN May 8, 1858](https://commons.wikimedia.org/wiki/File:The_Austrian_steam-yacht_%27Fantasie%27_1858_-_ILN_May_8,_1858.jpg) |
+| 21 | `curid:96442865` | commons | 24 August 1861date Q | 1600×1115 | Public domain | [The Female Blondin crossing the Thames from Battersea to Cremorne on a](https://commons.wikimedia.org/wiki/File:The_Female_Blondin_crossing_the_Thames_from_Battersea_to_Cremorne_on_a_tightrope_-_ILN_1858.jpg) |
+| 22 | `curid:10496330` | commons | 1858date QS:P571,+18 | 2201×1502 | Public domain | [John Frederick Lewis The Kibab Shop 1858](https://commons.wikimedia.org/wiki/File:John_Frederick_Lewis_The_Kibab_Shop_1858.jpg) |
+| 23 | `curid:47574851` | commons |  | 3000×3000 | Public domain | [Lantern Slide - Tangyes Ltd, Launching of the SS Great Eastern, 1858](https://commons.wikimedia.org/wiki/File:Lantern_Slide_-_Tangyes_Ltd,_Launching_of_the_SS_Great_Eastern,_1858.jpg) |
+| 24 | `curid:203184941` | commons | 1895date QS:P571,+18 | 3920×3016 | Public domain | [Rotterdam Kunsthal Maximilien Luce The Thames and the Parliament](https://commons.wikimedia.org/wiki/File:Rotterdam_Kunsthal_Maximilien_Luce_The_Thames_and_the_Parliament.jpg) |
+| 25 | `curid:47575142` | commons |  | 3000×3000 | Public domain | [Lantern Slide - Tangyes Ltd, Richard Tangye & SS Great Eastern, 1858](https://commons.wikimedia.org/wiki/File:Lantern_Slide_-_Tangyes_Ltd,_Richard_Tangye_%26_SS_Great_Eastern,_1858.jpg) |
+| 26 | `smithsonian:SAAM-1962.13.41_1` | smithsonian | 1900s | 400×262 | CC0 | [Windsor Castle, England](https://americanart.si.edu/collections/search/artwork/?id=9081) |
+| 27 | `smithsonian:FS-F1898.240_001` | smithsonian | 1850s | 400×267 | CC0 | [The Title Page for 'Douze Eaux Fortes d'après Nature' (Twelve Etchings](https://asia.si.edu/object/F1898.240/) |
+| 28 | `europeana:991/https___catalonica_bnc_cat_catalonicahub_lod_oai_cdm21055_contentdm_oclc_org_europa____2762_ent0` | europeana | 1800 | 400×80 | Public domain | [Tombleson's Panoramic map of the Thames and Medway](https://www.europeana.eu/item/991/https___catalonica_bnc_cat_catalonicahub_lod_oai_cdm21055_contentdm_oclc_org_europa____2762_ent0) |
+| 29 | `europeana:90402/RP_T_2013_14_1_46_R_` | europeana | 1858 | 2500×1815 | Public domain | [Windsor Castle](https://www.europeana.eu/item/90402/RP_T_2013_14_1_46_R_) |

@@ -1,0 +1,17 @@
+# kenny — VIII. Sister Kenny
+
+For those who survived, the standard treatment was rest. Paralysed limbs were put in splints, and many patients lay in plaster body casts for months. Often the muscles only grew weaker. In 1940, an Australian bush nurse arrived in North America with a very different idea. Her name was Elizabeth Kenny, and she had treated polio in the rural outback of Queensland. Instead of immobilising limbs, she wrapped them in hot, moist packs to relieve the painful spasms, and then moved and exercised the muscles as early as possible. Many doctors resisted. But her results were hard to argue with. She [...]
+
+| # | ref | source | date | W×H | licence | title |
+|---|---|---|---|---|---|---|
+| 1 | `curid:156695744` | commons | 1938-11 | 1400×906 | CC BY 4.0 | [Child patients at Sister Kenny Clinic, Brisbane, November 1938](https://commons.wikimedia.org/wiki/File:Child_patients_at_Sister_Kenny_Clinic,_Brisbane,_November_1938.jpg) |
+| 2 | `curid:60672621` | commons | 1952 | 1000×740 | Public domain | [Sister Elizabeth Kenny in her garden Toowoomba 1952](https://commons.wikimedia.org/wiki/File:Sister_Elizabeth_Kenny_in_her_garden_Toowoomba_1952.jpg) |
+| 3 | `curid:53015303` | commons | 1939-06-26 | 1952×871 | Public domain | [Sister Kenny Clinic, Rockhampton Hospital, 1939](https://commons.wikimedia.org/wiki/File:Sister_Kenny_Clinic,_Rockhampton_Hospital,_1939.jpg) |
+| 4 | `curid:198889698` | commons | 2017-04-11 10:23:18 | 2964×1554 | CC BY 2.0 | [Elizabeth Kenny Institute, 1800 Chicago Ave., Minneapolis Minnesota](https://commons.wikimedia.org/wiki/File:Elizabeth_Kenny_Institute,_1800_Chicago_Ave.,_Minneapolis_Minnesota.jpg) |
+| 5 | `curid:12658491` | commons | circa 1951date QS:P, | 1000×713 | Public domain | [StateLibQld 1 81099 Sister Elizabeth Kenny shortly before her death, T](https://commons.wikimedia.org/wiki/File:StateLibQld_1_81099_Sister_Elizabeth_Kenny_shortly_before_her_death,_Toowoomba,_ca._1951.jpg) |
+| 6 | `curid:108517805` | commons | Taken on 3 October 2 | 3966×2833 | CC BY 4.0 | [Enda Kenny (2012)](https://commons.wikimedia.org/wiki/File:Enda_Kenny_(2012).jpg) |
+| 7 | `curid:114084133` | commons | 2013-11-23 11:01 | 1077×1180 | No restrictions | [Image from page 37 of "The Sisters; or, the Fatal marriages ... Illust](https://commons.wikimedia.org/wiki/File:Image_from_page_37_of_%22The_Sisters;_or,_the_Fatal_marriages_..._Illustrated_with_fifty-eight_engravings_by_Kenny_Meadows_and_Alfred_Crowquill,_a_portrait_of_the_author_and_twenty-two_etchings_on_steel,_by_Onwhyn._2nd_ed._(11231142366).jpg) |
+| 8 | `curid:1305601` | commons | 1950 | 2248×2656 | Public domain | [Elizabeth Kenny NYWTS](https://commons.wikimedia.org/wiki/File:Elizabeth_Kenny_NYWTS.jpg) |
+| 9 | `dpla:e91dff96870eab8c5b4c0cd7d2e68498` | dpla | 1999-12-01 | 1223×1820 | No Copyright - United States | [Kenny Banczak struggles to net a 13-pound catfish caught by his sister](http://catalog.archives.gov/id/6521213) |
+| 10 | `dpla:016f9b8e4c8c04587dca68268acd230f` | dpla | 1947 | 210×131 | No Copyright - United States | [Weisenberger children pose in their uncle's truck, Benton County, Indi](http://indianaalbum.pastperfectonline.com/photo/C4E6918C-7837-4381-88F7-203877948727) |
+| 11 | `curid:198923641` | commons | 2017-06-16 14:32:54 | 4063×2473 | CC BY 2.0 | [Lymanhurst Hospital and School, 1800 Chicago Ave., Minneapolis Minneso](https://commons.wikimedia.org/wiki/File:Lymanhurst_Hospital_and_School,_1800_Chicago_Ave.,_Minneapolis_Minnesota.jpg) |
