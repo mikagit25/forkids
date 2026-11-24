@@ -1,7 +1,7 @@
 # houdini picks - Chrome session 2026-11-24, Library of Congress Prints & Photographs (loc.gov blocks the server). scene: tbd.
 # McManus-Young / Houdini collection, magic posters, National Photo Co. - LoC "No known restrictions on publication"; all made before 1930. image = v.jpg
 
-- scene: tbd
+- scene: beginnings
   lccn: "96517969"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12443v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -9,7 +9,7 @@
   date: "1894"
   note: "early life: newly-weds, 1894"
 
-- scene: tbd
+- scene: beginnings
   lccn: "96517965"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12417v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -17,7 +17,7 @@
   date: "1895"
   note: "circus years"
 
-- scene: tbd
+- scene: beginnings
   lccn: "96517971"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12438v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -25,7 +25,7 @@
   date: "ca. 1895"
   note: "the trunk-substitution act"
 
-- scene: tbd
+- scene: beginnings
   lccn: "96519240"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3d00000/3d02000/3d02100/3d02100v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -33,7 +33,7 @@
   date: "1899"
   note: "the couple, 1899"
 
-- scene: tbd
+- scene: beginnings
   lccn: "96520563"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3g00000/3g03000/3g03200/3g03282v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -41,7 +41,7 @@
   date: "ca. 1895"
   note: "before the escapes: card magician"
 
-- scene: tbd
+- scene: handcuff-king
   lccn: "96519270"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3g00000/3g03000/3g03200/3g03279v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -49,7 +49,7 @@
   date: "ca. 1895"
   note: "the handcuff act begins"
 
-- scene: tbd
+- scene: handcuff-king
   lccn: "96518790"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12419v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -57,7 +57,7 @@
   date: "c1905"
   note: "iconic chained portrait"
 
-- scene: tbd
+- scene: handcuff-king
   lccn: "96518797"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12429v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -65,7 +65,7 @@
   date: "1906"
   note: "portrait"
 
-- scene: tbd
+- scene: handcuff-king
   lccn: "96520686"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12430v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -73,7 +73,7 @@
   date: "1901"
   note: "European fame"
 
-- scene: tbd
+- scene: handcuff-king
   lccn: "96519459"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3g00000/3g03000/3g03200/3g03287v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -81,7 +81,7 @@
   date: "1903"
   note: "Berlin, 1903"
 
-- scene: tbd
+- scene: handcuff-king
   lccn: "96520555"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b20000/3b26000/3b26600/3b26687v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -89,7 +89,7 @@
   date: "1906?"
   note: "stage"
 
-- scene: tbd
+- scene: water
   lccn: "96518807"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12435v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -97,7 +97,7 @@
   date: "ca. 1908"
   note: "milk can escape"
 
-- scene: tbd
+- scene: water
   lccn: "96518829"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12434v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -105,7 +105,7 @@
   date: "ca. 1913"
   note: "Chinese water torture cell"
 
-- scene: tbd
+- scene: stunts
   lccn: "96520662"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13900/3b13907v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -113,7 +113,7 @@
   date: "ca. 1920"
   note: "straitjacket"
 
-- scene: tbd
+- scene: stunts
   lccn: "96520664"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13800/3b13881v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -121,7 +121,7 @@
   date: "1922"
   note: "hanging upside down over a crowd"
 
-- scene: tbd
+- scene: stunts
   lccn: "2016826965"
   image: "https://tile.loc.gov/storage-services/service/pnp/npcc/22500/22560v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -129,7 +129,7 @@
   date: "1922"
   note: "National Photo Co. - crowd below"
 
-- scene: tbd
+- scene: stunts
   lccn: "2016826964"
   image: "https://tile.loc.gov/storage-services/service/pnp/npcc/22500/22559v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -137,7 +137,7 @@
   date: "1922"
   note: "National Photo Co."
 
-- scene: tbd
+- scene: water
   lccn: "96520126"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3a20000/3a27000/3a27300/3a27317v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -145,7 +145,7 @@
   date: "1908"
   note: "manacled bridge jump"
 
-- scene: tbd
+- scene: water
   lccn: "2015650990"
   image: "https://tile.loc.gov/storage-services/service/pnp/ppmsca/40800/40859v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -153,7 +153,7 @@
   date: "1908"
   note: "bridge jump, another view"
 
-- scene: tbd
+- scene: stunts
   lccn: "2010646057"
   image: "https://tile.loc.gov/storage-services/service/pnp/ppmsca/23900/23992v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -161,7 +161,7 @@
   date: "1912"
   note: "underwater box escape"
 
-- scene: tbd
+- scene: cold-open
   lccn: "2010646056"
   image: "https://tile.loc.gov/storage-services/service/pnp/ppmsca/23900/23993v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -169,7 +169,7 @@
   date: "1912"
   note: "the crate goes into the water"
 
-- scene: tbd
+- scene: cold-open
   lccn: "94503070"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c10000/3c10500/3c10548v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -177,7 +177,7 @@
   date: "c1914"
   note: "box escape"
 
-- scene: tbd
+- scene: stunts
   lccn: "96519173"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13900/3b13908v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -185,7 +185,7 @@
   date: "c1914"
   note: "box escape"
 
-- scene: tbd
+- scene: flight
   lccn: "96520174"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b20000/3b26000/3b26600/3b26681v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -193,7 +193,7 @@
   date: "before 1911"
   note: "motorcar"
 
-- scene: tbd
+- scene: flight
   lccn: "96519337"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12414v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -201,7 +201,7 @@
   date: "1910"
   note: "first powered flight in Australia, 1910"
 
-- scene: tbd
+- scene: flight
   lccn: "96519157"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12401v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -209,7 +209,7 @@
   date: "1910"
   note: "aviation"
 
-- scene: tbd
+- scene: flight
   lccn: "96520584"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12410v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -217,7 +217,7 @@
   date: "1910"
   note: "aviation trophy"
 
-- scene: tbd
+- scene: flight
   lccn: "2007675368"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b00000/3b08000/3b08800/3b08854v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -225,7 +225,7 @@
   date: "ca. 1910"
   note: "his Voisin biplane"
 
-- scene: tbd
+- scene: showman
   lccn: "96518833"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12421v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -233,7 +233,7 @@
   date: "1918"
   note: "vanishing elephant"
 
-- scene: tbd
+- scene: showman
   lccn: "96520220"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13800/3b13894v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -241,7 +241,7 @@
   date: "1914"
   note: "with Roosevelt"
 
-- scene: tbd
+- scene: showman
   lccn: "2013651604"
   image: "https://tile.loc.gov/storage-services/service/pnp/ppmsca/36400/36412v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -249,7 +249,7 @@
   date: "c1914"
   note: "with Roosevelt"
 
-- scene: tbd
+- scene: showman
   lccn: "96520577"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13800/3b13899v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -257,7 +257,7 @@
   date: "1919"
   note: "film career"
 
-- scene: tbd
+- scene: showman
   lccn: "96520580"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13800/3b13887v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -265,7 +265,7 @@
   date: "1921"
   note: "film career"
 
-- scene: tbd
+- scene: showman
   lccn: "96520578"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13800/3b13886v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -273,7 +273,7 @@
   date: "1921"
   note: "film career"
 
-- scene: tbd
+- scene: showman
   lccn: "96518840"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12300/3c12396v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -281,7 +281,7 @@
   date: "1921"
   note: "film set"
 
-- scene: tbd
+- scene: showman
   lccn: "96520687"
   image: "https://tile.loc.gov/storage-services/service/pnp/ppmscd/06500/06530v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -289,7 +289,7 @@
   date: "1919"
   note: "film poster"
 
-- scene: tbd
+- scene: showman
   lccn: "92506156"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3g00000/3g01000/3g01900/3g01950v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -297,7 +297,7 @@
   date: "191-"
   note: "film poster"
 
-- scene: tbd
+- scene: handcuff-king
   lccn: "2014636903"
   image: "https://tile.loc.gov/storage-services/service/pnp/var/2000/2072/2072v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -305,7 +305,7 @@
   date: "ca. 1901"
   note: "poster"
 
-- scene: tbd
+- scene: mother
   lccn: "2014636902"
   image: "https://tile.loc.gov/storage-services/service/pnp/var/1600/1627/1627v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -313,7 +313,7 @@
   date: "ca. 1909"
   note: "the war on fake mediums"
 
-- scene: tbd
+- scene: handcuff-king
   lccn: "2014636908"
   image: "https://tile.loc.gov/storage-services/service/pnp/var/2000/2097/2097v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -321,7 +321,7 @@
   date: "ca. 1898"
   note: "poster"
 
-- scene: tbd
+- scene: mother
   lccn: "96518844"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12405v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -329,7 +329,7 @@
   date: "1923?"
   note: "exposing mediums"
 
-- scene: tbd
+- scene: mother
   lccn: "96520561"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13800/3b13893v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -337,7 +337,7 @@
   date: "1925"
   note: "exposing mediums"
 
-- scene: tbd
+- scene: mother
   lccn: "96519247"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12300/3c12375v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -345,7 +345,7 @@
   date: "ca. 1923"
   note: "how the fraud was done"
 
-- scene: tbd
+- scene: mother
   lccn: "96520658"
   image: "https://tile.loc.gov/storage-services/service/pnp/ppmscd/04000/04010v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -353,7 +353,7 @@
   date: "1920s"
   note: "fake spirit photography"
 
-- scene: tbd
+- scene: showman
   lccn: "96520640"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13800/3b13888v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -361,7 +361,7 @@
   date: "1924"
   note: "Houdini holding bonds, Boston"
 
-- scene: tbd
+- scene: coffin
   lccn: "2004667603"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b15000/3b15200/3b15210v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -369,7 +369,7 @@
   date: "1926-08-05"
   note: "his last great stunt, 1926"
 
-- scene: tbd
+- scene: coffin
   lccn: "96519253"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12300/3c12377v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -377,7 +377,7 @@
   date: "1926"
   note: "1926"
 
-- scene: tbd
+- scene: legacy
   lccn: "96520215"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b20000/3b26000/3b26600/3b26680v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -385,7 +385,7 @@
   date: "ca. 1914"
   note: "his mother's death (1913) - why he hated fake mediums"
 
-- scene: tbd
+- scene: showman
   lccn: "96518798"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12416v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -393,7 +393,7 @@
   date: "1907"
   note: "his beloved mother"
 
-- scene: tbd
+- scene: showman
   lccn: "96518832"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12411v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
@@ -401,7 +401,7 @@
   date: "1917"
   note: "celebrity"
 
-- scene: tbd
+- scene: legacy
   lccn: "96518901"
   image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12441v.jpg"
   rights: "No known restrictions on publication (LoC); made before 1930"
