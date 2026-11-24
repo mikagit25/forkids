@@ -1,0 +1,63 @@
+# 100 Years Ago - w3 picks (Chrome session). Owner 23.11 20:35 to the Chrome session: stories need NOT be exactly
+# 100 years old - any year roughly 1880-1930 whose date falls in this week is fine (more interesting material);
+# 1926 stories from the server's list come first. scene: tbd. crop = x0,y0,x1,y1 fractions, checked visually.
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_greece_ver02:data:sn83030214:00175041114:1901121601:0318/full/pct:100/0/default.jpg
+  crop: [0.01, 0.015, 0.665, 0.275]
+  page_url: https://www.loc.gov/resource/sn83030214/1901-12-16/ed-1/?sp=7
+  date: '1901-12-16'
+  paper: New-York Tribune (New York, N.Y.)
+  match: Marconi
+  note: 'STORY marconi-1901: cartoon ''Marconi, the Wizard of the Twentieth Century'' + column ''Marconi congratulated'' - first transatlantic radio signal, St. John''s, 12 Dec 1901'
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:gu:batch_gu_holmes_ver01:data:sn89053684:00414182422:1903121901:1067/full/pct:100/0/default.jpg
+  crop: [0.285, 0.122, 0.425, 0.36]
+  page_url: https://www.loc.gov/resource/sn89053684/1903-12-19/ed-1/?sp=1
+  date: '1903-12-19'
+  paper: The Savannah Morning News (Savannah, Ga.)
+  match: Wright brothers
+  note: 'STORY wright-1903: front page ''This machine flies - Wright brothers sent theirs three miles'' - the press got it WRONG (real first flight: 120 ft, 12 s; best that day 852 ft) - great hook'
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_ehrlich_ver02:data:sn83030272:00206539914:1912122001:0877/full/pct:100/0/default.jpg
+  crop: [0.82, 0.03, 0.98, 0.26]
+  page_url: https://www.loc.gov/resource/sn83030272/1912-12-20/ed-1/?sp=9
+  date: '1912-12-20'
+  paper: The Sun (New York, N.Y.)
+  match: oldest skull
+  note: 'STORY piltdown-1912: ''Oldest skull stirs New York scientists - Man lived before ice'' - the Piltdown Man, announced 18 Dec 1912, exposed as a hoax in 1953 - great twist'
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:ct:batch_ct_genesis_ver01:data:sn82014519:00414219792:1927121601:0853/full/pct:100/0/default.jpg
+  crop: [0.73, 0.08, 0.96, 0.32]
+  page_url: https://www.loc.gov/resource/sn82014519/1927-12-16/ed-1/?sp=1
+  date: '1927-12-16'
+  paper: New Britain Herald (New Britain, Conn.)
+  match: Lindbergh
+  note: 'STORY lindbergh-1927: ''Lindbergh plans to spend Christmas in Mexico City; will fly to Panama later'' + ''friends in America vigorously protest flier''s attending bullfight'' - goodwill flight; he met Anne Morrow there (later his wife)'
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926121501:0508/full/pct:100/0/default.jpg
+  crop: [0.83, 0.56, 0.956, 0.705]
+  page_url: https://www.loc.gov/resource/sn82014248/1926-12-15/ed-1/?sp=9
+  date: '1926-12-15'
+  paper: Daily Kennebec Journal (Augusta, Me.)
+  match: radio
+  note: 'PRICES & ADS: ''For sale - Ferguson 6 tube radio $75.00, also larger $110.00'' - the Christmas gift of 1926 (about two weeks of an average wage)'
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926121501:0508/full/pct:100/0/default.jpg
+  crop: [0.004, 0.54, 0.714, 0.704]
+  page_url: https://www.loc.gov/resource/sn82014248/1926-12-15/ed-1/?sp=9
+  date: '1926-12-15'
+  paper: Daily Kennebec Journal (Augusta, Me.)
+  match: Christmas shopping
+  note: 'PRICES & ADS: comic strip ''Christmas Shopping'' (an ad strip for a local store) - Model T, shop window, gift list of 1926; same page has the banner ''Santa Claus will chuckle over this Classified Christmas Catalog'''
