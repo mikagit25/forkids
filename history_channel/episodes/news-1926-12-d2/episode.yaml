@@ -1,0 +1,452 @@
+title: '100 Years Ago: Agatha Christie Found, the Most Important Fossil Ever? (December 1926)'
+subtitle: What the newspapers said between the 8th and the 20th of December 1926
+slug: news-1926-12-d2
+series: 100-years-ago
+period_start: 1926-12-11
+language: en
+era:
+- 1895
+- 1930
+visual_context: newspapers December 1926
+voice:
+  backend: kokoro
+  name: am_michael
+  lang: en-us
+  speed: 0.97
+music:
+  generate: true
+  seed: 19261211
+  mood: light
+scenes:
+- id: cold-open
+  montage: true
+  narration: 'The missing novelist is found, alive, in a hotel in Yorkshire, under another woman''s name. In Oslo, the Nobel Prizes go to a French physicist who proved that atoms are real, and to a Danish doctor whose discovery turned out to be wrong.
+    In Montana, a fossil tooth threatens to rewrite the history of mankind. And in Florida, the last independent band of the Seminoles writes to the President to end a war that has lasted a hundred years. This is what the newspapers were telling their
+    readers in the middle of December, one hundred years ago.
+
+    '
+  images:
+  - file: web:ia:literary-digest_1926-12-18_91_12-0
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n0.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n0/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: The Literary Digest, 18 December 1926, cover
+    date: '1926-12-18'
+  - file: curid:8844577
+  - file: curid:36249632
+- id: christie
+  chapter: I. Found
+  narration: 'When we left Agatha Christie, she had been missing for ten days. Her car had been found abandoned above a chalk pit at Newlands Corner in Surrey. People feared she had drowned herself in a nearby pond called the Silent Pool. The search was
+    enormous. More than a thousand police officers and some fifteen thousand volunteers combed the countryside, and for the first time in a civilian search in Britain, aeroplanes were used. The Home Secretary himself pressed the police, and a newspaper
+    offered a reward of one hundred pounds. In America, a small paper in Maine reported on the thirteenth of December: British sleuths baffled in search for missing novelist. It even called her an American novelist. She was not. The next day, the fourteenth
+    of December, she was found. She was staying at the Swan Hydropathic Hotel in Harrogate, a spa town in Yorkshire, nearly three hundred kilometres from her home. She had signed the register as Mrs Tressa Neele, from Cape Town. Neele was the surname of
+    the woman her husband had fallen in love with. What had happened? Two doctors declared that she had genuinely lost her memory. Some of her biographers believe she was in a state of shock called a fugue. Opinion is still divided. In her autobiography,
+    Christie did not mention it at all. She went on to write sixty six detective novels.
+
+    '
+  images:
+  - newspaper: https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926121301:0476/full/pct:100/0/default.jpg
+    date: '1926-12-13'
+    paper: Daily Kennebec Journal (Augusta, Me.)
+    page_url: https://www.loc.gov/resource/sn82014248/1926-12-13/ed-1/?sp=1
+    crop:
+    - 0.358
+    - 0.413
+    - 0.48
+    - 0.52
+    match: Agatha Christie
+    note: 'STORY christie-1926 (server list): ''British sleuths baffled in search missing novelist'' - and the paper calls her ''Mrs. Agatha Christie, American novelist'' (wrong!) - she was found next day in Harrogate'
+  - file: web:ia:literary-digest_1926-12-18_91_12-2
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n2.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n2/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Topics of the Day, The Literary Digest, 18 December 1926
+    date: '1926-12-18'
+- id: nobel
+  chapter: II. The Prizes of 1926
+  narration: 'On the tenth of December, the Nobel Prizes for 1926 were awarded. The Peace Prize went to two men who had been enemies only eight years earlier: Aristide Briand of France and Gustav Stresemann of Germany, for the Locarno treaties, which were
+    meant to reconcile their two countries after the war. Britain''s Austen Chamberlain had received a share of the prize a year earlier for the same agreement. The prize for literature went to Grazia Deledda, a writer from the island of Sardinia. She
+    was the first Italian woman to receive it, and only the second woman ever, after the Swede Selma Lagerlöf. In physics, the prize went to Jean Perrin of France. By measuring how tiny particles jiggle in a liquid, he had confirmed Albert Einstein''s
+    theory and proved that atoms and molecules really exist. In chemistry, it went to the Swede Theodor Svedberg, for his work with a machine that spins samples so fast that it can separate proteins, the ultracentrifuge. And the prize in medicine went
+    to the Danish doctor Johannes Fibiger, for showing that a tiny worm could cause cancer in rats. He was wrong. Later research showed that the tumours in his rats had other causes, among them a lack of vitamin A. It is often cited today as one of the
+    great mistakes in the history of the Nobel Prize.
+
+    '
+  images:
+  - file: curid:20453572
+  - file: web:ia:sim_illustrated-london-news_1926-12-18_169_4574-25
+    image: https://archive.org/download/sim_illustrated-london-news_1926-12-18_169_4574/page/n25.jpg
+    page_url: https://archive.org/details/sim_illustrated-london-news_1926-12-18_169_4574/page/n25/mode/1up
+    rights: Public domain in the US (published 1926)
+    credit: The Illustrated London News, 18 December 1926, via Internet Archive
+    title: '''Personalities of the week'', The Illustrated London News, 18 December 1926'
+    date: '1926-12-18'
+  - file: web:ia:sim_illustrated-london-news_1926-12-18_169_4574-25c
+    image: https://archive.org/download/sim_illustrated-london-news_1926-12-18_169_4574/page/n25.jpg
+    page_url: https://archive.org/details/sim_illustrated-london-news_1926-12-18_169_4574/page/n25/mode/1up
+    rights: Public domain in the US (published 1926)
+    credit: The Illustrated London News, 18 December 1926, via Internet Archive
+    title: Gustav Stresemann, 'sharer of the Nobel Peace Prize for 1926', The Illustrated London News, 18 December 1926
+    date: '1926-12-18'
+    crop:
+    - 0.72
+    - 0.66
+    - 0.99
+    - 0.9
+    match: Gustav Stresemann of Germany
+  - file: curid:92506819
+  - file: curid:18973609
+  - file: curid:77366456
+  - file: curid:162077639
+  - file: curid:161524634
+  - file: curid:160768671
+  - file: curid:18991290
+  - file: curid:161022973
+  - file: curid:103003633
+- id: fossil
+  chapter: III. The Most Important Fossil Ever Found?
+  narration: 'Science made headlines in another way that week. The Literary Digest of the eighteenth of December 1926 asked: the most important fossil ever found? Early in November, a doctor called J. C. F. Siegfriedt, from Bearcreek in Montana, had found
+    a fossil tooth in a coal mine near his town. It looked very much like a human molar. The rock around it was tens of millions of years old. If the tooth was human, the magazine said, it was by far the oldest relic of man ever found, and many chapters
+    of geology would have to be rewritten. Or, it added carefully, it might belong to an ancient animal, and be a remarkable coincidence. Today, scientists know that the human family is only a few million years old. No human tooth could have lain in rocks
+    so ancient. Readers in 1926 had good reason to be careful. Fourteen years earlier, in the same week of December, the whole world had been shown a missing link.
+
+    '
+  images:
+  - file: web:ia:literary-digest_1926-12-18_91_12-19
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n19.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n19/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: '''The most important fossil ever found?'', The Literary Digest, 18 December 1926'
+    date: '1926-12-18'
+  - file: web:ia:literary-digest_1926-12-18_91_12-19c
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n19.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n19/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: '''Is this a human molar?'' The Montana fossil tooth, The Literary Digest, 18 December 1926'
+    date: '1926-12-18'
+    crop:
+    - 0.6
+    - 0.08
+    - 0.98
+    - 0.42
+    match: It looked very much like a human molar
+- id: piltdown
+  chapter: IV. This Week in 1912
+  narration: 'On the eighteenth of December 1912, at a meeting of the Geological Society in London, an amateur archaeologist named Charles Dawson presented pieces of a skull and a jaw found in a gravel pit at Piltdown, in Sussex. Together with Arthur Smith
+    Woodward of the Natural History Museum, he announced a new kind of early human: the dawn man of Piltdown. Two days later, The Sun in New York reported: Oldest skull stirs New York scientists. Man lived before ice. Some experts had doubts from the start.
+    But Piltdown Man was accepted for decades. It was not until 1953 that scientists at the British Museum proved it was a forgery: the skull of a modern human combined with the jaw of an orangutan, its teeth filed down and the bones stained to look old.
+    A review in 2016 concluded that the forger was almost certainly Dawson himself.
+
+    '
+  images:
+  - newspaper: https://tile.loc.gov/image-services/iiif/service:ndnp:nn:batch_nn_ehrlich_ver02:data:sn83030272:00206539914:1912122001:0877/full/pct:100/0/default.jpg
+    date: '1912-12-20'
+    paper: The Sun (New York, N.Y.)
+    page_url: https://www.loc.gov/resource/sn83030272/1912-12-20/ed-1/?sp=9
+    crop:
+    - 0.82
+    - 0.03
+    - 0.98
+    - 0.26
+    match: oldest skull
+    note: 'STORY piltdown-1912: ''Oldest skull stirs New York scientists - Man lived before ice'' - the Piltdown Man, announced 18 Dec 1912, exposed as a hoax in 1953 - great twist'
+  - file: curid:23251973
+  - file: curid:43430914
+- id: seminole
+  chapter: V. A Hundred Years' War
+  narration: 'From Florida came an unusual letter. Under the headline Our oldest enemy sues for peace, the Literary Digest reported that a Seminole chief, Tony Tommy, had written to the President. He wanted to end the long war between the United States
+    government and the last independent band of the Seminoles, about three hundred people living in the Everglades. Their ancestors had fought long wars against the United States in the nineteenth century. In 1837, their famous leader Osceola was seized
+    while he came to talk under a flag of truce, and died in prison a year later. Most of the Seminoles were sent west to Oklahoma. A small band stayed in the swamps of Florida and never signed a peace. Now, in December 1926, their chief wrote that they
+    wished to bring about a more amicable relationship with the United States government. The magazine printed a photograph of Tony Tommy with a film actress, and many editors joked about it. But some of them remembered the old poem in school readers,
+    with Osceola''s words: I will not bend the knee.
+
+    '
+  images:
+  - file: web:ia:literary-digest_1926-12-18_91_12-10
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n10.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n10/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: '''Our oldest enemy sues for peace'', The Literary Digest, 18 December 1926'
+    date: '1926-12-18'
+  - file: web:ia:literary-digest_1926-12-18_91_12-10c
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n10.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n10/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Chief Tony Tommy of the Seminoles, The Literary Digest, 18 December 1926
+    date: '1926-12-18'
+    crop:
+    - 0.36
+    - 0.42
+    - 0.72
+    - 0.86
+    match: photograph of Tony Tommy
+  - file: curid:31388876
+  - file: curid:66388278
+  - file: curid:31412948
+- id: colour
+  chapter: VI. The Colour Cure
+  narration: 'The same issue of the Digest described a new treatment that was being tried in mental hospitals: colour. At the Peoria State Hospital in Illinois, patients sat in sun parlours with blue, violet, ruby or amber windows. Blue was said to calm
+    the nerves. Red was said to stimulate. Yellow was said to bring cheer. One doctor even built a black room, with black floor, black beds, black walls and black curtains, and reported that a violent patient slept in it and improved. The colour cure was
+    soon forgotten. But the Digest''s photograph of women doing needlework in a blue sun parlour shows how hopeful, and how helpless, medicine for the mind still was in 1926.
+
+    '
+  images:
+  - file: web:ia:literary-digest_1926-12-18_91_12-18
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n18.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n18/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: 'Science and Invention: ''The Color Cure'', The Literary Digest, 18 December 1926'
+    date: '1926-12-18'
+  - file: web:ia:literary-digest_1926-12-18_91_12-18c
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n18.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n18/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: '''Under the soothing rays of blue light'', Peoria State Hospital, The Literary Digest, 18 December 1926'
+    date: '1926-12-18'
+    crop:
+    - 0.0
+    - 0.1
+    - 1.0
+    - 0.42
+    match: photograph of women doing needlework
+- id: jazz
+  chapter: VII. Two Young Men from the Band
+  narration: 'On the ninth of December 1926, in Chicago, the band of the drummer Ben Pollack made a record for the Victor company. They played two dance tunes, When I First Met Mary and Deed I Do. Nobody paid much attention to the sidemen. But two of them
+    were making their first records. One was a seventeen year old clarinettist from Chicago called Benny Goodman. The other was a trombonist and arranger called Glenn Miller. Ten years later, Goodman would be the King of Swing. Miller''s band would become
+    the most popular in America. In December 1926, a radio set with six tubes was advertised in Maine for seventy five dollars. That was how most Americans heard dance bands like Pollack''s: through a loudspeaker in the living room.
+
+    '
+  images:
+  - newspaper: https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926121501:0508/full/pct:100/0/default.jpg
+    date: '1926-12-15'
+    paper: Daily Kennebec Journal (Augusta, Me.)
+    page_url: https://www.loc.gov/resource/sn82014248/1926-12-15/ed-1/?sp=9
+    crop:
+    - 0.83
+    - 0.56
+    - 0.956
+    - 0.705
+    match: radio
+    note: 'PRICES & ADS: ''For sale - Ferguson 6 tube radio $75.00, also larger $110.00'' - the Christmas gift of 1926 (about two weeks of an average wage)'
+  - file: web:ia:literary-digest_1926-12-18_91_12-48
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n48.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n48/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Day-Fan radio advertisement, The Literary Digest, 18 December 1926
+    date: '1926-12-18'
+  - file: web:ia:literary-digest_1926-12-18_91_12-73
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n73.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n73/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Balkite radio advertisement, The Literary Digest, 18 December 1926
+    date: '1926-12-18'
+- id: inventions
+  chapter: VIII. This Week in 1901 and 1903
+  narration: 'Two of the greatest inventions of the twentieth century were announced in this same week of December. On the twelfth of December 1901, on Signal Hill above St. John''s in Newfoundland, Guglielmo Marconi was listening for a signal. His aerial
+    was a wire hanging from a kite, a hundred and fifty metres up. From his station at Poldhu in Cornwall, three thousand five hundred kilometres away, came three faint clicks: the letter S in Morse code. It was the first radio signal across the Atlantic.
+    Four days later, a New York paper drew him as the wizard of the twentieth century. Two years later, on the seventeenth of December 1903, at Kill Devil Hills near Kitty Hawk in North Carolina, Orville and Wilbur Wright flew. The first flight, by Orville,
+    lasted twelve seconds and covered thirty seven metres. The best flight of the day lasted fifty nine seconds. The brothers telegraphed their father to inform the press. But a telegraph operator leaked the message, and a newspaper in Virginia invented
+    most of the story. Two days later, the Savannah Morning News told its readers that the machine had flown three miles.
+
+    '
+  images:
+  - newspaper: https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_greece_ver02:data:sn83030214:00175041114:1901121601:0318/full/pct:100/0/default.jpg
+    date: '1901-12-16'
+    paper: New-York Tribune (New York, N.Y.)
+    page_url: https://www.loc.gov/resource/sn83030214/1901-12-16/ed-1/?sp=7
+    crop:
+    - 0.01
+    - 0.015
+    - 0.665
+    - 0.275
+    match: Marconi
+    note: 'STORY marconi-1901: cartoon ''Marconi, the Wizard of the Twentieth Century'' + column ''Marconi congratulated'' - first transatlantic radio signal, St. John''s, 12 Dec 1901'
+  - newspaper: https://tile.loc.gov/image-services/iiif/service:ndnp:gu:batch_gu_holmes_ver01:data:sn89053684:00414182422:1903121901:1067/full/pct:100/0/default.jpg
+    date: '1903-12-19'
+    paper: The Savannah Morning News (Savannah, Ga.)
+    page_url: https://www.loc.gov/resource/sn89053684/1903-12-19/ed-1/?sp=1
+    crop:
+    - 0.285
+    - 0.122
+    - 0.425
+    - 0.36
+    match: Wright brothers
+    note: 'STORY wright-1903: front page ''This machine flies - Wright brothers sent theirs three miles'' - the press got it WRONG (real first flight: 120 ft, 12 s; best that day 852 ft) - great hook'
+  - file: curid:106579847
+  - file: curid:106579844
+  - file: curid:11236986
+  - file: curid:152260650
+  - file: curid:6224251
+  - file: curid:29120
+  - file: curid:71137831
+  - file: curid:24262182
+- id: monalisa
+  chapter: IX. This Week in 1913
+  narration: 'And on the thirteenth of December 1913, newspapers all over the world carried the same astonishing headline. The Mona Lisa is found. The painting had been stolen from the Louvre in Paris on the twenty first of August 1911. For more than two
+    years, nobody knew where it was. The thief was Vincenzo Peruggia, an Italian who had worked at the Louvre and had helped to build the painting''s glass case. He walked out with it, kept it hidden in a trunk in his room in Paris for two years, and then
+    took it to Florence by train. There he offered it to an art dealer, Alfredo Geri. Geri called in the director of the Uffizi Gallery, who checked the painting and confirmed that it was genuine. The police arrested Peruggia at his hotel on the twelfth
+    of December. He said he had wanted to bring the painting back to Italy. In Italy, many people saw him as a patriot. He served only seven months in prison. And the Mona Lisa, which before the theft had been admired mainly by art lovers, came back to
+    Paris as the most famous painting in the world.
+
+    '
+  images:
+  - newspaper: https://tile.loc.gov/image-services/iiif/service:ndnp:mthi:batch_mthi_indianpaintbrush_ver01:data:sn83025316:00212476730:1913121301:1007/full/pct:100/0/default.jpg
+    date: '1913-12-13'
+    paper: The Daily Missoulian (Missoula, Mont.)
+    page_url: https://www.loc.gov/resource/sn83025316/1913-12-13/ed-1/?sp=1
+    crop:
+    - 0.04
+    - 0.135
+    - 0.205
+    - 0.4
+    match: Mona Lisa
+    note: 'STORY monalisa-1913: front page ''"Mona Lisa" is at last found - discovered in Florence - stolen two years ago'' (Peruggia, the Louvre theft of 1911)'
+  - file: curid:190450254
+  - file: curid:11817640
+  - file: curid:66374308
+  - file: curid:36249632
+- id: ads
+  chapter: X. Prices and Promises
+  narration: 'And what were people buying, two weeks before Christmas 1926? A bank in Augusta, Maine, put Santa Claus on the front page of the local paper: the 1927 Christmas Club is now open, and it pays four per cent interest. You saved from twenty five
+    cents to five dollars a week, and next December you had your Christmas money. The local paper''s comic strip followed a family on its Christmas shopping, with the Model T parked in front of the shop window. In the Literary Digest, a new Chrysler sixty
+    coach cost one thousand one hundred and forty five dollars. Oldsmobile promised a car that would gratify the family''s finer tastes. Kimball sold pianos, Day-Fan and Balkite sold radios, and the florists said: say it with flowers this Christmas.
+
+    '
+  images:
+  - newspaper: https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926121301:0476/full/pct:100/0/default.jpg
+    date: '1926-12-13'
+    paper: Daily Kennebec Journal (Augusta, Me.)
+    page_url: https://www.loc.gov/resource/sn82014248/1926-12-13/ed-1/?sp=1
+    crop:
+    - 0.007
+    - 0.54
+    - 0.355
+    - 0.975
+    match: Christmas Club
+    note: 'PRICES & ADS: front-page ad with Santa - ''1927 Christmas Club now open - pays 4% interest'' (save 25c-$5 a week for next Christmas), State Trust Co.'
+  - newspaper: https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926121501:0508/full/pct:100/0/default.jpg
+    date: '1926-12-15'
+    paper: Daily Kennebec Journal (Augusta, Me.)
+    page_url: https://www.loc.gov/resource/sn82014248/1926-12-15/ed-1/?sp=9
+    crop:
+    - 0.004
+    - 0.54
+    - 0.714
+    - 0.704
+    match: Christmas shopping
+    note: 'PRICES & ADS: comic strip ''Christmas Shopping'' (an ad strip for a local store) - Model T, shop window, gift list of 1926; same page has the banner ''Santa Claus will chuckle over this Classified Christmas Catalog'''
+  - file: web:ia:literary-digest_1926-12-18_91_12-34
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n34.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n34/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Chrysler 60 advertisement, The Literary Digest, 18 December 1926
+    date: '1926-12-18'
+  - file: web:ia:literary-digest_1926-12-18_91_12-32
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n32.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n32/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Oldsmobile Six advertisement, The Literary Digest, 18 December 1926
+    date: '1926-12-18'
+  - file: web:ia:literary-digest_1926-12-18_91_12-52
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n52.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n52/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Kimball Pianos advertisement, The Literary Digest, 18 December 1926
+    date: '1926-12-18'
+  - file: web:ia:literary-digest_1926-12-18_91_12-70
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n70.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n70/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: '''Say it with flowers'' advertisement, The Literary Digest, 18 December 1926'
+    date: '1926-12-18'
+  - file: web:ia:literary-digest_1926-12-18_91_12-30
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n30.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n30/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Campbell's Soup advertisement, The Literary Digest, 18 December 1926
+    date: '1926-12-18'
+  - file: web:ia:literary-digest_1926-12-18_91_12-59
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n59.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n59/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Mennen gift box advertisement, The Literary Digest, 18 December 1926
+    date: '1926-12-18'
+  - file: web:ia:sim_illustrated-london-news_1926-12-18_169_4574-26
+    image: https://archive.org/download/sim_illustrated-london-news_1926-12-18_169_4574/page/n26.jpg
+    page_url: https://archive.org/details/sim_illustrated-london-news_1926-12-18_169_4574/page/n26/mode/1up
+    rights: Public domain in the US (published 1926)
+    credit: The Illustrated London News, 18 December 1926, via Internet Archive
+    title: Mobiloil advertisement, The Illustrated London News, 18 December 1926
+    date: '1926-12-18'
+  - file: web:ia:sim_illustrated-london-news_1926-12-18_169_4574-27
+    image: https://archive.org/download/sim_illustrated-london-news_1926-12-18_169_4574/page/n27.jpg
+    page_url: https://archive.org/details/sim_illustrated-london-news_1926-12-18_169_4574/page/n27/mode/1up
+    rights: Public domain in the US (published 1926)
+    credit: The Illustrated London News, 18 December 1926, via Internet Archive
+    title: White Eagle cigarettes Christmas advertisement, The Illustrated London News, 18 December 1926
+    date: '1926-12-18'
+- id: closing
+  chapter: Next Time
+  narration: 'Next time: the last days of 1926. Christmas, and the end of a year that gave the world television''s first demonstration, the first liquid fuel rocket, and Winnie the Pooh. If you enjoyed this look through the old newspapers, subscribe, and
+    come back in ten days for the next one hundred years ago.
+
+    '
+  images:
+  - file: web:ia:literary-digest_1926-12-18_91_12-1
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n1.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n1/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Certain-teed advertisement, The Literary Digest, 18 December 1926
+    date: '1926-12-18'
+  - file: web:ia:literary-digest_1926-12-18_91_12-72
+    image: https://archive.org/download/literary-digest_1926-12-18_91_12/page/n72.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-18_91_12/page/n72/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: The Spice of Life, The Literary Digest, 18 December 1926
+    date: '1926-12-18'
+thumbnail:
+  scene: christie
+  big: '1926'
+  small: '100 YEARS AGO: MID-DECEMBER'
+tags:
+- 100 years ago
+- '1926'
+- old newspapers
+- Agatha Christie
+- Nobel Prize 1926
+- Piltdown Man
+- Mona Lisa theft
+- Wright brothers
+- Marconi
+- history
+- Archive Tales
+hashtags:
+- '#100YearsAgo'
+- '#history'
+- '#archives'
+summary: 'What were the newspapers saying between the 8th and the 20th of December 1926? Agatha Christie is found in Harrogate, the 1926 Nobel Prizes (and one famous mistake), a Montana tooth hailed as "the most important fossil ever found", the Piltdown
+  Man of 1912, a Seminole chief''s letter to the President, the colour cure, Benny Goodman''s first record, Marconi''s signal and the Wright brothers'' first flight, and the day the Mona Lisa was found in 1913 - with the original newspaper pages.
+
+  '
+references:
+- 'Chronicling America (Library of Congress): Daily Kennebec Journal, Daily Missoulian, New-York Tribune, Savannah Morning News, The Sun (New York)'
+- The Literary Digest, 11 and 18 December 1926 (Internet Archive)
+- 'Wikipedia: Agatha Christie; Johannes Fibiger; Jean Baptiste Perrin; The Svedberg; Aristide Briand; Grazia Deledda; Piltdown Man; Guglielmo Marconi; Wright brothers; Vincenzo Peruggia; Benny Goodman; Ben Pollack'
