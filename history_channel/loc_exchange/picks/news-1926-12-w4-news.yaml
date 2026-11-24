@@ -1,0 +1,23 @@
+# 100 Years Ago - w4 picks (Chrome session). Owner 23.11 20:35 to the Chrome session: stories need NOT be exactly
+# 100 years old - any year roughly 1880-1930 whose date falls in this week is fine (more interesting material);
+# 1926 stories from the server's list come first. scene: tbd. crop = x0,y0,x1,y1 fractions, checked visually.
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_koozbanian_ver01:data:sn83045462:0028065632A:1909122201:0285/full/pct:100/0/default.jpg
+  crop: [0.289, 0.132, 0.855, 0.46]
+  page_url: https://www.loc.gov/resource/sn83045462/1909-12-22/ed-1/?sp=1
+  date: '1909-12-22'
+  paper: Evening Star (Washington, D.C.)
+  match: Dr. Cook
+  note: 'STORY cook-1909: front-page cartoon ''The After Prophets'' + bulletin ''Dr. Cook''s polar claims rejected by the Copenhagen University'' + column ''Egan not to blame'' - the North Pole hoax collapses'
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:wyu:batch_wyu_greybull_ver01:data:sn86072160:00514150412:1922122701:1291/full/pct:100/0/default.jpg
+  crop: [0.86, 0.19, 0.995, 0.39]
+  page_url: https://www.loc.gov/resource/sn86072160/1922-12-27/ed-1/?sp=1
+  date: '1922-12-27'
+  paper: Casper Daily Tribune (Casper, Wyo.)
+  match: relics
+  note: 'STORY tut-1922: ''Egyptians plan to save relics from explorer'' - the fight over Tutankhamun''s treasures (tomb found Nov 1922). Use the crop only: the full page has a period headline about a lynching suspect and a racial headline - do not show the full page'
