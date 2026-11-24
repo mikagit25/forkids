@@ -26,7 +26,10 @@ scenes:
       This is the biography of polio.
     candidates: ["iron lung ward", "polio epidemic 1916", "polio vaccine 1955", "polio quarantine placard"]
     images:
-      - {query: "iron lung polio", count: 2}
+      - {file: "curid:175541401"}   # iron lung ward, Rancho Los Amigos Hospital, c. 1953 (PD)
+      - {file: "curid:714469"}   # iron lung (CDC, PD)
+      - {file: "curid:203567674"}   # Mary Robbio, 11, receives a Salk vaccine shot, 16 April 1955 (PD)
+      - {file: "curid:51560645"}   # iron lung, c. 1933, used to breathe for polio patients (PD)
 
   - id: ancient
     chapter: "I. An Old Disease"
@@ -37,9 +40,12 @@ scenes:
       For a long time the disease had no single name. It was called dental paralysis, infantile spinal paralysis, creeping paralysis, and the paralysis of the morning. In 1789, a British doctor, Michael Underwood, gave the first clinical description. In 1840, the German doctor Jakob Heine wrote the first medical report, and in 1890 the Swedish doctor Karl Oskar Medin was the first to study an epidemic. For a time it was known as Heine–Medin disease.
     candidates: ["Egyptian stele polio withered leg", "Walter Scott portrait", "Jakob Heine", "Karl Oskar Medin", "infantile paralysis 19th century"]
     images:
-      - {query: "infantile paralysis", count: 2}
       - {file: "web:nlm:101434141", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101434141-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101434141-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Poliomyelitis Anterior Acuta (photomechanical plate)", note: "early medical plate of a paralysed patient"}   # LoC via Chrome
       - {file: "web:nlm:101434140", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101434140-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101434140-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Poliomyelitis Anterior Acuta (photomechanical plate)", note: "second plate of the same series"}   # LoC via Chrome
+      - {file: "curid:1650090", match: "Ancient Egyptian paintings and carvings"}   # Egyptian stele of a man with a withered leg, 18th dynasty (CDC PHIL, PD)
+      - {file: "curid:24971320", match: "the Scottish novelist Sir Walter Scott"}   # Sir Walter Scott, Henry Raeburn, 1822 (PD)
+      - {file: "curid:115966590"}   # infantile paralysis, 1897 (PD)
+      - {file: "curid:21865907"}   # Sir Walter Scott, William Allan, 1844 (PD)
 
   - id: paradox
     chapter: "II. A Disease of Clean Cities"
@@ -51,7 +57,11 @@ scenes:
       Polio had become a disease of modern, sanitary cities. And it struck in summer.
     candidates: ["New York tenement 1900s", "city water works 1900", "Vermont 1894", "summer children street 1910s"]
     images:
-      - {query: "New York 1910s children street", count: 2}
+      - {file: "curid:68379845"}   # tenements under Brooklyn Bridge, 1909 (LoC, PD)
+      - {file: "curid:65901154"}   # children in a New York street, 1910, Lewis Hine (LoC, PD)
+      - {file: "curid:8114556"}   # Boston alley playground, Lewis Hine, 1909 (PD)
+      - {file: "curid:65880584"}   # tenement house with children in front, New York 1910 (LoC, PD)
+      - {file: "curid:134894959"}   # children on a New York street during the 1907 rent strike (PD)
 
   - id: brooklyn
     chapter: "III. The Summer of 1916"
@@ -64,10 +74,12 @@ scenes:
       From then on, polio returned almost every summer, somewhere in the country.
     candidates: ["polio quarantine placard 1916", "Brooklyn 1916", "New York Board of Health 1916", "infantile paralysis 1916 newspaper"]
     images:
-      - {query: "infantile paralysis 1916", count: 2}
       - {file: "web:nlm:101392842", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101392842-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101392842-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Acute anterior poliomyelitis: keep out of this house (Board of Health quarantine card, San Francisco)", date: "c. 1910", note: "quarantine placard on a family's door - early epidemics, 1910s"}   # LoC via Chrome
       - {file: "web:nlm:101444408", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101444408-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101444408-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Quarantine Poliomyelitis (placard)", note: "quarantine notice - the 1916 epidemic era"}   # LoC via Chrome
       - {file: "web:nlm:101444157", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101444157-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101444157-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Infantile Paralysis: This Notice is Posted in Compliance with Law", note: "legal quarantine notice for 'infantile paralysis'"}   # LoC via Chrome
+      - {file: "curid:7730153", match: "announced an epidemic of infantile paralysis in Brooklyn"}   # Brooklyn Daily Eagle, 1916 (PD)
+      - {file: "curid:121971007"}   # The Town Crier, 2 September 1916 (PD)
+      - {file: "curid:43430591"}   # orthopaedic illustration, 1916 (no restrictions)
 
   - id: fdr
     chapter: "IV. The President in the Wheelchair"
@@ -79,7 +91,13 @@ scenes:
       In 1933, Roosevelt became President of the United States, and he held the office until his death in 1945. He never forgot the disease.
     candidates: ["Franklin D. Roosevelt Warm Springs", "Campobello 1920s", "Roosevelt wheelchair 1941", "Warm Springs pool polio"]
     images:
-      - {query: "Roosevelt Warm Springs", count: 2}
+      - {file: "curid:17094997", match: "at Warm Springs, in Georgia"}   # Franklin D. Roosevelt in Warm Springs, Georgia, May 1929 (NARA, PD)
+      - {file: "curid:17095180"}   # Roosevelt in Warm Springs, 1930 (NARA, PD)
+      - {file: "curid:17095268"}   # Franklin and Eleanor Roosevelt in Warm Springs, 1930 (NARA, PD)
+      - {file: "curid:17095439"}   # Roosevelt in Warm Springs, 1931 (NARA, PD)
+      - {file: "curid:17095625"}   # Roosevelt and others in Warm Springs, 1932 (NARA, PD)
+      - {file: "curid:17095903", match: "became President of the United States"}   # Roosevelt in Warm Springs, 1936 (NARA, PD)
+      - {file: "curid:33977609"}   # Roosevelt's Little White House, Warm Springs (HABS, PD)
 
   - id: dimes
     chapter: "V. A Dime for Every Child"
@@ -90,7 +108,12 @@ scenes:
       The March of Dimes changed how charities raised money. Instead of large gifts from a few rich donors, it asked for small gifts from millions of ordinary people. It raised more than any other American charity of its time except the Red Cross. It paid for the treatment of more than eighty per cent of the country's polio patients, and it funded the research that would lead to a vaccine.
     candidates: ["March of Dimes poster", "dimes White House mail 1938", "Eddie Cantor", "March of Dimes 1940s"]
     images:
-      - {query: "March of Dimes", count: 2}
+      - {file: "curid:193041930", match: "Roosevelt helped found the National Foundation"}   # Roosevelt's statement on the new National Foundation for Infantile Paralysis, 23 Sept 1937 (PD)
+      - {file: "curid:67418202", match: "Then came the flood"}   # dimes for the Infantile Paralysis Foundation flow into the White House, 28 Jan 1938 (LoC, PD)
+      - {file: "curid:67418138"}   # dimes flow into the White House, 28 Jan 1938 (LoC, PD)
+      - {file: "curid:67732060"}   # White House acquires corner on U.S. dimes, 25 Jan 1939 (LoC, PD)
+      - {file: "curid:67509082"}   # Paralysis victim aids fight against menace, Washington 1939 (LoC, PD)
+      - {file: "curid:17117591"}   # Margaret Truman in a White House broadcast for the National Foundation, 1948 (PD)
 
   - id: lung
     chapter: "VI. The Iron Lung"
@@ -101,9 +124,13 @@ scenes:
       Some never left. Paul Alexander, from Dallas, caught polio at the age of six in 1952. He lived in an iron lung for seventy-two years. He taught himself a special breathing technique that let him leave the machine for short periods. He finished school from home, earned a law degree from the University of Texas, and represented clients in court. He spent eight years writing a memoir, tapping the keys with a stick held in his mouth. He died in March 2024, at the age of seventy-eight.
     candidates: ["iron lung ward 1950s", "Drinker respirator 1928", "iron lung patient mirror", "Emerson iron lung"]
     images:
-      - {query: "iron lung", count: 3}
       - {file: "web:nlm:101407761", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101407761-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101407761-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Patient in iron lung] - a nurse and two corpsmen attend a polio patient, US Army", date: "1949", note: "the iron lung - key image of the polio era"}   # LoC via Chrome
       - {file: "web:nlm:101442594", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101442594-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101442594-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Sgt. Clarence Stewart demonstrates an iron lung to visitors, Armed Forces Day, Denver", date: "1960", note: "boys touching an iron lung - fear and fascination"}   # LoC via Chrome
+      - {file: "curid:95962417"}   # polio patient in an iron lung (National Museum of Health and Medicine, CC BY 2.0)
+      - {file: "curid:95961179"}   # boy in an Emerson respirator (NMHM, CC BY 2.0)
+      - {file: "curid:66625464"}   # iron lung at the Scots Mission Hospital, 1940 (LoC, PD)
+      - {file: "curid:79539120"}   # an iron lung (PD)
+      - {file: "curid:95962425"}   # Model SC iron lung (NMHM, CC BY 2.0)
 
   - id: copenhagen
     chapter: "VII. Copenhagen, 1952"
@@ -115,7 +142,12 @@ scenes:
       Ibsen went on to build a machine to do the work. It was the beginning of the modern ventilator, and Ibsen's respiratory centre in Copenhagen was the forerunner of today's intensive care units.
     candidates: ["Copenhagen 1952 polio", "Blegdam hospital", "medical students hand ventilation", "intensive care 1950s"]
     images:
-      - {query: "Copenhagen 1952 hospital", count: 2}
+      - {file: "curid:89265394", match: "It was the beginning of the modern ventilator"}   # Engström respirator Model 150, Sweden, 1955-1970 (CC BY 4.0)
+      - {file: "curid:150099347", match: "The city's hospital for infectious diseases"}   # view over Blegdamshospitalet, Copenhagen, 1904 (CC BY 4.0)
+      - {file: "curid:65363302"}   # Blegdam hospital entrance, c. 1900 (PD)
+      - {file: "curid:5215294"}   # plan of Blegdamshospitalet, 1912 (PD)
+      - {file: "curid:36213176", match: "Ibsen went on to build a machine"}   # portable ventilator 'Beaver II', England (Wellcome, CC BY 4.0)
+      - {file: "curid:36213171"}   # portable ventilator 'Beaver II' (Wellcome, CC BY 4.0)
 
   - id: kenny
     chapter: "VIII. Sister Kenny"
@@ -125,9 +157,12 @@ scenes:
       Many doctors resisted. But her results were hard to argue with. She settled in Minnesota, founded an institute, and slowly her method became the standard treatment. Hydrotherapy pools, braces, crutches and new rehabilitation hospitals followed, built for a generation of children who had to learn to walk again.
     candidates: ["Elizabeth Kenny nurse", "Sister Kenny Institute", "polio hot packs therapy", "polio patient Hubbard tank", "polio braces crutches child"]
     images:
-      - {query: "Sister Kenny", count: 2}
       - {file: "web:nlm:101403745", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101403745-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101403745-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Poliomyelitis patient in Hubbard Tub] with a physiotherapist", date: "1948", note: "rehabilitation in the 1940s"}   # LoC via Chrome
       - {file: "web:nlm:101442825", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101442825-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101442825-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Lowering a poliomyelitis patient into a pool for exercise]", note: "hydrotherapy - Warm Springs style treatment"}   # LoC via Chrome
+      - {file: "curid:1305601", match: "Her name was Elizabeth Kenny"}   # Elizabeth Kenny, 1950 (NYWTS, LoC, PD)
+      - {file: "curid:53015303", match: "the rural outback of Queensland"}   # Sister Kenny Clinic, Rockhampton Hospital, Queensland, 1939 (PD)
+      - {file: "curid:12658491"}   # Sister Elizabeth Kenny, c. 1951 (State Library of Queensland, PD)
+      - {file: "curid:60672621"}   # Sister Kenny in her garden, Toowoomba, 1952 (PD)
 
   - id: race
     chapter: "IX. The Race for a Vaccine"
@@ -138,7 +173,8 @@ scenes:
       At the University of Pittsburgh, a young doctor named Jonas Salk was working on a vaccine made from virus that had been killed, so that it could no longer cause disease, but still taught the body to recognise it.
     candidates: ["Jonas Salk laboratory", "John Enders Nobel", "University of Pittsburgh 1950s", "poliovirus tissue culture", "polio 1952 epidemic"]
     images:
-      - {query: "Jonas Salk", count: 2}
+      - {file: "curid:35156032", match: "a young doctor named Jonas Salk"}   # Jonas Salk, 1959 (PD)
+      - {file: "curid:53755620"}   # Jonas Salk, candid, 1959 (PD)
 
   - id: trial
     chapter: "X. The Polio Pioneers"
@@ -150,8 +186,10 @@ scenes:
       Salk never made money from the vaccine.
     candidates: ["Polio Pioneers 1954", "Thomas Francis Ann Arbor 1955", "polio vaccination line 1955", "Salk vaccine injection children", "Jonas Salk 1955"]
     images:
-      - {query: "polio vaccine 1955", count: 3}
       - {file: "web:nlm:101440666", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101440666-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101440666-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Mary Lasker and Dr. Jonas Salk]", date: "1950s", note: "Salk - the vaccine man"}   # LoC via Chrome
+      - {file: "curid:183709742"}   # Canada will start trials of polio vaccine, NFB 7 April 1955 (PD)
+      - {file: "curid:192154867"}   # White House press release: citations to Dr Jonas Salk, 22 April 1955 (PD)
+      - {file: "curid:17102770"}   # Eleanor Roosevelt, Albert Sabin, Jonas Salk and Basil O'Connor, 1958 (PD)
 
   - id: cutter
     chapter: "XI. The Cutter Incident"
@@ -164,7 +202,9 @@ scenes:
       The vaccination campaign continued. By 1957, the number of polio cases in the United States had fallen from nearly fifty-eight thousand a year to about five thousand six hundred.
     candidates: ["Cutter Laboratories Berkeley", "vaccine production laboratory 1955", "polio vaccine vials 1955"]
     images:
-      - {query: "vaccine laboratory 1950s", count: 2}
+      - {file: "curid:192142224"}   # Statement by the President about the polio vaccine, 31 May 1955 (PD)
+      - {file: "curid:192142237"}   # Statement by the President about the polio vaccine, 31 May 1955, page 2 (PD)
+      - {file: "curid:192142219", match: "Cutter withdrew its vaccine"}   # Press release: statement by the President about the polio vaccine situation, 31 May 1955 (PD)
 
   - id: sabin
     chapter: "XII. Sugar Cubes"
@@ -174,7 +214,9 @@ scenes:
       It was cheap and easy to give: a few drops on a sugar cube, to hide the bitter taste. Mass vaccination had already pushed polio in the United States down to just a hundred and sixty-one cases in 1961, and Sabin's vaccine was licensed there in 1962. The last cases caused by polio spreading naturally in the United States came in 1979.
     candidates: ["Albert Sabin", "oral polio vaccine sugar cube", "polio vaccination Soviet Union", "Sabin Sunday"]
     images:
-      - {query: "Albert Sabin", count: 2}
+      - {file: "curid:116127605", match: "Salk's rival, Albert Sabin"}   # Albert Bruce Sabin (PD)
+      - {file: "curid:191802152"}   # Albert Sabin, 1972 (CC0)
+      - {file: "curid:63838460"}   # Lt. Col. Albert B. Sabin (PD)
 
   - id: legacy
     chapter: "XIII. What Polio Left Behind"
@@ -185,8 +227,9 @@ scenes:
       Polio also changed medicine. It gave us the March of Dimes model of fundraising, modern rehabilitation therapy, the ventilator and the intensive care unit, and the largest field trial ever held.
     candidates: ["polio survivor wheelchair 1950s", "disability rights protest 1970s", "rehabilitation center polio children", "Shriners hospital polio"]
     images:
-      - {query: "polio rehabilitation children", count: 2}
       - {file: "web:nlm:101442826", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101442826-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101442826-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Group of poliomyelitis and arthritic patients on the sun deck", note: "rows of beds on a hospital roof deck"}   # LoC via Chrome
+      - {file: "curid:40647230"}   # a victim of infantile paralysis, 1942 (LoC, PD)
+      - {file: "curid:40647267"}   # with both arms and legs affected by infantile paralysis, 1942 (LoC, PD)
 
   - id: eradication
     chapter: "XIV. The Last Two Countries"
@@ -197,8 +240,13 @@ scenes:
       Today, wild poliovirus survives in only two countries, Pakistan and Afghanistan.
     candidates: ["polio vaccination Africa", "oral polio vaccine drops child", "polio eradication campaign", "Rotary polio"]
     images:
-      - {query: "polio vaccination campaign", modern: true, count: 2}
       - {file: "web:nlm:101447553", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447553-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447553-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Providing oral polio vaccine to children in Africa]", date: "1982", note: "oral vaccine campaigns - the eradication drive (closing)"}   # LoC via Chrome
+      - {file: "curid:4510545"}   # Somali boy receives a polio vaccination, 1993 (PD)
+      - {file: "curid:110361"}   # polio vaccination in India, 2002 (PD)
+      - {file: "curid:70818195"}   # polio vaccine in the DR Congo, 2007 (PD)
+      - {file: "curid:66754408"}   # polio vaccination campaign, 2018 (CC0)
+      - {file: "curid:64849433", match: "Pakistan and Afghanistan"}   # polio vaccination campaign, Pakistan, 2015 (CC BY 2.0)
+      - {file: "curid:64127752"}   # a young child receives an oral polio vaccine dose, 2015 (CC BY 2.0)
 
   - id: closing
     chapter: "Epilogue"
@@ -208,7 +256,8 @@ scenes:
       If you enjoyed this biography of a disease, subscribe for the next one.
     candidates: ["polio vaccine child smiling", "Salk Institute", "polio survivors"]
     images:
-      - {query: "Jonas Salk", count: 1}
+      - {file: "curid:31402666"}   # the Salk Institute, La Jolla (Carol Highsmith, PD)
+      - {file: "curid:164225514"}   # vaccination eliminated polio from the United States (OWID chart, CC BY 4.0)
 
 thumbnail:
   scene: lung
