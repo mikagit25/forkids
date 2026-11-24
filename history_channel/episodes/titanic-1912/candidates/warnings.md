@@ -1,0 +1,19 @@
+# warnings — Chapter 3
+
+The first days of the voyage passed quietly. The weather was calm and clear, and the ship was making good speed. On Sunday the fourteenth, the Titanic's wireless room received warning after warning from other ships. The wireless was not run by the White Star Line, but by the Marconi Company. Its two young operators, Jack Phillips and Harold Bride, were paid mainly to send private telegrams for the passengers. The set had broken down the day before, and Phillips was working through a long backlog of messages to the station at Cape Race in Newfoundland. At eight minutes to ten that night, [...]
+
+| # | ref | source | date | W×H | licence | title |
+|---|---|---|---|---|---|---|
+| 1 | `curid:95194420` | commons | 1912-04-11 | 1280×956 | Public domain | [Titanic Marconi Wireless Radio Room](https://commons.wikimedia.org/wiki/File:Titanic_Marconi_Wireless_Radio_Room.jpg) |
+| 2 | `curid:10317216` | commons | 2009-02-12 | 1067×1600 | CC BY 2.0 | [Titanic's Marconi room](https://commons.wikimedia.org/wiki/File:Titanic%27s_Marconi_room.jpg) |
+| 3 | `curid:10317211` | commons | 2009-02-12 | 1600×1067 | CC BY 2.0 | [Titanic's Marconi appartus](https://commons.wikimedia.org/wiki/File:Titanic%27s_Marconi_appartus.jpg) |
+| 4 | `curid:2565813` | commons | between circa 1910 a | 1063×1376 | Public domain | [Jack George Phillips](https://commons.wikimedia.org/wiki/File:Jack_George_Phillips.jpg) |
+| 5 | `curid:146472211` | commons | before 1912date QS:P | 2343×3516 | Public domain | [Scheepvaart, scheepsrampen, SFA022806847](https://commons.wikimedia.org/wiki/File:Scheepvaart,_scheepsrampen,_SFA022806847.jpg) |
+| 6 | `curid:65615685` | commons | 1854 | 6222×5273 | Public domain | [Loss of the U.S.M. steam ship Arctic- off Cape Race Wednesday Septembe](https://commons.wikimedia.org/wiki/File:Loss_of_the_U.S.M._steam_ship_Arctic-_off_Cape_Race_Wednesday_September_27th_1854_LCCN2002709960.jpg) |
+| 7 | `curid:65610893` | commons | 1854 | 8958×6687 | Public domain | [Wreck of the U.S.M. steam ship "Arctic"- off Cape Race Wednesday Septe](https://commons.wikimedia.org/wiki/File:Wreck_of_the_U.S.M._steam_ship_%22Arctic%22-_off_Cape_Race_Wednesday_September_27th._1854_LCCN2002698869.tif) |
+| 8 | `curid:7730823` | commons | 1854 | 2482×1674 | Public domain | [Wreck of the U.S.M. steam ship "Arctic" (one-third-size)](https://commons.wikimedia.org/wiki/File:Wreck_of_the_U.S.M._steam_ship_%22Arctic%22_(one-third-size).png) |
+| 9 | `curid:67481469` | commons | 23 October 1847date  | 1536×1146 | Public domain | [The BRITANNIA steamship leaving Boston, U.S. LCCN2004671768](https://commons.wikimedia.org/wiki/File:The_BRITANNIA_steamship_leaving_Boston,_U.S._LCCN2004671768.tif) |
+| 10 | `curid:42633689` | commons | 1912 | 1688×3152 | No restrictions | [The depths of the ocean - a general account of the modern science of o](https://commons.wikimedia.org/wiki/File:The_depths_of_the_ocean_-_a_general_account_of_the_modern_science_of_oceanography_based_largely_on_the_scientific_researches_of_the_Norwegian_steamer_Michael_Sars_in_the_North_Atlantic_(1912)_(20834811456).jpg) |
+| 11 | `curid:42633865` | commons | 1912 | 1496×3520 | No restrictions | [The depths of the ocean; a general account of the modern science of oc](https://commons.wikimedia.org/wiki/File:The_depths_of_the_ocean;_a_general_account_of_the_modern_science_of_oceanography_based_largely_on_the_scientific_researches_of_the_Norwegian_steamer_Michael_Sars_in_the_North_Atlantic_(1912)_(20674099129).jpg) |
+| 12 | `curid:42193704` | commons | 1912 | 2926×1952 | No restrictions | [The botany of Iceland (1912) (20397062682)](https://commons.wikimedia.org/wiki/File:The_botany_of_Iceland_(1912)_(20397062682).jpg) |
+| 13 | `met:371973` | met | 1855 | 599×465 | CC0 (Metropolitan Museum of Ar | [Clipper Ship "Red Jacket" – In the Ice off Cape Horn, on Her Passage f](https://www.metmuseum.org/art/collection/search/371973) |

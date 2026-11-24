@@ -33,7 +33,7 @@ def request(ep_dir: Path, episode: dict, only: list[str] | None = None):
             continue
         words = s["narration"].split()
         need = max(2, round(len(words) / 130 * 60 / 6.5 / 2))      # LoC adds to other archives: about half
-        qs = [q.get("query") for q in s.get("images", []) if q.get("query")] + list(s.get("candidates", []))
+        qs = [q.get("query") for q in (s.get("images") or []) if q.get("query")] + list(s.get("candidates", []))
         lines += [f"## scene `{s['id']}` — {s.get('chapter', '')} {s.get('date', '')}".rstrip(),
                   f"wanted: up to {need} photos",
                   f"searches: {', '.join(dict.fromkeys(qs)) or '—'}", "",
@@ -58,7 +58,7 @@ def import_picks(ep_dir: Path, episode: dict):
     scenes = {s["id"]: s for s in data["scenes"]}
     # a page may give several clippings: a newspaper pick is a duplicate only with the same page AND crop
     have = {q.get("file") or (q.get("newspaper"), tuple(round(float(c), 3) for c in q.get("crop") or []))
-            for s in data["scenes"] for q in s.get("images", [])}
+            for s in data["scenes"] for q in (s.get("images") or [])}
     # picks already imported once (the crop may have been adjusted by hand since): never add them again
     seen_f = X / "picks" / f".imported-{slug}.json"
     seen = set(json.loads(seen_f.read_text())) if seen_f.exists() else set()
@@ -140,7 +140,7 @@ def import_picks(ep_dir: Path, episode: dict):
                 ref[k] = str(p[k])
         added.append((p["scene"], ref))
         have.add(ref["file"])
-    web_have = {r.get("image") for s in data["scenes"] for r in s.get("images", []) if str(r.get("file", "")).startswith("web:")}
+    web_have = {r.get("image") for s in data["scenes"] for r in (s.get("images") or []) if str(r.get("file", "")).startswith("web:")}
     seen |= {sig(p) for p in picks if p.get("kind") == "newspaper" or f"loc:{p.get('lccn')}" in have
              or p.get("image") in web_have}
     seen_f.write_text(json.dumps(sorted(seen), indent=0))

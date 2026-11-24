@@ -1,0 +1,687 @@
+title: 'Titanic 1912: The Night the Unsinkable Ship Went Down'
+subtitle: From the shipyard in Belfast to the cold dawn of 15 April 1912, told with the photographs of the time
+slug: titanic
+language: en
+era:
+- 1905
+- 1935
+visual_context: RMS Titanic 1912 White Star Line ocean liner
+voice:
+  backend: kokoro
+  name: bm_george
+  lang: en-gb
+  speed: 0.95
+music:
+  generate: true
+  seed: 1912
+  mood: tense
+scenes:
+- id: cold-open
+  montage: true
+  narration: 'At twenty to midnight on Sunday the fourteenth of April 1912, a lookout high above the deck of the largest ship in the world rang the bell three times and picked up the telephone. Iceberg,
+    right ahead, he said. Less than three hours later, the ship was gone. Of the two thousand two hundred people on board, around fifteen hundred died in the freezing water of the North Atlantic. The ship
+    was the Titanic. Her name has become a byword for disaster. But behind the legend there are real people, real decisions and real photographs, taken by the newspapers of 1912. This is the story of the
+    Titanic, told with the pictures of the time.
+
+    '
+  candidates:
+  - Titanic 1912
+  - RMS Titanic departing Southampton
+  - Titanic sinking illustration 1912
+  images:
+  - file: curid:2990792
+  - file: curid:3138736
+  - file: curid:1849590
+  - file: curid:59846083
+  - file: curid:114942781
+- id: shipyard
+  chapter: Chapter 1
+  title: Hull Number 401
+  narration: 'The Titanic was born in Belfast, in the shipyard of Harland and Wolff. In 1907, the White Star Line decided to build three giant ships to win the Atlantic trade from its great rival, Cunard.
+    The first, the Olympic, was simply called Number 400, the shipyard''s four hundredth hull. The second, Number 401, became the Titanic. The design was overseen by Lord Pirrie, the chairman of the yard,
+    and by the naval architect Thomas Andrews. The two sisters were built side by side under a huge iron gantry. They were almost one and a half times the tonnage of Cunard''s fastest ships, the Lusitania
+    and the Mauretania, and nearly thirty metres longer. The Titanic was two hundred and sixty nine metres long. Her hull was divided into compartments, so that she could stay afloat with up to four of
+    them flooded. At a quarter past twelve on the thirty first of May 1911, the empty hull slid down the slipway into the River Lagan. About one hundred thousand people came to watch. It took another ten
+    months to fit her out.
+
+    '
+  candidates:
+  - Titanic construction Harland and Wolff
+  - Olympic and Titanic gantry Belfast
+  - Titanic launch 1911
+  - Titanic propellers drydock
+  images:
+  - file: loc:2001704329
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a30000/3a35000/3a35200/3a35267v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: TITANIC, to be launched
+    date: '1911-05-31'
+    note: Belfast, launch day 31 May 1911
+  - file: loc:2001704335
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b00000/3b04000/3b04400/3b04419v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: The TITANIC
+    date: '1911-05-31'
+    note: launch 1911
+  - file: loc:2002721382
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b14000/3b14800/3b14835v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: OLYMPIC and TITANIC - view of bows in shipyard scaffolding
+    date: 1909-1911
+    note: the twin ships under construction, Harland & Wolff
+  - file: loc:2001704333
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a40000/3a40000/3a40700/3a40727v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: View of the stern and rudder of the TITANIC in drydock
+    date: ca. 1912
+    note: scale of the ship
+  - file: curid:202028834
+  - file: curid:41950279
+  - file: curid:10433990
+  - file: curid:18465143
+  - file: curid:41967961
+  - file: curid:41967994
+  - file: curid:41967890
+- id: luxury
+  title: A Floating Palace
+  narration: 'When she was finished, the Titanic was the largest ship afloat. She had ten decks, eight of them for passengers. First class had a grand staircase under a dome of iron and glass, a swimming
+    pool, a gymnasium, Turkish baths, a squash court, a restaurant and a café with palms and wicker chairs, made to look like a sunny veranda. Some of the wealthiest people in the world travelled in first
+    class. And in third class there were hundreds of emigrants from the British Isles, Scandinavia and all over Europe, going to start a new life in America. A third class ticket from Southampton cost seven
+    pounds and five shillings. The cheapest first class ticket cost twenty three pounds. The best suites cost far more. In command was Captain Edward Smith, one of the most experienced captains in the world.
+    He had joined the White Star Line in 1880, and he had already taken the Olympic on her first voyage.
+
+    '
+  candidates:
+  - Titanic first class dining room
+  - Olympic grand staircase
+  - Titanic gymnasium
+  - Titanic cafe parisien
+  - Captain Edward Smith
+  images:
+  - file: loc:2002736503
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a00000/3a02000/3a02400/3a02468v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Capt. Smith of the Titanic on the eve of its departure from Southampton
+    date: '1912'
+    note: Captain Edward Smith
+  - file: loc:96503966
+    image: https://tile.loc.gov/storage-services/service/pnp/ds/11000/11023v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Main dining room on the saloon deck of the White Star liner Titanic
+    date: '1912'
+    note: luxury interior
+  - file: loc:96503948
+    image: https://tile.loc.gov/storage-services/service/pnp/ds/11000/11022v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: The veranda cafe and palm court of the Titanic
+    date: '1912'
+    note: luxury interior
+  - file: loc:96503958
+    image: https://tile.loc.gov/storage-services/service/pnp/ds/11000/11021v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Great promenade deck of the Titanic
+    date: '1912'
+    note: promenade deck
+  - file: curid:18868568
+  - file: curid:2895338
+  - file: curid:2990781
+  - file: curid:18868899
+  - file: curid:95217028
+  - file: curid:191435135
+  - file: curid:9462679
+  - file: curid:43631504
+  - file: curid:36407586
+- id: departure
+  chapter: Chapter 2
+  title: The Maiden Voyage
+  narration: 'The maiden voyage began on Wednesday the tenth of April 1912, at Southampton. Special trains brought passengers from London. As the Titanic left her berth, the suction from her huge propellers
+    pulled a smaller liner, the New York, away from her moorings. Only a quick order from Captain Smith and a tugboat avoided a collision. It was a bad omen, people said afterwards. That evening, the Titanic
+    called at Cherbourg in France. The harbour was too small for her, so passengers were brought out by two small tenders, the Traffic and the Nomadic. The Nomadic still exists today. The next day she stopped
+    off Queenstown in Ireland, today called Cobh, and took on one hundred and twenty three more passengers, most of them emigrants in third class. When she turned west into the Atlantic, the Titanic carried
+    about two thousand two hundred people: thirteen hundred passengers and almost nine hundred crew.
+
+    '
+  candidates:
+  - Titanic Southampton 10 April 1912
+  - Titanic Queenstown 1912
+  - Nomadic tender Cherbourg
+  - Titanic leaving Belfast
+  images:
+  - file: loc:2001704326
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a20000/3a27000/3a27500/3a27541v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: The Titanic
+    date: '1912-04-15'
+    note: the ship, April 1912
+  - file: curid:18371923
+  - file: curid:10351135
+  - file: curid:95693213
+  - file: curid:19575202
+  - file: curid:95987997
+  - file: curid:120292849
+- id: lifeboats
+  title: Twenty Boats
+  narration: 'There was one number that almost nobody thought about. The Titanic carried twenty lifeboats: fourteen large wooden boats, two smaller emergency cutters and four collapsible boats with canvas
+    sides. Together, they could hold one thousand one hundred and seventy eight people. That was barely half of the people on board, and only about a third of the number the ship was allowed to carry. It
+    was entirely legal. The British rules on lifeboats had been written in 1894, for ships of ten thousand tons and more. Nobody had imagined a ship of more than forty six thousand. The Titanic actually
+    carried four more boats than the law required. And many people believed that on a ship like this, lifeboats would only be needed to ferry passengers to a rescue ship. The real lifeboat, they thought,
+    was the ship herself.
+
+    '
+  candidates:
+  - Titanic lifeboat
+  - Titanic boat deck
+  - Olympic boat deck lifeboats
+  images:
+  - file: curid:704248
+  - file: curid:17033788
+  - file: curid:30631013
+  - file: curid:95934661
+  - file: curid:119523085
+  - file: curid:43617912
+  - file: curid:43631152
+  - file: curid:43631097
+- id: warnings
+  chapter: Chapter 3
+  title: Ice Warnings
+  narration: 'The first days of the voyage passed quietly. The weather was calm and clear, and the ship was making good speed. On Sunday the fourteenth, the Titanic''s wireless room received warning after
+    warning from other ships. The wireless was not run by the White Star Line, but by the Marconi Company. Its two young operators, Jack Phillips and Harold Bride, were paid mainly to send private telegrams
+    for the passengers. The set had broken down the day before, and Phillips was working through a long backlog of messages to the station at Cape Race in Newfoundland. At eight minutes to ten that night,
+    the steamer Mesaba reported heavy pack ice and a great number of large icebergs, right in the Titanic''s path. It is not clear that this message ever reached the bridge. Shortly after ten, the operator
+    of the nearby Californian called: Say, old man, we are stopped and surrounded by ice. Phillips, busy with Cape Race, told him to stop transmitting. At half past eleven, the Californian''s only operator
+    switched off his set and went to bed.
+
+    '
+  candidates:
+  - Marconi wireless room Titanic
+  - Jack Phillips wireless operator
+  - Cape Race wireless station
+  - ice field North Atlantic 1912
+  images:
+  - file: curid:95194420
+  - file: curid:2565813
+  - file: curid:5097282
+  - file: curid:47589061
+  - file: curid:43631468
+  - file: curid:41967917
+- id: iceberg
+  title: Iceberg, Right Ahead
+  narration: 'Up in the crow''s nest, twenty nine metres above the deck, the lookouts Frederick Fleet and Reginald Lee were peering into the dark. They had no binoculars. A pair had been left behind in
+    Southampton, and their requests for another had come to nothing. There was no moon, and the sea was as flat as glass. Without waves, there was no white water breaking at the foot of an iceberg to give
+    it away. At twenty one minutes to midnight, Fleet saw a dark shape ahead. He rang the bell and telephoned the bridge. First Officer William Murdoch ordered the helm hard over and the engines stopped.
+    The bow swung slowly to the left. For a moment it seemed they had missed it. But the iceberg scraped along the starboard side, below the waterline, for about ninety metres. Many passengers hardly felt
+    it. Some went up on deck and found pieces of ice lying on the forward well deck. A few of them kicked the ice around like footballs.
+
+    '
+  candidates:
+  - Frederick Fleet lookout
+  - Titanic crow's nest
+  - iceberg 1912 photograph
+  - William Murdoch officer
+  images:
+  - file: loc:2016863712
+    image: https://tile.loc.gov/storage-services/service/pnp/hec/00900/00939v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: FLEET, FREDERICK. TITANIC
+    date: '1912'
+    note: the lookout who saw the iceberg
+  - file: curid:95982735
+  - file: curid:19743570
+  - file: curid:41967920
+  - file: curid:43633807
+  - file: curid:41967914
+- id: doomed
+  title: Two Hours
+  narration: 'Captain Smith came to the bridge at once and sent for Thomas Andrews, the ship''s designer, who was on board with a team from the shipyard. Together they went below. The mail room was flooding.
+    So were the forward holds and the squash court. Andrews made his calculation quickly. Water was pouring into the first five compartments. The ship could survive with four flooded, but not with five.
+    As the bow went down, the water would spill over the top of each bulkhead into the next, like water filling an ice cube tray. The Titanic was going to sink, and Andrews told the captain she had perhaps
+    an hour and a half, two hours at most. Smith knew the numbers better than anyone. There were more than two thousand people on board, and lifeboats for about eleven hundred.
+
+    '
+  candidates:
+  - Thomas Andrews Titanic designer
+  - Captain Smith Titanic
+  - Titanic watertight bulkheads diagram
+  images:
+  - file: curid:18496885
+  - file: curid:119898083
+  - file: curid:41967909
+  - file: curid:41967937
+  - file: curid:41968020
+- id: boats
+  chapter: Chapter 4
+  title: Women and Children
+  narration: 'Shortly after midnight, Captain Smith ordered the lifeboats uncovered and the passengers woken. Then came the order: put the women and children in and lower away. At first, few people wanted
+    to leave a huge, warm, brightly lit ship for a small open boat on a black sea. At a quarter to one, the first boat, number seven, was lowered with only twenty eight people on board. It could hold sixty
+    five. The two officers in charge read the order differently. On the port side, Second Officer Charles Lightoller let in women and children only, and lowered boats with empty seats. On the starboard
+    side, Murdoch let men in when no more women were waiting. Among those in boat number six was Margaret Brown, a wealthy woman from Denver. After the ship sank, she and others urged the quartermaster
+    in charge to go back for people in the water. He refused. History remembers her as the Unsinkable Molly Brown. From the bridge, white distress rockets went up into the sky, one every few minutes. Eight
+    in all.
+
+    '
+  candidates:
+  - Titanic lifeboats lowered illustration 1912
+  - Margaret Brown Molly Brown
+  - Charles Lightoller
+  - Titanic distress rockets
+  images:
+  - file: loc:2016863713
+    image: https://tile.loc.gov/storage-services/service/pnp/hec/00900/00940v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: DENT RAY, F. TITANIC; STEWARD
+    date: '1912-04-27'
+    note: a surviving steward (Senate hearing)
+  - file: loc:2001704328
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a30000/3a34000/3a34500/3a34561v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Stuart Collett, survivor of the TITANIC
+    date: '1912-04-19'
+    note: survivor
+  - file: loc:2001704331
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a30000/3a35000/3a35400/3a35461v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Survivors of TITANIC - family group
+    date: '1912'
+    note: survivors
+  - file: loc:92521036
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b40000/3b40000/3b40200/3b40210v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Mrs. James J. Molly Brown, survivor of the Titanic
+    date: ca. 1912
+    note: the 'unsinkable' Molly Brown
+  - file: curid:6376936
+  - file: curid:14647041
+  - file: curid:1754920
+  - file: curid:4030844
+  - file: curid:41967999
+  - file: curid:41967882
+  - file: curid:41967921
+- id: wireless
+  title: CQD, SOS
+  narration: 'In the wireless room, Jack Phillips began to send the distress call CQD, with the ship''s position. Harold Bride ran messages to the captain. At one point, Bride joked: send SOS, it''s the
+    new call, and it may be your last chance to send it. Several ships answered. The closest one that heard the call was the Cunard liner Carpathia, ninety three kilometres away. Her wireless operator,
+    Harold Cottam, ran to wake the captain. Her captain, Arthur Rostron, turned at once. He had the heating and the hot water switched off, so that every bit of steam went to the engines, and pushed his
+    ship to seventeen and a half knots. He posted extra lookouts, had blankets, ladders and mail sacks put at every gangway door, and had three doctors wait in the dining rooms. Much closer, near enough
+    to see, the Californian lay stopped in the ice. Her officers saw rockets in the night. But her only wireless operator was asleep, and the set was switched off.
+
+    '
+  candidates:
+  - Carpathia ship
+  - Arthur Rostron Carpathia captain
+  - Harold Bride wireless
+  - Californian ship 1912
+  images:
+  - file: loc:2001704336
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b40000/3b47000/3b47800/3b47845v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Hand-written account by the Captain of R.M.S. CARPATHIA describing his response to the distress signal
+    date: ca. 1912
+    note: Rostron's own words
+  - file: loc:89714241
+    image: https://tile.loc.gov/storage-services/service/pnp/ppmsca/86900/86945v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Captain Arthur Henry Rostron, of the Carpathia
+    date: c1912
+    note: the hero captain who raced through the ice
+  - file: loc:00649561
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3c20000/3c25000/3c25500/3c25501v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Capt. A.H. Rostron and under officers of Carpathia
+    date: '1912-05-29'
+    note: Carpathia officers
+  - file: curid:18976829
+  - file: curid:68513211
+  - file: curid:17033809
+- id: sinking
+  chapter: Chapter 5
+  title: Two Twenty
+  narration: 'By two o''clock in the morning, all the regular lifeboats had gone. The bow was under water. Some fifteen hundred people were still on board. On deck, the ship''s band, led by the violinist
+    Wallace Hartley from Colne in Lancashire, kept playing to keep people calm. Legend says the last piece was the hymn Nearer, My God, to Thee. Some survivors remembered only cheerful tunes. None of the
+    eight musicians survived. Thomas Andrews was last seen in the first class smoking room, standing alone, his lifebelt lying on a table beside him. Phillips stayed at his key until the power failed. Then
+    the stern rose high into the air, the lights went out, and the ship broke in two. At twenty past two, the Titanic disappeared. The water was minus two degrees. Officer Lightoller, who survived on an
+    upturned collapsible boat with Harold Bride, said it felt like a thousand knives. Of the hundreds of people in the water, only about forty were pulled into the boats.
+
+    '
+  candidates:
+  - Titanic sinking 1912 painting
+  - Wallace Hartley violinist
+  - Titanic band
+  - Titanic collapsible boat
+  images:
+  - file: loc:96514444
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b30000/3b37000/3b37100/3b37182v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: The great Titanic disaster (1912 print)
+    date: '1912'
+    note: period illustration
+  - file: curid:97646
+  - file: curid:15312507
+  - file: curid:7667053
+  - file: curid:41967990
+  - file: curid:41967904
+  - file: curid:43631134
+  - file: curid:43631183
+  - file: curid:43631365
+- id: rescue
+  title: Dawn
+  narration: 'The Carpathia reached the place about an hour and a half after the Titanic had sunk. As the sky grew light, her crew saw the lifeboats scattered across the sea, and icebergs all around them.
+    One by one, the boats came alongside, and the survivors climbed up rope ladders. They were given blankets and coffee, and the Carpathia''s own passengers gave them warm food and their own cabins. By
+    a quarter past nine in the morning, the last boat had been emptied. Seven hundred and ten people were saved. A passenger on the Carpathia photographed an iceberg nearby. People said it was the one.
+    Nobody will ever know for sure. Then Captain Rostron turned his ship for New York.
+
+    '
+  candidates:
+  - Carpathia Titanic survivors lifeboat
+  - Titanic iceberg photograph Carpathia
+  - Titanic survivors on Carpathia deck
+  images:
+  - file: loc:93510852
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b30000/3b39000/3b39700/3b39746v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Titanic survivors on way to rescue ship Carpathia
+    date: 1912-04
+    note: lifeboat photographed from the Carpathia
+  - file: loc:2014691299
+    image: https://tile.loc.gov/storage-services/service/pnp/ggbain/11200/11212v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: TITANIC life boats on way to CARPATHIA
+    date: 1912-04
+    note: lifeboats at dawn
+  - file: loc:2001704327
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a30000/3a33000/3a33900/3a33939v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: TITANIC life boats on way to CARPATHIA
+    date: '1912-04-15'
+    note: lifeboats, 15 April
+  - file: loc:2014691298
+    image: https://tile.loc.gov/storage-services/service/pnp/ggbain/11200/11211v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Survivors of TITANIC on CARPATHIA
+    date: 1912-04
+    note: on board the rescue ship
+  - file: loc:2001704332
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a30000/3a35000/3a35400/3a35462v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Survivors of TITANIC aboard CARPATHIA
+    date: '1912'
+    note: on board
+  - file: loc:90707557
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b40000/3b45000/3b45300/3b45387v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Group of survivors of the Titanic disaster aboard the Carpathia after being rescued
+    date: c1912
+    note: survivors
+  - file: loc:2002721378
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b00000/3b04000/3b04200/3b04286v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Groups of TITANIC survivors aboard rescue ship CARPATHIA
+    date: c1912
+    note: survivors talking on deck
+  - file: loc:2002721379
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b00000/3b04000/3b04200/3b04287v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: 'Groups of TITANIC survivors aboard rescue ship CARPATHIA: group on deck'
+    date: c1912
+    note: survivors
+  - file: loc:2002721381
+    image: https://tile.loc.gov/storage-services/service/pnp/ds/17900/17921v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: View from S.S. CARPATHIA of iceberg which sank the Titanic
+    date: c1912
+    note: THE iceberg, photographed from the rescue ship
+  - file: loc:98509237
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3c20000/3c21000/3c21000/3c21012v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Two photographs of the Carpathia with Titanic lifeboats
+    date: c1912
+    note: the rescue
+  - file: curid:191387085
+  - file: curid:191387087
+  - file: curid:191387084
+  - file: curid:191387090
+  - file: curid:191387092
+  - file: curid:41967899
+  - file: curid:41967969
+  - file: curid:41967895
+- id: news
+  chapter: Chapter 6
+  title: Waiting for News
+  narration: 'On land, nobody knew what had really happened. The first reports were confused. Some newspapers even reported that the ship and everyone on board were safe. In New York, crowds gathered outside
+    the White Star Line office on lower Broadway, waiting for lists of names. The Carpathia sailed through fog and thunderstorms for three days. On board, the injured Harold Bride, with frostbitten feet,
+    helped her operator send the list of survivors. On the evening of the eighteenth of April, in heavy rain, she reached Pier 54 in New York. Some forty thousand people were waiting. Bride was carried
+    down the gangway, his feet bandaged. He sold his story to the New York Times for a thousand dollars.
+
+    '
+  candidates:
+  - Titanic news crowd 1912
+  - White Star office New York 1912 crowd
+  - Titanic newspaper headline 1912
+  - Carpathia arrives New York
+  images:
+  - file: loc:96503943
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c16000/3c16000/3c16094v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Crowd in front of the White Star Line office, lower Broadway, New York, waiting for news
+    date: '1912'
+    note: waiting for the lists of survivors
+  - file: loc:2014690335
+    image: https://tile.loc.gov/storage-services/service/pnp/ggbain/10300/10352v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: At White Star office after TITANIC disaster
+    date: 1912-04
+    note: news office
+  - file: loc:2014690336
+    image: https://tile.loc.gov/storage-services/service/pnp/ggbain/10300/10353v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Getting TITANIC news - White Star office
+    date: 1912-04
+    note: news office
+  - file: loc:2001704324
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a20000/3a27000/3a27400/3a27433v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Crowd awaiting survivors from the Titanic
+    date: '1912-04-18'
+    note: New York, night of 18 April
+  - file: loc:2014690329
+    image: https://tile.loc.gov/storage-services/service/pnp/ggbain/10300/10346v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Crowd awaiting TITANIC survivors
+    date: 1912-04
+    note: crowds at the pier
+  - file: loc:2014690330
+    image: https://tile.loc.gov/storage-services/service/pnp/ggbain/10300/10347v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Crowd awaiting survivors from CARPATHIA
+    date: 1912-04
+    note: crowds at the pier
+  - file: loc:2014690333
+    image: https://tile.loc.gov/storage-services/service/pnp/ggbain/10300/10350v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Tug on way to meet CARPATHIA
+    date: 1912-04
+    note: press tugs race to the rescue ship
+  - file: loc:2001704337
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b18000/3b18500/3b18510v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: S.S. CARPATHIA in dock, New York City
+    date: '1912'
+    note: arrival in New York
+  - file: loc:2001704338
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b40000/3b46000/3b46000/3b46096v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Steamship CARPATHIA - broadside view, 4 tugboats alongside
+    date: '1912-04-19'
+    note: arrival in New York
+  - file: loc:2002714434
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Harold Bride, surviving wireless operator of the TITANIC, with feet bandaged, being carried up ramp
+    date: c1912
+    note: the wireless operator - frostbitten feet (cold killed most victims)
+  - file: curid:3115895
+  - file: curid:59846027
+  - file: curid:7975214
+  - file: curid:143618524
+  - file: curid:47939954
+  - file: curid:36405973
+  - file: curid:37044705
+  - file: curid:79374437
+  - file: curid:121352885
+  - file: curid:43631460
+- id: orphans
+  title: The Titanic Orphans
+  narration: 'Among the survivors were two little boys who could not tell anyone who they were. The man who had brought them to a lifeboat had travelled as Louis Hoffman. His real name was Michel Navratil,
+    a tailor, and he had taken his sons away from their mother, from whom he was separated, to start again in America. He did not survive. Newspapers around the world printed photographs of the children,
+    who became known as the Titanic orphans. Weeks later, their mother recognised them in the pictures, and the boys went home to her. The elder boy, Michel, lived a long life. He was the last living male
+    survivor of the Titanic.
+
+    '
+  candidates:
+  - Navratil brothers Titanic orphans
+  - Titanic survivors children 1912
+  images:
+  - file: loc:2014690337
+    image: https://tile.loc.gov/storage-services/service/pnp/ggbain/10300/10354v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Louis & Lola - TITANIC survivors
+    date: 1912-04
+    note: the 'Titanic orphans' Michel and Edmond Navratil, unidentified for weeks
+  - file: loc:2001704325
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a20000/3a27000/3a27400/3a27434v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Louis & Lola
+    date: '1912-04-22'
+    note: the 'Titanic orphans'
+  - file: curid:34825279
+  - file: curid:34825732
+  - file: curid:76842989
+  - file: curid:59846385
+- id: inquiry
+  chapter: Chapter 7
+  title: Questions
+  narration: 'The day after the Carpathia arrived, the United States Senate began an inquiry, led by Senator William Alden Smith. The first hearings were held in the Waldorf Astoria hotel in New York. More
+    than eighty witnesses were questioned: survivors, officers, wireless operators, captains of other ships. Fleet, the lookout, told the senators that with binoculars they would have seen the iceberg in
+    time. A British inquiry followed. Both asked the same questions. Why so few lifeboats? Why was the ship going so fast through an ice field? Why did the Californian not come? Captain Rostron became a
+    hero. Congress awarded him a gold medal, and survivors, among them Margaret Brown, gave him a silver cup.
+
+    '
+  candidates:
+  - Titanic Senate inquiry 1912
+  - William Alden Smith senator
+  - Rostron medal
+  images:
+  - file: loc:2016864102
+    image: https://tile.loc.gov/storage-services/service/pnp/hec/01600/01690v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Medal presented by the President to Captain A. Rostron, rescuer of survivors of Titanic
+    date: '1912'
+    note: Congressional gold medal
+  - file: loc:2002721386
+    image: https://tile.loc.gov/storage-services/service/pnp/ds/13400/13444v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: TITANIC disaster. Senate Investigating Committee questioning witnesses at the Waldorf Astoria
+    date: c1912-05-27
+    note: the US Senate inquiry
+  - file: loc:2002721383
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b15000/3b15500/3b15541v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: TITANIC disaster. Senate Investigating Committee at the Waldorf Astoria
+    date: c1912-05-29
+    note: the inquiry
+  - file: loc:2014690446
+    image: https://tile.loc.gov/storage-services/service/pnp/ggbain/10400/10463v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Chorus girl at TITANIC benefit
+    date: '1912-04-21'
+    note: fundraising for families
+  - file: loc:2014691305
+    image: https://tile.loc.gov/storage-services/service/pnp/ggbain/11200/11218v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: Geo. Cohan at TITANIC game
+    date: '1912-04-21'
+    note: benefit baseball game
+  - file: curid:19163231
+  - file: curid:93647366
+  - file: curid:766882
+  - file: curid:103920437
+  - file: curid:41967943
+  - file: curid:41968009
+  - file: curid:41967898
+  - file: curid:43631091
+- id: halifax
+  title: Halifax
+  narration: 'From Halifax in Canada, the White Star Line chartered a cable ship, the Mackay-Bennett, to recover the dead. She sailed with an undertaker, embalmers, one hundred and twenty five coffins and
+    ice. Her crew found so many bodies that the embalming supplies ran out. One hundred and sixteen were buried at sea. One hundred and fifty victims lie in three cemeteries in Halifax. One hundred and
+    twenty one of them are in Fairview Lawn Cemetery, in long curved rows of grey stones. A third of them were never identified, and their stones carry only a number and the date, April fifteenth, 1912.
+
+    '
+  candidates:
+  - Mackay-Bennett Halifax 1912
+  - Fairview cemetery Halifax Titanic graves
+  - Halifax harbour 1912
+  images:
+  - file: loc:2002735755
+    image: https://tile.loc.gov/storage-services/service/pnp/cph/3c30000/3c32000/3c32300/3c32361v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: The harbor of Halifax where the Titanic victims were taken
+    date: '1917'
+    note: Halifax - where the bodies were brought
+  - file: curid:25109637
+  - file: curid:67050256
+  - file: curid:25250406
+  - file: curid:119146526
+  - file: curid:119146532
+  - file: curid:60127409
+- id: closing
+  chapter: Epilogue
+  narration: 'The Titanic changed the rules of the sea. In 1914, the first International Convention for the Safety of Life at Sea required lifeboats for everyone on board and a wireless watch around the
+    clock. The same year, the International Ice Patrol began to watch the North Atlantic for icebergs. It still does today. In 1985, a French and American expedition led by Jean-Louis Michel and Robert
+    Ballard found the wreck, three thousand eight hundred metres down, in two main pieces six hundred metres apart. It is now protected as an underwater cultural heritage site. In New York, a memorial tablet
+    was unveiled at the Seamen''s Institute. In Belfast, in Southampton, in Colne and in Halifax, people still remember. If you enjoyed this story from the archives, subscribe for more.
+
+    '
+  candidates:
+  - Titanic memorial 1913
+  - Titanic memorial lighthouse New York
+  - Titanic wreck bow 2004
+  images:
+  - file: loc:2014692836
+    image: https://tile.loc.gov/storage-services/service/pnp/ggbain/12800/12820v.jpg
+    rights: No known restrictions on publication / published 1912 - public domain in the US
+    title: TITANIC tablet unveiled - Seamen's Institute, Bishop Greer speaking
+    date: 1912-13
+    note: memorial
+  - file: curid:205474
+  - file: curid:17013958
+  - file: curid:52270710
+  - file: curid:43631477
+  - file: curid:43631168
+thumbnail:
+  scene: departure
+  big: '1912'
+  small: THE NIGHT TITANIC SANK
+tags:
+- Titanic
+- RMS Titanic
+- '1912'
+- Titanic sinking
+- Carpathia
+- Molly Brown
+- Titanic survivors
+- shipwreck
+- history documentary
+- archive photos
+references:
+- 'Wikipedia, Titanic: https://en.wikipedia.org/wiki/Titanic'
+- 'Wikipedia, Sinking of the Titanic: https://en.wikipedia.org/wiki/Sinking_of_the_Titanic'
+- 'Wikipedia, Lifeboats of the Titanic: https://en.wikipedia.org/wiki/Lifeboats_of_the_Titanic'
+- Wikipedia, RMS Carpathia; Arthur Rostron; Harold Bride; Jack Phillips; Frederick Fleet; Margaret Brown; Thomas Andrews; Wallace Hartley
+- Wikipedia, United States Senate inquiry into the sinking of the Titanic; CS Mackay-Bennett; Wreck of the Titanic; SOLAS; International Ice Patrol
+- Library of Congress Prints and Photographs (Bain News Service, Harris & Ewing)
+research:
+- q: Titanic
+  from: 1912-04-15
+  to: 1912-05-31
+  sources:
+  - paperspast
+  - trove
+  - europeana

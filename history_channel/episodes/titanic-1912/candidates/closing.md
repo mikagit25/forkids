@@ -1,0 +1,29 @@
+# closing — Epilogue
+
+The Titanic changed the rules of the sea. In 1914, the first International Convention for the Safety of Life at Sea required lifeboats for everyone on board and a wireless watch around the clock. The same year, the International Ice Patrol began to watch the North Atlantic for icebergs. It still does today. In 1985, a French and American expedition led by Jean-Louis Michel and Robert Ballard found the wreck, three thousand eight hundred metres down, in two main pieces six hundred metres apart. It is now protected as an underwater cultural heritage site. In New York, a memorial tablet was [...]
+
+| # | ref | source | date | W×H | licence | title |
+|---|---|---|---|---|---|---|
+| 1 | `curid:26464710` | commons | 2013-05-28 12:21:28 | 1536×2048 | Public domain | [Titanic Bandsmen Memorial monument in Broken Hill, NSW (1913)](https://commons.wikimedia.org/wiki/File:Titanic_Bandsmen_Memorial_monument_in_Broken_Hill,_NSW_(1913).jpg) |
+| 2 | `curid:19116097` | commons | 2012-04-15 | 1536×2048 | CC BY 3.0 | [4.15.12StrausPark100thTitanicAnniversaryByLuigiNovi11](https://commons.wikimedia.org/wiki/File:4.15.12StrausPark100thTitanicAnniversaryByLuigiNovi11.jpg) |
+| 3 | `curid:19116080` | commons | 2012-04-15 | 1462×1983 | CC BY 3.0 | [4.15.12StrausPark100thTitanicAnniversaryByLuigiNovi7](https://commons.wikimedia.org/wiki/File:4.15.12StrausPark100thTitanicAnniversaryByLuigiNovi7.jpg) |
+| 4 | `curid:19116086` | commons | 2012-04-15 | 1536×2048 | CC BY 3.0 | [4.15.12StrausPark100thTitanicAnniversaryByLuigiNovi8](https://commons.wikimedia.org/wiki/File:4.15.12StrausPark100thTitanicAnniversaryByLuigiNovi8.jpg) |
+| 5 | `curid:19116094` | commons | 2012-04-15 | 2048×1536 | CC BY 3.0 | [4.15.12StrausPark100thTitanicAnniversaryByLuigiNovi10](https://commons.wikimedia.org/wiki/File:4.15.12StrausPark100thTitanicAnniversaryByLuigiNovi10.jpg) |
+| 6 | `curid:19116226` | commons | 2012-04-15 | 2048×1536 | CC BY 3.0 | [4.15.12StrausPark100thTitanicAnniversaryByLuigiNovi21](https://commons.wikimedia.org/wiki/File:4.15.12StrausPark100thTitanicAnniversaryByLuigiNovi21.jpg) |
+| 7 | `curid:19116075` | commons | 2012-04-15 | 2048×1536 | CC BY 3.0 | [4.15.12StrausPark100thTitanicAnniversaryByLuigiNovi6](https://commons.wikimedia.org/wiki/File:4.15.12StrausPark100thTitanicAnniversaryByLuigiNovi6.jpg) |
+| 8 | `curid:19116225` | commons | 2012-04-15 | 2048×1536 | CC BY 3.0 | [4.15.12StrausPark100thTitanicAnniversaryByLuigiNovi20](https://commons.wikimedia.org/wiki/File:4.15.12StrausPark100thTitanicAnniversaryByLuigiNovi20.jpg) |
+| 9 | `met:45629` | met | 17th century | 211×622 | CC0 (Metropolitan Museum of Ar | [Portrait of Kyūzan Sōei](https://www.metmuseum.org/art/collection/search/45629) |
+| 10 | `met:35789` | met | comprehensively ca.  | 599×515 | CC0 (Metropolitan Museum of Ar | [Composite Armor](https://www.metmuseum.org/art/collection/search/35789) |
+| 11 | `met:35873` | met | ca. 1580 | 413×624 | CC0 (Metropolitan Museum of Ar | [Armor for the Tilt](https://www.metmuseum.org/art/collection/search/35873) |
+| 12 | `met:310937` | met | 18th–19th century | 426×624 | CC0 (Metropolitan Museum of Ar | [Altar Tusk](https://www.metmuseum.org/art/collection/search/310937) |
+| 13 | `met:310934` | met | ca. 1540–70 | 416×624 | CC0 (Metropolitan Museum of Ar | [Plaque Fragment with Warrior and Attendant](https://www.metmuseum.org/art/collection/search/310934) |
+| 14 | `met:310747` | met | early 17th century ( | 535×624 | CC0 (Metropolitan Museum of Ar | [Fragment of a leopard head](https://www.metmuseum.org/art/collection/search/310747) |
+| 15 | `met:310763` | met | ca. 1540–70 | 416×624 | CC0 (Metropolitan Museum of Ar | [Plaque with Ìyàsẹ́ (Royal Commander) and Attendant](https://www.metmuseum.org/art/collection/search/310763) |
+| 16 | `met:310764` | met | 1550–1680 | 600×480 | CC0 (Metropolitan Museum of Ar | [Leopard](https://www.metmuseum.org/art/collection/search/310764) |
+| 17 | `curid:34297787` | commons | 1983 or short before | 5000×3564 | Public domain | [207-209-211 WATER STREET IN CENTER FOREGROUND (Note identical height a](https://commons.wikimedia.org/wiki/File:207-209-211_WATER_STREET_IN_CENTER_FOREGROUND_(Note_identical_height_and_architectural_features)_-_South_Street_Seaport_Museum,_207-211_Water_Street,_New_York,_New_York_County,_HABS_NY,31-NEYO,141-1.tif) |
+| 18 | `curid:67674678` | commons | 1940 | 8129×10242 | Public domain | [Mrs. Lister Hill (Titanic Memorial, Washington, D.C.) LCCN2016877327](https://commons.wikimedia.org/wiki/File:Mrs._Lister_Hill_(Titanic_Memorial,_Washington,_D.C.)_LCCN2016877327.jpg) |
+| 19 | `curid:67674564` | commons | 1940 | 8129×10208 | Public domain | [Mrs. Lister Hill (Titanic Memorial, Washington, D.C.) LCCN2016877325](https://commons.wikimedia.org/wiki/File:Mrs._Lister_Hill_(Titanic_Memorial,_Washington,_D.C.)_LCCN2016877325.jpg) |
+| 20 | `curid:67674527` | commons | 1940 | 8087×10191 | Public domain | [Mrs. Lister Hill (Titanic Memorial, Washington, D.C.) LCCN2016877324](https://commons.wikimedia.org/wiki/File:Mrs._Lister_Hill_(Titanic_Memorial,_Washington,_D.C.)_LCCN2016877324.jpg) |
+| 21 | `curid:67674612` | commons | 1940 | 8095×10191 | Public domain | [Mrs. Lister Hill (Titanic Memorial, Washington, D.C.) LCCN2016877326](https://commons.wikimedia.org/wiki/File:Mrs._Lister_Hill_(Titanic_Memorial,_Washington,_D.C.)_LCCN2016877326.jpg) |
+| 22 | `curid:67674447` | commons | 1940 | 8095×10148 | Public domain | [Mrs. Lister Hill (Titanic Memorial, Washington, D.C.) LCCN2016877323](https://commons.wikimedia.org/wiki/File:Mrs._Lister_Hill_(Titanic_Memorial,_Washington,_D.C.)_LCCN2016877323.jpg) |
+| 23 | `curid:67376236` | commons | 1915 | 4153×5760 | Public domain | [Mrs. H.P. Whitney's "Titanic" LCCN2014701032](https://commons.wikimedia.org/wiki/File:Mrs._H.P._Whitney%27s_%22Titanic%22_LCCN2014701032.jpg) |

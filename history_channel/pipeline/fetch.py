@@ -72,8 +72,8 @@ def _scale_counts(scene: dict, teasers: int = 0):
     """Ask for enough photos to cover the narration without repeats (about one per 6.5 s, 2.6 s in a montage)."""
     secs = len(scene["narration"].split()) / WPM * 60
     need = int(np.ceil(secs / (2.6 if scene.get("montage") else SHOT_SECONDS))) - (teasers if scene.get("montage") else 0)
-    qs = [q for q in scene.get("images", []) if not q.get("file")]
-    have = sum(q.get("count", 1) for q in scene.get("images", []))
+    qs = [q for q in (scene.get("images") or []) if not q.get("file")]
+    have = sum(q.get("count", 1) for q in (scene.get("images") or []))
     i = 0
     while have < need and qs:
         q = qs[i % len(qs)]
@@ -105,15 +105,15 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
         _scale_counts(scene, later_chapters(si))
         # framing keys (frame/zoom/pan/detail) only matter to render: changing them must not re-download
         sig_imgs = [{k: v for k, v in q.items() if k not in ("frame", "zoom", "pan", "detail")}
-                    for q in scene.get("images", []) or []]
+                    for q in (scene.get("images") or []) or []]
         sig = hashlib.md5(json.dumps(sig_imgs, sort_keys=True).encode()).hexdigest()[:12]
         manifest.setdefault("sig", {})[sid] = sig
         unchanged = old.get("sig", {}).get(sid, sig) == sig   # manifests from before this check count as unchanged
-        want_rot = sum(1 for q in scene.get("images", []) if q.get("rotate"))
+        want_rot = sum(1 for q in (scene.get("images") or []) if q.get("rotate"))
         have_rot = sum(1 for i in old.get("scenes", {}).get(sid, []) if i.get("rotate"))
         unchanged = unchanged and want_rot == have_rot
         # every hand-picked photo / clipping in the script must already be in the manifest, otherwise fetch again
-        want_refs = sum(1 for q in scene.get("images", []) if q.get("file") or q.get("newspaper") or q.get("paperspast"))
+        want_refs = sum(1 for q in (scene.get("images") or []) if q.get("file") or q.get("newspaper") or q.get("paperspast"))
         have_refs = sum(1 for i in old.get("scenes", {}).get(sid, []) if i.get("picked") or i.get("source") == "newspaper")
         if want_refs > have_refs:
             print(f"[{sid}] only {have_refs}/{want_refs} picked photos downloaded -> fetching this scene again")
@@ -122,7 +122,7 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
             print(f"[{sid}] images changed in episode.yaml -> fetching this scene again")
         if unchanged and sid in old.get("scenes", {}) and all((ep_dir / i["file"]).exists() for i in old["scenes"][sid]):
             manifest["scenes"][sid] = old["scenes"][sid]
-            col = {q["query"]: bool(q.get("colorize")) for q in scene.get("images", []) if "query" in q}
+            col = {q["query"]: bool(q.get("colorize")) for q in (scene.get("images") or []) if "query" in q}
             for it in manifest["scenes"][sid]:   # pick up colorize flags added to the script later
                 it["colorize"] = it.get("colorize", col.get(it.get("query"), False)) or col.get(it.get("query"), False)
                 hashes.append(select.phash(ep_dir / it["file"]))
@@ -130,7 +130,7 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
             continue
         chosen = []
         # 0) newspaper clippings: a crop of a scanned page (public domain: published before 1929)
-        for q in scene.get("images", []):
+        for q in (scene.get("images") or []):
             if not (q.get("newspaper") or q.get("paperspast")):
                 continue
             c = paperspast_clipping(q, media, ep_dir) if q.get("paperspast") else newspaper_clipping(q, media, ep_dir)
@@ -141,7 +141,7 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
                 chosen.append(c)
                 print(f"[{sid}] clipping: {c['title'][:70]}")
         # 1) photos picked by hand (exact Commons files) always come first, in script order
-        for q in scene.get("images", []):
+        for q in (scene.get("images") or []):
             if not q.get("file"):
                 continue
             ref = q["file"]
@@ -182,7 +182,7 @@ def fetch(ep_dir: Path, episode: dict, refresh: bool = False):
             chosen.append(c)
             print(f"[{sid}] picked: {c['title'][:70]}")
         # 2) automatic search for anything still described only by a query
-        for q in scene.get("images", []):
+        for q in (scene.get("images") or []):
             if q.get("file") or q.get("newspaper") or q.get("paperspast"):
                 continue
             want = q.get("count", 1)

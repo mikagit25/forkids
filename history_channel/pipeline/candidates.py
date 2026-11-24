@@ -91,7 +91,7 @@ def _search(source, query):
 
 
 def scene_candidates(scene: dict, episode: dict, seen_ids: set) -> list[dict]:
-    queries = [q["query"] for q in scene.get("images", []) if q.get("query")]
+    queries = [q["query"] for q in (scene.get("images") or []) if q.get("query")]
     queries += scene.get("candidates", []) or []
     # a scene about later events (e.g. a 2005 lab) can set its own `era: [1990, 2026]`
     era = tuple(scene.get("era") or episode.get("era") or ()) or None

@@ -313,7 +313,7 @@ def _allocate(gaps, avail, target, lo, hi):
 def _framing(scene: dict) -> dict:
     """Hand-set framing from episode.yaml, keyed by image ref: frame / zoom / pan / detail."""
     out = {}
-    for q in scene.get("images", []) or []:
+    for q in (scene.get("images") or []) or []:
         ref = q.get("file")
         if ref and any(k in q for k in ("frame", "zoom", "pan", "detail", "teaser")):
             out[ref] = {k: q[k] for k in ("frame", "zoom", "pan", "detail", "teaser") if k in q}
