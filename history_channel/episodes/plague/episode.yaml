@@ -66,6 +66,11 @@ scenes:
       - {file: "curid:98503132", match: "The emperor Justinian himself caught it"}   # Justinian I, mosaic in San Vitale, Ravenna, 6th century (PD)
       - {file: "curid:1011181", match: "travelled west along the trade routes"}   # caravan on the Silk Road, Catalan Atlas, 1375 (PD)
       - {file: "curid:13348450"}   # the Catalan Atlas, 1375, sheet (PD)
+      - {file: "curid:4757054"}   # Yersinia pestis, fluorescent stain (CDC PHIL, PD)
+      - {file: "curid:57273155"}   # the plague flea Xenopsylla cheopis, NHM specimen (CC BY 4.0)
+      - {file: "curid:12143599"}   # Novitates Zoologicae 1911, Rothschild's flea plate (PD)
+      - {file: "curid:151657341"}   # the Mongol Empire at its greatest extent, map (CC0)
+      - {file: "curid:80233797"}   # Xenopsylla cheopis specimen, Yale Peabody (CC0)
       # automatic search tops up the rest:
 
   - id: caffa
@@ -116,14 +121,16 @@ scenes:
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:108925"}
-      - {file: "curid:2401762"}
       - {file: "curid:35866769"}
-      - {file: "curid:36273766"}
       - {file: "curid:134726234"}   # Decameron miniature, c. 1425-1450 (ÖNB, PD)
       - {file: "curid:47809857", match: "the writer Giovanni Boccaccio"}   # Boccaccio, Decameron, Venice 1492 (PD)
       - {file: "curid:35422945", match: "In Siena, a chronicler"}   # Madonna and Child, Siena, 14th century (CC0)
       - {file: "curid:36454947"}   # men burying the bodies of plague victims in a pit, engraving (Wellcome, CC BY 4.0)
       - {file: "curid:36476418"}   # the pest house and plague pit, Moorfields, London (Wellcome, CC BY 4.0)
+      - {file: "curid:539682"}   # plague of boils, Toggenburg Bible, 1411 (PD)
+      - {file: "curid:88155888"}   # Boccaccio, Decameron, Venice 1492, page (PD)
+      - {file: "curid:51090210"}   # the pest house and plague pit in Finsbury Fields (1865 illustration, PD)
+      - {file: "curid:12609493"}   # plague pit, All Saints' churchyard, Isleworth (CC BY 2.0)
       # automatic search tops up the rest:
 
   - id: explanations
@@ -138,13 +145,15 @@ scenes:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:15395317"}
       - {file: "curid:98844273"}
-      - {file: "met:396158"}
-      - {file: "met:812666"}
       - {file: "curid:31578274"}   # encyclopedic manuscript with medical drawings, 1410 (PD)
       - {file: "curid:44768580", match: "conjunction of the planets"}   # the Zodiac Man, medieval astrological medicine (CC0)
       - {file: "curid:36380792"}   # physician with urine flask, medieval manuscript (Wellcome, CC BY 4.0)
-      - {file: "curid:2401762", match: "Groups of flagellants marched"}   # the flagellants at Doornik (Tournai) in 1349 (1902 illustration, PD)
       - {file: "curid:12291543"}   # flagellants, 1349 (PD)
+      - {file: "curid:2401762", match: "Groups of flagellants marched"}   # the flagellants at Doornik (Tournai) in 1349 (1902 illustration, PD)
+      - {file: "curid:123528522"}   # flagellants, Illuminated Chronicle (Képes krónika), c. 1360 (PD)
+      - {file: "curid:36329710"}   # physician with urine flask, patient drinking, miniatures (Wellcome, CC BY 4.0)
+      - {file: "curid:47147695"}   # planisphere, NLW MS 735C, 11th-12th century (CC0)
+      - {file: "curid:35862726"}   # Hippocrates, Aphorisms, manuscript (Wellcome, CC BY 4.0)
       # automatic search tops up the rest:
 
   - id: persecution
@@ -156,15 +165,15 @@ scenes:
     candidates: ["Strasbourg 1349 Jews", "burning of Jews Black Death", "Pope Clement VI", "Guy de Chauliac", "Charles IV Holy Roman Emperor"]
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
-      - {file: "curid:18524848"}
+      - {file: "curid:18524848", match: "in Strasbourg, around two thousand Jews"}   # the Strasbourg pogrom of 1349 (illustration 1894, PD)
       - {file: "curid:59392497"}
       - {file: "curid:174105154"}
-      - {file: "curid:9096873"}
-      - {file: "curid:18524848", match: "in Strasbourg, around two thousand Jews"}   # the Strasbourg pogrom of 1349 (illustration 1894, PD)
-      - {file: "curid:4364606"}   # burning of Jews, Nuremberg Chronicle 1493 (PD)
       - {file: "curid:9096873", match: "Pope Clement the Sixth issued"}   # Pope Clement VI, 14th-century fresco, Palais des Papes, Avignon (PD)
+      - {file: "curid:4364606"}   # burning of Jews, Nuremberg Chronicle 1493 (PD)
       - {file: "curid:76860349"}   # lead bulla of Clement VI, 1342-52 (CC BY 2.0)
       - {file: "curid:8104966", match: "Guy de Chauliac"}   # Guy de Chauliac (PD)
+      - {file: "curid:1453760"}   # burning of Jews, 1349, European chronicle miniature (PD)
+      - {file: "curid:161064985"}   # Supplice des Juifs en 1349 (1894 illustration, PD)
       # automatic search tops up the rest:
 
   - id: treatments
@@ -188,13 +197,10 @@ scenes:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
       - {file: "curid:36030033"}
       - {file: "curid:36198398"}
-      - {file: "curid:36351342"}
+      - {file: "curid:36351342", match: "They prescribed theriac"}   # the prescription for Theriaca Andromachi (Wellcome, CC BY 4.0)
       - {file: "curid:48214665"}
       - {file: "curid:112318826"}
-      - {file: "met:436332"}
-      - {file: "met:341122"}
       - {file: "curid:36074689", match: "They let blood"}   # Blood-letting Man, 14th century (Wellcome L0037339, CC BY 4.0)
-      - {file: "curid:36351342", match: "They prescribed theriac"}   # the prescription for Theriaca Andromachi (Wellcome, CC BY 4.0)
       - {file: "curid:36507606"}   # the manufacture of theriac at Bologna, gouache (Wellcome, CC BY 4.0)
       - {file: "curid:36004941", match: "The most famous image of the plague doctor"}   # plague doctor (Wellcome L0025223, CC BY 4.0)
       - {file: "curid:36313946"}   # plague doctors, various costumes (Wellcome M0002803, CC BY 4.0)
@@ -213,13 +219,10 @@ scenes:
       - {file: "curid:52922761"}
       - {file: "curid:57753085"}
       - {file: "curid:18670022"}
-      - {file: "met:365190"}
-      - {file: "met:365187"}
       - {file: "cleveland:110600"}
       - {file: "cleveland:110599"}
       - {file: "cleveland:110597"}
       - {file: "cleveland:110605"}
-      - {file: "aic:7385"}
       # automatic search tops up the rest:
 
   - id: returns
@@ -239,27 +242,27 @@ scenes:
       - {file: "curid:36326593"}
       - {file: "curid:36346543"}
       - {file: "curid:36008080"}
-      - {file: "curid:56832600"}
+      - {file: "curid:56832600", match: "arrived in Marseille from the eastern Mediterranean"}   # Michel Serre, the Cours Belsunce during the plague of 1720 (1721, PD)
       - {file: "curid:35939897"}
       - {file: "curid:22485933"}
       - {file: "curid:36346087"}
-      - {file: "met:436257"}
       - {file: "curid:210769", match: "Samuel Pepys noted in his diary"}   # Samuel Pepys by John Hayls, 1666 (PD)
-      - {file: "curid:36326593"}   # Plague in London, 1665 (Wellcome M0005746, CC BY 4.0)
       - {file: "curid:36107844", match: "Weekly bills of mortality listed the dead"}   # Bill of Mortality, 15-22 August 1665 (Wellcome, CC BY 4.0)
-      - {file: "curid:1258647"}   # Great Plague of London, table of funerals, 1665 (PD)
       - {file: "curid:35860808"}   # The fatal effect of the plague, 1665, engraving (Wellcome, CC BY 4.0)
       - {file: "curid:36026024"}   # Certain necessary directions... for the plague, 1665 (Wellcome, CC BY 4.0)
       - {file: "curid:93862127", match: "Daniel Defoe, in his Journal of the Plague Year"}   # George Cruikshank, The Great Pit in Aldgate (Defoe), before 1876 (PD)
-      - {file: "curid:36346543"}   # Plague in London, 1665 (Wellcome M0010582, CC BY 4.0)
       - {file: "curid:5950295"}   # Samuel Pepys's diary manuscript volumes (photo 1899, PD)
-      - {file: "curid:36346087"}   # chart of distribution of the Great Plague, 1665 (Wellcome, CC BY 4.0)
       - {file: "curid:33227345", match: "a tailor in the village of Eyam"}   # Eyam church, Derbyshire, c. 1890-1900 (LoC photochrom, PD)
       - {file: "curid:112833585"}   # Cucklet Delph, Eyam, where Mompesson held open-air services (CC BY 2.0)
-      - {file: "curid:56832600", match: "arrived in Marseille from the eastern Mediterranean"}   # Michel Serre, the Cours Belsunce during the plague of 1720 (1721, PD)
-      - {file: "curid:35939897"}   # the port of Marseille during the plague of 1720, etching (Wellcome, PD)
       - {file: "curid:36455478"}   # the main thoroughfare of Marseille during the plague of 1720 (Wellcome, CC BY 4.0)
       - {file: "curid:87121914"}   # costume of a doctor of the Marseille lazaret in 1720 (1826, PD)
+      - {file: "curid:36003650"}   # Bills of Mortality: plague, disease and casualties (Wellcome, CC BY 4.0)
+      - {file: "curid:35860838"}   # chart of excess of mortality, 1665 (Wellcome, CC BY 4.0)
+      - {file: "curid:36008080"}   # chart of mortality, Great Plague in London (Wellcome, CC BY 4.0)
+      - {file: "curid:66596860"}   # Samuel Pepys by John Riley (Yale, PD)
+      - {file: "curid:5950340"}   # Samuel Pepys's bookplate (PD)
+      - {file: "curid:36455291"}   # the port of Marseille during the plague of 1720, coloured etching (Wellcome, CC BY 4.0)
+      - {file: "curid:59929871"}   # History of the plague in London in 1665 (1795, PD)
       # automatic search tops up the rest:
 
   - id: yersin
@@ -281,16 +284,13 @@ scenes:
     candidates: ["Hong Kong plague 1894", "Alexandre Yersin", "Kitasato Shibasaburo", "Paul-Louis Simond", "Bombay plague 1896", "San Francisco Chinatown plague 1900", "Manchurian plague 1910", "Wu Lien-teh"]
     images:
       # hand-picked after visual review (Commons, Met, Cleveland, Art Institute of Chicago)
-      - {file: "curid:35997474"}
-      - {file: "curid:149173692"}
-      - {file: "curid:36202067"}
       - {file: "curid:35997474", match: "In 1894 it reached Hong Kong"}   # Staffordshire Regiment cleaning plague houses, Hong Kong, 1894 (Wellcome, CC BY 4.0)
-      - {file: "curid:35997471"}   # Staffordshire Regiment cleaning plague houses, Hong Kong (Wellcome, CC BY 4.0)
       - {file: "curid:149173692", match: "Kitasato Shibasaburō, sent by his government"}   # Kitasato Shibasaburō, 1910 (PD)
+      - {file: "curid:36202067"}
+      - {file: "curid:35997471"}   # Staffordshire Regiment cleaning plague houses, Hong Kong (Wellcome, CC BY 4.0)
       - {file: "curid:35954264"}   # signed photograph of Kitasato (Wellcome, CC BY 4.0)
       - {file: "curid:36585162", match: "Alexandre Yersin"}   # Alexandre Yersin, photograph by Kaufmann-Fabry (Wellcome, CC BY 4.0)
       - {file: "curid:36377310"}   # portrait of A. E. J. Yersin (Wellcome, CC BY 4.0)
-      - {file: "curid:36202067"}   # Hong Kong plague medal, 1894 (Wellcome, CC BY 4.0)
       - {file: "curid:6752595"}   # Yersin House, Nha Trang, 1910 (PD)
       - {file: "curid:35984326", match: "working in Karachi"}   # plague epidemic in Karachi, 1897 (Wellcome, CC BY 4.0)
       - {file: "curid:35967049", match: "killed at least fifteen million people"}   # plague epidemic, Bombay, 1896-7 (Wellcome, CC BY 4.0)
@@ -306,6 +306,10 @@ scenes:
       - {file: "curid:106437420"}   # coffins being cremated, Harbin, 1910-11 (PD)
       - {file: "curid:17997456", match: "Wu Lien-teh"}   # Wu Lien-teh, c. 1910-1915 (PD)
       - {file: "curid:36310240", match: "cloth face masks"}   # doctors' protective costume for pneumonic plague (Wellcome, CC BY 4.0)
+      - {file: "curid:35992720"}   # Robert Koch and his wife in Japan, with Kitasato (Wellcome, CC BY 4.0)
+      - {file: "curid:112194150"}   # Dr Aspland receiving reports, Fuchiatien, Manchurian plague 1910-11 (PD)
+      - {file: "curid:106437406"}   # anti-plague work in Fujiadian, Harbin, 1910-11 (PD)
+      - {file: "curid:106437425"}   # cremation of plague victims' coffins, Harbin, 1910-11 (PD)
       # automatic search tops up the rest:
 
   - id: today
@@ -321,7 +325,9 @@ scenes:
       - {file: "curid:129215610"}   # prairie dog, 1917 (PD)
       - {file: "curid:66416258"}   # US Public Health poster, 1918: bubonic plague, yellow fever, tuberculosis (LoC, PD)
       - {file: "curid:66731662"}   # Plague Hospital, Bombay, 1922 (LoC, PD)
-      - {file: "dpla:66bea23bd405e9e1c8f23a48c7a48ef5"}   # prairie dog (Digital South Dakota, no copyright)
+      - {file: "curid:6286382"}   # buboes of bubonic plague (CDC, 1993, PD)
+      - {file: "curid:82814280"}   # Thrassis bacchi, a ground-squirrel flea of the western US (PD)
+      - {file: "curid:29114696"}   # Yersinia pestis (HHS, PD)
   - id: closing
     chapter: "Epilogue"
     narration: >
