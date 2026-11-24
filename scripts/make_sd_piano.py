@@ -34,7 +34,8 @@ GAP = 2.0                                   # extra silence between pieces (rend
 COMPOSER = {"ChopinFF": "Frédéric Chopin", "BachJS": "J. S. Bach", "HandelGF": "G. F. Handel",
             "TarregaF": "Francisco Tárrega", "TchaikovskyPI": "Pyotr Tchaikovsky", "BeethovenLv": "Ludwig van Beethoven",
             "SchumannR": "Robert Schumann", "LisztF": "Franz Liszt", "BrahmsJ": "Johannes Brahms",
-            "SchubertF": "Franz Schubert", "MozartWA": "W. A. Mozart", "GriegE": "Edvard Grieg"}
+            "SchubertF": "Franz Schubert", "MozartWA": "W. A. Mozart", "GriegE": "Edvard Grieg", "SatieE": "Erik Satie",
+            "DebussyC": "Claude Debussy", "BurgmullerJFF": "Friedrich Burgmüller", "BachCPE": "C. P. E. Bach"}
 NICE_TITLE = {
     "bach_das_wohltemperierte_clavier_i_praeludium_i_wtk1_prelude1": "Prelude in C major, BWV 846",
     "handel_air_13_air": "Air",
@@ -129,15 +130,23 @@ PROGRAMS = {
         "tchaikovsky_napolitan_dance_swan_lake_dansenapolitaine", "chopin_etude_f_moll_ps_chopin_25_02",
         "schumann_kinderscenen_hasche_mann_schumannop15no03", "tchaikovsky_march_of_the_wooden_soldiers_05marchofthewoodenso",
         "chopin_etude_a_moll_10_02_i", "beethoven_sonata_no_8_pathetique_1st_movement_grave_allegro__pathetique_1"],
+    # 24.11.2026: the most-searched calm piano pieces (Mutopia, PD / CC BY 3.0)
+    5: ["mutopia_satiee_gymnopedie_1", "mutopia_debussyc_debussy_ste_bergamesq_clair", "mutopia_beethovenlv_fur_elise_woo59",
+        "mutopia_chopinff_chop_28_4", "mutopia_lisztf_liszt_consolation_no3", "mutopia_satiee_gymnopedie_2",
+        "mutopia_debussyc_debussy_arabesque_1", "mutopia_burgmullerjff_25ef_13", "mutopia_beethovenlv_lvb_sonate_90_2",
+        "mutopia_brahmsj_waltz_op39_10", "mutopia_satiee_gymnopedie_3", "mutopia_beethovenlv_prelude_woo55",
+        "mutopia_bachjs_prelude_9", "mutopia_bachcpe_cpe_bach_rondo", "mutopia_bachjs_bach_praeludium_10",
+        "mutopia_beethovenlv_lvb_sonate_90_1"],
 }
 # 24.11.2026 owner: classical titles lead with COMPOSER and WORK (people search by composer); purpose after "|"
 TITLES = {
     2: "Bach — Inventions, Sinfonias & Well-Tempered Clavier Preludes | Piano for Study & Focus",
     3: "Mozart Sonata K. 331 & Beethoven Pathétique, Appassionata | Calm Piano for Reading",
     4: "Tchaikovsky The Seasons, Chopin Études & Schumann Kinderszenen | Romantic Winter Piano",
+    5: "Satie Gymnopédies, Debussy Clair de Lune, Beethoven Für Elise | Calm Piano Classics",
 }
-THUMBS = {2: "BACH • STUDY & FOCUS", 3: "MOZART & BEETHOVEN", 4: "TCHAIKOVSKY • CHOPIN"}
-PORTRAITS = {2: ["bach"], 3: ["mozart", "beethoven"], 4: ["tchaikovsky", "chopin"]}   # assets/thumbnails/composers (PD)
+THUMBS = {2: "BACH • STUDY & FOCUS", 3: "MOZART & BEETHOVEN", 4: "TCHAIKOVSKY • CHOPIN", 5: "GYMNOPÉDIE • CLAIR DE LUNE"}
+PORTRAITS = {2: ["bach"], 3: ["mozart", "beethoven"], 4: ["tchaikovsky", "chopin"], 5: ["satie", "debussy"]}   # assets/thumbnails/composers (PD)
 QUEUE_SD = ROOT / "sacred_drift" / "output" / "queue"
 CLASSICAL_DOWS = [2, 5]      # 24.11.2026: classical goes out Wed + Sat 20:00 UTC (meditation keeps Mon)
 THEMES = {   # title prefix, thumbnail text, mood for the performance, scene, opening line, tags
@@ -148,6 +157,9 @@ THEMES = {   # title prefix, thumbnail text, mood for the performance, scene, op
     3: ("Mozart & Beethoven Piano for Reading and Calm ☕", "MOZART & BEETHOVEN PIANO", "calm", "lake",
         "Calm Mozart and Beethoven piano for reading, work and a quiet afternoon",
         ["mozart piano", "beethoven piano", "classical music for reading", "mozart for studying", "relaxing classical"]),
+    5: ("Calm Piano Classics", "GYMNOPÉDIE • CLAIR DE LUNE", "calm", "lake",
+        "The best-loved calm piano pieces", ["satie gymnopedie", "clair de lune", "fur elise", "debussy piano",
+        "calm piano", "relaxing classical piano"]),
     4: ("Romantic Piano for a Winter Evening ❄️", "WINTER EVENING PIANO", "calm", "window",
         "Romantic piano for a winter evening",
         ["tchaikovsky the seasons", "chopin piano", "winter piano music", "romantic piano", "cozy classical music"]),

@@ -1,0 +1,8 @@
+bach commons:153327744 JPEG image data, baseline, precision 8, 
+mozart commons:141841 JPEG image data, baseline, precision 8, 
+beethoven commons:69940799 JPEG image data, baseline, precision 8, 
+tchaikovsky commons:8688296 JPEG image data, Exif standard: [TIFF im
+chopin commons:150201 JPEG image data, baseline, precision 8, 
+schumann commons:507281 JPEG image data, baseline, precision 8, 
+satie commons:7161686
+debussy commons:983139

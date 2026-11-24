@@ -5,8 +5,9 @@
    subtitles.en.srt; description newer than the video) and that has no build/youtube_id.txt yet is uploaded PRIVATE,
    scheduled for the next free slot (every other day, 18:00 UTC — publish.next_slot). The owner turns it into a
    Premiere in YouTube Studio when it is its turn. At most one upload per run (shared API quota).
-1b. weekly series ("100 Years Ago": `series: 100-years-ago` in episode.yaml): uploaded straight to PUBLIC, only on
-   Saturday or Sunday after 15:00 UTC, at most one per 5 days, oldest slug first; they do not take a long-video slot.
+1b. series "100 Years Ago" (`series: 100-years-ago` in episode.yaml): one episode per 10-day period (1-10, 11-20,
+   21-end; owner 24.11.2026), uploaded straight to PUBLIC after 15:00 UTC on the period's start day 100 years on
+   (`period_start:`), at most one per 6 days; they do not take a long-video slot.
    The owner does not review these (decision 23.11.2026).
 2. check: if a scheduled time has passed by more than 2 hours and the video is still private (no Premiere was set
    and YouTube did not publish it), it is made public — so a forgotten Premiere never leaves a slot empty.
@@ -59,14 +60,23 @@ def ready(ep_dir, ep):
 WEEKLY = "100-years-ago"
 
 
-def weekly_due(eps):
-    """Saturday/Sunday after 15:00 UTC and no weekly episode uploaded in the last 5 days."""
+def weekly_due(eps, ep=None):
+    """24.11.2026 owner: "100 Years Ago" goes out per 10-day period (1-10, 11-20, 21-end), not weekly.
+    Due after 15:00 UTC on/after the period's start day 100 years on (episode.yaml `period_start: 1926-12-11`;
+    without it: the 1st, 11th or 21st of the month), and no series episode uploaded in the last 6 days."""
     now = dt.datetime.now(dt.timezone.utc)
-    if now.weekday() not in (5, 6) or now.hour < 15:
+    if now.hour < 15:
+        return False
+    ps = (ep or {}).get("period_start")
+    if ps:
+        d = dt.date.fromisoformat(str(ps))
+        if now.date() < d.replace(year=d.year + 100):
+            return False
+    elif now.day not in (1, 11, 21):
         return False
     for p in eps:
         f = p / "build" / "uploaded_at.txt"
-        if f.exists() and now - dt.datetime.fromisoformat(f.read_text().strip()) < dt.timedelta(days=5):
+        if f.exists() and now - dt.datetime.fromisoformat(f.read_text().strip()) < dt.timedelta(days=6):
             return False
     return True
 
@@ -75,11 +85,12 @@ def main():
     research.load_env()
     eps = sorted(p for p in (ROOT / "episodes").iterdir() if (p / "episode.yaml").exists())
     allep = [(p, load(p)) for p in eps]
-    # 1b. weekly "100 Years Ago": public at once, weekends only
+    # 1b. "100 Years Ago" (10-day periods): public at once
     wk = [(p, e) for p, e in allep if e.get("series") == WEEKLY]
     wready = [(p, e) for p, e in wk if ready(p, e)]
-    if wready and weekly_due([p for p, _ in wk]):
-        p, e = sorted(wready, key=lambda t: t[0].name)[0]
+    wready = sorted(wready, key=lambda t: (str(t[1].get("period_start", "")), t[0].name))
+    if wready and weekly_due([p for p, _ in wk], wready[0][1]):
+        p, e = wready[0]
         if DRY:
             log(f"would upload PUBLIC weekly episode {p.name}")
         else:

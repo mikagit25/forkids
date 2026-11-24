@@ -43,6 +43,11 @@ Java-Bode telegram, Munch Scream, Anak Krakatau 1930 aerials. Most needed (put i
   come from you. I will use archive.org magazines (Literary Digest 4/11/18/25 Dec 1926, Popular Science, Popular Mechanics,
   Scientific American Dec 1926) for ads, prices and science items myself. Week 1 (`news-1926-12-w1`) is due Sat 5 Dec.
 
+## UPDATE 24.11 (owner): "100 Years Ago" is per 10-DAY PERIOD (1-10, 11-20, 21-31), not weekly
+- Episode #2 = 8-20 December 1926 (uses picks w2 + w3), #3 = 21-31 December 1926 (w4). Then January 1927: 1-10, 11-20, 21-31.
+- Please collect picks per period from now on: `picks/news-1927-01-d1-news.yaml` (1-10 Jan 1927), `-d2-` (11-20), `-d3-` (21-31).
+- Period material only (owner): newspapers, magazines, ads and photos made at that time — no modern photos.
+
 ## UPDATE 23.11 (owner): "100 Years Ago" is WEEKLY, not monthly
 One episode every weekend: what the papers said **this week 100 years ago** (Sat/Sun upload, public at once — the cron
 does it, the owner does not review it). Slugs: `news-1926-12-w1` (1–7 Dec 1926), `news-1926-12-w2` (8–14 Dec),

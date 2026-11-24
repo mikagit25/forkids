@@ -1,9 +1,10 @@
-# Status: weekly "100 Years Ago" #1, script v1 (24.11.2026); uploaded PUBLIC on Sat/Sun by auto_upload.py (no owner review)
+# Status: "100 Years Ago" #1 (Dec 1-7 1926; series is per 10-day period from #2), uploaded PRIVATE for owner review (build/no_auto_upload)
 
 title: "100 Years Ago This Week: Agatha Christie Vanishes, a Tax on Bachelors (December 1926)"
 subtitle: "What the newspapers said in the first week of December 1926"
 slug: news-1926-12-w1
 series: 100-years-ago
+period_start: 1926-12-01
 language: en
 era: [1915, 1930]
 visual_context: "newspapers December 1926"
@@ -29,6 +30,7 @@ scenes:
       - {file: "web:ia:literary-digest_1926-12-04_91_10-0", image: "https://archive.org/download/literary-digest_1926-12-04_91_10/page/n0.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-04_91_10/page/n0/mode/1up", rights: "Public domain (published 1926, US)", credit: "via Internet Archive", title: "The Literary Digest, 4 December 1926, cover", date: "1926-12-04"}
       - {file: "web:ia:sim_popular-mechanics_1926-12_46_6-0", image: "https://archive.org/download/sim_popular-mechanics_1926-12_46_6/page/n0.jpg", page_url: "https://archive.org/details/sim_popular-mechanics_1926-12_46_6/page/n0/mode/1up", rights: "Public domain (published 1926, US)", credit: "via Internet Archive", title: "Popular Mechanics, December 1926, cover", date: "1926-12"}
       - {file: "web:ia:literary-digest_1926-12-25_91_13-9c", image: "https://archive.org/download/literary-digest_1926-12-25_91_13/page/n9.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-25_91_13/page/n9/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, 25 December 1926, via Internet Archive", title: "Topics in Brief, The Literary Digest, 25 December 1926", date: "1926-12-25", crop: [0.36, 0.33, 0.76, 0.66]}
+      - {file: "curid:146569473"}   # England, the general strike of 1926 (PD)
   - id: christie
     chapter: "I. The Vanishing Novelist"
     date: "3 December 1926"
@@ -39,20 +41,20 @@ scenes:
       Police feared she had drowned herself in a nearby lake known as the Silent Pool. The search became one of the biggest Britain had ever seen. More than a thousand police officers and fifteen thousand volunteers combed the countryside, and for the first time aeroplanes were used in a civilian search. A newspaper offered a reward of one hundred pounds. Her car was a Morris Cowley, one of the most popular cars in Britain at the time. Sir Arthur Conan Doyle, the creator of Sherlock Holmes, gave one of her gloves to a spirit medium, hoping it would lead him to her.
       The story crossed the Atlantic and reached the front page of The New York Times. A small newspaper in Maine summed up the situation: British sleuths baffled in search for missing novelist. By the end of this week, nobody knew where Agatha Christie was. Next week, we will find out where she was hiding.
     images:
-      - {file: "curid:77393487", match: "Her car was a Morris Cowley"}   # a 1926 Morris Cowley Bullnose (CC BY 2.0)
-      - {file: "curid:57874269"}   # Morris Cowley four-door tourer, 1926 (CC BY 2.0)
       - {file: "curid:47521120", match: "a nearby lake known as the Silent Pool"}   # the Silent Pool, Albury, Surrey, by Lewis Pinhorn Wood, 1888 (PD)
       - {file: "curid:63238833", match: "Sir Arthur Conan Doyle"}   # Arthur Conan Doyle with his family at Waterloo Station, 1923 (PD)
       - {file: "curid:67758967"}   # Arthur Conan Doyle, June 1922 (LoC, PD)
-      - {file: "curid:29749784"}   # a 1926 Morris Cowley two-seater (CC BY 2.0)
-      - {file: "curid:38836110"}   # a 1926 Morris Cowley Bullnose (CC BY 2.0)
-      - {file: "curid:29749987"}   # front of a 1926 Morris Bullnose Cowley (CC BY 2.0)
       - {file: "curid:112666405"}   # Spring Ploughing, English countryside, 1920s (PD)
       - {file: "web:ia:literary-digest_1926-12-04_91_10-2", image: "https://archive.org/download/literary-digest_1926-12-04_91_10/page/n2.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-04_91_10/page/n2/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "Topics of the Day, The Literary Digest, 4 December 1926", date: "1926-12-04"}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926121301:0476/full/pct:100/0/default.jpg", date: "1926-12-13", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1926-12-13/ed-1/?sp=1", crop: [0.358, 0.413, 0.48, 0.52], match: "British sleuths baffled"}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926121301:0476/full/pct:100/0/default.jpg", date: "1926-12-13", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1926-12-13/ed-1/?sp=1", crop: [0, 0, 1, 1]}
       - {file: "curid:67771372"}   # Sir A. Conan Doyle and family, 1923 (LoC, PD)
       - {file: "curid:67771328"}   # Sir A. Conan Doyle and family, 1923 (LoC, PD)
+      - {file: "curid:12240177"}   # Lesser Ury, London, Victoria Embankment, 1926 (PD)
+      - {file: "curid:161220545"}   # Polesden Lacey near Dorking, Surrey, 1923 (PD)
+      - {file: "curid:162116423", match: "aeroplanes were used in a civilian search"}   # an Imperial Airways Handley Page airliner, 1926 (PD)
+      - {file: "curid:44212980"}   # an English village church, 1921 (no restrictions)
+      - {file: "curid:14674820"}   # Bacon's map of London and its environs, 1920 (PD)
   - id: hall-mills
     chapter: "II. Not Guilty"
     date: "3 December 1926"
@@ -72,8 +74,8 @@ scenes:
       - {file: "curid:125310283", match: "Reporters came from all over the country"}   # prosecutor Alexander Simpson and a witness at the Hall-Mills trial, 1926 (PD)
       - {file: "curid:82113134"}   # Eleanor Mills death certificate, 1922 (PD)
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120301:0223/full/pct:100/0/default.jpg", date: "1926-12-03", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1926-12-03/ed-1/?sp=1", crop: [0.0, 0.0, 1.0, 1.0]}
-      - {file: "curid:202930711"}   # the old Somerset County Courthouse, Somerville, today (CC BY 4.0)
       - {file: "web:ia:literary-digest_1926-12-25_91_13-2", image: "https://archive.org/download/literary-digest_1926-12-25_91_13/page/n2.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-25_91_13/page/n2/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "'Fall and Doheny acquitted', Topics of the Day, The Literary Digest, 25 December 1926", date: "1926-12-25"}
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120401:0291/full/pct:100/0/default.jpg", date: "1926-12-04", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1926-12-04/ed-1/?sp=1", crop: [0.0, 0.0, 1.0, 0.45]}
   - id: bachelors
     chapter: "III. A Tax on Being Single"
     date: "6 December 1926"
@@ -108,7 +110,9 @@ scenes:
       - {file: "curid:67784898", match: "Wages were rising"}   # Calvin Coolidge signing the tax bill, 1926 (LoC, PD)
       - {file: "curid:145925250", match: "Bottle gift OK"}   # Prohibition in the United States, 1926 (PD)
       - {file: "curid:179209928"}   # Boston American banner, 10 Feb 1926 (PD)
-      - {file: "curid:27634300"}   # temperance movement poster, 1926 (PD)
+      - {file: "curid:67795572"}   # Grace and Calvin Coolidge, 1926 (LoC, PD)
+      - {file: "curid:67796417"}   # Grace and Calvin Coolidge, 1926 (LoC, PD)
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:whi:batch_whi_havarti_ver01:data:sn83045293:00542869021:1926120701:0493/full/pct:100/0/default.jpg", date: "1926-12-07", paper: "The Milwaukee Leader (Milwaukee, Wis.)", page_url: "https://www.loc.gov/resource/sn83045293/1926-12-07/ed-1/?sp=1", crop: [0.0, 0.0, 1.0, 0.5]}
   - id: wilson
     chapter: "V. This Week in 1918"
     date: "4 December 1918"
@@ -181,9 +185,9 @@ scenes:
       That was the first week of December, as the newspapers saw it. Next week: the search for Agatha Christie, a Nobel Prize, and the first recording of Mussolini's voice played on American radio.
       This has been 100 Years Ago, from Archive Tales. Subscribe so you don't miss next week's papers.
     images:
-      - {file: "curid:29749953"}   # 1926 Morris Bullnose Cowley (CC BY 2.0)
       - {file: "web:ia:literary-digest_1926-12-11_91_11-36", image: "https://archive.org/download/literary-digest_1926-12-11_91_11/page/n36.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-11_91_11/page/n36/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "'Gifts that last' Christmas advertisement, 11 December 1926", date: "1926-12-11"}
       - {file: "web:ia:literary-digest_1926-12-11_91_11-28", image: "https://archive.org/download/literary-digest_1926-12-11_91_11/page/n28.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-11_91_11/page/n28/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "Hupmobile Eight advertisement, The Literary Digest, 11 December 1926", date: "1926-12-11"}
+      - {file: "web:ia:literary-digest_1926-12-04_91_10-34", image: "https://archive.org/download/literary-digest_1926-12-04_91_10/page/n34.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-04_91_10/page/n34/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "Oldsmobile advertisement, The Literary Digest, 4 December 1926", date: "1926-12-04"}
 
 thumbnail:
   scene: christie
