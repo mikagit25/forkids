@@ -16,3 +16,4 @@
 | 12 | «Броненосец Потёмкин» — премьера в США 5.12.1926, Biltmore Theatre; запрещался в ряде стран, включая СССР | Wikipedia: Battleship Potemkin |
 | 13 | Реклама Doan's Pills 60c (Daily Kennebec Journal 7.12.1926); мясник: ветчина 25c/фунт, ягнёнок 30c (Pleasantville Press, 2.12.1927 — в тексте «год спустя») | Chrome clippings |
 | 14 | Шутка Houston Post-Dispatch о налоге на холостяков; реклама Whippet («Now Whippet driving is the vogue»; «women prefer to drive») | Literary Digest 25.12.1926, n9 и n1 |
+| 15 | Daily Kennebec Journal 13.12.1926: «British sleuths baffled in search missing novelist» | Chrome clipping w2 |

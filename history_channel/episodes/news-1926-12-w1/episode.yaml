@@ -37,11 +37,22 @@ scenes:
       The next morning her car, a Morris Cowley, was found at Newlands Corner in Surrey, abandoned above a chalk quarry, with her clothes and an expired driving licence inside. There was no sign of the driver.
       Earlier that year her mother had died, and in August her husband, Archie, had asked her for a divorce. He had fallen in love with another woman. On the day she disappeared, the two had quarrelled.
       Police feared she had drowned herself in a nearby lake known as the Silent Pool. The search became one of the biggest Britain had ever seen. More than a thousand police officers and fifteen thousand volunteers combed the countryside, and for the first time aeroplanes were used in a civilian search. A newspaper offered a reward of one hundred pounds. Her car was a Morris Cowley, one of the most popular cars in Britain at the time. Sir Arthur Conan Doyle, the creator of Sherlock Holmes, gave one of her gloves to a spirit medium, hoping it would lead him to her.
-      The story crossed the Atlantic and reached the front page of The New York Times. By the end of this week, nobody knew where Agatha Christie was. Next week, we will find out where she was hiding.
+      The story crossed the Atlantic and reached the front page of The New York Times. A small newspaper in Maine summed up the situation: British sleuths baffled in search for missing novelist. By the end of this week, nobody knew where Agatha Christie was. Next week, we will find out where she was hiding.
     images:
       - {file: "curid:77393487", match: "Her car was a Morris Cowley"}   # a 1926 Morris Cowley Bullnose (CC BY 2.0)
       - {file: "curid:57874269"}   # Morris Cowley four-door tourer, 1926 (CC BY 2.0)
       - {file: "curid:47521120", match: "a nearby lake known as the Silent Pool"}   # the Silent Pool, Albury, Surrey, by Lewis Pinhorn Wood, 1888 (PD)
+      - {file: "curid:63238833", match: "Sir Arthur Conan Doyle"}   # Arthur Conan Doyle with his family at Waterloo Station, 1923 (PD)
+      - {file: "curid:67758967"}   # Arthur Conan Doyle, June 1922 (LoC, PD)
+      - {file: "curid:29749784"}   # a 1926 Morris Cowley two-seater (CC BY 2.0)
+      - {file: "curid:38836110"}   # a 1926 Morris Cowley Bullnose (CC BY 2.0)
+      - {file: "curid:29749987"}   # front of a 1926 Morris Bullnose Cowley (CC BY 2.0)
+      - {file: "curid:112666405"}   # Spring Ploughing, English countryside, 1920s (PD)
+      - {file: "web:ia:literary-digest_1926-12-04_91_10-2", image: "https://archive.org/download/literary-digest_1926-12-04_91_10/page/n2.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-04_91_10/page/n2/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "Topics of the Day, The Literary Digest, 4 December 1926", date: "1926-12-04"}
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926121301:0476/full/pct:100/0/default.jpg", date: "1926-12-13", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1926-12-13/ed-1/?sp=1", crop: [0.358, 0.413, 0.48, 0.52], match: "British sleuths baffled"}
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926121301:0476/full/pct:100/0/default.jpg", date: "1926-12-13", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1926-12-13/ed-1/?sp=1", crop: [0, 0, 1, 1]}
+      - {file: "curid:67771372"}   # Sir A. Conan Doyle and family, 1923 (LoC, PD)
+      - {file: "curid:67771328"}   # Sir A. Conan Doyle and family, 1923 (LoC, PD)
   - id: hall-mills
     chapter: "II. Not Guilty"
     date: "3 December 1926"
@@ -56,6 +67,13 @@ scenes:
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120401:0291/full/pct:100/0/default.jpg", date: "1926-12-04", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1926-12-04/ed-1/?sp=1", crop: [0.38, 0.098, 0.738, 0.322], match: "the paper's cartoonist drew"}
       - {file: "curid:67407786", match: "the county courthouse in Somerville"}   # Somerset County Court House, Somerville, N.J., 1913 (LoC, PD)
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120401:0291/full/pct:100/0/default.jpg", date: "1926-12-04", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1926-12-04/ed-1/?sp=1", crop: [0.0, 0.0, 1.0, 1.0]}
+      - {file: "curid:82114374", match: "the bodies of a clergyman"}   # the Hall-Mills murder principals, 1922 (PD)
+      - {file: "curid:82105304", match: "The trial began on the third of November"}   # Hall-Mills murder principals in The Bee, Danville, 4 Nov 1926 (PD)
+      - {file: "curid:125310283", match: "Reporters came from all over the country"}   # prosecutor Alexander Simpson and a witness at the Hall-Mills trial, 1926 (PD)
+      - {file: "curid:82113134"}   # Eleanor Mills death certificate, 1922 (PD)
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120301:0223/full/pct:100/0/default.jpg", date: "1926-12-03", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1926-12-03/ed-1/?sp=1", crop: [0.0, 0.0, 1.0, 1.0]}
+      - {file: "curid:202930711"}   # the old Somerset County Courthouse, Somerville, today (CC BY 4.0)
+      - {file: "web:ia:literary-digest_1926-12-25_91_13-2", image: "https://archive.org/download/literary-digest_1926-12-25_91_13/page/n2.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-25_91_13/page/n2/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "'Fall and Doheny acquitted', Topics of the Day, The Literary Digest, 25 December 1926", date: "1926-12-25"}
   - id: bachelors
     chapter: "III. A Tax on Being Single"
     date: "6 December 1926"
@@ -70,6 +88,9 @@ scenes:
       - {file: "web:ia:literary-digest_1926-12-25_91_13-9cart", image: "https://archive.org/download/literary-digest_1926-12-25_91_13/page/n9.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-25_91_13/page/n9/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, 25 December 1926, via Internet Archive", title: "cartoon 'It Is My Will' - Mussolini, the stork and the tax on bachelors, The Literary Digest, 25 Dec 1926", date: "1926-12-25", match: "Mussolini has imposed a bachelor tax", crop: [0.36, 0.33, 0.76, 0.66]}
       - {file: "web:ia:literary-digest_1926-12-25_91_13-9", image: "https://archive.org/download/literary-digest_1926-12-25_91_13/page/n9.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-25_91_13/page/n9/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, 25 December 1926, via Internet Archive", title: "Topics in Brief page, The Literary Digest, 25 December 1926", date: "1926-12-25", match: "The Literary Digest, which collected jokes"}
       - {file: "curid:154679670"}   # Mussolini at Leptis Magna, April 1926 (PD)
+      - {file: "curid:67451319"}   # Mussolini of Italy, 1925 (LoC, PD)
+      - {file: "curid:162612823"}   # Mussolini on horseback in Rome, 1 December 1925 (PD)
+      - {file: "curid:120408175"}   # Mussolini as a farmer, propaganda photo c. 1925 (PD)
   - id: coolidge
     chapter: "IV. The President's Message"
     date: "6\u20137 December 1926"
@@ -84,6 +105,10 @@ scenes:
       - {file: "curid:67795777"}   # Calvin and Grace Coolidge, 1926 (LoC, PD)
       - {file: "curid:139424375"}   # Mutt and Jeff strip with Calvin Coolidge, 1926 (PD)
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:whi:batch_whi_havarti_ver01:data:sn83045293:00542869021:1926120701:0493/full/pct:100/0/default.jpg", date: "1926-12-07", paper: "The Milwaukee Leader (Milwaukee, Wis.)", page_url: "https://www.loc.gov/resource/sn83045293/1926-12-07/ed-1/?sp=1", crop: [0.0, 0.0, 1.0, 1.0]}
+      - {file: "curid:67784898", match: "Wages were rising"}   # Calvin Coolidge signing the tax bill, 1926 (LoC, PD)
+      - {file: "curid:145925250", match: "Bottle gift OK"}   # Prohibition in the United States, 1926 (PD)
+      - {file: "curid:179209928"}   # Boston American banner, 10 Feb 1926 (PD)
+      - {file: "curid:27634300"}   # temperance movement poster, 1926 (PD)
   - id: wilson
     chapter: "V. This Week in 1918"
     date: "4 December 1918"
@@ -97,6 +122,9 @@ scenes:
       - {file: "curid:51486918"}   # USS George Washington, 1918 (no restrictions)
       - {file: "curid:6825308", match: "ten battleships and twenty-eight destroyers"}   # the U.S. Atlantic Fleet, c. 13 December 1918 (PD)
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_brown_ver02:data:sn83030214:00206532336:1918120501:0105/full/pct:100/0/default.jpg", date: "1918-12-05", paper: "New-York Tribune (New York, N.Y.)", page_url: "https://www.loc.gov/resource/sn83030214/1918-12-05/ed-1/?sp=1", crop: [0.0, 0.0, 1.0, 1.0]}
+      - {file: "curid:6825308"}   # the U.S. Atlantic Fleet, c. 13 December 1918 (PD)
+      - {file: "curid:51486922"}   # U.S.S. George Washington (no restrictions)
+      - {file: "curid:51486179"}   # U.S.S. George Washington (no restrictions)
   - id: medicine
     chapter: "VI. The Sleeping Sickness"
     date: "4 December 1926"
@@ -105,8 +133,15 @@ scenes:
       This was not the African sleeping sickness carried by the tsetse fly. It was a strange new disease of the brain, called encephalitis lethargica, which had appeared during the First World War and spread around the world. Some patients fell into a deep sleep that lasted for weeks. Others were left frozen, unable to move or speak, for decades. About a million people are thought to have caught it, and hundreds of thousands died.
       The serum announced that week did not become a cure. No cure was ever found. By the end of the 1920s, the epidemic simply faded away, and its cause is still debated. Fifty years later, the neurologist Oliver Sacks described some of its last survivors in his book Awakenings.
     images:
-      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120401:0291/full/pct:100/0/default.jpg", date: "1926-12-04", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1926-12-04/ed-1/?sp=1", crop: [0.53, 0.322, 0.738, 0.405], match: "St. Elizabeth's Hospital had found"}
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120401:0291/full/pct:100/0/default.jpg", date: "1926-12-04", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1926-12-04/ed-1/?sp=1", crop: [0.53, 0.322, 0.738, 0.405], match: "a serum to combat sleeping sickness"}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120401:0291/full/pct:100/0/default.jpg", date: "1926-12-04", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1926-12-04/ed-1/?sp=1", crop: [0.0, 0.0, 1.0, 1.0]}
+      - {file: "curid:7555825", match: "a strange new disease of the brain"}   # Constantin von Economo, who described the disease in 1917 (PD)
+      - {file: "curid:67992816", match: "St. Elizabeth's Hospital"}   # Saint Elizabeths Hospital, Washington, 1908 (LoC, PD)
+      - {file: "curid:67993264"}   # Saint Elizabeths Hospital, Washington, 1919 (LoC, PD)
+      - {file: "curid:67992887"}   # Saint Elizabeths Hospital buildings (LoC, PD)
+      - {file: "web:ia:literary-digest_1926-12-04_91_10-46", image: "https://archive.org/download/literary-digest_1926-12-04_91_10/page/n46.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-04_91_10/page/n46/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "'Getting On in Health', The Literary Digest, 4 December 1926", date: "1926-12-04"}
+      - {file: "web:ia:literary-digest_1926-12-04_91_10-18", image: "https://archive.org/download/literary-digest_1926-12-04_91_10/page/n18.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-04_91_10/page/n18/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "Science and Invention, The Literary Digest, 4 December 1926", date: "1926-12-04"}
+      - {file: "curid:91650296"}   # United States Naval Medical Bulletin, 1926 (PD)
   - id: cinema
     chapter: "VII. A Film from Moscow"
     date: "5 December 1926"
@@ -117,6 +152,8 @@ scenes:
       - {file: "curid:2957676", match: "Battleship Potemkin"}   # Battleship Potemkin, 1925 poster (PD)
       - {file: "curid:41799654"}   # Battleship Potemkin, the ship, 1925 (PD)
       - {file: "curid:41803413"}   # Battleship Potemkin, 1925 (PD)
+      - {file: "curid:20393311", match: "directed by the young Sergei Eisenstein"}   # Sergei Eisenstein, Moscow, early 1920s (PD)
+      - {file: "curid:1493809", match: "Odessa Steps"}   # the Odessa Steps sequence, Battleship Potemkin (PD)
   - id: ads
     chapter: "VIII. Prices and Promises"
     date: "December 1926"
@@ -132,6 +169,12 @@ scenes:
       - {file: "web:ia:sim_popular-science_1926-12_109_6-0", image: "https://archive.org/download/sim_popular-science_1926-12_109_6/page/n0.jpg", page_url: "https://archive.org/details/sim_popular-science_1926-12_109_6/page/n0/mode/1up", rights: "Public domain (published 1926, US)", credit: "via Internet Archive", title: "Popular Science Monthly, December 1926, cover", date: "1926-12"}
       - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:njr:batch_njr_galloway_ver01:data:sn91064030:00513685567:1927120201:0591/full/pct:100/0/default.jpg", date: "1927-12-02", paper: "The Pleasantville Press (Pleasantville, N.J.)", page_url: "https://www.loc.gov/resource/sn91064030/1927-12-02/ed-1/?sp=8", crop: [0.0, 0.0, 1.0, 1.0]}
       - {file: "web:ia:literary-digest_1926-12-25_91_13-1", image: "https://archive.org/download/literary-digest_1926-12-25_91_13/page/n1.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-25_91_13/page/n1/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, 25 December 1926, via Internet Archive", title: "Whippet advertisement, The Literary Digest, 25 December 1926", date: "1926-12-25", match: "Now Whippet driving is the vogue"}
+      - {file: "web:ia:literary-digest_1926-12-04_91_10-52", image: "https://archive.org/download/literary-digest_1926-12-04_91_10/page/n52.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-04_91_10/page/n52/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "Coca-Cola advertisement, The Literary Digest, 4 December 1926", date: "1926-12-04"}
+      - {file: "web:ia:literary-digest_1926-12-04_91_10-30", image: "https://archive.org/download/literary-digest_1926-12-04_91_10/page/n30.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-04_91_10/page/n30/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "Campbell's Soup advertisement, 4 December 1926", date: "1926-12-04"}
+      - {file: "web:ia:literary-digest_1926-12-04_91_10-44", image: "https://archive.org/download/literary-digest_1926-12-04_91_10/page/n44.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-04_91_10/page/n44/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "RCA Radiola Christmas advertisement, 4 December 1926", date: "1926-12-04"}
+      - {file: "web:ia:literary-digest_1926-12-04_91_10-36", image: "https://archive.org/download/literary-digest_1926-12-04_91_10/page/n36.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-04_91_10/page/n36/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "Chrysler 70 advertisement, 4 December 1926", date: "1926-12-04"}
+      - {file: "web:ia:literary-digest_1926-12-11_91_11-44", image: "https://archive.org/download/literary-digest_1926-12-11_91_11/page/n44.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-11_91_11/page/n44/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "Gillette advertisement, The Literary Digest, 11 December 1926", date: "1926-12-11"}
+      - {file: "web:ia:literary-digest_1926-12-11_91_11-38", image: "https://archive.org/download/literary-digest_1926-12-11_91_11/page/n38.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-11_91_11/page/n38/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "Kelvinator refrigerator advertisement, 11 December 1926", date: "1926-12-11"}
   - id: closing
     chapter: "Next Week"
     narration: >
@@ -139,6 +182,8 @@ scenes:
       This has been 100 Years Ago, from Archive Tales. Subscribe so you don't miss next week's papers.
     images:
       - {file: "curid:29749953"}   # 1926 Morris Bullnose Cowley (CC BY 2.0)
+      - {file: "web:ia:literary-digest_1926-12-11_91_11-36", image: "https://archive.org/download/literary-digest_1926-12-11_91_11/page/n36.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-11_91_11/page/n36/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "'Gifts that last' Christmas advertisement, 11 December 1926", date: "1926-12-11"}
+      - {file: "web:ia:literary-digest_1926-12-11_91_11-28", image: "https://archive.org/download/literary-digest_1926-12-11_91_11/page/n28.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-11_91_11/page/n28/mode/1up", rights: "Public domain (published 1926, US)", credit: "The Literary Digest, via Internet Archive", title: "Hupmobile Eight advertisement, The Literary Digest, 11 December 1926", date: "1926-12-11"}
 
 thumbnail:
   scene: christie
