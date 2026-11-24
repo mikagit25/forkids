@@ -1,0 +1,162 @@
+# krakatoa-1883 picks - Chrome session 2026-11-24: Rijksmuseum (data.rijksmuseum.nl API, Public Domain Mark only).
+# NOTE for the server: add "rijks": ("iiif.micr.io", "rijksmuseum.nl") to fetch.WEB_HOSTS. image = IIIF full/max.
+
+- scene: awakening
+  source: rijks
+  id: '200367150'
+  image: "https://iiif.micr.io/yIitj/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200367150"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Kali Besar te Batavia"
+  date: "1880"
+  note: "Batavia in 1880: the Kali Besar canal - colonial capital 150 km from Krakatoa"
+
+- scene: awakening
+  source: rijks
+  id: '200408491'
+  image: "https://iiif.micr.io/Lkrwt/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200408491"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Handelshuizen langs de Kali Besar, Batavia"
+  date: "1880 - 1895"
+  note: "merchant houses on the Kali Besar, Batavia"
+
+- scene: awakening
+  source: rijks
+  id: '200408493'
+  image: "https://iiif.micr.io/ppUfC/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200408493"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Gezicht op het Koningsplein, Batavia"
+  date: "1880 - 1895"
+  note: "Koningsplein, Batavia - European quarter"
+
+- scene: awakening
+  source: rijks
+  id: '200408537'
+  image: "https://iiif.micr.io/WgpzJ/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200408537"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Glodok, Chinese wijk te Batavia"
+  date: "1880 - 1895"
+  note: "Glodok, the Chinese quarter of Batavia"
+
+- scene: awakening
+  source: rijks
+  id: '200367161'
+  image: "https://iiif.micr.io/cmlJr/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200367161"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Molenvliet te Batavia"
+  date: "1870 - 1872"
+  note: "Molenvliet canal, Batavia, early 1870s"
+
+- scene: awakening
+  source: rijks
+  id: '200652807'
+  image: "https://iiif.micr.io/oEuzk/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200652807"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Molenvliet te Batavia ter hoogte van Hotel des Indes (links), gezien naar het noorden"
+  date: "1870 - 1872"
+  note: "Molenvliet by the Hotel des Indes, Batavia"
+
+- scene: awakening
+  source: rijks
+  id: '200367168'
+  image: "https://iiif.micr.io/hoziy/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200367168"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Sociëteit Harmonie en de winkel van Oger Frères in Batavia"
+  date: "1870 - 1880"
+  note: "Societeit Harmonie, Batavia - where colonists gathered"
+
+- scene: awakening
+  source: rijks
+  id: '200410583'
+  image: "https://iiif.micr.io/KfbRJ/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200410583"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Gezicht op landingsplaats te Batavia"
+  date: "1870 - 1890"
+  note: "landing place at Batavia harbour"
+
+- scene: awakening
+  source: rijks
+  id: '200329112'
+  image: "https://iiif.micr.io/bcpZo/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200329112"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Gouverneurspaleis met vijver in Buitenzorg, West-Java"
+  date: "1870 - 1900"
+  note: "Governor-General's palace at Buitenzorg (Bogor), West Java"
+
+- scene: awakening
+  source: rijks
+  id: '200415454'
+  image: "https://iiif.micr.io/PMgUx/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200415454"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Stationsgebouw te Buitenzorg, vanaf het terrein der werkplaatsen gezien"
+  date: "1880 - 1888"
+  note: "Buitenzorg railway station, 1880s"
+
+- scene: awakening
+  source: rijks
+  id: '200814107'
+  image: "https://iiif.micr.io/WLrhC/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200814107"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Woning aan het Koningsplein in Batavia"
+  date: "1884"
+  note: "a house on the Koningsplein, Batavia, 1884"
+
+- scene: island
+  source: rijks
+  id: '200464079'
+  image: "https://iiif.micr.io/wFoCG/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200464079"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Gezicht op de ankerplaats bij Anjer op Java"
+  date: "1869"
+  note: "the anchorage at Anjer on Java, 1869 - the town the tsunami destroyed"
+
+- scene: island
+  source: rijks
+  id: '200679351'
+  image: "https://iiif.micr.io/qybPN/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200679351"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Gezicht op de Straat Soenda"
+  date: "1865 - 1872"
+  note: "the Sunda Strait, c. 1870"
+
+- scene: island
+  source: rijks
+  id: '200316200'
+  image: "https://iiif.micr.io/NQpfR/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200316200"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Model of the Vlakkenhoek lighthouse on Sumatra"
+  date: "c. 1879"
+  note: "model of the Vlakke Hoek lighthouse, Sumatra (c. 1879) - on the strait; damaged in 1883"
+
+- scene: island
+  source: rijks
+  id: '200316137'
+  image: "https://iiif.micr.io/ScBDF/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200316137"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Model of the Duiveneiland lighthouse on Java"
+  date: "1870"
+  note: "model of the Duiveneiland lighthouse, Java (1870)"
+
+- scene: aftermath
+  source: rijks
+  id: '200623639'
+  image: "https://iiif.micr.io/ncqmY/full/max/0/default.jpg"
+  page_url: "https://id.rijksmuseum.nl/200623639"
+  rights: "Public Domain Mark (public domain), Rijksmuseum"
+  title: "Nood in Indië na de vulkaanuitbarsting van 1883"
+  date: "1883"
+  note: "Nood in Indie (Distress in the Indies) - 1883 cartoon/relief print after the eruption"
