@@ -22,6 +22,7 @@ import os
 import shutil
 import subprocess
 import sys
+import re
 import yaml
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
@@ -546,6 +547,21 @@ def main():
                         slot = None
                     if slot is not None:
                         priority = -1 if slot == dow_now else 1   # another day's slot: wait for its day
+                    # 24.11.2026: 1-hour videos get ~3x the views of 3-10 h ones -> long programmes go after them
+                    try:
+                        t = (yaml.safe_load(meta_p.read_text()) or {}).get("title", "") if meta_p.exists() else ""
+                    except Exception:
+                        t = ""
+                    if priority >= 0 and re.search(r"\b([3-9]|10) Hours?\b", t):
+                        priority = 2
+                elif name.startswith("sd_piano_"):
+                    # 24.11.2026 classical piano experiment: one per week, on its publish_dow (Saturday) only
+                    meta_p = p.parent / f"meta_{p.stem}.yaml"
+                    try:
+                        slot = (yaml.safe_load(meta_p.read_text()) or {}).get("publish_dow") if meta_p.exists() else None
+                    except Exception:
+                        slot = None
+                    priority = -2 if slot == datetime.now(timezone.utc).weekday() else 9
                 elif "_code_" in name and name.startswith("sd_short_"):
                     # Procedural short (make_sd_video --with-short) — always first in the shorts slot
                     priority = -1
