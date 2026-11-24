@@ -555,13 +555,14 @@ def main():
                     if priority >= 0 and re.search(r"\b([3-9]|10) Hours?\b", t):
                         priority = 2
                 elif name.startswith("sd_piano_"):
-                    # 24.11.2026 classical piano experiment: one per week, on its publish_dow (Saturday) only
+                    # 24.11.2026 classical: on its publish_dow days only (Wed + Sat)
                     meta_p = p.parent / f"meta_{p.stem}.yaml"
                     try:
                         slot = (yaml.safe_load(meta_p.read_text()) or {}).get("publish_dow") if meta_p.exists() else None
                     except Exception:
                         slot = None
-                    priority = -2 if slot == datetime.now(timezone.utc).weekday() else 9
+                    dnow = datetime.now(timezone.utc).weekday()
+                    priority = -2 if (dnow in slot if isinstance(slot, list) else slot == dnow) else 9
                 elif "_code_" in name and name.startswith("sd_short_"):
                     # Procedural short (make_sd_video --with-short) — always first in the shorts slot
                     priority = -1

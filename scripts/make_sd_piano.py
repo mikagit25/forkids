@@ -137,6 +137,9 @@ TITLES = {
     4: "Tchaikovsky The Seasons, Chopin Études & Schumann Kinderszenen | Romantic Winter Piano",
 }
 THUMBS = {2: "BACH • STUDY & FOCUS", 3: "MOZART & BEETHOVEN", 4: "TCHAIKOVSKY • CHOPIN"}
+PORTRAITS = {2: ["bach"], 3: ["mozart", "beethoven"], 4: ["tchaikovsky", "chopin"]}   # assets/thumbnails/composers (PD)
+QUEUE_SD = ROOT / "sacred_drift" / "output" / "queue"
+CLASSICAL_DOWS = [2, 5]      # 24.11.2026: classical goes out Wed + Sat 20:00 UTC (meditation keeps Mon)
 THEMES = {   # title prefix, thumbnail text, mood for the performance, scene, opening line, tags
     1: ("Classical Piano for Sleep 🌙", "CLASSICAL PIANO FOR SLEEP", "sleep", "night",
         "Gentle classical piano for sleep", ["classical piano for sleep", "piano sleep music", "sleep music"]),
@@ -195,7 +198,7 @@ def join(pieces, out: Path):
     return starts
 
 
-def thumbnail(video: Path, out: Path, hours: int | None, text: str = "CLASSICAL PIANO FOR SLEEP"):
+def thumbnail(video: Path, out: Path, hours: int | None, text: str = "CLASSICAL PIANO FOR SLEEP", portraits=()):
     from PIL import Image, ImageEnhance
     import thumb_text as tt
     frame = out.with_suffix(".frame.png")
@@ -204,6 +207,22 @@ def thumbnail(video: Path, out: Path, hours: int | None, text: str = "CLASSICAL 
     img = Image.open(frame).convert("RGB")
     img = ImageEnhance.Brightness(img).enhance(1.35)
     img = ImageEnhance.Contrast(img).enhance(1.15)
+    if portraits:                               # composer portraits (public-domain paintings/photos) on the right
+        img = ImageEnhance.Brightness(img).enhance(0.75)
+        n = len(portraits)
+        ph = 420
+        x = 1280 - 40
+        for name in reversed(portraits):
+            pim = Image.open(ROOT / "assets/thumbnails/composers" / f"{name}.jpg").convert("RGB")
+            w = int(pim.width * ph / pim.height)
+            pim = pim.resize((w, ph))
+            if n > 1 and w > 300:
+                pim = pim.crop(((w - 300) // 2, 0, (w - 300) // 2 + 300, ph)); w = 300
+            x -= w
+            frame_ = Image.new("RGB", (w + 12, ph + 12), (235, 220, 190))
+            frame_.paste(pim, (6, 6))
+            img.paste(frame_, (x - 6, 50 - 6))
+            x -= 24
     img = tt.add_thumb_text(img, text, duration_hours=hours, channel_tag="Sacred Drift")
     img.save(out, "PNG", optimize=True)
     frame.unlink(missing_ok=True)
@@ -269,6 +288,8 @@ def main():
     ap.add_argument("--seed", type=int, default=101)
     ap.add_argument("--scene", default=None)
     ap.add_argument("--audio-only", action="store_true")
+    ap.add_argument("--no-queue", action="store_true")
+    ap.add_argument("--thumb-only", action="store_true", help="re-make the thumbnail from an existing mp4")
     a = ap.parse_args()
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     stem = f"sd_piano_{THEMES[a.program][2]}_p{a.program}_s{a.seed}"
@@ -285,12 +306,25 @@ def main():
     print(f"   title: {meta['title']}  ({len(meta['description'].split())} words)")
     if a.audio_only:
         return
+    if a.thumb_only:
+        mp4 = OUT_DIR / f"{stem}.mp4"
+        thumbnail(mp4, OUT_DIR / f"thumb_{stem}.png", int(total // 3600) or None, THUMBS.get(a.program, THEMES[a.program][1]),
+                  PORTRAITS.get(a.program, ()))
+        return
     mp4 = OUT_DIR / f"{stem}.mp4"
     print(f"③ video ({a.scene}) …")
     subprocess.run([sys.executable, str(ROOT / "scripts/render_sd_video.py"), "--audio", str(audio),
                     "--scene", a.scene, "--seed", str(a.seed), "--out", str(mp4)], check=True)
     print("④ thumbnail …")
-    thumbnail(mp4, OUT_DIR / f"thumb_{stem}.png", int(total // 3600) or None, THUMBS.get(a.program, THEMES[a.program][1]))
+    thumbnail(mp4, OUT_DIR / f"thumb_{stem}.png", int(total // 3600) or None, THUMBS.get(a.program, THEMES[a.program][1]),
+              PORTRAITS.get(a.program, ()))
+    if a.program in TITLES and not a.no_queue:       # experiment programmes go straight into the SD queue
+        meta["publish_dow"] = CLASSICAL_DOWS
+        (OUT_DIR / f"meta_{stem}.yaml").write_text(yaml.dump(meta, allow_unicode=True, sort_keys=False))
+        import shutil
+        for f in (mp4, OUT_DIR / f"thumb_{stem}.png", OUT_DIR / f"meta_{stem}.yaml"):
+            shutil.copy2(f, QUEUE_SD / f.name)
+        print(f"   queued in {QUEUE_SD} (publish on Wed/Sat)")
     print(f"✅ {mp4}")
 
 
