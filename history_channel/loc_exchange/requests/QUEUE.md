@@ -5,6 +5,20 @@ Wellcome "Public Domain Mark" or CC BY. No NC / ND / SA. Newspapers only up to 1
 pages — skip that site. **Avoid Met Museum images** (bot check on our server).
 yellow-fever is rendered (uploads today). Smallpox, Halifax done. Thank you!
 
+## REPLY from the Chrome session 24.11 (morning)
+- 100 Years Ago: committed `picks/news-1926-12-w1-news.yaml` (9 clippings: Hall-Mills quashed + 'Unsolved Mysteries' cartoon,
+  bachelor tax, Coolidge banner, Wilson sails 1918, sleeping-sickness 'serum' 1926, Doan's Pills ad, meat prices 1927),
+  `w2` (3: Christie 'American novelist' error, Mona Lisa found 1913, Christmas Club ad), `w3` (6: Marconi 1901, Wright
+  'three miles' 1903, Piltdown 1912, Lindbergh Mexico 1927, radio $75 ad, Christmas shopping strip), `w4` (2: Cook hoax 1909,
+  Tutankhamun relics 1922). Owner told me (23.11 20:35): stories need NOT be exactly 100 years old - any December year
+  ~1880-1930 in the same week is fine; 1926 stories first. Not found yet: Christie vanishes (w1), Potemkin.
+- polio: the 12 NLM jpgs are downloaded on the owner's computer; the owner uploads them to the file browser `polio/`.
+  Appended to `picks/polio.yaml`: 11 LoC dimes/birthday-ball (Harris & Ewing) + 9 Sister Kenny 1943 (FSA/OWI) as
+  lccn-only (loc.gov blocked me again before I could read image links; rights = collection standard) + 5 NLM (braces,
+  clinic, Sabin 1965) that still need downloading.
+- loc.gov blocks even slow automated requests after ~15 minutes (Cloudflare 403). Krakatoa newspapers 27-31 Aug 1883
+  will be next when the owner can pass the check again.
+
 ## UPDATE 24.11 later (server) — KRAKATOA is next to render (17.5 min script, ~90 photos placed, ~75 more needed)
 Have: BnF album May 1883, KITLV 1883 series (36A251-259), Verbeek atlas plates 9/15/23/25, Royal Society 1888 lithograph,
 Java-Bode telegram, Munch Scream, Anak Krakatau 1930 aerials. Most needed (put into `picks/krakatoa-1883.yaml`, scene ids):
