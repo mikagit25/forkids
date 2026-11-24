@@ -1,0 +1,93 @@
+# 100 Years Ago - w1 picks (Chrome session). Owner 23.11 20:35 to the Chrome session: stories need NOT be exactly
+# 100 years old - any year roughly 1880-1930 whose date falls in this week is fine (more interesting material);
+# 1926 stories from the server's list come first. scene: tbd. crop = x0,y0,x1,y1 fractions, checked visually.
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120401:0291/full/pct:100/0/default.jpg
+  crop: [0.017, 0.093, 0.143, 0.25]
+  page_url: https://www.loc.gov/resource/sn83045462/1926-12-04/ed-1/?sp=1
+  date: '1926-12-04'
+  paper: Evening Star (Washington, D.C.)
+  match: Hall case
+  note: "STORY hall-mills-1926 (server list): 'Hall case ended as court quashes all indictments - widow, Stevens brothers and Carpender released after jury says Not Guilty'"
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120401:0291/full/pct:100/0/default.jpg
+  crop: [0.38, 0.098, 0.738, 0.322]
+  page_url: https://www.loc.gov/resource/sn83045462/1926-12-04/ed-1/?sp=1
+  date: '1926-12-04'
+  paper: Evening Star (Washington, D.C.)
+  match: Hall-Mills
+  note: "STORY hall-mills-1926: front-page cartoon - Justice files the 'Hall-Mills case' into a safe marked 'UNSOLVED MYSTERIES' (the murders were never solved)"
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120401:0291/full/pct:100/0/default.jpg
+  crop: [0.53, 0.322, 0.738, 0.405]
+  page_url: https://www.loc.gov/resource/sn83045462/1926-12-04/ed-1/?sp=1
+  date: '1926-12-04'
+  paper: Evening Star (Washington, D.C.)
+  match: sleeping sickness
+  note: "MEDICINE 1926: 'St. Elizabeth's finds serum to combat sleeping sickness - hospital develops antitoxic that has arrested progress of disease' (encephalitis lethargica epidemic of the 1920s; the 'serum' did not work)"
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120301:0223/full/pct:100/0/default.jpg
+  crop: [0.02, 0.095, 0.148, 0.24]
+  page_url: https://www.loc.gov/resource/sn83045462/1926-12-03/ed-1/?sp=1
+  date: '1926-12-03'
+  paper: Evening Star (Washington, D.C.)
+  match: Mrs. Hall
+  note: "STORY hall-mills-1926 (the day before): 'Fate of Mrs. Hall and brothers put in hands of jury' - same page has a 'Christmas is coming - shop early' box"
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926120701:0413/full/pct:100/0/default.jpg
+  crop: [0.66, 0.718, 0.787, 0.82]
+  page_url: https://www.loc.gov/resource/sn82014248/1926-12-07/ed-1/?sp=8
+  date: '1926-12-07'
+  paper: Daily Kennebec Journal (Augusta, Me.)
+  match: Italian bachelors
+  note: "STORY bachelor-tax-1926 (server list): 'Italian bachelors must pay fat tax for dodging wedlock' - Mussolini's cabinet; spinsters not penalized"
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926120701:0413/full/pct:100/0/default.jpg
+  crop: [0.416, 0.765, 0.662, 0.985]
+  page_url: https://www.loc.gov/resource/sn82014248/1926-12-07/ed-1/?sp=8
+  date: '1926-12-07'
+  paper: Daily Kennebec Journal (Augusta, Me.)
+  match: Doan's Pills
+  note: "PRICES & ADS / quack medicine: 'Feeling the strain? Overwork and worry tend to overtax the system... Doan's Pills, stimulant diuretic to the kidneys, 60c' - say plainly it is a patent-medicine ad"
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:whi:batch_whi_havarti_ver01:data:sn83045293:00542869021:1926120701:0493/full/pct:100/0/default.jpg
+  crop: [0.015, 0.022, 0.98, 0.178]
+  page_url: https://www.loc.gov/resource/sn83045293/1926-12-07/ed-1/?sp=1
+  date: '1926-12-07'
+  paper: The Milwaukee Leader (Milwaukee, Wis.)
+  match: Coolidge
+  note: "STORY coolidge-message-1926 (server list): masthead + banner 'Easy on farm relief - Coolidge' (State of the Union, 7 Dec 1926). Same page: 'Bottle gift OK, Supreme Court rules' (Prohibition) and 'Text of Coolidge Congress message'"
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:njr:batch_njr_galloway_ver01:data:sn91064030:00513685567:1927120201:0591/full/pct:100/0/default.jpg
+  crop: [0.035, 0.742, 0.505, 0.965]
+  page_url: https://www.loc.gov/resource/sn91064030/1927-12-02/ed-1/?sp=8
+  date: '1927-12-02'
+  paper: The Pleasantville Press (Pleasantville, N.J.)
+  match: Meat that is different
+  note: "PRICES & ADS: butcher's ad - round steak, pork roast, ham 25c a lb, spring lamb 30c, fatted pullets 30c (Dec 1927). Same page: Christmas gift ads incl. an electric radio set"
+
+- scene: tbd
+  kind: newspaper
+  image: https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_brown_ver02:data:sn83030214:00206532336:1918120501:0105/full/pct:100/0/default.jpg
+  crop: [0.01, 0.015, 0.99, 0.172]
+  page_url: https://www.loc.gov/resource/sn83030214/1918-12-05/ed-1/?sp=1
+  date: '1918-12-05'
+  paper: New-York Tribune (New York, N.Y.)
+  match: Wilson
+  note: "STORY wilson-1918: banner 'Homebound troops cheer Wilson out to sea; President may oppose Kaiser's extradition' - 4 Dec 1918 the first sitting US president to travel to Europe (Paris peace conference). Same page: 'Peace ship sails under huge convoy', 'Third of million dead from influenza, is report'"
