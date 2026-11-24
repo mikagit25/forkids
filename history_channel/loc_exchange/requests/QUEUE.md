@@ -174,3 +174,21 @@ out; try Chronicling America later. Useful searches: "molasses flood", "Commerci
 - Boston North End 1900–1920 street life (LoC Detroit Publishing, Boston Public Library on Commons / Digital Commonwealth
   only if "No known restrictions"/PD); Atlantic Avenue elevated railway; Boston harbor fireboats; Purity Distilling /
   industrial alcohol / WWI munitions; 1919 Boston fire department; anarchist scare 1919 (Galleanists headlines).
+
+
+## From the Chrome session 24.11 — material for 4 audience-demand topics (picks/, scene: tbd)
+
+Owner asked to collect, from sources the server API can't reach, material for the top Google Trends topics (US + UK/DE/NL):
+
+| file | picks | source | contents |
+|---|---|---|---|
+| picks/titanic.yaml | 47 | LoC (Bain, Harris & Ewing) | launch 1911, interiors, Capt. Smith, crowds at White Star office, lifeboats from Carpathia, THE iceberg photo, survivors, Rostron, Senate inquiry, 'Titanic orphans', Halifax |
+| picks/houdini.yaml | 51 | LoC (McManus-Young, posters, National Photo Co.) | 1894-1928: circus, handcuffs, chains, milk can, water torture cell, bridge jump, NY harbor crate, upside-down straitjacket 1922, aviation 1910, elephant, films, war on fake mediums, coffin stunt Aug 1926, grave |
+| picks/pompeii.yaml | 35 | Rijksmuseum (PDM) | 19th-c. photos: victim plaster casts, Forum, streets, Herculaneum, Vesuvius eruption 1872, crater, funicular, tourists |
+| picks/lobotomy.yaml | 21 | NLM (PD) | asylum era: Bedlam chains, state asylums, wards, St. Elizabeths, WWI/WWII mental patients |
+
+Notes:
+- Titanic 2002714434 (Harold Bride carried ashore) has no image URL — resolve by lccn.
+- Lobotomy: NLM portraits of Freeman/Moniz are 'may be under copyright' — NOT included; please look for PD portraits on Wikimedia Commons. No photos of the operation itself found as PD.
+- Pompeii needs fetch.WEB_HOSTS "rijks": ("iiif.micr.io","rijksmuseum.nl"); lobotomy (NLM) images must be downloaded in Chrome -> inbox/ when the episode is scheduled — tell me.
+- Trends reminder (US, Donner Party=100): Titanic ~6900, Houdini ~1460, Lobotomy ~1170, Pompeii ~1000, Jack the Ripper ~600. UK: Pompeii 165, Houdini 107 (Black Death=100). DE/NL: Titanic dominant, Pompeii strong.
