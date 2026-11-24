@@ -193,3 +193,23 @@
   title: "Utrechtsch provinciaal en stedelijk dagblad (Utrecht), 29 Aug 1883: \"Binnenland - Utrecht, 28 Augustus 1883\""
   date: "1883-08-29"
   note: "news reaches the Netherlands by Reuters telegraph within a day: \"the European quarter of Anjer and the Chinese camp at Merak have been washed away by an extraordinarily high flood... darkness in Batavia\""
+
+- scene: sky
+  source: delpher
+  id: 'ddd:010973408:mpeg21:a0003'
+  image: "https://imageviewer.kb.nl/ImagingService/imagingService?id=ddd:010973408:mpeg21:p001:image&s=1&r=0&x=2540&y=2620&w=860&h=1000"
+  page_url: "https://www.delpher.nl/nl/kranten/view?coll=ddd&identifier=ddd:010973408:mpeg21:a0003"
+  rights: "Public domain (1884 newspaper, via Delpher / KB National Library of the Netherlands)"
+  title: "Algemeen Handelsblad (Amsterdam), 9 Jan 1884: \"De uitbarsting van Krakatau en het gloeien der lucht\""
+  date: "1884-01-09"
+  note: "\"The eruption of Krakatau and the glowing of the sky\" - Prof. W. Foerster of the Berlin observatory explains the strange red dawns and sunsets: fine volcanic dust high in the atmosphere; also notes the sea wave reached European coasts"
+
+- scene: sky
+  source: delpher
+  id: 'ddd:010973408:mpeg21:a0003'
+  image: "https://imageviewer.kb.nl/ImagingService/imagingService?id=ddd:010973408:mpeg21:p001:image&s=1&r=0&x=0&y=0&w=5140&h=1150"
+  page_url: "https://www.delpher.nl/nl/kranten/view?coll=ddd&identifier=ddd:010973408:mpeg21:a0003"
+  rights: "Public domain (1884 newspaper, via Delpher / KB National Library of the Netherlands)"
+  title: "Algemeen Handelsblad (Amsterdam), 9 Jan 1884 - masthead"
+  date: "1884-01-09"
+  note: "front-page masthead for the same article (Amsterdam evening paper)"
