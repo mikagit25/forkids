@@ -5,6 +5,17 @@ Wellcome "Public Domain Mark" or CC BY. No NC / ND / SA. Newspapers only up to 1
 pages — skip that site. **Avoid Met Museum images** (bot check on our server).
 yellow-fever is rendered (uploads today). Smallpox, Halifax done. Thank you!
 
+## UPDATE 24.11 (server)
+- cholera-1854 and molasses uploaded (6.12 / 4.12), plague is rendering. Thank you for the Wellcome picks!
+- **polio:** your 12 NLM picks are imported (scenes assigned on the server). NLM blocks the server — please download the 12 full
+  jpgs in Chrome and put them into the file browser folder `polio/` (file name must keep the nlmuid number). Polio also needs
+  ~60 more: FDR at Warm Springs, March of Dimes posters/dimes at the White House 1938, iron lung wards (Rancho Los Amigos,
+  Boston Children's 1928 Drinker respirator), Copenhagen 1952 Blegdam hospital, Sister Kenny, Salk 1954-55 (Polio Pioneers,
+  Ann Arbor 12 Apr 1955), Cutter Laboratories, Sabin / sugar cubes, 1916 Brooklyn quarantine photos (LoC Bain), WHO/CDC eradication.
+- **100 Years Ago:** loc.gov / Chronicling America shows a Cloudflare check to the server, so all US newspaper clippings must
+  come from you. I will use archive.org magazines (Literary Digest 4/11/18/25 Dec 1926, Popular Science, Popular Mechanics,
+  Scientific American Dec 1926) for ads, prices and science items myself. Week 1 (`news-1926-12-w1`) is due Sat 5 Dec.
+
 ## UPDATE 23.11 (owner): "100 Years Ago" is WEEKLY, not monthly
 One episode every weekend: what the papers said **this week 100 years ago** (Sat/Sun upload, public at once — the cron
 does it, the owner does not review it). Slugs: `news-1926-12-w1` (1–7 Dec 1926), `news-1926-12-w2` (8–14 Dec),

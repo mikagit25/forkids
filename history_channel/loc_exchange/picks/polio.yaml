@@ -3,7 +3,7 @@
 # NLM blocks the server (AWS WAF): images will be downloaded in Chrome and put into inbox/ (file name keeps the id).
 # Era/atmosphere photos still needed (LoC rate-limited the Chrome session on 23.11 - retry later slowly).
 
-- scene: tbd
+- scene: brooklyn
   source: nlm
   id: '101392842'
   image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101392842-img
@@ -13,7 +13,7 @@
   date: 'c. 1910'
   note: "quarantine placard on a family's door - early epidemics, 1910s"
 
-- scene: tbd
+- scene: brooklyn
   source: nlm
   id: '101444408'
   image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101444408-img
@@ -22,7 +22,7 @@
   title: "Quarantine Poliomyelitis (placard)"
   note: "quarantine notice - the 1916 epidemic era"
 
-- scene: tbd
+- scene: brooklyn
   source: nlm
   id: '101444157'
   image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101444157-img
@@ -31,7 +31,7 @@
   title: "Infantile Paralysis: This Notice is Posted in Compliance with Law"
   note: "legal quarantine notice for 'infantile paralysis'"
 
-- scene: tbd
+- scene: ancient
   source: nlm
   id: '101434141'
   image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101434141-img
@@ -40,7 +40,7 @@
   title: "Poliomyelitis Anterior Acuta (photomechanical plate)"
   note: "early medical plate of a paralysed patient"
 
-- scene: tbd
+- scene: ancient
   source: nlm
   id: '101434140'
   image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101434140-img
@@ -49,7 +49,7 @@
   title: "Poliomyelitis Anterior Acuta (photomechanical plate)"
   note: "second plate of the same series"
 
-- scene: tbd
+- scene: lung
   source: nlm
   id: '101407761'
   image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101407761-img
@@ -59,7 +59,7 @@
   date: '1949'
   note: "the iron lung - key image of the polio era"
 
-- scene: tbd
+- scene: lung
   source: nlm
   id: '101442594'
   image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101442594-img
@@ -69,7 +69,7 @@
   date: '1960'
   note: "boys touching an iron lung - fear and fascination"
 
-- scene: tbd
+- scene: kenny
   source: nlm
   id: '101403745'
   image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101403745-img
@@ -79,7 +79,7 @@
   date: '1948'
   note: "rehabilitation in the 1940s"
 
-- scene: tbd
+- scene: kenny
   source: nlm
   id: '101442825'
   image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101442825-img
@@ -88,7 +88,7 @@
   title: "[Lowering a poliomyelitis patient into a pool for exercise]"
   note: "hydrotherapy - Warm Springs style treatment"
 
-- scene: tbd
+- scene: legacy
   source: nlm
   id: '101442826'
   image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101442826-img
@@ -97,7 +97,7 @@
   title: "Group of poliomyelitis and arthritic patients on the sun deck"
   note: "rows of beds on a hospital roof deck"
 
-- scene: tbd
+- scene: trial
   source: nlm
   id: '101440666'
   image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101440666-img
@@ -107,7 +107,7 @@
   date: '1950s'
   note: "Salk - the vaccine man"
 
-- scene: tbd
+- scene: eradication
   source: nlm
   id: '101447553'
   image: https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447553-img

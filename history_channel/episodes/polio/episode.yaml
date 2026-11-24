@@ -38,6 +38,8 @@ scenes:
     candidates: ["Egyptian stele polio withered leg", "Walter Scott portrait", "Jakob Heine", "Karl Oskar Medin", "infantile paralysis 19th century"]
     images:
       - {query: "infantile paralysis", count: 2}
+      - {file: "web:nlm:101434141", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101434141-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101434141-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Poliomyelitis Anterior Acuta (photomechanical plate)", note: "early medical plate of a paralysed patient"}   # LoC via Chrome
+      - {file: "web:nlm:101434140", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101434140-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101434140-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Poliomyelitis Anterior Acuta (photomechanical plate)", note: "second plate of the same series"}   # LoC via Chrome
 
   - id: paradox
     chapter: "II. A Disease of Clean Cities"
@@ -63,6 +65,9 @@ scenes:
     candidates: ["polio quarantine placard 1916", "Brooklyn 1916", "New York Board of Health 1916", "infantile paralysis 1916 newspaper"]
     images:
       - {query: "infantile paralysis 1916", count: 2}
+      - {file: "web:nlm:101392842", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101392842-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101392842-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Acute anterior poliomyelitis: keep out of this house (Board of Health quarantine card, San Francisco)", date: "c. 1910", note: "quarantine placard on a family's door - early epidemics, 1910s"}   # LoC via Chrome
+      - {file: "web:nlm:101444408", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101444408-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101444408-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Quarantine Poliomyelitis (placard)", note: "quarantine notice - the 1916 epidemic era"}   # LoC via Chrome
+      - {file: "web:nlm:101444157", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101444157-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101444157-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Infantile Paralysis: This Notice is Posted in Compliance with Law", note: "legal quarantine notice for 'infantile paralysis'"}   # LoC via Chrome
 
   - id: fdr
     chapter: "IV. The President in the Wheelchair"
@@ -97,6 +102,8 @@ scenes:
     candidates: ["iron lung ward 1950s", "Drinker respirator 1928", "iron lung patient mirror", "Emerson iron lung"]
     images:
       - {query: "iron lung", count: 3}
+      - {file: "web:nlm:101407761", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101407761-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101407761-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Patient in iron lung] - a nurse and two corpsmen attend a polio patient, US Army", date: "1949", note: "the iron lung - key image of the polio era"}   # LoC via Chrome
+      - {file: "web:nlm:101442594", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101442594-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101442594-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Sgt. Clarence Stewart demonstrates an iron lung to visitors, Armed Forces Day, Denver", date: "1960", note: "boys touching an iron lung - fear and fascination"}   # LoC via Chrome
 
   - id: copenhagen
     chapter: "VII. Copenhagen, 1952"
@@ -119,6 +126,8 @@ scenes:
     candidates: ["Elizabeth Kenny nurse", "Sister Kenny Institute", "polio hot packs therapy", "polio patient Hubbard tank", "polio braces crutches child"]
     images:
       - {query: "Sister Kenny", count: 2}
+      - {file: "web:nlm:101403745", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101403745-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101403745-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Poliomyelitis patient in Hubbard Tub] with a physiotherapist", date: "1948", note: "rehabilitation in the 1940s"}   # LoC via Chrome
+      - {file: "web:nlm:101442825", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101442825-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101442825-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Lowering a poliomyelitis patient into a pool for exercise]", note: "hydrotherapy - Warm Springs style treatment"}   # LoC via Chrome
 
   - id: race
     chapter: "IX. The Race for a Vaccine"
@@ -142,6 +151,7 @@ scenes:
     candidates: ["Polio Pioneers 1954", "Thomas Francis Ann Arbor 1955", "polio vaccination line 1955", "Salk vaccine injection children", "Jonas Salk 1955"]
     images:
       - {query: "polio vaccine 1955", count: 3}
+      - {file: "web:nlm:101440666", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101440666-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101440666-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Mary Lasker and Dr. Jonas Salk]", date: "1950s", note: "Salk - the vaccine man"}   # LoC via Chrome
 
   - id: cutter
     chapter: "XI. The Cutter Incident"
@@ -176,6 +186,7 @@ scenes:
     candidates: ["polio survivor wheelchair 1950s", "disability rights protest 1970s", "rehabilitation center polio children", "Shriners hospital polio"]
     images:
       - {query: "polio rehabilitation children", count: 2}
+      - {file: "web:nlm:101442826", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101442826-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101442826-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "Group of poliomyelitis and arthritic patients on the sun deck", note: "rows of beds on a hospital roof deck"}   # LoC via Chrome
 
   - id: eradication
     chapter: "XIV. The Last Two Countries"
@@ -187,6 +198,7 @@ scenes:
     candidates: ["polio vaccination Africa", "oral polio vaccine drops child", "polio eradication campaign", "Rotary polio"]
     images:
       - {query: "polio vaccination campaign", modern: true, count: 2}
+      - {file: "web:nlm:101447553", image: "https://collections.nlm.nih.gov/jpg/nlm:nlmuid-101447553-img", page_url: "https://collections.nlm.nih.gov/catalog/nlm:nlmuid-101447553-img", rights: "The National Library of Medicine believes this item to be in the public domain.", title: "[Providing oral polio vaccine to children in Africa]", date: "1982", note: "oral vaccine campaigns - the eradication drive (closing)"}   # LoC via Chrome
 
   - id: closing
     chapter: "Epilogue"
