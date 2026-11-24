@@ -1,0 +1,377 @@
+# titanic picks - Chrome session 2026-11-24, Library of Congress P&P (loc.gov blocks the server). scene: tbd.
+# Bain (ggbain) / Harris & Ewing (hec): LoC 'No known restrictions on publication'; others published 1912 (US public domain). image = v.jpg; 2002714434 has no image URL - server resolves by lccn
+
+- scene: tbd
+  lccn: "2001704329"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3a30000/3a35000/3a35200/3a35267v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "TITANIC, to be launched"
+  date: "1911-05-31"
+  note: "Belfast, launch day 31 May 1911"
+
+- scene: tbd
+  lccn: "2001704335"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b00000/3b04000/3b04400/3b04419v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "The TITANIC"
+  date: "1911-05-31"
+  note: "launch 1911"
+
+- scene: tbd
+  lccn: "2002721382"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b14000/3b14800/3b14835v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "OLYMPIC and TITANIC - view of bows in shipyard scaffolding"
+  date: "1909-1911"
+  note: "the twin ships under construction, Harland & Wolff"
+
+- scene: tbd
+  lccn: "2001704333"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3a40000/3a40000/3a40700/3a40727v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "View of the stern and rudder of the TITANIC in drydock"
+  date: "ca. 1912"
+  note: "scale of the ship"
+
+- scene: tbd
+  lccn: "2002736503"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3a00000/3a02000/3a02400/3a02468v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Capt. Smith of the Titanic on the eve of its departure from Southampton"
+  date: "1912"
+  note: "Captain Edward Smith"
+
+- scene: tbd
+  lccn: "96503966"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ds/11000/11023v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Main dining room on the saloon deck of the White Star liner Titanic"
+  date: "1912"
+  note: "luxury interior"
+
+- scene: tbd
+  lccn: "96503948"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ds/11000/11022v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "The veranda cafe and palm court of the Titanic"
+  date: "1912"
+  note: "luxury interior"
+
+- scene: tbd
+  lccn: "96503958"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ds/11000/11021v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Great promenade deck of the Titanic"
+  date: "1912"
+  note: "promenade deck"
+
+- scene: tbd
+  lccn: "2001704326"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3a20000/3a27000/3a27500/3a27541v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "The Titanic"
+  date: "1912-04-15"
+  note: "the ship, April 1912"
+
+- scene: tbd
+  lccn: "96503943"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c16000/3c16000/3c16094v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Crowd in front of the White Star Line office, lower Broadway, New York, waiting for news"
+  date: "1912"
+  note: "waiting for the lists of survivors"
+
+- scene: tbd
+  lccn: "2014690335"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/10300/10352v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "At White Star office after TITANIC disaster"
+  date: "1912-04"
+  note: "news office"
+
+- scene: tbd
+  lccn: "2014690336"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/10300/10353v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Getting TITANIC news - White Star office"
+  date: "1912-04"
+  note: "news office"
+
+- scene: tbd
+  lccn: "2001704324"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3a20000/3a27000/3a27400/3a27433v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Crowd awaiting survivors from the Titanic"
+  date: "1912-04-18"
+  note: "New York, night of 18 April"
+
+- scene: tbd
+  lccn: "2014690329"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/10300/10346v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Crowd awaiting TITANIC survivors"
+  date: "1912-04"
+  note: "crowds at the pier"
+
+- scene: tbd
+  lccn: "2014690330"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/10300/10347v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Crowd awaiting survivors from CARPATHIA"
+  date: "1912-04"
+  note: "crowds at the pier"
+
+- scene: tbd
+  lccn: "2014690333"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/10300/10350v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Tug on way to meet CARPATHIA"
+  date: "1912-04"
+  note: "press tugs race to the rescue ship"
+
+- scene: tbd
+  lccn: "93510852"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b30000/3b39000/3b39700/3b39746v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Titanic survivors on way to rescue ship Carpathia"
+  date: "1912-04"
+  note: "lifeboat photographed from the Carpathia"
+
+- scene: tbd
+  lccn: "2014691299"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/11200/11212v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "TITANIC life boats on way to CARPATHIA"
+  date: "1912-04"
+  note: "lifeboats at dawn"
+
+- scene: tbd
+  lccn: "2001704327"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3a30000/3a33000/3a33900/3a33939v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "TITANIC life boats on way to CARPATHIA"
+  date: "1912-04-15"
+  note: "lifeboats, 15 April"
+
+- scene: tbd
+  lccn: "2014691298"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/11200/11211v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Survivors of TITANIC on CARPATHIA"
+  date: "1912-04"
+  note: "on board the rescue ship"
+
+- scene: tbd
+  lccn: "2001704332"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3a30000/3a35000/3a35400/3a35462v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Survivors of TITANIC aboard CARPATHIA"
+  date: "1912"
+  note: "on board"
+
+- scene: tbd
+  lccn: "90707557"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b40000/3b45000/3b45300/3b45387v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Group of survivors of the Titanic disaster aboard the Carpathia after being rescued"
+  date: "c1912"
+  note: "survivors"
+
+- scene: tbd
+  lccn: "2002721378"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b00000/3b04000/3b04200/3b04286v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Groups of TITANIC survivors aboard rescue ship CARPATHIA"
+  date: "c1912"
+  note: "survivors talking on deck"
+
+- scene: tbd
+  lccn: "2002721379"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b00000/3b04000/3b04200/3b04287v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Groups of TITANIC survivors aboard rescue ship CARPATHIA: group on deck"
+  date: "c1912"
+  note: "survivors"
+
+- scene: tbd
+  lccn: "2002721381"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ds/17900/17921v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "View from S.S. CARPATHIA of iceberg which sank the Titanic"
+  date: "c1912"
+  note: "THE iceberg, photographed from the rescue ship"
+
+- scene: tbd
+  lccn: "98509237"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c20000/3c21000/3c21000/3c21012v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Two photographs of the Carpathia with Titanic lifeboats"
+  date: "c1912"
+  note: "the rescue"
+
+- scene: tbd
+  lccn: "2001704337"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b18000/3b18500/3b18510v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "S.S. CARPATHIA in dock, New York City"
+  date: "1912"
+  note: "arrival in New York"
+
+- scene: tbd
+  lccn: "2001704338"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b40000/3b46000/3b46000/3b46096v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Steamship CARPATHIA - broadside view, 4 tugboats alongside"
+  date: "1912-04-19"
+  note: "arrival in New York"
+
+- scene: tbd
+  lccn: "2001704336"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b40000/3b47000/3b47800/3b47845v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Hand-written account by the Captain of R.M.S. CARPATHIA describing his response to the distress signal"
+  date: "ca. 1912"
+  note: "Rostron's own words"
+
+- scene: tbd
+  lccn: "89714241"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ppmsca/86900/86945v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Captain Arthur Henry Rostron, of the Carpathia"
+  date: "c1912"
+  note: "the hero captain who raced through the ice"
+
+- scene: tbd
+  lccn: "00649561"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c20000/3c25000/3c25500/3c25501v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Capt. A.H. Rostron and under officers of Carpathia"
+  date: "1912-05-29"
+  note: "Carpathia officers"
+
+- scene: tbd
+  lccn: "2016864102"
+  image: "https://tile.loc.gov/storage-services/service/pnp/hec/01600/01690v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Medal presented by the President to Captain A. Rostron, rescuer of survivors of Titanic"
+  date: "1912"
+  note: "Congressional gold medal"
+
+- scene: tbd
+  lccn: "2002714434"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Harold Bride, surviving wireless operator of the TITANIC, with feet bandaged, being carried up ramp"
+  date: "c1912"
+  note: "the wireless operator - frostbitten feet (cold killed most victims)"
+
+- scene: tbd
+  lccn: "2016863712"
+  image: "https://tile.loc.gov/storage-services/service/pnp/hec/00900/00939v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "FLEET, FREDERICK. TITANIC"
+  date: "1912"
+  note: "the lookout who saw the iceberg"
+
+- scene: tbd
+  lccn: "2016863713"
+  image: "https://tile.loc.gov/storage-services/service/pnp/hec/00900/00940v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "DENT RAY, F. TITANIC; STEWARD"
+  date: "1912-04-27"
+  note: "a surviving steward (Senate hearing)"
+
+- scene: tbd
+  lccn: "2001704328"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3a30000/3a34000/3a34500/3a34561v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Stuart Collett, survivor of the TITANIC"
+  date: "1912-04-19"
+  note: "survivor"
+
+- scene: tbd
+  lccn: "2001704331"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3a30000/3a35000/3a35400/3a35461v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Survivors of TITANIC - family group"
+  date: "1912"
+  note: "survivors"
+
+- scene: tbd
+  lccn: "2014690337"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/10300/10354v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Louis & Lola - TITANIC survivors"
+  date: "1912-04"
+  note: "the 'Titanic orphans' Michel and Edmond Navratil, unidentified for weeks"
+
+- scene: tbd
+  lccn: "2001704325"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3a20000/3a27000/3a27400/3a27434v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Louis & Lola"
+  date: "1912-04-22"
+  note: "the 'Titanic orphans'"
+
+- scene: tbd
+  lccn: "92521036"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b40000/3b40000/3b40200/3b40210v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Mrs. James J. Molly Brown, survivor of the Titanic"
+  date: "ca. 1912"
+  note: "the 'unsinkable' Molly Brown"
+
+- scene: tbd
+  lccn: "2002721386"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ds/13400/13444v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "TITANIC disaster. Senate Investigating Committee questioning witnesses at the Waldorf Astoria"
+  date: "c1912-05-27"
+  note: "the US Senate inquiry"
+
+- scene: tbd
+  lccn: "2002721383"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b15000/3b15500/3b15541v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "TITANIC disaster. Senate Investigating Committee at the Waldorf Astoria"
+  date: "c1912-05-29"
+  note: "the inquiry"
+
+- scene: tbd
+  lccn: "2014690446"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/10400/10463v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Chorus girl at TITANIC benefit"
+  date: "1912-04-21"
+  note: "fundraising for families"
+
+- scene: tbd
+  lccn: "2014691305"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/11200/11218v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "Geo. Cohan at TITANIC game"
+  date: "1912-04-21"
+  note: "benefit baseball game"
+
+- scene: tbd
+  lccn: "2014692836"
+  image: "https://tile.loc.gov/storage-services/service/pnp/ggbain/12800/12820v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "TITANIC tablet unveiled - Seamen's Institute, Bishop Greer speaking"
+  date: "1912-13"
+  note: "memorial"
+
+- scene: tbd
+  lccn: "2002735755"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3c30000/3c32000/3c32300/3c32361v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "The harbor of Halifax where the Titanic victims were taken"
+  date: "1917"
+  note: "Halifax - where the bodies were brought"
+
+- scene: tbd
+  lccn: "96514444"
+  image: "https://tile.loc.gov/storage-services/service/pnp/cph/3b30000/3b37000/3b37100/3b37182v.jpg"
+  rights: "No known restrictions on publication / published 1912 - public domain in the US"
+  title: "The great Titanic disaster (1912 print)"
+  date: "1912"
+  note: "period illustration"
