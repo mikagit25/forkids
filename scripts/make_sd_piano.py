@@ -130,6 +130,13 @@ PROGRAMS = {
         "schumann_kinderscenen_hasche_mann_schumannop15no03", "tchaikovsky_march_of_the_wooden_soldiers_05marchofthewoodenso",
         "chopin_etude_a_moll_10_02_i", "beethoven_sonata_no_8_pathetique_1st_movement_grave_allegro__pathetique_1"],
 }
+# 24.11.2026 owner: classical titles lead with COMPOSER and WORK (people search by composer); purpose after "|"
+TITLES = {
+    2: "Bach — Inventions, Sinfonias & Well-Tempered Clavier Preludes | Piano for Study & Focus",
+    3: "Mozart Sonata K. 331 & Beethoven Pathétique, Appassionata | Calm Piano for Reading",
+    4: "Tchaikovsky The Seasons, Chopin Études & Schumann Kinderszenen | Romantic Winter Piano",
+}
+THUMBS = {2: "BACH • STUDY & FOCUS", 3: "MOZART & BEETHOVEN", 4: "TCHAIKOVSKY • CHOPIN"}
 THEMES = {   # title prefix, thumbnail text, mood for the performance, scene, opening line, tags
     1: ("Classical Piano for Sleep 🌙", "CLASSICAL PIANO FOR SLEEP", "sleep", "night",
         "Gentle classical piano for sleep", ["classical piano for sleep", "piano sleep music", "sleep music"]),
@@ -212,7 +219,7 @@ def build_meta(pieces, starts, total: float, scene: str, seed: int, prog: int = 
         c = COMPOSER.get(m["composer"], m["composer"]).split()[-1]
         if c not in names:
             names.append(c)
-    title = f"{th[0]} • {dur}" if prog == 2 else f"{th[0]} {', '.join(names[:3])} • {dur}"
+    title = (f"{TITLES[prog]} • {dur}" if prog in TITLES else f"{th[0]} {', '.join(names[:3])} • {dur}")[:100]
     chapters = "\n".join(f"{ts(s)} {COMPOSER.get(m['composer'], m['composer'])} — {NICE_TITLE.get(m['file_base'], m['title'])}"
                          for s, (_, m) in zip(starts, pieces))
     cc_by = [m for _, m in pieces if m["license"].startswith("CC")]
@@ -283,7 +290,7 @@ def main():
     subprocess.run([sys.executable, str(ROOT / "scripts/render_sd_video.py"), "--audio", str(audio),
                     "--scene", a.scene, "--seed", str(a.seed), "--out", str(mp4)], check=True)
     print("④ thumbnail …")
-    thumbnail(mp4, OUT_DIR / f"thumb_{stem}.png", int(total // 3600) or None, THEMES[a.program][1])
+    thumbnail(mp4, OUT_DIR / f"thumb_{stem}.png", int(total // 3600) or None, THUMBS.get(a.program, THEMES[a.program][1]))
     print(f"✅ {mp4}")
 
 
