@@ -1,0 +1,27 @@
+# sky — IX. The Red Sunsets
+
+The eruption had blasted ash and gas as high as eighty kilometres into the sky. High winds carried it around the whole planet. In the months that followed, people all over the world saw extraordinary sunsets: deep red, purple and gold, lasting long after the sun had gone down. In late 1883, the sky glowed so red that fire engines were called out in New York, Poughkeepsie and New Haven to fight what looked like enormous fires. In London, the painter William Ascroft regularly sketched the sky at sunset over Chelsea. He made more than five hundred colour sketches of the strange skies, at a [...]
+
+| # | ref | source | date | W×H | licence | title |
+|---|---|---|---|---|---|---|
+| 1 | `curid:164438093` | commons | 1855 | 1200×782 | Public domain | [George Cole (1810-1883) - Sunset - 8098.000 - Stirling Smith Museum an](https://commons.wikimedia.org/wiki/File:George_Cole_(1810-1883)_-_Sunset_-_8098.000_-_Stirling_Smith_Museum_and_Art_Gallery.jpg) |
+| 2 | `curid:1632739` | commons | 2003-05-12 | 1650×1251 | CC BY 2.5 | [Peter iredale sunset edited1](https://commons.wikimedia.org/wiki/File:Peter_iredale_sunset_edited1.jpg) |
+| 3 | `smithsonian:SAAM-1983.95.75_1` | smithsonian | 1880s | 400×251 | CC0 | [Untitled (sunset with quarter moon and farmhouse)](https://americanart.si.edu/collections/search/artwork/?id=1048) |
+| 4 | `smithsonian:SAAM-1983.95.59_1` | smithsonian | 1880s | 400×269 | CC0 | [Sunset](https://americanart.si.edu/collections/search/artwork/?id=988) |
+| 5 | `smithsonian:FS-F1905.116a-c_001-000002` | smithsonian | 1880s | 400×288 | CC0 | [St. Ives: Sunset](https://asia.si.edu/object/F1905.116a-c/) |
+| 6 | `smithsonian:NMAH-2002-1951` | smithsonian | 1861-1885 | 400×198 | CC0 | [Panorama of the The Union Army of the Cumberland](https://n2t.net/ark:/65665/ng49ca746ab-6b92-704b-e053-15f76fa0b4fa) |
+| 7 | `curid:65691874` | commons | 1873 | 3784×2968 | Public domain | [Sunset on the sierras LCCN2003666907](https://commons.wikimedia.org/wiki/File:Sunset_on_the_sierras_LCCN2003666907.jpg) |
+| 8 | `curid:67404723` | commons | 1884 | 5000×4023 | Public domain | [Sunset study, San Francisco Bay LCCN2003668339](https://commons.wikimedia.org/wiki/File:Sunset_study,_San_Francisco_Bay_LCCN2003668339.jpg) |
+| 9 | `curid:68069161` | commons | 1890 | 7136×5244 | Public domain | [Sunset. Cathedral Peaks, Lake Manawapouri LCCN2017649294](https://commons.wikimedia.org/wiki/File:Sunset._Cathedral_Peaks,_Lake_Manawapouri_LCCN2017649294.tif) |
+| 10 | `curid:66416617` | commons | 1897 | 6367×8975 | Public domain | [Golden Gate, sunset in the Yellowstone Park LCCN96514918](https://commons.wikimedia.org/wiki/File:Golden_Gate,_sunset_in_the_Yellowstone_Park_LCCN96514918.jpg) |
+| 11 | `curid:85715545` | commons | 1950 | 1955×2937 | Public domain | [Sunset Boulevard (1950 poster)](https://commons.wikimedia.org/wiki/File:Sunset_Boulevard_(1950_poster).jpg) |
+| 12 | `curid:65986309` | commons |  | 9192×5940 | Public domain | [Sunset on the coast of Wales LCCN2004669677](https://commons.wikimedia.org/wiki/File:Sunset_on_the_coast_of_Wales_LCCN2004669677.jpg) |
+| 13 | `curid:7814595` | commons | July 1942date QS:P57 | 8340×6508 | Public domain | [Sunset silhouette of flying fortress, Langley Field, Va](https://commons.wikimedia.org/wiki/File:Sunset_silhouette_of_flying_fortress,_Langley_Field,_Va.jpg) |
+| 14 | `curid:66289177` | commons | 1901 | 8333×6417 | Public domain | [Sunset on Lake Killarney LCCN2008677245](https://commons.wikimedia.org/wiki/File:Sunset_on_Lake_Killarney_LCCN2008677245.jpg) |
+| 15 | `curid:65762655` | commons |  | 5998×4643 | Public domain | [Henry Ward Ranger - Sunset - Red and Gold - 17.56 - Indianapolis Museu](https://commons.wikimedia.org/wiki/File:Henry_Ward_Ranger_-_Sunset_-_Red_and_Gold_-_17.56_-_Indianapolis_Museum_of_Art.jpg) |
+| 16 | `curid:43460628` | commons | 1883 | 1596×2652 | No restrictions | [The seven lamps of architecture (1883) (14597095638)](https://commons.wikimedia.org/wiki/File:The_seven_lamps_of_architecture_(1883)_(14597095638).jpg) |
+| 17 | `curid:43500640` | commons | 1883 | 1788×1848 | No restrictions | [Old Mexico and her lost provinces; a journey in Mexico, southern Calif](https://commons.wikimedia.org/wiki/File:Old_Mexico_and_her_lost_provinces;_a_journey_in_Mexico,_southern_California,_and_Arizona,_by_way_of_Cuba_(1883)_(14778958034).jpg) |
+| 18 | `curid:151451231` | commons |  | 2480×1227 | Public domain | [Sunset on the Devonshire Coast, 1875 - William Henry Williamson - 256 ](https://commons.wikimedia.org/wiki/File:Sunset_on_the_Devonshire_Coast,_1875_-_William_Henry_Williamson_-_256_1972_2.jpg) |
+| 19 | `curid:43264776` | commons | 1883 | 1224×2592 | No restrictions | [The scenic attractions and summer resorts along the railways of the Vi](https://commons.wikimedia.org/wiki/File:The_scenic_attractions_and_summer_resorts_along_the_railways_of_the_Virginia,_Tennessee_and_Georgia_Air_Line-_the_Shenandoah_Velley_RR.,_the_Norfolk_and_Western_RR.,_and_the_East_Tennessee,_Virginia_(14760757502).jpg) |
+| 20 | `smithsonian:CHSDM-22738_03-000001` | smithsonian | 1870s | 400×233 | CC0 | [Sky Sketch](https://collection.cooperhewitt.org/view/objects/asitem/id/22738) |
+| 21 | `curid:132537285` | commons | 1884 | 2537×1992 | Public domain | [Whistler - Nocturne Silver and Opal--Chelsea, early 1880s, F1902.146a-](https://commons.wikimedia.org/wiki/File:Whistler_-_Nocturne_Silver_and_Opal--Chelsea,_early_1880s,_F1902.146a-b.png) |

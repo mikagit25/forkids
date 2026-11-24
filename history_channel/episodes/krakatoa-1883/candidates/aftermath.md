@@ -1,0 +1,20 @@
+# aftermath — VII. After the Darkness
+
+Darkness covered the strait until the twenty-ninth of August. When the light returned, the coastline was unrecognisable. The official death toll was thirty-six thousand four hundred and seventeen. According to the records of the Dutch colony, a hundred and sixty-five villages and towns had been destroyed, and a hundred and thirty-two more were badly damaged. Two weeks after the eruption, an observer described the site of one village: Thousands of corpses of human beings and also carcasses of animals still await burial, and make their presence apparent by the indescribable stench. Huge [...]
+
+| # | ref | source | date | W×H | licence | title |
+|---|---|---|---|---|---|---|
+| 1 | `curid:188091651` | commons | 1883date QS:P571,+18 | 4244×5300 | Public domain | ["Eruption du Krakatau, mai 1883", album de 7 phot. de l'éruption du Kr](https://commons.wikimedia.org/wiki/File:%22Eruption_du_Krakatau,_mai_1883%22,_album_de_7_phot._de_l%27%C3%A9ruption_du_Krakatoa._Des_collections_du_prince_R._Bonaparte._Enregistr%C3%A9_en_1930_-_btv1b53286488q_(06_of_12).jpg) |
+| 2 | `curid:188091615` | commons | 1883date QS:P571,+18 | 4257×5271 | Public domain | ["Eruption du Krakatau, mai 1883", album de 7 phot. de l'éruption du Kr](https://commons.wikimedia.org/wiki/File:%22Eruption_du_Krakatau,_mai_1883%22,_album_de_7_phot._de_l%27%C3%A9ruption_du_Krakatoa._Des_collections_du_prince_R._Bonaparte._Enregistr%C3%A9_en_1930_-_btv1b53286488q_(04_of_12).jpg) |
+| 3 | `curid:188091740` | commons | 1883date QS:P571,+18 | 4308×5331 | Public domain | ["Eruption du Krakatau, mai 1883", album de 7 phot. de l'éruption du Kr](https://commons.wikimedia.org/wiki/File:%22Eruption_du_Krakatau,_mai_1883%22,_album_de_7_phot._de_l%27%C3%A9ruption_du_Krakatoa._Des_collections_du_prince_R._Bonaparte._Enregistr%C3%A9_en_1930_-_btv1b53286488q_(10_of_12).jpg) |
+| 4 | `smithsonian:ark:/65665/m32644222f03a140988fe86a206e4ffb88` | smithsonian | 1950s | 304×400 | CC0 | [Allophylus cobbe (L.) Forsyth f.](http://n2t.net/ark:/65665/38e1abcca-508d-4298-bd91-3197ea88049e) |
+| 5 | `smithsonian:ark:/65665/m3ce16c30fa66a49079e8514121bec7669` | smithsonian | 1950s | 302×400 | CC0 | [Scaevola taccada (Gaertn.) Roxb.](http://n2t.net/ark:/65665/3042c40a5-b9cb-4bd1-87ee-e2f68fef535e) |
+| 6 | `smithsonian:ark:/65665/m37eb6ee3131c74d6fb35292c5b47a9f47` | smithsonian | 1950s | 304×400 | CC0 | [Aglaia elaeagnoidea (A. Juss.) Benth.](http://n2t.net/ark:/65665/3989cd652-1e18-4cab-8be7-84e7642f94f7) |
+| 7 | `smithsonian:ark:/65665/m391b9b061cb9f43daafedccd05baf5af2` | smithsonian | 1950s | 302×400 | CC0 | [Guettarda speciosa L.](http://n2t.net/ark:/65665/3dba2b766-31ae-4adb-bed6-3f738ac9bb36) |
+| 8 | `smithsonian:ark:/65665/m340e354630412427ebf0117167b2cd793` | smithsonian | 1950s | 302×400 | CC0 | [Desmos chinensis Lour.](http://n2t.net/ark:/65665/30fa1903f-ffb4-49de-8cbc-573aa579ebb8) |
+| 9 | `smithsonian:ark:/65665/m307ba9dab3b0a42e185f8b6433c3be2f2` | smithsonian | 1950s | 306×400 | CC0 | [Cassytha filiformis L.](http://n2t.net/ark:/65665/3364072d1-5ef2-436d-8b69-2fea27c55b2f) |
+| 10 | `smithsonian:ark:/65665/m317bb4e0445cf4306aabbca42038b90cb` | smithsonian | 1950s | 303×400 | CC0 | [Sophora tomentosa L.](http://n2t.net/ark:/65665/3f0ede200-882a-4d34-90f1-d3bc6a23ce29) |
+| 11 | `smithsonian:ark:/65665/m3e259f6d166c64c7c87757e120bd3e0e8` | smithsonian | 1850s | 302×400 | CC0 | [Fimbristylis cymosa R. Br.](http://n2t.net/ark:/65665/379ee9354-31a7-44ad-ad01-3ea29e713253) |
+| 12 | `curid:17203550` | commons | circa 1900date QS:P, | 980×700 | Public domain | [Javan Rhino 1900](https://commons.wikimedia.org/wiki/File:Javan_Rhino_1900.jpg) |
+| 13 | `curid:5871991` | commons | 1911 | 907×795 | Public domain | [Britannica Javan Rhinoceros](https://commons.wikimedia.org/wiki/File:Britannica_Javan_Rhinoceros.jpg) |
+| 14 | `curid:2923798` | commons | 1861 | 1042×796 | Public domain | [Javan Rhino Zimmerman](https://commons.wikimedia.org/wiki/File:Javan_Rhino_Zimmerman.jpg) |

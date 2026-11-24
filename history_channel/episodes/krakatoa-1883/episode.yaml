@@ -27,7 +27,9 @@ scenes:
       This is the story of Krakatoa.
     candidates: ["Krakatoa eruption 1883", "Krakatoa lithograph", "Royal Society Krakatoa sunset", "Anjer 1883"]
     images:
-      - {query: "Krakatoa 1883", count: 3}
+      - {file: "curid:7696837"}   # Krakatoa eruption, lithograph, 1888 (Royal Society report, PD)
+      - {file: "curid:37216427"}   # Krakatoa twilight and afterglow, 1888 (Houghton, PD)
+      - {file: "curid:67184797"}   # the island and volcano of Krakatoa, submerged during the late eruption, 1883 (LoC, PD)
 
   - id: island
     chapter: "I. The Island in the Strait"
@@ -39,19 +41,31 @@ scenes:
       In 1880, a Dutch geologist, Rogier Verbeek, studied the island and examined a lava flow on Perboewatan. In the years before 1883 there were strong earthquakes in the region; one of them, in 1880, damaged a lighthouse. Few people paid much attention.
     candidates: ["Sunda Strait map", "Anjer Java", "Dutch East Indies 1880s", "Batavia 1880s", "steamship 1880s", "Krakatoa before 1883"]
     images:
-      - {query: "Dutch East Indies 1880", count: 2}
+      - {file: "curid:52316235", match: "the busy port of Anjer"}   # View of Anjer, Sunda Strait, 1833 (NYPL, PD)
+      - {file: "curid:112174153"}   # an East Indiaman at the entrance of the Straits of Sunda, 1830 (PD)
+      - {file: "curid:92297081"}   # Admiralty chart of the Strait of Sunda, 1851 (PD)
+      - {file: "curid:114323534"}   # Straits of Sunda, H. W. Parish, 1793 (Yale, CC0)
+      - {file: "curid:36397774", match: "It had three volcanic cones joined together"}   # Krakatoa before and after the eruption of August 1883, Popular Science Monthly 1884 (PD)
+      - {file: "curid:161061891", match: "a Dutch geologist, Rogier Verbeek"}   # Rogier Verbeek, by H. Salzwedel, 1887 (BnF, PD)
 
   - id: awakening
     chapter: "II. The Awakening"
     date: "May – August 1883"
     narration: >
       On the twentieth of May 1883, Perboewatan woke up. Steam and ash rose about six kilometres into the sky. The explosions could be heard in Batavia, the colonial capital, a hundred and sixty kilometres away, where they rattled windows and doors.
-      The colonial authorities were curious rather than afraid. On the twenty-sixth of May, an excursion party was sent out to the island to have a look. They found the island covered in fine white dust, and watched Perboewatan explode every five to ten minutes, throwing out pumice.
+      The colonial authorities were curious rather than afraid. On the twenty-sixth of May, an excursion party was sent out to the island to have a look. They found the island covered in fine white dust, and watched Perboewatan explode every five to ten minutes, throwing out pumice. The photographs you are seeing now were taken in May 1883, during this first phase of the eruption. They are among the very few photographs of Krakatoa erupting.
       Then the eruption seemed to calm down. But in the middle of June there were loud explosions again, and a thick black cloud covered the islands for five days. When the wind cleared it, people saw that the summit of Perboewatan was gone. New vents had opened. The sea around the island rose and fell so strangely that ships at anchor had to be moored with chains.
       In early August, a Dutch army topographer, Captain Ferzenaar, landed on Krakatoa to map it. He counted three large columns of ash and at least eleven other vents giving off steam. The ash on the ground was half a metre thick, and every tree had been destroyed, leaving only stumps. He advised that nobody should land there again.
     candidates: ["Krakatoa May 1883 photograph", "volcano steam eruption 19th century", "Dutch East Indies steamer", "Batavia harbour"]
     images:
-      - {query: "Krakatoa eruption", count: 2}
+      - {file: "curid:188091573", match: "The photographs you are seeing now"}   # album 'Eruption du Krakatau, mai 1883', cover (BnF, PD)
+      - {file: "curid:188091615", crop: [0.18, 0.12, 0.88, 0.86]}   # photo from the album 'Eruption du Krakatau, mai 1883', collections of Prince Roland Bonaparte, BnF Gallica (PD)
+      - {file: "curid:188091651", crop: [0.18, 0.14, 0.9, 0.86]}   # photo from the album 'Eruption du Krakatau, mai 1883', collections of Prince Roland Bonaparte, BnF Gallica (PD)
+      - {file: "curid:188091682", crop: [0.18, 0.13, 0.86, 0.87]}   # photo from the album 'Eruption du Krakatau, mai 1883', collections of Prince Roland Bonaparte, BnF Gallica (PD)
+      - {file: "curid:188091703", crop: [0.19, 0.13, 0.85, 0.84]}   # photo from the album 'Eruption du Krakatau, mai 1883', collections of Prince Roland Bonaparte, BnF Gallica (PD)
+      - {file: "curid:188091722", crop: [0.2, 0.13, 0.8, 0.85]}   # photo from the album 'Eruption du Krakatau, mai 1883', collections of Prince Roland Bonaparte, BnF Gallica (PD)
+      - {file: "curid:188091740", crop: [0.21, 0.12, 0.86, 0.87]}   # photo from the album 'Eruption du Krakatau, mai 1883', collections of Prince Roland Bonaparte, BnF Gallica (PD)
+      - {file: "curid:188091598", crop: [0.27, 0.24, 0.8, 0.77]}   # photo from the album 'Eruption du Krakatau, mai 1883', collections of Prince Roland Bonaparte, BnF Gallica (PD)
 
   - id: climax
     chapter: "III. Sunday, the Twenty-Sixth"
@@ -63,7 +77,11 @@ scenes:
       Nobody knew what was coming in the morning.
     candidates: ["ship ash eruption", "Sunda Strait ship 1883", "night eruption lithograph", "lightning volcano"]
     images:
-      - {query: "volcanic eruption lithograph 19th century", count: 2}
+      - {file: "curid:73684928"}   # Raden Saleh, Merapi eruption by night, 1865 (PD)
+      - {file: "curid:51913302"}   # volcanic lightning seen from Hilo, Charles Furneaux (PD)
+      - {file: "curid:104041858"}   # Krakatau peak seen from the sea, 1883 (KITLV, CC BY 4.0)
+      - {file: "curid:103420393"}   # Toppershoedje island, Sunda Strait, 1883 (KITLV, CC BY 4.0)
+      - {file: "curid:93286683"}   # paddle steamer Gedeh, Dutch East Indies, after 1884 (CC BY)
 
   - id: explosions
     chapter: "IV. The Loudest Sound"
@@ -78,7 +96,12 @@ scenes:
       At about twenty to eleven, much of what was left of the island collapsed into the emptied chamber of the volcano beneath it. Two thirds of Krakatoa had disappeared.
     candidates: ["barograph record Krakatoa", "Rodrigues island", "Perth 1883", "Norham Castle ship", "Batavia gasworks"]
     images:
-      - {query: "Krakatoa explosion", count: 2}
+      - {file: "curid:154447794"}   # Explosion du volcan Krakatoa, 1928 print (BnF, PD)
+      - {file: "curid:105070605"}   # De uitbarsting van de Krakatau, 1883 (KITLV, PD)
+      - {file: "curid:87640833", match: "much of what was left of the island collapsed"}   # R. D. M. Verbeek, Krakatau atlas (1885/86), plate 25: Krakatau from the north, the profile left by the collapse of 27 August 1883 (PD)
+      - {file: "curid:160555216"}   # Explosion du volcan Krakatoa, 1928 print (BnF, PD)
+      - {file: "curid:15236455", match: "Barographs, instruments that record air pressure"}   # the barograph, Popular Science Monthly 1898 (PD)
+      - {file: "curid:3777023", match: "On the island of Rodrigues"}   # Rodrigues island (PD)
 
   - id: waves
     chapter: "V. The Waves"
@@ -91,7 +114,14 @@ scenes:
       Some eighty kilometres away, the low Thousand Islands off Batavia were covered by two metres of water, and people climbed trees to survive. The waves crossed the Indian Ocean; one person was killed in Ceylon, and ships as far as South Africa were rocked. Small waves even showed up on tide gauges in the English Channel.
     candidates: ["tsunami 1883 lithograph", "Telok Betong", "Merak", "Anjer destroyed", "Loudon steamer", "Thousand Islands Batavia"]
     images:
-      - {query: "Krakatoa tsunami", count: 2}
+      - {file: "curid:43143993", match: "At Merak, on the north-western tip of Java"}   # map of the coasts struck by the tsunami of 1883 (PD)
+      - {file: "curid:129091493"}   # Vereker 1883, Sunda Strait after the eruption, plate 2 (PD)
+      - {file: "curid:129091492"}   # Vereker 1883, Sunda Strait, plate 3 (PD)
+      - {file: "curid:102140336"}   # Poeloe Merak after the eruption, 1883 (KITLV, CC BY 4.0)
+      - {file: "curid:103681217", match: "the waves reached more than forty metres"}   # Varkenshoek after the tidal wave, Sumatra, 1883 (KITLV, CC BY 4.0)
+      - {file: "curid:87640291"}   # R. D. M. Verbeek, Krakatau atlas (1885/86), plate 9-12: Krakatau from the south-east, Seboekoe, victims of the flood (PD)
+      - {file: "curid:87640795"}   # R. D. M. Verbeek, Krakatau atlas (1885/86), plate 23-24: the lighthouse on Java's First Point; pumice thrown out south-west of Krakatau (PD)
+      - {file: "curid:101732581", match: "the low Thousand Islands off Batavia"}   # one of the Thousand Islands off Batavia (KITLV, CC BY 4.0)
 
   - id: ashes
     chapter: "VI. The Burning Ashes"
@@ -102,7 +132,13 @@ scenes:
       On the island of Sebesi, north of the volcano, about three thousand people lived. There were no survivors.
     candidates: ["Sumatra village 1880s", "Lampung", "pumice", "volcanic ash", "Sebesi"]
     images:
-      - {query: "Sumatra 1880s village", count: 2}
+      - {file: "curid:15538505", match: "On the island of Sebesi"}   # the peak of Sebesi with volcanic rocks, October 1883 (PD)
+      - {file: "curid:103588520", match: "a rain of hot ash fell on the district of Ketimbang"}   # kampong Pangkoel buried under ash at the foot of Radja Bassa, Sumatra, 1883 (KITLV, CC BY 4.0)
+      - {file: "curid:103728743"}   # Sebesi after the eruption, 1883 (KITLV, CC BY 4.0)
+      - {file: "curid:104006828"}   # Seboekoe after the eruption, 1883 (KITLV, CC BY 4.0)
+      - {file: "curid:42110300"}   # A naturalist's wanderings in the Eastern archipelago, Sumatra, 1885 (no restrictions)
+      - {file: "curid:44011857"}   # A naturalist's wanderings in the Eastern archipelago, 1885 (no restrictions)
+      - {file: "curid:95334296"}   # pumice floating from the 1883 eruption of Krakatoa (CC BY 2.0)
 
   - id: aftermath
     chapter: "VII. After the Darkness"
@@ -115,7 +151,12 @@ scenes:
       And Krakatoa itself was gone. Only the southern third of the island remained, the half-cone of Rakata, cut off by a cliff two hundred and fifty metres high. Where the rest of the island had stood, the sea was now two to three hundred metres deep.
     candidates: ["Krakatoa after eruption 1883", "Rakata cliff", "Ujung Kulon", "Javan rhinoceros", "pumice raft"]
     images:
-      - {query: "Krakatoa after 1883", count: 2}
+      - {file: "curid:66077902"}   # after the eruption (Nationaal Archief, CC0)
+      - {file: "curid:152277277"}   # aerial photograph of Krakatau (Nationaal Archief, CC0)
+      - {file: "curid:152305296"}   # Krakatau after the eruption, aerial photograph (Nationaal Archief, CC0)
+      - {file: "curid:152302073", match: "the half-cone of Rakata"}   # Rakata, the remnant of Krakatau, aerial photograph July 1930 (CC0)
+      - {file: "curid:17203550", match: "the rare Javan rhinoceros"}   # Javan rhinoceros, c. 1900 (PD)
+      - {file: "curid:2923798"}   # Javan rhinoceros, Zimmermann 1861 (PD)
 
   - id: news
     chapter: "VIII. News Travels Fast"
@@ -125,7 +166,11 @@ scenes:
       In the Dutch East Indies, the government asked Rogier Verbeek, the geologist who had studied the island three years earlier, to investigate. Verbeek had lived through the eruption himself at his home in Buitenzorg, on Java. On the orders of the Governor-General, he investigated the eruption, and in 1884 and 1885 published a detailed study of the eruption. It helped to make volcanology a modern science.
     candidates: ["telegraph cable 1880s", "newspaper Krakatoa 1883", "Verbeek Krakatau 1885 plates", "Buitenzorg"]
     images:
-      - {query: "Krakatau Verbeek", count: 2}
+      - {file: "curid:152159698", match: "telegraph cables connected Java"}   # newspaper publication of the first telegram about the eruption, Java-Bode, 27 Aug 1883 (CC0)
+      - {file: "curid:163369809"}   # New York Herald on Krakatoa, 1895 (PD)
+      - {file: "curid:43199103", match: "the government asked Rogier Verbeek"}   # R. D. M. Verbeek (PD)
+      - {file: "curid:44007233"}   # telegraph cable manufacturer, 1884 (no restrictions)
+      - {file: "curid:105115143"}   # scientific investigation in the crater of Krakatau (KITLV, CC BY 4.0)
 
   - id: sky
     chapter: "IX. The Red Sunsets"
@@ -137,7 +182,12 @@ scenes:
       The haze also reflected sunlight back into space. In the year after the eruption, summers in the northern hemisphere were about four tenths of a degree cooler.
     candidates: ["Ascroft sunset sketch Krakatoa", "red sunset 1883", "Royal Society Krakatoa report 1888 plates", "Chelsea Thames 1880s"]
     images:
-      - {query: "sunset painting 1883", count: 2}
+      - {file: "curid:37216425"}   # Krakatoa, 1883 eruption, Royal Society report 1888 (Houghton, PD)
+      - {file: "curid:184495816"}   # diagram of sunset colours, Royal Society report 1888 (PD)
+      - {file: "curid:67404723", match: "people all over the world saw extraordinary sunsets"}   # Sunset study, San Francisco Bay, 1884 (LoC, PD)
+      - {file: "curid:164438093"}   # George Cole, Sunset (PD)
+      - {file: "curid:65762655"}   # Henry Ward Ranger, Sunset - Red and Gold (PD)
+      - {file: "curid:151451231"}   # Sunset on the Devonshire coast, W. H. Williamson, 1875 (PD)
 
   - id: scream
     chapter: "X. A Blood-Red Sky"
@@ -147,7 +197,13 @@ scenes:
       In 2004, an astronomer suggested that the blood-red sky Munch remembered may have been one of the Krakatoa sunsets, which coloured skies in many parts of the world for months in 1883 and 1884. Not everyone agrees. Other scholars think the colours came from Munch's own state of mind; his sister had been committed to an asylum nearby. But it is possible that the most famous scream in art began with a volcano on the other side of the world.
     candidates: ["Munch The Scream", "Oslo fjord 1880s", "Kristiania 1880s"]
     images:
-      - {query: "Edvard Munch Scream", count: 2}
+      - {file: "curid:69541493", match: "one of the most famous paintings in the world"}   # Edvard Munch, The Scream, 1893, National Gallery of Norway (PD)
+      - {file: "curid:37640961"}   # Edvard Munch, The Scream, pastel, 1895 (PD)
+      - {file: "curid:99941658"}   # Edvard Munch, The Scream, Munch Museum (PD)
+      - {file: "curid:130184695"}   # a street in Kristiania (Oslo), 1880s (CC0)
+      - {file: "curid:32601693"}   # Karl Johans gate, Kristiania, 1880s (PD)
+      - {file: "curid:47314985"}   # Kristiania, 1889-1900 (PD)
+      - {file: "curid:26598862"}   # Hans Gude, sailing boats on the fjord, 1880 (PD)
 
   - id: child
     chapter: "XI. The Child of Krakatoa"
@@ -158,7 +214,14 @@ scenes:
       On the twenty-second of December 2018, during an eruption, a large part of Anak Krakatau slid into the sea. Waves up to five metres high struck the coasts of Java and Sumatra at night, with no warning, during the holiday season. More than four hundred people died, in some of the same places struck in 1883. After the disaster, Indonesia installed new early-warning systems along the coasts.
     candidates: ["Anak Krakatau 1930", "Anak Krakatau eruption", "Anak Krakatau 1929 photograph", "Sunda Strait 2018 tsunami"]
     images:
-      - {query: "Anak Krakatau", count: 2}
+      - {file: "curid:44065486"}   # Krakatoa, from 'Indonesia Tanah Airku', c. 1952 (PD)
+      - {file: "curid:4018862"}   # Anak Krakatau erupting, 2008 (PD)
+      - {file: "curid:12681662"}   # Krakatau from space, 2010 (NASA, PD)
+      - {file: "curid:152117724", match: "On the twenty-ninth of December 1927"}   # Krakatau, aerial photograph July 1930 (Nationaal Archief, CC0)
+      - {file: "curid:152326691", match: "It was named Anak Krakatau"}   # Anak Krakatau erupting, aerial photograph July 1930 (CC0)
+      - {file: "curid:152128562"}   # eruption at Krakatau, aerial photograph July 1930 (CC0)
+      - {file: "curid:152164079"}   # Anak Krakatau, aerial photograph May 1938 (CC0)
+      - {file: "curid:146142057"}   # the smoking Krakatau, 1928 (PD)
 
   - id: closing
     chapter: "Epilogue"
@@ -168,7 +231,8 @@ scenes:
       If you enjoyed this story from the archives, subscribe for more.
     candidates: ["Krakatoa today", "Sunda Strait today", "Anak Krakatau aerial"]
     images:
-      - {query: "Krakatoa caldera", modern: true, count: 2}
+      - {file: "curid:97211742"}   # Anak Krakatau, April 2020 (CC BY 2.0)
+      - {file: "curid:104785349"}   # Anak Krakatau volcano, 2021 (CC BY 2.0)
 
 thumbnail:
   scene: explosions

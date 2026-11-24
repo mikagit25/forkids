@@ -1,0 +1,31 @@
+# scream — X. A Blood-Red Sky
+
+In Norway, the painter Edvard Munch wrote about a walk he once took at sunset. I was walking along the road with two friends. The sun was setting. Suddenly the sky turned blood red. I paused, feeling exhausted, and leaned on the fence. There was blood and tongues of fire above the blue-black fjord and the city. My friends walked on, and I stood there trembling with anxiety, and I sensed an infinite scream passing through nature. In 1893, Munch turned that memory into one of the most famous paintings in the world: The Scream. In 2004, an astronomer suggested that the blood-red sky Munch [...]
+
+| # | ref | source | date | W×H | licence | title |
+|---|---|---|---|---|---|---|
+| 1 | `curid:69541493` | commons | 1893 | 3223×4000 | Public domain | [Edvard Munch, 1893, The Scream, oil, tempera and pastel on cardboard, ](https://commons.wikimedia.org/wiki/File:Edvard_Munch,_1893,_The_Scream,_oil,_tempera_and_pastel_on_cardboard,_91_x_73_cm,_National_Gallery_of_Norway.jpg) |
+| 2 | `curid:37624942` | commons | 1910 | 6232×7880 | Public domain | [Edvard Munch - The Scream - Google Art Project](https://commons.wikimedia.org/wiki/File:Edvard_Munch_-_The_Scream_-_Google_Art_Project.jpg) |
+| 3 | `curid:37640961` | commons | 1895date QS:P571,+18 | 3003×4000 | Public domain | [The Scream Pastel](https://commons.wikimedia.org/wiki/File:The_Scream_Pastel.jpg) |
+| 4 | `curid:51058843` | commons | 2013-02-14 13:04 | 3264×2448 | CC BY 2.0 | [Edvard Munch- The Scream (1895) (8476629197)](https://commons.wikimedia.org/wiki/File:Edvard_Munch-_The_Scream_(1895)_(8476629197).jpg) |
+| 5 | `curid:114241752` | commons | 1904-07-04 | 1956×2304 | Public domain | [Let The Eagle Scream (Goodnow)](https://commons.wikimedia.org/wiki/File:Let_The_Eagle_Scream_(Goodnow).jpg) |
+| 6 | `curid:33240394` | commons | 1958 | 1951×2970 | Public domain | [Poster for The Screaming Skull](https://commons.wikimedia.org/wiki/File:Poster_for_The_Screaming_Skull.jpg) |
+| 7 | `curid:8043908` | commons | 1915, published 9 Oc | 961×1399 | Public domain | [I did not raise my girl to be a voter3](https://commons.wikimedia.org/wiki/File:I_did_not_raise_my_girl_to_be_a_voter3.jpg) |
+| 8 | `curid:99941658` | commons | 1893 | 1529×2000 | Public domain | [Edvard Munch - The Scream - MM.M.00122b - Munch Museum](https://commons.wikimedia.org/wiki/File:Edvard_Munch_-_The_Scream_-_MM.M.00122b_-_Munch_Museum.jpg) |
+| 9 | `curid:68036602` | commons | 1870 | 2280×3360 | Public domain | [Scream of tarta(r). Use Patapsco baking powder. For sale everywhere LC](https://commons.wikimedia.org/wiki/File:Scream_of_tarta(r)._Use_Patapsco_baking_powder._For_sale_everywhere_LCCN2015651608.jpg) |
+| 10 | `curid:23874457` | commons |  | 3200×1756 | Public domain | [Aagaard-martin-1863-1913-norwa-setting-sail-from-the-fjords-a](https://commons.wikimedia.org/wiki/File:Aagaard-martin-1863-1913-norwa-setting-sail-from-the-fjords-a.jpg) |
+| 11 | `curid:26598862` | commons | 1880date QS:P571,+18 | 900×654 | Public domain | [Hans Gude - Seilbåter på fjorden (1880)](https://commons.wikimedia.org/wiki/File:Hans_Gude_-_Seilb%C3%A5ter_p%C3%A5_fjorden_(1880).jpg) |
+| 12 | `curid:130184695` | commons | 1880-1889 | 3543×2172 | CC0 | [Street in Kristiania TEKA0123286](https://commons.wikimedia.org/wiki/File:Street_in_Kristiania_TEKA0123286.jpg) |
+| 13 | `curid:47992424` | commons | between 1888 and 189 | 7271×5577 | Public domain | [8851 Kristiania - no-nb digifoto 20160404 00043 bldsa L KK0272](https://commons.wikimedia.org/wiki/File:8851_Kristiania_-_no-nb_digifoto_20160404_00043_bldsa_L_KK0272.jpg) |
+| 14 | `curid:32601693` | commons | between 1880 and 189 | 7210×5410 | Public domain | [Carl Johans Gade, Kristiania - NB MS G4 0387](https://commons.wikimedia.org/wiki/File:Carl_Johans_Gade,_Kristiania_-_NB_MS_G4_0387.jpg) |
+| 15 | `curid:47314985` | commons | between 1889 and 190 | 8012×6142 | Public domain | [9009 I. Parti af Kristiania - no-nb digifoto 20160303 00216 bldsa L KK](https://commons.wikimedia.org/wiki/File:9009_I._Parti_af_Kristiania_-_no-nb_digifoto_20160303_00216_bldsa_L_KK0125.jpg) |
+| 16 | `curid:47315109` | commons | between 1889 and 190 | 8011×6172 | Public domain | [9030 Hovestuen paa Bygdø ved Kristiania - no-nb digifoto 20160303 0021](https://commons.wikimedia.org/wiki/File:9030_Hovestuen_paa_Bygd%C3%B8_ved_Kristiania_-_no-nb_digifoto_20160303_00218_bldsa_L_KK0127.jpg) |
+| 17 | `curid:47314970` | commons | between 1889 and 190 | 6167×8004 | Public domain | [9025 Fra Bygdø ved Kristiania - no-nb digifoto 20160303 00217 bldsa L ](https://commons.wikimedia.org/wiki/File:9025_Fra_Bygd%C3%B8_ved_Kristiania_-_no-nb_digifoto_20160303_00217_bldsa_L_KK0126.jpg) |
+| 18 | `smithsonian:ark:/65665/m36d6f5d1e46334ab4b40886fa36a2c702` | smithsonian | 1880s | 299×400 | CC0 | [Hieracium murorum L.](http://n2t.net/ark:/65665/3d4159f67-1c6b-4647-890a-564b396b8bc0) |
+| 19 | `smithsonian:ark:/65665/m3b3c687b02ab942e59d4e19733eebb6f4` | smithsonian | 1880s | 400×297 | CC0 | [Dicranella guadelupensis Mitt.](http://n2t.net/ark:/65665/30591bd87-1698-41ee-9c93-c50f800025ca) |
+| 20 | `smithsonian:ark:/65665/m3f82ca7c5e0644028a3f992b944c60e89` | smithsonian | 1880s | 306×399 | CC0 | [Hieracium murorum L.](http://n2t.net/ark:/65665/3c4853f45-f8c8-452a-a187-32a1ea5d9eec) |
+| 21 | `smithsonian:ark:/65665/m30c8230afd643480dad86939c0e270ec4` | smithsonian | 1880s | 304×400 | CC0 | [Hieracium murorum L.](http://n2t.net/ark:/65665/32b8bf194-e574-46c4-ba60-d4f54e59eb58) |
+| 22 | `smithsonian:ark:/65665/m3703221d650ce4e5aa856a336b9d4593d` | smithsonian | 1880s | 300×400 | CC0 | [Hieracium constringens Norrlin](http://n2t.net/ark:/65665/37e382ee7-976e-477a-abe1-366597bafa57) |
+| 23 | `smithsonian:ark:/65665/m32a068b664df04e30bf52faeee4b0c10e` | smithsonian | 1880s | 301×399 | CC0 | [Hordeum jubatum L.](http://n2t.net/ark:/65665/340846968-1795-4f69-aff9-fef52a983d43) |
+| 24 | `smithsonian:ark:/65665/m3138267e3aed646e4ab63566bfe5016db` | smithsonian | 1880s | 299×400 | CC0 | [Hieracium lachenalii subsp. cruenifolium (Dahlst. & Lübeck) Zahn](http://n2t.net/ark:/65665/391604fc6-c1fa-4593-be48-7233406c4ca7) |
+| 25 | `smithsonian:ark:/65665/m33567cbc78ad74973b52b0a46fefe6c83` | smithsonian | 1880s | 309×400 | CC0 | [Ballota nigra L.](http://n2t.net/ark:/65665/353215330-7ecb-464a-a804-9f70c50c1aca) |
