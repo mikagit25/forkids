@@ -50,6 +50,9 @@ scenes:
       - {file: "web:ia:rs1888-31", image: "https://archive.org/download/eruptionofkrakat00roya/page/n31.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n31/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Fig. 1: sketch-map of the Sunda Strait", date: "1888"}   # Royal Society report 1888
       - {file: "web:ia:rs1888-51", image: "https://archive.org/download/eruptionofkrakat00roya/page/n51.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n51/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Map of the Krakatoa group of islands (Admiralty chart)", date: "1888"}   # Royal Society report 1888
       - {file: "web:ia:rs1888-248", image: "https://archive.org/download/eruptionofkrakat00roya/page/n248.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n248/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Plate XXXII: Sunda Strait before the eruption", date: "1888"}   # Royal Society report 1888
+      - {file: "curid:63122537"}   # an East Indiaman at the entrance of the Straits of Sunda, 1830 (PD)
+      - {file: "curid:41634493"}   # map of the Sunda Strait region, Archives des missions scientifiques, 1885 (no restrictions)
+      - {file: "curid:41835410"}   # map of Krakatoa, Anales de la Sociedad Española de Historia Natural, 1886 (no restrictions)
 
   - id: awakening
     chapter: "II. The Awakening"
@@ -70,6 +73,12 @@ scenes:
       - {file: "curid:188091740", crop: [0.21, 0.12, 0.86, 0.87]}   # photo from the album 'Eruption du Krakatau, mai 1883', collections of Prince Roland Bonaparte, BnF Gallica (PD)
       - {file: "curid:188091598", crop: [0.27, 0.24, 0.8, 0.77]}   # photo from the album 'Eruption du Krakatau, mai 1883', collections of Prince Roland Bonaparte, BnF Gallica (PD)
       - {file: "web:ia:rs1888-29", image: "https://archive.org/download/eruptionofkrakat00roya/page/n29.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n29/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Plate I: View of Krakatoa during the May eruption (1883)", date: "1888"}   # Royal Society report 1888
+      - {file: "curid:94836230", match: "The explosions could be heard in Batavia"}   # the harbour canal with sailing ships in the roads, Batavia - Woodbury & Page, Batavia, c. 1870s-1880s (NMvW, PD)
+      - {file: "curid:94207691", match: "The colonial authorities were curious"}   # the Governor-General's palace on the Koningsplein, Batavia - Woodbury & Page, Batavia, c. 1870s-1880s (NMvW, PD)
+      - {file: "curid:94836146"}   # the lighthouse at the harbour canal, Batavia - Woodbury & Page, Batavia, c. 1870s-1880s (NMvW, PD)
+      - {file: "curid:94836128"}   # the Stadsherberg beside the harbour canal, Batavia - Woodbury & Page, Batavia, c. 1870s-1880s (NMvW, PD)
+      - {file: "curid:94834935"}   # waringin trees in Noordwijk, Batavia - Woodbury & Page, Batavia, c. 1870s-1880s (NMvW, PD)
+      - {file: "curid:94836109"}   # the Michiels monument on the Waterlooplein, Batavia - Woodbury & Page, Batavia, c. 1870s-1880s (NMvW, PD)
 
   - id: climax
     chapter: "III. Sunday, the Twenty-Sixth"
@@ -87,6 +96,8 @@ scenes:
       - {file: "curid:103420393"}   # Toppershoedje island, Sunda Strait, 1883 (KITLV, CC BY 4.0)
       - {file: "curid:93286683"}   # paddle steamer Gedeh, Dutch East Indies, after 1884 (CC BY)
       - {file: "web:ia:rs1888-44", image: "https://archive.org/download/eruptionofkrakat00roya/page/n44.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n44/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Fig. 9: chart of Sunda Strait with the positions of towns and the tracks of vessels", date: "1888", match: "Ships in the strait were caught in the darkness"}   # Royal Society report 1888
+      - {file: "web:ia:rs1888-32", image: "https://archive.org/download/eruptionofkrakat00roya/page/n32.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n32/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Fig. 4: outline of the volcanic cones on Krakatoa before the eruption", date: "1888"}   # Royal Society report 1888
+      - {file: "web:ia:rs1888-34", image: "https://archive.org/download/eruptionofkrakat00roya/page/n34.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n34/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Figs. 5-8: the probable growth of the Krakatoa volcano", date: "1888"}   # Royal Society report 1888
 
   - id: explosions
     chapter: "IV. The Loudest Sound"
@@ -113,6 +124,10 @@ scenes:
       - {file: "web:ia:rs1888-138", image: "https://archive.org/download/eruptionofkrakat00roya/page/n138.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n138/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Plate X: passage of air-waves I and II", date: "1888", match: "It went around the planet three and a half times"}   # Royal Society report 1888
       - {file: "web:ia:rs1888-140", image: "https://archive.org/download/eruptionofkrakat00roya/page/n140.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n140/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Plate XI: passage of air-waves III and IV", date: "1888"}   # Royal Society report 1888
       - {file: "web:ia:rs1888-142", image: "https://archive.org/download/eruptionofkrakat00roya/page/n142.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n142/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Plate XII: passage of air-waves V and VI", date: "1888"}   # Royal Society report 1888
+      - {file: "web:ia:rs1888-144", image: "https://archive.org/download/eruptionofkrakat00roya/page/n144.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n144/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Plate XIII: passage of air-wave VII", date: "1888"}   # Royal Society report 1888
+      - {file: "web:ia:rs1888-146", image: "https://archive.org/download/eruptionofkrakat00roya/page/n146.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n146/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Plates XIV-XV: variations in velocity of the air-wave", date: "1888"}   # Royal Society report 1888
+      - {file: "web:ia:rs1888-148", image: "https://archive.org/download/eruptionofkrakat00roya/page/n148.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n148/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "diagram of the air-wave velocity", date: "1888"}   # Royal Society report 1888
+      - {file: "web:ia:rs1888-48", image: "https://archive.org/download/eruptionofkrakat00roya/page/n48.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n48/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Fig. 10: outline of the crater, showing the portions blown away in August 1883", date: "1888", match: "much of what was left of the island collapsed"}   # Royal Society report 1888
 
   - id: waves
     chapter: "V. The Waves"
@@ -139,6 +154,12 @@ scenes:
       - {file: "web:ia:rs1888-224", image: "https://archive.org/download/eruptionofkrakat00roya/page/n224.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n224/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "tide-gauge record, August 1883", date: "1888"}   # Royal Society report 1888
       - {file: "web:ia:rs1888-232", image: "https://archive.org/download/eruptionofkrakat00roya/page/n232.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n232/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "tide-gauge record, August 1883", date: "1888"}   # Royal Society report 1888
       - {file: "web:ia:rs1888-234", image: "https://archive.org/download/eruptionofkrakat00roya/page/n234.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n234/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "tide-gauge record, August 1883", date: "1888"}   # Royal Society report 1888
+      - {file: "web:ia:rs1888-226", image: "https://archive.org/download/eruptionofkrakat00roya/page/n226.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n226/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "tide-gauge record of the sea waves, August 1883", date: "1888"}   # Royal Society report 1888
+      - {file: "web:ia:rs1888-238", image: "https://archive.org/download/eruptionofkrakat00roya/page/n238.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n238/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "tide-gauge record, August 1883", date: "1888"}   # Royal Society report 1888
+      - {file: "web:ia:rs1888-240", image: "https://archive.org/download/eruptionofkrakat00roya/page/n240.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n240/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "tide-gauge record, August 1883", date: "1888"}   # Royal Society report 1888
+      - {file: "web:ia:rs1888-252", image: "https://archive.org/download/eruptionofkrakat00roya/page/n252.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n252/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Plate XXXIV: the Java Sea after the eruption", date: "1888"}   # Royal Society report 1888
+      - {file: "web:ia:rs1888-236", image: "https://archive.org/download/eruptionofkrakat00roya/page/n236.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n236/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "tide-gauge diagram, August 1883", date: "1888"}   # Royal Society report 1888
+      - {file: "web:ia:rs1888-180", image: "https://archive.org/download/eruptionofkrakat00roya/page/n180.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n180/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Fig. 12: map of Ceylon, where the sea waves arrived", date: "1888", match: "one person was killed in Ceylon"}   # Royal Society report 1888
 
   - id: ashes
     chapter: "VI. The Burning Ashes"
@@ -156,6 +177,10 @@ scenes:
       - {file: "curid:42110300"}   # A naturalist's wanderings in the Eastern archipelago, Sumatra, 1885 (no restrictions)
       - {file: "curid:44011857"}   # A naturalist's wanderings in the Eastern archipelago, 1885 (no restrictions)
       - {file: "curid:95334296"}   # pumice floating from the 1883 eruption of Krakatoa (CC BY 2.0)
+      - {file: "web:ia:rs1888-90", image: "https://archive.org/download/eruptionofkrakat00roya/page/n90.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n90/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Plate IV: sections of Krakatoa pumice under the microscope", date: "1888"}   # Royal Society report 1888
+      - {file: "web:ia:rs1888-94", image: "https://archive.org/download/eruptionofkrakat00roya/page/n94.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n94/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "sections of volcanic dust and pumice", date: "1888"}   # Royal Society report 1888
+      - {file: "web:ia:rs1888-96", image: "https://archive.org/download/eruptionofkrakat00roya/page/n96.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n96/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Plate V: sites of floating pumice in the Indian Ocean, August-December 1883", date: "1888"}   # Royal Society report 1888
+      - {file: "web:ia:rs1888-98", image: "https://archive.org/download/eruptionofkrakat00roya/page/n98.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n98/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Plate VI: sites of pumice in the Indian Ocean, January-November 1884", date: "1888"}   # Royal Society report 1888
 
   - id: aftermath
     chapter: "VII. After the Darkness"
@@ -180,6 +205,7 @@ scenes:
       - {file: "curid:105314075"}   # the remnant of Krakatau (KITLV 3079, CC BY 4.0)
       - {file: "curid:87640653"}   # Verbeek atlas plate 15-16: Steers island; kampong Tampang devastated (PD)
       - {file: "web:ia:rs1888-86", image: "https://archive.org/download/eruptionofkrakat00roya/page/n86.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n86/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Plate II: two views of Krakatoa after August 1883", date: "1888"}   # Royal Society report 1888
+      - {file: "curid:104645380"}   # the lighthouse at Anjer, rebuilt after the disaster (KITLV 37B384, CC BY 4.0)
 
   - id: news
     chapter: "VIII. News Travels Fast"
@@ -193,6 +219,12 @@ scenes:
       - {file: "curid:163369809"}   # New York Herald on Krakatoa, 1895 (PD)
       - {file: "curid:44007233"}   # telegraph cable manufacturer, 1884 (no restrictions)
       - {file: "curid:105115143"}   # scientific investigation in the crater of Krakatau (KITLV, CC BY 4.0)
+      - {file: "curid:42081403", match: "at his home in Buitenzorg"}   # Buitenzorg, from A naturalist's wanderings in the Eastern archipelago, 1885 (no restrictions)
+      - {file: "curid:42110087"}   # Java, from A naturalist's wanderings in the Eastern archipelago, 1885 (no restrictions)
+      - {file: "curid:103632208"}   # the Amsterdam Gate, Batavia (KITLV, CC BY 4.0)
+      - {file: "curid:104651527"}   # the lighthouse at Anjer (KITLV 36D520, CC BY 4.0)
+      - {file: "curid:101246669"}   # the lighthouse at Anjer-kidoel near Serang (KITLV, CC BY 4.0)
+      - {file: "curid:194491061"}   # map of the Malay Archipelago and Java, The Times, London, 1900 (PD)
 
   - id: sky
     chapter: "IX. The Red Sunsets"
@@ -212,6 +244,10 @@ scenes:
       - {file: "curid:151451231"}   # Sunset on the Devonshire coast, W. H. Williamson, 1875 (PD)
       - {file: "web:ia:rs1888-9", image: "https://archive.org/download/eruptionofkrakat00roya/page/n9.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n9/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Frontispiece: sunset-glows as seen at Chelsea, 26 November 1883 (chromolithograph after W. Ascroft)", date: "1888", match: "the painter William Ascroft regularly sketched"}   # Royal Society report 1888
       - {file: "web:ia:rs1888-10", image: "https://archive.org/download/eruptionofkrakat00roya/page/n10.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n10/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "Frontispiece: sunset-glows seen at Chelsea, November 1883 (chromolithograph)", date: "1888"}   # Royal Society report 1888
+      - {file: "curid:78019313", match: "earliest pictures of noctilucent clouds"}   # noctilucent clouds (CC BY 4.0)
+      - {file: "curid:86786893"}   # noctilucent clouds over Copenhagen, 2017 (CC BY 4.0)
+      - {file: "web:ia:rs1888-220", image: "https://archive.org/download/eruptionofkrakat00roya/page/n220.jpg", page_url: "https://archive.org/details/eruptionofkrakat00roya/page/n220/mode/1up", rights: "Public domain (published 1888)", credit: "Royal Society, The Eruption of Krakatoa and Subsequent Phenomena (1888), via Internet Archive", title: "plate from the Royal Society report", date: "1888"}   # Royal Society report 1888
+      - {file: "curid:150173619"}   # noctilucent clouds over Kraków (CC BY 4.0)
 
   - id: scream
     chapter: "X. A Blood-Red Sky"
@@ -228,6 +264,8 @@ scenes:
       - {file: "curid:32601693"}   # Karl Johans gate, Kristiania, 1880s (PD)
       - {file: "curid:47314985"}   # Kristiania, 1889-1900 (PD)
       - {file: "curid:26598862"}   # Hans Gude, sailing boats on the fjord, 1880 (PD)
+      - {file: "curid:86186124", match: "In 1893, Munch turned that memory"}   # Edvard Munch, Despair, 1892 - the first painted version of the sunset scene (Thielska, PD)
+      - {file: "curid:37623446"}   # Edvard Munch, Anxiety, 1894 (PD)
 
   - id: child
     chapter: "XI. The Child of Krakatoa"
@@ -248,6 +286,11 @@ scenes:
       - {file: "curid:146142057"}   # the smoking Krakatau, 1928 (PD)
       - {file: "curid:105195661"}   # Krakatau in the Sunda Strait, eruption seen from the sea (KITLV 5827, CC BY 4.0)
       - {file: "curid:105222919"}   # Krakatau eruption seen from a ship's deck (KITLV 5828, CC BY 4.0)
+      - {file: "curid:152168656"}   # Krakatau, aerial photograph July 1930 (CC0)
+      - {file: "curid:152169129"}   # Krakatau, aerial photograph July 1930 (CC0)
+      - {file: "curid:152301107"}   # Krakatau, aerial photograph July 1930 (CC0)
+      - {file: "curid:152256117"}   # Krakatau after an eruption, aerial photograph July 1930 (CC0)
+      - {file: "curid:152136826"}   # Krakatau, aerial photograph July 1930 (CC0)
 
   - id: closing
     chapter: "Epilogue"
@@ -261,6 +304,9 @@ scenes:
       - {file: "curid:104785349"}   # Anak Krakatau volcano, 2021 (CC BY 2.0)
       - {file: "curid:99159116"}   # Krakatau between Java and Sumatra (KITLV 82189, CC BY 4.0)
       - {file: "curid:99275031"}   # Krakatau in the Sunda Strait (KITLV 94581, CC BY 4.0)
+      - {file: "curid:127253787"}   # Anak Krakatau volcano, 15 November 2022 (CC BY 2.0)
+      - {file: "curid:97609225"}   # Anak Krakatau, 31 March 2019 (CC BY 2.0)
+      - {file: "curid:104782646"}   # Anak Krakatau nature reserve from space, 2020 (CC BY 2.0)
 
 thumbnail:
   scene: explosions
@@ -275,5 +321,5 @@ references:
   - "Simkin & Fiske (eds.), Krakatau 1883: the volcanic eruption and its effects (Smithsonian, 1983)"
 
 research:
-  - {q: "Krakatoa", from: 1883-08-26, to: 1884-03-31, sources: [chronam, trove, europeana]}
-  - {q: "Java volcano", from: 1883-08-26, to: 1883-10-31, sources: [chronam]}
+  - {q: "Krakatoa", from: 1883-08-26, to: 1884-03-31, sources: [paperspast, trove, europeana]}
+  - {q: "Java volcano", from: 1883-08-26, to: 1883-10-31, sources: [paperspast]}

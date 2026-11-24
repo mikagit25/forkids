@@ -1,0 +1,151 @@
+# Status: weekly "100 Years Ago" #1, script v1 (24.11.2026); uploaded PUBLIC on Sat/Sun by auto_upload.py (no owner review)
+
+title: "100 Years Ago This Week: Agatha Christie Vanishes, a Tax on Bachelors (December 1926)"
+subtitle: "What the newspapers said in the first week of December 1926"
+slug: news-1926-12-w1
+series: 100-years-ago
+language: en
+era: [1915, 1930]
+visual_context: "newspapers December 1926"
+voice:
+  backend: kokoro
+  name: am_michael
+  lang: en-us
+  speed: 0.97
+music:
+  generate: true
+  seed: 19261201
+  mood: light
+
+scenes:
+  - id: cold-open
+    montage: true
+    narration: >
+      A writer vanishes into the English night, and her car is found on the edge of a chalk pit. A murder trial that gripped America ends with no one guilty. Mussolini decides that single men should pay a tax for staying single. And a hospital announces a serum against a mysterious sleeping sickness.
+      This is what the newspapers were telling their readers in the first week of December, one hundred years ago.
+    images:
+      - {file: "curid:96726239"}   # Agatha Christie with her daughter Rosalind, 1926 (PD)
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120401:0291/full/pct:100/0/default.jpg", date: "1926-12-04", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1926-12-04/ed-1/?sp=1", crop: [0.38, 0.098, 0.738, 0.322]}
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926120701:0413/full/pct:100/0/default.jpg", date: "1926-12-07", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1926-12-07/ed-1/?sp=8", crop: [0.66, 0.718, 0.787, 0.82]}
+      - {file: "web:ia:literary-digest_1926-12-04_91_10-0", image: "https://archive.org/download/literary-digest_1926-12-04_91_10/page/n0.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-04_91_10/page/n0/mode/1up", rights: "Public domain (published 1926, US)", credit: "via Internet Archive", title: "The Literary Digest, 4 December 1926, cover", date: "1926-12-04"}
+      - {file: "web:ia:sim_popular-mechanics_1926-12_46_6-0", image: "https://archive.org/download/sim_popular-mechanics_1926-12_46_6/page/n0.jpg", page_url: "https://archive.org/details/sim_popular-mechanics_1926-12_46_6/page/n0/mode/1up", rights: "Public domain (published 1926, US)", credit: "via Internet Archive", title: "Popular Mechanics, December 1926, cover", date: "1926-12"}
+  - id: christie
+    chapter: "I. The Vanishing Novelist"
+    date: "3 December 1926"
+    narration: >
+      On the evening of Friday the third of December 1926, a thirty-six-year-old writer left her home in Sunningdale, in Berkshire, and drove off into the night. Her name was Agatha Christie. She had already published several detective novels, and that year one of them, The Murder of Roger Ackroyd, had made her famous.
+      The next morning her car, a Morris Cowley, was found at Newlands Corner in Surrey, abandoned above a chalk quarry, with her clothes and an expired driving licence inside. There was no sign of the driver.
+      Earlier that year her mother had died, and in August her husband, Archie, had asked her for a divorce. He had fallen in love with another woman. On the day she disappeared, the two had quarrelled.
+      Police feared she had drowned herself in a nearby lake known as the Silent Pool. The search became one of the biggest Britain had ever seen. More than a thousand police officers and fifteen thousand volunteers combed the countryside, and for the first time aeroplanes were used in a civilian search. A newspaper offered a reward of one hundred pounds. Sir Arthur Conan Doyle, the creator of Sherlock Holmes, gave one of her gloves to a spirit medium, hoping it would lead him to her.
+      The story crossed the Atlantic and reached the front page of The New York Times. By the end of this week, nobody knew where Agatha Christie was. Next week, we will find out where she was hiding.
+    images:
+      - {file: "curid:96725181", match: "Her name was Agatha Christie"}   # Agatha Christie as a young woman, 1910s (PD)
+      - {file: "curid:96726239"}   # Agatha Christie with her daughter Rosalind, 1926 (PD)
+      - {file: "curid:9865049", match: "the Silent Pool"}   # the Silent Pool, Surrey (PD)
+  - id: hall-mills
+    chapter: "II. Not Guilty"
+    date: "3 December 1926"
+    narration: >
+      In New Jersey, the trial of the decade was coming to an end. Four years earlier, in September 1922, the bodies of a clergyman, the Reverend Edward Wheeler Hall, and a singer from his church choir, Eleanor Mills, had been found under a crab apple tree in a field near New Brunswick. The two had been having an affair. Love letters were scattered around the bodies.
+      The first investigation led nowhere. Then, in 1926, a newspaper pushed for the case to be reopened, and Hall's widow, Frances, and her two brothers were put on trial at the county courthouse in Somerville.
+      The trial began on the third of November and became a sensation. Reporters came from all over the country. On the third of December, the jury gave its verdict. The Washington Evening Star announced the result the next day on its front page: Hall case ended as court quashes all indictments. All the accused had been found not guilty.
+      On the same front page, the paper's cartoonist drew a figure of Justice filing the Hall-Mills case into a safe marked Unsolved Mysteries. He was right. A hundred years later, nobody knows who killed Edward Hall and Eleanor Mills.
+    images:
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120301:0223/full/pct:100/0/default.jpg", date: "1926-12-03", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1926-12-03/ed-1/?sp=1", crop: [0.02, 0.095, 0.148, 0.24]}
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120401:0291/full/pct:100/0/default.jpg", date: "1926-12-04", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1926-12-04/ed-1/?sp=1", crop: [0.017, 0.093, 0.143, 0.25], match: "Hall case ended as court quashes"}
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120401:0291/full/pct:100/0/default.jpg", date: "1926-12-04", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1926-12-04/ed-1/?sp=1", crop: [0.38, 0.098, 0.738, 0.322], match: "the paper's cartoonist drew"}
+      - {file: "curid:67407786", match: "the county courthouse in Somerville"}   # Somerset County Court House, Somerville, N.J., 1913 (LoC, PD)
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120401:0291/full/pct:100/0/default.jpg", date: "1926-12-04", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1926-12-04/ed-1/?sp=1", crop: [0.0, 0.0, 1.0, 1.0]}
+  - id: bachelors
+    chapter: "III. A Tax on Being Single"
+    date: "6 December 1926"
+    narration: >
+      From Rome came a story that American papers found irresistible. On the sixth of December, Benito Mussolini's government decreed a special tax on bachelors. From the first of January 1927, unmarried Italian men would have to pay it every year, and the more they earned, the more they paid.
+      A newspaper in Augusta, Maine, put it this way: Italian bachelors must pay fat tax for dodging wedlock. Unmarried women, the paper noted, were not penalised.
+      The idea was to push men into marriage and raise Italy's birth rate. It did not work. In the years that followed, marriage and birth rates in Fascist Italy fell rather than rose.
+    images:
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926120701:0413/full/pct:100/0/default.jpg", date: "1926-12-07", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1926-12-07/ed-1/?sp=8", crop: [0.66, 0.718, 0.787, 0.82], match: "Italian bachelors must pay"}
+      - {file: "curid:73434452", match: "Benito Mussolini's government"}   # Benito Mussolini on the cover of Time, 12 July 1926 (PD)
+      - {file: "curid:131119641"}   # Mussolini speaking to a crowd in Reggio Emilia, November 1926 (PD)
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926120701:0413/full/pct:100/0/default.jpg", date: "1926-12-07", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1926-12-07/ed-1/?sp=8", crop: [0.0, 0.0, 1.0, 1.0]}
+  - id: coolidge
+    chapter: "IV. The President's Message"
+    date: "6\u20137 December 1926"
+    narration: >
+      In Washington, Congress returned for the winter, and President Calvin Coolidge sent it his annual message on the state of the union. Coolidge did not read it aloud. It was delivered in writing and read out by clerks in both houses.
+      His message was calm and confident. Wages were rising, he wrote, and the twelve-hour working day was almost entirely unknown. The Milwaukee Leader summed up what it saw as the most important line for its readers in a giant headline: Easy on farm relief, Coolidge. American farmers were struggling, and the president was not planning to help them much.
+      On the same front page there was a smaller headline about Prohibition, which had banned alcohol in the United States since 1920: Bottle gift OK, Supreme Court rules.
+      Just to the north, Canadians were going the other way. On the first of December, voters in Ontario gave a large majority to candidates who promised government-controlled liquor sales, making Ontario the fourth Canadian province to turn away from Prohibition.
+    images:
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:whi:batch_whi_havarti_ver01:data:sn83045293:00542869021:1926120701:0493/full/pct:100/0/default.jpg", date: "1926-12-07", paper: "The Milwaukee Leader (Milwaukee, Wis.)", page_url: "https://www.loc.gov/resource/sn83045293/1926-12-07/ed-1/?sp=1", crop: [0.015, 0.022, 0.98, 0.178], match: "Easy on farm relief"}
+      - {file: "curid:67791899", match: "President Calvin Coolidge sent it"}   # Calvin Coolidge, 8 April 1926 (LoC, PD)
+      - {file: "curid:67795777"}   # Calvin and Grace Coolidge, 1926 (LoC, PD)
+      - {file: "curid:139424375"}   # Mutt and Jeff strip with Calvin Coolidge, 1926 (PD)
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:whi:batch_whi_havarti_ver01:data:sn83045293:00542869021:1926120701:0493/full/pct:100/0/default.jpg", date: "1926-12-07", paper: "The Milwaukee Leader (Milwaukee, Wis.)", page_url: "https://www.loc.gov/resource/sn83045293/1926-12-07/ed-1/?sp=1", crop: [0.0, 0.0, 1.0, 1.0]}
+  - id: wilson
+    chapter: "V. This Week in 1918"
+    date: "4 December 1918"
+    narration: >
+      Eight years earlier, in the same week, the front pages were filled with a different journey. On the fourth of December 1918, less than a month after the end of the First World War, President Woodrow Wilson sailed from New York for France on the liner George Washington, to take part in the peace conference in Paris.
+      No American president had ever travelled to Europe while in office. The New-York Tribune reported that homebound troops cheered Wilson out to sea. Nine days later, the ship was escorted into the French port of Brest by ten battleships and twenty-eight destroyers.
+      On the same front page was another headline, about the disaster that was still unfolding at home: third of a million dead from influenza.
+    images:
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_brown_ver02:data:sn83030214:00206532336:1918120501:0105/full/pct:100/0/default.jpg", date: "1918-12-05", paper: "New-York Tribune (New York, N.Y.)", page_url: "https://www.loc.gov/resource/sn83030214/1918-12-05/ed-1/?sp=1", crop: [0.01, 0.015, 0.99, 0.172], match: "homebound troops cheered Wilson"}
+      - {file: "curid:96794015", match: "sailed from New York for France"}   # President Wilson on the bridge of the George Washington en route to France (PD)
+      - {file: "curid:51486918"}   # USS George Washington, 1918 (no restrictions)
+      - {file: "curid:6825308", match: "ten battleships and twenty-eight destroyers"}   # the U.S. Atlantic Fleet, c. 13 December 1918 (PD)
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_brown_ver02:data:sn83030214:00206532336:1918120501:0105/full/pct:100/0/default.jpg", date: "1918-12-05", paper: "New-York Tribune (New York, N.Y.)", page_url: "https://www.loc.gov/resource/sn83030214/1918-12-05/ed-1/?sp=1", crop: [0.0, 0.0, 1.0, 1.0]}
+  - id: medicine
+    chapter: "VI. The Sleeping Sickness"
+    date: "4 December 1926"
+    narration: >
+      Back in Washington, on the fourth of December 1926, the Evening Star carried a hopeful medical story: St. Elizabeth's Hospital had found a serum to combat sleeping sickness.
+      This was not the African sleeping sickness carried by the tsetse fly. It was a strange new disease of the brain, called encephalitis lethargica, which had appeared during the First World War and spread around the world. Some patients fell into a deep sleep that lasted for weeks. Others were left frozen, unable to move or speak, for decades. About a million people are thought to have caught it, and hundreds of thousands died.
+      The serum announced that week did not become a cure. No cure was ever found. By the end of the 1920s, the epidemic simply faded away, and its cause is still debated. Fifty years later, the neurologist Oliver Sacks described some of its last survivors in his book Awakenings.
+    images:
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120401:0291/full/pct:100/0/default.jpg", date: "1926-12-04", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1926-12-04/ed-1/?sp=1", crop: [0.53, 0.322, 0.738, 0.405], match: "St. Elizabeth's Hospital had found"}
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:dlc:batch_dlc_goodman_ver02:data:sn83045462:00280659186:1926120401:0291/full/pct:100/0/default.jpg", date: "1926-12-04", paper: "Evening Star (Washington, D.C.)", page_url: "https://www.loc.gov/resource/sn83045462/1926-12-04/ed-1/?sp=1", crop: [0.0, 0.0, 1.0, 1.0]}
+  - id: cinema
+    chapter: "VII. A Film from Moscow"
+    date: "5 December 1926"
+    narration: >
+      On Sunday the fifth of December, New Yorkers could see something new at the Biltmore Theatre: a Soviet silent film called Battleship Potemkin, directed by the young Sergei Eisenstein. It told the story of a mutiny on a Russian warship in 1905. Its scene of soldiers firing on a crowd on the Odessa Steps would become one of the most famous sequences in the history of cinema.
+      It was the film's American premiere. At different times the film was banned in several countries, including the Soviet Union itself.
+    images:
+      - {file: "curid:2957676", match: "Battleship Potemkin"}   # Battleship Potemkin, 1925 poster (PD)
+      - {file: "curid:41799654"}   # Battleship Potemkin, the ship, 1925 (PD)
+      - {file: "curid:3537826"}   # still from Battleship Potemkin, 1925 (PD)
+      - {file: "curid:3537829"}   # still from Battleship Potemkin (PD)
+      - {file: "curid:3537832"}   # still from Battleship Potemkin (PD)
+  - id: ads
+    chapter: "VIII. Prices and Promises"
+    date: "December 1926"
+    narration: >
+      And what was for sale? In the Daily Kennebec Journal, an advertisement asked: Feeling the strain? Overwork and worry tend to overtax the system. The answer, it promised, was Doan's Pills, a diuretic stimulant to the kidneys, for sixty cents. It was a typical patent medicine of the time, with promises that no one had to prove.
+      In a New Jersey paper a year later, a butcher offered ham at twenty-five cents a pound and spring lamb at thirty cents.
+      And with Christmas coming, the front page of the Evening Star carried a short reminder that every American family knows: shop early.
+    images:
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:me:batch_me_iceboro_ver01:data:sn82014248:00513683406:1926120701:0413/full/pct:100/0/default.jpg", date: "1926-12-07", paper: "Daily Kennebec Journal (Augusta, Me.)", page_url: "https://www.loc.gov/resource/sn82014248/1926-12-07/ed-1/?sp=8", crop: [0.416, 0.765, 0.662, 0.985], match: "Doan's Pills"}
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:njr:batch_njr_galloway_ver01:data:sn91064030:00513685567:1927120201:0591/full/pct:100/0/default.jpg", date: "1927-12-02", paper: "The Pleasantville Press (Pleasantville, N.J.)", page_url: "https://www.loc.gov/resource/sn91064030/1927-12-02/ed-1/?sp=8", crop: [0.035, 0.742, 0.505, 0.965], match: "a butcher offered ham"}
+      - {file: "web:ia:literary-digest_1926-12-11_91_11-0", image: "https://archive.org/download/literary-digest_1926-12-11_91_11/page/n0.jpg", page_url: "https://archive.org/details/literary-digest_1926-12-11_91_11/page/n0/mode/1up", rights: "Public domain (published 1926, US)", credit: "via Internet Archive", title: "The Literary Digest, 11 December 1926, cover", date: "1926-12-11"}
+      - {file: "web:ia:sim_popular-science_1926-12_109_6-0", image: "https://archive.org/download/sim_popular-science_1926-12_109_6/page/n0.jpg", page_url: "https://archive.org/details/sim_popular-science_1926-12_109_6/page/n0/mode/1up", rights: "Public domain (published 1926, US)", credit: "via Internet Archive", title: "Popular Science Monthly, December 1926, cover", date: "1926-12"}
+      - {newspaper: "https://tile.loc.gov/image-services/iiif/service:ndnp:njr:batch_njr_galloway_ver01:data:sn91064030:00513685567:1927120201:0591/full/pct:100/0/default.jpg", date: "1927-12-02", paper: "The Pleasantville Press (Pleasantville, N.J.)", page_url: "https://www.loc.gov/resource/sn91064030/1927-12-02/ed-1/?sp=8", crop: [0.0, 0.0, 1.0, 1.0]}
+  - id: closing
+    chapter: "Next Week"
+    narration: >
+      That was the first week of December, as the newspapers saw it. Next week: the search for Agatha Christie, a Nobel Prize, and the first recording of Mussolini's voice played on American radio.
+      This has been 100 Years Ago, from Archive Tales. Subscribe so you don't miss next week's papers.
+    images:
+      - {file: "curid:96725181"}   # Agatha Christie as a young woman (PD)
+
+thumbnail:
+  scene: christie
+  big: "1926"
+  small: "100 YEARS AGO THIS WEEK"
+tags: ["100 years ago", "1926", "old newspapers", "Agatha Christie", "Hall-Mills", "Mussolini", "Calvin Coolidge", "Battleship Potemkin", "history", "Archive Tales"]
+hashtags: ["#100YearsAgo", "#history", "#archives"]
+summary: >
+  What were the newspapers saying in the first week of December 1926? Agatha Christie vanishes, the Hall-Mills murder trial ends with no one guilty, Mussolini taxes bachelors, Coolidge sends his message to Congress, Wilson sails for Europe in 1918, a "serum" against sleeping sickness, and the US premiere of Battleship Potemkin - with the original newspaper pages.
+references:
+  - "Chronicling America (Library of Congress): Evening Star, Daily Kennebec Journal, Milwaukee Leader, New-York Tribune, Pleasantville Press"
+  - "Wikipedia: Agatha Christie; Hall-Mills murder case; Bachelor tax; 1926 State of the Union Address; SS George Washington; Encephalitis lethargica; Battleship Potemkin; December 1926"
