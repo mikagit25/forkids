@@ -207,7 +207,7 @@ def make_thumbnail(path: Path, character: str, label: str, seed: int):
 
 def _make_one(seed: int, genre: str | None, q: Path) -> None:
     rnd = random.Random(seed)
-    genre = genre or rnd.choice(list(GENRE_LABEL))
+    genre = genre or rnd.choice([g for g in GENRE_LABEL if g != "disco"])   # 25.11.2026: no Disco
     today = f"{datetime.date.today():%Y%m%d}"
     stem = f"sensory_short_{genre}_{today}_{seed}"
 

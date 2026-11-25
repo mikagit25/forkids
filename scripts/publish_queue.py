@@ -517,11 +517,17 @@ def main():
             name = p.name
             # EN kids: rotate video types — no same type two days in a row
             if active_queue_dir == QUEUE_DIR:
-                dow = datetime.now(timezone.utc).weekday()
-                if dow in (2, 5) and name.startswith("kids_classical_"):
-                    return (0, p.stat().st_mtime)
-                elif name.startswith("kids_classical_"):
-                    return (2, p.stat().st_mtime)
+                # 25.11.2026 analytics (28 d): counting best, then 6-8 min lullabies, high contrast, March/Parade/Bounce
+                # dances; "Disco" titles 4-5x weaker; classical "for Kids" 6-16 views -> last (not generated any more)
+                if name.startswith(("kids_classical_", "sort_fix_", "sleep_program_")):
+                    return (5, 9, p.stat().st_mtime)
+                rank = 6
+                for pat, r in (("counting", 0), ("sensory_sleep", 1), ("lullab", 1), ("highcontrast", 2),
+                               ("peekaboo", 3), ("aquarium", 3), ("_march_", 4), ("_bounce_", 4),
+                               ("_calypso_", 5), ("_disco_", 8)):
+                    if pat in name:
+                        rank = r
+                        break
                 # Read video_type from meta for rotation check
                 meta_p = p.parent / f"meta_{p.stem}.yaml"
                 vtype = "unknown"
@@ -531,7 +537,7 @@ def main():
                 except Exception:
                     pass
                 # on cooldown → priority 3 (goes to end); free → priority 1
-                return (3 if _on_cooldown(vtype, type_history) else 1, p.stat().st_mtime)
+                return (3 if _on_cooldown(vtype, type_history) else 1, rank, p.stat().st_mtime)
             if active_queue_dir == QUEUE_SD_DIR:
                 if name.startswith("sd_comp_"):
                     # Made for today's programme slot (meta publish_dow) → first; then today's theme; then others
@@ -572,8 +578,8 @@ def main():
                     priority = 3
                 else:
                     priority = 2
-                return (priority, p.stat().st_mtime)
-            return (0, p.stat().st_mtime)
+                return (priority, 0, p.stat().st_mtime)
+            return (0, 0, p.stat().st_mtime)
 
         all_mp4s = sorted(
             [p for p in active_queue_dir.glob("*.mp4")

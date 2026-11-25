@@ -153,6 +153,7 @@ def render_counting(out: Path, bmap: dict, cast_pool: list[str], seed: int):
     p.stdin.close()
     if p.wait():
         raise RuntimeError("ffmpeg render failed")
+    return chars_used
 
 
 def mux_audio(video: Path, audio_wav: Path, out: Path, total_sec: float):
@@ -257,7 +258,7 @@ def main():
 
     tmp_vid = q / f"{stem}_noaudio.mp4"
     print(f"🎬 rendering counting video {W}×{H}, {total_sec:.0f}s …")
-    render_counting(tmp_vid, bmap, cast_pool, seed)
+    shown = render_counting(tmp_vid, bmap, cast_pool, seed)   # the 10 characters in order 1..10
 
     mp4 = q / f"{stem}.mp4"
     mux_audio(tmp_vid, wav, mp4, total_sec)
@@ -265,7 +266,7 @@ def main():
     wav.unlink(missing_ok=True)
     wav.with_suffix(".json").unlink(missing_ok=True)
 
-    chars_used = rnd.sample(cast_pool, min(10, len(cast_pool)))
+    chars_used = list(dict.fromkeys(shown))       # 25.11.2026: name the characters really shown (was a 2nd random draw)
     names = ", ".join(c.title() for c in chars_used[:5]) + " and friends"
     thumb = q / f"thumb_{stem}.png"
     make_thumbnail(thumb, chars_used, seed)
@@ -273,7 +274,8 @@ def main():
     minutes = total_sec / 60
     dur_str = f"{int(round(minutes))} Minutes"
     meta = {
-        "title": f"Count 1 to 10 🔢 Sensory Counting Video for Babies & Toddlers • {dur_str}"[:100],
+        # 25.11.2026 analytics: titles naming the characters ("with Blueberry & Pumpkin") are the channel's best
+        "title": f"Count 1 to 10 with {chars_used[0].title()} & {chars_used[1].title()} 🔢 Sensory Counting for Babies & Toddlers • {dur_str}"[:100],
         "description": DESCRIPTION_TMPL.format(
             names=", ".join(c.title() for c in chars_used),
             first=chars_used[0].title(),

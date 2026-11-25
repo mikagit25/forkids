@@ -247,7 +247,7 @@ def main():
         genre, extra = "sleep", {}
     else:
         if src is None:
-            genre = a.genre or rnd.choice(["disco", "calypso", "march", "bounce"])
+            genre = a.genre or rnd.choice(["march", "bounce", "march", "bounce", "calypso"])   # 25.11.2026: no Disco (4-5x weaker)
             stem = f"sensory_dance_{genre}_{today}_{seed}"
             wav = q / f"{stem}.wav"
             bmap = music.render(music.plan(genre, seed, (a.minutes or 12) * 60), wav)
