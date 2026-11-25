@@ -57,7 +57,6 @@ scenes:
   images:
   - file: curid:18018791
   - file: curid:14727270
-  - file: curid:68202855
   - file: curid:68203065
   - file: curid:50948628
   - file: curid:50949764
@@ -82,18 +81,6 @@ scenes:
     title: Beatrice and Harry Houdini in their first year of married life
     date: '1894'
     note: 'early life: newly-weds, 1894'
-  - file: loc:96517965
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12417v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Harry and Beatrice Houdini with the Welsh Brothers Circus
-    date: '1895'
-    note: circus years
-  - file: loc:96517971
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12438v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: The Houdinis perform Metamorphosis
-    date: ca. 1895
-    note: the trunk-substitution act
   - file: loc:96519240
     image: https://tile.loc.gov/storage-services/service/pnp/cph/3d00000/3d02000/3d02100/3d02100v.jpg
     rights: No known restrictions on publication (LoC); made before 1930
@@ -108,10 +95,8 @@ scenes:
     note: 'before the escapes: card magician'
   - file: curid:141025612
   - file: curid:139309081
-  - file: curid:66179361
   - file: curid:1009017
-  - file: curid:1191932
-  - file: curid:2342684
+  - file: curid:33177715
 - id: handcuff-king
   chapter: Chapter 2
   title: The Handcuff King
@@ -135,12 +120,6 @@ scenes:
     title: Harry Houdini, the expert handcuff manipulator
     date: ca. 1895
     note: the handcuff act begins
-  - file: loc:96518790
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12419v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Harry Houdini, full-length portrait, standing, in chains
-    date: c1905
-    note: iconic chained portrait
   - file: loc:96518797
     image: https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12429v.jpg
     rights: No known restrictions on publication (LoC); made before 1930
@@ -159,30 +138,20 @@ scenes:
     title: Houdini at the Wintergarten, Berlin
     date: '1903'
     note: Berlin, 1903
-  - file: loc:96520555
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b20000/3b26000/3b26600/3b26687v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini performs at the New Theater
-    date: 1906?
-    note: stage
-  - file: loc:2014636903
-    image: https://tile.loc.gov/storage-services/service/pnp/var/2000/2072/2072v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini, nothing on earth can hold Houdini! (poster)
-    date: ca. 1901
-    note: poster
+  - file: curid:66179391
   - file: loc:2014636908
     image: https://tile.loc.gov/storage-services/service/pnp/var/2000/2097/2097v.jpg
     rights: No known restrictions on publication (LoC); made before 1930
     title: Stone walls and chains do not make a prison - for Houdini (poster)
     date: ca. 1898
     note: poster
-  - file: curid:18500214
   - file: curid:66143022
   - file: curid:66179440
   - file: curid:14726774
-  - file: curid:69003405
-  - file: curid:12357716
+  - file: curid:67248194
+  - file: curid:67061234
+  - file: curid:179421273
+  - file: curid:66143031
 - id: mirror
   title: The Mirror Challenge
   narration: 'His most famous handcuff escape took place in London, on the seventeenth of March 1904. The Daily Mirror newspaper challenged him to escape from a special pair of handcuffs that, it said,
@@ -200,7 +169,6 @@ scenes:
   - file: curid:66179472
   - file: curid:2262480
   - file: curid:9790068
-  - file: curid:68202777
 - id: water
   chapter: Chapter 3
   title: Failure Means a Drowning Death
@@ -229,12 +197,6 @@ scenes:
     title: Houdini and the water torture cell
     date: ca. 1913
     note: Chinese water torture cell
-  - file: loc:96520126
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a20000/3a27000/3a27300/3a27317v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini jumps from Harvard Bridge, Boston
-    date: '1908'
-    note: manacled bridge jump
   - file: loc:2015650990
     image: https://tile.loc.gov/storage-services/service/pnp/ppmsca/40800/40859v.jpg
     rights: No known restrictions on publication (LoC); made before 1930
@@ -246,6 +208,7 @@ scenes:
   - file: curid:107630730
   - file: curid:11164176
   - file: curid:3630360
+  - file: curid:68034981
 - id: stunts
   title: Upside Down Over the Street
   narration: 'His best advertising was free, and it happened in the street. In the East River in 1912, he escaped from the nailed packing crate in fifty seven seconds. Later, he repeated the stunt many
@@ -260,18 +223,6 @@ scenes:
   - Houdini suspended straitjacket
   - Houdini packing crate East River
   images:
-  - file: loc:96520662
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13900/3b13907v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini is secured in a straitjacket
-    date: ca. 1920
-    note: straitjacket
-  - file: loc:96520664
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13800/3b13881v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini does an upside-down straitjacket escape, Washington, D.C.
-    date: '1922'
-    note: hanging upside down over a crowd
   - file: loc:2016826965
     image: https://tile.loc.gov/storage-services/service/pnp/npcc/22500/22560v.jpg
     rights: No known restrictions on publication (LoC); made before 1930
@@ -290,17 +241,12 @@ scenes:
     title: Harry Houdini stepping into a crate to be lowered into New York Harbor, 7 July 1912
     date: '1912'
     note: underwater box escape
-  - file: loc:96519173
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13900/3b13908v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini, in a packing case, is lowered into New York Bay
-    date: c1914
-    note: box escape
   - file: curid:69002729
   - file: curid:66803084
-  - file: curid:2953261
   - file: curid:62155206
   - file: curid:155979989
+  - file: curid:66803114
+  - file: curid:66803121
 - id: flight
   chapter: Chapter 4
   title: The Flying Magician
@@ -315,40 +261,21 @@ scenes:
   - Voisin biplane 1910
   - Diggers Rest 1910
   images:
-  - file: loc:96520174
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b20000/3b26000/3b26600/3b26681v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini at the wheel
-    date: before 1911
-    note: motorcar
   - file: loc:96519337
     image: https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12414v.jpg
     rights: No known restrictions on publication (LoC); made before 1930
     title: Houdini and the magic of flight
     date: '1910'
     note: first powered flight in Australia, 1910
-  - file: loc:96519157
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12401v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini and the magic of flight
-    date: '1910'
-    note: aviation
   - file: loc:96520584
     image: https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12410v.jpg
     rights: No known restrictions on publication (LoC); made before 1930
     title: Trophy presented to Houdini by the Aerial League of Australia
     date: '1910'
     note: aviation trophy
-  - file: loc:2007675368
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b00000/3b08000/3b08800/3b08854v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Harry Houdini, rear view of biplane with HOUDINI on fuselage
-    date: ca. 1910
-    note: his Voisin biplane
   - file: curid:83700579
   - file: curid:37741223
   - file: curid:67108396
-  - file: curid:874220
 - id: showman
   title: The Vanishing Elephant
   narration: 'Houdini became one of the best paid performers in the world. He bought a big house in Harlem, filled it with books on magic, and wrote books himself. He crossed the Atlantic with the rich
@@ -370,36 +297,7 @@ scenes:
     title: Houdini and Jennie, the elephant, performing at the Hippodrome, New York
     date: '1918'
     note: vanishing elephant
-  - file: loc:96520220
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13800/3b13894v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini and President Theodore Roosevelt aboard the Imperator
-    date: '1914'
-    note: with Roosevelt
-  - file: loc:2013651604
-    image: https://tile.loc.gov/storage-services/service/pnp/ppmsca/36400/36412v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Theodore Roosevelt and Houdini, S.S. Imperator
-    date: c1914
-    note: with Roosevelt
-  - file: loc:96520577
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13800/3b13899v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini in scenes from The Grim Game
-    date: '1919'
-    note: film career
-  - file: loc:96520580
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13800/3b13887v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini swims river in scene from The Man from Beyond
-    date: '1921'
-    note: film career
-  - file: loc:96520578
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13800/3b13886v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini covered with ice in scene from The Man from Beyond
-    date: '1921'
-    note: film career
+  - file: curid:68007887
   - file: loc:96518840
     image: https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12300/3c12396v.jpg
     rights: No known restrictions on publication (LoC); made before 1930
@@ -418,12 +316,6 @@ scenes:
     title: Houdini - le maitre du mystere (poster)
     date: 191-
     note: film poster
-  - file: loc:96520640
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13800/3b13888v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini holding bonds, Boston
-    date: '1924'
-    note: Houdini holding bonds, Boston
   - file: loc:96518798
     image: https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12416v.jpg
     rights: No known restrictions on publication (LoC); made before 1930
@@ -436,16 +328,15 @@ scenes:
     title: Harry and Beatrice Houdini with Sarah Bernhardt, Boston
     date: '1917'
     note: celebrity
-  - file: curid:264357
-  - file: curid:27820534
-  - file: curid:10744198
   - file: curid:6051239
-  - file: curid:38507326
   - file: curid:1192003
-  - file: curid:49024653
   - file: curid:18277225
   - file: curid:11160921
-  - file: curid:50983858
+  - file: curid:67714150
+  - file: curid:67714192
+  - file: curid:80626078
+  - file: curid:46431042
+  - file: curid:9450247
 - id: mother
   chapter: Chapter 5
   title: Do Spirits Return?
@@ -461,24 +352,7 @@ scenes:
   - spirit photography 1920s
   - medium seance table tipping
   images:
-  - file: loc:2014636902
-    image: https://tile.loc.gov/storage-services/service/pnp/var/1600/1627/1627v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Do spirits return? Houdini says no - and proves it. Fraud mediums exposed (poster)
-    date: ca. 1909
-    note: the war on fake mediums
-  - file: loc:96518844
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12405v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: The Houdinis and Oscar S. Teale expose a slate-writing fraud used by spirit mediums
-    date: 1923?
-    note: exposing mediums
-  - file: loc:96520561
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b13000/3b13800/3b13893v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini exposes psychic fraud
-    date: '1925'
-    note: exposing mediums
+  - file: curid:66179377
   - file: loc:96519247
     image: https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12300/3c12375v.jpg
     rights: No known restrictions on publication (LoC); made before 1930
@@ -492,14 +366,14 @@ scenes:
     date: 1920s
     note: fake spirit photography
   - file: curid:57898334
-  - file: curid:57898336
-  - file: curid:57898335
-  - file: curid:57895604
   - file: curid:12503991
-  - file: curid:57895605
-  - file: curid:57895603
-  - file: curid:50316436
-  - file: curid:4035646
+  - file: curid:7966341
+  - file: curid:7966266
+  - file: curid:7966304
+  - file: curid:7966208
+  - file: curid:26197872
+  - file: curid:5253594
+  - file: curid:43520866
 - id: margery
   title: Margery
   narration: 'In 1924, the magazine Scientific American offered a cash prize to any medium who could prove supernatural powers under test conditions. Houdini sat on the committee. The strongest candidate
@@ -513,13 +387,13 @@ scenes:
   - Scientific American 1924
   - Houdini exposes medium
   images:
-  - file: curid:47588176
-  - file: curid:47589469
-  - file: curid:47588177
-  - file: curid:48307886
-  - file: curid:47827583
-  - file: curid:53395249
-  - file: curid:58763710
+  - file: curid:120028384
+  - file: curid:120024322
+  - file: curid:120026922
+  - file: curid:201863631
+  - file: curid:201863944
+  - file: curid:76586025
+  - file: curid:43520764
 - id: doyle
   title: Houdini and Conan Doyle
   narration: 'One of Houdini''s friends was Sir Arthur Conan Doyle, the creator of Sherlock Holmes, and one of the most famous believers in spiritualism in the world. Doyle believed in mediums, in spirit
@@ -551,12 +425,6 @@ scenes:
   - Houdini coffin Hotel Shelton 1926
   - Houdini 1926
   images:
-  - file: loc:2004667603
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b15000/3b15200/3b15210v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini at the Hotel Shelton, N.Y., in front of the coffin in which he stayed 90 minutes under water
-    date: '1926-08-05'
-    note: his last great stunt, 1926
   - file: loc:96519253
     image: https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12300/3c12377v.jpg
     rights: No known restrictions on publication (LoC); made before 1930
@@ -564,7 +432,8 @@ scenes:
     date: '1926'
     note: '1926'
   - file: curid:57899851
-  - file: curid:57899848
+  - file: curid:67709801
+  - file: curid:80626384
 - id: death
   title: Halloween
   narration: 'In October 1926, Houdini was on tour in Canada. On the twenty second, in his dressing room at the Princess Theatre in Montreal, a student asked if it was true that punches to his stomach did
@@ -581,6 +450,8 @@ scenes:
   images:
   - file: curid:67707832
   - file: curid:139708315
+  - file: curid:36608170
+  - file: curid:146618758
 - id: legacy
   chapter: Epilogue
   narration: 'Houdini was buried in the Machpelah Cemetery in Queens, New York, under the crest of the Society of American Magicians, of which he had been president. Before he died, he and Bess had agreed
@@ -595,22 +466,8 @@ scenes:
   - Bess Houdini seance 1936
   - Library of Congress Houdini collection
   images:
-  - file: loc:96520215
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b20000/3b26000/3b26600/3b26680v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Houdini at gravesite alone and with his brother William Weiss, New York
-    date: ca. 1914
-    note: his mother's death (1913) - why he hated fake mediums
-  - file: loc:96518901
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3c10000/3c12000/3c12400/3c12441v.jpg
-    rights: No known restrictions on publication (LoC); made before 1930
-    title: Beatrice Houdini and Theodore Hardeen visit Houdini's grave
-    date: ca. 1928
-    note: after his death (31 Oct 1926)
-  - file: curid:10744186
   - file: curid:7778406
   - file: curid:11734968
-  - file: curid:6492098
 thumbnail:
   scene: stunts
   big: HOUDINI

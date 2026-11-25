@@ -38,14 +38,22 @@ def _download(c: dict, media: Path) -> Path | None:
             else:
               for attempt in range(5):
                   time.sleep(1.5)                     # be polite: upload.wikimedia.org rate-limits bursts (HTTP 429)
-                  r = SESSION.get(url, timeout=90)
+                  try:
+                      r = SESSION.get(url, timeout=90)
+                      if r.status_code == 200 and "image" in r.headers.get("content-type", "image"):
+                          Image.open(io.BytesIO(r.content)).load()     # tile.loc.gov sometimes cuts the body short
+                  except Exception as e:                  # broken connection / truncated image: retry with backoff
+                      print(f"   … {type(e).__name__} for {url[:70]}, retry {attempt + 1}/5")
+                      time.sleep(5 * (attempt + 1))
+                      r = None
+                      continue
                   if r.status_code != 429:
                       break
                   wait = min(int(r.headers.get("retry-after", 60) or 60), 120) * (attempt + 1)
                   print(f"   … rate-limited (429), waiting {wait}s and retrying")
                   time.sleep(wait)
-            if r.status_code != 200:
-                print(f"   ! HTTP {r.status_code} for {url[:90]}")
+            if r is None or r.status_code != 200:
+                print(f"   ! HTTP {getattr(r, 'status_code', 'error')} for {url[:90]}")
                 continue
             im = Image.open(io.BytesIO(r.content))
             im.load()

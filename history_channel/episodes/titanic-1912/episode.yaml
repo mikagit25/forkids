@@ -57,24 +57,8 @@ scenes:
     title: TITANIC, to be launched
     date: '1911-05-31'
     note: Belfast, launch day 31 May 1911
-  - file: loc:2001704335
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b00000/3b04000/3b04400/3b04419v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: The TITANIC
-    date: '1911-05-31'
-    note: launch 1911
-  - file: loc:2002721382
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b14000/3b14800/3b14835v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: OLYMPIC and TITANIC - view of bows in shipyard scaffolding
-    date: 1909-1911
-    note: the twin ships under construction, Harland & Wolff
-  - file: loc:2001704333
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a40000/3a40000/3a40700/3a40727v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: View of the stern and rudder of the TITANIC in drydock
-    date: ca. 1912
-    note: scale of the ship
+  - file: curid:66679819
+  - file: curid:66689181
   - file: curid:202028834
   - file: curid:41950279
   - file: curid:10433990
@@ -82,6 +66,8 @@ scenes:
   - file: curid:41967961
   - file: curid:41967994
   - file: curid:41967890
+  - file: curid:41551993
+  - file: curid:202054951
 - id: luxury
   title: A Floating Palace
   narration: 'When she was finished, the Titanic was the largest ship afloat. She had ten decks, eight of them for passengers. First class had a grand staircase under a dome of iron and glass, a swimming
@@ -98,12 +84,6 @@ scenes:
   - Titanic cafe parisien
   - Captain Edward Smith
   images:
-  - file: loc:2002736503
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a00000/3a02000/3a02400/3a02468v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: Capt. Smith of the Titanic on the eve of its departure from Southampton
-    date: '1912'
-    note: Captain Edward Smith
   - file: loc:96503966
     image: https://tile.loc.gov/storage-services/service/pnp/ds/11000/11023v.jpg
     rights: No known restrictions on publication / published 1912 - public domain in the US
@@ -147,18 +127,16 @@ scenes:
   - Nomadic tender Cherbourg
   - Titanic leaving Belfast
   images:
-  - file: loc:2001704326
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a20000/3a27000/3a27500/3a27541v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: The Titanic
-    date: '1912-04-15'
-    note: the ship, April 1912
+  - file: curid:4458573
   - file: curid:18371923
   - file: curid:10351135
   - file: curid:95693213
   - file: curid:19575202
   - file: curid:95987997
   - file: curid:120292849
+  - file: curid:120009475
+  - file: curid:120008304
+  - file: curid:145940632
 - id: lifeboats
   title: Twenty Boats
   narration: 'There was one number that almost nobody thought about. The Titanic carried twenty lifeboats: fourteen large wooden boats, two smaller emergency cutters and four collapsible boats with canvas
@@ -204,6 +182,10 @@ scenes:
   - file: curid:47589061
   - file: curid:43631468
   - file: curid:41967917
+  - file: curid:151672185
+  - file: europeana:463/item_KXDKT3J4AIOPRH6TVDQ5F52FGIQVCF5Q
+  - file: europeana:440/item_XSACKTL7NR3PTNQLLOTJPKAFFKWTXKJO
+  - file: curid:146392167
 - id: iceberg
   title: Iceberg, Right Ahead
   narration: 'Up in the crow''s nest, twenty nine metres above the deck, the lookouts Frederick Fleet and Reginald Lee were peering into the dark. They had no binoculars. A pair had been left behind in
@@ -230,6 +212,9 @@ scenes:
   - file: curid:41967920
   - file: curid:43633807
   - file: curid:41967914
+  - file: curid:137614119
+  - file: curid:191782633
+  - file: curid:17033791
 - id: doomed
   title: Two Hours
   narration: 'Captain Smith came to the bridge at once and sent for Thomas Andrews, the ship''s designer, who was on board with a team from the shipyard. Together they went below. The mail room was flooding.
@@ -248,6 +233,8 @@ scenes:
   - file: curid:41967909
   - file: curid:41967937
   - file: curid:41968020
+  - file: curid:146519792
+  - file: curid:192307931
 - id: boats
   chapter: Chapter 4
   title: Women and Children
@@ -271,24 +258,9 @@ scenes:
     title: DENT RAY, F. TITANIC; STEWARD
     date: '1912-04-27'
     note: a surviving steward (Senate hearing)
-  - file: loc:2001704328
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a30000/3a34000/3a34500/3a34561v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: Stuart Collett, survivor of the TITANIC
-    date: '1912-04-19'
-    note: survivor
-  - file: loc:2001704331
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a30000/3a35000/3a35400/3a35461v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: Survivors of TITANIC - family group
-    date: '1912'
-    note: survivors
-  - file: loc:92521036
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b40000/3b40000/3b40200/3b40210v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: Mrs. James J. Molly Brown, survivor of the Titanic
-    date: ca. 1912
-    note: the 'unsinkable' Molly Brown
+  - file: curid:66679598
+  - file: curid:70739666
+  - file: curid:67872176
   - file: curid:6376936
   - file: curid:14647041
   - file: curid:1754920
@@ -311,12 +283,7 @@ scenes:
   - Harold Bride wireless
   - Californian ship 1912
   images:
-  - file: loc:2001704336
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b40000/3b47000/3b47800/3b47845v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: Hand-written account by the Captain of R.M.S. CARPATHIA describing his response to the distress signal
-    date: ca. 1912
-    note: Rostron's own words
+  - file: curid:66679845
   - file: loc:89714241
     image: https://tile.loc.gov/storage-services/service/pnp/ppmsca/86900/86945v.jpg
     rights: No known restrictions on publication / published 1912 - public domain in the US
@@ -332,6 +299,8 @@ scenes:
   - file: curid:18976829
   - file: curid:68513211
   - file: curid:17033809
+  - file: curid:103920437
+  - file: curid:79374437
 - id: sinking
   chapter: Chapter 5
   title: Two Twenty
@@ -348,12 +317,6 @@ scenes:
   - Titanic band
   - Titanic collapsible boat
   images:
-  - file: loc:96514444
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b30000/3b37000/3b37100/3b37182v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: The great Titanic disaster (1912 print)
-    date: '1912'
-    note: period illustration
   - file: curid:97646
   - file: curid:15312507
   - file: curid:7667053
@@ -375,54 +338,23 @@ scenes:
   - Titanic iceberg photograph Carpathia
   - Titanic survivors on Carpathia deck
   images:
-  - file: loc:93510852
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b30000/3b39000/3b39700/3b39746v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: Titanic survivors on way to rescue ship Carpathia
-    date: 1912-04
-    note: lifeboat photographed from the Carpathia
+  - file: curid:67873952
   - file: loc:2014691299
     image: https://tile.loc.gov/storage-services/service/pnp/ggbain/11200/11212v.jpg
     rights: No known restrictions on publication / published 1912 - public domain in the US
     title: TITANIC life boats on way to CARPATHIA
     date: 1912-04
     note: lifeboats at dawn
-  - file: loc:2001704327
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a30000/3a33000/3a33900/3a33939v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: TITANIC life boats on way to CARPATHIA
-    date: '1912-04-15'
-    note: lifeboats, 15 April
   - file: loc:2014691298
     image: https://tile.loc.gov/storage-services/service/pnp/ggbain/11200/11211v.jpg
     rights: No known restrictions on publication / published 1912 - public domain in the US
     title: Survivors of TITANIC on CARPATHIA
     date: 1912-04
     note: on board the rescue ship
-  - file: loc:2001704332
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a30000/3a35000/3a35400/3a35462v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: Survivors of TITANIC aboard CARPATHIA
-    date: '1912'
-    note: on board
-  - file: loc:90707557
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b40000/3b45000/3b45300/3b45387v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: Group of survivors of the Titanic disaster aboard the Carpathia after being rescued
-    date: c1912
-    note: survivors
-  - file: loc:2002721378
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b00000/3b04000/3b04200/3b04286v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: Groups of TITANIC survivors aboard rescue ship CARPATHIA
-    date: c1912
-    note: survivors talking on deck
-  - file: loc:2002721379
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b00000/3b04000/3b04200/3b04287v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: 'Groups of TITANIC survivors aboard rescue ship CARPATHIA: group on deck'
-    date: c1912
-    note: survivors
+  - file: curid:66679720
+  - file: curid:68104464
+  - file: curid:67307880
+  - file: curid:67307887
   - file: loc:2002721381
     image: https://tile.loc.gov/storage-services/service/pnp/ds/17900/17921v.jpg
     rights: No known restrictions on publication / published 1912 - public domain in the US
@@ -476,12 +408,7 @@ scenes:
     title: Getting TITANIC news - White Star office
     date: 1912-04
     note: news office
-  - file: loc:2001704324
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a20000/3a27000/3a27400/3a27433v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: Crowd awaiting survivors from the Titanic
-    date: '1912-04-18'
-    note: New York, night of 18 April
+  - file: curid:37044566
   - file: loc:2014690329
     image: https://tile.loc.gov/storage-services/service/pnp/ggbain/10300/10346v.jpg
     rights: No known restrictions on publication / published 1912 - public domain in the US
@@ -500,18 +427,8 @@ scenes:
     title: Tug on way to meet CARPATHIA
     date: 1912-04
     note: press tugs race to the rescue ship
-  - file: loc:2001704337
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b18000/3b18500/3b18510v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: S.S. CARPATHIA in dock, New York City
-    date: '1912'
-    note: arrival in New York
-  - file: loc:2001704338
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b40000/3b46000/3b46000/3b46096v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: Steamship CARPATHIA - broadside view, 4 tugboats alongside
-    date: '1912-04-19'
-    note: arrival in New York
+  - file: curid:66679877
+  - file: curid:66679911
   - file: loc:2002714434
     rights: No known restrictions on publication / published 1912 - public domain in the US
     title: Harold Bride, surviving wireless operator of the TITANIC, with feet bandaged, being carried up ramp
@@ -524,7 +441,6 @@ scenes:
   - file: curid:47939954
   - file: curid:36405973
   - file: curid:37044705
-  - file: curid:79374437
   - file: curid:121352885
   - file: curid:43631460
 - id: orphans
@@ -545,12 +461,6 @@ scenes:
     title: Louis & Lola - TITANIC survivors
     date: 1912-04
     note: the 'Titanic orphans' Michel and Edmond Navratil, unidentified for weeks
-  - file: loc:2001704325
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3a20000/3a27000/3a27400/3a27434v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: Louis & Lola
-    date: '1912-04-22'
-    note: the 'Titanic orphans'
   - file: curid:34825279
   - file: curid:34825732
   - file: curid:76842989
@@ -581,12 +491,7 @@ scenes:
     title: TITANIC disaster. Senate Investigating Committee questioning witnesses at the Waldorf Astoria
     date: c1912-05-27
     note: the US Senate inquiry
-  - file: loc:2002721383
-    image: https://tile.loc.gov/storage-services/service/pnp/cph/3b10000/3b15000/3b15500/3b15541v.jpg
-    rights: No known restrictions on publication / published 1912 - public domain in the US
-    title: TITANIC disaster. Senate Investigating Committee at the Waldorf Astoria
-    date: c1912-05-29
-    note: the inquiry
+  - file: curid:67307915
   - file: loc:2014690446
     image: https://tile.loc.gov/storage-services/service/pnp/ggbain/10400/10463v.jpg
     rights: No known restrictions on publication / published 1912 - public domain in the US
@@ -602,7 +507,6 @@ scenes:
   - file: curid:19163231
   - file: curid:93647366
   - file: curid:766882
-  - file: curid:103920437
   - file: curid:41967943
   - file: curid:41968009
   - file: curid:41967898
