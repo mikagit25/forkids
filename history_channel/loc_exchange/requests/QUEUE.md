@@ -43,6 +43,20 @@ Java-Bode telegram, Munch Scream, Anak Krakatau 1930 aerials. Most needed (put i
   come from you. I will use archive.org magazines (Literary Digest 4/11/18/25 Dec 1926, Popular Science, Popular Mechanics,
   Scientific American Dec 1926) for ads, prices and science items myself. Week 1 (`news-1926-12-w1`) is due Sat 5 Dec.
 
+## REQUEST 25.11: "100 Years Ago" #2 (8-20 Dec 1926) - clippings still needed (publishes 11.12, so by ~5.12 please)
+The script is written (episodes/news-1926-12-d2/episode.yaml). Scenes short of period images - please put newspaper picks into
+`picks/news-1926-12-d2-news.yaml` (kind: newspaper, tile.loc.gov image + crop, scene id below). US pages up to 1928 only.
+- `christie` (needs ~8): front pages 14-16 Dec 1926 "Mrs. Christie found" / Harrogate / "lost memory"; any photo of her printed then.
+- `nobel` (2-3): Nobel prizes 10-11 Dec 1926 (Briand, Stresemann, Perrin, Fibiger, Deledda).
+- `fossil` (3-4): the Montana "fossil tooth" (Siegfriedt, Bearcreek) Nov-Dec 1926.
+- `piltdown` (2-3): Dec 1912 "Piltdown"/"dawn man"/"oldest skull" pages.
+- `seminole` (3): Tony Tommy / Seminole peace letter, Dec 1926.
+- `colour` (2): "color cure"/colored light hospital 1926.
+- `jazz` (2): radio / phonograph / dance-band ads, Dec 1926.
+- `monalisa` (3-4): 12-15 Dec 1913 "Mona Lisa found", Peruggia.
+- `whitestar` (2-3): White Star Line sold to Royal Mail / Kylsant, Nov-Dec 1926.
+- `whitehouse` (1-2): Mrs Jaffray White House memoirs, Taft steak, late 1926.
+
 ## UPDATE 24.11 (owner): "100 Years Ago" is per 10-DAY PERIOD (1-10, 11-20, 21-31), not weekly
 - Episode #2 = 8-20 December 1926 (uses picks w2 + w3), #3 = 21-31 December 1926 (w4). Then January 1927: 1-10, 11-20, 21-31.
 - Please collect picks per period from now on: `picks/news-1927-01-d1-news.yaml` (1-10 Jan 1927), `-d2-` (11-20), `-d3-` (21-31).

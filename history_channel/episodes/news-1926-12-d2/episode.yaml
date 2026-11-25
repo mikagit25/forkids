@@ -64,8 +64,33 @@ scenes:
     credit: The Literary Digest, via Internet Archive
     title: Topics of the Day, The Literary Digest, 18 December 1926
     date: '1926-12-18'
+  - file: curid:74586810
+  - file: curid:74587065
+- id: whitestar
+  chapter: II. The Titanic's Company Is Sold
+  narration: Another story from the sea caught the editors' eye that week. The Literary Digest of the eleventh of December reported that the White Star Line, the company of the Olympic, the Majestic and, fourteen years earlier, the Titanic, had been sold.
+    Since the beginning of the century, White Star had belonged to the International Mercantile Marine, the American shipping trust put together by the banker J. P. Morgan. Now the trust sold it to a British company, the Royal Mail Steam Packet Company,
+    for thirty five million dollars. The new owner was Lord Kylsant, whom the papers called the Napoleon of the seas. With White Star's forty ships, he would control more than five hundred vessels, and, the Digest said, he could sail right round the world,
+    change to a dozen different lines, and still be on a ship in which he had a financial interest. Ownership was to pass on the first of January 1927. For the editors, it was the end of the elder Morgan's dream of a great American shipping trust.
+  images:
+  - file: web:ia:literary-digest_1926-12-11_91_11-0
+    image: https://archive.org/download/literary-digest_1926-12-11_91_11/page/n0.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-11_91_11/page/n0/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Topics of the Day, The Literary Digest, 11 December 1926
+    date: '1926-12-11'
+  - file: web:ia:literary-digest_1926-12-11_91_11-5
+    image: https://archive.org/download/literary-digest_1926-12-11_91_11/page/n5.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-11_91_11/page/n5/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: '''The sea king at one of his launchings'': Lord Kylsant, The Literary Digest, 11 December 1926'
+    date: '1926-12-11'
+  - file: curid:66921471
+  - file: curid:2990781
 - id: nobel
-  chapter: II. The Prizes of 1926
+  chapter: III. The Prizes of 1926
   narration: 'On the tenth of December, the Nobel Prizes for 1926 were awarded. The Peace Prize went to two men who had been enemies only eight years earlier: Aristide Briand of France and Gustav Stresemann of Germany, for the Locarno treaties, which were
     meant to reconcile their two countries after the war. Britain''s Austen Chamberlain had received a share of the prize a year earlier for the same agreement. The prize for literature went to Grazia Deledda, a writer from the island of Sardinia. She
     was the first Italian woman to receive it, and only the second woman ever, after the Swede Selma Lagerlöf. In physics, the prize went to Jean Perrin of France. By measuring how tiny particles jiggle in a liquid, he had confirmed Albert Einstein''s
@@ -106,7 +131,7 @@ scenes:
   - file: curid:161022973
   - file: curid:103003633
 - id: fossil
-  chapter: III. The Most Important Fossil Ever Found?
+  chapter: IV. The Most Important Fossil Ever Found?
   narration: 'Science made headlines in another way that week. The Literary Digest of the eighteenth of December 1926 asked: the most important fossil ever found? Early in November, a doctor called J. C. F. Siegfriedt, from Bearcreek in Montana, had found
     a fossil tooth in a coal mine near his town. It looked very much like a human molar. The rock around it was tens of millions of years old. If the tooth was human, the magazine said, it was by far the oldest relic of man ever found, and many chapters
     of geology would have to be rewritten. Or, it added carefully, it might belong to an ancient animal, and be a remarkable coincidence. Today, scientists know that the human family is only a few million years old. No human tooth could have lain in rocks
@@ -135,7 +160,7 @@ scenes:
     - 0.42
     match: It looked very much like a human molar
 - id: piltdown
-  chapter: IV. This Week in 1912
+  chapter: V. This Week in 1912
   narration: 'On the eighteenth of December 1912, at a meeting of the Geological Society in London, an amateur archaeologist named Charles Dawson presented pieces of a skull and a jaw found in a gravel pit at Piltdown, in Sussex. Together with Arthur Smith
     Woodward of the Natural History Museum, he announced a new kind of early human: the dawn man of Piltdown. Two days later, The Sun in New York reported: Oldest skull stirs New York scientists. Man lived before ice. Some experts had doubts from the start.
     But Piltdown Man was accepted for decades. It was not until 1953 that scientists at the British Museum proved it was a forgery: the skull of a modern human combined with the jaw of an orangutan, its teeth filed down and the bones stained to look old.
@@ -156,8 +181,46 @@ scenes:
     note: 'STORY piltdown-1912: ''Oldest skull stirs New York scientists - Man lived before ice'' - the Piltdown Man, announced 18 Dec 1912, exposed as a hoax in 1953 - great twist'
   - file: curid:23251973
   - file: curid:43430914
+  - file: curid:3928823
+  - file: curid:36574892
+  - file: curid:43431184
+  - file: curid:42124598
+  - file: curid:84153121
+- id: coal
+  chapter: VI. Gasoline from Coal
+  narration: In its science pages, the same issue reported on a German chemist, Friedrich Bergius, who had found a way to turn coal into gasoline. Powdered coal was heated with hydrogen to about eight hundred degrees Fahrenheit, under enormous pressure.
+    A ton of ordinary soft coal, the magazine said, would yield about forty five gallons of gasoline, along with heavier oils for diesel engines and lubricating oil. Asked whether his process would pay in America, Bergius politely declined to say. Five
+    years later, in 1931, he shared the Nobel Prize in Chemistry for this work.
+  images:
+  - file: web:ia:literary-digest_1926-12-11_91_11-16
+    image: https://archive.org/download/literary-digest_1926-12-11_91_11/page/n16.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-11_91_11/page/n16/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: '''Gasoline from liquid coal'': Dr. Friedrich Bergius, The Literary Digest, 11 December 1926'
+    date: '1926-12-11'
+  - file: web:ia:literary-digest_1926-12-11_91_11-16c
+    image: https://archive.org/download/literary-digest_1926-12-11_91_11/page/n16.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-11_91_11/page/n16/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Dr. Friedrich Bergius, The Literary Digest, 11 December 1926
+    date: '1926-12-11'
+    crop:
+    - 0.25
+    - 0.08
+    - 0.8
+    - 0.5
+    match: German chemist
+  - file: web:ia:literary-digest_1926-12-11_91_11-8
+    image: https://archive.org/download/literary-digest_1926-12-11_91_11/page/n8.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-11_91_11/page/n8/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: '''Edison looks down on the skyscraper'', The Literary Digest, 11 December 1926'
+    date: '1926-12-11'
 - id: seminole
-  chapter: V. A Hundred Years' War
+  chapter: VII. A Hundred Years' War
   narration: 'From Florida came an unusual letter. Under the headline Our oldest enemy sues for peace, the Literary Digest reported that a Seminole chief, Tony Tommy, had written to the President. He wanted to end the long war between the United States
     government and the last independent band of the Seminoles, about three hundred people living in the Everglades. Their ancestors had fought long wars against the United States in the nineteenth century. In 1837, their famous leader Osceola was seized
     while he came to talk under a flag of truce, and died in prison a year later. Most of the Seminoles were sent west to Oklahoma. A small band stayed in the swamps of Florida and never signed a peace. Now, in December 1926, their chief wrote that they
@@ -189,8 +252,33 @@ scenes:
   - file: curid:31388876
   - file: curid:66388278
   - file: curid:31412948
+- id: whitehouse
+  chapter: VIII. Below Stairs at the White House
+  narration: 'For lighter reading, the Digest of the eleventh of December quoted the memoirs of Elizabeth Jaffray, who had kept house in the White House for seventeen years, for four presidents: Taft, Wilson, Harding and Coolidge. Her favourite story was
+    about William Howard Taft. He liked every sort of food, she wrote, except eggs. His great weakness was a breakfast steak of twelve ounces, with two oranges, toast and butter and a vast quantity of coffee with cream and sugar. He also paid a physical
+    trainer a thousand dollars a year to exercise him every morning. And to think of Will being so silly, said Mrs Taft, as to pay that trainer for punching him about. On the twenty seventh of November 1911, Mrs Jaffray wrote in her diary that the President
+    weighed three hundred and thirty two pounds, and had told her, with a great laugh, that he was going on a diet.'
+  images:
+  - file: web:ia:literary-digest_1926-12-11_91_11-31
+    image: https://archive.org/download/literary-digest_1926-12-11_91_11/page/n31.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-11_91_11/page/n31/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: '''White House beds and butcher bills'', The Literary Digest, 11 December 1926'
+    date: '1926-12-11'
+  - file: web:ia:literary-digest_1926-12-11_91_11-33
+    image: https://archive.org/download/literary-digest_1926-12-11_91_11/page/n33.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-11_91_11/page/n33/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Personal Glimpses, The Literary Digest, 11 December 1926
+    date: '1926-12-11'
+  - file: curid:1756350
+  - file: curid:67133637
+  - file: curid:195435292
+  - file: curid:68232527
 - id: colour
-  chapter: VI. The Colour Cure
+  chapter: IX. The Colour Cure
   narration: 'The same issue of the Digest described a new treatment that was being tried in mental hospitals: colour. At the Peoria State Hospital in Illinois, patients sat in sun parlours with blue, violet, ruby or amber windows. Blue was said to calm
     the nerves. Red was said to stimulate. Yellow was said to bring cheer. One doctor even built a black room, with black floor, black beds, black walls and black curtains, and reported that a violent patient slept in it and improved. The colour cure was
     soon forgotten. But the Digest''s photograph of women doing needlework in a blue sun parlour shows how hopeful, and how helpless, medicine for the mind still was in 1926.
@@ -218,7 +306,7 @@ scenes:
     - 0.42
     match: photograph of women doing needlework
 - id: jazz
-  chapter: VII. Two Young Men from the Band
+  chapter: X. Two Young Men from the Band
   narration: 'On the ninth of December 1926, in Chicago, the band of the drummer Ben Pollack made a record for the Victor company. They played two dance tunes, When I First Met Mary and Deed I Do. Nobody paid much attention to the sidemen. But two of them
     were making their first records. One was a seventeen year old clarinettist from Chicago called Benny Goodman. The other was a trombonist and arranger called Glenn Miller. Ten years later, Goodman would be the King of Swing. Miller''s band would become
     the most popular in America. In December 1926, a radio set with six tubes was advertised in Maine for seventy five dollars. That was how most Americans heard dance bands like Pollack''s: through a loudspeaker in the living room.
@@ -250,8 +338,15 @@ scenes:
     credit: The Literary Digest, via Internet Archive
     title: Balkite radio advertisement, The Literary Digest, 18 December 1926
     date: '1926-12-18'
+  - file: web:ia:literary-digest_1926-12-11_91_11-48
+    image: https://archive.org/download/literary-digest_1926-12-11_91_11/page/n48.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-11_91_11/page/n48/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Brunswick Panatrope phonograph advertisement, The Literary Digest, 11 December 1926
+    date: '1926-12-11'
 - id: inventions
-  chapter: VIII. This Week in 1901 and 1903
+  chapter: XI. This Week in 1901 and 1903
   narration: 'Two of the greatest inventions of the twentieth century were announced in this same week of December. On the twelfth of December 1901, on Signal Hill above St. John''s in Newfoundland, Guglielmo Marconi was listening for a signal. His aerial
     was a wire hanging from a kite, a hundred and fifty metres up. From his station at Poldhu in Cornwall, three thousand five hundred kilometres away, came three faint clicks: the letter S in Morse code. It was the first radio signal across the Atlantic.
     Four days later, a New York paper drew him as the wizard of the twentieth century. Two years later, on the seventeenth of December 1903, at Kill Devil Hills near Kitty Hawk in North Carolina, Orville and Wilbur Wright flew. The first flight, by Orville,
@@ -280,7 +375,7 @@ scenes:
     - 0.122
     - 0.425
     - 0.36
-    match: Wright brothers
+    match: Savannah Morning News
     note: 'STORY wright-1903: front page ''This machine flies - Wright brothers sent theirs three miles'' - the press got it WRONG (real first flight: 120 ft, 12 s; best that day 852 ft) - great hook'
   - file: curid:106579847
   - file: curid:106579844
@@ -291,7 +386,7 @@ scenes:
   - file: curid:71137831
   - file: curid:24262182
 - id: monalisa
-  chapter: IX. This Week in 1913
+  chapter: XII. This Week in 1913
   narration: 'And on the thirteenth of December 1913, newspapers all over the world carried the same astonishing headline. The Mona Lisa is found. The painting had been stolen from the Louvre in Paris on the twenty first of August 1911. For more than two
     years, nobody knew where it was. The thief was Vincenzo Peruggia, an Italian who had worked at the Louvre and had helped to build the painting''s glass case. He walked out with it, kept it hidden in a trunk in his room in Paris for two years, and then
     took it to Florence by train. There he offered it to an art dealer, Alfredo Geri. Geri called in the director of the Uffizi Gallery, who checked the painting and confirmed that it was genuine. The police arrested Peruggia at his hotel on the twelfth
@@ -316,7 +411,7 @@ scenes:
   - file: curid:66374308
   - file: curid:36249632
 - id: ads
-  chapter: X. Prices and Promises
+  chapter: XIII. Prices and Promises
   narration: 'And what were people buying, two weeks before Christmas 1926? A bank in Augusta, Maine, put Santa Claus on the front page of the local paper: the 1927 Christmas Club is now open, and it pays four per cent interest. You saved from twenty five
     cents to five dollars a week, and next December you had your Christmas money. The local paper''s comic strip followed a family on its Christmas shopping, with the Model T parked in front of the shop window. In the Literary Digest, a new Chrysler sixty
     coach cost one thousand one hundred and forty five dollars. Oldsmobile promised a car that would gratify the family''s finer tastes. Kimball sold pianos, Day-Fan and Balkite sold radios, and the florists said: say it with flowers this Christmas.
@@ -401,6 +496,48 @@ scenes:
     credit: The Illustrated London News, 18 December 1926, via Internet Archive
     title: White Eagle cigarettes Christmas advertisement, The Illustrated London News, 18 December 1926
     date: '1926-12-18'
+  - file: web:ia:literary-digest_1926-12-11_91_11-28
+    image: https://archive.org/download/literary-digest_1926-12-11_91_11/page/n28.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-11_91_11/page/n28/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Hupmobile Eight advertisement, The Literary Digest, 11 December 1926
+    date: '1926-12-11'
+  - file: web:ia:literary-digest_1926-12-11_91_11-26
+    image: https://archive.org/download/literary-digest_1926-12-11_91_11/page/n26.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-11_91_11/page/n26/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Campbell's Beans advertisement, The Literary Digest, 11 December 1926
+    date: '1926-12-11'
+  - file: web:ia:literary-digest_1926-12-11_91_11-64
+    image: https://archive.org/download/literary-digest_1926-12-11_91_11/page/n64.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-11_91_11/page/n64/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: American Flyer toy train advertisement, The Literary Digest, 11 December 1926
+    date: '1926-12-11'
+  - file: web:ia:literary-digest_1926-12-11_91_11-58
+    image: https://archive.org/download/literary-digest_1926-12-11_91_11/page/n58.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-11_91_11/page/n58/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Steinway piano advertisement, The Literary Digest, 11 December 1926
+    date: '1926-12-11'
+  - file: web:ia:literary-digest_1926-12-11_91_11-49
+    image: https://archive.org/download/literary-digest_1926-12-11_91_11/page/n49.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-11_91_11/page/n49/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: Harley-Davidson advertisement, The Literary Digest, 11 December 1926
+    date: '1926-12-11'
+  - file: web:ia:literary-digest_1926-12-11_91_11-42
+    image: https://archive.org/download/literary-digest_1926-12-11_91_11/page/n42.jpg
+    page_url: https://archive.org/details/literary-digest_1926-12-11_91_11/page/n42/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, via Internet Archive
+    title: New York Central Lines advertisement, The Literary Digest, 11 December 1926
+    date: '1926-12-11'
 - id: closing
   chapter: Next Time
   narration: 'Next time: the last days of 1926. Christmas, and the end of a year that gave the world television''s first demonstration, the first liquid fuel rocket, and Winnie the Pooh. If you enjoyed this look through the old newspapers, subscribe, and

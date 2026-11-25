@@ -30,3 +30,7 @@
 | 26 | Christmas Club 4% (State Trust Co., Augusta) 25c–$5/нед | ✅ | клип Kennebec 13.12.1926 |
 | 27 | Chrysler 60 coach $1 145; Oldsmobile; Kimball; Day-Fan; Balkite; «Say it with flowers» | ✅ | LD 18.12.1926 |
 | 28 | 1926: телевидение (Бэрд, янв.), ракета Годдарда (март), «Винни-Пух» (окт.) | ✅ | общеизвестно; 1926 |
+| 29 | LD 11.12.1926: IMM продала White Star Line компании Royal Mail Steam Packet (лорд Килсант) за $35 млн; 40 судов; >500 судов под его контролем; «sail completely round the world…»; передача 1.01.1927; конец мечты Моргана | ✅ | LD 11.12.1926 «Britain wins the White Star fleet» |
+| 30 | White Star принадлежала IMM с 1902; Titanic — судно White Star | ✅ | общеизвестно; Wikipedia: White Star Line |
+| 31 | Элизабет Джаффрей, 17 лет экономкой при Тафте, Вильсоне, Гардинге, Кулидже; стейк 12 унций, не ел яиц, 2 апельсина; тренер $1 000/год; цитата миссис Тафт; 27.11.1911 вес 332 фунта, диета | ✅ | LD 11.12.1926 «White House beds and butcher bills» |
+| 32 | Бергиус: уголь + водород, ~800 °F, высокое давление; ~45 галлонов бензина с тонны; отказался прогнозировать для США; Нобелевская премия по химии 1931 (с Бошем) | ✅ | LD 11.12.1926; Wikipedia: Friedrich Bergius |
