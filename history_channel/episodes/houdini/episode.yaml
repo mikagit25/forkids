@@ -18,10 +18,9 @@ music:
 scenes:
 - id: cold-open
   montage: true
-  narration: 'On the seventh of July 1912, a short, stocky man was locked in handcuffs and leg irons and nailed into a wooden packing crate. The crate was roped, weighed down with two hundred pounds of
-    lead and lowered into the East River in New York. Fifty seven seconds later, he came up to the surface, free. He had escaped from handcuffs at Scotland Yard, from police cells all over Europe and America,
-    from a milk can full of water and from a glass tank, hanging upside down. Millions of people believed he could get out of anything. He spent the last years of his life proving that there was no magic
-    in it at all. This is the story of Harry Houdini.
+  narration: 'On the seventh of July 1912, a short, stocky man was locked in handcuffs and leg irons and nailed into a wooden packing crate. The crate was roped, weighed down with two hundred pounds of lead and lowered into the East River in New York.
+    Fifty seven seconds later, he came up to the surface, free. He had escaped from handcuffs at Scotland Yard, from police cells all over Europe and America, from a milk can full of water and from a glass tank, hanging upside down. Millions of people
+    believed he could get out of anything. He spent the last years of his life proving that there was no magic in it at all. This is the story of Harry Houdini.
 
     '
   images:
@@ -43,10 +42,10 @@ scenes:
 - id: immigrant
   chapter: Chapter 1
   title: The Rabbi's Son
-  narration: 'He was born Erik Weisz, in Budapest, on the twenty fourth of March 1874, into a Jewish family. His father, Mayer Samuel Weisz, was a rabbi. To escape discrimination, the family left Hungary.
-    They arrived in the United States on the third of July 1878 and changed their name to Weiss. Erik became Ehrich. His father became the rabbi of a small Reform congregation in Appleton, Wisconsin. But
-    he lost the job in 1882, and the family moved to Milwaukee, where they fell into deep poverty. Little Ehrich took any work he could find. At the age of nine, he made his first public appearance as a
-    trapeze artist. He called himself Ehrich, the Prince of the Air. In 1887, he and his father moved to New York, to a boarding house on East 79th Street, and the rest of the family followed.
+  narration: 'He was born Erik Weisz, in Budapest, on the twenty fourth of March 1874, into a Jewish family. His father, Mayer Samuel Weisz, was a rabbi. To escape discrimination, the family left Hungary. They arrived in the United States on the third
+    of July 1878 and changed their name to Weiss. Erik became Ehrich. His father became the rabbi of a small Reform congregation in Appleton, Wisconsin. But he lost the job in 1882, and the family moved to Milwaukee, where they fell into deep poverty.
+    Little Ehrich took any work he could find. At the age of nine, he made his first public appearance as a trapeze artist. He called himself Ehrich, the Prince of the Air. In 1887, he and his father moved to New York, to a boarding house on East 79th
+    Street, and the rest of the family followed.
 
     '
   candidates:
@@ -60,13 +59,14 @@ scenes:
   - file: curid:68203065
   - file: curid:50948628
   - file: curid:50949764
+  - file: curid:50952421
+  - file: curid:50949705
 - id: beginnings
   title: Harry Houdini
-  narration: 'As a teenager, Ehrich read the memoirs of the great French magician Jean-Eugène Robert-Houdin. He made his stage name from his hero''s: Houdini. Harry probably came from Ehri, his family''s
-    nickname for him. He started as a professional magician in 1891, and for years he had little success. He worked in dime museums and sideshows. He did card tricks and called himself the King of Cards.
-    At one circus, he even doubled as the Wild Man. With his brother Theodore, whom everyone called Dash, he performed as the Brothers Houdini, and in 1893 they worked at the Chicago World''s Fair. In 1894
-    he met a young performer, Wilhelmina Beatrice Rahner, known as Bess. She married Harry, took Dash''s place in the act, and stayed at his side on stage for the rest of his career. Together, the Houdinis
-    toured with circuses and travelling shows. One of their numbers, Metamorphosis, was a lightning exchange: the man locked in a trunk, and a moment later, the woman in his place.
+  narration: 'As a teenager, Ehrich read the memoirs of the great French magician Jean-Eugène Robert-Houdin. He made his stage name from his hero''s: Houdini. Harry probably came from Ehri, his family''s nickname for him. He started as a professional magician
+    in 1891, and for years he had little success. He worked in dime museums and sideshows. He did card tricks and called himself the King of Cards. At one circus, he even doubled as the Wild Man. With his brother Theodore, whom everyone called Dash, he
+    performed as the Brothers Houdini, and in 1893 they worked at the Chicago World''s Fair. In 1894 he met a young performer, Wilhelmina Beatrice Rahner, known as Bess. She married Harry, took Dash''s place in the act, and stayed at his side on stage
+    for the rest of his career. Together, the Houdinis toured with circuses and travelling shows. One of their numbers, Metamorphosis, was a lightning exchange: the man locked in a trunk, and a moment later, the woman in his place.
 
     '
   candidates:
@@ -97,15 +97,16 @@ scenes:
   - file: curid:139309081
   - file: curid:1009017
   - file: curid:33177715
+  - file: curid:66179485
+  - file: curid:131485904
 - id: handcuff-king
   chapter: Chapter 2
   title: The Handcuff King
-  narration: 'In 1899, Houdini met the theatre manager Martin Beck in Saint Paul, Minnesota. Beck told him to forget the card tricks and to concentrate on escapes, and he booked him on the Orpheum vaudeville
-    circuit. Within months, Houdini was playing the best theatres in America. In 1900, Beck sent him to Europe. In London, Houdini went to Scotland Yard and escaped from police handcuffs in front of the
-    detectives. The Alhambra Theatre booked him for six months. In Germany, the police suspected that his act was a fraud. In Berlin, he was stripped naked and locked in thumbscrews, finger locks and irons
-    in front of three hundred policemen. He was free in six minutes. In Cologne, a newspaper and a policeman accused him of cheating. Houdini sued them. In court, he was asked to open the policeman''s own
-    lock without any tools. He did, and he won the case. Everywhere he went, he challenged the local police to lock him up. Billed as the Handcuff King, he became a star in Britain, Germany, France and
-    Russia.
+  narration: 'In 1899, Houdini met the theatre manager Martin Beck in Saint Paul, Minnesota. Beck told him to forget the card tricks and to concentrate on escapes, and he booked him on the Orpheum vaudeville circuit. Within months, Houdini was playing
+    the best theatres in America. In 1900, Beck sent him to Europe. In London, Houdini went to Scotland Yard and escaped from police handcuffs in front of the detectives. The Alhambra Theatre booked him for six months. In Germany, the police suspected
+    that his act was a fraud. In Berlin, he was stripped naked and locked in thumbscrews, finger locks and irons in front of three hundred policemen. He was free in six minutes. In Cologne, a newspaper and a policeman accused him of cheating. Houdini sued
+    them. In court, he was asked to open the policeman''s own lock without any tools. He did, and he won the case. Everywhere he went, he challenged the local police to lock him up. Billed as the Handcuff King, he became a star in Britain, Germany, France
+    and Russia.
 
     '
   candidates:
@@ -146,19 +147,16 @@ scenes:
     date: ca. 1898
     note: poster
   - file: curid:66143022
-  - file: curid:66179440
-  - file: curid:14726774
   - file: curid:67248194
   - file: curid:67061234
   - file: curid:179421273
   - file: curid:66143031
 - id: mirror
   title: The Mirror Challenge
-  narration: 'His most famous handcuff escape took place in London, on the seventeenth of March 1904. The Daily Mirror newspaper challenged him to escape from a special pair of handcuffs that, it said,
-    had taken a Birmingham locksmith five years to make. Some four thousand people and more than a hundred journalists filled the Hippodrome theatre. Houdini went behind a small screen, his ghost house.
-    Time passed. He came out several times, sweating. He asked for the cuffs to be taken off so that he could remove his coat. The newspaper''s man refused. So Houdini took a penknife in his teeth and cut
-    his coat off his body. After an hour and ten minutes, he walked out free. The crowd carried him on their shoulders, and he broke down and wept. To this day, nobody knows exactly how he did it. Some
-    biographers believe the whole struggle was arranged in advance, as pure showmanship. If so, it was the best show in town.
+  narration: 'His most famous handcuff escape took place in London, on the seventeenth of March 1904. The Daily Mirror newspaper challenged him to escape from a special pair of handcuffs that, it said, had taken a Birmingham locksmith five years to make.
+    Some four thousand people and more than a hundred journalists filled the Hippodrome theatre. Houdini went behind a small screen, his ghost house. Time passed. He came out several times, sweating. He asked for the cuffs to be taken off so that he could
+    remove his coat. The newspaper''s man refused. So Houdini took a penknife in his teeth and cut his coat off his body. After an hour and ten minutes, he walked out free. The crowd carried him on their shoulders, and he broke down and wept. To this day,
+    nobody knows exactly how he did it. Some biographers believe the whole struggle was arranged in advance, as pure showmanship. If so, it was the best show in town.
 
     '
   candidates:
@@ -168,15 +166,18 @@ scenes:
   images:
   - file: curid:66179472
   - file: curid:2262480
-  - file: curid:9790068
+  - file: curid:66179440
+  - file: curid:14726774
+  - file: curid:67034393
+  - file: curid:67041880
+  - file: curid:124309609
 - id: water
   chapter: Chapter 3
   title: Failure Means a Drowning Death
-  narration: 'By 1908, every music hall had its own handcuff king, and Houdini needed something new. That year, he introduced the Milk Can Escape. He was handcuffed and locked inside an oversized milk can
-    filled with water. The posters said: Failure means a drowning death. He invited the audience to hold their breath along with him. The same year, in Boston, a crowd watched him jump from the Harvard
-    Bridge into the river below. Imitators copied the milk can almost at once. Houdini went to court to protect his act, and then he invented something nobody else could copy. On the twenty first of September
-    1912, at the Circus Busch in Berlin, he first performed the Chinese Water Torture Cell in public. His feet were locked in stocks, he was hung upside down and lowered head first into a glass tank full
-    of water, and a curtain was drawn. He performed it until the end of his life.
+  narration: 'By 1908, every music hall had its own handcuff king, and Houdini needed something new. That year, he introduced the Milk Can Escape. He was handcuffed and locked inside an oversized milk can filled with water. The posters said: Failure means
+    a drowning death. He invited the audience to hold their breath along with him. The same year, in Boston, a crowd watched him jump from the Harvard Bridge into the river below. Imitators copied the milk can almost at once. Houdini went to court to protect
+    his act, and then he invented something nobody else could copy. On the twenty first of September 1912, at the Circus Busch in Berlin, he first performed the Chinese Water Torture Cell in public. His feet were locked in stocks, he was hung upside down
+    and lowered head first into a glass tank full of water, and a curtain was drawn. He performed it until the end of his life.
 
     '
   candidates:
@@ -211,11 +212,10 @@ scenes:
   - file: curid:68034981
 - id: stunts
   title: Upside Down Over the Street
-  narration: 'His best advertising was free, and it happened in the street. In the East River in 1912, he escaped from the nailed packing crate in fifty seven seconds. Later, he repeated the stunt many
-    times. Even more popular was the suspended straitjacket escape. Houdini was strapped into a regulation straitjacket and hung by his ankles from a tall building or a crane, high above the crowd. In New
-    York, he did it from a crane building the subway. From the moment he was hoisted up to the moment the jacket fell, it took two minutes and thirty seven seconds. In January 1922, in Washington, thousands
-    of people stopped in the street to watch him wriggle free, upside down, outside Keith''s Theatre. He escaped from riveted boilers, from wet sheets, from mail bags, and once, in Boston, from the belly
-    of a whale that had washed ashore.
+  narration: 'His best advertising was free, and it happened in the street. In the East River in 1912, he escaped from the nailed packing crate in fifty seven seconds. Later, he repeated the stunt many times. Even more popular was the suspended straitjacket
+    escape. Houdini was strapped into a regulation straitjacket and hung by his ankles from a tall building or a crane, high above the crowd. In New York, he did it from a crane building the subway. From the moment he was hoisted up to the moment the jacket
+    fell, it took two minutes and thirty seven seconds. In January 1922, in Washington, thousands of people stopped in the street to watch him wriggle free, upside down, outside Keith''s Theatre. He escaped from riveted boilers, from wet sheets, from mail
+    bags, and once, in Boston, from the belly of a whale that had washed ashore.
 
     '
   candidates:
@@ -250,10 +250,10 @@ scenes:
 - id: flight
   chapter: Chapter 4
   title: The Flying Magician
-  narration: 'Houdini was always looking for the next impossible thing. In 1909, he fell in love with flying. He bought a French Voisin biplane for five thousand dollars and hired a full time mechanic.
-    After crashing once, he made his first successful flight in Hamburg, on the twenty sixth of November 1909. The next year, he took the aeroplane with him on a tour of Australia. On the eighteenth of
-    March 1910, at a paddock at Diggers Rest near Melbourne, he made three flights, one of them more than three kilometres long. Spectators signed a certificate to prove it. It was one of the first powered
-    flights ever made in Australia. Three days later, he stayed in the air for more than seven minutes. Then he shipped the plane back and put it into storage in England. Soon the stage called him back.
+  narration: 'Houdini was always looking for the next impossible thing. In 1909, he fell in love with flying. He bought a French Voisin biplane for five thousand dollars and hired a full time mechanic. After crashing once, he made his first successful
+    flight in Hamburg, on the twenty sixth of November 1909. The next year, he took the aeroplane with him on a tour of Australia. On the eighteenth of March 1910, at a paddock at Diggers Rest near Melbourne, he made three flights, one of them more than
+    three kilometres long. Spectators signed a certificate to prove it. It was one of the first powered flights ever made in Australia. Three days later, he stayed in the air for more than seven minutes. Then he shipped the plane back and put it into storage
+    in England. Soon the stage called him back.
 
     '
   candidates:
@@ -276,13 +276,13 @@ scenes:
   - file: curid:83700579
   - file: curid:37741223
   - file: curid:67108396
+  - file: curid:75980738
 - id: showman
   title: The Vanishing Elephant
-  narration: 'Houdini became one of the best paid performers in the world. He bought a big house in Harlem, filled it with books on magic, and wrote books himself. He crossed the Atlantic with the rich
-    and famous. In 1914, on board the liner Imperator, he was photographed with a fellow passenger, the former president Theodore Roosevelt. On the twenty ninth of October 1914, he recorded his own voice
-    on wax cylinders, practising the speech that introduced the water torture cell. They are the only recordings of his voice that we know. And in 1918, at the huge Hippodrome theatre in New York, he made
-    a full grown elephant called Jennie disappear from the stage. That same year, he moved into films. He starred in a fifteen part serial, The Master Mystery, and then in feature films such as The Grim
-    Game. He did his own stunts, swam rivers and was frozen into ice. But the films did not make money, and he gave up acting.
+  narration: 'Houdini became one of the best paid performers in the world. He bought a big house in Harlem, filled it with books on magic, and wrote books himself. He crossed the Atlantic with the rich and famous. In 1914, on board the liner Imperator,
+    he was photographed with a fellow passenger, the former president Theodore Roosevelt. On the twenty ninth of October 1914, he recorded his own voice on wax cylinders, practising the speech that introduced the water torture cell. They are the only recordings
+    of his voice that we know. And in 1918, at the huge Hippodrome theatre in New York, he made a full grown elephant called Jennie disappear from the stage. That same year, he moved into films. He starred in a fifteen part serial, The Master Mystery,
+    and then in feature films such as The Grim Game. He did his own stunts, swam rivers and was frozen into ice. But the films did not make money, and he gave up acting.
 
     '
   candidates:
@@ -340,11 +340,10 @@ scenes:
 - id: mother
   chapter: Chapter 5
   title: Do Spirits Return?
-  narration: 'After the First World War, millions of families in Europe and America had lost someone. Many of them turned to spiritualism. In darkened rooms, mediums promised to bring back the voices of
-    the dead, and they were paid for it. Houdini had trained all his life in the art of deception. When he sat in the séance rooms, what he saw were tricks, and he knew the tricks better than anyone. What
-    made him angry was that they were played on people in grief. In the 1920s, he made it his mission to expose them. He went to séances in disguise, with a reporter and a police officer. On stage, he showed
-    audiences how spirits rang bells, wrote on slates and made hands appear in the dark. Do spirits return, asked his posters. Houdini says no, and proves it. He even had himself photographed with the ghost
-    of Abraham Lincoln, a simple double exposure, to show how easily spirit photographs could be made.
+  narration: 'After the First World War, millions of families in Europe and America had lost someone. Many of them turned to spiritualism. In darkened rooms, mediums promised to bring back the voices of the dead, and they were paid for it. Houdini had
+    trained all his life in the art of deception. When he sat in the séance rooms, what he saw were tricks, and he knew the tricks better than anyone. What made him angry was that they were played on people in grief. In the 1920s, he made it his mission
+    to expose them. He went to séances in disguise, with a reporter and a police officer. On stage, he showed audiences how spirits rang bells, wrote on slates and made hands appear in the dark. Do spirits return, asked his posters. Houdini says no, and
+    proves it. He even had himself photographed with the ghost of Abraham Lincoln, a simple double exposure, to show how easily spirit photographs could be made.
 
     '
   candidates:
@@ -372,14 +371,40 @@ scenes:
   - file: curid:7966304
   - file: curid:7966208
   - file: curid:26197872
-  - file: curid:5253594
   - file: curid:43520866
+  - file: web:ia:magicianamongspi00houd-0
+    image: https://archive.org/download/magicianamongspi00houd/page/n0.jpg
+    page_url: https://archive.org/details/magicianamongspi00houd/page/n0/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, A Magician Among the Spirits (Harper & Brothers, 1924), via Internet Archive
+    title: A Magician Among the Spirits, by Houdini, 1924, cover
+    date: '1924'
+  - file: web:ia:literary-digest_1926-11-20_91_8-35c2
+    image: https://archive.org/download/literary-digest_1926-11-20_91_8/page/n35.jpg
+    page_url: https://archive.org/details/literary-digest_1926-11-20_91_8/page/n35/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, 20 November 1926, via Internet Archive
+    title: '''A spirit séance with Houdini'', The Literary Digest, 20 November 1926'
+    date: '1926-11-20'
+    crop:
+    - 0.38
+    - 0.44
+    - 1.0
+    - 0.74
+    match: He went to séances in disguise
+  - file: web:ia:1924HoudiniBostonMediumMargery-11
+    image: https://archive.org/download/1924HoudiniBostonMediumMargery/page/n11.jpg
+    page_url: https://archive.org/details/1924HoudiniBostonMediumMargery/page/n11/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, 'Houdini Exposes the Tricks Used by the Boston Medium Margery' (1924), via Internet Archive
+    title: Drawing from Houdini's pamphlet on Margery's séances
+    date: '1924'
 - id: margery
   title: Margery
-  narration: 'In 1924, the magazine Scientific American offered a cash prize to any medium who could prove supernatural powers under test conditions. Houdini sat on the committee. The strongest candidate
-    was Mina Crandon, the wife of a Boston surgeon, known as Margery. In July 1924, Houdini attended two séances at her home. He said that in the dark, Margery had slipped out of control and stretched her
-    foot to ring a bell. For the next tests, he asked her to wear an apparatus that stopped her from using her legs. The committee did not award the prize. Nobody ever won it. The same year, he exposed
-    a young Spaniard who claimed to have x-ray eyes. He was simply peeking under his blindfold. Houdini wrote a book about it all, A Magician Among the Spirits.
+  narration: 'In 1924, the magazine Scientific American offered a cash prize to any medium who could prove supernatural powers under test conditions. Houdini sat on the committee. The strongest candidate was Mina Crandon, the wife of a Boston surgeon,
+    known as Margery. In July 1924, Houdini attended two séances at her home. He said that in the dark, Margery had slipped out of control and stretched her foot to ring a bell. For the next tests, he asked her to wear an apparatus that stopped her from
+    using her legs. The committee did not award the prize. Nobody ever won it. The same year, he exposed a young Spaniard who claimed to have x-ray eyes. He was simply peeking under his blindfold. Houdini wrote a book about it all, A Magician Among the
+    Spirits.
 
     '
   candidates:
@@ -394,11 +419,81 @@ scenes:
   - file: curid:201863944
   - file: curid:76586025
   - file: curid:43520764
+  - file: web:ia:1924HoudiniBostonMediumMargery-1
+    image: https://archive.org/download/1924HoudiniBostonMediumMargery/page/n1.jpg
+    page_url: https://archive.org/details/1924HoudiniBostonMediumMargery/page/n1/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, 'Houdini Exposes the Tricks Used by the Boston Medium Margery' (1924), via Internet Archive
+    title: Houdini's 1924 pamphlet exposing 'Margery', title page
+    date: '1924'
+  - file: web:ia:1924HoudiniBostonMediumMargery-3
+    image: https://archive.org/download/1924HoudiniBostonMediumMargery/page/n3.jpg
+    page_url: https://archive.org/details/1924HoudiniBostonMediumMargery/page/n3/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, 'Houdini Exposes the Tricks Used by the Boston Medium Margery' (1924), via Internet Archive
+    title: '''Margery the Medium Exposed'''
+    date: '1924'
+  - file: web:ia:1924HoudiniBostonMediumMargery-8
+    image: https://archive.org/download/1924HoudiniBostonMediumMargery/page/n8.jpg
+    page_url: https://archive.org/details/1924HoudiniBostonMediumMargery/page/n8/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, 'Houdini Exposes the Tricks Used by the Boston Medium Margery' (1924), via Internet Archive
+    title: 'Drawing: how Margery rang the bell box with her foot'
+    date: '1924'
+  - file: web:ia:1924HoudiniBostonMediumMargery-9
+    image: https://archive.org/download/1924HoudiniBostonMediumMargery/page/n9.jpg
+    page_url: https://archive.org/details/1924HoudiniBostonMediumMargery/page/n9/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, 'Houdini Exposes the Tricks Used by the Boston Medium Margery' (1924), via Internet Archive
+    title: Drawing of the séance control
+    date: '1924'
+  - file: web:ia:1924HoudiniBostonMediumMargery-15
+    image: https://archive.org/download/1924HoudiniBostonMediumMargery/page/n15.jpg
+    page_url: https://archive.org/details/1924HoudiniBostonMediumMargery/page/n15/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, 'Houdini Exposes the Tricks Used by the Boston Medium Margery' (1924), via Internet Archive
+    title: The box Houdini built to control Margery
+    date: '1924'
+  - file: web:ia:1924HoudiniBostonMediumMargery-16
+    image: https://archive.org/download/1924HoudiniBostonMediumMargery/page/n16.jpg
+    page_url: https://archive.org/details/1924HoudiniBostonMediumMargery/page/n16/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, 'Houdini Exposes the Tricks Used by the Boston Medium Margery' (1924), via Internet Archive
+    title: The control box, open
+    date: '1924'
+  - file: web:ia:1924HoudiniBostonMediumMargery-17
+    image: https://archive.org/download/1924HoudiniBostonMediumMargery/page/n17.jpg
+    page_url: https://archive.org/details/1924HoudiniBostonMediumMargery/page/n17/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, 'Houdini Exposes the Tricks Used by the Boston Medium Margery' (1924), via Internet Archive
+    title: Houdini in the control box
+    date: '1924'
+  - file: web:ia:1924HoudiniBostonMediumMargery-19
+    image: https://archive.org/download/1924HoudiniBostonMediumMargery/page/n19.jpg
+    page_url: https://archive.org/details/1924HoudiniBostonMediumMargery/page/n19/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, 'Houdini Exposes the Tricks Used by the Boston Medium Margery' (1924), via Internet Archive
+    title: Houdini demonstrating the box
+    date: '1924'
+  - file: web:ia:1924HoudiniBostonMediumMargery-26
+    image: https://archive.org/download/1924HoudiniBostonMediumMargery/page/n26.jpg
+    page_url: https://archive.org/details/1924HoudiniBostonMediumMargery/page/n26/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, 'Houdini Exposes the Tricks Used by the Boston Medium Margery' (1924), via Internet Archive
+    title: Diagram of the control box
+    date: '1924'
+  - file: web:ia:1924HoudiniBostonMediumMargery-34
+    image: https://archive.org/download/1924HoudiniBostonMediumMargery/page/n34.jpg
+    page_url: https://archive.org/details/1924HoudiniBostonMediumMargery/page/n34/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, 'Houdini Exposes the Tricks Used by the Boston Medium Margery' (1924), via Internet Archive
+    title: Joaquín María Argamasilla, 'the Spaniard with X-ray eyes'
+    date: '1924'
 - id: doyle
   title: Houdini and Conan Doyle
-  narration: 'One of Houdini''s friends was Sir Arthur Conan Doyle, the creator of Sherlock Holmes, and one of the most famous believers in spiritualism in the world. Doyle believed in mediums, in spirit
-    photographs, even in photographs of fairies taken by two girls in Cottingley, which were later proved to be a hoax. Houdini told him again and again that his own feats were tricks. Doyle did not believe
-    him. He became convinced that Houdini himself had supernatural powers, and that he used them to block the real mediums. The two men fell out, and their friendship ended in public quarrels in the newspapers.
+  narration: 'One of Houdini''s friends was Sir Arthur Conan Doyle, the creator of Sherlock Holmes, and one of the most famous believers in spiritualism in the world. Doyle believed in mediums, in spirit photographs, even in photographs of fairies taken
+    by two girls in Cottingley, which were later proved to be a hoax. Houdini told him again and again that his own feats were tricks. Doyle did not believe him. He became convinced that Houdini himself had supernatural powers, and that he used them to
+    block the real mediums. The two men fell out, and their friendship ended in public quarrels in the newspapers.
 
     '
   candidates:
@@ -412,13 +507,20 @@ scenes:
   - file: curid:191716201
   - file: curid:191710199
   - file: curid:78367184
+  - file: web:ia:magicianamongspi00houd-5
+    image: https://archive.org/download/magicianamongspi00houd/page/n5.jpg
+    page_url: https://archive.org/details/magicianamongspi00houd/page/n5/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, A Magician Among the Spirits (Harper & Brothers, 1924), via Internet Archive
+    title: Sir Arthur Conan Doyle and Houdini, frontispiece of A Magician Among the Spirits, 1924
+    date: '1924'
+    match: One of Houdini's friends
 - id: coffin
   chapter: Chapter 6
   title: Ninety Minutes Under Water
-  narration: 'In 1926, an Egyptian performer called Rahman Bey claimed that supernatural powers let him stay in a sealed coffin for an hour. Houdini answered without any supernatural powers. On the fifth
-    of August 1926, he was sealed in a coffin and lowered into the swimming pool of the Hotel Shelton in New York. He stayed there for an hour and a half. He was fifty two years old. Years earlier, near
-    Santa Ana in California, he had tried being buried alive in a pit of earth six feet deep, with no coffin at all, and had almost died clawing his way out. Now he wanted to prove that anyone with the
-    right training could survive what the fakirs called a miracle.
+  narration: 'In 1926, an Egyptian performer called Rahman Bey claimed that supernatural powers let him stay in a sealed coffin for an hour. Houdini answered without any supernatural powers. On the fifth of August 1926, he was sealed in a coffin and lowered
+    into the swimming pool of the Hotel Shelton in New York. He stayed there for an hour and a half. He was fifty two years old. Years earlier, near Santa Ana in California, he had tried being buried alive in a pit of earth six feet deep, with no coffin
+    at all, and had almost died clawing his way out. Now he wanted to prove that anyone with the right training could survive what the fakirs called a miracle.
 
     '
   candidates:
@@ -434,13 +536,25 @@ scenes:
   - file: curid:57899851
   - file: curid:67709801
   - file: curid:80626384
+  - file: web:ia:literary-digest_1926-11-20_91_8-35c1
+    image: https://archive.org/download/literary-digest_1926-11-20_91_8/page/n35.jpg
+    page_url: https://archive.org/details/literary-digest_1926-11-20_91_8/page/n35/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, 20 November 1926, via Internet Archive
+    title: '''The Master Trickster in this coffin'', The Literary Digest, 20 November 1926'
+    date: '1926-11-20'
+    crop:
+    - 0.03
+    - 0.02
+    - 0.6
+    - 0.39
+    match: lowered into the swimming pool
 - id: death
   title: Halloween
-  narration: 'In October 1926, Houdini was on tour in Canada. On the twenty second, in his dressing room at the Princess Theatre in Montreal, a student asked if it was true that punches to his stomach did
-    not hurt him. Houdini, lying on a couch with a broken ankle, said his stomach could take a lot. The student hit him several times, hard, before he could prepare. That night Houdini performed in great
-    pain. For two days he did not see a doctor. When he did, he had a high fever and acute appendicitis, and he was told to have an operation at once. He went on with the show. On the twenty fourth of October,
-    at the Garrick Theater in Detroit, he took the stage with a fever of forty degrees. It was his last performance. Harry Houdini died in Detroit on the thirty first of October 1926, on Halloween, of peritonitis.
-    He was fifty two. Whether the punches caused his death, nobody can say for certain.
+  narration: 'In October 1926, Houdini was on tour in Canada. On the twenty second, in his dressing room at the Princess Theatre in Montreal, a student asked if it was true that punches to his stomach did not hurt him. Houdini, lying on a couch with a
+    broken ankle, said his stomach could take a lot. The student hit him several times, hard, before he could prepare. That night Houdini performed in great pain. For two days he did not see a doctor. When he did, he had a high fever and acute appendicitis,
+    and he was told to have an operation at once. He went on with the show. On the twenty fourth of October, at the Garrick Theater in Detroit, he took the stage with a fever of forty degrees. It was his last performance. Harry Houdini died in Detroit
+    on the thirty first of October 1926, on Halloween, of peritonitis. He was fifty two. Whether the punches caused his death, nobody can say for certain.
 
     '
   candidates:
@@ -452,13 +566,33 @@ scenes:
   - file: curid:139708315
   - file: curid:36608170
   - file: curid:146618758
+  - file: web:ia:sim_illustrated-london-news_1926-11-06_169_4568-25c
+    image: https://archive.org/download/sim_illustrated-london-news_1926-11-06_169_4568/page/n25.jpg
+    page_url: https://archive.org/details/sim_illustrated-london-news_1926-11-06_169_4568/page/n25/mode/1up
+    rights: Public domain in the US (published 1926)
+    credit: The Illustrated London News, 6 November 1926, via Internet Archive
+    title: '''The Handcuff King dead: the late Harry Houdini'', The Illustrated London News, 6 November 1926'
+    date: '1926-11-06'
+    crop:
+    - 0.36
+    - 0.07
+    - 0.56
+    - 0.29
+    match: Harry Houdini died in Detroit
+  - file: web:ia:sim_illustrated-london-news_1926-11-06_169_4568-25
+    image: https://archive.org/download/sim_illustrated-london-news_1926-11-06_169_4568/page/n25.jpg
+    page_url: https://archive.org/details/sim_illustrated-london-news_1926-11-06_169_4568/page/n25/mode/1up
+    rights: Public domain in the US (published 1926)
+    credit: The Illustrated London News, 6 November 1926, via Internet Archive
+    title: '''Personalities of the week'', The Illustrated London News, 6 November 1926'
+    date: '1926-11-06'
+  - file: curid:9790068
 - id: legacy
   chapter: Epilogue
-  narration: 'Houdini was buried in the Machpelah Cemetery in Queens, New York, under the crest of the Society of American Magicians, of which he had been president. Before he died, he and Bess had agreed
-    on a secret code. If there was any way to speak from the other side, he would send her the words Rosabelle, believe. Rosabelle was the song she had been singing when they first met. For ten years, every
-    Halloween, Bess held a séance. No message ever came. In 1936, after the last séance on the roof of a hotel in Hollywood, she blew out the candle she had kept burning beside his photograph. Houdini left
-    much of his great collection of books on magic and spiritualism to the Library of Congress. Many of the pictures in this film come from there. A hundred years later, his name still means the impossible
-    escape. If you enjoyed this story from the archives, subscribe for more.
+  narration: 'Houdini was buried in the Machpelah Cemetery in Queens, New York, under the crest of the Society of American Magicians, of which he had been president. Before he died, he and Bess had agreed on a secret code. If there was any way to speak
+    from the other side, he would send her the words Rosabelle, believe. Rosabelle was the song she had been singing when they first met. For ten years, every Halloween, Bess held a séance. No message ever came. In 1936, after the last séance on the roof
+    of a hotel in Hollywood, she blew out the candle she had kept burning beside his photograph. Houdini left much of his great collection of books on magic and spiritualism to the Library of Congress. Many of the pictures in this film come from there.
+    A hundred years later, his name still means the impossible escape. If you enjoyed this story from the archives, subscribe for more.
 
     '
   candidates:
@@ -468,6 +602,35 @@ scenes:
   images:
   - file: curid:7778406
   - file: curid:11734968
+  - file: web:ia:literary-digest_1926-11-20_91_8-35
+    image: https://archive.org/download/literary-digest_1926-11-20_91_8/page/n35.jpg
+    page_url: https://archive.org/details/literary-digest_1926-11-20_91_8/page/n35/mode/1up
+    rights: Public domain (published 1926, US)
+    credit: The Literary Digest, 20 November 1926, via Internet Archive
+    title: Houdini obituary article, The Literary Digest, 20 November 1926
+    date: '1926-11-20'
+  - file: web:ia:magicianamongspi00houd-58
+    image: https://archive.org/download/magicianamongspi00houd/page/n58.jpg
+    page_url: https://archive.org/details/magicianamongspi00houd/page/n58/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, A Magician Among the Spirits (Harper & Brothers, 1924), via Internet Archive
+    title: Houdini with Ira Davenport, from A Magician Among the Spirits
+    date: '1924'
+  - file: web:ia:magicianamongspi00houd-6
+    image: https://archive.org/download/magicianamongspi00houd/page/n6.jpg
+    page_url: https://archive.org/details/magicianamongspi00houd/page/n6/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, A Magician Among the Spirits (Harper & Brothers, 1924), via Internet Archive
+    title: A Magician Among the Spirits, title page, 1924
+    date: '1924'
+  - file: web:ia:1924HoudiniBostonMediumMargery-0
+    image: https://archive.org/download/1924HoudiniBostonMediumMargery/page/n0.jpg
+    page_url: https://archive.org/details/1924HoudiniBostonMediumMargery/page/n0/mode/1up
+    rights: Public domain (published 1924, US)
+    credit: Houdini, 'Houdini Exposes the Tricks Used by the Boston Medium Margery' (1924), via Internet Archive
+    title: Houdini's 1924 pamphlet, cover
+    date: '1924'
+  - file: curid:5253594
 thumbnail:
   scene: stunts
   big: HOUDINI

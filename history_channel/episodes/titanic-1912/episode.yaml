@@ -110,7 +110,6 @@ scenes:
   - file: curid:191435135
   - file: curid:9462679
   - file: curid:43631504
-  - file: curid:36407586
 - id: departure
   chapter: Chapter 2
   title: The Maiden Voyage
@@ -127,7 +126,6 @@ scenes:
   - Nomadic tender Cherbourg
   - Titanic leaving Belfast
   images:
-  - file: curid:4458573
   - file: curid:18371923
   - file: curid:10351135
   - file: curid:95693213
@@ -338,7 +336,6 @@ scenes:
   - Titanic iceberg photograph Carpathia
   - Titanic survivors on Carpathia deck
   images:
-  - file: curid:67873952
   - file: loc:2014691299
     image: https://tile.loc.gov/storage-services/service/pnp/ggbain/11200/11212v.jpg
     rights: No known restrictions on publication / published 1912 - public domain in the US
@@ -351,7 +348,6 @@ scenes:
     title: Survivors of TITANIC on CARPATHIA
     date: 1912-04
     note: on board the rescue ship
-  - file: curid:66679720
   - file: curid:68104464
   - file: curid:67307880
   - file: curid:67307887
@@ -491,7 +487,6 @@ scenes:
     title: TITANIC disaster. Senate Investigating Committee questioning witnesses at the Waldorf Astoria
     date: c1912-05-27
     note: the US Senate inquiry
-  - file: curid:67307915
   - file: loc:2014690446
     image: https://tile.loc.gov/storage-services/service/pnp/ggbain/10400/10463v.jpg
     rights: No known restrictions on publication / published 1912 - public domain in the US
@@ -505,7 +500,6 @@ scenes:
     date: '1912-04-21'
     note: benefit baseball game
   - file: curid:19163231
-  - file: curid:93647366
   - file: curid:766882
   - file: curid:41967943
   - file: curid:41968009
@@ -532,7 +526,6 @@ scenes:
   - file: curid:25109637
   - file: curid:67050256
   - file: curid:25250406
-  - file: curid:119146526
   - file: curid:119146532
   - file: curid:60127409
 - id: closing
