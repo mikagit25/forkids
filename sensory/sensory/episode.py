@@ -238,7 +238,10 @@ def main():
         minutes = dur / 60
         cast = [c for g in groups for c in g]
         thumbnail(q / f"thumb_{stem}.png", list(dict.fromkeys(cast)), "SLEEPY TIME", seed, sleepy=True)
-        meta = {"title": f"Sleepy Fruit Friends 🌙 Calm Lullaby for Babies & Toddlers • {duration_words(round(minutes))}"[:100],
+        # 25.11.2026: named pairs + theme (the "Plum & Lemon Night Sky" style did best); a fixed title became a duplicate
+        nm = [n.replace("_", " ").title() for n in dict.fromkeys(cast)][:2]
+        theme = random.Random(seed).choice(["Night Sky", "Starry", "Moonlight", "Goodnight", "Dreamy", "Twinkle Star", "Bedtime"])
+        meta = {"title": f"Sleepy Fruit Friends 🌙 {' & '.join(nm)} {theme} Lullaby for Babies & Toddlers • {duration_words(round(minutes))}"[:100],
                 "description": sleep_description(minutes, cast, credit),
                 "tags": ["lullaby", "baby sleep music", "bedtime music", "sleep music for babies", "lullaby for babies",
                          "baby lullaby", "toddler sleep", "calm music for kids", "sensory video", "happy bear kids",
@@ -273,7 +276,12 @@ def main():
             thumbnail(q / f"thumb_{stem}.png", list(dict.fromkeys(cast)), f"{fam_name.upper()} DANCE PARTY", seed)
         word = GENRE_WORDS.get(genre, ("Party", "music"))
         if hc:
-            video_title = f"High Contrast Baby Video 👁️ Sensory for Newborns • {duration_words(round(minutes))}"[:100]
+            # 25.11.2026: one fixed title made every new episode a duplicate -> vary by age band and named friends
+            names_hc = [n.replace("_", " ").title() for n in dict.fromkeys(cast)][:2]
+            age = random.Random(seed).choice(["0-3 Months", "3-6 Months", "Newborns", "6+ Months"])
+            hook = random.Random(seed + 1).choice(["Bold Shapes", "Dancing Friends", "Black & White Patterns", "Bright Contrast"])
+            video_title = (f"High Contrast Baby Video for {age} 👁️ {hook} with {' & '.join(names_hc)} • "
+                           f"{duration_words(round(minutes))}")[:100]
             video_type = "sensory_highcontrast"
             tags = ["high contrast baby", "newborn sensory", "baby visual stimulation", "black and white baby",
                     "sensory video", "newborn video", "baby development", "infant stimulation",
